@@ -115,7 +115,7 @@ public partial class BattleEnemyScene : Node2D
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff
-        _battleSceneObject.StartCurrentState();
+        _battleSceneObject.StartCurrentState(true);
     }
 
     private void _OnSkillListItemSelected(int index)
@@ -187,13 +187,13 @@ public partial class BattleEnemyScene : Node2D
                 userNode.Call("UpdateBattleEffects", userEffects);
                 await ToSignal(userNode, "EffectPlayed");
             }
-                
+
             if (result.Target != null)
             {
                 Node targetNode = FindBattleEntityNode(result.Target);
                 BattleEffectWrapper targetNodeEffects = new BattleEffectWrapper() { Result = result };
 
-                targetNode?.Call("PlayEffect", targetNodeEffects);
+                targetNode.Call("UpdateBattleEffects", targetNodeEffects);
                 await ToSignal(targetNode, "EffectPlayed");
             }
 
@@ -204,6 +204,8 @@ public partial class BattleEnemyScene : Node2D
             // if our user can provide inputs, then re-enable the button
             if (update.UserCanInput)
                 _skillButton.Disabled = false;
+
+            _battleSceneObject.ChangeActiveEntity();
         }
 
         // update HP values on everyone
@@ -234,7 +236,18 @@ public partial class BattleEnemyScene : Node2D
             return;
         }
 
+        // populate skill list with new player
+        int skillIndex = 0;
+        if (_skillList.GetSelectedItems().Length > 0)
+            skillIndex = _skillList.GetSelectedItems()[0];
+        _skillList.Clear();
+
+        foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
+            _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
+        _skillList.Select(skillIndex);
+
         UpdateTargetList();
+
         _ap.Value = update.CurrentAPBarTurnValue;
         if (update.DidTurnStateChange)
         {

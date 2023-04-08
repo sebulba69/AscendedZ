@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Godot.HttpRequest;
+using static Godot.Projection;
 
 namespace AscendedZ.battle.battle_state_machine
 {
@@ -38,6 +39,7 @@ namespace AscendedZ.battle.battle_state_machine
             BattleResult result = default(BattleResult);
 
             ISkill skill = active.Skills[eventArgs.SkillIndex];
+
             // result cannot be null at the end of this function
             switch (skill.TargetType)
             {
@@ -55,7 +57,12 @@ namespace AscendedZ.battle.battle_state_machine
 
             result.User = active;
             battleSceneObject.HandlePostTurnProcessing(result);
+        }
 
+        public void ChangeActiveEntity(BattleSceneObject battleSceneObject)
+        {
+            var players = battleSceneObject.Players;
+            battleSceneObject.ActivePlayer.IsActive = false;
             do
             {
                 _activePlayer++;
@@ -77,13 +84,16 @@ namespace AscendedZ.battle.battle_state_machine
                 }
 
             } while (players[_activePlayer].HP == 0 || !players[_activePlayer].CanAttack);
-            
+
             battleSceneObject.ActivePlayer = players[_activePlayer];
+            battleSceneObject.ActivePlayer.IsActive = true;
+            battleSceneObject.PostUIUpdate(false);
         }
 
         public void EndState(BattleSceneObject battleSceneObject)
         {
             battleSceneObject.SkillSelected -= _OnSkillSelected;
+            battleSceneObject.PostUIUpdate(true); // if the state is ending, then the turns are being swapped
         }
     }
 }

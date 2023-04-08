@@ -117,7 +117,7 @@ public partial class EntityDisplayBox : PanelContainer
         }
     }
 
-    public void UpdateBattleEffects(BattleEffectWrapper effectWrapper)
+    public async void UpdateBattleEffects(BattleEffectWrapper effectWrapper)
     {
         BattleResult result = effectWrapper.Result;
 
@@ -130,7 +130,7 @@ public partial class EntityDisplayBox : PanelContainer
                 if (!string.IsNullOrEmpty(startupAnimationString))
                 {
                     // wait for play effect to finish before proceeding
-                    PlayEffect(startupAnimationString);
+                    await PlayEffect(startupAnimationString);
                 }
             }
             else
@@ -140,7 +140,7 @@ public partial class EntityDisplayBox : PanelContainer
 
                 if (!string.IsNullOrEmpty(endupAnimationString))
                 {
-                    PlayEffect(endupAnimationString);
+                    await PlayEffect(endupAnimationString);
                 }
 
                 if((int)(result.ResultType) < (int)BattleResultType.StatusApplied)
@@ -162,7 +162,7 @@ public partial class EntityDisplayBox : PanelContainer
         this.EmitSignal("EffectPlayed");
     }
 
-    private async void PlayEffect(string effectName)
+    private async Task PlayEffect(string effectName)
     {
         _effect.Visible = true;
 

@@ -9,6 +9,7 @@ namespace AscendedZ.battle.battle_state_machine
     public interface IBattleState
     {
         void StartState(BattleSceneObject battleSceneObject);
+        void ChangeActiveEntity(BattleSceneObject battleSceneObject);
         void EndState(BattleSceneObject battleSceneObject);
     }
 }

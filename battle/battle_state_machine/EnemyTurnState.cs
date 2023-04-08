@@ -64,12 +64,18 @@ namespace AscendedZ.battle.battle_state_machine
             battleSceneObject.HandlePostTurnProcessing(result);
         }
 
+        public void ChangeActiveEntity(BattleSceneObject battleSceneObject)
+        {
+            throw new NotImplementedException();
+        }
+
         public void EndState(BattleSceneObject battleSceneObject) 
         {
             _activeEnemy = 0;
             battleSceneObject.MakeEnemyDoTurn -= _OnDoTurnRequest;
             foreach (var enemy in _enemies)
                 enemy.ResetEnemyState();
+            battleSceneObject.PostUIUpdate(true);
         }
     }
 }

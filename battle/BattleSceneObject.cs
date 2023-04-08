@@ -32,7 +32,7 @@ namespace AscendedZ.battle
         private const int ENEMY_STATE = 1;
         private IBattleState[] _states = new IBattleState[] { new PlayerTurnState(), new EnemyTurnState() }; 
         private IBattleState _currentState;
-        private TurnState _turnState = TurnState.PLAYER;
+        private TurnState _turnState;
 
         public List<BattlePlayer> Players { get; set; } = new();
         public List<Enemy> Enemies { get; set; } = new();
@@ -43,6 +43,7 @@ namespace AscendedZ.battle
         public BattleSceneObject()
         {
             _currentState = _states[PLAYER_STATE];
+            _turnState = TurnState.PLAYER;
         }
 
         /// <summary>
@@ -130,7 +131,9 @@ namespace AscendedZ.battle
             result.Target?.StatusHandler.ApplyBattleResult(result);
 
             this.PressTurn.HandleTurns(result.ResultType);
+            
             this.PostUIUpdate(this.PressTurn.TurnEnded, result);
+            
             if (this.PressTurn.TurnEnded)
             {
                 ChangeTurnState();
@@ -138,6 +141,10 @@ namespace AscendedZ.battle
             }
         }
 
+        public void ChangeActiveEntity()
+        {
+            _currentState.ChangeActiveEntity(this);
+        }
 
         /// <summary>
         /// Make sure all our party members are still alive.
