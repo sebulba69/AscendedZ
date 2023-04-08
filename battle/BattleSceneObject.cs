@@ -24,10 +24,9 @@ namespace AscendedZ.battle
     {
         // When the player selects a skill
         public EventHandler MakeEnemyDoTurn;
-        public EventHandler UpdateTurnState;
-        public EventHandler<int> UpdateActivePlayer;
+
+        public EventHandler<BattleUIUpdate> UpdateUI;
         public EventHandler<PlayerTargetSelectedEventArgs> SkillSelected;
-        public EventHandler<BattleResult> PostBattleResult;
 
         private const int PLAYER_STATE = 0;
         private const int ENEMY_STATE = 1;
@@ -39,18 +38,11 @@ namespace AscendedZ.battle
         public List<Enemy> Enemies { get; set; } = new();
         public PressTurn PressTurn { get; set; } = new();
         public TurnState TurnState { get => _turnState; }
-        public BattlePlayer ActivePlayer { get; private set; }
+        public BattlePlayer ActivePlayer { get; set; }
 
         public BattleSceneObject()
         {
             _currentState = _states[PLAYER_STATE];
-            PressTurn.TurnEnded += _OnTurnStateChange;
-            // each time active player is updated, set ActivePlayer
-            this.UpdateActivePlayer += (sender, args) => 
-            { 
-                if(args >= 0)
-                    this.ActivePlayer = this.Players[args]; 
-            };
         }
 
         /// <summary>
@@ -75,10 +67,23 @@ namespace AscendedZ.battle
         public void StartCurrentState(bool isBattleStart = false)
         {
             _currentState.StartState(this);
-            // we don't want to call this event if the battle is just starting
-            // it'll force the UI to hang up on UpdateUI
-            if(!isBattleStart)
-                this.UpdateTurnState?.Invoke(this, EventArgs.Empty);
+
+            // we don't change the turn state at the start of a state change
+            // we only enable user Input if turnState == turnstate.player
+            this.PostUIUpdate(isBattleStart);
+        }
+
+        public void PostUIUpdate(bool turnStateChange, BattleResult result = null)
+        {
+            UpdateUI?.Invoke(this, new BattleUIUpdate()
+            {
+                Enemies = this.Enemies,
+                Players = this.Players,
+                CurrentAPBarTurnValue = this.PressTurn.Turns,
+                UserCanInput = (_turnState == TurnState.PLAYER),
+                DidTurnStateChange = turnStateChange,
+                Result = result
+            });
         }
 
         public void SetPartyMemberTurns()
@@ -125,7 +130,12 @@ namespace AscendedZ.battle
             result.Target?.StatusHandler.ApplyBattleResult(result);
 
             this.PressTurn.HandleTurns(result.ResultType);
-            this.PostBattleResult?.Invoke(this, result);
+            this.PostUIUpdate(this.PressTurn.TurnEnded, result);
+            if (this.PressTurn.TurnEnded)
+            {
+                ChangeTurnState();
+                this.PressTurn.TurnEnded = false;
+            }
         }
 
 
@@ -145,7 +155,7 @@ namespace AscendedZ.battle
             return this.Enemies.FindAll(enemy => enemy.HP > 0).Count == 0;
         }
 
-        public void _OnTurnStateChange(object sender, EventArgs e)
+        private void ChangeTurnState()
         {
             _currentState.EndState(this);
             if (_turnState == TurnState.PLAYER)

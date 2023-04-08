@@ -10,8 +10,7 @@ namespace AscendedZ.battle
     public class PressTurn
     {
         private int _turns = 0;
-
-        public EventHandler TurnEnded;
+        public bool TurnEnded { get; set; }
 
         public int Turns
         {
@@ -25,7 +24,7 @@ namespace AscendedZ.battle
                 if (_turns <= 0)
                 {
                     _turns = 0;
-                    TurnEnded?.Invoke(this, EventArgs.Empty);
+                    TurnEnded = true;
                 }
             }
         }

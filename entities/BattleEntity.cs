@@ -18,6 +18,7 @@ namespace AscendedZ.entities.battle_entities
     {
         private int _maxHP;
         private int _hp;
+        private bool _isActive = false;
 
         public int HP
         {
@@ -47,6 +48,7 @@ namespace AscendedZ.entities.battle_entities
         public List<ISkill> Skills { get; set; } = new();
         public ResistanceArray Resistances { get; set; } = new();
         public BattleEntityStatuses StatusHandler { get; set; } = new();
+        public bool IsActive { get => _isActive; set => _isActive = value; }
 
         public BattleEntity()
         {

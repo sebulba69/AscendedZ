@@ -21,7 +21,10 @@ namespace AscendedZ.battle.battle_state_machine
             var players = battleSceneObject.Players;
             _activePlayer = players.FindIndex(p => p.HP > 0);
 
-            battleSceneObject.UpdateActivePlayer?.Invoke(this, _activePlayer);
+            var active = players[_activePlayer];
+            active.IsActive = true;
+
+            battleSceneObject.ActivePlayer = active;
             battleSceneObject.SkillSelected += _OnSkillSelected;
         }
 
@@ -74,12 +77,12 @@ namespace AscendedZ.battle.battle_state_machine
                 }
 
             } while (players[_activePlayer].HP == 0 || !players[_activePlayer].CanAttack);
-            battleSceneObject.UpdateActivePlayer?.Invoke(this, _activePlayer);
+            
+            battleSceneObject.ActivePlayer = players[_activePlayer];
         }
 
         public void EndState(BattleSceneObject battleSceneObject)
         {
-            battleSceneObject.UpdateActivePlayer?.Invoke(this, -1);
             battleSceneObject.SkillSelected -= _OnSkillSelected;
         }
     }

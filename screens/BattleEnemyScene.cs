@@ -14,6 +14,7 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using static Godot.HttpRequest;
 using static Godot.WebSocketPeer;
 
 public partial class BattleEnemyScene : Node2D
@@ -61,8 +62,6 @@ public partial class BattleEnemyScene : Node2D
         _skillButton.Pressed += _OnSkillButtonPressed;
         _skillList.Connect("item_selected", new Callable(this, "_OnSkillListItemSelected"));
 
-        this.StartEnemyTurn += this._OnStartEnemyTurn;
-
         _backToHomeButton.Pressed += () =>
         {
             PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
@@ -98,8 +97,7 @@ public partial class BattleEnemyScene : Node2D
         _battleSceneObject.InitializeEnemies(PersistentGameObjects.Instance().Tier);
         _battleSceneObject.InitializePartyMembers();
 
-        _battleSceneObject.PostBattleResult += this._OnPostBattleResult;
-        _battleSceneObject.UpdateTurnState += this._OnUpdateTurnState;
+        _battleSceneObject.UpdateUI += _OnUIUpdate;
 
         // add players to the scene
         foreach (var member in _battleSceneObject.Players)
@@ -117,46 +115,12 @@ public partial class BattleEnemyScene : Node2D
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff
-        _battleSceneObject.StartCurrentState(true);
-        DisplayActivePlayer();
-        UpdateTargetList();
-        SetAPBarByTurnState();
-    }
-
-    private void DisplayActivePlayer()
-    {
-        SetNoActivePlayers();
-
-        var selectedItems = _skillList.GetSelectedItems();
-        
-        int nextIndex = 0;
-        if (selectedItems.Length > 0)
-            nextIndex = selectedItems[0];
-
-        _skillList.Clear();
-
-        int index = _battleSceneObject.Players.IndexOf(_battleSceneObject.ActivePlayer);
-
-        _partyMembers.GetChild(index).Call("SetActivePlayer", true);
-        var member = _battleSceneObject.Players[index];
-
-        foreach (ISkill skill in member.Skills)
-            _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
-
-        _skillList.Select(nextIndex);
+        _battleSceneObject.StartCurrentState();
     }
 
     private void _OnSkillListItemSelected(int index)
     {
         UpdateTargetList();
-    }
-
-    private void SetNoActivePlayers()
-    {
-        foreach (var node in _partyMembers.GetChildren())
-        {
-            node.Call("SetActivePlayer", false);
-        }
     }
 
     private void ClearChildrenFromNode(Node node)
@@ -168,6 +132,127 @@ public partial class BattleEnemyScene : Node2D
         }
     }
 
+    /// <summary>
+    /// We handle our battle sequencing here because it's a really easy way of avoiding
+    /// Spaghetti code with our events. It's easier to just have the Enemies do everything
+    /// in one place so we don't have weird sync up issues.
+    /// </summary>
+    private void _OnSkillButtonPressed()
+    {
+        _skillButton.Disabled = true;
+
+        int selectedSkillIndex = _skillList.GetSelectedItems()[0];
+        int selectedTargetIndex = _targetList.GetSelectedItems()[0];
+
+        _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, new PlayerTargetSelectedEventArgs() 
+        {
+            SkillIndex = selectedSkillIndex,
+            TargetIndex = selectedTargetIndex
+        });
+    }
+
+    private async void _OnUIUpdate(object sender, BattleUIUpdate update)
+    {
+        // handle battle results if any
+        if(update.Result != null)
+        {
+            _skillButton.Disabled = true;
+
+            var result = update.Result;
+
+            // check if we're running from this battle
+            if (result.ResultType == BattleResultType.Retreat)
+            {
+                this.EndBattle(false);
+                return;
+            }
+
+            // display skill icon display
+            if (result.SkillUsed != null)
+            {
+                _skillDisplayIcons.Visible = true;
+                ChangeSkillIconRegion(ArtAssets.ICONS[result.SkillUsed.Icon]);
+                _skillName.Text = result.SkillUsed.Name;
+            }
+
+            if (result.User != null)
+            {
+                Node userNode = FindBattleEntityNode(result.User);
+                BattleEffectWrapper userEffects = new BattleEffectWrapper()
+                {
+                    IsEntitySkillUser = true,
+                    Result = result
+                };
+
+                userNode.Call("UpdateBattleEffects", userEffects);
+                await ToSignal(userNode, "EffectPlayed");
+            }
+                
+            if (result.Target != null)
+            {
+                Node targetNode = FindBattleEntityNode(result.Target);
+                BattleEffectWrapper targetNodeEffects = new BattleEffectWrapper() { Result = result };
+
+                targetNode?.Call("PlayEffect", targetNodeEffects);
+                await ToSignal(targetNode, "EffectPlayed");
+            }
+
+            // slight delay so the skill icon doesn't auto vanish
+            await Task.Delay(350);
+            ResetSkillIcon();
+
+            // if our user can provide inputs, then re-enable the button
+            if (update.UserCanInput)
+                _skillButton.Disabled = false;
+        }
+
+        // update HP values on everyone
+        for (int i = 0; i < update.Enemies.Count; i++)
+        {
+            var enemyDisplay = _enemyMembers.GetChild(i);
+            var enemyWrapper = new EntityWrapper() { BattleEntity = update.Enemies[i] };
+            enemyDisplay.Call("UpdateEntityDisplay", enemyWrapper);
+        }
+
+        for (int j = 0; j < update.Players.Count; j++)
+        {
+            var partyDisplay = _partyMembers.GetChild(j);
+            var playerWrapper = new EntityWrapper() { BattleEntity = update.Players[j] };
+            partyDisplay.Call("UpdateEntityDisplay", playerWrapper);
+        }
+
+        // check if win conditions were met
+        if (_battleSceneObject.DidPartyMembersWin())
+        {
+            this.EndBattle(true);
+            return;
+        }
+
+        if (_battleSceneObject.DidEnemiesWin())
+        {
+            this.EndBattle(false);
+            return;
+        }
+
+        UpdateTargetList();
+        _ap.Value = update.CurrentAPBarTurnValue;
+        if (update.DidTurnStateChange)
+        {
+            if (_battleSceneObject.TurnState == TurnState.PLAYER)
+            {
+                _battleSceneObject.SetPartyMemberTurns();
+                string playerYellow = "ffff2ad7";
+                SetNewAPBar(playerYellow);
+            }
+            else
+            {
+                _battleSceneObject.SetupEnemyTurns();
+                string enemyOrange = "ff922a";
+                SetNewAPBar(enemyOrange);
+            }
+        }
+    }
+
     private void UpdateTargetList()
     {
         int targetIndex = 0;
@@ -175,7 +260,7 @@ public partial class BattleEnemyScene : Node2D
 
         if (_targetList.GetSelectedItems().Length > 0)
             targetIndex = _targetList.GetSelectedItems()[0];
-        
+
         if (_skillList.GetSelectedItems().Length > 0)
             skillIndex = _skillList.GetSelectedItems()[0];
 
@@ -192,227 +277,20 @@ public partial class BattleEnemyScene : Node2D
         }
         else
         {
-            foreach(var player in _battleSceneObject.Players.FindAll(party => party.HP > 0))
+            foreach (var player in _battleSceneObject.Players.FindAll(party => party.HP > 0))
                 _targetList.AddItem($"{count++}. {player.Name}");
         }
 
-        if(_targetList.ItemCount > 0)
+        if (_targetList.ItemCount > 0)
         {
-            if(targetIndex == _targetList.ItemCount)
+            if (targetIndex == _targetList.ItemCount)
                 targetIndex = _targetList.ItemCount - 1;
-            
+
             _targetList.Select(targetIndex);
         }
     }
 
-    /// <summary>
-    /// We handle our battle sequencing here because it's a really easy way of avoiding
-    /// Spaghetti code with our events. It's easier to just have the Enemies do everything
-    /// in one place so we don't have weird sync up issues.
-    /// </summary>
-    private async void _OnSkillButtonPressed()
-    {
-        _skillButton.Disabled = true;
-
-        int selectedSkillIndex = _skillList.GetSelectedItems()[0];
-        int selectedTargetIndex = _targetList.GetSelectedItems()[0];
-
-        _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, new PlayerTargetSelectedEventArgs() 
-        {
-            SkillIndex = selectedSkillIndex,
-            TargetIndex = selectedTargetIndex
-        });
-
-        // we have to await the signal here as it is the only way to
-        // pause until all our animations and updates are finished
-        await ToSignal(this, "UIUpdated");
-
-        if (_battleSceneObject.DidPartyMembersWin())
-            this.EndBattle(true);
-        
-        if (_battleSceneObject.TurnState == TurnState.PLAYER)
-        {
-            _skillButton.Disabled = false;
-            DisplayActivePlayer();
-        }   
-    }
-
-    private async void _OnStartEnemyTurn()
-    {
-        // can't be any active players at the start
-        SetNoActivePlayers();
-
-        if(_uiUpdating)
-            await ToSignal(this, "UIUpdated");
-
-        while (_battleSceneObject.TurnState == TurnState.ENEMY)
-        {
-            _battleSceneObject.MakeEnemyDoTurn?.Invoke(_battleSceneObject, EventArgs.Empty);
-            await ToSignal(this, "UIUpdated");
-            if (_battleSceneObject.DidEnemiesWin())
-            {
-                this.EndBattle(false);
-                break;
-            }
-        }
-
-        // at the end, swap back to the players
-        DisplayActivePlayer();
-    }
-
-    private void ResetSkillIcon()
-    {
-        _skillDisplayIcons.Visible = false;
-        _skillName.Text = String.Empty;
-        ChangeSkillIconRegion(new KeyValuePair<int, int>(0, 0));
-    }
-    
-    private void ChangeSkillIconRegion(KeyValuePair<int,int> coords)
-    {
-        AtlasTexture atlas = _skillIcon.Texture as AtlasTexture;
-        atlas.Region = new Rect2(coords.Key, coords.Value, 32, 32);
-    }
-
-    /// <summary>
-    /// Refill the AP bar and prep PressTurn for the next group of enemies.
-    /// </summary>
-    private async void _OnUpdateTurnState(object sender, EventArgs e)
-    {
-        // we await here because we specifically want to prevent enemies from attacking mid animation
-        // this also provides enough of a delay so that our UI can catch up to the game state
-        await ToSignal(this, "UIUpdated");
-        SetAPBarByTurnState();
-    }
-
-    private void SetAPBarByTurnState()
-    {
-        if (_battleSceneObject.TurnState == TurnState.PLAYER)
-        {
-            _battleSceneObject.SetPartyMemberTurns();
-            SetNewAPBar("ffff2ad7");
-            _skillButton.Disabled = false;
-        }
-        else
-        {
-            SetNoActivePlayers();
-            _battleSceneObject.SetupEnemyTurns();
-            SetNewAPBar("ff922a");
-            this.EmitSignal(SignalName.StartEnemyTurn);
-        }
-
-        UpdateStatuses();
-    }
-
-    private void UpdateStatuses()
-    {
-        for (int j = 0; j < _battleSceneObject.Players.Count; j++)
-        {
-            var partyDisplay = _partyMembers.GetChild(j);
-            partyDisplay.Call("ShowStatuses", new StatusWrapper() { Statuses = _battleSceneObject.Players[j].StatusHandler.Statuses });
-        }
-
-        for (int i = 0; i < _battleSceneObject.Enemies.Count; i++)
-        {
-            var enemyDisplay = _enemyMembers.GetChild(i);
-            enemyDisplay.Call("ShowStatuses", new StatusWrapper() { Statuses = _battleSceneObject.Enemies[i].StatusHandler.Statuses });
-        }
-    }
-
-    private void SetNewAPBar(string color)
-    {
-        StyleBoxFlat styleBox = ResourceLoader.Load<StyleBoxFlat>("res://screens/APBarStyleBox.tres");
-        styleBox.BgColor = new Color(color);
-        _ap.AddThemeStyleboxOverride("fill", styleBox);
-        _ap.MaxValue = _battleSceneObject.PressTurn.Turns;
-        _ap.Value = _ap.MaxValue;
-    }
-
-    private async void _OnPostBattleResult(object sender, BattleResult result)
-    {
-        _uiUpdating = true;
-        if (result != null)
-        {
-            
-            if (result.ResultType == BattleResultType.Retreat)
-            {
-                this.EndBattle(false);
-                return;
-            }
-
-            // find the user and target nodes
-            Node userNode = null;
-            Node targetNode = null;
-            
-            if(result.SkillUsed != null)
-            {
-                _skillDisplayIcons.Visible = true;
-                ChangeSkillIconRegion(ArtAssets.ICONS[result.SkillUsed.Icon]);
-                _skillName.Text = result.SkillUsed.Name;
-            }
-                
-            if (result.User != null)
-                userNode = FindBattleEntityNode(result.User);
-            
-            if (result.Target != null)
-                targetNode = FindBattleEntityNode(result.Target);
-
-            // figure out how our damage display is going to work out
-            bool isHPGainedFromMove = (result.ResultType == BattleResultType.HPGain 
-                || result.ResultType == BattleResultType.Dr);
-            
-            if(result.SkillUsed != null)
-            {
-                string startupAnimationString = result.SkillUsed.StartupAnimation;
-                string endupAnimationString = result.SkillUsed.EndupAnimation;
-
-                // play pre-animations
-                if (!string.IsNullOrEmpty(startupAnimationString))
-                {
-                    userNode?.Call("PlayEffect", startupAnimationString);
-                    await ToSignal(userNode, "EffectPlayed");
-                }
-
-                // play post animations
-                if (!string.IsNullOrEmpty(endupAnimationString))
-                {
-                    targetNode?.Call("PlayEffect", endupAnimationString);
-                    await ToSignal(targetNode, "EffectPlayed");
-                }
-
-                if ((int)result.ResultType < (int)BattleResultType.StatusApplied)
-                {
-                    targetNode?.Call("PlayScreenShake");
-                    targetNode?.Call("PlayDamageNumber", result.HPChanged, isHPGainedFromMove, result.GetResultString());
-                }
-            }
-
-            // slight delay for the icon to disappear just in case
-            // we have no animation to play, for looks only
-            await Task.Delay(350);
-            ResetSkillIcon();
-        }
-
-        for(int i = 0; i < _battleSceneObject.Enemies.Count; i++)
-        {
-            var enemyDisplay = _enemyMembers.GetChild(i);
-            enemyDisplay.Call("UpdateDisplay", _battleSceneObject.Enemies[i].HP);
-        }
-
-        for(int j = 0; j < _battleSceneObject.Players.Count; j++)
-        {
-            var partyDisplay = _partyMembers.GetChild(j);
-            partyDisplay.Call("UpdateDisplay", _battleSceneObject.Players[j].HP);
-        }
-
-        _ap.Value = _battleSceneObject.PressTurn.Turns;
-
-        UpdateTargetList();
-        UpdateStatuses();
-        _uiUpdating = false;
-        this.EmitSignal("UIUpdated");
-        
-    }
-
+    #region Battle Result Functions
     private Node FindBattleEntityNode(BattleEntity entity)
     {
         Node nodeToFind;
@@ -429,6 +307,30 @@ public partial class BattleEnemyScene : Node2D
         }
 
         return nodeToFind;
+    }
+
+    private void ResetSkillIcon()
+    {
+        _skillDisplayIcons.Visible = false;
+        _skillName.Text = String.Empty;
+        ChangeSkillIconRegion(new KeyValuePair<int, int>(0, 0));
+    }
+
+    private void ChangeSkillIconRegion(KeyValuePair<int, int> coords)
+    {
+        AtlasTexture atlas = _skillIcon.Texture as AtlasTexture;
+        atlas.Region = new Rect2(coords.Key, coords.Value, 32, 32);
+    }
+
+    #endregion
+
+    private void SetNewAPBar(string color)
+    {
+        StyleBoxFlat styleBox = ResourceLoader.Load<StyleBoxFlat>("res://screens/APBarStyleBox.tres");
+        styleBox.BgColor = new Color(color);
+        _ap.AddThemeStyleboxOverride("fill", styleBox);
+        _ap.MaxValue = _battleSceneObject.PressTurn.Turns;
+        _ap.Value = _ap.MaxValue;
     }
 
     private async void EndBattle(bool didPlayerWin, bool retreated=false)

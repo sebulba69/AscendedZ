@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Godot.HttpRequest;
 
 public partial class EntityDisplayBox : PanelContainer
 {
@@ -80,33 +81,88 @@ public partial class EntityDisplayBox : PanelContainer
         picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
     }
 
-    /// <summary>
-    /// Only call this if you are the player class.
-    /// </summary>
-    /// <param name="activeState"></param>
-    public void SetActivePlayer(bool activeState)
+    public void UpdateEntityDisplay(EntityWrapper wrapper)
     {
-        ColorRect activePlayerTag = this.GetNode<ColorRect>("%ActivePlayerTag");
-        if(activePlayerTag.Visible != activeState)
-            activePlayerTag.Visible = activeState;
-    }
+        var battleEntity = wrapper.BattleEntity;
 
-    public void ShowStatuses(StatusWrapper statusWrapper)
-    {
+
+        // ... change hp status ... //
+        // set HP values
+        _hp.Value = battleEntity.HP;
+
+        // ... change active status ... //
+        // change active status if it's a player (players have the graphic, enemies don't)
+        if (battleEntity.GetType().Equals(typeof(BattlePlayer)))
+        {
+            ColorRect activePlayerTag = this.GetNode<ColorRect>("%ActivePlayerTag");
+            if (activePlayerTag.Visible != battleEntity.IsActive)
+                activePlayerTag.Visible = battleEntity.IsActive;
+        }
+
+
+        // ... show statuses ... //
+        // clear old statuses
         foreach (var child in _statuses.GetChildren())
             _statuses.RemoveChild(child);
 
-        foreach (var status in statusWrapper.Statuses)
+        // place our new, updated statuses on scren
+        var entityStatuses = battleEntity.StatusHandler.Statuses;
+        foreach (var status in entityStatuses)
         {
-            StatusIconWrapper wrapper = status.CreateIconWrapper();
+            StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();
             var statusIcon = ResourceLoader.Load<PackedScene>(Scenes.STATUS).Instantiate();
             _statuses.AddChild(statusIcon);
 
-            statusIcon.Call("SetIcon", wrapper);
+            statusIcon.Call("SetIcon", statusIconWrapper);
         }
     }
 
-    public async void PlayEffect(string effectName)
+    public void UpdateBattleEffects(BattleEffectWrapper effectWrapper)
+    {
+        BattleResult result = effectWrapper.Result;
+
+        if(result.SkillUsed != null)
+        {
+            // if we're the skill user, we want to play the startup animation
+            if (effectWrapper.IsEntitySkillUser)
+            {
+                string startupAnimationString = result.SkillUsed.StartupAnimation;
+                if (!string.IsNullOrEmpty(startupAnimationString))
+                {
+                    // wait for play effect to finish before proceeding
+                    PlayEffect(startupAnimationString);
+                }
+            }
+            else
+            {
+                string endupAnimationString = result.SkillUsed.EndupAnimation;
+                bool isHPGainedFromMove = (result.ResultType == BattleResultType.HPGain || result.ResultType == BattleResultType.Dr);
+
+                if (!string.IsNullOrEmpty(endupAnimationString))
+                {
+                    PlayEffect(endupAnimationString);
+                }
+
+                if((int)(result.ResultType) < (int)BattleResultType.StatusApplied)
+                {
+                    // play damage sfx
+                    _shakeParameters.ShakeValue = _shakeParameters.ShakeStrength;
+                    _shakeSfx.Play();
+
+                    // play damage number
+                    var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate();
+                    dmgNumber.Call("SetDisplayInfo", result.HPChanged, isHPGainedFromMove, result.GetResultString());
+
+                    CenterContainer effectContainer = this.GetNode<CenterContainer>("CenterContainer");
+                    effectContainer.AddChild(dmgNumber);
+                }
+            }
+        }
+
+        this.EmitSignal("EffectPlayed");
+    }
+
+    private async void PlayEffect(string effectName)
     {
         _effect.Visible = true;
 
@@ -114,26 +170,5 @@ public partial class EntityDisplayBox : PanelContainer
         await ToSignal(_effect, "EffectAnimationCompletedEventHandler");
 
         _effect.Visible = false;
-        this.EmitSignal("EffectPlayed");
-    }
-
-    public void PlayScreenShake()
-    {
-        _shakeParameters.ShakeValue = _shakeParameters.ShakeStrength;
-        _shakeSfx.Play();
-    }
-
-    public void PlayDamageNumber(int amount, bool isHPGainedFromMove, string resultString)
-    {
-        var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate();
-        dmgNumber.Call("SetDisplayInfo", amount, isHPGainedFromMove, resultString);
-
-        CenterContainer effectContainer = this.GetNode<CenterContainer>("CenterContainer");
-        effectContainer.AddChild(dmgNumber);
-    }
-
-    public void UpdateDisplay(int hp)
-    {
-        _hp.Value = hp;
     }
 }
