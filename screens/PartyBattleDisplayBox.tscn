@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://daese1bd3tqym"]
+
+[ext_resource type="Script" path="res://screens/EntityDisplayBox.cs" id="1_tnsmk"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2_6t5j7"]
+[ext_resource type="PackedScene" uid="uid://t6lhru8f8fr7" path="res://effects/EffectSprite.tscn" id="3_anb8q"]
+[ext_resource type="Texture2D" uid="uid://bs4gg4uakqucs" path="res://progressbar_assets/BarV1_Bar.png" id="3_pt5ji"]
+[ext_resource type="Texture2D" uid="uid://cgmiottbplblf" path="res://progressbar_assets/BarV1_ProgressBarBorder.png" id="4_m1gsh"]
+[ext_resource type="Texture2D" uid="uid://dlc6ggeck3ft3" path="res://progressbar_assets/BarV1_ProgressBar.png" id="5_fk57v"]
+[ext_resource type="AudioStream" uid="uid://dyxxgykvs4hrj" path="res://effects/effect_sounds/Damage4.ogg" id="7_q5sr0"]
+
+[node name="CharacterCtrlNode" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1350.0
+offset_bottom = -781.0
+script = ExtResource("1_tnsmk")
+
+[node name="ContainerForCharStuff" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ActivePlayerTag" type="ColorRect" parent="ContainerForCharStuff"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+color = Color(0.25098, 0.329412, 0.929412, 1)
+
+[node name="Label" type="Label" parent="ContainerForCharStuff/ActivePlayerTag"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 250.0
+offset_bottom = 24.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_6t5j7")
+text = "● Current ● "
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="ContainerForCharStuff"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="ContainerForCharStuff/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6t5j7")
+theme_override_font_sizes/font_size = 25
+text = "Name"
+
+[node name="Picture" type="TextureRect" parent="ContainerForCharStuff"]
+custom_minimum_size = Vector2(250, 222)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/Picture"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_pt5ji")
+texture_over = ExtResource("4_m1gsh")
+texture_progress = ExtResource("5_fk57v")
+texture_progress_offset = Vector2(1, 0)
+
+[node name="PanelContainer" type="PanelContainer" parent="ContainerForCharStuff"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ContainerForCharStuff/PanelContainer"]
+layout_mode = 2
+
+[node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff/PanelContainer/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_6t5j7")
+theme_override_font_sizes/font_size = 20
+text = "Resistances"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="EffectSprite" parent="CenterContainer" instance=ExtResource("3_anb8q")]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(2, 2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_q5sr0")
+volume_db = -15.0

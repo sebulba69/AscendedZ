@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5e2ob3gqma0a"]
+
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1"]
+[ext_resource type="Script" path="res://screens/PartyMemberDisplay.cs" id="3"]
+
+[node name="PartyMemberIcon" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1600.0
+offset_bottom = -1100.0
+script = ExtResource("3")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="PlayerProfile" type="TextureRect" parent="PanelContainer"]
+custom_minimum_size = Vector2(174, 155)
+layout_mode = 2
+expand_mode = 1
+
+[node name="DescriptionBox" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 25
