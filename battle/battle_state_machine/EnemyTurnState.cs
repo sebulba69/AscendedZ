@@ -22,6 +22,7 @@ namespace AscendedZ.battle.battle_state_machine
             _activeEnemy = _enemies.FindIndex(enemy => enemy.HP > 0);
 
             battleSceneObject.MakeEnemyDoTurn += _OnDoTurnRequest;
+            battleSceneObject.StartEnemyDoTurn?.Invoke(this, EventArgs.Empty);
         }
 
         public void _OnDoTurnRequest(object sender, EventArgs e)

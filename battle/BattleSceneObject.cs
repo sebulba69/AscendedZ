@@ -23,6 +23,7 @@ namespace AscendedZ.battle
     public class BattleSceneObject
     {
         // When the player selects a skill
+        public EventHandler StartEnemyDoTurn;
         public EventHandler MakeEnemyDoTurn;
 
         public EventHandler<BattleUIUpdate> UpdateUI;
@@ -133,12 +134,6 @@ namespace AscendedZ.battle
             this.PressTurn.HandleTurns(result.ResultType);
             
             this.PostUIUpdate(this.PressTurn.TurnEnded, result);
-            
-            if (this.PressTurn.TurnEnded)
-            {
-                ChangeTurnState();
-                this.PressTurn.TurnEnded = false;
-            }
         }
 
         public void DoEnemyMove()
@@ -167,7 +162,7 @@ namespace AscendedZ.battle
             return this.Enemies.FindAll(enemy => enemy.HP > 0).Count == 0;
         }
 
-        private void ChangeTurnState()
+        public void ChangeTurnState()
         {
             _currentState.EndState(this);
             if (_turnState == TurnState.PLAYER)
