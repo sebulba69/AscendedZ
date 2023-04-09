@@ -87,7 +87,6 @@ namespace AscendedZ.battle.battle_state_machine
 
             battleSceneObject.ActivePlayer = players[_activePlayer];
             battleSceneObject.ActivePlayer.IsActive = true;
-            battleSceneObject.PostUIUpdate(false);
         }
 
         public void EndState(BattleSceneObject battleSceneObject)
@@ -96,7 +95,6 @@ namespace AscendedZ.battle.battle_state_machine
                 player.IsActive = false;
 
             battleSceneObject.SkillSelected -= _OnSkillSelected;
-            battleSceneObject.PostUIUpdate(true); // if the state is ending, then the turns are being swapped
         }
     }
 }

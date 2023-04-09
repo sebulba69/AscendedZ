@@ -66,16 +66,16 @@ namespace AscendedZ.battle
         /// A function to start the current state.
         /// Can be called at the start of battle if you pass in isBattleStart as true.
         /// </summary>
-        public void StartCurrentState(bool isBattleStart = false)
+        public void StartBattle()
         {
             _currentState.StartState(this);
 
             // we don't change the turn state at the start of a state change
             // we only enable user Input if turnState == turnstate.player
-            this.PostUIUpdate(isBattleStart);
+            this.PostUIUpdate();
         }
 
-        public void PostUIUpdate(bool turnStateChange, BattleResult result = null)
+        public void PostUIUpdate(BattleResult result = null)
         {
             UpdateUI?.Invoke(this, new BattleUIUpdate()
             {
@@ -83,7 +83,6 @@ namespace AscendedZ.battle
                 Players = this.Players,
                 CurrentAPBarTurnValue = this.PressTurn.Turns,
                 UserCanInput = (_turnState == TurnState.PLAYER),
-                DidTurnStateChange = turnStateChange,
                 Result = result
             });
         }
@@ -133,7 +132,7 @@ namespace AscendedZ.battle
 
             this.PressTurn.HandleTurns(result.ResultType);
             
-            this.PostUIUpdate(this.PressTurn.TurnEnded, result);
+            this.PostUIUpdate(result);
         }
 
         public void DoEnemyMove()
@@ -175,7 +174,7 @@ namespace AscendedZ.battle
                 _turnState = TurnState.PLAYER;
                 _currentState = _states[PLAYER_STATE];
             }
-            this.StartCurrentState();
+            _currentState.StartState(this);
         }
     }
 }

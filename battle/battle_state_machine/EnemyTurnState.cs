@@ -22,7 +22,6 @@ namespace AscendedZ.battle.battle_state_machine
             _activeEnemy = _enemies.FindIndex(enemy => enemy.HP > 0);
 
             battleSceneObject.MakeEnemyDoTurn += _OnDoTurnRequest;
-            battleSceneObject.StartEnemyDoTurn?.Invoke(this, EventArgs.Empty);
         }
 
         public void _OnDoTurnRequest(object sender, EventArgs e)
@@ -67,8 +66,6 @@ namespace AscendedZ.battle.battle_state_machine
                     battleSceneObject.HandlePostTurnProcessing(skipResult);
                 }
             } while (_enemies[_activeEnemy].HP == 0 || !_enemies[_activeEnemy].CanAttack);
-
-            battleSceneObject.PostUIUpdate(false);
         }
 
         public void EndState(BattleSceneObject battleSceneObject) 
@@ -77,7 +74,6 @@ namespace AscendedZ.battle.battle_state_machine
             battleSceneObject.MakeEnemyDoTurn -= _OnDoTurnRequest;
             foreach (var enemy in _enemies)
                 enemy.ResetEnemyState();
-            battleSceneObject.PostUIUpdate(true);
         }
     }
 }

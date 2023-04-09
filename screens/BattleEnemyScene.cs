@@ -37,8 +37,6 @@ public partial class BattleEnemyScene : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        this.AddUserSignal("ResultProcessed");
-
         _skillName = this.GetNode<Label>("%SkillName");
         _skillIcon = this.GetNode<TextureRect>("%SkillIcon");
         _skillDisplayIcons = this.GetNode<PanelContainer>("%SkillDisplayIcons");
@@ -113,7 +111,8 @@ public partial class BattleEnemyScene : Node2D
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff
-        _battleSceneObject.StartCurrentState(true);
+        _battleSceneObject.StartBattle();
+        ChangeAPBarWithTurnState(TurnState.PLAYER);
     }
 
     private void _OnSkillListItemSelected(int index)
@@ -144,12 +143,11 @@ public partial class BattleEnemyScene : Node2D
         });
     }
 
-    private async void _OnStartEnemyTurn(object sender, EventArgs e)
+    private void _OnStartEnemyTurn(object sender, EventArgs e)
     {
         while(_battleSceneObject.TurnState == TurnState.ENEMY)
         {
             _battleSceneObject.DoEnemyMove();
-            await ToSignal(this, "ResultProcessed");
         }
     }
 
@@ -251,22 +249,29 @@ public partial class BattleEnemyScene : Node2D
         UpdateTargetList();
 
         _ap.Value = update.CurrentAPBarTurnValue;
-        if (update.DidTurnStateChange)
-        {
-            if (_battleSceneObject.TurnState == TurnState.PLAYER)
-            {
-                _battleSceneObject.SetPartyMemberTurns();
-                string playerYellow = "ffff2ad7";
-                SetNewAPBar(playerYellow);
-            }
-            else
-            {
-                _battleSceneObject.SetupEnemyTurns();
-                string enemyOrange = "ff922a";
-                SetNewAPBar(enemyOrange);
-            }
 
-            _battleSceneObject.ChangeTurnState();
+        if (_battleSceneObject.PressTurn.TurnEnded)
+        {
+            _battleSceneObject.PressTurn.TurnEnded = false; // set turns
+            _battleSceneObject.ChangeTurnState(); // change turn state
+            ChangeAPBarWithTurnState(_battleSceneObject.TurnState); // change ap bar visuals
+            _battleSceneObject.PostUIUpdate();
+        }
+    }
+
+    private void ChangeAPBarWithTurnState(TurnState turnState)
+    {
+        if (turnState == TurnState.PLAYER)
+        {
+            _battleSceneObject.SetPartyMemberTurns();
+            string playerYellow = "ffff2ad7";
+            SetNewAPBar(playerYellow);
+        }
+        else
+        {
+            _battleSceneObject.SetupEnemyTurns();
+            string enemyOrange = "ff922a";
+            SetNewAPBar(enemyOrange);
         }
     }
 
