@@ -19,9 +19,6 @@ using static Godot.WebSocketPeer;
 
 public partial class BattleEnemyScene : Node2D
 {
-    [Signal]
-    public delegate void StartEnemyTurnEventHandler();
-
     private HBoxContainer _partyMembers;
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
@@ -40,7 +37,7 @@ public partial class BattleEnemyScene : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        this.AddUserSignal("UIUpdated");
+        this.AddUserSignal("ResultProcessed");
 
         _skillName = this.GetNode<Label>("%SkillName");
         _skillIcon = this.GetNode<TextureRect>("%SkillIcon");
@@ -132,11 +129,6 @@ public partial class BattleEnemyScene : Node2D
         }
     }
 
-    /// <summary>
-    /// We handle our battle sequencing here because it's a really easy way of avoiding
-    /// Spaghetti code with our events. It's easier to just have the Enemies do everything
-    /// in one place so we don't have weird sync up issues.
-    /// </summary>
     private void _OnSkillButtonPressed()
     {
         _skillButton.Disabled = true;
@@ -149,6 +141,15 @@ public partial class BattleEnemyScene : Node2D
             SkillIndex = selectedSkillIndex,
             TargetIndex = selectedTargetIndex
         });
+    }
+
+    private async void StartEnemyTurn()
+    {
+        while(_battleSceneObject.TurnState == TurnState.ENEMY)
+        {
+            _battleSceneObject.DoEnemyMove();
+            await ToSignal(this, "ResultProcessed");
+        }
     }
 
     private async void _OnUIUpdate(object sender, BattleUIUpdate update)
@@ -206,6 +207,8 @@ public partial class BattleEnemyScene : Node2D
                 _skillButton.Disabled = false;
 
             _battleSceneObject.ChangeActiveEntity();
+
+            this.EmitSignal("ResultProcessed");
         }
 
         // update HP values on everyone
@@ -248,7 +251,6 @@ public partial class BattleEnemyScene : Node2D
 
         UpdateTargetList();
 
-        _ap.Value = update.CurrentAPBarTurnValue;
         if (update.DidTurnStateChange)
         {
             if (_battleSceneObject.TurnState == TurnState.PLAYER)
@@ -256,13 +258,20 @@ public partial class BattleEnemyScene : Node2D
                 _battleSceneObject.SetPartyMemberTurns();
                 string playerYellow = "ffff2ad7";
                 SetNewAPBar(playerYellow);
+
+                _skillButton.Disabled = false;
             }
             else
             {
                 _battleSceneObject.SetupEnemyTurns();
                 string enemyOrange = "ff922a";
                 SetNewAPBar(enemyOrange);
+
+                // now that the enemy turn has started, kick us off by doing an enemy move
+                this.StartEnemyTurn();
             }
+
+            _ap.Value = update.CurrentAPBarTurnValue;
         }
     }
 

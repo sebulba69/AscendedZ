@@ -92,6 +92,9 @@ namespace AscendedZ.battle.battle_state_machine
 
         public void EndState(BattleSceneObject battleSceneObject)
         {
+            foreach (var player in battleSceneObject.Players)
+                player.IsActive = false;
+
             battleSceneObject.SkillSelected -= _OnSkillSelected;
             battleSceneObject.PostUIUpdate(true); // if the state is ending, then the turns are being swapped
         }

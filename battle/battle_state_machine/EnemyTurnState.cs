@@ -7,6 +7,7 @@ using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Godot.HttpRequest;
 
 namespace AscendedZ.battle.battle_state_machine
 {
@@ -29,44 +30,44 @@ namespace AscendedZ.battle.battle_state_machine
             var active = _enemies[_activeEnemy];
 
             BattleResult result = default(BattleResult);
-            if (active.CanAttack)
-            {
-                ISkill skill = active.GetNextMove(battleSceneObject);
-                BattleEntity target = active.GetNextTarget(battleSceneObject);
+            ISkill skill = active.GetNextMove(battleSceneObject);
+            BattleEntity target = active.GetNextTarget(battleSceneObject);
 
-                switch (skill.TargetType)
-                {
-                    case TargetTypes.SINGLE_OPP:
-                    case TargetTypes.SINGLE_TEAM:
-                        result = skill.ProcessSkill(target);
-                        break;
-                }
-
-                result.User = active;
-            }
-            else
+            switch (skill.TargetType)
             {
-                result = new BattleResult()
-                {
-                    Target = null,
-                    User = active,
-                    ResultType = BattleResultType.StatusApplied
-                };
+                case TargetTypes.SINGLE_OPP:
+                case TargetTypes.SINGLE_TEAM:
+                    result = skill.ProcessSkill(target);
+                    break;
             }
 
-            do
-            {
-                _activeEnemy++;
-                if (_activeEnemy == _enemies.Count)
-                    _activeEnemy = 0;
-            } while (_enemies[_activeEnemy].HP == 0);
-
+            result.User = active;
             battleSceneObject.HandlePostTurnProcessing(result);
         }
 
         public void ChangeActiveEntity(BattleSceneObject battleSceneObject)
         {
-            throw new NotImplementedException();
+            do
+            {
+                _activeEnemy++;
+                if (_activeEnemy == _enemies.Count)
+                    _activeEnemy = 0;
+
+                var nextActive = _enemies[_activeEnemy];
+                if (!nextActive.CanAttack)
+                {
+                    BattleResult skipResult = new BattleResult()
+                    {
+                        Target = null,
+                        User = nextActive,
+                        ResultType = BattleResultType.StatusApplied
+                    };
+
+                    battleSceneObject.HandlePostTurnProcessing(skipResult);
+                }
+            } while (_enemies[_activeEnemy].HP == 0 || !_enemies[_activeEnemy].CanAttack);
+
+            battleSceneObject.PostUIUpdate(false);
         }
 
         public void EndState(BattleSceneObject battleSceneObject) 

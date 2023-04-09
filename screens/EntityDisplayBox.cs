@@ -159,6 +159,9 @@ public partial class EntityDisplayBox : PanelContainer
             }
         }
 
+        // for some reason, we can't seem to emit the signal if we don't await at least once in this thread
+        // this seems to be a Godot quirk, not sure why this is the case
+        await Task.Delay(100);
         this.EmitSignal("EffectPlayed");
     }
 

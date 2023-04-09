@@ -141,6 +141,11 @@ namespace AscendedZ.battle
             }
         }
 
+        public void DoEnemyMove()
+        {
+            this.MakeEnemyDoTurn?.Invoke(this, EventArgs.Empty);
+        }
+
         public void ChangeActiveEntity()
         {
             _currentState.ChangeActiveEntity(this);
