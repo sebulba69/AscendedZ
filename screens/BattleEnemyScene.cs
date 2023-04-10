@@ -8,6 +8,7 @@ using AscendedZ.skills;
 using AscendedZ.statuses;
 using Godot;
 using Godot.Collections;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -37,6 +38,8 @@ public partial class BattleEnemyScene : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        this.AddUserSignal("UIUpdated");
+
         _skillName = this.GetNode<Label>("%SkillName");
         _skillIcon = this.GetNode<TextureRect>("%SkillIcon");
         _skillDisplayIcons = this.GetNode<PanelContainer>("%SkillDisplayIcons");
@@ -93,7 +96,6 @@ public partial class BattleEnemyScene : Node2D
         _battleSceneObject.InitializePartyMembers();
 
         _battleSceneObject.UpdateUI += _OnUIUpdate;
-        _battleSceneObject.StartEnemyDoTurn += _OnStartEnemyTurn;
 
         // add players to the scene
         foreach (var member in _battleSceneObject.Players)
@@ -141,14 +143,6 @@ public partial class BattleEnemyScene : Node2D
             SkillIndex = selectedSkillIndex,
             TargetIndex = selectedTargetIndex
         });
-    }
-
-    private void _OnStartEnemyTurn(object sender, EventArgs e)
-    {
-        while(_battleSceneObject.TurnState == TurnState.ENEMY)
-        {
-            _battleSceneObject.DoEnemyMove();
-        }
     }
 
     private async void _OnUIUpdate(object sender, BattleUIUpdate update)
@@ -216,12 +210,7 @@ public partial class BattleEnemyScene : Node2D
             enemyDisplay.Call("UpdateEntityDisplay", enemyWrapper);
         }
 
-        for (int j = 0; j < update.Players.Count; j++)
-        {
-            var partyDisplay = _partyMembers.GetChild(j);
-            var playerWrapper = new EntityWrapper() { BattleEntity = update.Players[j] };
-            partyDisplay.Call("UpdateEntityDisplay", playerWrapper);
-        }
+        UpdatePlayerDisplay(update.Players);
 
         // check if win conditions were met
         if (_battleSceneObject.DidPartyMembersWin())
@@ -255,8 +244,12 @@ public partial class BattleEnemyScene : Node2D
             _battleSceneObject.PressTurn.TurnEnded = false; // set turns
             _battleSceneObject.ChangeTurnState(); // change turn state
             ChangeAPBarWithTurnState(_battleSceneObject.TurnState); // change ap bar visuals
-            _battleSceneObject.PostUIUpdate();
         }
+
+        // after we fully display an animation and process a skill
+        // then we want to use an enemy skill
+        if (_battleSceneObject.TurnState == TurnState.ENEMY)
+            _battleSceneObject.DoEnemyMove();
     }
 
     private void ChangeAPBarWithTurnState(TurnState turnState)
@@ -266,12 +259,34 @@ public partial class BattleEnemyScene : Node2D
             _battleSceneObject.SetPartyMemberTurns();
             string playerYellow = "ffff2ad7";
             SetNewAPBar(playerYellow);
+
+            _skillButton.Disabled = false;
         }
         else
         {
             _battleSceneObject.SetupEnemyTurns();
             string enemyOrange = "ff922a";
             SetNewAPBar(enemyOrange);
+        }
+
+        // change our active player display
+        // if enemy, no active players
+        // if player, 1 active player
+        UpdatePlayerDisplay(_battleSceneObject.Players);
+    }
+
+    /// <summary>
+    /// We use this function multiple times.
+    /// 1. After a move to show who the next player is.
+    /// 2. At the end of a turn to remove the current player icon.
+    /// </summary>
+    private void UpdatePlayerDisplay(List<BattlePlayer> players)
+    {
+        for (int j = 0; j < players.Count; j++)
+        {
+            var partyDisplay = _partyMembers.GetChild(j);
+            var playerWrapper = new EntityWrapper() { BattleEntity = players[j] };
+            partyDisplay.Call("UpdateEntityDisplay", playerWrapper);
         }
     }
 

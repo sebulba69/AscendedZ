@@ -22,6 +22,7 @@ namespace AscendedZ.battle.battle_state_machine
             _activeEnemy = _enemies.FindIndex(enemy => enemy.HP > 0);
 
             battleSceneObject.MakeEnemyDoTurn += _OnDoTurnRequest;
+            battleSceneObject.StartEnemyDoTurn?.Invoke(this, EventArgs.Empty);
         }
 
         public void _OnDoTurnRequest(object sender, EventArgs e)
@@ -53,18 +54,6 @@ namespace AscendedZ.battle.battle_state_machine
                 if (_activeEnemy == _enemies.Count)
                     _activeEnemy = 0;
 
-                var nextActive = _enemies[_activeEnemy];
-                if (!nextActive.CanAttack)
-                {
-                    BattleResult skipResult = new BattleResult()
-                    {
-                        Target = null,
-                        User = nextActive,
-                        ResultType = BattleResultType.StatusApplied
-                    };
-
-                    battleSceneObject.HandlePostTurnProcessing(skipResult);
-                }
             } while (_enemies[_activeEnemy].HP == 0 || !_enemies[_activeEnemy].CanAttack);
         }
 

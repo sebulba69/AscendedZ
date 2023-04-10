@@ -89,35 +89,36 @@ namespace AscendedZ.battle
 
         public void SetPartyMemberTurns()
         {
-            int turns = 0;
-            foreach (var party in this.Players)
-            {
-                if (party.HP > 0)
-                {
-                    turns +=2;
-                }
-            }
-            this.PressTurn.Turns = turns;
-
-            foreach(var enemy in this.Enemies)
-                enemy.StatusHandler.UpdateStatusTurns(enemy);
+            // it looks stupid, but C# doesn't natively recognize that a list of Players/Enemies are Battle Entities.
+            SetEntityTurns(
+                new List<BattleEntity>(this.Players),
+                new List<BattleEntity>(this.Enemies));
         }
 
         public void SetupEnemyTurns()
         {
+            // it looks stupid, but C# doesn't natively recognize that a list of Players/Enemies are Battle Entities.
+            SetEntityTurns(
+                new List<BattleEntity>(this.Enemies),
+                new List<BattleEntity>(this.Players));
+        }
+
+        private void SetEntityTurns(List<BattleEntity> turnEntities, List<BattleEntity> previousEntities)
+        {
             int turns = 0;
-            foreach (var enemy in this.Enemies)
+            foreach(var entity in turnEntities)
             {
-                if (enemy.HP > 0)
+                if(entity.HP > 0 && entity.CanAttack)
                 {
-                    turns += enemy.Turns;
+                    turns += entity.Turns;
                 }
             }
 
-            foreach(var party in this.Players)
-                party.StatusHandler.UpdateStatusTurns(party);
+            // we want to update the turn count on the people who last acted
+            foreach (var entity in previousEntities)
+                entity.StatusHandler.UpdateStatusTurns(entity);
 
-            this.PressTurn.Turns = turns*2;
+            this.PressTurn.Turns = turns * 2;
         }
 
         public void HandlePostTurnProcessing(BattleResult result)

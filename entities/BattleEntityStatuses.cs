@@ -70,8 +70,7 @@ namespace AscendedZ.entities
                 if (s.RemoveStatus)
                 {
                     removeStatus.Add(s);
-                }
-                    
+                } 
             }
 
             foreach (Status s in removeStatus)

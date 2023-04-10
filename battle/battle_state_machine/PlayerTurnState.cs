@@ -20,7 +20,7 @@ namespace AscendedZ.battle.battle_state_machine
         public void StartState(BattleSceneObject battleSceneObject)
         {
             var players = battleSceneObject.Players;
-            _activePlayer = players.FindIndex(p => p.HP > 0);
+            _activePlayer = players.FindIndex(p => p.HP > 0 && p.CanAttack);
 
             var active = players[_activePlayer];
             active.IsActive = true;
@@ -68,21 +68,6 @@ namespace AscendedZ.battle.battle_state_machine
                 _activePlayer++;
                 if (_activePlayer == players.Count)
                     _activePlayer = 0;
-
-                // skip if nextActive cannot attack
-                var nextActive = players[_activePlayer];
-                if (!nextActive.CanAttack)
-                {
-                    BattleResult skipResult = new BattleResult()
-                    {
-                        Target = null,
-                        User = nextActive,
-                        ResultType = BattleResultType.StatusApplied
-                    };
-
-                    battleSceneObject.HandlePostTurnProcessing(skipResult);
-                }
-
             } while (players[_activePlayer].HP == 0 || !players[_activePlayer].CanAttack);
 
             battleSceneObject.ActivePlayer = players[_activePlayer];

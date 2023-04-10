@@ -12,8 +12,6 @@ namespace AscendedZ.entities.enemy_objects
 {
     public class Enemy : BattleEntity
     {
-        public int Turns { get; protected set; }
-
         public Enemy() {}
 
         public virtual void ResetEnemyState()
