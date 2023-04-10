@@ -225,17 +225,7 @@ public partial class BattleEnemyScene : Node2D
             return;
         }
 
-        // populate skill list with new player
-        int skillIndex = 0;
-        if (_skillList.GetSelectedItems().Length > 0)
-            skillIndex = _skillList.GetSelectedItems()[0];
-        _skillList.Clear();
-
-        foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
-            _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
-        _skillList.Select(skillIndex);
-
-        UpdateTargetList();
+        SetActiveSkills();
 
         _ap.Value = update.CurrentAPBarTurnValue;
 
@@ -252,6 +242,21 @@ public partial class BattleEnemyScene : Node2D
             _battleSceneObject.DoEnemyMove();
     }
 
+    private void SetActiveSkills()
+    {
+        // populate skill list with new active player
+        int skillIndex = 0;
+        if (_skillList.GetSelectedItems().Length > 0)
+            skillIndex = _skillList.GetSelectedItems()[0];
+        _skillList.Clear();
+
+        foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
+            _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
+        _skillList.Select(skillIndex);
+
+        UpdateTargetList();
+    }
+
     private void ChangeAPBarWithTurnState(TurnState turnState)
     {
         if (turnState == TurnState.PLAYER)
@@ -259,6 +264,8 @@ public partial class BattleEnemyScene : Node2D
             _battleSceneObject.SetPartyMemberTurns();
             string playerYellow = "ffff2ad7";
             SetNewAPBar(playerYellow);
+
+            SetActiveSkills();
 
             _skillButton.Disabled = false;
         }

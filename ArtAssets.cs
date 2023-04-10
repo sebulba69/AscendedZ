@@ -25,6 +25,8 @@ namespace AscendedZ
         public static readonly string LIGHT_T1 = "light1";
         public static readonly string DARK_T1 = "dark1";
 
+        public static readonly string HEAL_T1 = "heal1";
+
         public static readonly string STUN_T1 = "stun1";
 
         // ICONS + ICON_STRINGS
@@ -36,6 +38,8 @@ namespace AscendedZ
         public static readonly string WIND_ICON = "Wind";
         public static readonly string LIGHT_ICON = "Light";
         public static readonly string DARK_ICON = "Dark";
+
+        public static readonly string HEAL_ICON = "Heal";
 
         public static readonly string STUN_ICON = "Stun";
 
@@ -52,6 +56,7 @@ namespace AscendedZ
             [WIND_ICON]   = new KeyValuePair<int, int>(160, 128),
             [LIGHT_ICON]  = new KeyValuePair<int, int>(192, 128),
             [DARK_ICON]   = new KeyValuePair<int, int>(224, 128),
+            [HEAL_ICON]   = new KeyValuePair<int, int>(256, 128),
             [STUN_ICON]   = new KeyValuePair<int, int>(288, 0),
             [PASS_ICON] = new KeyValuePair<int, int>(352,128),
             [RETREAT_ICON] = new KeyValuePair<int, int>(288,576),

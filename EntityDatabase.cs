@@ -21,6 +21,7 @@ namespace AscendedZ
         private static readonly Dictionary<string, OverworldEntity> PARTYMEMBERS = new Dictionary<string, OverworldEntity>()
         {
             ["Locphiedon"] = new Locphiedon(),
+            ["Gagar"] = new Gagar(),
             ["Gagar"] = new Gagar()
         };
 
@@ -52,6 +53,7 @@ namespace AscendedZ
         private static readonly List<string>[] VENDOR_WARES = new List<string>[]
         {
             new List<string>(){ "Locphiedon" },
+            new List<string>(){ "Gagar" },
             new List<string>(){ "Gagar" }
         };
 
@@ -59,7 +61,7 @@ namespace AscendedZ
         /// A list of indexes that the current tier must be equal to or greater than
         /// to become available in the shop.
         /// </summary>
-        private static readonly int[] SHOP_INDEXES = new int[] { 2, 6, 10 };
+        private static readonly int[] SHOP_INDEXES = new int[] { 2, 5, 10 };
 
         public static List<Enemy> MakeBattleEncounter(int tier)
         {

@@ -88,6 +88,18 @@ namespace AscendedZ
             Status = new StunStatus()
         };
 
+        public static HealSkill HEAL_1 = new HealSkill()
+        {
+            Name = "Regen",
+            TargetType = TargetTypes.SINGLE_TEAM,
+
+            StartupAnimation = String.Empty,
+            EndupAnimation = String.Empty,
+            Icon = String.Empty,
+
+            HealPercentage = 10
+        };
+
         #region Temporary Battle Skills
         public static PassSkill PASS = new PassSkill()
         {

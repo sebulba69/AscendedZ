@@ -25,7 +25,7 @@ namespace AscendedZ.entities.enemy_objects
         public CattuTDroni() : base()
         {
             this.Name = "Cattu T'Droni";
-            this.MaxHP = 12;
+            this.MaxHP = 6;
             this.Image = "res://enemy_pics/newpicture97.png";
             this.Resistances = new ResistanceArray();
 
@@ -35,7 +35,7 @@ namespace AscendedZ.entities.enemy_objects
             this.Skills.Add(SkillDatabase.ICE_1);
             this.Skills.Add(SkillDatabase.STUN_1);
             
-            this.Turns = 1;
+            this.Turns = 2;
             
             _rng = new Random();
         }

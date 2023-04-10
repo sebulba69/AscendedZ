@@ -13,11 +13,12 @@ namespace AscendedZ
     {
         public static readonly List<int> REWARD_TIERS = new List<int>()
         {
-            1, 5
+            1, 4
         };
 
         private readonly static List<Currency[]> REWARDS = new List<Currency[]>() 
         { 
+            new Currency[] { new Vorpex(){ Amount = 1 } },
             new Currency[] { new Vorpex(){ Amount = 1 } }
         };
 
@@ -29,12 +30,20 @@ namespace AscendedZ
         /// <returns></returns>
         public static Currency[] GenerateReward(int tier)
         {
-            int index = tier - 1;
+            int index = 0;
+            for(int i = 0; i < REWARD_TIERS.Count; i++)
+            {
+                if (REWARD_TIERS[i] == tier)
+                {
+                    index = i;
+                    break;
+                }
+            }
             
             if (index >= REWARDS.Count)
                 return null;
 
-            return REWARDS[tier - 1];
+            return REWARDS[index];
         }
     }
 }
