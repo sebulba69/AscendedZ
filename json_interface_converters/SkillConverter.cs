@@ -32,6 +32,9 @@ namespace AscendedZ.json_interface_converters
                     case (int)SkillId.Status:
                         skill = JsonSerializer.Deserialize<StatusSkill>(jsonDocument);
                         break;
+                    case (int)SkillId.Healing:
+                        skill = JsonSerializer.Deserialize<HealSkill>(jsonDocument);
+                        break;
                 }
             }
 
@@ -47,6 +50,9 @@ namespace AscendedZ.json_interface_converters
                     break;
                 case SkillId.Status:
                     JsonSerializer.Serialize(writer, value, typeof(StatusSkill), options);
+                    break;
+                case SkillId.Healing:
+                    JsonSerializer.Serialize(writer, value, typeof(HealSkill), options);
                     break;
             }
         }

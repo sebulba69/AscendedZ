@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://t6lhru8f8fr7"]
+[gd_scene load_steps=32 format=3 uid="uid://t6lhru8f8fr7"]
 
 [ext_resource type="Texture2D" uid="uid://bi5km2q63knnj" path="res://effects/effect_art/Thunder1.png" id="1_3ilhx"]
 [ext_resource type="Texture2D" uid="uid://c8su2xowwlivt" path="res://effects/effect_art/Fire1.png" id="1_d68yh"]
 [ext_resource type="Texture2D" uid="uid://bvn1uocyp81kf" path="res://effects/effect_art/StateUp1.png" id="1_ft8tr"]
 [ext_resource type="Texture2D" uid="uid://cunxbll7thl8o" path="res://effects/effect_art/Light1.png" id="1_g0i61"]
+[ext_resource type="Texture2D" uid="uid://6f7xcnuk7geu" path="res://effects/effect_art/Cure4.png" id="1_hwgmi"]
 [ext_resource type="Texture2D" uid="uid://urhjqhis73gp" path="res://effects/effect_art/StateParalys.png" id="1_j0syf"]
 [ext_resource type="Texture2D" uid="uid://b04xvtb1djnnr" path="res://effects/effect_art/Ice1.png" id="1_tridh"]
 [ext_resource type="Texture2D" uid="uid://cf5sh7sexcjo3" path="res://effects/effect_art/Darkness3.png" id="1_wnaou"]
@@ -18,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://dckydyoi5rivs" path="res://effects/effect_sounds/Magic4.ogg" id="14_wlul7"]
 [ext_resource type="AudioStream" uid="uid://bvjx8ipqr48lh" path="res://effects/effect_sounds/Darkness3.ogg" id="16_wb3m7"]
 [ext_resource type="AudioStream" uid="uid://danllis01dsb6" path="res://effects/effect_sounds/Paralyze3.ogg" id="18_xloft"]
+[ext_resource type="AudioStream" uid="uid://bd6ue8iwjaduk" path="res://effects/effect_sounds/Heal3.ogg" id="20_s43on"]
 
 [sub_resource type="Animation" id="Animation_01a3m"]
 length = 0.001
@@ -654,12 +656,89 @@ tracks/5/keys = {
 "values": [3]
 }
 
+[sub_resource type="Animation" id="Animation_r5ylo"]
+resource_name = "heal1"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_hwgmi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:vframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer:stream")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("20_s43on")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jp8tl"]
 _data = {
 "RESET": SubResource("Animation_01a3m"),
 "dark1": SubResource("Animation_ymssc"),
 "elec1": SubResource("Animation_wngic"),
 "fire1": SubResource("Animation_hib5r"),
+"heal1": SubResource("Animation_r5ylo"),
 "ice1": SubResource("Animation_s5xnd"),
 "light1": SubResource("Animation_q3ffi"),
 "startup_anim": SubResource("Animation_cefwy"),
@@ -668,9 +747,9 @@ _data = {
 }
 
 [node name="EffectSprite" type="Sprite2D"]
-texture = ExtResource("1_j0syf")
+texture = ExtResource("1_hwgmi")
 hframes = 5
-vframes = 5
+vframes = 3
 frame = 1
 script = ExtResource("2_hloep")
 

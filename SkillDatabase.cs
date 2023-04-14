@@ -92,12 +92,10 @@ namespace AscendedZ
         {
             Name = "Regen",
             TargetType = TargetTypes.SINGLE_TEAM,
-
-            StartupAnimation = String.Empty,
-            EndupAnimation = String.Empty,
-            Icon = String.Empty,
-
-            HealPercentage = 10
+            StartupAnimation = ArtAssets.STARTUP1_MG,
+            EndupAnimation = ArtAssets.HEAL_T1,
+            Icon = ArtAssets.HEAL_ICON,
+            HealPercentage = 15
         };
 
         #region Temporary Battle Skills

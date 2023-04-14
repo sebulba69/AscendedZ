@@ -22,7 +22,7 @@ namespace AscendedZ
         {
             ["Locphiedon"] = new Locphiedon(),
             ["Gagar"] = new Gagar(),
-            ["Gagar"] = new Gagar()
+            ["Yuudam"] = new Yuudam()
         };
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace AscendedZ
         {
             new List<string>(){ "Locphiedon" },
             new List<string>(){ "Gagar" },
-            new List<string>(){ "Gagar" }
+            new List<string>(){ "Yuudam" }
         };
 
         /// <summary>

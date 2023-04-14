@@ -103,13 +103,14 @@ namespace AscendedZ.entities.battle_entities
 
         public BattleResult ApplyHealingSkill(HealSkill skill)
         {
-            int hpHealed = this.MaxHP * skill.HealPercentage;
+            int hpHealed = (int)(this.MaxHP * ((double)skill.HealPercentage/100d));
             this.HP += hpHealed;
             return new BattleResult()
             {
                 HPChanged = hpHealed,
                 Target = this,
-                SkillUsed = skill
+                SkillUsed = skill,
+                ResultType = BattleResultType.HPGain
             };
         }
     }

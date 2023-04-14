@@ -146,9 +146,12 @@ public partial class EntityDisplayBox : PanelContainer
                 if((int)(result.ResultType) < (int)BattleResultType.StatusApplied)
                 {
                     // play damage sfx
-                    _shakeParameters.ShakeValue = _shakeParameters.ShakeStrength;
-                    _shakeSfx.Play();
-
+                    if (!isHPGainedFromMove)
+                    {
+                        _shakeParameters.ShakeValue = _shakeParameters.ShakeStrength;
+                        _shakeSfx.Play();
+                    }
+   
                     // play damage number
                     var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate();
                     dmgNumber.Call("SetDisplayInfo", result.HPChanged, isHPGainedFromMove, result.GetResultString());

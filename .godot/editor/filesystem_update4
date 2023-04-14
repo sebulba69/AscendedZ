@@ -1,3 +1,6 @@
 res://default_env.tres
+res://effects/EffectSprite.tscn
 res://screens/StartScreen.tscn
 res://misc_icons/Icon.tscn
+res://screens/PartyMemberDisplay.tscn
+res://screens/PartyBattleDisplayBox.tscn

@@ -21,7 +21,7 @@ namespace AscendedZ.skills
 
         public string GetBattleDisplayString()
         {
-            return $"{this.Name} (+{this.HealPercentage}%)";
+            return $"{this.Name} (+{this.HealPercentage}% HP)";
         }
 
         public BattleResult ProcessSkill(BattleEntity target)
