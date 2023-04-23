@@ -33,6 +33,7 @@ public partial class BattleEnemyScene : Node2D
     private bool _uiUpdating = false;
 
     private Label _skillName;
+    private Label _apLabel;
     private TextureRect _skillIcon;
 
     // Called when the node enters the scene tree for the first time.
@@ -47,6 +48,7 @@ public partial class BattleEnemyScene : Node2D
         _partyMembers = this.GetNode<HBoxContainer>("%PartyPortraits");
         _enemyMembers = this.GetNode<HBoxContainer>("%EnemyContainerBox");
         _ap = this.GetNode<ProgressBar>("%APBar");
+        _apLabel = this.GetNode<Label>("%APLabel");
 
         _skillList = this.GetNode<ItemList>("%SkillsList");
         _targetList = this.GetNode<ItemList>("%TargetList");
@@ -228,7 +230,7 @@ public partial class BattleEnemyScene : Node2D
         SetActiveSkills();
 
         _ap.Value = update.CurrentAPBarTurnValue;
-
+        _apLabel.Text = $"AP: {Math.Round((double)update.CurrentAPBarTurnValue / 2d, 1)}";
         if (_battleSceneObject.PressTurn.TurnEnded)
         {
             _battleSceneObject.PressTurn.TurnEnded = false; // set turns
@@ -373,8 +375,10 @@ public partial class BattleEnemyScene : Node2D
         StyleBoxFlat styleBox = ResourceLoader.Load<StyleBoxFlat>("res://screens/APBarStyleBox.tres");
         styleBox.BgColor = new Color(color);
         _ap.AddThemeStyleboxOverride("fill", styleBox);
-        _ap.MaxValue = _battleSceneObject.PressTurn.Turns;
+        int turns = _battleSceneObject.PressTurn.Turns;
+        _ap.MaxValue = turns;
         _ap.Value = _ap.MaxValue;
+        _apLabel.Text = $"AP: {Math.Round((double)turns/2d,1)}";
     }
 
     private async void EndBattle(bool didPlayerWin, bool retreated=false)

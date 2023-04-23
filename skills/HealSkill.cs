@@ -17,11 +17,11 @@ namespace AscendedZ.skills
         public string StartupAnimation { get; set; }
         public string EndupAnimation { get; set; }
         public string Icon { get ; set; }
-        public int HealPercentage { get; set; }
+        public int HealAmount { get; set; }
 
         public string GetBattleDisplayString()
         {
-            return $"{this.Name} (+{this.HealPercentage}% HP)";
+            return $"{this.Name} (+{this.HealAmount} HP)";
         }
 
         public BattleResult ProcessSkill(BattleEntity target)

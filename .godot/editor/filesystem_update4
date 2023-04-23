@@ -1,6 +1,8 @@
 res://default_env.tres
-res://effects/EffectSprite.tscn
+res://screens/BattleEnemyScene.tscn
+res://screens/APBarStyleBox.tres
 res://screens/StartScreen.tscn
 res://misc_icons/Icon.tscn
-res://screens/PartyMemberDisplay.tscn
+res://effects/EffectSprite.tscn
 res://screens/PartyBattleDisplayBox.tscn
+res://screens/PartyMemberDisplay.tscn

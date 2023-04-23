@@ -95,7 +95,7 @@ namespace AscendedZ
             StartupAnimation = ArtAssets.STARTUP1_MG,
             EndupAnimation = ArtAssets.HEAL_T1,
             Icon = ArtAssets.HEAL_ICON,
-            HealPercentage = 15
+            HealAmount = 5
         };
 
         #region Temporary Battle Skills
