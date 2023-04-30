@@ -21,12 +21,14 @@ namespace AscendedZ.battle.battle_state_machine
         {
             var players = battleSceneObject.Players;
             _activePlayer = players.FindIndex(p => p.HP > 0 && p.CanAttack);
+            if(_activePlayer >= 0)
+            {
+                var active = players[_activePlayer];
+                active.IsActive = true;
 
-            var active = players[_activePlayer];
-            active.IsActive = true;
-
-            battleSceneObject.ActivePlayer = active;
-            battleSceneObject.SkillSelected += _OnSkillSelected;
+                battleSceneObject.ActivePlayer = active;
+                battleSceneObject.SkillSelected += _OnSkillSelected;
+            }
         }
 
         private void _OnSkillSelected(object sender, PlayerTargetSelectedEventArgs eventArgs)

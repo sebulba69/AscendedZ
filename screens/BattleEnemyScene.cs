@@ -109,9 +109,12 @@ public partial class BattleEnemyScene : Node2D
 
         foreach (var enemy in _battleSceneObject.Enemies)
         {
-            var enemyBox = ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate();
+            var enemyBox = (enemy.IsBoss) 
+                ? ResourceLoader.Load<PackedScene>(Scenes.BOSS_BOX).Instantiate()
+                : ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate();
+
             _enemyMembers.AddChild(enemyBox);
-            enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy });
+            enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff
@@ -208,7 +211,8 @@ public partial class BattleEnemyScene : Node2D
         for (int i = 0; i < update.Enemies.Count; i++)
         {
             var enemyDisplay = _enemyMembers.GetChild(i);
-            var enemyWrapper = new EntityWrapper() { BattleEntity = update.Enemies[i] };
+            var enemy = update.Enemies[i];
+            var enemyWrapper = new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss };
             enemyDisplay.Call("UpdateEntityDisplay", enemyWrapper);
         }
 
@@ -252,11 +256,14 @@ public partial class BattleEnemyScene : Node2D
             skillIndex = _skillList.GetSelectedItems()[0];
         _skillList.Clear();
 
-        foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
-            _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
-        _skillList.Select(skillIndex);
+        if(_battleSceneObject.ActivePlayer != null)
+        {
+            foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
+                _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
+            _skillList.Select(skillIndex);
 
-        UpdateTargetList();
+            UpdateTargetList();
+        }
     }
 
     private void ChangeAPBarWithTurnState(TurnState turnState)
@@ -329,7 +336,7 @@ public partial class BattleEnemyScene : Node2D
 
         if (_targetList.ItemCount > 0)
         {
-            if (targetIndex == _targetList.ItemCount)
+            if (targetIndex >= _targetList.ItemCount)
                 targetIndex = _targetList.ItemCount - 1;
 
             _targetList.Select(targetIndex);

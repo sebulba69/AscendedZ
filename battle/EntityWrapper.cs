@@ -14,6 +14,8 @@ namespace AscendedZ.battle
     /// </summary>
     public partial class EntityWrapper : GodotObject
     {
+        private bool _isBoss = false;
+        public bool IsBoss { get => _isBoss; set => _isBoss = value; }
         public BattleEntity BattleEntity { get; set; }
     }
 }

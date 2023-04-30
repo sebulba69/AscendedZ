@@ -3,6 +3,7 @@ using AscendedZ.battle;
 using AscendedZ.effects;
 using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
+using AscendedZ.entities.enemy_objects;
 using AscendedZ.statuses;
 using Godot;
 using System;
@@ -14,12 +15,12 @@ using static Godot.HttpRequest;
 
 public partial class EntityDisplayBox : PanelContainer
 {
-    private TextureProgressBar _hp;
     private Sprite2D _effect;
     private AudioStreamPlayer _shakeSfx;
     private Vector2 _originalPosition;
     private ColorRect _activePlayerTag;
     private HBoxContainer _statuses;
+    private Label _resistances;
 
     private string debugName;
 
@@ -38,10 +39,10 @@ public partial class EntityDisplayBox : PanelContainer
         _randomNumberGenerator = new RandomNumberGenerator();
         _randomNumberGenerator.Randomize();
 
-        _hp = this.GetNode<TextureProgressBar>("ContainerForCharStuff/HP");
         _effect = this.GetNode<Sprite2D>("%EffectSprite");
-        _shakeSfx = this.GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+        _shakeSfx = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
         _statuses = this.GetNode<HBoxContainer>("%Statuses");
+        _resistances = this.GetNode<Label>("%ResistanceLabel");
     }
 
     /// <summary>
@@ -65,38 +66,56 @@ public partial class EntityDisplayBox : PanelContainer
 
     public void InstanceEntity(EntityWrapper wrapper)
     {
-        debugName = wrapper.BattleEntity.Name;
-
-        Label name = this.GetNode<Label>("ContainerForCharStuff/CenterContainer/NameLabel");
-        Label res = this.GetNode<Label>("ContainerForCharStuff/PanelContainer/CenterContainer/ResistanceLabel");
-        TextureRect picture = this.GetNode<TextureRect>("ContainerForCharStuff/Picture");
+        Label name = this.GetNode<Label>("%NameLabel");
+        TextureRect picture = this.GetNode<TextureRect>("%Picture");
 
         BattleEntity entity = wrapper.BattleEntity;
+        string resString = entity.Resistances.GetResistanceString();
+        if (wrapper.IsBoss)
+        {
+            var enemyEntity = (Enemy)entity;
+            var bossHP = this.GetNode<HBoxContainer>("%HP");
+            bossHP.Call("InitializeBossHPBar", entity.HP);
+        }
+        else
+        {
+            var hp = this.GetNode<TextureProgressBar>("%HP");
+            hp.MaxValue = entity.MaxHP;
+            hp.Value = hp.MaxValue;
 
-        _hp.MaxValue = entity.MaxHP;
-        _hp.Value = _hp.MaxValue;
+            resString = $"{entity.HP} HP ● {resString}";
+        }
 
         name.Text = entity.Name;
-        res.Text = entity.Resistances.GetResistanceString();
+        _resistances.Text = resString;
         picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
     }
 
     public void UpdateEntityDisplay(EntityWrapper wrapper)
     {
-        var battleEntity = wrapper.BattleEntity;
-
+        var entity = wrapper.BattleEntity;
 
         // ... change hp status ... //
         // set HP values
-        _hp.Value = battleEntity.HP;
+        if (wrapper.IsBoss)
+        {
+            var bossHP = this.GetNode<HBoxContainer>("%HP");
+            bossHP.Call("UpdateBossHP", entity.HP);
+        }
+        else
+        {
+            var hp = this.GetNode<TextureProgressBar>("%HP");
+            hp.Value = entity.HP;
+            _resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
+        }
 
         // ... change active status ... //
         // change active status if it's a player (players have the graphic, enemies don't)
-        if (battleEntity.GetType().Equals(typeof(BattlePlayer)))
+        if (entity.GetType().Equals(typeof(BattlePlayer)))
         {
             ColorRect activePlayerTag = this.GetNode<ColorRect>("%ActivePlayerTag");
-            if (activePlayerTag.Visible != battleEntity.IsActive)
-                activePlayerTag.Visible = battleEntity.IsActive;
+            if (activePlayerTag.Visible != entity.IsActive)
+                activePlayerTag.Visible = entity.IsActive;
         }
 
 
@@ -106,7 +125,7 @@ public partial class EntityDisplayBox : PanelContainer
             _statuses.RemoveChild(child);
 
         // place our new, updated statuses on scren
-        var entityStatuses = battleEntity.StatusHandler.Statuses;
+        var entityStatuses = entity.StatusHandler.Statuses;
         foreach (var status in entityStatuses)
         {
             StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();
@@ -156,7 +175,7 @@ public partial class EntityDisplayBox : PanelContainer
                     var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate();
                     dmgNumber.Call("SetDisplayInfo", result.HPChanged, isHPGainedFromMove, result.GetResultString());
 
-                    CenterContainer effectContainer = this.GetNode<CenterContainer>("CenterContainer");
+                    CenterContainer effectContainer = this.GetNode<CenterContainer>("%EffectContainer");
                     effectContainer.AddChild(dmgNumber);
                 }
             }

@@ -34,7 +34,7 @@ namespace AscendedZ.entities
             return _statuses.FindAll(status => status.Id == id).Count > 0;
         }
 
-        public void AddStatus(Status status)
+        public void AddStatus(BattleEntity entity, Status status)
         {
             bool inList = false;
             foreach(Status s in _statuses)
@@ -49,15 +49,25 @@ namespace AscendedZ.entities
 
             if (!inList)
             {
-                status.ActivateStatus();
-                _statuses.Add(status);
+                var statusToAdd = status.Clone();
+                statusToAdd.ActivateStatus(entity);
+                _statuses.Add(statusToAdd);
             }
         }
 
         public void ApplyBattleResult(BattleResult result)
         {
-            foreach(Status s in _statuses)
+            List<Status> removeStatus = new List<Status>();
+            foreach (Status s in _statuses)
+            {
                 s.UpdateStatus(result);
+                if (s.RemoveStatus)
+                    removeStatus.Add(s);
+            }
+
+            if (removeStatus.Count > 0)
+                foreach (var status in removeStatus)
+                    _statuses.Remove(status);
         }
 
         public void UpdateStatusTurns(BattleEntity entity)

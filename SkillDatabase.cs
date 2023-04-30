@@ -88,6 +88,16 @@ namespace AscendedZ
             Status = new StunStatus()
         };
 
+        public static StatusSkill DARK_BUFF_1 = new StatusSkill()
+        {
+            Name = "Dark Boost",
+            TargetType = TargetTypes.SINGLE_TEAM,
+            StartupAnimation = ArtAssets.STARTUP1_MG,
+            EndupAnimation = ArtAssets.DARK_T1,
+            Icon = ArtAssets.DARK_ICON,
+            Status = new ElementBuffStatus(Elements.Dark, 2)
+        };
+
         public static HealSkill HEAL_1 = new HealSkill()
         {
             Name = "Regen",

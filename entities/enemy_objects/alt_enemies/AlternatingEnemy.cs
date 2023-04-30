@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AscendedZ.entities.enemy_objects
+namespace AscendedZ.entities.enemy_objects.alt_enemies
 {
     /// <summary>
     /// An enemy who targets the lowest HP party member and alternates its moves throughout a turn.
@@ -26,15 +26,15 @@ namespace AscendedZ.entities.enemy_objects
             set
             {
                 _currentMove = value;
-                if (_currentMove == this.Skills.Count)
+                if (_currentMove == Skills.Count)
                     _currentMove = 0;
             }
         }
 
-        public AlternatingEnemy() : base() 
+        public AlternatingEnemy() : base()
         {
             _rng = new Random();
-            this.Turns = 1;
+            Turns = 1;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace AscendedZ.entities.enemy_objects
         /// <returns></returns>
         public override ISkill GetNextMove(BattleSceneObject battleSceneObject)
         {
-            return this.Skills[CurrentMove++];
+            return Skills[CurrentMove++];
         }
 
         /// <summary>
@@ -63,6 +63,5 @@ namespace AscendedZ.entities.enemy_objects
         {
             CurrentMove = 0;
         }
-
     }
 }

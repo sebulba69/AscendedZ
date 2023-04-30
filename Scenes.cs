@@ -30,6 +30,7 @@ namespace AscendedZ
         // battle assets
         public static readonly string PARTY_BOX = "res://screens/PartyBattleDisplayBox.tscn";
         public static readonly string ENEMY_BOX = "res://screens/EnemyBattleDisplayBox.tscn";
+        public static readonly string BOSS_BOX = "res://screens/BossBattleDisplayBox.tscn";
 
         // effects
         public static readonly string EFFECTS = "res://effects/EffectSprite.tscn";

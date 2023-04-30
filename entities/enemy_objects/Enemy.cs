@@ -12,14 +12,12 @@ namespace AscendedZ.entities.enemy_objects
 {
     public class Enemy : BattleEntity
     {
+        protected bool _isBoss = false;
+        public bool IsBoss { get => _isBoss; }
+
         public Enemy() {}
 
         public virtual void ResetEnemyState()
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual Enemy Create()
         {
             throw new NotImplementedException();
         }

@@ -1,8 +1,12 @@
-Label
 PanelContainer
-TextureRect
+Label
 HBoxContainer
 VBoxContainer
+MarginContainer
+Panel
+ProgressBar
+Container
+TextureRect
 Window
 CenterContainer
 Button
@@ -17,9 +21,7 @@ ParallaxBackground
 Sprite2D
 Node2D
 AudioStreamPlayer
-MarginContainer
 PopupPanel
 Marker2D
 AnimationPlayer
 GPUParticles2D
-ProgressBar
