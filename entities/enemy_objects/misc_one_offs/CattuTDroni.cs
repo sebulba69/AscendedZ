@@ -25,7 +25,7 @@ namespace AscendedZ.entities.enemy_objects.misc_one_offs
         public CattuTDroni() : base()
         {
             Name = "Cattu T'Droni";
-            MaxHP = 6;
+            MaxHP = 8;
             Image = "res://enemy_pics/newpicture97.png";
             Resistances = new ResistanceArray();
 

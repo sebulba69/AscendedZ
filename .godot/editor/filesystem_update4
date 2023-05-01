@@ -10,3 +10,5 @@ res://screens/BossBattleDisplayBox.tscn
 res://screens/EnemyBattleDisplayBox.tscn
 res://screens/BossHPBar.tscn
 res://screens/MainScreen.tscn
+res://screens/PopupWindow.tscn
+res://statuses/StatusIcon.tscn

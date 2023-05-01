@@ -22,6 +22,8 @@ namespace AscendedZ.statuses
             set => _counter = value; 
         }
 
+        public string Description { get; set; }
+
         /// <summary>
         /// The color we want the counter to be.
         /// </summary>

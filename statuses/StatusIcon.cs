@@ -21,5 +21,6 @@ public partial class StatusIcon : Control
 		_icon.Texture = ArtAssets.GenerateIcon(wrapper.Icon);
 		_counter.Text = wrapper.Counter.ToString();
 		_counter.AddThemeColorOverride("font_color", wrapper.CounterColor);
+		this.GetNode<PanelContainer>("PanelContainer").TooltipText = wrapper.Description;
     }
 }

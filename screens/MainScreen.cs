@@ -20,6 +20,11 @@ public partial class MainScreen : Node2D
         Label playerName = this.GetNode<Label>("CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer2/CenterContainer/PlayerNameLabel");
         _tooltip = this.GetNode<Label>("%Tooltip");
 
+        AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
+        var gameObject = PersistentGameObjects.Instance();
+        gameObject.SetStreamPlayer(audioPlayer);
+        gameObject.PlayMusic(MusicAssets.OVERWORLD_1);
+
         MainPlayer player = PersistentGameObjects.Instance().MainPlayer;
         playerPicture.Texture = ResourceLoader.Load<Texture2D>(player.Image);
         playerName.Text = player.Name;
@@ -27,13 +32,16 @@ public partial class MainScreen : Node2D
         Button menuButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/MenuButton");
         Button embarkButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/EmbarkButton");
         Button recruitButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/RecruitButton");
+        Button moveButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/MoveButton");
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
         recruitButton.Pressed += _OnRecruitButtonPressed;
 
+        menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party and attempt to reach the final floor."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
+        moveButton.MouseEntered += () => { _tooltip.Text = "[ Under Development ]"; };
     }
 
     private void _OnEmbarkButtonPressed()

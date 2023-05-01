@@ -79,7 +79,9 @@ namespace AscendedZ.statuses
             wrapper.Counter = _stacks;
             if (_stacks == REQUIRED_STACKS_TO_BE_ACTIVE)
                 wrapper.CounterColor = Colors.Green;
-            
+
+            wrapper.Description = $"Stun Status: Prevents attacks at {REQUIRED_STACKS_TO_BE_ACTIVE} stacks for 1 turn.";
+
             return wrapper;
         }
 

@@ -105,7 +105,7 @@ namespace AscendedZ.statuses
             wrapper.Counter = _stacks;
             if (_stacks == MAX_STACKS)
                 wrapper.CounterColor = Colors.Green;
-
+            wrapper.Description = $"{_buffElement.ToString()} Buff: At {MAX_STACKS}, next {_buffElement.ToString()} attack amplified by {_dmgModifier}";
             return wrapper;
         }
 

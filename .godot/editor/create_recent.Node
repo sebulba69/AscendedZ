@@ -1,7 +1,8 @@
-PanelContainer
 Label
-HBoxContainer
+PanelContainer
 VBoxContainer
+AudioStreamPlayer
+HBoxContainer
 MarginContainer
 Panel
 ProgressBar
@@ -20,7 +21,6 @@ ParallaxLayer
 ParallaxBackground
 Sprite2D
 Node2D
-AudioStreamPlayer
 PopupPanel
 Marker2D
 AnimationPlayer

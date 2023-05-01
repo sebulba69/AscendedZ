@@ -221,3 +221,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
 text = "Proceed"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0

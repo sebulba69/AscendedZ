@@ -62,6 +62,9 @@ public partial class BattleEnemyScene : Node2D
         _skillButton.Pressed += _OnSkillButtonPressed;
         _skillList.Connect("item_selected", new Callable(this, "_OnSkillListItemSelected"));
 
+        AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
+        PersistentGameObjects.Instance().SetStreamPlayer(audioPlayer);
+
         _backToHomeButton.Pressed += () =>
         {
             PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
@@ -120,6 +123,8 @@ public partial class BattleEnemyScene : Node2D
         // set the turns and prep the b.s.o. for processing battle stuff
         _battleSceneObject.StartBattle();
         ChangeAPBarWithTurnState(TurnState.PLAYER);
+
+        PersistentGameObjects.Instance().PlayMusic(MusicAssets.GetDungeonTrack(PersistentGameObjects.Instance().Tier));
     }
 
     private void _OnSkillListItemSelected(int index)
