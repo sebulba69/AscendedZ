@@ -236,6 +236,9 @@ public partial class StartScreen : Node2D
                 _loadItems.Clear();
                 foreach (var item in persistentGameObject.SaveCache)
                     _loadItems.AddItem(item.ToString());
+
+                if (_loadItems.ItemCount > 0)
+                    _loadItems.Select(0);
             }
         }
 		_mainTitleLabel.Visible = true;
