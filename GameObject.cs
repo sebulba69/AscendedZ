@@ -104,9 +104,6 @@ namespace AscendedZ
         /// <param name="streamPlayer"></param>
         public void SetStreamPlayer(AudioStreamPlayer streamPlayer)
         {
-            if (_streamPlayer != null && _streamPlayer.Equals(streamPlayer))
-                return;
-
             // stop the ongoing stream player if it's playing
             if (_streamPlayer.Playing)
                 _streamPlayer.Stop();

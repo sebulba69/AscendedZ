@@ -113,6 +113,7 @@ namespace AscendedZ
                         string filename;
                         while (!string.IsNullOrEmpty(filename = dir.GetNext()))
                         {
+                            filename = filename.Replace("png.import", "png");
                             string path = System.IO.Path.Combine(dir.GetCurrentDir(), filename);
                             _playerPics.Add(path);
                             filename = dir.GetNext();
