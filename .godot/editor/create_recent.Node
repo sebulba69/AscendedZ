@@ -1,9 +1,9 @@
-VBoxContainer
-HBoxContainer
+MarginContainer
 PanelContainer
 Label
+VBoxContainer
+HBoxContainer
 AudioStreamPlayer
-MarginContainer
 Panel
 ProgressBar
 Container

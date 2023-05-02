@@ -151,7 +151,7 @@ layout_mode = 2
 
 [node name="SkillsList" type="ItemList" parent="Background/PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 150)
+custom_minimum_size = Vector2(250, 125)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 20
@@ -177,9 +177,9 @@ text = "Skill"
 [node name="EndBox" type="CenterContainer" parent="Background"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(1600, 1100)
+custom_minimum_size = Vector2(1600, 900)
 offset_right = 1600.0
-offset_bottom = 1100.0
+offset_bottom = 900.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 

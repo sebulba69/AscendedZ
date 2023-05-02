@@ -82,7 +82,7 @@ unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pkpmd")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Resistances"
 
 [node name="EffectContainer" type="CenterContainer" parent="."]
