@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cvtatom8ub0ma" path="res://progressbar_assets/BarV5_ProgressBarBorder.png" id="4_atrrm"]
 [ext_resource type="AudioStream" uid="uid://dyxxgykvs4hrj" path="res://effects/effect_sounds/Damage4.ogg" id="7_lo5kf"]
 
-[node name="CharacterCtrlNode" type="PanelContainer"]
+[node name="CharacterCtrlNode2" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,11 +40,9 @@ text = "Name"
 [node name="Picture" type="TextureRect" parent="ContainerForCharStuff"]
 unique_name_in_owner = true
 use_parent_material = true
-custom_minimum_size = Vector2(250, 222)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-expand_mode = 1
 
 [node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/Picture"]
 unique_name_in_owner = true
@@ -98,7 +96,7 @@ size_flags_vertical = 4
 unique_name_in_owner = true
 visible = false
 use_parent_material = true
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

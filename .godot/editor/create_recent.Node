@@ -1,8 +1,8 @@
-Label
-PanelContainer
 VBoxContainer
-AudioStreamPlayer
 HBoxContainer
+PanelContainer
+Label
+AudioStreamPlayer
 MarginContainer
 Panel
 ProgressBar

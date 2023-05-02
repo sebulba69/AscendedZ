@@ -14,44 +14,49 @@ region = Rect2(0, 0, 32, 32)
 script = ExtResource("2")
 
 [node name="Background" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(1600, 1100)
 offset_right = 1600.0
-offset_bottom = 1100.0
+offset_bottom = 900.0
 texture = ExtResource("1")
 expand_mode = 1
 
-[node name="EnemyContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(1600, 340)
-offset_right = 1600.0
-offset_bottom = 354.0
+[node name="EnemyContainer" type="CenterContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_right = 250.0
+offset_bottom = 38.0
+grow_horizontal = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EnemyContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/EnemyContainer"]
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="APContainer" type="PanelContainer" parent="EnemyContainer/VBoxContainer"]
+[node name="APContainer" type="PanelContainer" parent="Background/EnemyContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 25)
+custom_minimum_size = Vector2(500, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EnemyContainer/VBoxContainer/APContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/EnemyContainer/VBoxContainer/APContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="EnemyContainer/VBoxContainer/APContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Background/EnemyContainer/VBoxContainer/APContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 2
 
-[node name="APLabel" type="Label" parent="EnemyContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer"]
+[node name="APLabel" type="Label" parent="Background/EnemyContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "AP
 "
 
-[node name="MarginContainer2" type="MarginContainer" parent="EnemyContainer/VBoxContainer/APContainer/HBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="Background/EnemyContainer/VBoxContainer/APContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 5
@@ -59,7 +64,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="APBar" type="ProgressBar" parent="EnemyContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer2"]
+[node name="APBar" type="ProgressBar" parent="Background/EnemyContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -68,99 +73,99 @@ theme_override_styles/fill = ExtResource("4_vputq")
 value = 100.0
 show_percentage = false
 
-[node name="CenterContainer" type="CenterContainer" parent="EnemyContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Background/EnemyContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="EnemyContainerBox" type="HBoxContainer" parent="EnemyContainer/VBoxContainer/CenterContainer"]
+[node name="EnemyContainerBox" type="HBoxContainer" parent="Background/EnemyContainer/VBoxContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="SkillDisplayIcons" type="PanelContainer" parent="EnemyContainer/VBoxContainer"]
+[node name="SkillDisplayIcons" type="PanelContainer" parent="Background/EnemyContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="CenterContainerIcons" type="CenterContainer" parent="EnemyContainer/VBoxContainer/SkillDisplayIcons"]
+[node name="CenterContainerIcons" type="CenterContainer" parent="Background/EnemyContainer/VBoxContainer/SkillDisplayIcons"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EnemyContainer/VBoxContainer/SkillDisplayIcons/CenterContainerIcons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/EnemyContainer/VBoxContainer/SkillDisplayIcons/CenterContainerIcons"]
 layout_mode = 2
 
-[node name="SkillIcon" type="TextureRect" parent="EnemyContainer/VBoxContainer/SkillDisplayIcons/CenterContainerIcons/HBoxContainer"]
+[node name="SkillIcon" type="TextureRect" parent="Background/EnemyContainer/VBoxContainer/SkillDisplayIcons/CenterContainerIcons/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_jtn52")
 
-[node name="SkillName" type="Label" parent="EnemyContainer/VBoxContainer/SkillDisplayIcons/CenterContainerIcons/HBoxContainer"]
+[node name="SkillName" type="Label" parent="Background/EnemyContainer/VBoxContainer/SkillDisplayIcons/CenterContainerIcons/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 22
 
-[node name="PlayerContainer" type="CenterContainer" parent="."]
+[node name="PlayerContainer" type="CenterContainer" parent="Background"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(1600, 567)
-anchors_preset = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = 493.0
-offset_right = 1600.0
-offset_bottom = 1100.0
+offset_left = -229.0
+offset_top = -248.0
+offset_right = 225.0
+grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerContainer"]
 layout_mode = 2
 
-[node name="CenterContainer2" type="CenterContainer" parent="PlayerContainer/VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="Background/PlayerContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="PartyPortraits" type="HBoxContainer" parent="PlayerContainer/VBoxContainer/CenterContainer2"]
+[node name="PartyPortraits" type="HBoxContainer" parent="Background/PlayerContainer/VBoxContainer/CenterContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="APContainer" type="CenterContainer" parent="PlayerContainer/VBoxContainer"]
+[node name="APContainer" type="CenterContainer" parent="Background/PlayerContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerContainer/VBoxContainer/APContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerContainer/VBoxContainer/APContainer"]
 layout_mode = 2
 
-[node name="StuffPanel" type="HBoxContainer" parent="PlayerContainer/VBoxContainer/APContainer/VBoxContainer"]
+[node name="StuffPanel" type="HBoxContainer" parent="Background/PlayerContainer/VBoxContainer/APContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel"]
+[node name="PanelContainer" type="PanelContainer" parent="Background/PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SkillsList" type="ItemList" parent="PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="SkillsList" type="ItemList" parent="Background/PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 200)
+custom_minimum_size = Vector2(250, 150)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 
-[node name="TargetList" type="ItemList" parent="PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="TargetList" type="ItemList" parent="Background/PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 19
 theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 
-[node name="Skill" type="Button" parent="PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
+[node name="Skill" type="Button" parent="Background/PlayerContainer/VBoxContainer/APContainer/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
@@ -169,19 +174,19 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 25
 text = "Skill"
 
-[node name="EndBox" type="CenterContainer" parent="."]
+[node name="EndBox" type="CenterContainer" parent="Background"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(1600, 1100)
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1600.0
+offset_bottom = 1100.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/EndBox"]
 layout_mode = 2
 
-[node name="EndOfBattleLabel" type="Label" parent="EndBox/VBoxContainer"]
+[node name="EndOfBattleLabel" type="Label" parent="Background/EndBox/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -191,14 +196,14 @@ theme_override_font_sizes/font_size = 120
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BattleEnded" type="CenterContainer" parent="EndBox/VBoxContainer"]
+[node name="BattleEnded" type="CenterContainer" parent="Background/EndBox/VBoxContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EndBox/VBoxContainer/BattleEnded"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/EndBox/VBoxContainer/BattleEnded"]
 layout_mode = 2
 theme_override_constants/separation = 17
 
-[node name="BackToHomeBtn" type="Button" parent="EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
+[node name="BackToHomeBtn" type="Button" parent="Background/EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -206,7 +211,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
 text = "Retreat"
 
-[node name="RetryFloorBtn" type="Button" parent="EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
+[node name="RetryFloorBtn" type="Button" parent="Background/EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -214,7 +219,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
 text = "Retry"
 
-[node name="ContinueBtn" type="Button" parent="EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
+[node name="ContinueBtn" type="Button" parent="Background/EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2

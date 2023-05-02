@@ -7,3 +7,8 @@ res://screens/BossBattleDisplayBox.tscn
 res://screens/APBarStyleBox.tres
 res://screens/BossHPBar.tscn
 res://screens/BattleEnemyScene.tscn
+res://screens/PartyBattleDisplayBox.tscn
+res://screens/EnemyBattleDisplayBox.tscn
+res://screens/PartyMemberDisplay.tscn
+res://effects/DamageNumber.tscn
+res://screens/MenuScene.tscn

@@ -36,17 +36,15 @@ unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nwbcd")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 16
 text = "Name"
 
 [node name="Picture" type="TextureRect" parent="CharacterCtrlNode/PanelContainer/SubContainer"]
 unique_name_in_owner = true
 use_parent_material = true
-custom_minimum_size = Vector2(250, 222)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-expand_mode = 1
 
 [node name="Statuses" type="HBoxContainer" parent="CharacterCtrlNode/PanelContainer/SubContainer/Picture"]
 unique_name_in_owner = true
@@ -73,7 +71,7 @@ unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nwbcd")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Resistances"
 
 [node name="HP" parent="CharacterCtrlNode" instance=ExtResource("2_3ht57")]
@@ -96,4 +94,4 @@ size_flags_vertical = 4
 unique_name_in_owner = true
 visible = false
 use_parent_material = true
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)

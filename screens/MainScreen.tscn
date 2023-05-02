@@ -8,16 +8,14 @@
 script = ExtResource("4")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(1600, 1100)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+custom_minimum_size = Vector2(1599, 900)
+offset_right = 1599.0
+offset_bottom = 900.0
 
 [node name="Background" type="TextureRect" parent="CenterContainer"]
-custom_minimum_size = Vector2(1600, 1100)
+custom_minimum_size = Vector2(1600, 900)
 layout_mode = 2
 texture = ExtResource("2")
-expand_mode = 1
 
 [node name="MainContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
@@ -29,24 +27,23 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer2"]
 layout_mode = 2
 
 [node name="PlayerNameLabel" type="Label" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer2/CenterContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 25
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(400, 356)
 layout_mode = 2
 
 [node name="PlayerPicture" type="TextureRect" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(300, 267)
+custom_minimum_size = Vector2(270, 240)
 layout_mode = 2
 expand_mode = 1
 

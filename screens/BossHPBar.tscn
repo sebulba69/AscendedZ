@@ -6,18 +6,19 @@
 [ext_resource type="StyleBox" uid="uid://0cug71njxm88" path="res://FrontBoxBossHP.tres" id="3_nc66m"]
 
 [node name="BossHPBar" type="HBoxContainer"]
-offset_right = 331.0
-offset_bottom = 24.0
+offset_right = 512.0
+offset_bottom = 19.0
 script = ExtResource("1_7j0de")
 
 [node name="HPBarNumber" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(25, 0)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
 [node name="NumberOfBarsLabel" type="Label" parent="HPBarNumber"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_8dmex")
+theme_override_font_sizes/font_size = 12
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
