@@ -28,7 +28,7 @@ public partial class BossHPBar : HBoxContainer
 		_bossHPBar.ChangeHP(hp);
         BossHPStatus status = _bossHPBar.BossHPUIValues;
 
-        _barsLabel.Text = hp.ToString();
+        _barsLabel.Text = status.NumBars.ToString();
         _hp.MaxValue = status.MaxBarHP;
 		_hp.Value = status.CurrentBarHP;
     }

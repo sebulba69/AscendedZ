@@ -47,7 +47,7 @@ namespace AscendedZ.entities.enemy_objects.misc_one_offs
         /// <returns></returns>
         public override ISkill GetNextMove(BattleSceneObject battleSceneObject)
         {
-            var partyMembers = battleSceneObject.Players.FindAll(member => member.HP > 0);
+            var partyMembers = battleSceneObject.AlivePlayers;
 
             // first it checks if the status is present on a party member
             _target = partyMembers[_rng.Next(0, partyMembers.Count)];

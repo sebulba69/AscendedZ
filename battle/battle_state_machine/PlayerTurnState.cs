@@ -52,7 +52,7 @@ namespace AscendedZ.battle.battle_state_machine
                     result = skill.ProcessSkill(enemy);
                     break;
                 case TargetTypes.SINGLE_TEAM:
-                    var player = players[eventArgs.TargetIndex];
+                    var player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
                     result = skill.ProcessSkill(player);
                     break;
             }

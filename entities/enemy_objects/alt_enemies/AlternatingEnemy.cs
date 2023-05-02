@@ -54,7 +54,7 @@ namespace AscendedZ.entities.enemy_objects.alt_enemies
         /// <returns></returns>
         public override BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
         {
-            var partyMembers = battleSceneObject.Players.FindAll(member => member.HP > 0);
+            var partyMembers = battleSceneObject.AlivePlayers;
             int i = _rng.Next(partyMembers.Count);
             return partyMembers[i];
         }

@@ -167,7 +167,7 @@ public partial class BattleEnemyScene : Node2D
             // check if we're running from this battle
             if (result.ResultType == BattleResultType.Retreat)
             {
-                this.EndBattle(false);
+                this.EndBattle(false, true);
                 return;
             }
 
@@ -335,7 +335,7 @@ public partial class BattleEnemyScene : Node2D
         }
         else
         {
-            foreach (var player in _battleSceneObject.Players.FindAll(party => party.HP > 0))
+            foreach (var player in _battleSceneObject.AlivePlayers)
                 _targetList.AddItem($"{count++}. {player.Name}");
         }
 

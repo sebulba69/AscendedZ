@@ -51,7 +51,7 @@ namespace AscendedZ.entities.enemy_objects.status_hunter_enemies
         {
             _noStatusDetected = false;
 
-            var partyMembers = battleSceneObject.Players.FindAll(member => member.HP > 0);
+            var partyMembers = battleSceneObject.AlivePlayers;
             var partyMembersWithStatus = partyMembers.FindAll(member => member.StatusHandler.HasStatus(StatusToApply));
 
             int i;

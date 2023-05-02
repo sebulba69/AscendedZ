@@ -41,6 +41,7 @@ namespace AscendedZ.battle
         public TurnState TurnState { get => _turnState; }
         public BattlePlayer ActivePlayer { get; set; }
 
+        public List<BattlePlayer> AlivePlayers { get => Players.FindAll(p => p.HP > 0); }
         public BattleSceneObject()
         {
             _currentState = _states[PLAYER_STATE];
@@ -157,7 +158,7 @@ namespace AscendedZ.battle
         /// </summary>
         public bool DidEnemiesWin()
         {
-            return this.Players.FindAll(party => party.HP > 0).Count == 0;
+            return this.AlivePlayers.Count == 0;
         }
 
         /// <summary>
