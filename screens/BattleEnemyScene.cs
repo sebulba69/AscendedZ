@@ -20,6 +20,8 @@ using static Godot.WebSocketPeer;
 
 public partial class BattleEnemyScene : Node2D
 {
+    private bool _canInput;
+
     private HBoxContainer _partyMembers;
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
@@ -88,6 +90,68 @@ public partial class BattleEnemyScene : Node2D
         InitializeBattleScene();
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        if (!_canInput)
+            return;
+
+        if (@event.IsActionPressed("skill_up"))
+        {
+            if (_skillList.GetSelectedItems().Length > 0)
+            {
+                int upIndex = _skillList.GetSelectedItems()[0];
+                upIndex--;
+                if (upIndex < 0)
+                    upIndex = 0;
+                _skillList.Select(upIndex);
+                UpdateTargetList();
+            } 
+        }
+
+        if (@event.IsActionPressed("skill_down"))
+        {
+            if (_skillList.GetSelectedItems().Length > 0)
+            {
+                int downIndex = _skillList.GetSelectedItems()[0];
+                downIndex++;
+                if (downIndex >= _skillList.ItemCount)
+                    downIndex = _skillList.ItemCount - 1;
+                _skillList.Select(downIndex);
+                UpdateTargetList();
+            }
+        }
+
+        if (@event.IsActionPressed("target_up"))
+        {
+            if (_targetList.GetSelectedItems().Length > 0)
+            {
+                int upIndex = _targetList.GetSelectedItems()[0];
+                upIndex--;
+                if (upIndex < 0)
+                    upIndex = 0;
+                _targetList.Select(upIndex);
+            }
+        }
+
+        if (@event.IsActionPressed("target_down"))
+        {
+            if (_targetList.GetSelectedItems().Length > 0)
+            {
+                int downIndex = _targetList.GetSelectedItems()[0];
+                downIndex++;
+                if (downIndex >= _targetList.ItemCount)
+                    downIndex = _targetList.ItemCount - 1;
+                _targetList.Select(downIndex);
+            }
+        }
+
+        if (@event.IsActionPressed("use_skill"))
+        {
+            if(!_skillButton.Disabled)
+                _OnSkillButtonPressed();
+        }
+    }
+
     private void InitializeBattleScene()
     {
         ClearChildrenFromNode(_partyMembers);
@@ -125,6 +189,7 @@ public partial class BattleEnemyScene : Node2D
         ChangeAPBarWithTurnState(TurnState.PLAYER);
 
         PersistentGameObjects.Instance().PlayMusic(MusicAssets.GetDungeonTrack(PersistentGameObjects.Instance().Tier));
+        _canInput = true;
     }
 
     private void _OnSkillListItemSelected(int index)
@@ -143,6 +208,7 @@ public partial class BattleEnemyScene : Node2D
 
     private void _OnSkillButtonPressed()
     {
+        _canInput = false;
         _skillButton.Disabled = true;
 
         int selectedSkillIndex = _skillList.GetSelectedItems()[0];
@@ -251,6 +317,8 @@ public partial class BattleEnemyScene : Node2D
         // then we want to use an enemy skill
         if (_battleSceneObject.TurnState == TurnState.ENEMY)
             _battleSceneObject.DoEnemyMove();
+        else
+            _canInput = true;
     }
 
     private void SetActiveSkills()
@@ -395,6 +463,7 @@ public partial class BattleEnemyScene : Node2D
 
     private async void EndBattle(bool didPlayerWin, bool retreated=false)
     {
+        _canInput = false;
         SetEndScreenVisibility(true);
 
         Label endLabel = this.GetNode<Label>("%EndOfBattleLabel");
