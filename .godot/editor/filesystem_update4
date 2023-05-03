@@ -12,3 +12,7 @@ res://screens/EmbarkScreen.tscn
 res://screens/RecruitScreen.tscn
 res://screens/RewardScreen.tscn
 res://screens/MenuScene.tscn
+res://screens/PartyBattleDisplayBox.tscn
+res://screens/EnemyBattleDisplayBox.tscn
+res://screens/BossBattleDisplayBox.tscn
+res://screens/PartyMemberDisplay.tscn
