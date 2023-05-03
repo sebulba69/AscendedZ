@@ -21,6 +21,9 @@ namespace AscendedZ
         public static readonly string BATTLE_SCENE = "res://screens/BattleEnemyScene.tscn";
         public static readonly string MENU = "res://screens/MenuScene.tscn";
 
+        // currency
+        public static readonly string CURRENCY_DISPLAY = "res://misc_icons/CurrencyDisplay.tscn";
+
         // popups
         public static readonly string YES_NO_POPUP = "res://screens/PopupWindow.tscn";
 

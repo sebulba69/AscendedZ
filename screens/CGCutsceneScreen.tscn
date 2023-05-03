@@ -8,7 +8,7 @@
 script = ExtResource("3")
 
 [node name="CGBackground" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(1600, 900)
+custom_minimum_size = Vector2(1511, 850)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

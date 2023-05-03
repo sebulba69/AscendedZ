@@ -4,8 +4,8 @@
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1_qrhog"]
 
 [node name="PopupWindow" type="CenterContainer"]
-offset_right = 1600.0
-offset_bottom = 1100.0
+offset_right = 1511.0
+offset_bottom = 850.0
 script = ExtResource("1_ns51k")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

@@ -28,6 +28,7 @@ public partial class MainScreen : Node2D
         MainPlayer player = PersistentGameObjects.Instance().MainPlayer;
         playerPicture.Texture = ResourceLoader.Load<Texture2D>(player.Image);
         playerName.Text = player.Name;
+        UpdateCurrencyDisplay();
 
         Button menuButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/MenuButton");
         Button embarkButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/EmbarkButton");
@@ -42,6 +43,23 @@ public partial class MainScreen : Node2D
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party and attempt to reach the final floor."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
         moveButton.MouseEntered += () => { _tooltip.Text = "[ Under Development ]"; };
+    }
+
+    private void UpdateCurrencyDisplay()
+    {
+        var currencyDisplay = this.GetNode("%Currency");
+
+        foreach (var child in currencyDisplay.GetChildren())
+        {
+            currencyDisplay.RemoveChild(child);
+        }
+        var wallet = PersistentGameObjects.Instance().MainPlayer.Wallet;
+        foreach(var key in wallet.Currency.Keys)
+        {
+            var display = ResourceLoader.Load<PackedScene>(Scenes.CURRENCY_DISPLAY).Instantiate();
+            currencyDisplay.AddChild(display);
+            display.Call("SetCurrencyToDisplay", wallet.Currency[key].Icon, wallet.Currency[key].Amount);
+        }
     }
 
     private void _OnEmbarkButtonPressed()
@@ -86,5 +104,7 @@ public partial class MainScreen : Node2D
 
         await ToSignal(instanceOfPackedScene, "tree_exited");
         _mainUIContainer.Visible = true;
+
+        UpdateCurrencyDisplay();
     }
 }

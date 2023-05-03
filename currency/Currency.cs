@@ -1,3 +1,4 @@
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace AscendedZ.currency
     /// <summary>
     /// Base class for all forms of sub currency besides gold.
     /// </summary>
-    public partial class Currency
+    public class Currency
     {
         private const int MAX = 999;
 
@@ -34,6 +35,6 @@ namespace AscendedZ.currency
             }
         }
 
-        public string Icon { get; protected set; }
+        public string Icon { get; set; }
     }
 }

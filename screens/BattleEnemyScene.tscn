@@ -14,8 +14,8 @@ region = Rect2(0, 0, 32, 32)
 script = ExtResource("2")
 
 [node name="Background" type="TextureRect" parent="."]
-offset_right = 1600.0
-offset_bottom = 900.0
+offset_right = 1511.0
+offset_bottom = 850.0
 texture = ExtResource("1")
 expand_mode = 1
 
@@ -66,118 +66,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 22
 
-[node name="PlayerContainer" type="CenterContainer" parent="Background"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -229.0
-offset_top = -248.0
-offset_right = 225.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerContainer"]
-layout_mode = 2
-
-[node name="CenterContainer2" type="CenterContainer" parent="Background/PlayerContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="PartyPortraits" type="HBoxContainer" parent="Background/PlayerContainer/VBoxContainer/CenterContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="APContainer" type="PanelContainer" parent="Background/PlayerContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 20)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/PlayerContainer/VBoxContainer/APContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Background/PlayerContainer/VBoxContainer/APContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 2
-
-[node name="APLabel" type="Label" parent="Background/PlayerContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 16
-text = "AP
-"
-
-[node name="MarginContainer2" type="MarginContainer" parent="Background/PlayerContainer/VBoxContainer/APContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="APBar" type="ProgressBar" parent="Background/PlayerContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/fill = ExtResource("4_vputq")
-value = 100.0
-show_percentage = false
-
-[node name="SkillBox" type="CenterContainer" parent="Background/PlayerContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerContainer/VBoxContainer/SkillBox"]
-layout_mode = 2
-
-[node name="StuffPanel" type="HBoxContainer" parent="Background/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer"]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Background/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SkillsList" type="ItemList" parent="Background/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 125)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
-
-[node name="TargetList" type="ItemList" parent="Background/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/h_separation = 19
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 16
-
-[node name="Skill" type="Button" parent="Background/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
-text = "Skill"
-
 [node name="EndBox" type="CenterContainer" parent="Background"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(1600, 900)
+layout_mode = 0
 offset_right = 1600.0
 offset_bottom = 900.0
 size_flags_horizontal = 6
@@ -226,6 +119,118 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
 text = "Proceed"
+
+[node name="PlayerMargins" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -197.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 50
+
+[node name="PlayerContainer" type="CenterContainer" parent="Background/PlayerMargins"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer"]
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PartyPortraits" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/CenterContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="APContainer" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+
+[node name="APLabel" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 16
+text = "AP
+"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="APBar" type="ProgressBar" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/fill = ExtResource("4_vputq")
+value = 100.0
+show_percentage = false
+
+[node name="SkillBox" type="CenterContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox"]
+layout_mode = 2
+
+[node name="StuffPanel" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SkillsList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 125)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 20
+
+[node name="TargetList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 19
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 16
+
+[node name="Skill" type="Button" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 20
+text = "Skill"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -12.5
