@@ -16,16 +16,16 @@ namespace AscendedZ
         /// </summary>
         public static string[] Opening = new string[] 
         {
-            "Once upon a buce, there was a\r\nlabyrinth known as\r\nThe Endless Dungeon.",
-            "Legend has it that contestants from\r\naround the world came together to\r\nconquer it.",
-            "Decades passed by, and no one seemed\r\nup to the challenge.",
-            "Until, one day, it happened...\r\nThe Endless Dungeon, right before\r\neveryone's eyes...",
-            "...Completely disappeared. Someone had\r\nmanaged to conquer it once and for all.",
-            "The opportunity to obtain the ultimate\r\npower of Ascended Enlightenment was\r\ngone... but not for long.",
-            "Hundreds of years later, a new dungeon\r\nspawned in its place.",
-            "It's said that this one is tougher than\r\nthe last, but the reward is\r\ngreater than ever before.",
-            "You are a villager who has decided to\r\ntake on the challenge.",
-            "Will you fail like all the others who've\r\ncome before you, or will you do the\r\nimpossible?",
+            "Once upon a buce, there was a\nlabyrinth known as\nThe Endless Dungeon.",
+            "Legend has it that contestants from\naround the world came together to\nconquer it.",
+            "Decades passed by, and no one seemed\nup to the challenge.",
+            "Until, one day, it happened...\nThe Endless Dungeon, right before\neveryone's eyes...",
+            "...Completely disappeared. Someone had\nmanaged to conquer it once and for all.",
+            "The opportunity to obtain the ultimate\npower of Ascended Enlightenment was\ngone... but not for long.",
+            "Hundreds of years later, a new dungeon\nspawned in its place.",
+            "It's said that this one is tougher than\nthe last, but the reward is\ngreater than ever before.",
+            "You are a villager who has decided to\ntake on the challenge.",
+            "Will you fail like all the others who've\ncome before you, or will you do the\nimpossible?",
             "Do you have what it takes to Ascend?"
         };
     }

@@ -31,23 +31,24 @@ namespace AscendedZ.statuses
             this.Icon = ArtAssets.STUN_ICON;
         }
 
-        public override void ActivateStatus()
+        public override void ActivateStatus(BattleEntity owner)
         {
             _stacks = 0;
             _activeTurns = 0;
-            base.ActivateStatus();
+            base.ActivateStatus(owner);
         }
 
         public override void UpdateStatus(BattleResult result)
         {
             if(result.ResultType == BattleResultType.Wk
-                && _stacks < REQUIRED_STACKS_TO_BE_ACTIVE)
+                && _stacks < REQUIRED_STACKS_TO_BE_ACTIVE
+                && result.Target.Equals(_statusOwner))
             {
                 _stacks++;
                 if (_stacks == REQUIRED_STACKS_TO_BE_ACTIVE)
-                    result.Target.CanAttack = false;
+                    _statusOwner.CanAttack = false;
                 else
-                    result.Target.CanAttack = true;
+                    _statusOwner.CanAttack = true;
             }
         }
 
@@ -58,6 +59,9 @@ namespace AscendedZ.statuses
         {
             if(_stacks == REQUIRED_STACKS_TO_BE_ACTIVE)
             {
+                if (!this.Active)
+                    this.Active = true;
+
                 _activeTurns++;
                 if (_activeTurns == ACTIVE_TURNS)
                 {
@@ -75,8 +79,15 @@ namespace AscendedZ.statuses
             wrapper.Counter = _stacks;
             if (_stacks == REQUIRED_STACKS_TO_BE_ACTIVE)
                 wrapper.CounterColor = Colors.Green;
-            
+
+            wrapper.Description = $"Stun Status: Prevents attacks at {REQUIRED_STACKS_TO_BE_ACTIVE} stacks for 1 turn.";
+
             return wrapper;
+        }
+
+        public override Status Clone()
+        {
+            return new StunStatus();
         }
     }
 }

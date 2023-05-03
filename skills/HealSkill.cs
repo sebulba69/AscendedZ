@@ -19,6 +19,19 @@ namespace AscendedZ.skills
         public string Icon { get ; set; }
         public int HealAmount { get; set; }
 
+        public ISkill Clone()
+        {
+            return new HealSkill()
+            {
+                Name = this.Name,
+                TargetType = this.TargetType,
+                StartupAnimation = this.StartupAnimation,
+                EndupAnimation = this.EndupAnimation,
+                Icon = this.Icon,
+                HealAmount = this.HealAmount
+            };
+        }
+
         public string GetBattleDisplayString()
         {
             return $"{this.Name} (+{this.HealAmount} HP)";

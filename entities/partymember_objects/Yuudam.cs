@@ -17,7 +17,7 @@ namespace AscendedZ.entities.partymember_objects
             this.VorpexValue = 1;
             this.MaxHP = 10;
             this.Resistances.CreateResistance(ResistanceType.Wk, Elements.Dark);
-            this.Skills.Add(SkillDatabase.HEAL_1);
+            this.Skills.Add(SkillDatabase.HEAL_1.Clone());
         }
 
         public override OverworldEntity Create()

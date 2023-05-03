@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://k65a7vnci8t7"]
+
+[ext_resource type="Script" path="res://screens/BossHPBar.cs" id="1_7j0de"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1_8dmex"]
+[ext_resource type="StyleBox" uid="uid://71215yqdd343" path="res://BackBoxBossHP.tres" id="2_u1pt2"]
+[ext_resource type="StyleBox" uid="uid://0cug71njxm88" path="res://FrontBoxBossHP.tres" id="3_nc66m"]
+
+[node name="BossHPBar" type="HBoxContainer"]
+offset_right = 512.0
+offset_bottom = 19.0
+script = ExtResource("1_7j0de")
+
+[node name="HPBarNumber" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="NumberOfBarsLabel" type="Label" parent="HPBarNumber"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_8dmex")
+theme_override_font_sizes/font_size = 12
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPBarContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HPBarContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HPBar" type="ProgressBar" parent="HPBarContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = ExtResource("2_u1pt2")
+theme_override_styles/fill = ExtResource("3_nc66m")
+value = 50.0
+show_percentage = false

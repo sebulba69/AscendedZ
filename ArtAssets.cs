@@ -63,6 +63,27 @@ namespace AscendedZ
             [VORPEX_ICON] = new KeyValuePair<int, int>(448,1376)
         };
 
+        public static string GetElementIconByElementEnum(Elements element)
+        {
+            switch (element)
+            {
+                case Elements.Fir:
+                    return FIRE_ICON;
+                case Elements.Ice:
+                    return ICE_ICON;
+                case Elements.Elec:
+                    return ELEC_ICON;
+                case Elements.Wind:
+                    return WIND_ICON;
+                case Elements.Light:
+                    return LIGHT_ICON;
+                case Elements.Dark:
+                    return DARK_ICON;
+                default:
+                    throw new Exception($"Element, {element.ToString()}, does not have icon.");
+            }
+        }
+
         public static AtlasTexture GenerateIcon(string iconKey)
         {
             KeyValuePair<int, int> coords = ICONS[iconKey];
@@ -92,6 +113,7 @@ namespace AscendedZ
                         string filename;
                         while (!string.IsNullOrEmpty(filename = dir.GetNext()))
                         {
+                            filename = filename.Replace("png.import", "png");
                             string path = System.IO.Path.Combine(dir.GetCurrentDir(), filename);
                             _playerPics.Add(path);
                             filename = dir.GetNext();

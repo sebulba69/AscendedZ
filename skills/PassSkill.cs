@@ -32,5 +32,17 @@ namespace AscendedZ.skills
         {
             return $"{this.Name}";
         }
+
+        public ISkill Clone()
+        {
+            return new PassSkill()
+            {
+                Name = this.Name,
+                TargetType = this.TargetType,
+                StartupAnimation = this.StartupAnimation,
+                EndupAnimation = this.EndupAnimation,
+                Icon = ArtAssets.PASS_ICON
+            };
+        }
     }
 }

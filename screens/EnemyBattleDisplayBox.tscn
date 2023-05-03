@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cvtatom8ub0ma" path="res://progressbar_assets/BarV5_ProgressBarBorder.png" id="4_atrrm"]
 [ext_resource type="AudioStream" uid="uid://dyxxgykvs4hrj" path="res://effects/effect_sounds/Damage4.ogg" id="7_lo5kf"]
 
-[node name="CharacterCtrlNode" type="PanelContainer"]
+[node name="CharacterCtrlNode2" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,19 +30,19 @@ use_parent_material = true
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="ContainerForCharStuff/CenterContainer"]
+unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pkpmd")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Name"
 
 [node name="Picture" type="TextureRect" parent="ContainerForCharStuff"]
+unique_name_in_owner = true
 use_parent_material = true
-custom_minimum_size = Vector2(250, 222)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-expand_mode = 1
 
 [node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/Picture"]
 unique_name_in_owner = true
@@ -56,6 +56,7 @@ offset_right = 40.0
 grow_vertical = 0
 
 [node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff"]
+unique_name_in_owner = true
 use_parent_material = true
 custom_minimum_size = Vector2(0, 21)
 layout_mode = 2
@@ -77,24 +78,27 @@ use_parent_material = true
 layout_mode = 2
 
 [node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff/PanelContainer/CenterContainer"]
+unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pkpmd")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 text = "Resistances"
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="EffectContainer" type="CenterContainer" parent="."]
+unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="EffectSprite" parent="CenterContainer" instance=ExtResource("3_3epbv")]
+[node name="EffectSprite" parent="EffectContainer" instance=ExtResource("3_3epbv")]
 unique_name_in_owner = true
 visible = false
 use_parent_material = true
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("7_lo5kf")
 volume_db = -15.0

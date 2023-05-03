@@ -9,22 +9,26 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.statuses
 {
-    public enum StatusId { StunStatus }
+    public enum StatusId { StunStatus, ElementBuffStatus }
     public class Status
     {
+        private bool _active = false;
         protected bool _removeStatus = false;
+        protected BattleEntity _statusOwner; // the person with this status
 
         protected StatusId _id;
         public StatusId Id { get => _id; }
         public string Icon { get; set; }
+        public bool Active { get => _active; protected set => _active = value; }
 
         public bool RemoveStatus { get => _removeStatus; protected set => _removeStatus = value; }
         
         /// <summary>
         /// This function is called when you activate this status for the first time.
         /// </summary>
-        public virtual void ActivateStatus()
+        public virtual void ActivateStatus(BattleEntity owner)
         {
+            _statusOwner = owner;
             this.RemoveStatus = false;
         }
 
@@ -53,6 +57,11 @@ namespace AscendedZ.statuses
         }
 
         public virtual StatusIconWrapper CreateIconWrapper()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Status Clone()
         {
             throw new NotImplementedException();
         }

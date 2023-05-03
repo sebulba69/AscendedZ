@@ -4,8 +4,9 @@
 [ext_resource type="Script" path="res://screens/MenuScene.cs" id="1_rhasl"]
 
 [node name="MenuScene" type="CenterContainer"]
-custom_minimum_size = Vector2(1600, 1100)
-offset_bottom = 1100.0
+custom_minimum_size = Vector2(1511, 850)
+offset_right = 1511.0
+offset_bottom = 850.0
 script = ExtResource("1_rhasl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

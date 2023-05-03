@@ -13,10 +13,10 @@ grow_vertical = 2
 script = ExtResource("1_2fxnw")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-custom_minimum_size = Vector2(1600, 1100)
+custom_minimum_size = Vector2(1600, 900)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1600.0
+offset_bottom = 900.0
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
 layout_mode = 2

@@ -32,5 +32,17 @@ namespace AscendedZ.skills
         {
             return $"{this.Name}";
         }
+
+        public ISkill Clone()
+        {
+            return new RetreatSkill()
+            {
+                Name = this.Name,
+                TargetType = this.TargetType,
+                StartupAnimation = this.StartupAnimation,
+                EndupAnimation = this.EndupAnimation,
+                Icon = this.Icon
+            };
+        }
     }
 }

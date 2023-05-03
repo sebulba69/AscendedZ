@@ -21,6 +21,9 @@ namespace AscendedZ
         public static readonly string BATTLE_SCENE = "res://screens/BattleEnemyScene.tscn";
         public static readonly string MENU = "res://screens/MenuScene.tscn";
 
+        // currency
+        public static readonly string CURRENCY_DISPLAY = "res://misc_icons/CurrencyDisplay.tscn";
+
         // popups
         public static readonly string YES_NO_POPUP = "res://screens/PopupWindow.tscn";
 
@@ -30,6 +33,7 @@ namespace AscendedZ
         // battle assets
         public static readonly string PARTY_BOX = "res://screens/PartyBattleDisplayBox.tscn";
         public static readonly string ENEMY_BOX = "res://screens/EnemyBattleDisplayBox.tscn";
+        public static readonly string BOSS_BOX = "res://screens/BossBattleDisplayBox.tscn";
 
         // effects
         public static readonly string EFFECTS = "res://effects/EffectSprite.tscn";

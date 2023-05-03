@@ -19,7 +19,7 @@ public partial class AscendedTextbox : VBoxContainer
     /// <summary>
     /// Textbox for displaying text.
     /// </summary>
-    private RichTextLabel _textbox;
+    private Label _textbox;
 
     /// <summary>
     /// Flag preventing you from clicking next if text is displaying.
@@ -33,7 +33,7 @@ public partial class AscendedTextbox : VBoxContainer
         this.AddUserSignal("SkipDialogEventHandler");
 
         _timer = GetNode<Timer>("TextTimer");
-        _textbox = GetNode<RichTextLabel>("TextboxOutline/TextboxForDialog");
+        _textbox = GetNode<Label>("%TextboxForDialog");
 
         Button nextButton = GetNode<Button>("MarginContainer/TextControlButtons/NextButton");
         Button ffButton = GetNode<Button>("MarginContainer/TextControlButtons/FastForwardButton");

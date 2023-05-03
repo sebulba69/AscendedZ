@@ -11,7 +11,10 @@ namespace AscendedZ
 {
     public class GameObject
     {
-        private const int TIER_CAP = 50;
+        private string _currentSong = "";
+        private AudioStreamPlayer _streamPlayer;
+
+        private const int TIER_CAP = 5;
 
         private int _tier = 1;
         private int _maxTier = 1;
@@ -56,6 +59,11 @@ namespace AscendedZ
 
         public MainPlayer MainPlayer { get; set; }
 
+        public GameObject()
+        {
+            _streamPlayer = new AudioStreamPlayer();
+        }
+
         /// <summary>
         /// Load the save cache from your save file, or creat it if none exist.
         /// </summary>
@@ -86,6 +94,31 @@ namespace AscendedZ
                 }
             }
             return players;
+        }
+
+        /// <summary>
+        /// Change the current stream player with a new one.
+        /// This will stop the current music playing so we can host new music from
+        /// the new Stream Player. This will usually be needed when scene hopping.
+        /// </summary>
+        /// <param name="streamPlayer"></param>
+        public void SetStreamPlayer(AudioStreamPlayer streamPlayer)
+        {
+            // stop the ongoing stream player if it's playing
+            if (_streamPlayer.Playing)
+                _streamPlayer.Stop();
+
+            _streamPlayer = streamPlayer;
+        }
+
+        public void PlayMusic(string music)
+        {
+            if(music != _currentSong)
+            {
+                _currentSong = music;
+                _streamPlayer.Stream = ResourceLoader.Load<AudioStream>(music);
+                _streamPlayer.Play();
+            }
         }
     }
 }

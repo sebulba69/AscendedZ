@@ -86,6 +86,9 @@ public partial class StartScreen : Node2D
 		foreach (var item in gameObject.SaveCache)
 			_loadItems.AddItem(item.ToString());
 
+		if(_loadItems.ItemCount > 0)
+			_loadItems.Select(0);
+
 		loadContinueButton.Pressed += _OnLoadSaveFileClicked;
 		loadBackButton.Pressed += _OnLoadGameBackButtonPressed;
 		loadDeleteButton.Pressed += _OnLoadDeleteButtonPressed;
@@ -233,6 +236,9 @@ public partial class StartScreen : Node2D
                 _loadItems.Clear();
                 foreach (var item in persistentGameObject.SaveCache)
                     _loadItems.AddItem(item.ToString());
+
+                if (_loadItems.ItemCount > 0)
+                    _loadItems.Select(0);
             }
         }
 		_mainTitleLabel.Visible = true;

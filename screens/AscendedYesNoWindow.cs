@@ -6,10 +6,13 @@ public partial class AscendedYesNoWindow : CenterContainer
 	private Label _popupMessage;
 	private Button _yesButton;
 	private Button _noButton;
+	private bool _buttonPressed;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_buttonPressed = false;
+
 		this.AddUserSignal("AnswerSelected", new Godot.Collections.Array() 
 		{
 			new Godot.Collections.Dictionary()
@@ -34,6 +37,8 @@ public partial class AscendedYesNoWindow : CenterContainer
 
 	private void ButtonPressed(bool isYesButton)
 	{
+		_buttonPressed = true;
+
 		this.EmitSignal("AnswerSelected", isYesButton);
 		this.QueueFree();
 	}

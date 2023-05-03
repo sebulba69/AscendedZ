@@ -20,6 +20,8 @@ using static Godot.WebSocketPeer;
 
 public partial class BattleEnemyScene : Node2D
 {
+    private bool _canInput;
+
     private HBoxContainer _partyMembers;
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
@@ -62,6 +64,9 @@ public partial class BattleEnemyScene : Node2D
         _skillButton.Pressed += _OnSkillButtonPressed;
         _skillList.Connect("item_selected", new Callable(this, "_OnSkillListItemSelected"));
 
+        AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
+        PersistentGameObjects.Instance().SetStreamPlayer(audioPlayer);
+
         _backToHomeButton.Pressed += () =>
         {
             PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
@@ -83,6 +88,68 @@ public partial class BattleEnemyScene : Node2D
         };
 
         InitializeBattleScene();
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (!_canInput)
+            return;
+
+        if (@event.IsActionPressed("skill_up"))
+        {
+            if (_skillList.GetSelectedItems().Length > 0)
+            {
+                int upIndex = _skillList.GetSelectedItems()[0];
+                upIndex--;
+                if (upIndex < 0)
+                    upIndex = 0;
+                _skillList.Select(upIndex);
+                UpdateTargetList();
+            } 
+        }
+
+        if (@event.IsActionPressed("skill_down"))
+        {
+            if (_skillList.GetSelectedItems().Length > 0)
+            {
+                int downIndex = _skillList.GetSelectedItems()[0];
+                downIndex++;
+                if (downIndex >= _skillList.ItemCount)
+                    downIndex = _skillList.ItemCount - 1;
+                _skillList.Select(downIndex);
+                UpdateTargetList();
+            }
+        }
+
+        if (@event.IsActionPressed("target_up"))
+        {
+            if (_targetList.GetSelectedItems().Length > 0)
+            {
+                int upIndex = _targetList.GetSelectedItems()[0];
+                upIndex--;
+                if (upIndex < 0)
+                    upIndex = 0;
+                _targetList.Select(upIndex);
+            }
+        }
+
+        if (@event.IsActionPressed("target_down"))
+        {
+            if (_targetList.GetSelectedItems().Length > 0)
+            {
+                int downIndex = _targetList.GetSelectedItems()[0];
+                downIndex++;
+                if (downIndex >= _targetList.ItemCount)
+                    downIndex = _targetList.ItemCount - 1;
+                _targetList.Select(downIndex);
+            }
+        }
+
+        if (@event.IsActionPressed("use_skill"))
+        {
+            if(!_skillButton.Disabled)
+                _OnSkillButtonPressed();
+        }
     }
 
     private void InitializeBattleScene()
@@ -109,14 +176,20 @@ public partial class BattleEnemyScene : Node2D
 
         foreach (var enemy in _battleSceneObject.Enemies)
         {
-            var enemyBox = ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate();
+            var enemyBox = (enemy.IsBoss) 
+                ? ResourceLoader.Load<PackedScene>(Scenes.BOSS_BOX).Instantiate()
+                : ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate();
+
             _enemyMembers.AddChild(enemyBox);
-            enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy });
+            enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff
         _battleSceneObject.StartBattle();
         ChangeAPBarWithTurnState(TurnState.PLAYER);
+
+        PersistentGameObjects.Instance().PlayMusic(MusicAssets.GetDungeonTrack(PersistentGameObjects.Instance().Tier));
+        _canInput = true;
     }
 
     private void _OnSkillListItemSelected(int index)
@@ -135,6 +208,7 @@ public partial class BattleEnemyScene : Node2D
 
     private void _OnSkillButtonPressed()
     {
+        _canInput = false;
         _skillButton.Disabled = true;
 
         int selectedSkillIndex = _skillList.GetSelectedItems()[0];
@@ -159,7 +233,7 @@ public partial class BattleEnemyScene : Node2D
             // check if we're running from this battle
             if (result.ResultType == BattleResultType.Retreat)
             {
-                this.EndBattle(false);
+                this.EndBattle(false, true);
                 return;
             }
 
@@ -208,7 +282,8 @@ public partial class BattleEnemyScene : Node2D
         for (int i = 0; i < update.Enemies.Count; i++)
         {
             var enemyDisplay = _enemyMembers.GetChild(i);
-            var enemyWrapper = new EntityWrapper() { BattleEntity = update.Enemies[i] };
+            var enemy = update.Enemies[i];
+            var enemyWrapper = new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss };
             enemyDisplay.Call("UpdateEntityDisplay", enemyWrapper);
         }
 
@@ -242,6 +317,8 @@ public partial class BattleEnemyScene : Node2D
         // then we want to use an enemy skill
         if (_battleSceneObject.TurnState == TurnState.ENEMY)
             _battleSceneObject.DoEnemyMove();
+        else
+            _canInput = true;
     }
 
     private void SetActiveSkills()
@@ -252,11 +329,14 @@ public partial class BattleEnemyScene : Node2D
             skillIndex = _skillList.GetSelectedItems()[0];
         _skillList.Clear();
 
-        foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
-            _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
-        _skillList.Select(skillIndex);
+        if(_battleSceneObject.ActivePlayer != null)
+        {
+            foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
+                _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
+            _skillList.Select(skillIndex);
 
-        UpdateTargetList();
+            UpdateTargetList();
+        }
     }
 
     private void ChangeAPBarWithTurnState(TurnState turnState)
@@ -323,13 +403,13 @@ public partial class BattleEnemyScene : Node2D
         }
         else
         {
-            foreach (var player in _battleSceneObject.Players.FindAll(party => party.HP > 0))
+            foreach (var player in _battleSceneObject.AlivePlayers)
                 _targetList.AddItem($"{count++}. {player.Name}");
         }
 
         if (_targetList.ItemCount > 0)
         {
-            if (targetIndex == _targetList.ItemCount)
+            if (targetIndex >= _targetList.ItemCount)
                 targetIndex = _targetList.ItemCount - 1;
 
             _targetList.Select(targetIndex);
@@ -383,6 +463,7 @@ public partial class BattleEnemyScene : Node2D
 
     private async void EndBattle(bool didPlayerWin, bool retreated=false)
     {
+        _canInput = false;
         SetEndScreenVisibility(true);
 
         Label endLabel = this.GetNode<Label>("%EndOfBattleLabel");

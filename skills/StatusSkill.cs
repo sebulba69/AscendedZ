@@ -30,7 +30,7 @@ namespace AscendedZ.skills
                 ResultType = BattleResultType.StatusApplied
             };
 
-            target.StatusHandler.AddStatus(this.Status);
+            target.StatusHandler.AddStatus(target, this.Status);
 
             return result;
         }
@@ -38,6 +38,19 @@ namespace AscendedZ.skills
         public string GetBattleDisplayString()
         {
             return $"{this.Name}";
+        }
+
+        public ISkill Clone()
+        {
+            return new StatusSkill()
+            {
+                Name = this.Name,
+                TargetType = this.TargetType,
+                StartupAnimation = this.StartupAnimation,
+                EndupAnimation = this.EndupAnimation,
+                Icon = this.Icon,
+                Status = this.Status
+            };
         }
     }
 }

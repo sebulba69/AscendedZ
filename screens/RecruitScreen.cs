@@ -28,7 +28,7 @@ public partial class RecruitScreen : CenterContainer
     /// <summary>
     /// Display information for the selected party member.
     /// </summary>
-    private TextEdit _displayDescription;
+    private Label _displayDescription;
 
     /// <summary>
     /// Displays the Talisman the player owns that are relevant to
@@ -51,7 +51,7 @@ public partial class RecruitScreen : CenterContainer
         _availableRecruits = this.GetNode<ItemList>("VBoxContainer/HBoxContainer/VBoxContainer2/PartyMemberList");
         _displayImage = this.GetNode<TextureRect>("VBoxContainer/HBoxContainer/VBoxContainer/CharContainer/CharImageBox");
         _displayName = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/CenterContainer/CharNameLabel");
-        _displayDescription = this.GetNode<TextEdit>("VBoxContainer/HBoxContainer/VBoxContainer/CharDescriptionBox");
+        _displayDescription = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/CharDescription/MarginContainer/CharDescriptionBox");
         _vorpexCost = this.GetNode<TextEdit>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/OwnedTalismans");
 
         Button buyButton = this.GetNode<Button>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/BuyButton");
@@ -131,7 +131,7 @@ public partial class RecruitScreen : CenterContainer
         OverworldEntity member = _availablePartyMembers[index];
         _displayImage.Texture = ResourceLoader.Load<Texture2D>(member.Image);
         _displayName.Text = member.Name;
-        _displayDescription.Text = member.ToString();
+        _displayDescription.Text = member.ToString().TrimEnd('\r','\n');
     }
 
     private void _OnBackButtonPressed()

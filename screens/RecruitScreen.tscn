@@ -26,7 +26,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 text = "Spend Vorpex Crystals to buy new Party Members for your journey."
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -38,7 +38,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PartyMemberList" type="ItemList" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -71,7 +71,7 @@ texture = SubResource("AtlasTexture_plgda")
 expand_mode = 2
 
 [node name="OwnedTalismans" type="TextEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1")
@@ -87,7 +87,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CharImageBox" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer/CharContainer"]
-custom_minimum_size = Vector2(400, 356)
+custom_minimum_size = Vector2(270, 240)
 layout_mode = 2
 expand_mode = 1
 
@@ -103,10 +103,16 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 45
 
-[node name="CharDescriptionBox" type="TextEdit" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="CharDescription" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/CharDescription"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="CharDescriptionBox" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/CharDescription/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 30
-selecting_enabled = false
-drag_and_drop_selection_enabled = false
+theme_override_font_sizes/font_size = 25
