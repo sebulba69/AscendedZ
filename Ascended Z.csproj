@@ -3,4 +3,8 @@
     <TargetFramework>net6</TargetFramework>
     <RootNamespace>AscendedZ</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="screens\Dungeons\**" />
+    <EmbeddedResource Remove="screens\Dungeons\**" />
+  </ItemGroup>
 </Project>

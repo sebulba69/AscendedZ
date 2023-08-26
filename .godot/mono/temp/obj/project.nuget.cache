@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J4JahVY0ZIgKa99Hl4qj9ruerxLTPZinr7OpQTAnk/S3gCuL6gyLqog+W6nte2ni/+hMBhLl09iwurZ5uD3PzA==",
+  "dgSpecHash": "AajsnWWrI47AO0k42Es6xHYbVVaMiJUtiSYXhj7MOKhJ6u5QLYqApeNGBqqrv5gypcJ62rzV1eiTAmR6vIMUVw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj",
+  "projectFilePath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cole\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder\\godot.sourcegenerators\\4.0.0\\godot.sourcegenerators.4.0.0.nupkg.sha512",
     "C:\\Users\\Cole\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder\\godotsharp\\4.0.0\\godotsharp.4.0.0.nupkg.sha512",

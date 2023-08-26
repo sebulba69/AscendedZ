@@ -95,7 +95,7 @@ public partial class BattleEnemyScene : Node2D
         if (!_canInput)
             return;
 
-        if (@event.IsActionPressed("skill_up"))
+        if (@event.IsActionPressed(Controls.UP))
         {
             if (_skillList.GetSelectedItems().Length > 0)
             {
@@ -108,7 +108,7 @@ public partial class BattleEnemyScene : Node2D
             } 
         }
 
-        if (@event.IsActionPressed("skill_down"))
+        if (@event.IsActionPressed(Controls.DOWN))
         {
             if (_skillList.GetSelectedItems().Length > 0)
             {
@@ -121,7 +121,7 @@ public partial class BattleEnemyScene : Node2D
             }
         }
 
-        if (@event.IsActionPressed("target_up"))
+        if (@event.IsActionPressed(Controls.RIGHT))
         {
             if (_targetList.GetSelectedItems().Length > 0)
             {
@@ -133,7 +133,7 @@ public partial class BattleEnemyScene : Node2D
             }
         }
 
-        if (@event.IsActionPressed("target_down"))
+        if (@event.IsActionPressed(Controls.LEFT))
         {
             if (_targetList.GetSelectedItems().Length > 0)
             {
@@ -145,7 +145,7 @@ public partial class BattleEnemyScene : Node2D
             }
         }
 
-        if (@event.IsActionPressed("use_skill"))
+        if (@event.IsActionPressed(Controls.ENTER))
         {
             if(!_skillButton.Disabled)
                 _OnSkillButtonPressed();

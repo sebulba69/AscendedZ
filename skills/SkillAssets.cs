@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// This file contains a collection of Skill-related enums
+/// </summary>
+
 namespace AscendedZ.skills
 {
-    /// <summary>
-    /// This file contains a collection of Skill-related enums
-    /// </summary>
-    
     // Target types -- each TargetType is from the perspective of the user.
     // all opponents, all teammates, single opponent, single teammate
     public enum TargetTypes
