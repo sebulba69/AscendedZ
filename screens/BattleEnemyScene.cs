@@ -233,6 +233,7 @@ public partial class BattleEnemyScene : Node2D
             // check if we're running from this battle
             if (result.ResultType == BattleResultType.Retreat)
             {
+                // ask here
                 this.EndBattle(false, true);
                 return;
             }
