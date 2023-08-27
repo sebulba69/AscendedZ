@@ -6,7 +6,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7w5vx"]
 atlas = ExtResource("1_raqmj")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(96, 384, 32, 32)
 
 [node name="StatusIcon" type="Control"]
 layout_mode = 3

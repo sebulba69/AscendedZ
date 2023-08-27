@@ -54,11 +54,13 @@ public partial class MainScreen : Node2D
             currencyDisplay.RemoveChild(child);
         }
         var wallet = PersistentGameObjects.Instance().MainPlayer.Wallet;
-        foreach(var key in wallet.Currency.Keys)
+        
+        foreach (var key in wallet.Currency.Keys)
         {
             var display = ResourceLoader.Load<PackedScene>(Scenes.CURRENCY_DISPLAY).Instantiate();
             currencyDisplay.AddChild(display);
-            display.Call("SetCurrencyToDisplay", wallet.Currency[key].Icon, wallet.Currency[key].Amount);
+            var currency = wallet.Currency[key];
+            display.Call("SetCurrencyToDisplay", currency.Icon, currency.Amount);
         }
     }
 

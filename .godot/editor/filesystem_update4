@@ -10,3 +10,4 @@ res://screens/RewardScreen.tscn
 res://screens/RecruitScreen.tscn
 res://screens/MenuScene.tscn
 res://screens/PartyMemberDisplay.tscn
+res://statuses/StatusIcon.tscn

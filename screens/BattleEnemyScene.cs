@@ -121,7 +121,7 @@ public partial class BattleEnemyScene : Node2D
             }
         }
 
-        if (@event.IsActionPressed(Controls.RIGHT))
+        if (@event.IsActionPressed(Controls.LEFT))
         {
             if (_targetList.GetSelectedItems().Length > 0)
             {
@@ -133,7 +133,7 @@ public partial class BattleEnemyScene : Node2D
             }
         }
 
-        if (@event.IsActionPressed(Controls.LEFT))
+        if (@event.IsActionPressed(Controls.RIGHT))
         {
             if (_targetList.GetSelectedItems().Length > 0)
             {
@@ -482,7 +482,7 @@ public partial class BattleEnemyScene : Node2D
             if (gameObject.Tier == gameObject.MaxTier)
             {
                 gameObject.MaxTier++;
-                if (RewardGenerator.REWARD_TIERS.Contains(gameObject.Tier))
+                if (RewardGenerator.CanGenerateRewardsAtTier(gameObject.Tier))
                 {
                     ChangeEndScreenVisibilityOnly(false);
 

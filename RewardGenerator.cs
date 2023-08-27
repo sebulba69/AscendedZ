@@ -15,10 +15,15 @@ namespace AscendedZ
         private static int B = 5;
         private static int C = 2;
 
-        public static readonly HashSet<int> REWARD_TIERS = new HashSet<int>()
+        private static readonly HashSet<int> REWARD_TIERS = new HashSet<int>()
         {
             1, 4
         };
+
+        public static bool CanGenerateRewardsAtTier(int tier)
+        {
+            return (REWARD_TIERS.Contains(tier) || tier % 5 == 0);
+        }
 
         /// <summary>
         /// Generate a set of rewards based on the tier.
@@ -33,6 +38,12 @@ namespace AscendedZ
             if (REWARD_TIERS.Contains(tier))
             {
                 rewards.Add(new Vorpex() { Amount = 1 });
+            }
+
+            // Get a new key you can use to level up sigils
+            if(tier % 5 == 0)
+            {
+                rewards.Add(new SigilKey() { Amount = 1 });
             }
 
             // past tier 5 you get the good stuff each time
