@@ -47,6 +47,7 @@ namespace AscendedZ
         public static readonly string RETREAT_ICON = "Retreat";
 
         public static readonly string VORPEX_ICON = "Vorpex";
+        public static readonly string SIGILXP_ICON = "Vorpex";
 
         public static readonly Dictionary<string, KeyValuePair<int, int>> ICONS = new Dictionary<string, KeyValuePair<int, int>>()
         {
@@ -60,7 +61,8 @@ namespace AscendedZ
             [STUN_ICON]   = new KeyValuePair<int, int>(288, 0),
             [PASS_ICON] = new KeyValuePair<int, int>(352,128),
             [RETREAT_ICON] = new KeyValuePair<int, int>(288,576),
-            [VORPEX_ICON] = new KeyValuePair<int, int>(448,1376)
+            [VORPEX_ICON] = new KeyValuePair<int, int>(448,1376),
+            [SIGILXP_ICON] = new KeyValuePair<int, int>(416, 1728)
         };
 
         public static string GetElementIconByElementEnum(Elements element)

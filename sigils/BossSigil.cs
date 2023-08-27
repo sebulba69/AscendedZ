@@ -16,6 +16,7 @@ namespace AscendedZ.sigils
 
         /// <summary>
         /// Key (the name of the boss) for summoning a specific boss.
+        /// Generate in a separate class, not here.
         /// </summary>
         public string BossKey { get; set; }
     }

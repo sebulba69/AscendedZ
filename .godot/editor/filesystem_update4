@@ -1,9 +1,6 @@
 res://default_env.tres
-res://screens/BossBattleDisplayBox.tscn
-res://screens/APBarStyleBox.tres
 res://screens/MainScreen.tscn
-res://misc_icons/Icon.tscn
-res://misc_icons/CurrencyDisplay.tscn
+res://screens/APBarStyleBox.tres
 res://screens/BattleEnemyScene.tscn
 res://screens/StartScreen.tscn
 res://screens/CGCutsceneScreen.tscn
@@ -13,5 +10,3 @@ res://screens/RewardScreen.tscn
 res://screens/RecruitScreen.tscn
 res://screens/MenuScene.tscn
 res://screens/PartyMemberDisplay.tscn
-res://screens/PartyBattleDisplayBox.tscn
-res://screens/EnemyBattleDisplayBox.tscn

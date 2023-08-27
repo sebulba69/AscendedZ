@@ -11,15 +11,13 @@ namespace AscendedZ
 {
     public class RewardGenerator
     {
-        public static readonly List<int> REWARD_TIERS = new List<int>()
+        private static int A = 6;
+        private static int B = 5;
+        private static int C = 2;
+
+        public static readonly HashSet<int> REWARD_TIERS = new HashSet<int>()
         {
             1, 4
-        };
-
-        private readonly static List<Currency[]> REWARDS = new List<Currency[]>() 
-        { 
-            new Currency[] { new Vorpex(){ Amount = 1 } },
-            new Currency[] { new Vorpex(){ Amount = 1 } }
         };
 
         /// <summary>
@@ -28,22 +26,23 @@ namespace AscendedZ
         /// </summary>
         /// <param name="tier"></param>
         /// <returns></returns>
-        public static Currency[] GenerateReward(int tier)
+        public static List<Currency> GenerateReward(int tier)
         {
-            int index = 0;
-            for(int i = 0; i < REWARD_TIERS.Count; i++)
-            {
-                if (REWARD_TIERS[i] == tier)
-                {
-                    index = i;
-                    break;
-                }
-            }
-            
-            if (index >= REWARDS.Count)
-                return null;
+            List<Currency> rewards = new List<Currency>();
 
-            return REWARDS[index];
+            if (REWARD_TIERS.Contains(tier))
+            {
+                rewards.Add(new Vorpex() { Amount = 1 });
+            }
+
+            // past tier 5 you get the good stuff each time
+            if(tier > 5)
+            {
+                int amount = (int)(A * Math.Log(tier - B) + C);
+                rewards.Add(new SigilAura() { Amount = amount });
+            }
+
+            return rewards;
         }
     }
 }

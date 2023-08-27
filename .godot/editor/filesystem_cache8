@@ -1,5 +1,5 @@
 2a60927148abd1d33b818b535e306557
-::res://::1693075290
+::res://::1693096167
 ArtAssets.cs::CSharpScript::-1::1682924787::0::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1682827899::0::1::::<><>::
 Controls.cs::CSharpScript::-1::1683479729::0::1::::<><>::
@@ -95,10 +95,10 @@ MainPlayer.cs::CSharpScript::-1::1679451927::0::1::::<><>::
 OverworldEntity.cs::CSharpScript::-1::1680487850::0::1::::<><>::
 ::res://entities/battle_entities/::1682217919
 BattlePlayer.cs::CSharpScript::-1::1682217919::0::1::::<><>::
-::res://entities/enemy_objects/::1682875869
+::res://entities/enemy_objects/::1693094487
 BossHP.cs::CSharpScript::-1::1682824508::0::1::::<><>::
 Enemy.cs::CSharpScript::-1::1682875869::0::1::::<><>::
-EnemyNames.cs::CSharpScript::-1::1682874940::0::1::::<><>::
+EnemyNames.cs::CSharpScript::-1::1693094487::0::1::::<><>::
 ::res://entities/enemy_objects/alt_enemies/::1682998548
 AlternatingEnemy.cs::CSharpScript::-1::1682998548::0::1::::<><>::
 ::res://entities/enemy_objects/bosses/::1683000316
@@ -192,8 +192,8 @@ RewardScreen.cs::CSharpScript::-1::1683089273::0::1::::<><>::
 RewardScreen.tscn::PackedScene::2919674233379551489::1691376267::0::1::::<><>::res://screens/RewardScreen.cs<>uid://brnrfmgvenlw4
 StartScreen.cs::CSharpScript::-1::1683089285::0::1::::<><>::
 StartScreen.tscn::PackedScene::6381371156909420524::1691376267::0::1::::<><>::uid://brnrfmgvenlw4<>res://screens/StartScreen.cs<>res://screens/AscendedDialogBox.cs<>uid://c30uvsnxii3bd
-::res://sigils/::1692244796
-BossSigil.cs::CSharpScript::-1::1692244796::0::1::::<><>::
+::res://sigils/::1693076783
+BossSigil.cs::CSharpScript::-1::1693076783::0::1::::<><>::
 ::res://skills/::1691377530
 ElementSkill.cs::CSharpScript::-1::1682887509::0::1::::<><>::
 HealSkill.cs::CSharpScript::-1::1682887637::0::1::::<><>::
