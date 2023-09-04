@@ -33,7 +33,7 @@ public partial class MainScreen : Node2D
         Button menuButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/MenuButton");
         Button embarkButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/EmbarkButton");
         Button recruitButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/RecruitButton");
-        Button moveButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/MoveButton");
+        Button sigilButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/SigilButton");
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
@@ -42,7 +42,7 @@ public partial class MainScreen : Node2D
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party and attempt to reach the final floor."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
-        moveButton.MouseEntered += () => { _tooltip.Text = "[ Under Development ]"; };
+        sigilButton.MouseEntered += () => { _tooltip.Text = "[ Under Development ]"; };
     }
 
     private void UpdateCurrencyDisplay()

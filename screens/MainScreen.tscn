@@ -84,12 +84,12 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Recruit"
 
-[node name="MoveButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+[node name="SigilButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
-text = "Move"
+text = "Sigil"
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer"]
 layout_mode = 2
