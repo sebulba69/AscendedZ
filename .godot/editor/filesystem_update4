@@ -1,13 +1,2 @@
 res://default_env.tres
-res://screens/MainScreen.tscn
-res://screens/APBarStyleBox.tres
-res://screens/BattleEnemyScene.tscn
-res://screens/StartScreen.tscn
-res://screens/CGCutsceneScreen.tscn
-res://screens/PopupWindow.tscn
-res://screens/EmbarkScreen.tscn
-res://screens/RewardScreen.tscn
-res://screens/RecruitScreen.tscn
-res://screens/MenuScene.tscn
-res://screens/PartyMemberDisplay.tscn
-res://statuses/StatusIcon.tscn
+res://sigils/SigilUpgradeBar.tscn

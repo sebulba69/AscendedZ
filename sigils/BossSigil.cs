@@ -14,10 +14,34 @@ namespace AscendedZ.sigils
         /// </summary>
         public int XPRequiredForUse { get; set; }
 
+        public int CurrentXP { get; set; }
+
         /// <summary>
         /// Key (the name of the boss) for summoning a specific boss.
         /// Generate in a separate class, not here.
         /// </summary>
         public string BossKey { get; set; }
+
+        public BossSigil()
+        {
+            CurrentXP = 0;
+        }
+
+        public int GetCurrentXPPercentage()
+        {
+            return (int)((double)CurrentXP / XPRequiredForUse * 100);
+        }
+
+        public override string ToString()
+        {
+            string doneString = string.Empty;
+
+            if (XPRequiredForUse == 0)
+                doneString = $" [DONE]";
+            else
+                doneString = $" [{XPRequiredForUse}]";
+
+            return $"{BossKey}{doneString}";
+        }
     }
 }
