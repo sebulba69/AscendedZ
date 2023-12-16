@@ -1,2 +1,6 @@
 res://default_env.tres
+res://screens/RewardScreen.tscn
+res://screens/SigilAssets/SigilScreen.tscn
+res://screens/BossBattleDisplayBox.tscn
+res://screens/BossHPBar.tscn
 res://sigils/SigilUpgradeBar.tscn
