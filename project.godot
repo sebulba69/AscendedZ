@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Ascended Z"
 run/main_scene="res://screens/StartScreen.tscn"
-config/features=PackedStringArray("4.0", "C#")
+config/features=PackedStringArray("4.2", "C#")
 boot_splash/show_image=false
 config/icon="res://icon.png"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.png"
 
 window/size/viewport_width=1511
 window/size/viewport_height=850
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [dotnet]
