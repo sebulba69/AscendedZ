@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "YPFCSEHicoowKt48nmSfadozx6PhDQrjvbiMZ5WrFv7w5psdnoY+3eMXieb5kXvLIO1vGfk6CTJCAPPaylYr+w==",
+  "dgSpecHash": "us3cd4JK3zHll5c41SaNYPncmf9XYLlUXx3HcPcROc8O2WgvdSjSCdja+HoMcsTA7ncfz2AA/WASwU3WHiIZvw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\colee\\OneDrive\\Documents\\GitHub\\AscendedZ\\Ascended Z.csproj",
+  "projectFilePath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\colee\\.nuget\\packages\\godot.sourcegenerators\\4.2.1\\godot.sourcegenerators.4.2.1.nupkg.sha512",
-    "C:\\Users\\colee\\.nuget\\packages\\godotsharp\\4.2.1\\godotsharp.4.2.1.nupkg.sha512",
-    "C:\\Users\\colee\\.nuget\\packages\\godotsharpeditor\\4.2.1\\godotsharpeditor.4.2.1.nupkg.sha512"
+    "C:\\Users\\Cole\\.nuget\\packages\\godot.sourcegenerators\\4.2.1\\godot.sourcegenerators.4.2.1.nupkg.sha512",
+    "C:\\Users\\Cole\\.nuget\\packages\\godotsharp\\4.2.1\\godotsharp.4.2.1.nupkg.sha512",
+    "C:\\Users\\Cole\\.nuget\\packages\\godotsharpeditor\\4.2.1\\godotsharpeditor.4.2.1.nupkg.sha512"
   ],
   "logs": []
 }

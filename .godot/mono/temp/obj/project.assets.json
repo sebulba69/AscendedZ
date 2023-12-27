@@ -11,10 +11,14 @@
       "GodotSharp/4.2.1": {
         "type": "package",
         "compile": {
-          "lib/net6.0/GodotSharp.dll": {}
+          "lib/net6.0/GodotSharp.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/GodotSharp.dll": {}
+          "lib/net6.0/GodotSharp.dll": {
+            "related": ".xml"
+          }
         }
       },
       "GodotSharpEditor/4.2.1": {
@@ -23,10 +27,14 @@
           "GodotSharp": "4.2.1"
         },
         "compile": {
-          "lib/net6.0/GodotSharpEditor.dll": {}
+          "lib/net6.0/GodotSharpEditor.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net6.0/GodotSharpEditor.dll": {}
+          "lib/net6.0/GodotSharpEditor.dll": {
+            "related": ".xml"
+          }
         }
       }
     }
@@ -80,19 +88,29 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\colee\\.nuget\\packages\\": {}
+    "C:\\Users\\Cole\\.nuget\\packages\\": {},
+    "C:\\Users\\Cole\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\colee\\OneDrive\\Documents\\GitHub\\AscendedZ\\Ascended Z.csproj",
+      "projectUniqueName": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
       "projectName": "Ascended Z",
-      "projectPath": "C:\\Users\\colee\\OneDrive\\Documents\\GitHub\\AscendedZ\\Ascended Z.csproj",
-      "packagesPath": "C:\\Users\\colee\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\colee\\OneDrive\\Documents\\GitHub\\AscendedZ\\.godot\\mono\\temp\\obj\\",
+      "projectPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
+      "packagesPath": "C:\\Users\\Cole\\.nuget\\packages\\",
+      "outputPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\.godot\\mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Users\\Cole\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\colee\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Cole\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Cole\\AppData\\Roaming\\NuGet\\config\\Godot.Offline.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -100,6 +118,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -137,7 +156,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -146,7 +166,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
