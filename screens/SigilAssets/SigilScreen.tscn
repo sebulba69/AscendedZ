@@ -27,6 +27,24 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="LockedSigilPreviewContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="LockedSigilVBoxContainer" type="VBoxContainer" parent="HBoxContainer/LockedSigilPreviewContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LockedSigilPreviewContainer/LockedSigilVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="UnlockButton" type="Button" parent="HBoxContainer/LockedSigilPreviewContainer/LockedSigilVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_f6ptg")
+theme_override_font_sizes/font_size = 26
+text = "Unlock Sigil"
+
 [node name="SigilPreviewContainer" type="PanelContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(534, 0)
 layout_mode = 2
@@ -51,6 +69,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="BackButton" type="Button" parent="HBoxContainer/SigilPreviewContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_f6ptg")

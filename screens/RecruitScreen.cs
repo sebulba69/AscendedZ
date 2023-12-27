@@ -63,7 +63,7 @@ public partial class RecruitScreen : CenterContainer
         _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.Instance().MaxTier);
         _availableRecruits.Connect("item_selected",new Callable(this,"_OnItemSelected"));
 
-        _vorpex = PersistentGameObjects.Instance().MainPlayer.Wallet.Currency["Vorpex"];
+        _vorpex = PersistentGameObjects.Instance().MainPlayer.Wallet.Currency[ArtAssets.VORPEX_ICON];
         RefreshVendorWares(0);
     }
 

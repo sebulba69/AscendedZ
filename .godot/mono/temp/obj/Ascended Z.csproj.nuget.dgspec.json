@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\USERS\\COLEE\\ONEDRIVE\\DOCUMENTS\\GITHUB\\ASCENDEDZ\\Ascended Z.csproj": {}
+    "C:\\Users\\colee\\OneDrive\\Documents\\GitHub\\AscendedZ\\Ascended Z.csproj": {}
   },
   "projects": {
-    "C:\\USERS\\COLEE\\ONEDRIVE\\DOCUMENTS\\GITHUB\\ASCENDEDZ\\Ascended Z.csproj": {
+    "C:\\Users\\colee\\OneDrive\\Documents\\GitHub\\AscendedZ\\Ascended Z.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\USERS\\COLEE\\ONEDRIVE\\DOCUMENTS\\GITHUB\\ASCENDEDZ\\Ascended Z.csproj",
+        "projectUniqueName": "C:\\Users\\colee\\OneDrive\\Documents\\GitHub\\AscendedZ\\Ascended Z.csproj",
         "projectName": "Ascended Z",
-        "projectPath": "C:\\USERS\\COLEE\\ONEDRIVE\\DOCUMENTS\\GITHUB\\ASCENDEDZ\\Ascended Z.csproj",
+        "projectPath": "C:\\Users\\colee\\OneDrive\\Documents\\GitHub\\AscendedZ\\Ascended Z.csproj",
         "packagesPath": "C:\\Users\\colee\\.nuget\\packages\\",
-        "outputPath": "C:\\USERS\\COLEE\\ONEDRIVE\\DOCUMENTS\\GITHUB\\ASCENDEDZ\\.godot\\mono\\temp\\obj\\",
+        "outputPath": "C:\\Users\\colee\\OneDrive\\Documents\\GitHub\\AscendedZ\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\colee\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net6"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},

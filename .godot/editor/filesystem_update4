@@ -1,9 +1,6 @@
 res://default_env.tres
-res://screens/RewardScreen.tscn
-res://sigils/SigilUpgradeBar.cs
 res://screens/SigilAssets/SigilScreen.tscn
-res://screens/BossBattleDisplayBox.tscn
-res://screens/BossHPBar.tscn
+res://screens/RewardScreen.tscn
 res://sigils/SigilUpgradeBar.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
@@ -26,6 +23,7 @@ res://screens/RecruitScreen.cs
 res://screens/RewardScreen.cs
 res://screens/SigilAssets/SigilScreen.cs
 res://screens/StartScreen.cs
+res://sigils/SigilUpgradeBar.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://statuses/StatusWrapper.cs
