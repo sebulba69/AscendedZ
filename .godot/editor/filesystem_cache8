@@ -1,9 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1703638652
+::res://::1703910531
 ArtAssets.cs::CSharpScript::-1::1693103028::0::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1682824299::0::1::::<><>::
 Controls.cs::CSharpScript::-1::1683476129::0::1::::<><>::
-default_env.tres::Environment::5723441312748911875::1702769624::0::1::::<><>::
+default_env.tres::Environment::5723441312748911875::1703642320::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1682922048::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1682872124::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1683246973::0::1::::<><>::
@@ -194,9 +194,9 @@ RewardScreen.cs::CSharpScript::-1::1693096463::0::1::::<>Control<>::
 RewardScreen.tscn::PackedScene::2919674233379551489::1702764562::0::1::::<><>::res://screens/RewardScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 StartScreen.cs::CSharpScript::-1::1683085685::0::1::::<>Node2D<>::
 StartScreen.tscn::PackedScene::6381371156909420524::1693794642::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/StartScreen.cs<>res://screens/AscendedDialogBox.cs<>uid://c30uvsnxii3bd::::res://cg_backgrounds/bg00307.jpg
-::res://screens/SigilAssets/::1703638640
+::res://screens/SigilAssets/::1703642320
 SigilScreen.cs::CSharpScript::-1::1703638640::0::1::::<>Control<>::
-SigilScreen.tscn::PackedScene::7377876154960580261::1703638640::0::1::::<><>::res://screens/SigilAssets/SigilScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
+SigilScreen.tscn::PackedScene::7377876154960580261::1703642320::0::1::::<><>::res://screens/SigilAssets/SigilScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 ::res://sigils/::1703612589
 BossSigil.cs::CSharpScript::-1::1697912048::0::1::::<><>::
 SigilUpgradeBar.cs::CSharpScript::-1::1703612589::0::1::::<>HBoxContainer<>::

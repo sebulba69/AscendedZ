@@ -39,18 +39,10 @@ namespace AscendedZ
             {
                 rewards.Add(new Vorpex() { Amount = 1 });
             }
-
-            // Get a new key you can use to level up sigils
-            if(tier % 5 == 0)
-            {
-                rewards.Add(new SigilKey() { Amount = 1 });
-            }
-
-            // past tier 5 you get the good stuff each time
-            if(tier > 5)
+            else if (tier == 1)
             {
                 int amount = (int)(A * Math.Log(tier - B) + C);
-                rewards.Add(new SigilAura() { Amount = amount });
+                rewards.Add(new Vorpex() { Amount = amount });
             }
 
             return rewards;

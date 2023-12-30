@@ -1,6 +1,5 @@
 using AscendedZ.currency;
 using AscendedZ.entities.partymember_objects;
-using AscendedZ.sigils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +18,6 @@ namespace AscendedZ.entities
     {
         public Wallet Wallet { get; set; }
         public PlayerParty Party { get; set; }
-        public List<BossSigil> LockedSigils { get; set; }
-        public List<BossSigil> UnlockedSigils { get; set; }
 
         public MainPlayer()
         {
@@ -29,12 +26,6 @@ namespace AscendedZ.entities
 
             if (Party == null)
                 Party = new PlayerParty();
-
-            if (LockedSigils == null)
-                LockedSigils = new List<BossSigil>();
-
-            if (UnlockedSigils == null)
-                UnlockedSigils = new List<BossSigil>();
         }
 
         /// <summary>
