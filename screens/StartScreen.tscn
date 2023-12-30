@@ -45,9 +45,10 @@ alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer/StartingButtons"]
 layout_mode = 2
-columns = 2
+columns = 3
 
 [node name="NewGameButton" type="Button" parent="CenterContainer/VBoxContainer/StartingButtons/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 80)
 layout_mode = 2
 theme_override_constants/outline_size = 0
@@ -56,11 +57,20 @@ theme_override_font_sizes/font_size = 50
 text = "New Game"
 
 [node name="LoadGameButton" type="Button" parent="CenterContainer/VBoxContainer/StartingButtons/GridContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2")
 theme_override_font_sizes/font_size = 50
 text = "Load Game"
+
+[node name="QuitGameButton" type="Button" parent="CenterContainer/VBoxContainer/StartingButtons/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 50
+text = "Quit Game"
 
 [node name="NewGameButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 visible = false

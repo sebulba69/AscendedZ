@@ -14,10 +14,10 @@ public partial class MainScreen : Node2D
     public override void _Ready()
     {
         _root = this.GetNode<CenterContainer>("CenterContainer");
-        _mainUIContainer = this.GetNode<VBoxContainer>("CenterContainer/MainContainer");
+        _mainUIContainer = this.GetNode<VBoxContainer>("%MainContainer");
 
-        TextureRect playerPicture = this.GetNode<TextureRect>("CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer/PlayerPicture");
-        Label playerName = this.GetNode<Label>("CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer2/CenterContainer/PlayerNameLabel");
+        TextureRect playerPicture = this.GetNode<TextureRect>("%PlayerPicture");
+        Label playerName = this.GetNode<Label>("%PlayerNameLabel");
         _tooltip = this.GetNode<Label>("%Tooltip");
 
         AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
@@ -30,19 +30,17 @@ public partial class MainScreen : Node2D
         playerName.Text = player.Name;
         UpdateCurrencyDisplay();
 
-        Button menuButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/MenuButton");
-        Button embarkButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/EmbarkButton");
-        Button recruitButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/RecruitButton");
-        Button sigilButton = this.GetNode<Button>("CenterContainer/MainContainer/Buttons/HBoxContainer/SigilButton");
+        Button menuButton = this.GetNode<Button>("%MenuButton");
+        Button embarkButton = this.GetNode<Button>("%EmbarkButton");
+        Button recruitButton = this.GetNode<Button>("%RecruitButton");
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
         recruitButton.Pressed += _OnRecruitButtonPressed;
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
-        embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party and attempt to reach the final floor."; };
+        embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
-        sigilButton.MouseEntered += () => { _tooltip.Text = "[ Under Development ]"; };
     }
 
     private void UpdateCurrencyDisplay()

@@ -54,11 +54,13 @@ public partial class StartScreen : Node2D
 		_loadGameControls = this.GetNode<HBoxContainer>("CenterContainer/VBoxContainer/LoadingButtons");
 
 		// buttons from start screen
-		Button newGameButton = this.GetNode<Button>("CenterContainer/VBoxContainer/StartingButtons/GridContainer/NewGameButton");
-		Button loadGameButton = this.GetNode<Button>("CenterContainer/VBoxContainer/StartingButtons/GridContainer/LoadGameButton");
+		Button newGameButton = this.GetNode<Button>("%NewGameButton");
+		Button loadGameButton = this.GetNode<Button>("%LoadGameButton");
+		Button quitGameButton = this.GetNode<Button>("%QuitGameButton");
 
-		newGameButton.Connect("pressed",new Callable(this,"_OnNewGameButtonPressed"));
-		loadGameButton.Connect("pressed",new Callable(this,"_OnLoadScreenButtonClicked"));
+		newGameButton.Pressed += _OnNewGameButtonPressed;
+        loadGameButton.Pressed += _OnLoadScreenButtonClicked;
+        quitGameButton.Pressed += () => { this.GetTree().Quit(); };
 
 		// assets from newGameScreen
 		_pictureIndex = 0;

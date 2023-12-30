@@ -28,13 +28,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SaveButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_6c3qe")
 theme_override_font_sizes/font_size = 50
 text = "Save Game"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitToTitleButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 75)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_6c3qe")
+theme_override_font_sizes/font_size = 50
+text = "Save and Quit to Tile"
+
+[node name="QuitGameButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_6c3qe")
@@ -42,6 +52,7 @@ theme_override_font_sizes/font_size = 50
 text = "Save and Quit"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_6c3qe")

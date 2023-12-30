@@ -18,6 +18,7 @@ texture = ExtResource("2")
 expand_mode = 1
 
 [node name="MainContainer" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MainContainer"]
@@ -44,6 +45,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PlayerNameLabel" type="Label" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer2/CenterContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -53,6 +55,7 @@ theme_override_font_sizes/font_size = 35
 layout_mode = 2
 
 [node name="PlayerPicture" type="TextureRect" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(270, 240)
 layout_mode = 2
 expand_mode = 1
@@ -64,6 +67,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MenuButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -71,6 +75,7 @@ theme_override_font_sizes/font_size = 40
 text = "Menu"
 
 [node name="EmbarkButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -78,18 +83,12 @@ theme_override_font_sizes/font_size = 40
 text = "Embark"
 
 [node name="RecruitButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Recruit"
-
-[node name="SigilButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 40
-text = "Sigil"
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer"]
 layout_mode = 2
