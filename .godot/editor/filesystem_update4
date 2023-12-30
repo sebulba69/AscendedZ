@@ -1,5 +1,5 @@
 res://default_env.tres
-res://screens/RewardScreen.tscn
+res://screens/MainScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://controls/AscendedTextbox.cs
@@ -23,6 +23,3 @@ res://screens/StartScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://statuses/StatusWrapper.cs
-res://screens/MenuScene.tscn
-res://screens/StartScreen.tscn
-res://screens/MainScreen.tscn

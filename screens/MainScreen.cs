@@ -1,35 +1,81 @@
-using AscendedZ;
+﻿using AscendedZ;
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class MainScreen : Node2D
 {
     private CenterContainer _root;
     private VBoxContainer _mainUIContainer;
     private Label _tooltip;
+    private AudioStreamPlayer _audioPlayer;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         _root = this.GetNode<CenterContainer>("CenterContainer");
         _mainUIContainer = this.GetNode<VBoxContainer>("%MainContainer");
+        _tooltip = this.GetNode<Label>("%Tooltip");
+        _audioPlayer = this.GetNode<AudioStreamPlayer>("%MusicPlayer");
 
+        GameObject gameObject = PersistentGameObjects.Instance();
+
+        InitializeMusicButton(gameObject);
+        InitializePlayerInformation(gameObject);
+        InitializeButtons();
+    }
+
+    #region Setup functions
+    private void InitializeMusicButton(GameObject gameObject)
+    {
+        OptionButton musicOptionsButton = this.GetNode<OptionButton>("%MusicOptionsButton");
+        List<string> overworldTracks = MusicAssets.GetOverworldTrackKeys();
+
+        gameObject.SetStreamPlayer(_audioPlayer);
+
+        int indexOfSongToDisplay = 0;
+        for (int i = 0; i < overworldTracks.Count; i++)
+        {
+            string track = overworldTracks[i];
+            if (track.Equals(gameObject.OverworldTheme))
+                indexOfSongToDisplay = i;
+
+            musicOptionsButton.AddItem(track);
+        }
+
+        musicOptionsButton.Select(indexOfSongToDisplay);
+
+        musicOptionsButton.ItemSelected += (long index) =>
+        {
+            gameObject.OverworldTheme = musicOptionsButton.GetItemText((int)index);
+            PersistentGameObjects.Save();
+
+            gameObject.PlayMusic(GetOverworldTrack(gameObject));
+        };
+
+        gameObject.PlayMusic(GetOverworldTrack(gameObject));
+    }
+
+    private string GetOverworldTrack(GameObject gameObject)
+    {
+        return MusicAssets.GetOverworldTrack(gameObject.OverworldTheme);
+    }
+
+    private void InitializePlayerInformation(GameObject gameObject)
+    {
         TextureRect playerPicture = this.GetNode<TextureRect>("%PlayerPicture");
         Label playerName = this.GetNode<Label>("%PlayerNameLabel");
-        _tooltip = this.GetNode<Label>("%Tooltip");
-
-        AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
-        var gameObject = PersistentGameObjects.Instance();
-        gameObject.SetStreamPlayer(audioPlayer);
-        gameObject.PlayMusic(MusicAssets.OVERWORLD_1);
 
         MainPlayer player = PersistentGameObjects.Instance().MainPlayer;
         playerPicture.Texture = ResourceLoader.Load<Texture2D>(player.Image);
         playerName.Text = player.Name;
         UpdateCurrencyDisplay();
+    }
 
+    private void InitializeButtons()
+    {
         Button menuButton = this.GetNode<Button>("%MenuButton");
         Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button recruitButton = this.GetNode<Button>("%RecruitButton");
@@ -42,6 +88,7 @@ public partial class MainScreen : Node2D
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
     }
+    #endregion
 
     private void UpdateCurrencyDisplay()
     {

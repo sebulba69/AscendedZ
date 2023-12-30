@@ -1,8 +1,10 @@
-VBoxContainer
-PanelContainer
-Button
 Label
+PanelContainer
 HBoxContainer
+Container
+OptionButton
+VBoxContainer
+Button
 Panel
 ProgressBar
 TextureProgressBar
@@ -10,5 +12,3 @@ ScrollContainer
 ItemList
 CenterContainer
 TextureRect
-CollisionShape2D
-Sprite2D

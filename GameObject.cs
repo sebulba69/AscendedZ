@@ -57,6 +57,14 @@ namespace AscendedZ
             }
         }
 
+        private string _overworldMusic = MusicAssets.OVERWORLD_1;
+
+        public string OverworldTheme 
+        {
+            get => _overworldMusic;
+            set => _overworldMusic = value;
+        }
+
         public MainPlayer MainPlayer { get; set; }
 
         public GameObject()
