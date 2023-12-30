@@ -65,7 +65,7 @@ public partial class StartScreen : Node2D
 		// assets from newGameScreen
 		_pictureIndex = 0;
 		_playerPicture = this.GetNode<TextureRect>("CenterContainer/VBoxContainer/NewGameButtons/NewPlayerPicture");
-		_playerPicture.Texture = ResourceLoader.Load<Texture2D>(ArtAssets.PlayerPics[_pictureIndex]);
+		_playerPicture.Texture = ResourceLoader.Load<Texture2D>(PlayerPartyAssets.PlayerPics[_pictureIndex]);
 
 		Button newGameBackButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/VBoxContainer/GoBackButton");
 		Button ascendButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/VBoxContainer/StartNGButton");
@@ -98,7 +98,7 @@ public partial class StartScreen : Node2D
 
 	private void _OnPlayerPicLeftButtonPressed()
 	{
-		List<string> pictures = ArtAssets.PlayerPics;
+		List<string> pictures = PlayerPartyAssets.PlayerPics;
 
 		_pictureIndex--;
 		if (_pictureIndex < 0)
@@ -110,7 +110,7 @@ public partial class StartScreen : Node2D
 
 	private void _OnPlayerPicRightButtonPressed()
 	{
-		List<string> pictures = ArtAssets.PlayerPics;
+		List<string> pictures = PlayerPartyAssets.PlayerPics;
 
 		_pictureIndex++;
 		if (_pictureIndex == pictures.Count)

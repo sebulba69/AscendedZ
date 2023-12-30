@@ -28,7 +28,7 @@ namespace AscendedZ.statuses
         public StunStatus() : base()
         {
             _id = StatusId.StunStatus;
-            this.Icon = ArtAssets.STUN_ICON;
+            this.Icon = SkillAssets.STUN_ICON;
         }
 
         public override void ActivateStatus(BattleEntity owner)

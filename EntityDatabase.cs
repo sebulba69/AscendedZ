@@ -22,13 +22,6 @@ namespace AscendedZ
     /// </summary>
     public class EntityDatabase
     {
-        private static readonly Dictionary<string, OverworldEntity> PARTYMEMBERS = new Dictionary<string, OverworldEntity>()
-        {
-            ["Locphiedon"] = new Locphiedon(),
-            ["Gagar"] = new Gagar(),
-            ["Yuudam"] = new Yuudam()
-        };
-
         private static EnemyMaker _enemyMaker = new EnemyMaker();
 
         private static List<string>[] ENCOUNTERS = new List<string>[] 
@@ -46,16 +39,18 @@ namespace AscendedZ
         /// </summary>
         private static readonly List<string>[] VENDOR_WARES = new List<string>[]
         {
-            new List<string>(){ "Locphiedon" },
-            new List<string>(){ "Gagar" },
-            new List<string>(){ "Yuudam" }
+            new List<string>(){ PartyNames.LOCPHIEDON },
+            new List<string>(){ PartyNames.GAGAR },
+            new List<string>(){ PartyNames.YUUDAM },
+            new List<string>(){ PartyNames.PECHEAL, PartyNames.TOKE },
+            new List<string>(){ PartyNames.MAXWALD, PartyNames.HALVIA }
         };
 
         /// <summary>
         /// A list of indexes that the current tier must be equal to or greater than
         /// to become available in the shop.
         /// </summary>
-        private static readonly int[] SHOP_INDEXES = new int[] { 2, 5, 10 };
+        private static readonly int[] SHOP_INDEXES = new int[] { 1, 2, 5, 6, 8 };
 
         public static List<Enemy> MakeBattleEncounter(int tier)
         {
@@ -70,14 +65,17 @@ namespace AscendedZ
         public static List<OverworldEntity> MakeShopVendorWares(int tier)
         {
             List<OverworldEntity> partyMembers = new List<OverworldEntity>();
-            int indexes = 1; // one by default
 
-            // if the tier is bigger or equal to specific numbers, index++
-            foreach(int index in SHOP_INDEXES)
+            // Get vendor wares based on the tier we're on
+            int vendorWaresIndex = 0;
+            foreach (int index in SHOP_INDEXES)
             {
                 if(tier >= index)
                 {
-                    indexes++;
+                    foreach(string member in VENDOR_WARES[vendorWaresIndex])
+                        partyMembers.Add(PartyMemberGenerator.MakePartyMember(member, true));
+
+                    vendorWaresIndex++;
                 }
                 else
                 {
@@ -85,15 +83,6 @@ namespace AscendedZ
                 }
             }
 
-            // we want the best units at the top, worst at the bottom
-            for(int i = indexes - 1; i >= 0; i--)
-            {
-                foreach (string member in VENDOR_WARES[i])
-                {
-                    partyMembers.Add(PARTYMEMBERS[member].Create());
-                }
-            }
-   
             return partyMembers;
         }
     }

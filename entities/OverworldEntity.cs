@@ -23,11 +23,6 @@ namespace AscendedZ.entities
 
         public ResistanceArray Resistances { get; set; } = new();
 
-        public virtual OverworldEntity Create()
-        {
-            throw new NotImplementedException();
-        }
-
         public BattlePlayer MakeBattlePlayer()
         {
             var player = new BattlePlayer()

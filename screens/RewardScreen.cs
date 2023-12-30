@@ -21,7 +21,7 @@ public partial class RewardScreen : Control
         foreach (Currency reward in _rewards)
         {
             string rewardString = $"{reward.Name} x{reward.Amount}";
-            _rewardsList.AddItem(rewardString, ArtAssets.GenerateIcon(reward.Icon));
+            _rewardsList.AddItem(rewardString, SkillAssets.GenerateIcon(reward.Icon));
         }
 
         _claimRewardsButton.Pressed += _OnClaimRewardsPressed;

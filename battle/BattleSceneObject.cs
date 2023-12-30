@@ -88,7 +88,6 @@ namespace AscendedZ.battle
             });
         }
 
-        private bool debug = false;
         public void SetPartyMemberTurns()
         {
             // it looks stupid, but C# doesn't natively recognize that a list of Players/Enemies are Battle Entities.

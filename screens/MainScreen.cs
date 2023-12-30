@@ -70,7 +70,7 @@ public partial class MainScreen : Node2D
 
         MainPlayer player = PersistentGameObjects.Instance().MainPlayer;
         playerPicture.Texture = ResourceLoader.Load<Texture2D>(player.Image);
-        playerName.Text = player.Name;
+        playerName.Text = $"[T. {gameObject.MaxTier}] {player.Name}";
         UpdateCurrencyDisplay();
     }
 

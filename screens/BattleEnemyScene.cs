@@ -242,7 +242,7 @@ public partial class BattleEnemyScene : Node2D
             if (result.SkillUsed != null)
             {
                 _skillDisplayIcons.Visible = true;
-                ChangeSkillIconRegion(ArtAssets.ICONS[result.SkillUsed.Icon]);
+                ChangeSkillIconRegion(SkillAssets.ICONS[result.SkillUsed.Icon]);
                 _skillName.Text = result.SkillUsed.Name;
             }
 
@@ -333,7 +333,7 @@ public partial class BattleEnemyScene : Node2D
         if(_battleSceneObject.ActivePlayer != null)
         {
             foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
-                _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
+                _skillList.AddItem(skill.GetBattleDisplayString(), SkillAssets.GenerateIcon(skill.Icon));
             _skillList.Select(skillIndex);
 
             UpdateTargetList();

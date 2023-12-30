@@ -13,7 +13,7 @@ public partial class Icon : CenterContainer
 
 	public void SetIcon(string icon)
 	{
-		_sprite.Texture = ArtAssets.GenerateIcon(icon);
+		_sprite.Texture = SkillAssets.GenerateIcon(icon);
 		this.TooltipText = icon;
 	}
 }

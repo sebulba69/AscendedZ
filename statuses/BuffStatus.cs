@@ -33,7 +33,7 @@ namespace AscendedZ.statuses
             _id = StatusId.ElementBuffStatus;
             _buffElement = element;
             _dmgModifier = damageModifier;
-            Icon = ArtAssets.GetElementIconByElementEnum(element);
+            Icon = SkillAssets.GetElementIconByElementEnum(element);
         }
 
         public override void ActivateStatus(BattleEntity owner)

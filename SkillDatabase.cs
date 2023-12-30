@@ -17,9 +17,9 @@ namespace AscendedZ
             Damage = 2,
             TargetType = TargetTypes.SINGLE_OPP,
             Element = Elements.Elec,
-            StartupAnimation = ArtAssets.STARTUP1_MG,
-            EndupAnimation = ArtAssets.ELEC_T1,
-            Icon = ArtAssets.ELEC_ICON
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.ELEC_T1,
+            Icon = SkillAssets.ELEC_ICON
         };
 
         public static ElementSkill FIRE_1 = new ElementSkill()
@@ -28,9 +28,9 @@ namespace AscendedZ
             Damage = 2,
             TargetType = TargetTypes.SINGLE_OPP,
             Element = Elements.Fir,
-            StartupAnimation = ArtAssets.STARTUP1_MG,
-            EndupAnimation = ArtAssets.FIRE_T1,
-            Icon = ArtAssets.FIRE_ICON
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.FIRE_T1,
+            Icon = SkillAssets.FIRE_ICON
         };
 
         public static ElementSkill ICE_1 = new ElementSkill()
@@ -39,9 +39,9 @@ namespace AscendedZ
             Damage = 2,
             TargetType = TargetTypes.SINGLE_OPP,
             Element = Elements.Ice,
-            StartupAnimation = ArtAssets.STARTUP1_MG,
-            EndupAnimation = ArtAssets.ICE_T1,
-            Icon = ArtAssets.ICE_ICON
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.ICE_T1,
+            Icon = SkillAssets.ICE_ICON
         };
 
         public static ElementSkill LIGHT_1 = new ElementSkill()
@@ -50,9 +50,9 @@ namespace AscendedZ
             Damage = 2,
             TargetType = TargetTypes.SINGLE_OPP,
             Element = Elements.Light,
-            StartupAnimation = ArtAssets.STARTUP1_MG,
-            EndupAnimation = ArtAssets.LIGHT_T1,
-            Icon = ArtAssets.LIGHT_ICON
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.LIGHT_T1,
+            Icon = SkillAssets.LIGHT_ICON
         };
 
         public static ElementSkill WIND_1 = new ElementSkill()
@@ -61,9 +61,9 @@ namespace AscendedZ
             Damage = 2,
             TargetType = TargetTypes.SINGLE_OPP,
             Element = Elements.Wind,
-            StartupAnimation = ArtAssets.STARTUP1_MG,
-            EndupAnimation = ArtAssets.WIND_T1,
-            Icon = ArtAssets.WIND_ICON
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.WIND_T1,
+            Icon = SkillAssets.WIND_ICON
         };
 
         public static ElementSkill DARK_1 = new ElementSkill()
@@ -72,9 +72,9 @@ namespace AscendedZ
             Damage = 2,
             TargetType = TargetTypes.SINGLE_OPP,
             Element = Elements.Dark,
-            StartupAnimation = ArtAssets.STARTUP1_MG,
-            EndupAnimation = ArtAssets.DARK_T1,
-            Icon = ArtAssets.DARK_ICON
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.DARK_T1,
+            Icon = SkillAssets.DARK_ICON
         };
         #endregion
 
@@ -82,9 +82,9 @@ namespace AscendedZ
         {
             Name = "Stun",
             TargetType = TargetTypes.SINGLE_OPP,
-            StartupAnimation = ArtAssets.STARTUP1_MG,
-            EndupAnimation = ArtAssets.STUN_T1,
-            Icon = ArtAssets.STUN_ICON,
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.STUN_T1,
+            Icon = SkillAssets.STUN_ICON,
             Status = new StunStatus()
         };
 
@@ -92,9 +92,9 @@ namespace AscendedZ
         {
             Name = "Dark Boost",
             TargetType = TargetTypes.SINGLE_TEAM,
-            StartupAnimation = ArtAssets.STARTUP1_MG,
-            EndupAnimation = ArtAssets.DARK_T1,
-            Icon = ArtAssets.DARK_ICON,
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.DARK_T1,
+            Icon = SkillAssets.DARK_ICON,
             Status = new ElementBuffStatus(Elements.Dark, 2)
         };
 
@@ -102,9 +102,9 @@ namespace AscendedZ
         {
             Name = "Regen",
             TargetType = TargetTypes.SINGLE_TEAM,
-            StartupAnimation = ArtAssets.STARTUP1_MG,
-            EndupAnimation = ArtAssets.HEAL_T1,
-            Icon = ArtAssets.HEAL_ICON,
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.HEAL_T1,
+            Icon = SkillAssets.HEAL_ICON,
             HealAmount = 5
         };
 
@@ -115,7 +115,7 @@ namespace AscendedZ
             TargetType = TargetTypes.SINGLE_OPP,
             StartupAnimation = string.Empty,
             EndupAnimation = string.Empty,
-            Icon = ArtAssets.PASS_ICON
+            Icon = SkillAssets.PASS_ICON
         };
 
         public static RetreatSkill RETREAT = new RetreatSkill()
@@ -124,7 +124,7 @@ namespace AscendedZ
             TargetType = TargetTypes.SINGLE_OPP,
             StartupAnimation = string.Empty,
             EndupAnimation = string.Empty,
-            Icon = ArtAssets.RETREAT_ICON
+            Icon = SkillAssets.RETREAT_ICON
         };
         #endregion
     }

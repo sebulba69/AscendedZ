@@ -41,7 +41,7 @@ namespace AscendedZ.skills
                 TargetType = this.TargetType,
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
-                Icon = ArtAssets.PASS_ICON
+                Icon = SkillAssets.PASS_ICON
             };
         }
     }
