@@ -4,6 +4,7 @@ using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.entities.enemy_objects;
+using AscendedZ.game_object;
 using AscendedZ.skills;
 using AscendedZ.statuses;
 using Godot;
@@ -65,7 +66,7 @@ public partial class BattleEnemyScene : Node2D
         _skillList.Connect("item_selected", new Callable(this, "_OnSkillListItemSelected"));
 
         AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
-        PersistentGameObjects.Instance().SetStreamPlayer(audioPlayer);
+        PersistentGameObjects.Instance().MusicPlayer.SetStreamPlayer(audioPlayer);
 
         _backToHomeButton.Pressed += () =>
         {
@@ -188,7 +189,7 @@ public partial class BattleEnemyScene : Node2D
         _battleSceneObject.StartBattle();
         ChangeAPBarWithTurnState(TurnState.PLAYER);
 
-        PersistentGameObjects.Instance().PlayMusic(MusicAssets.GetDungeonTrack(PersistentGameObjects.Instance().Tier));
+        PersistentGameObjects.Instance().MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrack(PersistentGameObjects.Instance().Tier));
         _canInput = true;
     }
 
@@ -242,7 +243,7 @@ public partial class BattleEnemyScene : Node2D
             if (result.SkillUsed != null)
             {
                 _skillDisplayIcons.Visible = true;
-                ChangeSkillIconRegion(SkillAssets.ICONS[result.SkillUsed.Icon]);
+                ChangeSkillIconRegion(SkillAssets.GetIcon(result.SkillUsed.Icon));
                 _skillName.Text = result.SkillUsed.Name;
             }
 

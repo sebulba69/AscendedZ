@@ -1,6 +1,6 @@
-using AscendedZ;
 using AscendedZ.battle;
 using AscendedZ.entities;
+using AscendedZ.game_object;
 using Godot;
 using System;
 using System.Text;

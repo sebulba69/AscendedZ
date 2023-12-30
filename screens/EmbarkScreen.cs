@@ -1,6 +1,7 @@
 using AscendedZ;
 using AscendedZ.entities;
 using AscendedZ.entities.partymember_objects;
+using AscendedZ.game_object;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -27,40 +28,20 @@ public partial class EmbarkScreen : CenterContainer
 
     public override void _Ready()
     {
-        _party = PersistentGameObjects.Instance().MainPlayer.Party;
-        _selected = 0;
-
-        _reserves = PersistentGameObjects.Instance().MainPlayer.ReserveMembers;
-
-        _partyMemberDisplayNodes = new List<PartyMemberDisplay>();
-        _buttons = new List<Button>();
-        _buttonStates = new bool[] { false, false, false, false };
+        GameObject gameObject = PersistentGameObjects.Instance();
 
         _tierLabel = this.GetNode<Label>("%TierLabel");
         _reservePreviewMember = this.GetNode<PartyMemberDisplay>("%Preview");
         _reserveItemList = this.GetNode<ItemList>("%InReserveMembers");
+        _party = gameObject.MainPlayer.Party;
+        _reserves = gameObject.MainPlayer.ReserveMembers;
+        _partyMemberDisplayNodes = new List<PartyMemberDisplay>();
+        _selected = 0;
+        _buttons = new List<Button>();
+        _buttonStates = new bool[] { false, false, false, false };
 
-        string tierText = "Dungeon Floor:";
-        PersistentGameObjects.Instance().Tier = PersistentGameObjects.Instance().MaxTier;
-        _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().MaxTier}";
-
-        // on click events
         Button leftTier = this.GetNode<Button>("%LeftTierBtn");
-        leftTier.Pressed += () => 
-        {
-            PersistentGameObjects.Instance().Tier--;
-            _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().Tier}";
-        };
-        
         Button rightBtn = this.GetNode<Button>("%RightTierBtn");
-        rightBtn.Pressed += () => 
-        {
-            PersistentGameObjects.Instance().Tier++;
-            _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().Tier}"; 
-        };
-
-        _reserveItemList.Connect("item_selected",new Callable(this,"_OnItemSelected"));
-
         Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button backButton = this.GetNode<Button>("%BackButton");
         Button pm1button = this.GetNode<Button>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer/PM1Button");
@@ -72,6 +53,26 @@ public partial class EmbarkScreen : CenterContainer
         PartyMemberDisplay pm2 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer2/PM2");
         PartyMemberDisplay pm3 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer3/PM3");
         PartyMemberDisplay pm4 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer4/PM4");
+
+        gameObject.Tier = gameObject.MaxTier;
+        string tierText = "Dungeon Floor:";
+        
+        _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().MaxTier}";
+
+        // on click events
+        leftTier.Pressed += () => 
+        {
+            PersistentGameObjects.Instance().Tier--;
+            _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().Tier}";
+        };
+
+        rightBtn.Pressed += () => 
+        {
+            PersistentGameObjects.Instance().Tier++;
+            _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().Tier}"; 
+        };
+
+        _reserveItemList.Connect("item_selected",new Callable(this,"_OnItemSelected"));
 
         embarkButton.Pressed += _OnEmbarkPressed;
         backButton.Pressed += _OnBackButtonClicked;

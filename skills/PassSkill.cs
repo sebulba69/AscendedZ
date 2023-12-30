@@ -44,5 +44,7 @@ namespace AscendedZ.skills
                 Icon = SkillAssets.PASS_ICON
             };
         }
+
+
     }
 }

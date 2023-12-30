@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.statuses
 {
-    public enum StatusId { StunStatus, ElementBuffStatus }
+    public enum StatusId { StunStatus, ElementBuffStatus, AgroStatus }
     public class Status
     {
         private bool _active = false;

@@ -1,6 +1,7 @@
 ﻿using AscendedZ;
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
+using AscendedZ.game_object;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public partial class MainScreen : Node2D
     private VBoxContainer _mainUIContainer;
     private Label _tooltip;
     private AudioStreamPlayer _audioPlayer;
+    private PanelContainer _musicSelectContainer;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -19,6 +21,7 @@ public partial class MainScreen : Node2D
         _mainUIContainer = this.GetNode<VBoxContainer>("%MainContainer");
         _tooltip = this.GetNode<Label>("%Tooltip");
         _audioPlayer = this.GetNode<AudioStreamPlayer>("%MusicPlayer");
+        _musicSelectContainer = this.GetNode<PanelContainer>("%MusicSelectContainer");
 
         GameObject gameObject = PersistentGameObjects.Instance();
 
@@ -33,13 +36,13 @@ public partial class MainScreen : Node2D
         OptionButton musicOptionsButton = this.GetNode<OptionButton>("%MusicOptionsButton");
         List<string> overworldTracks = MusicAssets.GetOverworldTrackKeys();
 
-        gameObject.SetStreamPlayer(_audioPlayer);
+        gameObject.MusicPlayer.SetStreamPlayer(_audioPlayer);
 
         int indexOfSongToDisplay = 0;
         for (int i = 0; i < overworldTracks.Count; i++)
         {
             string track = overworldTracks[i];
-            if (track.Equals(gameObject.OverworldTheme))
+            if (track.Equals(gameObject.MusicPlayer.OverworldTheme))
                 indexOfSongToDisplay = i;
 
             musicOptionsButton.AddItem(track);
@@ -49,18 +52,18 @@ public partial class MainScreen : Node2D
 
         musicOptionsButton.ItemSelected += (long index) =>
         {
-            gameObject.OverworldTheme = musicOptionsButton.GetItemText((int)index);
+            gameObject.MusicPlayer.OverworldTheme = musicOptionsButton.GetItemText((int)index);
             PersistentGameObjects.Save();
 
-            gameObject.PlayMusic(GetOverworldTrack(gameObject));
+            gameObject.MusicPlayer.PlayMusic(GetOverworldTrack(gameObject));
         };
 
-        gameObject.PlayMusic(GetOverworldTrack(gameObject));
+        gameObject.MusicPlayer.PlayMusic(GetOverworldTrack(gameObject));
     }
 
     private string GetOverworldTrack(GameObject gameObject)
     {
-        return MusicAssets.GetOverworldTrack(gameObject.OverworldTheme);
+        return MusicAssets.GetOverworldTrack(gameObject.MusicPlayer.OverworldTheme);
     }
 
     private void InitializePlayerInformation(GameObject gameObject)
@@ -145,12 +148,15 @@ public partial class MainScreen : Node2D
     private async void DisplayScene(string packedScenePath)
     {
         _mainUIContainer.Visible = false;
+        _musicSelectContainer.Visible = false;
 
         var instanceOfPackedScene = ResourceLoader.Load<PackedScene>(packedScenePath).Instantiate();
         _root.AddChild(instanceOfPackedScene);
 
         await ToSignal(instanceOfPackedScene, "tree_exited");
+
         _mainUIContainer.Visible = true;
+        _musicSelectContainer.Visible = true;
 
         UpdateCurrencyDisplay();
     }

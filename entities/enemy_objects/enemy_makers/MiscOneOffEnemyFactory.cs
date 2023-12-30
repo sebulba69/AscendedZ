@@ -1,5 +1,5 @@
 ﻿using AscendedZ.entities.enemy_objects.bosses;
-using AscendedZ.entities.enemy_objects.misc_one_offs;
+using AscendedZ.entities.enemy_objects.enemy_ais;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,14 +8,21 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.entities.enemy_objects.enemy_makers
 {
-    public class MiscOneOffEnemyFactory : EnemyFactory
+    /// <summary>
+    /// A factory for unique enemies with 1-off appearances.
+    /// </summary>
+    public class UniqueEnemyFactory : EnemyFactory
     {
-        public MiscOneOffEnemyFactory()
+        public UniqueEnemyFactory()
         {
             _functionDictionary[EnemyNames.CATTUTDRONI] = MakeCattuTDroni;
             _functionDictionary[EnemyNames.HARBINGER] = MakeHarbinger;
         }
 
+        /// <summary>
+        /// Mini-bosses.
+        /// </summary>
+        /// <returns></returns>
         public Enemy MakeCattuTDroni()
         {
             return new CattuTDroni();

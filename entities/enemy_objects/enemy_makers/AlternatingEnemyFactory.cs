@@ -1,4 +1,4 @@
-﻿using AscendedZ.entities.enemy_objects.alt_enemies;
+﻿using AscendedZ.entities.enemy_objects.enemy_ais;
 using AscendedZ.resistances;
 using AscendedZ.skills;
 using Godot;
@@ -23,7 +23,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeConlen()
         {
-            var conlen = MakeAlternatingEnemy("Conlen", 6, "res://enemy_pics/newpicture49.png");
+            var conlen = MakeAlternatingEnemy(EnemyNames.CONLEN, 6);
 
             conlen.Resistances.CreateResistance(ResistanceType.Wk, Elements.Wind);
             conlen.Resistances.CreateResistance(ResistanceType.Wk, Elements.Ice);
@@ -36,7 +36,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeOrachar()
         {
-            var orachar = MakeAlternatingEnemy("Orahcar", 6, "res://enemy_pics/newpicture52.png");
+            var orachar = MakeAlternatingEnemy(EnemyNames.ORAHCAR, 6);
 
             orachar.Resistances.CreateResistance(ResistanceType.Wk, Elements.Fir);
 
@@ -47,7 +47,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeFastrobren()
         {
-            var fastrobren = MakeAlternatingEnemy("Fastrobren", 4, "res://enemy_pics/newpicture40.png");
+            var fastrobren = MakeAlternatingEnemy(EnemyNames.FASTROBREN, 4);
 
             fastrobren.Resistances = new ResistanceArray();
             fastrobren.Resistances.CreateResistance(ResistanceType.Wk, Elements.Light);
@@ -59,7 +59,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeLiamlas()
         {
-            var liamlas = MakeAlternatingEnemy("Liamlas", 6, "res://enemy_pics/newpicture47.png");
+            var liamlas = MakeAlternatingEnemy(EnemyNames.LIAMLAS, 6);
             
             liamlas.Resistances = new ResistanceArray();
             liamlas.Resistances.CreateResistance(ResistanceType.Wk, Elements.Dark);
@@ -69,14 +69,15 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return liamlas;
         }
 
-        private Enemy MakeAlternatingEnemy(string name, int hp, string image)
+        protected Enemy MakeAlternatingEnemy(string name, int hp)
         {
-            var alternatingEnemy = new AlternatingEnemy();
-            alternatingEnemy.Name = name;
-            alternatingEnemy.MaxHP = hp;
-            alternatingEnemy.Image = image;
-            alternatingEnemy.Resistances = new ResistanceArray();
-            return alternatingEnemy;
+            return new AlternatingEnemy
+            {
+                Name = name,
+                MaxHP = hp,
+                Image = EnemyImageAssets.GetEnemyImage(name),
+                Resistances = new ResistanceArray()
+            };
         }
     }
 }

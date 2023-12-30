@@ -78,16 +78,27 @@ namespace AscendedZ
         };
         #endregion
 
-        public static StatusSkill STUN_1 = new StatusSkill()
+        public static StatusSkill STUN_S1 = new StatusSkill()
         {
             Name = "Stun",
             TargetType = TargetTypes.SINGLE_OPP,
             StartupAnimation = SkillAssets.STARTUP1_MG,
             EndupAnimation = SkillAssets.STUN_T1,
             Icon = SkillAssets.STUN_ICON,
-            Status = new StunStatus()
+            Status = new StunStatus(),
         };
 
+        public static StatusSkill AGRO_S = new StatusSkill()
+        {
+            Name = "Agro",
+            TargetType = TargetTypes.SINGLE_OPP,
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.AGRO,
+            Icon = SkillAssets.AGRO_ICON,
+            Status = new AgroStatus()
+        };
+
+        /*
         public static StatusSkill DARK_BUFF_1 = new StatusSkill()
         {
             Name = "Dark Boost",
@@ -97,6 +108,7 @@ namespace AscendedZ
             Icon = SkillAssets.DARK_ICON,
             Status = new ElementBuffStatus(Elements.Dark, 2)
         };
+        */
 
         public static HealSkill HEAL_1 = new HealSkill()
         {

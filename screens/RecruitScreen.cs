@@ -2,6 +2,7 @@ using AscendedZ;
 using AscendedZ.currency;
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
+using AscendedZ.game_object;
 using AscendedZ.skills;
 using Godot;
 using System;
@@ -48,7 +49,7 @@ public partial class RecruitScreen : CenterContainer
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _availableRecruits = this.GetNode<ItemList>("VBoxContainer/HBoxContainer/VBoxContainer2/PartyMemberList");
+        _availableRecruits = this.GetNode<ItemList>("%PartyMemberList");
         _displayImage = this.GetNode<TextureRect>("VBoxContainer/HBoxContainer/VBoxContainer/CharContainer/CharImageBox");
         _displayName = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/CenterContainer/CharNameLabel");
         _displayDescription = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/CharDescription/MarginContainer/CharDescriptionBox");
@@ -103,13 +104,15 @@ public partial class RecruitScreen : CenterContainer
         _availableRecruits.Clear();
 
         MainPlayer mainPlayer = PersistentGameObjects.Instance().MainPlayer;
-        foreach (OverworldEntity p in _availablePartyMembers)
+        for(int availableIndex = _availablePartyMembers.Count - 1; availableIndex >= 0; availableIndex--)
         {
+            OverworldEntity availablePartyMember = _availablePartyMembers[availableIndex];
+
             string owned = string.Empty;
-            if (mainPlayer.IsPartyMemberOwned(p.Name))
+            if (mainPlayer.IsPartyMemberOwned(availablePartyMember.Name))
                 owned = " [OWNED]";
 
-            _availableRecruits.AddItem($"{p.Name} - {p.VorpexValue} VC{owned}");
+            _availableRecruits.AddItem($"{availablePartyMember.Name} - {availablePartyMember.VorpexValue} VC{owned}");
         }
 
         if(_availablePartyMembers.Count == 0)
@@ -128,7 +131,8 @@ public partial class RecruitScreen : CenterContainer
 
     private void DisplayPartyMemberOnScreen(int index)
     {
-        OverworldEntity member = _availablePartyMembers[index];
+        int actualIndex = (_availablePartyMembers.Count - 1) - index;
+        OverworldEntity member = _availablePartyMembers[actualIndex];
         _displayImage.Texture = ResourceLoader.Load<Texture2D>(member.Image);
         _displayName.Text = member.Name;
         _displayDescription.Text = member.ToString().TrimEnd('\r','\n');

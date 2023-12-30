@@ -17,7 +17,7 @@ namespace AscendedZ
 
         private static readonly HashSet<int> REWARD_TIERS = new HashSet<int>()
         {
-            1, 4
+            1, 4, 5
         };
 
         public static bool CanGenerateRewardsAtTier(int tier)
@@ -39,7 +39,7 @@ namespace AscendedZ
             {
                 rewards.Add(new Vorpex() { Amount = 1 });
             }
-            else if (tier == 1)
+            else if (tier >= 6)
             {
                 int amount = (int)(A * Math.Log(tier - B) + C);
                 rewards.Add(new Vorpex() { Amount = amount });

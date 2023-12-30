@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://u5qjtwoh7wj2"]
 
 [ext_resource type="Texture2D" uid="uid://cm3mrnrncgbut" path="res://cg_backgrounds/bg00101.jpg" id="1"]
-[ext_resource type="PackedScene" uid="uid://j8w2qimbnd78" path="res://controls/AscendedTextbox.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://j8w2qimbnd78" path="res://screens/AscendedTextbox.tscn" id="2"]
 [ext_resource type="Script" path="res://screens/CGCutsceneScreen.cs" id="3"]
 
 [node name="CutsceneScreen" type="Node2D"]

@@ -12,9 +12,13 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public EnemyMaker()
         {
-            _enemyFactories = new List<EnemyFactory>();
-            _enemyFactories.Add(new AlternatingEnemyFactory());
-            _enemyFactories.Add(new MiscOneOffEnemyFactory());
+            _enemyFactories = new List<EnemyFactory> 
+            {
+                new AlternatingEnemyFactory(),
+                new UniqueEnemyFactory(),
+                new StatusAttackEnemyFactory(),
+                new WeaknessHunterEnemyFactory()
+            };
         }
 
         public Enemy MakeEnemy(string name)

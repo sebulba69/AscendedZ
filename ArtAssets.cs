@@ -1,6 +1,7 @@
 using AscendedZ.entities;
 using AscendedZ.skills;
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,7 +42,7 @@ namespace AscendedZ
             }
         }
 
-        public static Dictionary<string, string> PartyMemberPics = new Dictionary<string, string> 
+        public static System.Collections.Generic.Dictionary<string, string> PartyMemberPics = new System.Collections.Generic.Dictionary<string, string> 
         {
             { PartyNames.LOCPHIEDON, "res://party_members/newpicture86.png" },
             { PartyNames.GAGAR, "res://party_members/newpicture56_Gagar.png" },
@@ -51,6 +52,17 @@ namespace AscendedZ
             { PartyNames.MAXWALD, "res://party_members/newpicture57_maxwald_light.png" },
             { PartyNames.HALVIA, "res://party_members/halvia.png" }
         };
+    }
+
+    public class EnemyImageAssets
+    {
+        private static readonly string ENEMY_PIC_DIR = "res://enemy_pics/";
+
+        public static string GetEnemyImage(string name)
+        {
+            string nameToLower = name.ToLower();
+            return $"{ENEMY_PIC_DIR}{nameToLower}.png";
+        }
     }
 
     public class SkillAssets
@@ -67,6 +79,7 @@ namespace AscendedZ
         public static readonly string DARK_T1 = "dark1";
         public static readonly string HEAL_T1 = "heal1";
         public static readonly string STUN_T1 = "stun1";
+        public static readonly string AGRO = "agro";
 
         // ICONS + ICON_STRINGS
         public static readonly string ICON_ATLAS = "res://misc_icons/IconSet.png";
@@ -80,13 +93,14 @@ namespace AscendedZ
         public static readonly string DARK_ICON = "Dark";
         public static readonly string HEAL_ICON = "Heal";
         public static readonly string STUN_ICON = "Stun";
+        public static readonly string AGRO_ICON = "Agro";
         public static readonly string PASS_ICON = "Pass";
         public static readonly string RETREAT_ICON = "Retreat";
 
         // Currency Icons
         public static readonly string VORPEX_ICON = "Vorpex";
 
-        public static readonly Dictionary<string, KeyValuePair<int, int>> ICONS = new Dictionary<string, KeyValuePair<int, int>>()
+        public static readonly System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>> ICONS = new System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>>()
         {
             [FIRE_ICON] = new KeyValuePair<int, int>(0, 128),
             [ICE_ICON] = new KeyValuePair<int, int>(32, 128),
@@ -96,10 +110,19 @@ namespace AscendedZ
             [DARK_ICON] = new KeyValuePair<int, int>(224, 128),
             [HEAL_ICON] = new KeyValuePair<int, int>(256, 128),
             [STUN_ICON] = new KeyValuePair<int, int>(288, 0),
+            [AGRO_ICON] = new KeyValuePair<int, int>(480, 0),
             [PASS_ICON] = new KeyValuePair<int, int>(352, 128),
             [RETREAT_ICON] = new KeyValuePair<int, int>(288, 576),
             [VORPEX_ICON] = new KeyValuePair<int, int>(448, 1376)
         };
+
+        public static KeyValuePair<int, int> GetIcon(string key)
+        {
+            if (string.IsNullOrEmpty(key) || !ICONS.ContainsKey(key))
+                throw new Exception($"{key} not present in dictionary.");
+
+            return ICONS[key];
+        }
 
         public static string GetElementIconByElementEnum(Elements element)
         {
@@ -124,7 +147,7 @@ namespace AscendedZ
 
         public static AtlasTexture GenerateIcon(string iconKey)
         {
-            KeyValuePair<int, int> coords = ICONS[iconKey];
+            KeyValuePair<int, int> coords = GetIcon(iconKey);
 
             AtlasTexture icon = new AtlasTexture();
             icon.Atlas = ResourceLoader.Load<Texture2D>("res://misc_icons/IconSet.png");

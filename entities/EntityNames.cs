@@ -28,10 +28,18 @@ namespace AscendedZ.entities
         public static readonly string CATTUTDRONI = "Cattu T'Droni";
 
         // Enemies (Randomized for Floors)
-        // tbd
+        // agro - status
+        public static readonly string THYLAF = "Thylaf"; // elec
+        public static readonly string ARWIG = "Arwig"; // ice
+        public static readonly string RICCMAN = "Riccman"; // wind
+
+        // wex hunters
+        public static readonly string ISENALD = "Isenald"; // light
+        public static readonly string GARDMUEL = "Gardmuel"; // dark
+        public static readonly string SACHAEL = "Sachael"; // fire
 
         // Bosses (Normal)
-        public static readonly string HARBINGER = "Harbinger";
+        public static readonly string HARBINGER = "Harbinger, Mangler of Legs";
 
         // Boss (Sigil)
         // tbd

@@ -31,10 +31,10 @@ namespace AscendedZ.entities.enemy_objects.bosses
         {
             _isBoss = true;
 
-            Name = "Harbinger, Mangler of Legs";
+            Name = EnemyNames.HARBINGER;
 
             MaxHP = 30;
-            Image = "res://enemy_pics/newpicture125.png";
+            Image = EnemyImageAssets.GetEnemyImage(Name);
 
             Resistances = new ResistanceArray();
 
@@ -43,7 +43,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Skills.Add(SkillDatabase.ELEC_1.Clone()); // 0
             Skills.Add(SkillDatabase.ICE_1.Clone()); // 1
             Skills.Add(SkillDatabase.DARK_1.Clone()); // 2
-            Skills.Add(SkillDatabase.STUN_1.Clone()); // 3
+            Skills.Add(SkillDatabase.STUN_S1.Clone()); // 3
 
             _currentMove = 0;
             _currentScript = 0;

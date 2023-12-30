@@ -1,6 +1,7 @@
 using AscendedZ;
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
+using AscendedZ.game_object;
 using Godot;
 using System;
 using System.Collections.Generic;
