@@ -24,6 +24,7 @@ namespace AscendedZ
 
         public static readonly string DUNGEON1_4 = "res://music/dungeons/dungeon1-4.ogg";
         public static readonly string DUNGEON5 = "res://music/dungeons/dungeon5.ogg";
+        public static readonly string DUNGEON6_9 = "res://music/dungeons/dungeon6-9.ogg";
 
         public static string GetOverworldTrack(string key)
         {
@@ -44,6 +45,10 @@ namespace AscendedZ
             else if(tier == 5)
             {
                 return DUNGEON5;
+            }
+            else if(tier > 5 && tier <= 9)
+            {
+                return DUNGEON6_9;
             }
             else
             {

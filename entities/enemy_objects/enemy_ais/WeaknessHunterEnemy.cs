@@ -1,4 +1,5 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.skills;
 using Godot;
@@ -17,38 +18,46 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
     {
         public WeaknessHunterEnemy() : base()
         {
+            Description = $"Class: Weakness Hunter Enemy\nDescription: Will always pick characters who are weak to a skill they possess.\nIf a weakness isn't present, they will attack randomly.";
         }
 
-        /// <summary>
-        /// WeaknessHunters always pick targets that are weak to the skill they choose
-        /// unless the agro status is in place.
-        /// </summary>
-        /// <param name="gameState"></param>
-        /// <returns></returns>
-        public override BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
+        public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
         {
-            BattleEntity target = base.GetNextTarget(battleSceneObject);
+            // this is the default action that'll be used if no one has a weakness to anything this enemy has
+            EnemyAction action = base.GetNextAction(battleSceneObject);
 
-            // if the agro status is not in effect,
-            if(!_isAgroOverride)
+            List<BattlePlayer> players = battleSceneObject.AlivePlayers;
+
+            foreach(var skill in Skills)
             {
-                List<BattlePlayer> partyMembers = battleSceneObject.AlivePlayers;
-                if(_selectedSkill.Id == SkillId.Elemental)
+                if(skill.Id == SkillId.Elemental)
                 {
-                    ElementSkill elementSkill = (ElementSkill)_selectedSkill;
+                    ElementSkill elementSkill = (ElementSkill)skill;
                     
-                    foreach(BattlePlayer player in partyMembers)
+                    // Agro Status overrides this enemy's AI
+                    if (action.Target.StatusHandler.HasStatus(statuses.StatusId.AgroStatus))
                     {
-                        if (player.Resistances.IsWeakToElement(elementSkill.Element))
+                        if (action.Target.Resistances.IsWeakToElement(elementSkill.Element))
                         {
-                            target = player;
+                            action.Skill = elementSkill;
+                            break;
+                        }     
+                    }
+                    else
+                    {
+                        List<BattlePlayer> weakToElement = players.FindAll(player => player.Resistances.IsWeakToElement(elementSkill.Element));
+                        if (weakToElement.Count != 0)
+                        {
+                            int totalTargets = weakToElement.Count;
+                            action.Target = weakToElement[_rng.Next(totalTargets)];
+                            action.Skill = elementSkill;
                             break;
                         }
                     }
                 }
             }
 
-            return target;  
+            return action;
         }
 
         public override void ResetEnemyState()

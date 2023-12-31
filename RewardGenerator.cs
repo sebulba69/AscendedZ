@@ -22,7 +22,7 @@ namespace AscendedZ
 
         public static bool CanGenerateRewardsAtTier(int tier)
         {
-            return (REWARD_TIERS.Contains(tier) || tier % 5 == 0);
+            return (REWARD_TIERS.Contains(tier) || tier >= 6);
         }
 
         /// <summary>
@@ -35,14 +35,14 @@ namespace AscendedZ
         {
             List<Currency> rewards = new List<Currency>();
 
-            if (REWARD_TIERS.Contains(tier))
-            {
-                rewards.Add(new Vorpex() { Amount = 1 });
-            }
-            else if (tier >= 6)
+            if (tier >= 6)
             {
                 int amount = (int)(A * Math.Log(tier - B) + C);
                 rewards.Add(new Vorpex() { Amount = amount });
+            }
+            else
+            {
+                rewards.Add(new Vorpex() { Amount = 1 });
             }
 
             return rewards;

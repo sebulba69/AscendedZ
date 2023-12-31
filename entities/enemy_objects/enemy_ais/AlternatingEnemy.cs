@@ -1,6 +1,8 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.skills;
+using AscendedZ.statuses;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
     /// </summary>
     public class AlternatingEnemy : Enemy
     {
-        private Random _rng;
+        protected Random _rng;
         protected int _currentMove = 0;
         protected int CurrentMove
         {
@@ -31,53 +33,45 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             }
         }
 
-        protected ISkill _selectedSkill;
         protected bool _isAgroOverride = false;
 
         public AlternatingEnemy() : base()
         {
             _rng = new Random();
             Turns = 1;
+            Description = $"Class: Alternating Enemy\nDescription: Randomly picks targets for an attack.\nIt will alternate through each of its skills at least once.";
         }
 
-        /// <summary>
-        /// AlternatingEnemies are enemies who ignore the gameState and simply alternates moves
-        /// </summary>
-        /// <param name="gameState"></param>
-        /// <returns></returns>
-        public override ISkill GetNextMove(BattleSceneObject battleSceneObject)
+        public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
         {
-            _selectedSkill = Skills[CurrentMove++];
-            return _selectedSkill;
-        }
+            ISkill skill = Skills[CurrentMove++];
+            BattleEntity target;
 
-        /// <summary>
-        /// AlternatingEnemy always pick targets at random.
-        /// </summary>
-        /// <param name="gameState"></param>
-        /// <returns></returns>
-        public override BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
-        {
             List<BattlePlayer> partyMembers = battleSceneObject.AlivePlayers;
             BattlePlayer agroStatus = partyMembers.Find(player => { return player.StatusHandler.HasStatus(statuses.StatusId.AgroStatus); });
 
             // someone has the agro status
-            if(agroStatus != null)
+            if (agroStatus != null)
             {
                 _isAgroOverride = true;
-                return agroStatus;
+                target = agroStatus;
             }
             else
             {
                 int i = _rng.Next(partyMembers.Count);
-                return partyMembers[i];
+                target = partyMembers[i];
             }
+
+            return new EnemyAction 
+            { 
+                Skill = skill,
+                Target = target
+            };
         }
 
         public override void ResetEnemyState()
         {
             CurrentMove = 0;
-            _selectedSkill = null;
             _isAgroOverride = false;
         }
     }

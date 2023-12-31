@@ -27,7 +27,7 @@ public partial class MainScreen : Node2D
 
         InitializeMusicButton(gameObject);
         InitializePlayerInformation(gameObject);
-        InitializeButtons();
+        InitializeButtons(gameObject.MaxTier);
     }
 
     #region Setup functions
@@ -77,11 +77,15 @@ public partial class MainScreen : Node2D
         UpdateCurrencyDisplay();
     }
 
-    private void InitializeButtons()
+    private void InitializeButtons(int tier)
     {
         Button menuButton = this.GetNode<Button>("%MenuButton");
         Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button recruitButton = this.GetNode<Button>("%RecruitButton");
+        Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
+
+        if (tier > 5)
+            upgradeButton.Visible = true;
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
@@ -90,6 +94,7 @@ public partial class MainScreen : Node2D
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
+        upgradeButton.MouseEntered += () => { _tooltip.Text = "Upgrade Party Members with Vorpex."; };
     }
     #endregion
 
@@ -111,6 +116,14 @@ public partial class MainScreen : Node2D
             display.Call("SetCurrencyToDisplay", currency.Icon, currency.Amount);
         }
     }
+    private void _OnMenuButtonPressed()
+    {
+        _mainUIContainer.Visible = false;
+        var instanceOfPackedScene = ResourceLoader.Load<PackedScene>(Scenes.MENU).Instantiate();
+
+        _root.AddChild(instanceOfPackedScene);
+        instanceOfPackedScene.Connect("EndMenuScene", new Callable(this, "_OnMenuClosed"));
+    }
 
     private void _OnEmbarkButtonPressed()
     {
@@ -122,13 +135,9 @@ public partial class MainScreen : Node2D
         DisplayScene(Scenes.MAIN_RECRUIT);
     }
 
-    private void _OnMenuButtonPressed()
+    private void _OnUpgradeButtonPressed()
     {
-        _mainUIContainer.Visible = false;
-        var instanceOfPackedScene = ResourceLoader.Load<PackedScene>(Scenes.MENU).Instantiate();
-        
-        _root.AddChild(instanceOfPackedScene);
-        instanceOfPackedScene.Connect("EndMenuScene", new Callable(this, "_OnMenuClosed"));
+        DisplayScene(Scenes.UPGRADE);
     }
 
     private void _OnMenuClosed(bool quitToStart)

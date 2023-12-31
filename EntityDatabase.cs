@@ -78,8 +78,6 @@ namespace AscendedZ
 
         public static List<Enemy> MakeBattleEncounter(int tier)
         {
-            
-
             List<Enemy> encounter = new List<Enemy>();
             if ((tier - RANDOM_TIER) < 0)
             {
@@ -111,7 +109,7 @@ namespace AscendedZ
                     }
                     else
                     {
-                        int numEnemies = RANDOM.Next(1, 4);
+                        int numEnemies = RANDOM.Next(2, 4);
                         for (int i = 0; i < numEnemies; i++)
                         {
                             int randomEnemyIndex = RANDOM.Next(RANDOM_ENEMIES.Count);

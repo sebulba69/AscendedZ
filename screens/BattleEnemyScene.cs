@@ -180,9 +180,10 @@ public partial class BattleEnemyScene : Node2D
             var enemyBox = (enemy.IsBoss) 
                 ? ResourceLoader.Load<PackedScene>(Scenes.BOSS_BOX).Instantiate()
                 : ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate();
-
+            
             _enemyMembers.AddChild(enemyBox);
             enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
+            enemyBox.Call("SetDescription", enemy.Description);
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff

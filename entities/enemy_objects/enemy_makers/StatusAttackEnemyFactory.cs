@@ -21,7 +21,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeThylaf()
         {
-            var thylaf = MakeStatusAttackEnemy(EnemyNames.THYLAF, 6);
+            var thylaf = MakeAgroStatusEnemy(EnemyNames.THYLAF, 6);
 
             thylaf.Resistances.CreateResistance(ResistanceType.Wk, Elements.Wind);
 
@@ -32,7 +32,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeArwig()
         {
-            var arwig = MakeStatusAttackEnemy(EnemyNames.ARWIG, 6);
+            var arwig = MakeAgroStatusEnemy(EnemyNames.ARWIG, 6);
 
             arwig.Resistances.CreateResistance(ResistanceType.Wk, Elements.Fir);
 
@@ -43,7 +43,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeRiccman()
         {
-            var riccman = MakeStatusAttackEnemy(EnemyNames.RICCMAN, 6);
+            var riccman = MakeAgroStatusEnemy(EnemyNames.RICCMAN, 6);
 
             riccman.Resistances.CreateResistance(ResistanceType.Wk, Elements.Elec);
 
@@ -52,7 +52,18 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return riccman;
         }
 
-        private Enemy MakeStatusAttackEnemy(string name, int hp)
+        private Enemy MakeAgroStatusEnemy(string name, int hp)
+        {
+            var statusAttackEnemy = MakeStatusAttackEnemy(name, hp);
+
+            statusAttackEnemy.Name = $"[AGRO] {statusAttackEnemy.Name}";
+            statusAttackEnemy.Status = new AgroStatus();
+            statusAttackEnemy.Skills.Add(SkillDatabase.AGRO_S.Clone());
+
+            return statusAttackEnemy;
+        }
+
+        private StatusAttackEnemy MakeStatusAttackEnemy(string name, int hp)
         {
             return new StatusAttackEnemy 
             {

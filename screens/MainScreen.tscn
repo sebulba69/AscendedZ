@@ -12,7 +12,7 @@ offset_right = 1511.0
 offset_bottom = 850.0
 
 [node name="Background" type="TextureRect" parent="CenterContainer"]
-custom_minimum_size = Vector2(1511, 850)
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 2
 texture = ExtResource("2")
 expand_mode = 1
@@ -120,6 +120,15 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Recruit"
+
+[node name="UpgradePartyButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 40
+text = "Upgrade Party"
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer"]
 layout_mode = 2

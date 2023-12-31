@@ -31,8 +31,11 @@ namespace AscendedZ.battle.battle_state_machine
             var active = _enemies[_activeEnemy];
 
             BattleResult result = default(BattleResult);
-            ISkill skill = active.GetNextMove(battleSceneObject);
-            BattleEntity target = active.GetNextTarget(battleSceneObject);
+
+            EnemyAction action = active.GetNextAction(battleSceneObject);
+
+            ISkill skill = action.Skill;
+            BattleEntity target = action.Target;
 
             switch (skill.TargetType)
             {

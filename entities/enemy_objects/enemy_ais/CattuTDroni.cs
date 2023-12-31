@@ -1,4 +1,5 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.resistances;
 using AscendedZ.skills;
@@ -38,6 +39,17 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             Turns = 2;
 
             _rng = new Random();
+
+            Description = $"Class: Stun Enemy (Unique)\nDescription: Applies Stun to a random player without it,\nthen it will repeatedly attack that player\nuntil the status is in effect.";
+        }
+
+        public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
+        {
+            return new EnemyAction
+            {
+                Skill = GetNextMove(battleSceneObject),
+                Target = GetNextTarget(battleSceneObject)
+            };
         }
 
         /// <summary>
@@ -45,7 +57,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         /// </summary>
         /// <param name="gameState"></param>
         /// <returns></returns>
-        public override ISkill GetNextMove(BattleSceneObject battleSceneObject)
+        public ISkill GetNextMove(BattleSceneObject battleSceneObject)
         {
             var partyMembers = battleSceneObject.AlivePlayers;
 
@@ -87,7 +99,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         /// </summary>
         /// <param name="gameState"></param>
         /// <returns></returns>
-        public override BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
+        public BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
         {
             return _target;
         }

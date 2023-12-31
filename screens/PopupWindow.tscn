@@ -9,7 +9,7 @@ offset_bottom = 850.0
 script = ExtResource("1_ns51k")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(500, 150)
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

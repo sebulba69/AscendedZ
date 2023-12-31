@@ -1,4 +1,5 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.skills;
 using System;
@@ -14,6 +15,8 @@ namespace AscendedZ.entities.enemy_objects
     {
         protected bool _isBoss = false;
         public bool IsBoss { get => _isBoss; }
+
+        public string Description { get; protected set; }
 
         public Enemy() {}
 
@@ -35,12 +38,13 @@ namespace AscendedZ.entities.enemy_objects
             throw new NotImplementedException();
         }
 
-        public virtual ISkill GetNextMove(BattleSceneObject gameState)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual BattleEntity GetNextTarget(BattleSceneObject gameState)
+        /// <summary>
+        /// Get a Target + a Skill to be used during the next battle.
+        /// </summary>
+        /// <param name="battleSceneObject"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public virtual EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
         {
             throw new NotImplementedException();
         }

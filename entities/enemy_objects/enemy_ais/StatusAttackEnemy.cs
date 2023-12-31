@@ -1,4 +1,5 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.skills;
 using AscendedZ.statuses;
@@ -22,48 +23,57 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         private const int STATUS_SKILL = 0;
         private const int ATTACK_SKILL = 1;
 
+        public Status Status { set => _status = value; }
+
         public StatusAttackEnemy()
         {
             _rng = new Random();
             Turns = 1;
+            Description = $"Class: Status Enemy\nDescription: Randomly applies a status to all players who don't have one,\nthen it focuses on random attacks.";
         }
 
-        /// <summary>
-        /// If the status wasn't applied to a character, apply it.
-        /// </summary>
-        /// <param name="battleSceneObject"></param>
-        /// <returns></returns>
-        public override ISkill GetNextMove(BattleSceneObject battleSceneObject)
+        public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
         {
             List<BattlePlayer> players = battleSceneObject.AlivePlayers;
-
-            // find a player who is affected by the status
-            BattlePlayer playerAffectedByStatus = players.Find((player) => { return player.StatusHandler.HasStatus(_status.Id); });
-
             ISkill skill;
-            if (playerAffectedByStatus == null)
-                skill = Skills[STATUS_SKILL];
-            else
-                skill = Skills[ATTACK_SKILL];
+            BattleEntity target;
 
-            return skill;
+            BattlePlayer playerAffectedByAgro = players.Find((player) => { return player.StatusHandler.HasStatus(StatusId.AgroStatus); });
+
+            // agro overrides this enemy's programming
+            if(playerAffectedByAgro == null)
+            {
+                // find a player who does not have the status
+                List<BattlePlayer> playersUnaffectedByStatus = players.FindAll((player) => { return !player.StatusHandler.HasStatus(_status.Id); });
+
+                if (playersUnaffectedByStatus.Count > 0)
+                {
+                    skill = Skills[STATUS_SKILL];
+                    target = playersUnaffectedByStatus[_rng.Next(playersUnaffectedByStatus.Count)];
+                }
+                else
+                {
+                    skill = Skills[ATTACK_SKILL];
+                    target = players[_rng.Next(players.Count)];
+                }
+            }
+            else
+            {
+                skill = Skills[ATTACK_SKILL];
+                target = playerAffectedByAgro;
+            }
+
+
+            return new EnemyAction
+            {
+                Skill = skill,
+                Target = target
+            };
         }
 
-        /// <summary>
-        /// Get the next target who is not affected by the status.
-        /// </summary>
-        /// <param name="battleSceneObject"></param>
-        /// <returns></returns>
-        public override BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
+        public override void ResetEnemyState()
         {
-            // find a player who is affected by the status
-            List<BattlePlayer> players = battleSceneObject.AlivePlayers;
-            BattlePlayer playerAffectedByStatus = players.Find((player) => { return player.StatusHandler.HasStatus(_status.Id); });
-
-            if(playerAffectedByStatus == null)
-                return players[_rng.Next(players.Count)];
-            else
-                return playerAffectedByStatus;
+            // Do nothing.
         }
     }
 }

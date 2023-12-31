@@ -73,7 +73,6 @@ public partial class EntityDisplayBox : PanelContainer
 
         if (wrapper.IsBoss)
         {
-            var enemyEntity = (Enemy)entity;
             var bossHP = this.GetNode<HBoxContainer>("%HP");
             bossHP.Call("InitializeBossHPBar", entity.HP);
         }
@@ -87,6 +86,12 @@ public partial class EntityDisplayBox : PanelContainer
         name.Text = entity.Name;
         _resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
         picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
+    }
+
+    public void SetDescription(string description)
+    {
+        TextureRect picture = this.GetNode<TextureRect>("%Picture");
+        picture.TooltipText = description;
     }
 
     public void UpdateEntityDisplay(EntityWrapper wrapper)

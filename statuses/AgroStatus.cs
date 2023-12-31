@@ -11,9 +11,13 @@ namespace AscendedZ.statuses
 {
     public class AgroStatus : Status
     {
+        private int _activeTurns;
+        private const int ACTIVE_TURNS = 2;
+
         public AgroStatus() : base()
         {
             _id = StatusId.AgroStatus;
+            _activeTurns = 0;
             this.Icon = SkillAssets.AGRO_ICON;
         }
 
@@ -31,10 +35,10 @@ namespace AscendedZ.statuses
         /// </summary>
         public override void UpdateStatusTurns(BattleEntity entity)
         {
-            if (!this.Active)
-                this.Active = true;
+            _activeTurns++;
 
-            this.RemoveStatus = true;
+            if(_activeTurns == ACTIVE_TURNS)
+                this.RemoveStatus = true;
         }
 
         public override StatusIconWrapper CreateIconWrapper()
@@ -42,7 +46,7 @@ namespace AscendedZ.statuses
             StatusIconWrapper wrapper = new StatusIconWrapper();
 
             wrapper.Icon = this.Icon;
-            wrapper.Counter = 1;
+            wrapper.Counter = ACTIVE_TURNS - _activeTurns;
             wrapper.CounterColor = Colors.Green;
             wrapper.Description = $"Agro Status: All enemies target the player with the agro status.";
 

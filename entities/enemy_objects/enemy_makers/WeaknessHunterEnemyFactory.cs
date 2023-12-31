@@ -59,7 +59,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             return new WeaknessHunterEnemy
             {
-                Name = name,
+                Name = $"[WEX] {name}",
                 MaxHP = hp,
                 Image = EnemyImageAssets.GetEnemyImage(name),
                 Resistances = new ResistanceArray()

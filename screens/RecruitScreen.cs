@@ -62,6 +62,7 @@ public partial class RecruitScreen : CenterContainer
         backButton.Pressed += _OnBackButtonPressed;
 
         _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.Instance().MaxTier);
+        _availablePartyMembers.Reverse();
         _availableRecruits.Connect("item_selected",new Callable(this,"_OnItemSelected"));
 
         _vorpex = PersistentGameObjects.Instance().MainPlayer.Wallet.Currency[SkillAssets.VORPEX_ICON];
@@ -104,10 +105,8 @@ public partial class RecruitScreen : CenterContainer
         _availableRecruits.Clear();
 
         MainPlayer mainPlayer = PersistentGameObjects.Instance().MainPlayer;
-        for(int availableIndex = _availablePartyMembers.Count - 1; availableIndex >= 0; availableIndex--)
+        foreach(OverworldEntity availablePartyMember in _availablePartyMembers)
         {
-            OverworldEntity availablePartyMember = _availablePartyMembers[availableIndex];
-
             string owned = string.Empty;
             if (mainPlayer.IsPartyMemberOwned(availablePartyMember.Name))
                 owned = " [OWNED]";
@@ -131,8 +130,7 @@ public partial class RecruitScreen : CenterContainer
 
     private void DisplayPartyMemberOnScreen(int index)
     {
-        int actualIndex = (_availablePartyMembers.Count - 1) - index;
-        OverworldEntity member = _availablePartyMembers[actualIndex];
+        OverworldEntity member = _availablePartyMembers[index];
         _displayImage.Texture = ResourceLoader.Load<Texture2D>(member.Image);
         _displayName.Text = member.Name;
         _displayDescription.Text = member.ToString().TrimEnd('\r','\n');

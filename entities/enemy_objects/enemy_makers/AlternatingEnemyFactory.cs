@@ -73,7 +73,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             return new AlternatingEnemy
             {
-                Name = name,
+                Name = $"[AE] {name}",
                 MaxHP = hp,
                 Image = EnemyImageAssets.GetEnemyImage(name),
                 Resistances = new ResistanceArray()

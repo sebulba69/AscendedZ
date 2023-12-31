@@ -1,4 +1,5 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.resistances;
 using AscendedZ.skills;
@@ -52,7 +53,16 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Turns = 2;
         }
 
-        public override ISkill GetNextMove(BattleSceneObject battleSceneObject)
+        public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
+        {
+            return new EnemyAction
+            {
+                Skill = GetNextMove(battleSceneObject),
+                Target = GetNextTarget(battleSceneObject)
+            };
+        }
+
+        public ISkill GetNextMove(BattleSceneObject battleSceneObject)
         {
             _pickedSkill = this.Skills[_rng.Next(STUN)];
             if (_currentScript == 0)
@@ -88,7 +98,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
         /// </summary>
         /// <param name="gameState"></param>
         /// <returns></returns>
-        public override BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
+        public BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
         {
             var alivePlayers = battleSceneObject.AlivePlayers;
             if(_currentScript == 0)

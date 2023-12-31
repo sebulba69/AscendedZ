@@ -33,6 +33,11 @@ namespace AscendedZ.entities
         /// </summary>
         public List<OverworldEntity> ReserveMembers { get; set; } = new();
 
+        /// <summary>
+        /// Check if a party member is in your reserves/party by name.
+        /// </summary>
+        /// <param name="partyMemberName"></param>
+        /// <returns></returns>
         public bool IsPartyMemberOwned(string partyMemberName)
         {
             bool isPartyMemberOwned = false;
