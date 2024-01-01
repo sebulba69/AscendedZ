@@ -88,7 +88,7 @@ namespace AscendedZ
             }
             else
             {
-                GameObject gameObject = PersistentGameObjects.Instance();
+                GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
                 int encounterIndex = tier - RANDOM_TIER;
 

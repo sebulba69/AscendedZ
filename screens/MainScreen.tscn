@@ -105,14 +105,6 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Menu"
 
-[node name="EmbarkButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 40
-text = "Embark"
-
 [node name="RecruitButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
@@ -120,6 +112,15 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Recruit"
+
+[node name="EmbarkButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 40
+text = "Embark"
 
 [node name="UpgradePartyButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
 unique_name_in_owner = true

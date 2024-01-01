@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Xml.Linq;
 
 public partial class StartScreen : Node2D
 {
@@ -79,14 +80,14 @@ public partial class StartScreen : Node2D
 		rightButton.Pressed += _OnPlayerPicRightButtonPressed;
 
         // assets from loadGameScreen
-        var gameObject = PersistentGameObjects.Instance();
+        var saveObject = PersistentGameObjects.SaveObjectInstance();
 
 		_loadItems = this.GetNode<ItemList>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/ItemList");
 		Button loadContinueButton = this.GetNode<Button>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/GridContainer/LoadContButton");
 		Button loadBackButton = this.GetNode<Button>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/GridContainer/LoadBackButton");
 		Button loadDeleteButton = this.GetNode<Button>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/GridContainer/LoadDeleteButton");
 
-		foreach (var item in gameObject.SaveCache)
+		foreach (var item in saveObject.SaveCache)
 			_loadItems.AddItem(item.ToString());
 
 		if(_loadItems.ItemCount > 0)
@@ -150,7 +151,7 @@ public partial class StartScreen : Node2D
 		TextEdit playerName = this.GetNode<TextEdit>("CenterContainer/VBoxContainer/NewGameButtons/VBoxContainer/PanelContainer/TextEdit");
 		TextureRect playerPicture = this.GetNode<TextureRect>("CenterContainer/VBoxContainer/NewGameButtons/NewPlayerPicture");
 
-		CreateNewMainCharacter(playerName.Text, playerPicture.Texture.ResourcePath);
+        PersistentGameObjects.NewGame(playerName.Text, playerPicture.Texture.ResourcePath);
 
 		// start cutscene
 		PackedScene openingCutscene = ResourceLoader.Load<PackedScene>(Scenes.CUTSCENE);
@@ -166,40 +167,18 @@ public partial class StartScreen : Node2D
 		EnterMainScreen();
 	}
 
-	private void CreateNewMainCharacter(string name, string imagePath)
-	{
-		// grab a reference to our persistent game object
-		GameObject gameObject = PersistentGameObjects.Instance();
-
-        gameObject.MainPlayer = new MainPlayer()
-		{
-			Name = name,
-			Image = imagePath
-		};
-
-		Vorpex vorpex = new Vorpex() { Amount = 1 };
-
-        gameObject.MainPlayer
-			.Wallet.Currency.Add(vorpex.Name, vorpex);
-
-		gameObject.Tier = 1;
-		gameObject.MaxTier = 1;
-
-        PersistentGameObjects.SaveNew();
-	}
-
 	private void _OnLoadSaveFileClicked()
 	{
-		var persistentGameObject = PersistentGameObjects.Instance();
+		var saveObject = PersistentGameObjects.SaveObjectInstance();
 
-		if (persistentGameObject.SaveCache.Count > 0)
+		if (saveObject.SaveCache.Count > 0)
 		{
             if (_loadItems.GetSelectedItems().Length == 0)
                 return;
 
             // There can only be one selected item at a time.
             int selectedIndex = _loadItems.GetSelectedItems()[0];
-			var entry = persistentGameObject.SaveCache[selectedIndex];
+			var entry = saveObject.SaveCache[selectedIndex];
 
 			// load the selected entry into memory
 			PersistentGameObjects.Load(entry);
@@ -225,9 +204,9 @@ public partial class StartScreen : Node2D
 	{
 		if (isYesButtonPressed)
 		{
-            var persistentGameObject = PersistentGameObjects.Instance();
+            var saveObject = PersistentGameObjects.SaveObjectInstance();
 
-            if (persistentGameObject.SaveCache.Count > 0)
+            if (saveObject.SaveCache.Count > 0)
             {
                 if (_loadItems.GetSelectedItems().Length == 0)
                     return;
@@ -237,7 +216,7 @@ public partial class StartScreen : Node2D
                 PersistentGameObjects.DeleteSaveAtIndex(selectedIndex);
 
                 _loadItems.Clear();
-                foreach (var item in persistentGameObject.SaveCache)
+                foreach (var item in saveObject.SaveCache)
                     _loadItems.AddItem(item.ToString());
 
                 if (_loadItems.ItemCount > 0)

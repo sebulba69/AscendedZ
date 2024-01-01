@@ -17,13 +17,6 @@ namespace AscendedZ.game_object
         private int _maxTier = 1;
 
         /// <summary>
-        /// Path for saving
-        /// </summary>
-        public string SavePath { get; set; }
-
-        public List<SaveEntry> SaveCache { get; set; }
-
-        /// <summary>
         /// The current floor you're on as displayed to you by the UI.
         /// </summary>
         public int Tier
@@ -70,25 +63,6 @@ namespace AscendedZ.game_object
 
             if (Encounters == null)
                 Encounters = new List<List<string>>();
-        }
-
-        /// <summary>
-        /// Load the save cache from your save file, or creat it if none exist.
-        /// </summary>
-        public void Initialize(string saveCachePath)
-        {
-            SaveCache = JsonUtil.LoadObject<List<SaveEntry>>(saveCachePath);
-
-            // if we didn't load anything, then initialize a new savecache
-            if (SaveCache == null)
-            {
-                SaveCache = new List<SaveEntry>();
-            }
-        }
-
-        public void SaveSaveCache(string saveCachePath)
-        {
-            JsonUtil.SaveObject(SaveCache, saveCachePath);
         }
 
         public List<BattlePlayer> MakeBattlePlayerListFromParty()

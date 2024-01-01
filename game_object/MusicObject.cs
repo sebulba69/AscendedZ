@@ -38,10 +38,20 @@ namespace AscendedZ.game_object
         public void SetStreamPlayer(AudioStreamPlayer streamPlayer)
         {
             // stop the ongoing stream player if it's playing
-            if (_streamPlayer.Playing)
-                SavePlaybackPosition();
-
-            _streamPlayer = streamPlayer;
+            try
+            {
+                if (_streamPlayer.Playing)
+                    SavePlaybackPosition();
+            }
+            catch (System.ObjectDisposedException) 
+            { 
+                // This bug is possible when loading a new game after quitting from inside the menu.
+                // This catch will stop that from happening.
+            }
+            finally
+            {
+                _streamPlayer = streamPlayer;
+            }
         }
 
         public void PlayMusic(string music)

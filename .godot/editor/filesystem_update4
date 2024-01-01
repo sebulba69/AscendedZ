@@ -23,3 +23,8 @@ res://statuses/StatusIconWrapper.cs
 res://default_env.tres
 res://screens/UpgradeScreen.tscn
 res://screens/APBarStyleBox.tres
+res://screens/MainScreen.tscn
+res://screens/PartyMemberDisplay.tscn
+res://screens/UpgradeScreen.cs
+res://screens/PopupWindow.tscn
+res://screens/StartScreen.tscn

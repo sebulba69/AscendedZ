@@ -62,11 +62,11 @@ public partial class RecruitScreen : CenterContainer
         buyButton.Pressed += _OnBuyButtonPressed;
         backButton.Pressed += _OnBackButtonPressed;
 
-        _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.Instance().MaxTier);
+        _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.GameObjectInstance().MaxTier);
         _availablePartyMembers.Reverse();
         _availableRecruits.Connect("item_selected",new Callable(this,"_OnItemSelected"));
 
-        _vorpex = PersistentGameObjects.Instance().MainPlayer.Wallet.Currency[SkillAssets.VORPEX_ICON];
+        _vorpex = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet.Currency[SkillAssets.VORPEX_ICON];
         RefreshVendorWares(0);
     }
 
@@ -81,7 +81,7 @@ public partial class RecruitScreen : CenterContainer
         if (_availablePartyMembers.Count == 0)
             return;
 
-        GameObject instance = PersistentGameObjects.Instance();
+        GameObject instance = PersistentGameObjects.GameObjectInstance();
         MainPlayer mainPlayer = instance.MainPlayer;
 
         OverworldEntity partyMember = _availablePartyMembers[_selected];
@@ -105,7 +105,7 @@ public partial class RecruitScreen : CenterContainer
     {
         _availableRecruits.Clear();
 
-        MainPlayer mainPlayer = PersistentGameObjects.Instance().MainPlayer;
+        MainPlayer mainPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer;
         foreach(OverworldEntity availablePartyMember in _availablePartyMembers)
         {
             string owned = string.Empty;

@@ -27,7 +27,7 @@ public partial class EmbarkScreen : CenterContainer
 
     public override void _Ready()
     {
-        GameObject gameObject = PersistentGameObjects.Instance();
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
         _tierLabel = this.GetNode<Label>("%TierLabel");
         _reservePreviewMember = this.GetNode<PartyMemberDisplay>("%Preview");
@@ -56,19 +56,19 @@ public partial class EmbarkScreen : CenterContainer
         gameObject.Tier = gameObject.MaxTier;
         string tierText = "Dungeon Floor:";
         
-        _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().MaxTier}";
+        _tierLabel.Text = $"{tierText} {PersistentGameObjects.GameObjectInstance().MaxTier}";
 
         // on click events
         leftTier.Pressed += () => 
         {
-            PersistentGameObjects.Instance().Tier--;
-            _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().Tier}";
+            PersistentGameObjects.GameObjectInstance().Tier--;
+            _tierLabel.Text = $"{tierText} {PersistentGameObjects.GameObjectInstance().Tier}";
         };
 
         rightBtn.Pressed += () => 
         {
-            PersistentGameObjects.Instance().Tier++;
-            _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().Tier}"; 
+            PersistentGameObjects.GameObjectInstance().Tier++;
+            _tierLabel.Text = $"{tierText} {PersistentGameObjects.GameObjectInstance().Tier}"; 
         };
 
         _reserveItemList.Connect("item_selected",new Callable(this,"_OnItemSelected"));
@@ -191,7 +191,7 @@ public partial class EmbarkScreen : CenterContainer
     {
         bool buttonState = !_buttonStates[index];
 
-        PlayerParty party = PersistentGameObjects.Instance().MainPlayer.Party;
+        PlayerParty party = PersistentGameObjects.GameObjectInstance().MainPlayer.Party;
         OverworldEntity member = party.Party[index];
 
         // left if true, right if false

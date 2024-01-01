@@ -23,11 +23,11 @@ public partial class MainScreen : Node2D
         _audioPlayer = this.GetNode<AudioStreamPlayer>("%MusicPlayer");
         _musicSelectContainer = this.GetNode<PanelContainer>("%MusicSelectContainer");
 
-        GameObject gameObject = PersistentGameObjects.Instance();
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
         InitializeMusicButton(gameObject);
         InitializePlayerInformation(gameObject);
-        InitializeButtons(gameObject.MaxTier);
+        InitializeButtons(gameObject);
     }
 
     #region Setup functions
@@ -71,18 +71,25 @@ public partial class MainScreen : Node2D
         TextureRect playerPicture = this.GetNode<TextureRect>("%PlayerPicture");
         Label playerName = this.GetNode<Label>("%PlayerNameLabel");
 
-        MainPlayer player = PersistentGameObjects.Instance().MainPlayer;
+        MainPlayer player = PersistentGameObjects.GameObjectInstance().MainPlayer;
         playerPicture.Texture = ResourceLoader.Load<Texture2D>(player.Image);
         playerName.Text = $"[T. {gameObject.MaxTier}] {player.Name}";
         UpdateCurrencyDisplay();
     }
 
-    private void InitializeButtons(int tier)
+    private void InitializeButtons(GameObject gameObject)
     {
+        int tier = gameObject.MaxTier;
+        
         Button menuButton = this.GetNode<Button>("%MenuButton");
         Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button recruitButton = this.GetNode<Button>("%RecruitButton");
         Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
+
+        var player = gameObject.MainPlayer;
+
+        if (player.ReserveMembers.Count > 0 || player.Party.Count > 0 || tier > 1)
+            embarkButton.Visible = true;
 
         if (tier > 5)
             upgradeButton.Visible = true;
@@ -106,7 +113,7 @@ public partial class MainScreen : Node2D
         {
             currencyDisplay.RemoveChild(child);
         }
-        var wallet = PersistentGameObjects.Instance().MainPlayer.Wallet;
+        var wallet = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet;
         
         foreach (var key in wallet.Currency.Keys)
         {
@@ -133,6 +140,15 @@ public partial class MainScreen : Node2D
     private void _OnRecruitButtonPressed()
     {
         DisplayScene(Scenes.MAIN_RECRUIT);
+        var embarkButton = this.GetNode<Button>("%EmbarkButton");
+
+        if (!embarkButton.Visible)
+        {
+            GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+            var player = gameObject.MainPlayer;
+            if (player.ReserveMembers.Count > 0 || player.Party.Count > 0)
+                embarkButton.Visible = true;
+        }
     }
 
     private void _OnUpgradeButtonPressed()

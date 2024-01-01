@@ -35,7 +35,7 @@ public partial class UpgradeScreen : CenterContainer
 		_upgradeButton = this.GetNode<Button>("%UpgradeButton");
         _backButton = this.GetNode<Button>("%BackButton");
 
-		GameObject gameObject = PersistentGameObjects.Instance();
+		GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 		_wallet = gameObject.MainPlayer.Wallet;
 
         _selected = 0;

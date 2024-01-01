@@ -1,3 +1,4 @@
+using AscendedZ.currency.rewards;
 using AscendedZ.entities;
 using Godot;
 using System;
@@ -20,19 +21,78 @@ namespace AscendedZ.game_object
         /// </summary>
         private readonly static string SAVE_CACHE_PATH = "user://save_cache.json";
 
+        private static SaveObject _saveObject;
+
         private static GameObject _instance;
 
         private PersistentGameObjects() { }
 
-        public static GameObject Instance()
+        public static GameObject GameObjectInstance()
         {
             if (_instance == null)
             {
                 _instance = new GameObject();
-                _instance.Initialize(SAVE_CACHE_PATH);
             }
 
             return _instance;
+        }
+
+        public static SaveObject SaveObjectInstance()
+        {
+            if(_saveObject == null)
+            {
+                _saveObject = new SaveObject();
+                _saveObject.Initialize(SAVE_CACHE_PATH);
+            }
+
+            return _saveObject;
+        }
+
+        /// <summary>
+        /// Create a new Game Object and save it.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="image"></param>
+        public static void NewGame(string name, string image)
+        {
+            _instance = new GameObject 
+            {
+                MainPlayer = new MainPlayer 
+                {
+                    Name = name,
+                    Image = image
+                },
+                Tier = 1,
+                MaxTier = 1
+            };
+
+            var mainPlayer = _instance.MainPlayer;
+
+            var vorpex = new Vorpex() { Amount = 1 };
+            mainPlayer.Wallet.Currency.Add(vorpex.Name, vorpex);
+
+            StringBuilder id = new StringBuilder();
+            Random random = new Random();
+            for (int i = 0; i < 10; i++)
+                id.Append(random.Next(0, 10));
+
+            string savePath = $"user://{id.ToString()}_{_instance.MainPlayer.Name}.json";
+
+            var saveObject = SaveObjectInstance();
+
+            saveObject.SaveCache.Add(new SaveEntry()
+            {
+                Path = savePath,
+                Name = _instance.MainPlayer.Name
+            });
+
+            saveObject.SavePathForCurrentGame = savePath;
+
+            // save our updated cache
+            JsonUtil.SaveObject(saveObject.SaveCache, SAVE_CACHE_PATH);
+
+            // create a new instance for our game and save it
+            Save();
         }
 
         /// <summary>
@@ -46,39 +106,15 @@ namespace AscendedZ.game_object
 
         public static void DeleteSaveAtIndex(int selectedIndex)
         {
-            var entry = _instance.SaveCache[selectedIndex];
-            _instance.SaveCache.RemoveAt(selectedIndex);
-            _instance.SaveSaveCache(SAVE_CACHE_PATH);
+            var saveObject = SaveObjectInstance();
+            var saveCache = saveObject.SaveCache;
+
+            var entry = saveCache[selectedIndex];
+            saveCache.RemoveAt(selectedIndex);
+
+            saveObject.SaveSaveCache(SAVE_CACHE_PATH);
 
             JsonUtil.DeleteFileAtPath(entry.Path);
-        }
-
-        /// <summary>
-        /// Save this object for the first time.
-        /// </summary>
-        public static void SaveNew()
-        {
-            StringBuilder id = new StringBuilder();
-            Random random = new Random();
-            for (int i = 0; i < 10; i++)
-                id.Append(random.Next(0, 10));
-
-            string savePath = $"user://{id.ToString()}_{_instance.MainPlayer.Name}.json";
-
-            SaveEntry saveEntry = new SaveEntry()
-            {
-                Path = savePath,
-                Name = _instance.MainPlayer.Name
-            };
-
-            _instance.SaveCache.Add(saveEntry);
-            _instance.SavePath = savePath;
-
-            // save our updated cache
-            JsonUtil.SaveObject(_instance.SaveCache, SAVE_CACHE_PATH);
-
-            // save our game instance
-            Save();
         }
 
         /// <summary>
@@ -86,7 +122,10 @@ namespace AscendedZ.game_object
         /// </summary>
         public static void Save()
         {
-            JsonUtil.SaveObject(_instance, _instance.SavePath);
+            var instance = GameObjectInstance();
+            var saveObject = SaveObjectInstance();
+
+            JsonUtil.SaveObject(instance, saveObject.SavePathForCurrentGame);
         }
     }
 }

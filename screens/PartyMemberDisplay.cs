@@ -24,7 +24,7 @@ public partial class PartyMemberDisplay : HBoxContainer
     public void DisplayPartyMember(int index, bool isReserve)
     {
         OverworldEntity partyMember;
-        var mainPlayer = PersistentGameObjects.Instance().MainPlayer;
+        var mainPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer;
 
         partyMember = (isReserve) ? mainPlayer.ReserveMembers[index] : mainPlayer.Party.Party[index];
 

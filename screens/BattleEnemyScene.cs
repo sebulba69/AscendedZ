@@ -66,7 +66,7 @@ public partial class BattleEnemyScene : Node2D
         _skillList.Connect("item_selected", new Callable(this, "_OnSkillListItemSelected"));
 
         AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
-        PersistentGameObjects.Instance().MusicPlayer.SetStreamPlayer(audioPlayer);
+        PersistentGameObjects.GameObjectInstance().MusicPlayer.SetStreamPlayer(audioPlayer);
 
         _backToHomeButton.Pressed += () =>
         {
@@ -84,7 +84,7 @@ public partial class BattleEnemyScene : Node2D
         _continueButton.Pressed += () =>
         {
             SetEndScreenVisibility(false);
-            PersistentGameObjects.Instance().Tier++;
+            PersistentGameObjects.GameObjectInstance().Tier++;
             InitializeBattleScene();
         };
 
@@ -162,7 +162,7 @@ public partial class BattleEnemyScene : Node2D
         _skillButton.Disabled = false;
 
         _battleSceneObject = new BattleSceneObject();
-        _battleSceneObject.InitializeEnemies(PersistentGameObjects.Instance().Tier);
+        _battleSceneObject.InitializeEnemies(PersistentGameObjects.GameObjectInstance().Tier);
         _battleSceneObject.InitializePartyMembers();
 
         _battleSceneObject.UpdateUI += _OnUIUpdate;
@@ -190,7 +190,7 @@ public partial class BattleEnemyScene : Node2D
         _battleSceneObject.StartBattle();
         ChangeAPBarWithTurnState(TurnState.PLAYER);
 
-        PersistentGameObjects.Instance().MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrack(PersistentGameObjects.Instance().Tier));
+        PersistentGameObjects.GameObjectInstance().MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrack(PersistentGameObjects.GameObjectInstance().Tier));
         _canInput = true;
     }
 
@@ -481,7 +481,7 @@ public partial class BattleEnemyScene : Node2D
         {
             endLabel.Text = "Encounter Complete!";
 
-            var gameObject = PersistentGameObjects.Instance();
+            var gameObject = PersistentGameObjects.GameObjectInstance();
             if (gameObject.Tier == gameObject.MaxTier)
             {
                 gameObject.MaxTier++;

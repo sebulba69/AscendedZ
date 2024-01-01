@@ -55,7 +55,7 @@ namespace AscendedZ.battle
         /// </summary>
         public void InitializePartyMembers()
         {
-            this.Players = PersistentGameObjects.Instance().MakeBattlePlayerListFromParty();
+            this.Players = PersistentGameObjects.GameObjectInstance().MakeBattlePlayerListFromParty();
             this.SetPartyMemberTurns();
         }
 

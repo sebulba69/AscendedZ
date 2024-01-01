@@ -17,7 +17,7 @@ public partial class RewardScreen : Control
 		_rewardsList = this.GetNode<ItemList>("%RewardList");
         _claimRewardsButton = this.GetNode<Button>("%ClaimButton");
 
-		int tier = PersistentGameObjects.Instance().Tier;
+		int tier = PersistentGameObjects.GameObjectInstance().Tier;
 		_rewards = RewardGenerator.GenerateReward(tier);
         foreach (Currency reward in _rewards)
         {
@@ -30,7 +30,7 @@ public partial class RewardScreen : Control
 
 	private void _OnClaimRewardsPressed()
 	{
-        var currency = PersistentGameObjects.Instance().MainPlayer.Wallet.Currency;
+        var currency = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet.Currency;
         foreach (Currency reward in _rewards)
         {
             if (currency.ContainsKey(reward.Name))

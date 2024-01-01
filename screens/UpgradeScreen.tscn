@@ -123,6 +123,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="CostLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_krmoi")
