@@ -1,4 +1,4 @@
-using AscendedZ.battle;
+﻿using AscendedZ.battle;
 using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.game_object;
@@ -15,9 +15,20 @@ namespace AscendedZ.skills
         private int _damage;
         private int _damageModifier = 0;
         private int _level = 0;
+        private string _baseName;
+        private string _name;
 
         public SkillId Id => SkillId.Elemental;
-        public string Name { get; set; }
+        public string Name 
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                if (string.IsNullOrEmpty(_baseName))
+                    _baseName = _name;
+            }
+        }
         public TargetTypes TargetType { get; set; }
         public Elements Element { get; set; }
 
@@ -54,24 +65,18 @@ namespace AscendedZ.skills
             return $"[{this.Element.ToString()}] {this.Name} ({this.Damage})";
         }
 
-        public void LevelUpEnemy(int level, int amount)
-        {
-            this.Name = $"{this.Name} +{level + 1}";
-            this.Damage += (amount / 4) + 1;
-        }
-
         public void LevelUp()
         {
             int boost = GetBoostValue();
 
             _level++;
-            this.Name = $"{this.Name} +{_level}";
+            this.Name = $"{_baseName} +{_level}";
             this.Damage += boost;
         }
 
         public string GetUpgradeString()
         {
-            return $"{ToString()} +{GetBoostValue()}";
+            return $"{ToString()} → {this.Damage + GetBoostValue()}";
         }
 
         private int GetBoostValue()

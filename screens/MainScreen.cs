@@ -86,17 +86,13 @@ public partial class MainScreen : Node2D
         Button recruitButton = this.GetNode<Button>("%RecruitButton");
         Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
 
-        var player = gameObject.MainPlayer;
-
-        if (player.ReserveMembers.Count > 0 || player.Party.Count > 0 || tier > 1)
-            embarkButton.Visible = true;
-
         if (tier > 5)
             upgradeButton.Visible = true;
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
         recruitButton.Pressed += _OnRecruitButtonPressed;
+        upgradeButton.Pressed += _OnUpgradeButtonPressed;
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
@@ -107,14 +103,17 @@ public partial class MainScreen : Node2D
 
     private void UpdateCurrencyDisplay()
     {
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+
         var currencyDisplay = this.GetNode("%Currency");
+        var embarkButton = this.GetNode<Button>("%EmbarkButton");
+        var wallet = gameObject.MainPlayer.Wallet;
 
         foreach (var child in currencyDisplay.GetChildren())
         {
             currencyDisplay.RemoveChild(child);
         }
-        var wallet = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet;
-        
+
         foreach (var key in wallet.Currency.Keys)
         {
             var display = ResourceLoader.Load<PackedScene>(Scenes.CURRENCY_DISPLAY).Instantiate();
@@ -122,6 +121,9 @@ public partial class MainScreen : Node2D
             var currency = wallet.Currency[key];
             display.Call("SetCurrencyToDisplay", currency.Icon, currency.Amount);
         }
+
+        if (gameObject.PartyMemberObtained)
+            embarkButton.Visible = true;
     }
     private void _OnMenuButtonPressed()
     {
@@ -140,15 +142,6 @@ public partial class MainScreen : Node2D
     private void _OnRecruitButtonPressed()
     {
         DisplayScene(Scenes.MAIN_RECRUIT);
-        var embarkButton = this.GetNode<Button>("%EmbarkButton");
-
-        if (!embarkButton.Visible)
-        {
-            GameObject gameObject = PersistentGameObjects.GameObjectInstance();
-            var player = gameObject.MainPlayer;
-            if (player.ReserveMembers.Count > 0 || player.Party.Count > 0)
-                embarkButton.Visible = true;
-        }
     }
 
     private void _OnUpgradeButtonPressed()

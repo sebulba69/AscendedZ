@@ -28,3 +28,6 @@ res://screens/PartyMemberDisplay.tscn
 res://screens/UpgradeScreen.cs
 res://screens/PopupWindow.tscn
 res://screens/StartScreen.tscn
+res://screens/RewardScreen.tscn
+res://screens/RecruitScreen.tscn
+res://screens/EmbarkScreen.tscn

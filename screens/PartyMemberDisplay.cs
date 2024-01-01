@@ -33,7 +33,7 @@ public partial class PartyMemberDisplay : HBoxContainer
             _playerPicture.Texture = ResourceLoader.Load<Texture2D>(partyMember.Image);
 
             StringBuilder description = new StringBuilder();
-            description.AppendLine(partyMember.Name);
+            description.AppendLine(partyMember.DisplayName);
             description.Append(partyMember.ToString());
 
             _description.Text = description.ToString();

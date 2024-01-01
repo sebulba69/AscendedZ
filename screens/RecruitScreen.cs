@@ -81,8 +81,8 @@ public partial class RecruitScreen : CenterContainer
         if (_availablePartyMembers.Count == 0)
             return;
 
-        GameObject instance = PersistentGameObjects.GameObjectInstance();
-        MainPlayer mainPlayer = instance.MainPlayer;
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+        MainPlayer mainPlayer = gameObject.MainPlayer;
 
         OverworldEntity partyMember = _availablePartyMembers[_selected];
 
@@ -97,6 +97,10 @@ public partial class RecruitScreen : CenterContainer
             mainPlayer.ReserveMembers.Add(partyMember);
 
             RefreshVendorWares(_selected);
+
+            if(!gameObject.PartyMemberObtained)
+                gameObject.PartyMemberObtained = true;
+
             PersistentGameObjects.Save();
         }
     }
@@ -112,7 +116,10 @@ public partial class RecruitScreen : CenterContainer
             if (mainPlayer.IsPartyMemberOwned(availablePartyMember.Name))
                 owned = " [OWNED]";
 
-            _availableRecruits.AddItem($"{availablePartyMember.Name} - {availablePartyMember.ShopCost} VC{owned}");
+            Texture2D recruitTexture = ResourceLoader.Load<Texture2D>(availablePartyMember.Image);
+            Image recruitImage = recruitTexture.GetImage();
+            recruitImage.Resize(32, 32);
+            _availableRecruits.AddItem($"{availablePartyMember.DisplayName} - {availablePartyMember.ShopCost} VC{owned}", ImageTexture.CreateFromImage(recruitImage));
         }
 
         if(_availablePartyMembers.Count == 0)
@@ -133,7 +140,7 @@ public partial class RecruitScreen : CenterContainer
     {
         OverworldEntity member = _availablePartyMembers[index];
         _displayImage.Texture = ResourceLoader.Load<Texture2D>(member.Image);
-        _displayName.Text = member.Name;
+        _displayName.Text = member.DisplayName;
         _displayDescription.Text = member.ToString().TrimEnd('\r','\n');
     }
 

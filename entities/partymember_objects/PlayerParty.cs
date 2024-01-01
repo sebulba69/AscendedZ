@@ -11,21 +11,6 @@ namespace AscendedZ.entities.partymember_objects
         private const int MAX = 4;
         private OverworldEntity[] _party;
 
-        public int Count
-        {
-            get
-            {
-                int total = 0;
-                foreach(var entity in _party)
-                {
-                    if (entity != null)
-                        total++;
-                }
-
-                return total;
-            }
-        }
-
         public OverworldEntity[] Party
         {
             get { return _party; }

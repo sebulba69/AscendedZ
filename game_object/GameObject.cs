@@ -15,6 +15,7 @@ namespace AscendedZ.game_object
 
         private int _tier = 1;
         private int _maxTier = 1;
+        private bool _partyMemberObtained = false;
 
         /// <summary>
         /// The current floor you're on as displayed to you by the UI.
@@ -46,6 +47,8 @@ namespace AscendedZ.game_object
                     _maxTier = TIER_CAP;
             }
         }
+
+        public bool PartyMemberObtained { get => _partyMemberObtained; set => _partyMemberObtained = value; }
 
         public MainPlayer MainPlayer { get; set; }
 

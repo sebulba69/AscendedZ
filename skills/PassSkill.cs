@@ -37,10 +37,6 @@ namespace AscendedZ.skills
         {
         }
 
-        public void LevelUpEnemy(int level, int boost)
-        {
-        }
-
         public string GetUpgradeString()
         {
             return ToString();

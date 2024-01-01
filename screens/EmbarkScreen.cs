@@ -107,7 +107,12 @@ public partial class EmbarkScreen : CenterContainer
 
         foreach (OverworldEntity member in _reserves)
         {
-            _reserveItemList.AddItem(member.Name);
+            Texture2D memberTexture = ResourceLoader.Load<Texture2D>(member.Image);
+
+            Image memberImage = memberTexture.GetImage();
+            memberImage.Resize(32, 32);
+
+            _reserveItemList.AddItem(member.DisplayName, ImageTexture.CreateFromImage(memberImage));
         }
 
         int totalReserves = _reserveItemList.ItemCount;

@@ -12,6 +12,7 @@ using System.Xml.Linq;
 
 public partial class StartScreen : Node2D
 {
+	private readonly string VERSION = "Alpha v0.02";
 
 	/// <summary>
 	/// Node that appears on the starting screen.
@@ -49,6 +50,7 @@ public partial class StartScreen : Node2D
 	public override void _Ready()
 	{
 		_mainTitleLabel = this.GetNode<Label>("%MainAscendedLabel");
+		Label versionLabel = this.GetNode<Label>("%VersionLabel");
 
 		// set nodes we'll cycle between based on button clicks
 		_startingButtons = this.GetNode<HBoxContainer>("CenterContainer/VBoxContainer/StartingButtons");
@@ -63,6 +65,8 @@ public partial class StartScreen : Node2D
 		newGameButton.Pressed += _OnNewGameButtonPressed;
         loadGameButton.Pressed += _OnLoadScreenButtonClicked;
         quitGameButton.Pressed += () => { this.GetTree().Quit(); };
+
+        versionLabel.Text = VERSION;
 
 		// assets from newGameScreen
 		_pictureIndex = 0;

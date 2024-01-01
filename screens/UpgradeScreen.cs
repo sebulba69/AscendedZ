@@ -46,6 +46,9 @@ public partial class UpgradeScreen : CenterContainer
 
 		_partyList.Connect("item_selected", new Callable(this, "_OnItemSelected"));
 
+		_upgradeButton.Pressed += _OnUpgradeButtonClicked;
+		_backButton.Pressed += _OnBackButtonPressed;
+
         RefreshItemList();
     }
 
@@ -64,10 +67,17 @@ public partial class UpgradeScreen : CenterContainer
 		{
 			vorpex.Amount -= cost;
             _selectedEntity.LevelUp();
+			
 			RefreshItemList();
+			
 			PersistentGameObjects.Save();
         }
     }
+
+	private void _OnBackButtonPressed()
+	{
+		this.QueueFree();
+	}
 
     private void RefreshItemList()
     {
@@ -75,8 +85,12 @@ public partial class UpgradeScreen : CenterContainer
 
         foreach (var member in _allPartyMembers)
         {
-            Texture2D memberImage = ResourceLoader.Load<Texture2D>(member.Image);
-            _partyList.AddItem(member.Name, memberImage);
+            Texture2D memberTexture = ResourceLoader.Load<Texture2D>(member.Image);
+			
+			Image memberImage = memberTexture.GetImage();
+			memberImage.Resize(32, 32);
+
+            _partyList.AddItem(member.DisplayName, ImageTexture.CreateFromImage(memberImage));
         }
 
         _partyList.Select(_selected);
@@ -87,7 +101,7 @@ public partial class UpgradeScreen : CenterContainer
 	{
 		_selectedEntity = _allPartyMembers[_selected];
 
-		_nameLabel.Text = _selectedEntity.Name;
+		_nameLabel.Text = _selectedEntity.DisplayName;
 		_costLabel.Text = $"Cost: {_selectedEntity.VorpexValue} VC";
 		_partyImage.Texture = ResourceLoader.Load<Texture2D>(_selectedEntity.Image);
 		_description.Text = _selectedEntity.GetUpgradeString();

@@ -11,10 +11,20 @@ namespace AscendedZ.skills
     public class HealSkill : ISkill
     {
         private int _level = 0;
-
+        private string _baseName;
+        private string _name;
         public SkillId Id => SkillId.Healing;
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                if (string.IsNullOrEmpty(_baseName))
+                    _baseName = _name;
+            }
+        }
         public TargetTypes TargetType { get; set; }
         public string StartupAnimation { get; set; }
         public string EndupAnimation { get; set; }
@@ -29,19 +39,15 @@ namespace AscendedZ.skills
         public void LevelUp()
         {
             int boost = GetBoostValue();
+
             _level++;
-
-            this.Name = $"{this.Name} +{_level}";
+            this.Name = $"{_baseName} +{_level}";
             this.HealAmount += boost;
-        }
-
-        public void LevelUpEnemy(int level, int boost)
-        {
         }
 
         public string GetUpgradeString()
         {
-            return $"{GetBattleDisplayString} +{GetBoostValue()}";
+            return $"{GetBattleDisplayString()} → {this.HealAmount + GetBoostValue()}";
         }
 
         private int GetBoostValue()

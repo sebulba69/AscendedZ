@@ -93,7 +93,10 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 480)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
+max_text_lines = 10
+auto_height = true
+fixed_column_width = 1
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/CenterContainer/Reserves/PanelContainer/VBoxContainer"]
 layout_mode = 2

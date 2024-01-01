@@ -25,7 +25,7 @@ namespace AscendedZ.entities.enemy_objects
             HP += boost;
             foreach(ISkill skill in Skills)
             {
-                skill.LevelUpEnemy(level, boost);
+                skill.LevelUp();
             }
         }
 

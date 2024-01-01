@@ -101,6 +101,7 @@ namespace AscendedZ.game_object
         /// <param name="entry"></param>
         public static void Load(SaveEntry entry)
         {
+            SaveObjectInstance().SavePathForCurrentGame = entry.Path;
             _instance = JsonUtil.LoadObject<GameObject>(entry.Path);
         }
 
@@ -125,7 +126,7 @@ namespace AscendedZ.game_object
             var instance = GameObjectInstance();
             var saveObject = SaveObjectInstance();
 
-            JsonUtil.SaveObject(instance, saveObject.SavePathForCurrentGame);
+            JsonUtil.SaveObject<GameObject>(instance, saveObject.SavePathForCurrentGame);
         }
     }
 }
