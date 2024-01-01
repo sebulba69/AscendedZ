@@ -17,7 +17,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
     /// </summary>
     public class StatusAttackEnemy : Enemy
     {
-        private Random _rng;
         protected Status _status;
 
         private const int STATUS_SKILL = 0;
@@ -27,7 +26,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
 
         public StatusAttackEnemy()
         {
-            _rng = new Random();
             Turns = 1;
             Description = $"Class: Status Enemy\nDescription: Randomly applies a status to all players who don't have one,\nthen it focuses on random attacks.";
         }

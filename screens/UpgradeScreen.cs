@@ -85,12 +85,7 @@ public partial class UpgradeScreen : CenterContainer
 
         foreach (var member in _allPartyMembers)
         {
-            Texture2D memberTexture = ResourceLoader.Load<Texture2D>(member.Image);
-			
-			Image memberImage = memberTexture.GetImage();
-			memberImage.Resize(32, 32);
-
-            _partyList.AddItem(member.DisplayName, ImageTexture.CreateFromImage(memberImage));
+            _partyList.AddItem(member.DisplayName, CharacterImageAssets.GetTextureForItemList(member.Image));
         }
 
         _partyList.Select(_selected);

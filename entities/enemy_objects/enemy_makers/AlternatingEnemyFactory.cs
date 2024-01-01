@@ -25,11 +25,11 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var conlen = MakeAlternatingEnemy(EnemyNames.CONLEN, 6);
 
-            conlen.Resistances.CreateResistance(ResistanceType.Wk, Elements.Wind);
-            conlen.Resistances.CreateResistance(ResistanceType.Wk, Elements.Ice);
+            conlen.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
+            conlen.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
-            conlen.Skills.Add(SkillDatabase.ELEC_1.Clone());
-            conlen.Skills.Add(SkillDatabase.FIRE_1.Clone());
+            conlen.Skills.Add(SkillDatabase.Elec1.Clone());
+            conlen.Skills.Add(SkillDatabase.Fire1.Clone());
 
             return conlen;
         }
@@ -38,9 +38,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var orachar = MakeAlternatingEnemy(EnemyNames.ORAHCAR, 6);
 
-            orachar.Resistances.CreateResistance(ResistanceType.Wk, Elements.Fir);
+            orachar.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
 
-            orachar.Skills.Add(SkillDatabase.ICE_1.Clone());
+            orachar.Skills.Add(SkillDatabase.Ice1.Clone());
 
             return orachar;
         }
@@ -50,9 +50,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var fastrobren = MakeAlternatingEnemy(EnemyNames.FASTROBREN, 4);
 
             fastrobren.Resistances = new ResistanceArray();
-            fastrobren.Resistances.CreateResistance(ResistanceType.Wk, Elements.Light);
+            fastrobren.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
 
-            fastrobren.Skills.Add(SkillDatabase.DARK_1.Clone());
+            fastrobren.Skills.Add(SkillDatabase.Dark1.Clone());
 
             return fastrobren;
         }
@@ -62,9 +62,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var liamlas = MakeAlternatingEnemy(EnemyNames.LIAMLAS, 6);
             
             liamlas.Resistances = new ResistanceArray();
-            liamlas.Resistances.CreateResistance(ResistanceType.Wk, Elements.Dark);
+            liamlas.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
 
-            liamlas.Skills.Add(SkillDatabase.LIGHT_1.Clone());
+            liamlas.Skills.Add(SkillDatabase.Light1.Clone());
 
             return liamlas;
         }

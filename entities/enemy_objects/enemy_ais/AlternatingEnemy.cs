@@ -17,7 +17,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
     /// </summary>
     public class AlternatingEnemy : Enemy
     {
-        protected Random _rng;
         protected int _currentMove = 0;
         protected int CurrentMove
         {
@@ -37,7 +36,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
 
         public AlternatingEnemy() : base()
         {
-            _rng = new Random();
             Turns = 1;
             Description = $"Class: Alternating Enemy\nDescription: Randomly picks targets for an attack.\nIt will alternate through each of its skills at least once.";
         }

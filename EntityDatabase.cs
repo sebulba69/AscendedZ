@@ -52,8 +52,8 @@ namespace AscendedZ
         /// Boss encounters for every 10 floors
         /// </summary>
         private static readonly List<string> BOSS_ENCOUNTERS = new List<string>
-        { 
-
+        {
+            EnemyNames.ELLIOT_ONYX
         };
 
 
@@ -103,7 +103,7 @@ namespace AscendedZ
                 {
                     if (tier % 10 == 0)
                     {
-                        encounterNames.Add(BOSS_ENCOUNTERS[tier - 10]);
+                        encounterNames.Add(BOSS_ENCOUNTERS[(tier/10) - 1]);
                     }
                     else
                     {
@@ -169,7 +169,6 @@ namespace AscendedZ
                 {
                     foreach (var member in partyMembers)
                     {
-                        member.LevelUp();
                         member.BoostShopCost();
                     }  
                 }

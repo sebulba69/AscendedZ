@@ -4,6 +4,7 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,16 @@ namespace AscendedZ
             string nameToLower = name.ToLower();
             return $"{IMAGE_DIR}{nameToLower}.png";
         }
+
+        public static Texture2D GetTextureForItemList(string imagePath)
+        {
+            Texture2D texture = ResourceLoader.Load<Texture2D>(imagePath);
+
+            Image image = texture.GetImage();
+            image.Resize(32, 32);
+
+            return ImageTexture.CreateFromImage(image);
+        }
     }
 
     public class SkillAssets
@@ -67,12 +78,14 @@ namespace AscendedZ
         public static readonly string HEAL_T1 = "heal1";
         public static readonly string STUN_T1 = "stun1";
         public static readonly string AGRO = "agro";
+        public static readonly string VOID_SHIELD = "void_shield";
 
         // ICONS + ICON_STRINGS
         public static readonly string ICON_ATLAS = "res://misc_icons/IconSet.png";
 
         // Skill Icons
         public static readonly string FIRE_ICON = "Fire";
+        public static readonly string VOID_FIRE_ICON = "VoidFire";
         public static readonly string ICE_ICON = "Ice";
         public static readonly string ELEC_ICON = "Elec";
         public static readonly string WIND_ICON = "Wind";
@@ -90,6 +103,7 @@ namespace AscendedZ
         public static readonly System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>> ICONS = new System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>>()
         {
             [FIRE_ICON] = new KeyValuePair<int, int>(0, 128),
+            [VOID_FIRE_ICON] = new KeyValuePair<int, int>(32, 2144),
             [ICE_ICON] = new KeyValuePair<int, int>(32, 128),
             [ELEC_ICON] = new KeyValuePair<int, int>(64, 128),
             [WIND_ICON] = new KeyValuePair<int, int>(160, 128),
@@ -130,6 +144,46 @@ namespace AscendedZ
                 default:
                     throw new Exception($"Element, {element.ToString()}, does not have icon.");
             }
+        }
+
+        public static string GetVoidIconByElement(Elements element)
+        {
+            switch (element)
+            {
+                case Elements.Fir:
+                    return VOID_FIRE_ICON;
+                case Elements.Ice:
+                    return "";
+                case Elements.Elec:
+                    return "";
+                case Elements.Wind:
+                    return "";
+                case Elements.Light:
+                    return "";
+                case Elements.Dark:
+                    return "";
+                default:
+                    throw new Exception($"Element, {element.ToString()}, does not have icon.");
+            }
+        }
+
+        public static string GetAnimationByElementAndTier(int tier, Elements element)
+        {
+            var tier1Animations = new System.Collections.Generic.Dictionary<Elements, string> { 
+                { Elements.Fir, FIRE_T1 },
+                { Elements.Ice, ICE_T1 },
+                { Elements.Wind, WIND_T1 },
+                { Elements.Elec, ELEC_T1 },
+                { Elements.Dark, DARK_T1 },
+                { Elements.Light, LIGHT_T1 } 
+            };
+
+            string animation = string.Empty;
+
+            if(tier == 1)
+                animation = tier1Animations[element];
+
+            return animation;
         }
 
         public static AtlasTexture GenerateIcon(string iconKey)

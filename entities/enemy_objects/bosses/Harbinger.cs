@@ -18,7 +18,6 @@ namespace AscendedZ.entities.enemy_objects.bosses
         private int _currentScript;
 
         private const int STUN = 3;
-        private Random _rng;
 
         private ISkill _pickedSkill;
         private BattlePlayer _stunnedPlayer;
@@ -39,17 +38,15 @@ namespace AscendedZ.entities.enemy_objects.bosses
 
             Resistances = new ResistanceArray();
 
-            Resistances.CreateResistance(ResistanceType.Wk, Elements.Wind);
+            Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
-            Skills.Add(SkillDatabase.ELEC_1.Clone()); // 0
-            Skills.Add(SkillDatabase.ICE_1.Clone()); // 1
-            Skills.Add(SkillDatabase.DARK_1.Clone()); // 2
-            Skills.Add(SkillDatabase.STUN_S1.Clone()); // 3
+            Skills.Add(SkillDatabase.Elec1.Clone()); // 0
+            Skills.Add(SkillDatabase.Ice1.Clone()); // 1
+            Skills.Add(SkillDatabase.Dark1.Clone()); // 2
+            Skills.Add(SkillDatabase.Stun.Clone()); // 3
 
             _currentMove = 0;
             _currentScript = 0;
-
-            _rng = new Random();
             Turns = 2;
         }
 

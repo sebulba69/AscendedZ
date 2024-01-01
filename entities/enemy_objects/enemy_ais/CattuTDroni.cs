@@ -22,7 +22,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         private const int STUN = 2;
 
         private BattlePlayer _target;
-        private Random _rng;
         public CattuTDroni() : base()
         {
             Name = EnemyNames.CATTUTDRONI;
@@ -30,15 +29,13 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             Image = CharacterImageAssets.GetImage(Name);
             Resistances = new ResistanceArray();
 
-            Resistances.CreateResistance(ResistanceType.Wk, Elements.Ice);
+            Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
-            Skills.Add(SkillDatabase.ELEC_1.Clone());
-            Skills.Add(SkillDatabase.ICE_1.Clone());
-            Skills.Add(SkillDatabase.STUN_S1.Clone());
+            Skills.Add(SkillDatabase.Elec1.Clone());
+            Skills.Add(SkillDatabase.Ice1.Clone());
+            Skills.Add(SkillDatabase.Stun.Clone());
 
             Turns = 2;
-
-            _rng = new Random();
 
             Description = $"Class: Stun Enemy (Unique)\nDescription: Applies Stun to a random player without it,\nthen it will repeatedly attack that player\nuntil the status is in effect.";
         }

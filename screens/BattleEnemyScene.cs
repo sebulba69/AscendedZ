@@ -161,8 +161,10 @@ public partial class BattleEnemyScene : Node2D
 
         _skillButton.Disabled = false;
 
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+
         _battleSceneObject = new BattleSceneObject();
-        _battleSceneObject.InitializeEnemies(PersistentGameObjects.GameObjectInstance().Tier);
+        _battleSceneObject.InitializeEnemies(gameObject.Tier);
         _battleSceneObject.InitializePartyMembers();
 
         _battleSceneObject.UpdateUI += _OnUIUpdate;
@@ -190,7 +192,8 @@ public partial class BattleEnemyScene : Node2D
         _battleSceneObject.StartBattle();
         ChangeAPBarWithTurnState(TurnState.PLAYER);
 
-        PersistentGameObjects.GameObjectInstance().MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrack(PersistentGameObjects.GameObjectInstance().Tier));
+        string dungeonTrack = MusicAssets.GetDungeonTrack(gameObject.Tier);
+        gameObject.MusicPlayer.PlayMusic(dungeonTrack, (gameObject.Tier == 5 || gameObject.Tier % 10 == 0));
         _canInput = true;
     }
 
@@ -402,12 +405,12 @@ public partial class BattleEnemyScene : Node2D
         if (skill.TargetType == TargetTypes.SINGLE_OPP)
         {
             foreach (var enemy in _battleSceneObject.Enemies.FindAll(enemy => enemy.HP > 0))
-                _targetList.AddItem($"{count++}. {enemy.Name}");
+                _targetList.AddItem($"{count++}. {enemy.Name}", CharacterImageAssets.GetTextureForItemList(enemy.Image));
         }
         else
         {
             foreach (var player in _battleSceneObject.AlivePlayers)
-                _targetList.AddItem($"{count++}. {player.Name}");
+                _targetList.AddItem($"{count++}. {player.Name}", CharacterImageAssets.GetTextureForItemList(player.Image));
         }
 
         if (_targetList.ItemCount > 0)

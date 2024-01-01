@@ -23,9 +23,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var thylaf = MakeAgroStatusEnemy(EnemyNames.THYLAF, 6);
 
-            thylaf.Resistances.CreateResistance(ResistanceType.Wk, Elements.Wind);
+            thylaf.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
-            thylaf.Skills.Add(SkillDatabase.ELEC_1.Clone());
+            thylaf.Skills.Add(SkillDatabase.Elec1.Clone());
 
             return thylaf;
         }
@@ -34,9 +34,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var arwig = MakeAgroStatusEnemy(EnemyNames.ARWIG, 6);
 
-            arwig.Resistances.CreateResistance(ResistanceType.Wk, Elements.Fir);
+            arwig.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
 
-            arwig.Skills.Add(SkillDatabase.ICE_1.Clone());
+            arwig.Skills.Add(SkillDatabase.Ice1.Clone());
 
             return arwig;
         }
@@ -45,9 +45,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var riccman = MakeAgroStatusEnemy(EnemyNames.RICCMAN, 6);
 
-            riccman.Resistances.CreateResistance(ResistanceType.Wk, Elements.Elec);
+            riccman.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
 
-            riccman.Skills.Add(SkillDatabase.WIND_1.Clone());
+            riccman.Skills.Add(SkillDatabase.Wind1.Clone());
 
             return riccman;
         }
@@ -58,7 +58,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             statusAttackEnemy.Name = $"[AGRO] {statusAttackEnemy.Name}";
             statusAttackEnemy.Status = new AgroStatus();
-            statusAttackEnemy.Skills.Add(SkillDatabase.AGRO_ENEMY.Clone());
+            statusAttackEnemy.Skills.Add(SkillDatabase.AgroEnemy.Clone());
 
             return statusAttackEnemy;
         }

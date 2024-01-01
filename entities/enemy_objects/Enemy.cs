@@ -15,10 +15,15 @@ namespace AscendedZ.entities.enemy_objects
     {
         protected bool _isBoss = false;
         public bool IsBoss { get => _isBoss; }
+        
+        protected Random _rng;
 
         public string Description { get; protected set; }
 
-        public Enemy() {}
+        public Enemy() 
+        {
+            _rng = new Random();
+        }
 
         public void Boost(int level, int boost)
         {
@@ -43,6 +48,19 @@ namespace AscendedZ.entities.enemy_objects
         public virtual EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Utility function for a feature common to most enemy AI.
+        /// </summary>
+        /// <param name="battleSceneObject"></param>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        protected List<BattlePlayer> FindPlayersWithWeaknessToElement(BattleSceneObject battleSceneObject, Elements element)
+        {
+            List<BattlePlayer> players = battleSceneObject.AlivePlayers;
+
+            return players.FindAll(player => player.Resistances.IsWeakToElement(element));
         }
     }
 }

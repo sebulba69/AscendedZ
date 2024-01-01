@@ -44,6 +44,7 @@ namespace AscendedZ.entities
 
         // Bosses (Normal)
         public static readonly string HARBINGER = "Harbinger, Mangler of Legs";
+        public static readonly string ELLIOT_ONYX = "Elliot Onyx";
 
         // Boss (Sigil)
         // tbd

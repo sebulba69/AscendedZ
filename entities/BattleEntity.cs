@@ -101,7 +101,7 @@ namespace AscendedZ.entities.battle_entities
             return result;
         }
 
-        public BattleResult ApplyHealingSkill(HealSkill skill)
+        public virtual BattleResult ApplyHealingSkill(HealSkill skill)
         {
             this.HP += skill.HealAmount;
             return new BattleResult()

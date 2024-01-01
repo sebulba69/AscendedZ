@@ -36,27 +36,14 @@ namespace AscendedZ.resistances
         /// </summary>
         /// <param name="rtype"></param>
         /// <param name="element"></param>
-        public void CreateResistance(ResistanceType rtype, Elements element)
+        public void SetResistance(ResistanceType rtype, Elements element)
         {
             this.RArray[(int)element] = (int)rtype;
         }
 
-        /// <summary>
-        /// This should be called when changing a unit's armor.
-        /// Values should range from positive to negative.
-        /// Removing armor should reset the values back to the way they were.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="amount"></param>
-        public void AdjustResistanceByAmount(Elements element, int amount)
+        public ResistanceType GetResistance(Elements element)
         {
-            this.RArray[(int)element] += amount;
-
-            if (this.RArray[(int)element] < 0)
-                this.RArray[(int)element] = 0;
-
-            if (this.RArray[(int)element] > (int)ResistanceType.Dr)
-                this.RArray[(int)element] = (int)ResistanceType.Dr;
+            return (ResistanceType)this.RArray[(int)element];
         }
 
         /// <summary>

@@ -23,10 +23,10 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var isenald = MakeWeaknessHunterEnemy(EnemyNames.ISENALD, 5);
 
-            isenald.Resistances.CreateResistance(ResistanceType.Wk, Elements.Dark);
-            isenald.Resistances.CreateResistance(ResistanceType.Rs, Elements.Light);
+            isenald.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
+            isenald.Resistances.SetResistance(ResistanceType.Rs, Elements.Light);
 
-            isenald.Skills.Add(SkillDatabase.LIGHT_1);
+            isenald.Skills.Add(SkillDatabase.Light1);
 
             return isenald;
         }
@@ -35,10 +35,10 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var gardmuel = MakeWeaknessHunterEnemy(EnemyNames.GARDMUEL, 7);
 
-            gardmuel.Resistances.CreateResistance(ResistanceType.Rs, Elements.Dark);
-            gardmuel.Resistances.CreateResistance(ResistanceType.Wk, Elements.Light);
+            gardmuel.Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
+            gardmuel.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
 
-            gardmuel.Skills.Add(SkillDatabase.DARK_1);
+            gardmuel.Skills.Add(SkillDatabase.Dark1);
 
             return gardmuel;
         }
@@ -47,10 +47,10 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var sachael = MakeWeaknessHunterEnemy(EnemyNames.SACHAEL, 6);
 
-            sachael.Resistances.CreateResistance(ResistanceType.Rs, Elements.Fir);
-            sachael.Resistances.CreateResistance(ResistanceType.Wk, Elements.Ice);
+            sachael.Resistances.SetResistance(ResistanceType.Rs, Elements.Fir);
+            sachael.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
-            sachael.Skills.Add(SkillDatabase.FIRE_1);
+            sachael.Skills.Add(SkillDatabase.Fire1);
 
             return sachael;
         }

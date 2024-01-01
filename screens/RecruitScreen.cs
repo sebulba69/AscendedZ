@@ -8,6 +8,7 @@ using AscendedZ.skills;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Reflection;
 
 public partial class RecruitScreen : CenterContainer
@@ -116,10 +117,7 @@ public partial class RecruitScreen : CenterContainer
             if (mainPlayer.IsPartyMemberOwned(availablePartyMember.Name))
                 owned = " [OWNED]";
 
-            Texture2D recruitTexture = ResourceLoader.Load<Texture2D>(availablePartyMember.Image);
-            Image recruitImage = recruitTexture.GetImage();
-            recruitImage.Resize(32, 32);
-            _availableRecruits.AddItem($"{availablePartyMember.DisplayName} - {availablePartyMember.ShopCost} VC{owned}", ImageTexture.CreateFromImage(recruitImage));
+            _availableRecruits.AddItem($"{availablePartyMember.DisplayName} - {availablePartyMember.ShopCost} VC{owned}", CharacterImageAssets.GetTextureForItemList(availablePartyMember.Image));
         }
 
         if(_availablePartyMembers.Count == 0)

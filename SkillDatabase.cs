@@ -11,102 +11,95 @@ namespace AscendedZ
     public class SkillDatabase
     {
         #region Tier 1 Skills
-        public static ElementSkill ELEC_1 = new ElementSkill()
-        {
-            Name = "Spark",
-            Damage = 2,
-            TargetType = TargetTypes.SINGLE_OPP,
-            Element = Elements.Elec,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.ELEC_T1,
-            Icon = SkillAssets.ELEC_ICON
-        };
+        public static ElementSkill Elec1 { get => CreateTier1ElementSkill("Spark", Elements.Elec); }
+        public static ElementSkill Fire1 { get => CreateTier1ElementSkill("Singe", Elements.Fir); }
+        public static ElementSkill Ice1 { get => CreateTier1ElementSkill("Shiver", Elements.Ice); }
+        public static ElementSkill Light1 { get => CreateTier1ElementSkill("Gleam", Elements.Light); }
+        public static ElementSkill Wind1 { get => CreateTier1ElementSkill("Breeze", Elements.Wind); }
+        public static ElementSkill Dark1 { get => CreateTier1ElementSkill("Shadow", Elements.Dark); }
 
-        public static ElementSkill FIRE_1 = new ElementSkill()
+        private static ElementSkill CreateTier1ElementSkill(string name, Elements element)
         {
-            Name = "Singe",
-            Damage = 2,
-            TargetType = TargetTypes.SINGLE_OPP,
-            Element = Elements.Fir,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.FIRE_T1,
-            Icon = SkillAssets.FIRE_ICON
-        };
+            return new ElementSkill
+            {
+                Name = name,
+                Damage = 2,
+                TargetType = TargetTypes.SINGLE_OPP,
+                Element = element,
+                StartupAnimation = SkillAssets.STARTUP1_MG,
+                EndupAnimation = SkillAssets.GetAnimationByElementAndTier(1, element),
+                Icon = SkillAssets.GetElementIconByElementEnum(element)
+            };
+        }
 
-        public static ElementSkill ICE_1 = new ElementSkill()
-        {
-            Name = "Shiver",
-            Damage = 2,
-            TargetType = TargetTypes.SINGLE_OPP,
-            Element = Elements.Ice,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.ICE_T1,
-            Icon = SkillAssets.ICE_ICON
-        };
-
-        public static ElementSkill LIGHT_1 = new ElementSkill()
-        {
-            Name = "Gleam",
-            Damage = 2,
-            TargetType = TargetTypes.SINGLE_OPP,
-            Element = Elements.Light,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.LIGHT_T1,
-            Icon = SkillAssets.LIGHT_ICON
-        };
-
-        public static ElementSkill WIND_1 = new ElementSkill()
-        {
-            Name = "Breeze",
-            Damage = 2,
-            TargetType = TargetTypes.SINGLE_OPP,
-            Element = Elements.Wind,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.WIND_T1,
-            Icon = SkillAssets.WIND_ICON
-        };
-
-        public static ElementSkill DARK_1 = new ElementSkill()
-        {
-            Name = "Shadow",
-            Damage = 2,
-            TargetType = TargetTypes.SINGLE_OPP,
-            Element = Elements.Dark,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.DARK_T1,
-            Icon = SkillAssets.DARK_ICON
-        };
         #endregion
-
-        public static StatusSkill STUN_S1 = new StatusSkill()
+        public static StatusSkill Stun
         {
-            Name = "Stun",
-            TargetType = TargetTypes.SINGLE_OPP,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.STUN_T1,
-            Icon = SkillAssets.STUN_ICON,
-            Status = new StunStatus(),
-        };
+            get
+            {
+                StatusSkill statusSkill = MakeStatusSkill("Stun", new StunStatus());
 
-        public static StatusSkill AGRO_ENEMY = new StatusSkill()
-        {
-            Name = "Agro",
-            TargetType = TargetTypes.SINGLE_OPP,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.AGRO,
-            Icon = SkillAssets.AGRO_ICON,
-            Status = new AgroStatus()
-        };
+                statusSkill.Icon = SkillAssets.STUN_ICON;
+                statusSkill.EndupAnimation = SkillAssets.STUN_T1;
 
-        public static StatusSkill AGRO_PLAYER = new StatusSkill()
+                return statusSkill;
+            }
+        }
+
+        public static StatusSkill AgroEnemy
         {
-            Name = "Agro",
-            TargetType = TargetTypes.SINGLE_TEAM,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.AGRO,
-            Icon = SkillAssets.AGRO_ICON,
-            Status = new AgroStatus()
-        };
+            get
+            {
+                StatusSkill statusSkill = MakeStatusSkill("Agro", new AgroStatus());
+
+                statusSkill.EndupAnimation = SkillAssets.AGRO;
+                statusSkill.Icon = SkillAssets.AGRO_ICON;
+
+                return statusSkill;
+            }
+        }
+
+        public static StatusSkill AgroPlayer 
+        { 
+            get 
+            {
+                StatusSkill statusSkill = AgroEnemy;
+                statusSkill.TargetType = TargetTypes.SINGLE_TEAM;
+
+                return statusSkill;
+            } 
+        }
+
+        public static StatusSkill VoidFire
+        {
+            get
+            {
+                return MakeVoidElementSkill("Void Fire", Elements.Fir);
+            }
+        }
+
+        private static StatusSkill MakeVoidElementSkill(string name, Elements element)
+        {
+            string icon = SkillAssets.GetVoidIconByElement(element);
+            StatusSkill statusSkill = MakeStatusSkill(name, new VoidElementStatus { VoidElement = element, Icon = icon });
+
+            statusSkill.Icon = icon;
+            statusSkill.EndupAnimation = SkillAssets.VOID_SHIELD;
+            statusSkill.TargetType = TargetTypes.SINGLE_TEAM;
+
+            return statusSkill;
+        }
+
+        private static StatusSkill MakeStatusSkill(string name, Status status)
+        {
+            return new StatusSkill
+            {
+                Name = name,
+                TargetType = TargetTypes.SINGLE_OPP,
+                StartupAnimation = SkillAssets.STARTUP1_MG,
+                Status = status
+            };
+        }
 
         /*
         public static StatusSkill DARK_BUFF_1 = new StatusSkill()
@@ -160,7 +153,7 @@ namespace AscendedZ
             if (tier == 1)
                 skills = new List<ISkill> 
                 {
-                    FIRE_1, ICE_1, WIND_1, ELEC_1, LIGHT_1, DARK_1, HEAL_1, AGRO_PLAYER
+                    Fire1, Ice1, Wind1, Elec1, Light1, Dark1, HEAL_1, AgroPlayer
                 };
 
             return skills;

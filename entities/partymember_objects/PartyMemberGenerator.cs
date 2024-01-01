@@ -70,44 +70,44 @@ namespace AscendedZ.entities.partymember_objects
             string name = member.Name;
             if (name == PartyNames.LOCPHIEDON)
             {
-                member.Resistances.CreateResistance(ResistanceType.Rs, Elements.Wind);
-                member.Resistances.CreateResistance(ResistanceType.Wk, Elements.Elec);
-                member.Skills.Add(SkillDatabase.WIND_1.Clone());
+                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Wind);
+                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
+                member.Skills.Add(SkillDatabase.Wind1.Clone());
             }
             else if (name == PartyNames.GAGAR)
             {
-                member.Resistances.CreateResistance(ResistanceType.Rs, Elements.Fir);
-                member.Resistances.CreateResistance(ResistanceType.Wk, Elements.Ice);
-                member.Skills.Add(SkillDatabase.FIRE_1.Clone());
+                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Fir);
+                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
+                member.Skills.Add(SkillDatabase.Fire1.Clone());
             }
             else if (name == PartyNames.YUUDAM)
             {
-                member.Resistances.CreateResistance(ResistanceType.Wk, Elements.Dark);
+                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
                 member.Skills.Add(SkillDatabase.HEAL_1.Clone());
             }
             else if (name == PartyNames.PECHEAL)
             {
-                member.Resistances.CreateResistance(ResistanceType.Rs, Elements.Ice);
-                member.Resistances.CreateResistance(ResistanceType.Wk, Elements.Fir);
-                member.Skills.Add(SkillDatabase.ICE_1.Clone());
+                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Ice);
+                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
+                member.Skills.Add(SkillDatabase.Ice1.Clone());
             }
             else if (name == PartyNames.TOKE)
             {
-                member.Resistances.CreateResistance(ResistanceType.Rs, Elements.Dark);
-                member.Resistances.CreateResistance(ResistanceType.Wk, Elements.Light);
-                member.Skills.Add(SkillDatabase.DARK_1.Clone());
+                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
+                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
+                member.Skills.Add(SkillDatabase.Dark1.Clone());
             }
             else if (name == PartyNames.MAXWALD)
             {
-                member.Resistances.CreateResistance(ResistanceType.Rs, Elements.Light);
-                member.Resistances.CreateResistance(ResistanceType.Wk, Elements.Dark);
-                member.Skills.Add(SkillDatabase.LIGHT_1.Clone());
+                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Light);
+                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
+                member.Skills.Add(SkillDatabase.Light1.Clone());
             }
             else if (name == PartyNames.HALVIA)
             {
-                member.Resistances.CreateResistance(ResistanceType.Rs, Elements.Elec);
-                member.Resistances.CreateResistance(ResistanceType.Wk, Elements.Wind);
-                member.Skills.Add(SkillDatabase.ELEC_1.Clone());
+                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Elec);
+                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
+                member.Skills.Add(SkillDatabase.Elec1.Clone());
             }
             else
             {
@@ -120,8 +120,8 @@ namespace AscendedZ.entities.partymember_objects
             Elements resist = _partyMemberElementPairs[member.Name];
             Elements weak = _elementalOpposites[resist];
 
-            member.Resistances.CreateResistance(ResistanceType.Rs, resist);
-            member.Resistances.CreateResistance(ResistanceType.Wk, weak);
+            member.Resistances.SetResistance(ResistanceType.Rs, resist);
+            member.Resistances.SetResistance(ResistanceType.Wk, weak);
 
             List<ISkill> skills;
 
