@@ -11,12 +11,18 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace AscendedZ.entities
+namespace AscendedZ.entities.partymember_objects
 {
     public class OverworldEntity : Entity
     {
-        public int VorpexValue { get; set; }
-
+        private int _level = 0;
+        private int _grade = 0;
+        private int _vorpexCost = 1;
+        private int _shopCost = 1;
+        public int Level { get => _level; set => _level = value; }
+        public int Grade { get => _grade; set => _grade = value; }
+        public int VorpexValue { get => _vorpexCost; set => _vorpexCost = value; }
+        public int ShopCost { get => _shopCost; set => _shopCost = value; }
         public int MaxHP { get; set; }
 
         public List<ISkill> Skills { get; set; } = new();
@@ -27,27 +33,86 @@ namespace AscendedZ.entities
         {
             var player = new BattlePlayer()
             {
-                Name = this.Name,
-                Image = this.Image,
-                HP = this.MaxHP,
-                MaxHP = this.MaxHP,
-                Resistances = this.Resistances
+                Name = Name,
+                Image = Image,
+                HP = MaxHP,
+                MaxHP = MaxHP,
+                Resistances = Resistances
             };
 
-            foreach(var skill in this.Skills)
-                player.Skills.Add(skill);
+            foreach (var skill in Skills)
+                player.Skills.Add(skill.Clone());
 
             player.Skills.Add(SkillDatabase.PASS);
             player.Skills.Add(SkillDatabase.RETREAT);
             return player;
         }
 
+        public void LevelUp()
+        {
+            Level++;
+
+            VorpexValue = VorpexValue + (Level - 1) * 2;
+
+            Name = $"[{GetLevelString()}] {Name}";
+
+            MaxHP += 10 + 2 * Level;
+
+            foreach (ISkill skill in Skills)
+                skill.LevelUp();
+        }
+
+        public void BoostShopCost()
+        {
+            ShopCost = ShopCost + (Level - 1) * 2;
+            ShopCost += ShopCost / 4;
+        }
+
+        private string GetLevelString()
+        {
+            string[] grades = { "F", "E", "D", "C", "B", "A", "S", "SS", "SSS" };
+            string gradeString = string.Empty;
+            if (Level == 10)
+            {
+                Level = 0;
+                Grade++;
+
+                if (Grade >= grades.Length)
+                {
+                    int last = grades.Length - 1;
+                    gradeString = $"{grades[last]}";
+
+                    int remainder = Grade - last;
+                    gradeString = $"{gradeString}x{remainder}";
+                }
+                else
+                {
+                    gradeString = $"{grades[Grade]}";
+                }
+            }
+            else
+            {
+                gradeString = $"{grades[Grade]} R.{Level}";
+            }
+
+            return gradeString;
+        }
+
+        public string GetUpgradeString()
+        {
+            StringBuilder skills = new StringBuilder();
+            foreach (ISkill skill in Skills)
+                skills.AppendLine(skill.GetUpgradeString());
+
+            return $"{MaxHP} HP\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
+        }
+
         public override string ToString()
         {
             StringBuilder skills = new StringBuilder();
-            foreach(ISkill skill in this.Skills)
+            foreach (ISkill skill in Skills)
                 skills.AppendLine(skill.ToString());
-            return $"{this.MaxHP} HP\n{this.Resistances.GetResistanceString()}\n{skills.ToString()}";
+            return $"{MaxHP} HP\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
         }
     }
 }

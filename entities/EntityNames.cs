@@ -16,6 +16,10 @@ namespace AscendedZ.entities
         public static readonly string TOKE = "Toke";
         public static readonly string MAXWALD = "Maxwald";
         public static readonly string HALVIA = "Halvia";
+        public static readonly string TYHERE = "Tyhere";
+        public static readonly string PARIA = "Paria";
+        public static readonly string JOAN = "Joan";
+        public static readonly string ANDMOND = "Andmond";
     }
 
     public class EnemyNames

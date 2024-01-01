@@ -88,10 +88,20 @@ namespace AscendedZ
             Status = new StunStatus(),
         };
 
-        public static StatusSkill AGRO_S = new StatusSkill()
+        public static StatusSkill AGRO_ENEMY = new StatusSkill()
         {
             Name = "Agro",
             TargetType = TargetTypes.SINGLE_OPP,
+            StartupAnimation = SkillAssets.STARTUP1_MG,
+            EndupAnimation = SkillAssets.AGRO,
+            Icon = SkillAssets.AGRO_ICON,
+            Status = new AgroStatus()
+        };
+
+        public static StatusSkill AGRO_PLAYER = new StatusSkill()
+        {
+            Name = "Agro",
+            TargetType = TargetTypes.SINGLE_TEAM,
             StartupAnimation = SkillAssets.STARTUP1_MG,
             EndupAnimation = SkillAssets.AGRO,
             Icon = SkillAssets.AGRO_ICON,
@@ -139,5 +149,21 @@ namespace AscendedZ
             Icon = SkillAssets.RETREAT_ICON
         };
         #endregion
+
+        /// <summary>
+        /// Get all skills that can be generated for a party member.
+        /// </summary>
+        /// <returns></returns>
+        public static List<ISkill> GetAllGeneratableSkills(int tier)
+        {
+            List<ISkill> skills = new List<ISkill>();
+            if (tier == 1)
+                skills = new List<ISkill> 
+                {
+                    FIRE_1, ICE_1, WIND_1, ELEC_1, LIGHT_1, DARK_1, HEAL_1, AGRO_PLAYER
+                };
+
+            return skills;
+        }
     }
 }

@@ -1,5 +1,5 @@
 using AscendedZ.battle;
-using AscendedZ.entities;
+using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object;
 using Godot;
 using System;
@@ -24,13 +24,11 @@ public partial class PartyMemberDisplay : HBoxContainer
     public void DisplayPartyMember(int index, bool isReserve)
     {
         OverworldEntity partyMember;
-        
-        if (isReserve)
-            partyMember = PersistentGameObjects.Instance().MainPlayer.ReserveMembers[index];
-        else
-            partyMember = PersistentGameObjects.Instance().MainPlayer.Party.Party[index];
+        var mainPlayer = PersistentGameObjects.Instance().MainPlayer;
 
-        if(partyMember != null)
+        partyMember = (isReserve) ? mainPlayer.ReserveMembers[index] : mainPlayer.Party.Party[index];
+
+        if (partyMember != null)
         {
             _playerPicture.Texture = ResourceLoader.Load<Texture2D>(partyMember.Image);
 

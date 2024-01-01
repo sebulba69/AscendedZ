@@ -1,6 +1,7 @@
 using AscendedZ.battle;
 using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
+using AscendedZ.game_object;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace AscendedZ.skills
     {
         private int _damage;
         private int _damageModifier = 0;
+        private int _level = 0;
 
         public SkillId Id => SkillId.Elemental;
         public string Name { get; set; }
@@ -52,6 +54,34 @@ namespace AscendedZ.skills
             return $"[{this.Element.ToString()}] {this.Name} ({this.Damage})";
         }
 
+        public void LevelUpEnemy(int level, int amount)
+        {
+            this.Name = $"{this.Name} +{level + 1}";
+            this.Damage += (amount / 4) + 1;
+        }
+
+        public void LevelUp()
+        {
+            int boost = GetBoostValue();
+
+            _level++;
+            this.Name = $"{this.Name} +{_level}";
+            this.Damage += boost;
+        }
+
+        public string GetUpgradeString()
+        {
+            return $"{ToString()} +{GetBoostValue()}";
+        }
+
+        private int GetBoostValue()
+        {
+            double m = 0.01 * Math.Pow((_level - 10), 2) + 1;
+            int boost = (int)(Math.Pow(_level, m)) + 1;
+            boost = (boost / 4) + 1;
+            return boost;
+        }
+
         public ISkill Clone()
         {
             return new ElementSkill()
@@ -65,5 +95,7 @@ namespace AscendedZ.skills
                 Icon = this.Icon
             };
         }
+
+
     }
 }

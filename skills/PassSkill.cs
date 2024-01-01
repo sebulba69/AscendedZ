@@ -33,6 +33,19 @@ namespace AscendedZ.skills
             return $"{this.Name}";
         }
 
+        public void LevelUp()
+        {
+        }
+
+        public void LevelUpEnemy(int level, int boost)
+        {
+        }
+
+        public string GetUpgradeString()
+        {
+            return ToString();
+        }
+
         public ISkill Clone()
         {
             return new PassSkill()
@@ -44,7 +57,6 @@ namespace AscendedZ.skills
                 Icon = SkillAssets.PASS_ICON
             };
         }
-
 
     }
 }

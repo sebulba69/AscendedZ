@@ -11,12 +11,15 @@ using System.Threading.Tasks;
 
 namespace AscendedZ
 {
+
     /// <summary>
     /// Quick access to art assets using res paths
     /// </summary>
-    public class PlayerPartyAssets
+    public class CharacterImageAssets
     {
+        private static readonly string IMAGE_DIR = "res://entity_pics/";
         private static List<string> _playerPics = new List<string>();
+
         public static List<string> PlayerPics
         {
             get
@@ -42,26 +45,10 @@ namespace AscendedZ
             }
         }
 
-        public static System.Collections.Generic.Dictionary<string, string> PartyMemberPics = new System.Collections.Generic.Dictionary<string, string> 
-        {
-            { PartyNames.LOCPHIEDON, "res://party_members/newpicture86.png" },
-            { PartyNames.GAGAR, "res://party_members/newpicture56_Gagar.png" },
-            { PartyNames.YUUDAM, "res://party_members/newpicture99.png" },
-            { PartyNames.PECHEAL, "res://party_members/newpicture17_Pecheal_ice.png" },
-            { PartyNames.TOKE, "res://party_members/newpicture60_toke_dark.png" },
-            { PartyNames.MAXWALD, "res://party_members/newpicture57_maxwald_light.png" },
-            { PartyNames.HALVIA, "res://party_members/halvia.png" }
-        };
-    }
-
-    public class EnemyImageAssets
-    {
-        private static readonly string ENEMY_PIC_DIR = "res://enemy_pics/";
-
-        public static string GetEnemyImage(string name)
+        public static string GetImage(string name)
         {
             string nameToLower = name.ToLower();
-            return $"{ENEMY_PIC_DIR}{nameToLower}.png";
+            return $"{IMAGE_DIR}{nameToLower}.png";
         }
     }
 

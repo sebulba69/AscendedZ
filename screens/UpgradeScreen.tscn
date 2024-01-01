@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://0r3q62ummh0p"]
+[gd_scene load_steps=6 format=3 uid="uid://0r3q62ummh0p"]
 
-[ext_resource type="Texture2D" uid="uid://dlog1wys3kq6a" path="res://party_members/newpicture26.png" id="1_8uklk"]
+[ext_resource type="Script" path="res://screens/UpgradeScreen.cs" id="1_6bmuu"]
+[ext_resource type="Texture2D" uid="uid://dlog1wys3kq6a" path="res://entity_pics/andmond.png" id="1_8uklk"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2_krmoi"]
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="3_u3tap"]
 
@@ -16,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6bmuu")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -49,7 +51,8 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_ffy3i")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/HBoxContainer"]
+[node name="VorpexCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_krmoi")
@@ -65,6 +68,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="NameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_krmoi")
 theme_override_font_sizes/font_size = 30
@@ -74,7 +78,8 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MemberImage" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("1_8uklk")
 
@@ -88,7 +93,8 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+[node name="MemberDescription" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_krmoi")
@@ -96,10 +102,47 @@ theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "Book fart I'm money fart makes me more intelligent"
 
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="UpgradeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_krmoi")
+theme_override_font_sizes/font_size = 25
+text = "Upgrade
+"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CostLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_krmoi")
+theme_override_font_sizes/font_size = 25
+text = "Cost: X VC"
+horizontal_alignment = 1
+
+[node name="PartyList" type="ItemList" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_krmoi")
+theme_override_font_sizes/font_size = 25
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_krmoi")

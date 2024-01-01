@@ -23,12 +23,12 @@ namespace AscendedZ
     /// </summary>
     public class EntityDatabase
     {
+        private static readonly Random RANDOM = new Random();
+
         /// <summary>
         /// The max tier where we start generating enemies randomly.
         /// </summary>
         private static readonly int RANDOM_TIER = 6;
-
-        private static readonly Random RANDOM = new Random();
 
         private static EnemyMaker _enemyMaker = new EnemyMaker();
 
@@ -91,8 +91,6 @@ namespace AscendedZ
                 GameObject gameObject = PersistentGameObjects.Instance();
 
                 int encounterIndex = tier - RANDOM_TIER;
-                double m = 0.01 * Math.Pow((encounterIndex - 10), 2) + 1;
-                int boost = (int)(Math.Pow(encounterIndex, m)) + 1;
 
                 List<string> encounterNames = new List<string>();
 
@@ -122,10 +120,12 @@ namespace AscendedZ
                     PersistentGameObjects.Save();
                 }
 
+                double m = 0.01 * Math.Pow((encounterIndex - 10), 2) + 1;
+                int boost = (int)(Math.Pow(encounterIndex, m)) + 1;
                 foreach (string name in encounterNames)
                 {
                     Enemy enemy = _enemyMaker.MakeEnemy(name);
-                    enemy.Boost(boost);
+                    enemy.Boost(encounterIndex, boost);
                     encounter.Add(enemy);
                 }
             }
@@ -144,13 +144,34 @@ namespace AscendedZ
                 if(tier >= index)
                 {
                     foreach(string member in VENDOR_WARES[vendorWaresIndex])
-                        partyMembers.Add(PartyMemberGenerator.MakePartyMember(member, true));
+                        partyMembers.Add(PartyMemberGenerator.MakePartyMember(member));
 
                     vendorWaresIndex++;
                 }
                 else
                 {
                     break;
+                }
+            }
+
+            if(tier > 10 && tier % 6 == 0)
+            {
+                int numPartyMembersToMake = 3;
+                for (int times = 0; times < numPartyMembersToMake; times++)
+                    partyMembers.Add(PartyMemberGenerator.MakePartyMember(tier));
+            }
+
+            // scale price based on tier
+            if(tier > 5 && tier % 5 == 0)
+            {
+                int numPriceSpikes = tier / 5;
+                for(int times = 0; times < numPriceSpikes; times++)
+                {
+                    foreach (var member in partyMembers)
+                    {
+                        member.LevelUp();
+                        member.BoostShopCost();
+                    }  
                 }
             }
 

@@ -27,7 +27,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         {
             Name = EnemyNames.CATTUTDRONI;
             MaxHP = 8;
-            Image = EnemyImageAssets.GetEnemyImage(Name);
+            Image = CharacterImageAssets.GetImage(Name);
             Resistances = new ResistanceArray();
 
             Resistances.CreateResistance(ResistanceType.Wk, Elements.Ice);

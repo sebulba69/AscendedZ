@@ -58,7 +58,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             statusAttackEnemy.Name = $"[AGRO] {statusAttackEnemy.Name}";
             statusAttackEnemy.Status = new AgroStatus();
-            statusAttackEnemy.Skills.Add(SkillDatabase.AGRO_S.Clone());
+            statusAttackEnemy.Skills.Add(SkillDatabase.AGRO_ENEMY.Clone());
 
             return statusAttackEnemy;
         }
@@ -69,7 +69,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             {
                 Name = name,
                 MaxHP = hp,
-                Image = EnemyImageAssets.GetEnemyImage(name),
+                Image = CharacterImageAssets.GetImage(name),
                 Resistances = new ResistanceArray()
             };
         }

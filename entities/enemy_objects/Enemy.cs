@@ -20,16 +20,12 @@ namespace AscendedZ.entities.enemy_objects
 
         public Enemy() {}
 
-        public void Boost(int boost)
+        public void Boost(int level, int boost)
         {
             HP += boost;
             foreach(ISkill skill in Skills)
             {
-                if(skill.Id == SkillId.Elemental)
-                {
-                    ElementSkill elementalSkill = (ElementSkill)skill;
-                    elementalSkill.Damage += ((boost / 4) + 1);
-                }
+                skill.LevelUpEnemy(level, boost);
             }
         }
 

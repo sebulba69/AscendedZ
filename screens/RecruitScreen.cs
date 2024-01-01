@@ -2,6 +2,7 @@ using AscendedZ;
 using AscendedZ.currency;
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
+using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object;
 using AscendedZ.skills;
 using Godot;
@@ -85,14 +86,14 @@ public partial class RecruitScreen : CenterContainer
 
         OverworldEntity partyMember = _availablePartyMembers[_selected];
 
-        if (_vorpex.Amount >= partyMember.VorpexValue)
+        if (_vorpex.Amount >= partyMember.ShopCost)
         {
             if (mainPlayer.IsPartyMemberOwned(partyMember.Name))
             {
                 return;
             }
 
-            _vorpex.Amount -= partyMember.VorpexValue;
+            _vorpex.Amount -= partyMember.ShopCost;
             mainPlayer.ReserveMembers.Add(partyMember);
 
             RefreshVendorWares(_selected);
@@ -111,7 +112,7 @@ public partial class RecruitScreen : CenterContainer
             if (mainPlayer.IsPartyMemberOwned(availablePartyMember.Name))
                 owned = " [OWNED]";
 
-            _availableRecruits.AddItem($"{availablePartyMember.Name} - {availablePartyMember.VorpexValue} VC{owned}");
+            _availableRecruits.AddItem($"{availablePartyMember.Name} - {availablePartyMember.ShopCost} VC{owned}");
         }
 
         if(_availablePartyMembers.Count == 0)

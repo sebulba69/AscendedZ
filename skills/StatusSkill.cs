@@ -40,6 +40,24 @@ namespace AscendedZ.skills
             return $"{this.Name}";
         }
 
+        public void LevelUp()
+        {
+        }
+
+        public void LevelUpEnemy(int level, int boost)
+        {
+        }
+
+        public override string ToString()
+        {
+            return GetBattleDisplayString();
+        }
+
+        public string GetUpgradeString()
+        {
+            return ToString();
+        }
+
         public ISkill Clone()
         {
             return new StatusSkill()

@@ -61,7 +61,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             {
                 Name = $"[WEX] {name}",
                 MaxHP = hp,
-                Image = EnemyImageAssets.GetEnemyImage(name),
+                Image = CharacterImageAssets.GetImage(name),
                 Resistances = new ResistanceArray()
             };
         }
