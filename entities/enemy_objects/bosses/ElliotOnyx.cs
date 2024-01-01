@@ -3,6 +3,7 @@ using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.resistances;
 using AscendedZ.skills;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,9 @@ namespace AscendedZ.entities.enemy_objects.bosses
 
             Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
 
-            Skills.Add(SkillDatabase.VoidFire);
-            Skills.Add(SkillDatabase.Ice1);
-            Skills.Add(SkillDatabase.Wind1);
+            Skills.Add(SkillDatabase.VoidFire.Clone());
+            Skills.Add(SkillDatabase.Ice1.Clone());
+            Skills.Add(SkillDatabase.Wind1.Clone());
 
             _state = ATTACK;
             _nextTarget = 0;

@@ -146,27 +146,6 @@ namespace AscendedZ
             }
         }
 
-        public static string GetVoidIconByElement(Elements element)
-        {
-            switch (element)
-            {
-                case Elements.Fir:
-                    return VOID_FIRE_ICON;
-                case Elements.Ice:
-                    return "";
-                case Elements.Elec:
-                    return "";
-                case Elements.Wind:
-                    return "";
-                case Elements.Light:
-                    return "";
-                case Elements.Dark:
-                    return "";
-                default:
-                    throw new Exception($"Element, {element.ToString()}, does not have icon.");
-            }
-        }
-
         public static string GetAnimationByElementAndTier(int tier, Elements element)
         {
             var tier1Animations = new System.Collections.Generic.Dictionary<Elements, string> { 

@@ -27,7 +27,7 @@ namespace AscendedZ.entities.enemy_objects
 
         public void Boost(int level, int boost)
         {
-            HP += boost;
+            MaxHP += boost;
             foreach(ISkill skill in Skills)
             {
                 skill.LevelUp();

@@ -1,5 +1,6 @@
 ﻿using AscendedZ.skills;
 using AscendedZ.statuses;
+using AscendedZ.statuses.void_elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +47,7 @@ namespace AscendedZ
             }
         }
 
+        
         public static StatusSkill AgroEnemy
         {
             get
@@ -59,6 +61,7 @@ namespace AscendedZ
             }
         }
 
+        
         public static StatusSkill AgroPlayer 
         { 
             get 
@@ -80,10 +83,10 @@ namespace AscendedZ
 
         private static StatusSkill MakeVoidElementSkill(string name, Elements element)
         {
-            string icon = SkillAssets.GetVoidIconByElement(element);
-            StatusSkill statusSkill = MakeStatusSkill(name, new VoidElementStatus { VoidElement = element, Icon = icon });
+            Status status = new VoidFireStatus();
+            StatusSkill statusSkill = MakeStatusSkill(name, status);
 
-            statusSkill.Icon = icon;
+            statusSkill.Icon = status.Icon;
             statusSkill.EndupAnimation = SkillAssets.VOID_SHIELD;
             statusSkill.TargetType = TargetTypes.SINGLE_TEAM;
 

@@ -15,7 +15,7 @@ namespace AscendedZ.statuses
     {
         private ResistanceType _oldResType;
 
-        public Elements VoidElement { private get; set; }
+        protected Elements _voidElement;
 
         /// <summary>
         /// Icon must be set from initializer.
@@ -27,8 +27,8 @@ namespace AscendedZ.statuses
 
         public override void ActivateStatus(BattleEntity owner)
         {
-            _oldResType = owner.Resistances.GetResistance(VoidElement);
-            owner.Resistances.SetResistance(ResistanceType.Nu, VoidElement);
+            _oldResType = owner.Resistances.GetResistance(_voidElement);
+            owner.Resistances.SetResistance(ResistanceType.Nu, _voidElement);
 
             base.ActivateStatus(owner);
         }
@@ -40,7 +40,7 @@ namespace AscendedZ.statuses
         /// </summary>
         public override void UpdateStatusTurns(BattleEntity entity)
         {
-            _statusOwner.Resistances.SetResistance(_oldResType, VoidElement);
+            _statusOwner.Resistances.SetResistance(_oldResType, _voidElement);
             this.RemoveStatus = true;
         }
 
@@ -58,7 +58,7 @@ namespace AscendedZ.statuses
 
         public override Status Clone()
         {
-            return new AgroStatus();
+            return new VoidElementStatus();
         }
     }
 }
