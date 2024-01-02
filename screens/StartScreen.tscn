@@ -191,4 +191,5 @@ text = "Delete"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_gxppa")
+volume_db = -10.0
 autoplay = true

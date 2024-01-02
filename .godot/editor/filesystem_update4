@@ -26,3 +26,4 @@ res://screens/StartScreen.cs
 res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
+res://screens/StartScreen.tscn
