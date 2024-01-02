@@ -1,7 +1,10 @@
-﻿using System;
+﻿using AscendedZ.game_object;
+using Godot;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +17,15 @@ namespace AscendedZ
         public static readonly string OVERWORLD_3 = "[KH2] Underworld";
         public static readonly string OVERWORLD_4 = "[SMT3] Sound Test";
 
-        private static readonly Dictionary<string, string> OVERWORLD_MUSIC = new Dictionary<string, string>
+        /// <summary>
+        /// List of tracks in order the game plays them.
+        /// </summary>
+        private static readonly List<string> OVERWORLD_TRACKS = new List<string> 
+        {
+            OVERWORLD_1, OVERWORLD_2, OVERWORLD_3, OVERWORLD_4
+        };
+        
+        private static readonly Dictionary<string, string> OVERWORLD_DICT = new Dictionary<string, string>
         {
             { OVERWORLD_1, "res://music/overworld/overworld1.ogg" },
             { OVERWORLD_2, "res://music/overworld/hollow_bastion.ogg" },
@@ -27,14 +38,35 @@ namespace AscendedZ
         public static readonly string DUNGEON6_9 = "res://music/dungeons/dungeon6-9.ogg";
         public static readonly string DUNGEON10 = "res://music/dungeons/dungeon10.ogg";
 
-        public static string GetOverworldTrack(string key)
+        public static readonly string BOSS_VICTORY = "res://music/boss_victory.ogg";
+        public static readonly string FIRST_CUTSCENE = "res://music/cutscene.ogg";
+
+        public static string GetOverworldTrackNormal()
         {
-            return OVERWORLD_MUSIC[key];
+            int tier = PersistentGameObjects.GameObjectInstance().MaxTier - 1;
+            int index = 0;
+            if(tier >= 10 && tier % 10 == 0)
+            {
+                index = tier / 10;
+            }
+
+            string trackKey = OVERWORLD_TRACKS[index];
+            return trackKey;
+        }
+
+        /// <summary>
+        /// Returns the track path for the overworld key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string GetOverworldTrackPath(string key)
+        {
+            return OVERWORLD_DICT[key];
         }
 
         public static List<string> GetOverworldTrackKeys()
         {
-            return OVERWORLD_MUSIC.Keys.ToList<string>();
+            return OVERWORLD_DICT.Keys.ToList<string>();
         }
 
         public static string GetDungeonTrack(int tier)

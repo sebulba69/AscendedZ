@@ -94,6 +94,9 @@ namespace AscendedZ
 
                 List<string> encounterNames = new List<string>();
 
+                double m = 0.01 * Math.Pow((encounterIndex - 10), 2) + 1;
+                int boost = (int)(Math.Pow(encounterIndex, m)) + 1;
+
                 // If we have already stored an encounter in this list, we want to re-use it.
                 if (gameObject.Encounters.Count > encounterIndex)
                 {
@@ -120,12 +123,10 @@ namespace AscendedZ
                     PersistentGameObjects.Save();
                 }
 
-                double m = 0.01 * Math.Pow((encounterIndex - 10), 2) + 1;
-                int boost = (int)(Math.Pow(encounterIndex, m)) + 1;
                 foreach (string name in encounterNames)
                 {
                     Enemy enemy = _enemyMaker.MakeEnemy(name);
-                    enemy.Boost(encounterIndex, boost);
+                    enemy.Boost(tier, boost);
                     encounter.Add(enemy);
                 }
             }
@@ -152,13 +153,6 @@ namespace AscendedZ
                 {
                     break;
                 }
-            }
-
-            if(tier > 10 && tier % 6 == 0)
-            {
-                int numPartyMembersToMake = 3;
-                for (int times = 0; times < numPartyMembersToMake; times++)
-                    partyMembers.Add(PartyMemberGenerator.MakePartyMember(tier));
             }
 
             // scale price based on tier

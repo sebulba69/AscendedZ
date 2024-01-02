@@ -23,13 +23,13 @@ namespace AscendedZ.statuses
         public VoidElementStatus() : base()
         {
             _id = StatusId.VoidElementStatus;
+            this.UpdateDuringOwnersTurn = true;
         }
 
         public override void ActivateStatus(BattleEntity owner)
         {
             _oldResType = owner.Resistances.GetResistance(_voidElement);
             owner.Resistances.SetResistance(ResistanceType.Nu, _voidElement);
-
             base.ActivateStatus(owner);
         }
 
@@ -54,11 +54,6 @@ namespace AscendedZ.statuses
             wrapper.Description = $"Void Status: Sets the target's resistance to a specific element to Null for 1 turn.";
 
             return wrapper;
-        }
-
-        public override Status Clone()
-        {
-            return new VoidElementStatus();
         }
     }
 }

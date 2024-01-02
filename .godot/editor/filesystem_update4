@@ -1,14 +1,6 @@
 res://default_env.tres
+res://screens/RecruitScreenTabs.tscn
 res://screens/MainScreen.tscn
-res://screens/PartyMemberDisplay.tscn
-res://screens/UpgradeScreen.tscn
-res://screens/StartScreen.tscn
-res://screens/PopupWindow.tscn
-res://screens/RewardScreen.tscn
-res://screens/RecruitScreen.tscn
-res://screens/EmbarkScreen.tscn
-res://misc_icons/Icon.tscn
-res://effects/EffectSprite.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://effects/DamageNumber.cs
@@ -26,7 +18,9 @@ res://screens/EntityDisplayBox.cs
 res://screens/MainScreen.cs
 res://screens/MenuScene.cs
 res://screens/PartyMemberDisplay.cs
+res://screens/RecruitCustomScreen.cs
 res://screens/RecruitScreen.cs
+res://screens/RecruitScreenTabs.cs
 res://screens/RewardScreen.cs
 res://screens/StartScreen.cs
 res://screens/UpgradeScreen.cs

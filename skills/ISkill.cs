@@ -18,7 +18,8 @@ namespace AscendedZ.skills
         /// Id is for deserialization
         /// </summary>
         SkillId Id { get; }
-        string Name { get; set; }
+        string Name { get; }
+        string BaseName { get; set; }
         TargetTypes TargetType { get; set; }
         string StartupAnimation { get; set; }
         string EndupAnimation { get; set; }

@@ -29,7 +29,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
 
             Name = EnemyNames.ELLIOT_ONYX;
             Image = CharacterImageAssets.GetImage(Name);
-            MaxHP = 80;
+            MaxHP = 55;
             Turns = 3;
 
             Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
@@ -65,12 +65,16 @@ namespace AscendedZ.entities.enemy_objects.bosses
             }
             else
             {
-                List<BattlePlayer> players = battleSceneObject.AlivePlayers;
+                List<BattlePlayer> players = battleSceneObject.Players;
 
-                if (_nextTarget == players.Count)
-                    _nextTarget = players.Count - 1;
+                do
+                {
+                    if (_nextTarget == players.Count)
+                        _nextTarget = 0;
 
-                action.Target = players[_nextTarget];
+                    action.Target = players[_nextTarget++];
+
+                } while (action.Target.HP <= 0);
 
                 if (action.Target.Resistances.IsWeakToElement(Elements.Ice))
                     action.Skill = Skills[ICE];
@@ -78,10 +82,6 @@ namespace AscendedZ.entities.enemy_objects.bosses
                     action.Skill = Skills[WIND];
                 else
                     action.Skill = Skills[_rng.Next(ICE, WIND + 1)];
-
-                _nextTarget++;
-                if (_nextTarget == players.Count)
-                    _nextTarget = 0;
             }
 
             return action;

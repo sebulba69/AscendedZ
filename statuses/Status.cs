@@ -13,16 +13,20 @@ namespace AscendedZ.statuses
     public class Status
     {
         private bool _active = false;
-        protected bool _removeStatus = false;
+        private bool _removeStatus = false;
+        private bool _updateEveryOtherTurn = false;
         protected BattleEntity _statusOwner; // the person with this status
 
         protected StatusId _id;
         public StatusId Id { get => _id; }
         public string Icon { get; set; }
         public bool Active { get => _active; protected set => _active = value; }
-
         public bool RemoveStatus { get => _removeStatus; protected set => _removeStatus = value; }
-        
+        /// <summary>
+        /// Update during owner's turn or opponent's turn.
+        /// </summary>
+        public bool UpdateDuringOwnersTurn { get => _updateEveryOtherTurn; protected set => _updateEveryOtherTurn = value; }
+
         /// <summary>
         /// This function is called when you activate this status for the first time.
         /// </summary>

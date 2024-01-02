@@ -164,6 +164,9 @@ public partial class StartScreen : Node2D
 		var instancedCutscene = openingCutscene.Instantiate();
 		this.GetTree().Root.AddChild(instancedCutscene);
 
+		var streamPlayer = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
+		streamPlayer.Stream = ResourceLoader.Load<AudioStream>(MusicAssets.FIRST_CUTSCENE);
+		streamPlayer.Play();
 		instancedCutscene.Call("StartCutscene", DialogScenes.Opening);
 		await ToSignal(instancedCutscene, "CutsceneEndedEventHandler");
 

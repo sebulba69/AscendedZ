@@ -58,10 +58,8 @@ public partial class RecruitScreen : CenterContainer
         _vorpexCost = this.GetNode<TextEdit>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/OwnedTalismans");
 
         Button buyButton = this.GetNode<Button>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/BuyButton");
-        Button backButton = this.GetNode<Button>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/BackButton");
 
         buyButton.Pressed += _OnBuyButtonPressed;
-        backButton.Pressed += _OnBackButtonPressed;
 
         _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.GameObjectInstance().MaxTier);
         _availablePartyMembers.Reverse();
@@ -141,10 +139,4 @@ public partial class RecruitScreen : CenterContainer
         _displayName.Text = member.DisplayName;
         _displayDescription.Text = member.ToString().TrimEnd('\r','\n');
     }
-
-    private void _OnBackButtonPressed()
-    {
-        this.QueueFree();
-    }
-
 }

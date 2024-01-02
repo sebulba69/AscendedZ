@@ -70,17 +70,27 @@ namespace AscendedZ.entities
                     _statuses.Remove(status);
         }
 
-        public void UpdateStatusTurns(BattleEntity entity)
+        public void UpdateStatusTurns(BattleEntity entity, bool isNextTurnEntity)
         {
             List<Status> removeStatus = new List<Status>();
 
             foreach (Status s in _statuses)
             {
-                s.UpdateStatusTurns(entity);
+                if (isNextTurnEntity)
+                {
+                    if(s.UpdateDuringOwnersTurn)
+                        s.UpdateStatusTurns(entity);
+                }
+                else
+                {
+                    if(!s.UpdateDuringOwnersTurn)
+                        s.UpdateStatusTurns(entity);
+                }
+
                 if (s.RemoveStatus)
                 {
                     removeStatus.Add(s);
-                } 
+                }
             }
 
             foreach (Status s in removeStatus)

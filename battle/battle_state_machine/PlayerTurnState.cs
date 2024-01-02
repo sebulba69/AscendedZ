@@ -24,7 +24,7 @@ namespace AscendedZ.battle.battle_state_machine
             if(_activePlayer >= 0)
             {
                 var active = players[_activePlayer];
-                active.IsActive = true;
+                active.IsActiveEntity = true;
 
                 battleSceneObject.ActivePlayer = active;
                 battleSceneObject.SkillSelected += _OnSkillSelected;
@@ -64,7 +64,7 @@ namespace AscendedZ.battle.battle_state_machine
         public void ChangeActiveEntity(BattleSceneObject battleSceneObject)
         {
             var players = battleSceneObject.Players;
-            battleSceneObject.ActivePlayer.IsActive = false;
+            battleSceneObject.ActivePlayer.IsActiveEntity = false;
             do
             {
                 _activePlayer++;
@@ -73,13 +73,13 @@ namespace AscendedZ.battle.battle_state_machine
             } while (players[_activePlayer].HP == 0 || !players[_activePlayer].CanAttack);
 
             battleSceneObject.ActivePlayer = players[_activePlayer];
-            battleSceneObject.ActivePlayer.IsActive = true;
+            battleSceneObject.ActivePlayer.IsActiveEntity = true;
         }
 
         public void EndState(BattleSceneObject battleSceneObject)
         {
             foreach (var player in battleSceneObject.Players)
-                player.IsActive = false;
+                player.IsActiveEntity = false;
 
             battleSceneObject.SkillSelected -= _OnSkillSelected;
         }

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlu85hna1k2gf"]
+
+[ext_resource type="Script" path="res://screens/RecruitScreenTabs.cs" id="1_icywx"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1_k52ob"]
+[ext_resource type="PackedScene" uid="uid://6gxnbhp4n8rq" path="res://screens/RecruitScreen.tscn" id="1_tcrlb"]
+[ext_resource type="PackedScene" uid="uid://cu5quwy1w03eh" path="res://screens/RecruitCustomScreen.tscn" id="2_vx1bb"]
+
+[node name="RecruitScreenTabs" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_icywx")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k52ob")
+tab_alignment = 1
+
+[node name="Recruit Shop" parent="TabContainer" instance=ExtResource("1_tcrlb")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Member Request Forum" parent="TabContainer" instance=ExtResource("2_vx1bb")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2

@@ -95,6 +95,8 @@ namespace AscendedZ.battle
             SetEntityTurns(
                 new List<BattleEntity>(this.Players),
                 new List<BattleEntity>(this.Enemies));
+
+            this.PostUIUpdate();
         }
 
         public void SetupEnemyTurns()
@@ -118,14 +120,12 @@ namespace AscendedZ.battle
 
             // we want to update the turn count on the people who last acted
             foreach (var entity in previousEntities)
-                entity.StatusHandler.UpdateStatusTurns(entity);
+                entity.StatusHandler.UpdateStatusTurns(entity, false);
+
+            foreach (var entity in turnEntities)
+                entity.StatusHandler.UpdateStatusTurns(entity, true);
 
             this.PressTurn.Turns = turns * 2;
-
-            if (this.PressTurn.Turns == 0)
-            {
-                this.PostUIUpdate();
-            }
         }
 
         public void HandlePostTurnProcessing(BattleResult result)

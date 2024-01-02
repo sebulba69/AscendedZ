@@ -12,18 +12,32 @@ namespace AscendedZ.game_object
         private string _currentSong = "";
         private AudioStreamPlayer _streamPlayer;
         private Dictionary<string, float> _lastPlayedPosition;
-        private string _overworldMusic;
+        private string _overworldTheme;
+        private bool _isMusicCustom = false;
+        public bool IsMusicCustom { get => _isMusicCustom; set => _isMusicCustom = value; }
 
+        /// <summary>
+        /// A key to the overworld theme song.
+        /// </summary>
+        public string OverworldThemeCustom
+        {
+            get => _overworldTheme;
+            set => _overworldTheme = value;
+        }
+
+        
+        /// <summary>
+        /// Returns a track path to the overworld theme.
+        /// </summary>
         public string OverworldTheme
         {
-            get => _overworldMusic;
-            set => _overworldMusic = value;
+            get => MusicAssets.GetOverworldTrackNormal();
         }
 
         public MusicObject()
         {
-            if(string.IsNullOrEmpty(_overworldMusic))
-                _overworldMusic = MusicAssets.OVERWORLD_1;
+            if (string.IsNullOrEmpty(_overworldTheme))
+                _overworldTheme = MusicAssets.OVERWORLD_1;
 
             _streamPlayer = new AudioStreamPlayer();
             _lastPlayedPosition = new Dictionary<string, float>();
@@ -52,6 +66,11 @@ namespace AscendedZ.game_object
             {
                 _streamPlayer = streamPlayer;
             }
+        }
+
+        public void ResetAllTracksAfterBoss()
+        {
+            _lastPlayedPosition.Clear();
         }
 
         public void PlayMusic(string music, bool isBoss = false)

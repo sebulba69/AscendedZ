@@ -12,11 +12,13 @@ namespace AscendedZ.skills
     {
         public SkillId Id => SkillId.Retreat;
 
-        public string Name { get; set; }
+        public string BaseName { get; set; }
         public TargetTypes TargetType { get; set; }
         public string StartupAnimation { get; set; }
         public string EndupAnimation { get; set; }
         public string Icon { get; set; }
+
+        public string Name => BaseName;
 
         public BattleResult ProcessSkill(BattleEntity target)
         {
@@ -25,12 +27,12 @@ namespace AscendedZ.skills
 
         public string GetBattleDisplayString()
         {
-            return this.Name;
+            return this.BaseName;
         }
 
         public override string ToString()
         {
-            return $"{this.Name}";
+            return $"{this.BaseName}";
         }
 
         public void LevelUp()
@@ -46,7 +48,7 @@ namespace AscendedZ.skills
         {
             return new RetreatSkill()
             {
-                Name = this.Name,
+                BaseName = this.BaseName,
                 TargetType = this.TargetType,
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,

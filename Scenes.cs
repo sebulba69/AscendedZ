@@ -15,7 +15,7 @@ namespace AscendedZ
         public static readonly string CUTSCENE = "res://screens/CGCutsceneScreen.tscn";
         public static readonly string START = "res://screens/StartScreen.tscn";
         public static readonly string MAIN = "res://screens/MainScreen.tscn";
-        public static readonly string MAIN_RECRUIT = "res://screens/RecruitScreen.tscn";
+        public static readonly string MAIN_RECRUIT = "res://screens/RecruitScreenTabs.tscn";
         public static readonly string MAIN_EMBARK = "res://screens/EmbarkScreen.tscn";
         public static readonly string MAIN_EMBARK_DISPLAY = "res://screens/PartyMemberDisplay.tscn";
         public static readonly string BATTLE_SCENE = "res://screens/BattleEnemyScene.tscn";

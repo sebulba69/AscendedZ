@@ -23,7 +23,7 @@ namespace AscendedZ
         {
             return new ElementSkill
             {
-                Name = name,
+                BaseName = name,
                 Damage = 2,
                 TargetType = TargetTypes.SINGLE_OPP,
                 Element = element,
@@ -77,13 +77,12 @@ namespace AscendedZ
         {
             get
             {
-                return MakeVoidElementSkill("Void Fire", Elements.Fir);
+                return MakeVoidElementSkill("Void Fire", new VoidFireStatus());
             }
         }
 
-        private static StatusSkill MakeVoidElementSkill(string name, Elements element)
+        private static StatusSkill MakeVoidElementSkill(string name, Status status)
         {
-            Status status = new VoidFireStatus();
             StatusSkill statusSkill = MakeStatusSkill(name, status);
 
             statusSkill.Icon = status.Icon;
@@ -97,7 +96,7 @@ namespace AscendedZ
         {
             return new StatusSkill
             {
-                Name = name,
+                BaseName = name,
                 TargetType = TargetTypes.SINGLE_OPP,
                 StartupAnimation = SkillAssets.STARTUP1_MG,
                 Status = status
@@ -118,7 +117,7 @@ namespace AscendedZ
 
         public static HealSkill HEAL_1 = new HealSkill()
         {
-            Name = "Regen",
+            BaseName = "Regen",
             TargetType = TargetTypes.SINGLE_TEAM,
             StartupAnimation = SkillAssets.STARTUP1_MG,
             EndupAnimation = SkillAssets.HEAL_T1,
@@ -129,7 +128,7 @@ namespace AscendedZ
         #region Temporary Battle Skills
         public static PassSkill PASS = new PassSkill()
         {
-            Name = "Pass",
+            BaseName = "Pass",
             TargetType = TargetTypes.SINGLE_OPP,
             StartupAnimation = string.Empty,
             EndupAnimation = string.Empty,
@@ -138,7 +137,7 @@ namespace AscendedZ
 
         public static RetreatSkill RETREAT = new RetreatSkill()
         {
-            Name = "Retreat",
+            BaseName = "Retreat",
             TargetType = TargetTypes.SINGLE_OPP,
             StartupAnimation = string.Empty,
             EndupAnimation = string.Empty,

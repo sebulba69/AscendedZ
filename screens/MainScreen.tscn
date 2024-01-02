@@ -23,13 +23,19 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -367.0
-offset_bottom = 55.0
+offset_left = -105.0
+offset_bottom = 47.0
 grow_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Background/MusicSelectContainer"]
 layout_mode = 2
 alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/Background/MusicSelectContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3")
+text = "Custom"
 
 [node name="Label" type="Label" parent="CenterContainer/Background/MusicSelectContainer/HBoxContainer"]
 layout_mode = 2
@@ -41,6 +47,7 @@ vertical_alignment = 1
 
 [node name="MusicOptionsButton" type="OptionButton" parent="CenterContainer/Background/MusicSelectContainer/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(367, 55)
 layout_mode = 2
 size_flags_horizontal = 8

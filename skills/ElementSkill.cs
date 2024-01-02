@@ -12,23 +12,24 @@ namespace AscendedZ.skills
 {
     public partial class ElementSkill : ISkill 
     {
+        public SkillId Id => SkillId.Elemental;
         private int _damage;
         private int _damageModifier = 0;
         private int _level = 0;
         private string _baseName;
         private string _name;
 
-        public SkillId Id => SkillId.Elemental;
-        public string Name 
+        public string Name
         {
-            get => _name;
-            set
+            get
             {
-                _name = value;
-                if (string.IsNullOrEmpty(_baseName))
-                    _baseName = _name;
+                if (_level == 0)
+                    return _baseName;
+                else
+                    return $"{_baseName} +{_level}";
             }
         }
+        public string BaseName { get => _baseName; set => _baseName = value; }
         public TargetTypes TargetType { get; set; }
         public Elements Element { get; set; }
 
@@ -70,7 +71,6 @@ namespace AscendedZ.skills
             int boost = GetBoostValue();
 
             _level++;
-            this.Name = $"{_baseName} +{_level}";
             this.Damage += boost;
         }
 
@@ -91,7 +91,7 @@ namespace AscendedZ.skills
         {
             return new ElementSkill()
             {
-                Name = this.Name,
+                BaseName = this.BaseName,
                 Damage = this.Damage,
                 TargetType = this.TargetType,
                 Element = this.Element,

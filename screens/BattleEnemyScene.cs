@@ -485,6 +485,14 @@ public partial class BattleEnemyScene : Node2D
             endLabel.Text = "Encounter Complete!";
 
             var gameObject = PersistentGameObjects.GameObjectInstance();
+
+            if(gameObject.Tier == 5 || gameObject.Tier % 10 == 0)
+            {
+                gameObject.MusicPlayer.PlayMusic(MusicAssets.BOSS_VICTORY);
+                gameObject.MusicPlayer.ResetAllTracksAfterBoss();
+            }
+                
+
             if (gameObject.Tier == gameObject.MaxTier)
             {
                 gameObject.MaxTier++;
@@ -518,7 +526,6 @@ public partial class BattleEnemyScene : Node2D
         else if (retreated)
         {
             endLabel.Text = "Retreated from battle.";
-            this.GetNode<Button>("%RetryFloorBtn").Visible = false;
         }
         else
         {

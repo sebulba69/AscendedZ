@@ -13,6 +13,7 @@ public partial class MainScreen : Node2D
     private Label _tooltip;
     private AudioStreamPlayer _audioPlayer;
     private PanelContainer _musicSelectContainer;
+    private bool _checkBoxPressed;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -34,15 +35,18 @@ public partial class MainScreen : Node2D
     private void InitializeMusicButton(GameObject gameObject)
     {
         OptionButton musicOptionsButton = this.GetNode<OptionButton>("%MusicOptionsButton");
+        CheckBox checkBox = this.GetNode<CheckBox>("%CheckBox");
+
+        MusicObject musicPlayer = gameObject.MusicPlayer;
         List<string> overworldTracks = MusicAssets.GetOverworldTrackKeys();
 
-        gameObject.MusicPlayer.SetStreamPlayer(_audioPlayer);
+        musicPlayer.SetStreamPlayer(_audioPlayer);
 
         int indexOfSongToDisplay = 0;
         for (int i = 0; i < overworldTracks.Count; i++)
         {
             string track = overworldTracks[i];
-            if (track.Equals(gameObject.MusicPlayer.OverworldTheme))
+            if (track.Equals(gameObject.MusicPlayer.OverworldThemeCustom))
                 indexOfSongToDisplay = i;
 
             musicOptionsButton.AddItem(track);
@@ -52,18 +56,44 @@ public partial class MainScreen : Node2D
 
         musicOptionsButton.ItemSelected += (long index) =>
         {
-            gameObject.MusicPlayer.OverworldTheme = musicOptionsButton.GetItemText((int)index);
+            musicPlayer.OverworldThemeCustom = musicOptionsButton.GetItemText((int)index);
             PersistentGameObjects.Save();
 
-            gameObject.MusicPlayer.PlayMusic(GetOverworldTrack(gameObject));
+            musicPlayer.PlayMusic(MusicAssets.GetOverworldTrackPath(musicPlayer.OverworldThemeCustom));
         };
 
-        gameObject.MusicPlayer.PlayMusic(GetOverworldTrack(gameObject));
+        checkBox.Toggled += (bool state) => 
+        {
+            musicPlayer.IsMusicCustom = state;
+            SwapOverworldTracks(musicPlayer);
+        };
+
+        SwapOverworldTracks(musicPlayer);
     }
 
-    private string GetOverworldTrack(GameObject gameObject)
+    private void SwapOverworldTracks(MusicObject musicPlayer)
     {
-        return MusicAssets.GetOverworldTrack(gameObject.MusicPlayer.OverworldTheme);
+        OptionButton musicOptionsButton = this.GetNode<OptionButton>("%MusicOptionsButton");
+        CheckBox checkBox = this.GetNode<CheckBox>("%CheckBox");
+
+        musicPlayer.ResetAllTracksAfterBoss();
+        string track;
+        if (musicPlayer.IsMusicCustom)
+        {
+            musicOptionsButton.Visible = true;
+            checkBox.Text = "Normal";
+            checkBox.ButtonPressed = true;
+            track = MusicAssets.GetOverworldTrackPath(musicPlayer.OverworldThemeCustom);
+        }
+        else
+        {
+            musicOptionsButton.Visible = false;
+            checkBox.Text = "Custom";
+            checkBox.ButtonPressed = false;
+            track = MusicAssets.GetOverworldTrackPath(musicPlayer.OverworldTheme);
+        }
+
+        musicPlayer.PlayMusic(track);
     }
 
     private void InitializePlayerInformation(GameObject gameObject)

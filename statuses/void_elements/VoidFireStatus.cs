@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AscendedZ.battle;
+using AscendedZ.entities.battle_entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,11 @@ namespace AscendedZ.statuses.void_elements
         {
             _voidElement = skills.Elements.Fir;
             this.Icon = SkillAssets.VOID_FIRE_ICON;
+        }
+
+        public override Status Clone()
+        {
+            return new VoidFireStatus();
         }
 
         public override StatusIconWrapper CreateIconWrapper()

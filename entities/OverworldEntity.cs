@@ -68,7 +68,7 @@ namespace AscendedZ.entities.partymember_objects
 
             GradeString = GetLevelString();
 
-            MaxHP += 10 + 2 * Level;
+            MaxHP += GetMaxHPUpgradeValue();
 
             foreach (ISkill skill in Skills)
                 skill.LevelUp();
@@ -76,13 +76,17 @@ namespace AscendedZ.entities.partymember_objects
 
         public void BoostShopCost()
         {
-            ShopCost = ShopCost + (Level - 1) * 2;
-            ShopCost += ShopCost / 4;
+            ShopCost = ShopCost + Level * 2;
         }
 
         public string GetHPLevelUpPreview()
         {
-            return $"{MaxHP + (10 + 2 * (Level + 1))} HP";
+            return $"{MaxHP + GetMaxHPUpgradeValue()} HP";
+        }
+
+        private int GetMaxHPUpgradeValue()
+        {
+            return (7 + 2 * (Level + 1)) / 2;
         }
 
         private string GetLevelString()

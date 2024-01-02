@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://cu5quwy1w03eh"]
+
+[ext_resource type="Script" path="res://screens/RecruitCustomScreen.cs" id="1_osff3"]
+[ext_resource type="PackedScene" uid="uid://b5e2ob3gqma0a" path="res://screens/PartyMemberDisplay.tscn" id="1_rorgk"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1_yjiyg"]
+[ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="2_rt7db"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jbgh"]
+atlas = ExtResource("2_rt7db")
+region = Rect2(448, 1372, 32, 32)
+margin = Rect2(0, -5, 0, 0)
+
+[node name="RecruitCustomScreen" type="CenterContainer"]
+offset_right = 462.0
+offset_bottom = 50.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_osff3")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(736, 491)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="PartyMemberDisplay" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_rorgk")]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PotentialMembers" type="ItemList" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_yjiyg")
+theme_override_font_sizes/font_size = 25
+
+[node name="PotentialSkills" type="ItemList" parent="PanelContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="BuyButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yjiyg")
+theme_override_font_sizes/font_size = 30
+text = "Buy"
+
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yjiyg")
+theme_override_font_sizes/font_size = 30
+text = "Back"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5jbgh")
+expand_mode = 2
+
+[node name="OwnedVorpex" type="TextEdit" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_yjiyg")
+theme_override_font_sizes/font_size = 28
+editable = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CostLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_yjiyg")
+theme_override_font_sizes/font_size = 25
+text = "Cost: X VC"
+horizontal_alignment = 1

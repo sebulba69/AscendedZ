@@ -16,9 +16,12 @@ namespace AscendedZ.battle.battle_state_machine
     {
         private List<Enemy> _enemies;
         private int _activeEnemy;
+        private bool _firstAction = true;
 
         public void StartState(BattleSceneObject battleSceneObject)
         {
+            _firstAction = true;
+
             _enemies = battleSceneObject.Enemies;
             _activeEnemy = _enemies.FindIndex(enemy => enemy.HP > 0);
 
@@ -29,6 +32,14 @@ namespace AscendedZ.battle.battle_state_machine
         public void _OnDoTurnRequest(object sender, EventArgs e)
         {
             BattleSceneObject battleSceneObject = sender as BattleSceneObject;
+
+            if (_firstAction)
+            {
+                _firstAction = false;
+                battleSceneObject.PostUIUpdate();
+                return;
+            }
+            
             var active = _enemies[_activeEnemy];
 
             BattleResult result = default(BattleResult);

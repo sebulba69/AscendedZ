@@ -25,13 +25,19 @@ namespace AscendedZ.entities.enemy_objects
             _rng = new Random();
         }
 
-        public void Boost(int level, int boost)
+        public void Boost(int tier, int boost)
         {
             MaxHP += boost;
-            foreach(ISkill skill in Skills)
+            int numLevelUps = tier / 2;
+
+            for (int i = 0; i < numLevelUps; i++)
             {
-                skill.LevelUp();
+                foreach (ISkill skill in Skills)
+                {
+                    skill.LevelUp();
+                }
             }
+
         }
 
         public virtual void ResetEnemyState()

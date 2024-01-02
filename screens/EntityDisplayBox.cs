@@ -117,8 +117,8 @@ public partial class EntityDisplayBox : PanelContainer
         if (entity.GetType().Equals(typeof(BattlePlayer)))
         {
             ColorRect activePlayerTag = this.GetNode<ColorRect>("%ActivePlayerTag");
-            if (activePlayerTag.Visible != entity.IsActive)
-                activePlayerTag.Visible = entity.IsActive;
+            if (activePlayerTag.Visible != entity.IsActiveEntity)
+                activePlayerTag.Visible = entity.IsActiveEntity;
         }
 
 
@@ -168,7 +168,7 @@ public partial class EntityDisplayBox : PanelContainer
                 if((int)(result.ResultType) < (int)BattleResultType.StatusApplied)
                 {
                     // play damage sfx
-                    if (!isHPGainedFromMove)
+                    if (!isHPGainedFromMove && result.HPChanged > 0)
                     {
                         _shakeParameters.ShakeValue = _shakeParameters.ShakeStrength;
                         _shakeSfx.Play();

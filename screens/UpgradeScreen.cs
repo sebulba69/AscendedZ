@@ -6,6 +6,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using System.Linq;
 
 public partial class UpgradeScreen : CenterContainer
 {
@@ -41,7 +42,7 @@ public partial class UpgradeScreen : CenterContainer
         _selected = 0;
 
         _allPartyMembers = new List<OverworldEntity>();
-		_allPartyMembers.AddRange(gameObject.MainPlayer.Party.Party);
+		_allPartyMembers.AddRange(gameObject.MainPlayer.Party.Party.Where(member => member != null));
 		_allPartyMembers.AddRange(gameObject.MainPlayer.ReserveMembers);
 
 		_partyList.Connect("item_selected", new Callable(this, "_OnItemSelected"));
@@ -70,7 +71,7 @@ public partial class UpgradeScreen : CenterContainer
 			
 			RefreshItemList();
 			
-			PersistentGameObjects.Save();
+			// PersistentGameObjects.Save();
         }
     }
 

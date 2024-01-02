@@ -49,22 +49,6 @@ namespace AscendedZ.entities.partymember_objects
             return member;
         }
 
-        public static OverworldEntity MakePartyMember(int tier)
-        {
-            var keys = _partyMemberElementPairs.Keys;
-            string randomName = keys.ElementAt(_rng.Next(keys.Count));
-
-            OverworldEntity member = new OverworldEntity
-            {
-                Name = randomName,
-                Image = CharacterImageAssets.GetImage(randomName),
-                MaxHP = _rng.Next(10, 17)
-            };
-
-            MakeRandomPartyMember(member, tier);
-            return member;
-        }
-
         private static void MakePremadePartyMember(OverworldEntity member)
         {
             string name = member.Name;
@@ -113,45 +97,6 @@ namespace AscendedZ.entities.partymember_objects
             {
                 throw new Exception($"Party member {name} not implemented.");
             }
-        }
-
-        private static void MakeRandomPartyMember(OverworldEntity member, int tier)
-        {
-            Elements resist = _partyMemberElementPairs[member.Name];
-            Elements weak = _elementalOpposites[resist];
-
-            member.Resistances.SetResistance(ResistanceType.Rs, resist);
-            member.Resistances.SetResistance(ResistanceType.Wk, weak);
-
-            List<ISkill> skills;
-
-            if(tier <= 40)
-                skills = GetAllSkillsWithoutWeakness(weak, SkillDatabase.GetAllGeneratableSkills(1));
-            else
-                throw new Exception("No generation programmed for tiers above 40 yet.");
-
-            int numSkills = _rng.Next(1, 3);
-            for (int generatedSkills = 0; generatedSkills < numSkills; generatedSkills++)
-            {
-                ISkill skill = skills[_rng.Next(skills.Count)];
-                member.Skills.Add(skill.Clone());
-            }
-        }
-
-        private static List<ISkill> GetAllSkillsWithoutWeakness(Elements weak, List<ISkill> skills)
-        {
-            List<ISkill> nonWeaknessSkills = skills.FindAll(skill =>
-            {
-                bool isWeakToElement = false;
-                if (skill.Id == SkillId.Elemental)
-                {
-                    ElementSkill elementSkill = (ElementSkill)skill;
-                    isWeakToElement = (elementSkill.Element == weak);
-                }
-                return !isWeakToElement;
-            });
-
-            return nonWeaknessSkills;
         }
     }
 }
