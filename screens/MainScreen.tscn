@@ -12,6 +12,7 @@ offset_right = 1511.0
 offset_bottom = 850.0
 
 [node name="Background" type="TextureRect" parent="CenterContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 2
 texture = ExtResource("2")

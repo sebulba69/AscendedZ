@@ -155,13 +155,16 @@ public partial class BattleEnemyScene : Node2D
 
     private void InitializeBattleScene()
     {
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+
         ClearChildrenFromNode(_partyMembers);
         ClearChildrenFromNode(_enemyMembers);
         _skillList.Clear();
 
         _skillButton.Disabled = false;
 
-        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+        TextureRect background = this.GetNode<TextureRect>("%Background");
+        background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatBackground(gameObject.Tier));
 
         _battleSceneObject = new BattleSceneObject();
         _battleSceneObject.InitializeEnemies(gameObject.Tier);

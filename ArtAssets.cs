@@ -12,6 +12,48 @@ using System.Threading.Tasks;
 
 namespace AscendedZ
 {
+    public class BackgroundAssets
+    {
+        private static readonly string TIER1_10 = "res://cg_backgrounds/bg00501.jpg";
+        private static readonly string TIER11_20 = "res://cg_backgrounds/bg03401.jpg";
+        private static readonly string TIER21_30 = "res://cg_backgrounds/bg00607.jpg";
+
+        private static readonly string CBT_TIER1_10 = "res://cg_backgrounds/bg03101.jpg";
+        private static readonly string CBT_TIER11_20 = "res://cg_backgrounds/bg02501.jpg";
+        private static readonly string CBT_TIER21_30 = "res://cg_backgrounds/bg02402.jpg";
+
+        public static string GetBackground(int maxTier)
+        {
+            if(maxTier > 20)
+            {
+                return TIER21_30;
+            }
+            else if(maxTier > 10)
+            {
+                return TIER11_20;
+            }
+            else
+            {
+                return TIER1_10;
+            }
+        }
+
+        public static string GetCombatBackground(int maxTier)
+        {
+            if (maxTier > 20)
+            {
+                return CBT_TIER21_30;
+            }
+            else if (maxTier > 10)
+            {
+                return CBT_TIER11_20;
+            }
+            else
+            {
+                return CBT_TIER1_10;
+            }
+        }
+    }
 
     /// <summary>
     /// Quick access to art assets using res paths

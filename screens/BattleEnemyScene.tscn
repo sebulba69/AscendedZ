@@ -14,6 +14,7 @@ region = Rect2(0, 0, 32, 32)
 script = ExtResource("2")
 
 [node name="Background" type="TextureRect" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(1920, 1080)
 offset_right = 1511.0
 offset_bottom = 850.0
@@ -161,10 +162,11 @@ layout_mode = 2
 
 [node name="SkillsList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 125)
+custom_minimum_size = Vector2(300, 150)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 20
+allow_search = false
 
 [node name="TargetList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true

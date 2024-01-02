@@ -26,6 +26,9 @@ public partial class MainScreen : Node2D
 
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
+        TextureRect background = this.GetNode<TextureRect>("%Background");
+        background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetBackground(gameObject.MaxTier));
+
         InitializeMusicButton(gameObject);
         InitializePlayerInformation(gameObject);
         InitializeButtons(gameObject);
@@ -64,6 +67,7 @@ public partial class MainScreen : Node2D
 
         checkBox.Toggled += (bool state) => 
         {
+            musicPlayer.ResetAllTracksAfterBoss();
             musicPlayer.IsMusicCustom = state;
             SwapOverworldTracks(musicPlayer);
         };
@@ -76,7 +80,6 @@ public partial class MainScreen : Node2D
         OptionButton musicOptionsButton = this.GetNode<OptionButton>("%MusicOptionsButton");
         CheckBox checkBox = this.GetNode<CheckBox>("%CheckBox");
 
-        musicPlayer.ResetAllTracksAfterBoss();
         string track;
         if (musicPlayer.IsMusicCustom)
         {
