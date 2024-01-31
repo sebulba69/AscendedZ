@@ -81,8 +81,6 @@ namespace AscendedZ.battle
         {
             UpdateUI?.Invoke(this, new BattleUIUpdate()
             {
-                Enemies = this.Enemies,
-                Players = this.Players,
                 CurrentAPBarTurnValue = this.PressTurn.Turns,
                 UserCanInput = (_turnState == TurnState.PLAYER),
                 Result = result

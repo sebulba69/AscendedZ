@@ -193,7 +193,7 @@ public partial class BattleEnemyScene : Node2D
 
         // set the turns and prep the b.s.o. for processing battle stuff
         _battleSceneObject.StartBattle();
-        ChangeAPBarWithTurnState(TurnState.PLAYER);
+        UpdateTurnsUsingTurnState(TurnState.PLAYER);
 
         string dungeonTrack = MusicAssets.GetDungeonTrack(gameObject.Tier);
         gameObject.MusicPlayer.PlayMusic(dungeonTrack, (gameObject.Tier == 5 || gameObject.Tier % 10 == 0));
@@ -287,16 +287,17 @@ public partial class BattleEnemyScene : Node2D
             _battleSceneObject.ChangeActiveEntity();
         }
 
+        List<Enemy> enemies = _battleSceneObject.Enemies;
         // update HP values on everyone
-        for (int i = 0; i < update.Enemies.Count; i++)
+        for (int i = 0; i < enemies.Count; i++)
         {
             var enemyDisplay = _enemyMembers.GetChild(i);
-            var enemy = update.Enemies[i];
+            var enemy = enemies[i];
             var enemyWrapper = new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss };
             enemyDisplay.Call("UpdateEntityDisplay", enemyWrapper);
         }
 
-        UpdatePlayerDisplay(update.Players);
+        UpdatePlayerDisplay(_battleSceneObject.Players);
 
         // check if win conditions were met
         if (_battleSceneObject.DidPartyMembersWin())
@@ -319,7 +320,7 @@ public partial class BattleEnemyScene : Node2D
         {
             _battleSceneObject.PressTurn.TurnEnded = false; // set turns
             _battleSceneObject.ChangeTurnState(); // change turn state
-            ChangeAPBarWithTurnState(_battleSceneObject.TurnState); // change ap bar visuals
+            UpdateTurnsUsingTurnState(_battleSceneObject.TurnState); // change ap bar visuals
         }
 
         // after we fully display an animation and process a skill
@@ -348,13 +349,13 @@ public partial class BattleEnemyScene : Node2D
         }
     }
 
-    private void ChangeAPBarWithTurnState(TurnState turnState)
+    private void UpdateTurnsUsingTurnState(TurnState turnState)
     {
         if (turnState == TurnState.PLAYER)
         {
             _battleSceneObject.SetPartyMemberTurns();
             string playerYellow = "ffff2ad7";
-            SetNewAPBar(playerYellow);
+            SetNewTurns(playerYellow);
 
             SetActiveSkills();
 
@@ -364,7 +365,7 @@ public partial class BattleEnemyScene : Node2D
         {
             _battleSceneObject.SetupEnemyTurns();
             string enemyOrange = "ff922a";
-            SetNewAPBar(enemyOrange);
+            SetNewTurns(enemyOrange);
         }
 
         // change our active player display
@@ -459,7 +460,7 @@ public partial class BattleEnemyScene : Node2D
 
     #endregion
 
-    private void SetNewAPBar(string color)
+    private void SetNewTurns(string color)
     {
         StyleBoxFlat styleBox = ResourceLoader.Load<StyleBoxFlat>("res://screens/APBarStyleBox.tres");
         styleBox.BgColor = new Color(color);
