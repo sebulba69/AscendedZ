@@ -76,7 +76,7 @@ namespace AscendedZ.entities.partymember_objects
 
         public void BoostShopCost()
         {
-            ShopCost = ShopCost + Level * 2;
+            ShopCost = (ShopCost + Level) * 2;
         }
 
         public string GetHPLevelUpPreview()

@@ -171,9 +171,10 @@ namespace AscendedZ
             }
 
             // scale price based on tier
-            if(tier > 5 && tier % 5 == 0)
+            if(tier > 5)
             {
-                int numPriceSpikes = tier / 5;
+                int remainder = tier % 5;
+                int numPriceSpikes = (tier - remainder) / 5;
                 for(int times = 0; times < numPriceSpikes; times++)
                 {
                     foreach (var member in partyMembers)

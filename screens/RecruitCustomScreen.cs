@@ -22,4 +22,9 @@ public partial class RecruitCustomScreen : CenterContainer
 		_potentialSkills = this.GetNode<ItemList>("%PotentialSkills");
 		_potentialPartyMembers = this.GetNode<ItemList>("%PotentialMembers");
 	}
+
+	private void PopulatePartyMemberList()
+	{
+
+	}
 }

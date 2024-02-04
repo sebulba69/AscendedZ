@@ -2,6 +2,7 @@
 using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace AscendedZ.entities.partymember_objects
         private static readonly Random _rng = new Random();
 
         /// <summary>
-        /// KVPs of enemies and the elements they're strong to
+        /// KVPs of enemy party members and the elements they're strong to
         /// </summary>
         private static readonly Dictionary<string, Elements> _partyMemberElementPairs = new Dictionary<string, Elements> 
         {
@@ -37,66 +38,115 @@ namespace AscendedZ.entities.partymember_objects
             { Elements.Dark, Elements.Light }
         };
 
+        private static readonly Dictionary<string, Func<OverworldEntity>> _preMadeEntities = new Dictionary<string, Func<OverworldEntity>>
+        {
+            { PartyNames.Locphiedon, MakeLocphiedon },
+            { PartyNames.Gagar, MakeGagar },
+            { PartyNames.Yuudam, MakeYuudam },
+            { PartyNames.Pecheal, MakePecheal },
+            { PartyNames.Toke, MakeToke },
+            { PartyNames.Maxwald, MakeMaxwald },
+            { PartyNames.Halvia, MakeHalvia },
+        };
+
         public static OverworldEntity MakePartyMember(string name)
         {
-            OverworldEntity member = new OverworldEntity
-            {
-                Name = name,
-                Image = CharacterImageAssets.GetImage(name),
-                MaxHP = 10
-            };
-            MakePremadePartyMember(member);
-            return member;
-        }
+            OverworldEntity member;
 
-        private static void MakePremadePartyMember(OverworldEntity member)
-        {
-            string name = member.Name;
-            if (name == PartyNames.Locphiedon)
+            if(_preMadeEntities.ContainsKey(name))
             {
-                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Wind);
-                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
-                member.Skills.Add(SkillDatabase.Wind1.Clone());
-            }
-            else if (name == PartyNames.Gagar)
-            {
-                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Fir);
-                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
-                member.Skills.Add(SkillDatabase.Fire1.Clone());
-            }
-            else if (name == PartyNames.Yuudam)
-            {
-                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
-                member.Skills.Add(SkillDatabase.Heal1.Clone());
-            }
-            else if (name == PartyNames.Pecheal)
-            {
-                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Ice);
-                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
-                member.Skills.Add(SkillDatabase.Ice1.Clone());
-            }
-            else if (name == PartyNames.Toke)
-            {
-                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
-                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
-                member.Skills.Add(SkillDatabase.Dark1.Clone());
-            }
-            else if (name == PartyNames.Maxwald)
-            {
-                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Light);
-                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
-                member.Skills.Add(SkillDatabase.Light1.Clone());
-            }
-            else if (name == PartyNames.Halvia)
-            {
-                member.Resistances.SetResistance(ResistanceType.Rs, Elements.Elec);
-                member.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
-                member.Skills.Add(SkillDatabase.Elec1.Clone());
+                member = _preMadeEntities[name]();
             }
             else
             {
                 throw new Exception($"Party member {name} not implemented.");
             }
+
+            return member;
+        }
+
+        private static OverworldEntity MakeLocphiedon()
+        {
+            var member = MakeOverworldEntity(PartyNames.Locphiedon);
+
+            member.Resistances.SetResistance(ResistanceType.Rs, Elements.Wind);
+            member.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
+            member.Skills.Add(SkillDatabase.Wind1.Clone());
+
+            return member;
+        }
+
+        private static OverworldEntity MakeGagar()
+        {
+            var member = MakeOverworldEntity(PartyNames.Gagar);
+
+            member.Resistances.SetResistance(ResistanceType.Rs, Elements.Fir);
+            member.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
+            member.Skills.Add(SkillDatabase.Fire1.Clone());
+
+            return member;
+        }
+
+        private static OverworldEntity MakeYuudam()
+        {
+            var member = MakeOverworldEntity(PartyNames.Yuudam);
+
+            member.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
+            member.Skills.Add(SkillDatabase.Heal1.Clone());
+
+            return member;
+        }
+
+        private static OverworldEntity MakePecheal()
+        {
+            var member = MakeOverworldEntity(PartyNames.Pecheal);
+
+            member.Resistances.SetResistance(ResistanceType.Rs, Elements.Ice);
+            member.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
+            member.Skills.Add(SkillDatabase.Ice1.Clone());
+
+            return member;
+        }
+
+        private static OverworldEntity MakeToke()
+        {
+            var member = MakeOverworldEntity(PartyNames.Toke);
+
+            member.Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
+            member.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
+            member.Skills.Add(SkillDatabase.Dark1.Clone());
+
+            return member;
+        }
+
+        private static OverworldEntity MakeMaxwald()
+        {
+            var member = MakeOverworldEntity(PartyNames.Maxwald);
+
+            member.Resistances.SetResistance(ResistanceType.Rs, Elements.Light);
+            member.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
+            member.Skills.Add(SkillDatabase.Light1.Clone());
+
+            return member;
+        }
+
+        private static OverworldEntity MakeHalvia()
+        {
+            var member = MakeOverworldEntity(PartyNames.Halvia);
+            member.Resistances.SetResistance(ResistanceType.Rs, Elements.Elec);
+            member.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
+            member.Skills.Add(SkillDatabase.Elec1.Clone());
+            return member;
+        }
+
+        private static OverworldEntity MakeOverworldEntity(string name)
+        {
+            return new OverworldEntity
+            {
+                Name = name,
+                Image = CharacterImageAssets.GetImage(name),
+                MaxHP = 10
+            };
         }
     }
 }
