@@ -32,7 +32,6 @@ namespace AscendedZ.skills
         public string EndupAnimation { get; set; }
         public string Icon { get ; set; }
         public int HealAmount { get; set; }
-        
 
         public string GetBattleDisplayString()
         {

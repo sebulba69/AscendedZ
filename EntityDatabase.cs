@@ -95,7 +95,7 @@ namespace AscendedZ
                 List<string> encounterNames = new List<string>();
 
                 double m = 0.01 * Math.Pow((encounterIndex - 10), 2) + 1;
-                int boost = (int)(Math.Pow(encounterIndex, m)) + 1;
+                int boost = (int)(Math.Pow(encounterIndex, m)) + 2;
 
                 // If we have already stored an encounter in this list, we want to re-use it.
                 if (gameObject.Encounters.Count > encounterIndex)

@@ -1,8 +1,8 @@
 res://default_env.tres
-res://turn_icons/TurnIcon.tscn
-res://screens/APBarStyleBox.tres
 res://screens/AscendedTextbox.tscn
 res://screens/BattleEnemyScene.tscn
+res://turn_icons/TurnIcon.tscn
+res://screens/MainScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://effects/DamageNumber.cs
@@ -29,5 +29,3 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://turn_icons/DropShadow.gdshader
-res://screens/MainScreen.tscn

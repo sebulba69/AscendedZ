@@ -18,10 +18,15 @@ namespace AscendedZ.skills
         public string StartupAnimation { get; set; }
         public string EndupAnimation { get; set; }
         public string Icon { get; set; }
-
+        public int Level { get; set; }
         public Status Status { get; set; }
 
         public string Name => BaseName;
+
+        public StatusSkill()
+        {
+            Level = 1;
+        }
 
         public BattleResult ProcessSkill(BattleEntity target)
         {

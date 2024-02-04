@@ -37,6 +37,7 @@ namespace AscendedZ
         public static readonly string DUNGEON5 = "res://music/dungeons/dungeon5.ogg";
         public static readonly string DUNGEON6_9 = "res://music/dungeons/dungeon6-9.ogg";
         public static readonly string DUNGEON10 = "res://music/dungeons/dungeon10.ogg";
+        public static readonly string[] DUNGEON_TRACKS_REAL = { "res://music/dungeons/dungeon11-19.ogg" };
 
         public static readonly string BOSS_VICTORY = "res://music/boss_victory.ogg";
         public static readonly string FIRST_CUTSCENE = "res://music/cutscene.ogg";
@@ -71,6 +72,7 @@ namespace AscendedZ
 
         public static string GetDungeonTrack(int tier)
         {
+            // tiers 5 - 10 have special tracks
             if(tier < 5)
             {
                 return DUNGEON1_4;
@@ -86,6 +88,14 @@ namespace AscendedZ
             else if(tier == 10)
             {
                 return DUNGEON10;
+            }
+            else if(tier > 10)
+            {
+                int index = ((tier - (tier % 10))/10) - 1;
+                
+                if (index > DUNGEON_TRACKS_REAL.Length)
+                    index = 0;
+                return DUNGEON_TRACKS_REAL[index];
             }
             else
             {

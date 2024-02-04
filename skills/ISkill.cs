@@ -24,6 +24,7 @@ namespace AscendedZ.skills
         string StartupAnimation { get; set; }
         string EndupAnimation { get; set; }
         string Icon { get; set; }
+        int Level { get; set; }
         BattleResult ProcessSkill(BattleEntity target);
         string GetBattleDisplayString();
         void LevelUp();

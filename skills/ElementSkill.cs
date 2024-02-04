@@ -32,7 +32,7 @@ namespace AscendedZ.skills
         public string BaseName { get => _baseName; set => _baseName = value; }
         public TargetTypes TargetType { get; set; }
         public Elements Element { get; set; }
-
+        public int Level { get => _level; set => _level = value; }
         public int DamageModifier { private get => _damageModifier; set => _damageModifier = value; }
 
         public int Damage

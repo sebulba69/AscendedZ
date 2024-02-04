@@ -86,9 +86,17 @@ namespace AscendedZ.battle
 
         private void FullTurn()
         {
-            _turnIcons.RemoveAt(0);
-            if (_turnIcons.Count == 0)
-                TurnEnded = true;
+            if(_turnIcons.Count > 0)
+            {
+                _turnIcons.RemoveAt(0);
+                if (_turnIcons.Count == 0)
+                    EndTurn();
+            }
+            else
+            {
+                EndTurn();
+            }
+
         }
 
         private void NullTurn()
@@ -109,6 +117,7 @@ namespace AscendedZ.battle
         private void EndTurn()
         {
             _turnIcons.Clear();
+            TurnEnded = true;
         }
 
     }
