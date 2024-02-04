@@ -27,7 +27,6 @@ public partial class BattleEnemyScene : Node2D
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
     private BattleSceneObject _battleSceneObject;
-    private ProgressBar _ap;
     private Button _skillButton;
     private Button _backToHomeButton, _retryFloorButton, _continueButton;
     private ItemList _skillList;
@@ -36,8 +35,8 @@ public partial class BattleEnemyScene : Node2D
     private bool _uiUpdating = false;
 
     private Label _skillName;
-    private Label _apLabel;
     private TextureRect _skillIcon;
+    private HBoxContainer _turnIconContainer;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -50,8 +49,7 @@ public partial class BattleEnemyScene : Node2D
 
         _partyMembers = this.GetNode<HBoxContainer>("%PartyPortraits");
         _enemyMembers = this.GetNode<HBoxContainer>("%EnemyContainerBox");
-        _ap = this.GetNode<ProgressBar>("%APBar");
-        _apLabel = this.GetNode<Label>("%APLabel");
+        _turnIconContainer = this.GetNode<HBoxContainer>("%TurnIconContainer");
 
         _skillList = this.GetNode<ItemList>("%SkillsList");
         _targetList = this.GetNode<ItemList>("%TargetList");
@@ -314,8 +312,7 @@ public partial class BattleEnemyScene : Node2D
 
         SetActiveSkills();
 
-        _ap.Value = update.CurrentAPBarTurnValue;
-        _apLabel.Text = $"AP: {Math.Round((double)update.CurrentAPBarTurnValue / 2d, 1)}";
+        SetNewTurns(_battleSceneObject.TurnState == TurnState.PLAYER);
         if (_battleSceneObject.PressTurn.TurnEnded)
         {
             _battleSceneObject.PressTurn.TurnEnded = false; // set turns
@@ -354,8 +351,7 @@ public partial class BattleEnemyScene : Node2D
         if (turnState == TurnState.PLAYER)
         {
             _battleSceneObject.SetPartyMemberTurns();
-            string playerYellow = "ffff2ad7";
-            SetNewTurns(playerYellow);
+            SetNewTurns(true);
 
             SetActiveSkills();
 
@@ -364,8 +360,7 @@ public partial class BattleEnemyScene : Node2D
         else
         {
             _battleSceneObject.SetupEnemyTurns();
-            string enemyOrange = "ff922a";
-            SetNewTurns(enemyOrange);
+            SetNewTurns(false);
         }
 
         // change our active player display
@@ -460,15 +455,20 @@ public partial class BattleEnemyScene : Node2D
 
     #endregion
 
-    private void SetNewTurns(string color)
+    private void SetNewTurns(bool isPlayer)
     {
-        StyleBoxFlat styleBox = ResourceLoader.Load<StyleBoxFlat>("res://screens/APBarStyleBox.tres");
-        styleBox.BgColor = new Color(color);
-        _ap.AddThemeStyleboxOverride("fill", styleBox);
-        int turns = _battleSceneObject.PressTurn.Turns;
-        _ap.MaxValue = turns;
-        _ap.Value = _ap.MaxValue;
-        _apLabel.Text = $"AP: {Math.Round((double)turns/2d,1)}";
+        // clear all icons to redraw them
+        var children = _turnIconContainer.GetChildren();
+        foreach (var child in children)
+            _turnIconContainer.RemoveChild(child);
+
+        List<int> turns = _battleSceneObject.PressTurn.TurnIcons;
+        foreach (int turn in turns)
+        {
+            var turnIconScene = ResourceLoader.Load<PackedScene>(Scenes.TURN_ICONS).Instantiate();
+            _turnIconContainer.AddChild(turnIconScene);
+            turnIconScene.Call("SetIconState", isPlayer, turn == 1);
+        }
     }
 
     private async void EndBattle(bool didPlayerWin, bool retreated=false)
@@ -547,7 +547,6 @@ public partial class BattleEnemyScene : Node2D
             _continueButton.Visible = false;
 
         this.GetNode<CenterContainer>("%PlayerContainer").Visible = !visible;
-        this.GetNode<PanelContainer>("%APContainer").Visible = !visible;
         _skillDisplayIcons.Visible = !visible;
         _enemyMembers.Visible = !visible;
     }

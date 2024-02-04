@@ -1,18 +1,14 @@
 res://default_env.tres
+res://turn_icons/TurnIcon.tscn
+res://screens/APBarStyleBox.tres
 res://screens/AscendedTextbox.tscn
-res://press_turn_assets/icon_assets/TurnIcon.gdshader
-res://press_turn_assets/TurnIconControl.tscn
 res://screens/BattleEnemyScene.tscn
-res://press_turn_assets/icon_assets/TurnIcon.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
-res://battle/IconUpdate.cs
 res://effects/DamageNumber.cs
 res://effects/EffectAnimation.cs
 res://misc_icons/CurrencyDisplay.cs
 res://misc_icons/Icon.cs
-res://press_turn_assets/icon_assets/TurnIcon.cs
-res://press_turn_assets/TurnIconControl.cs
 res://screens/AscendedDialogBox.cs
 res://screens/AscendedTextbox.cs
 res://screens/AscendedYesNoWindow.cs
@@ -24,7 +20,6 @@ res://screens/EntityDisplayBox.cs
 res://screens/MainScreen.cs
 res://screens/MenuScene.cs
 res://screens/PartyMemberDisplay.cs
-res://screens/PressTurnIcons.cs
 res://screens/RecruitCustomScreen.cs
 res://screens/RecruitScreen.cs
 res://screens/RecruitScreenTabs.cs
@@ -33,4 +28,6 @@ res://screens/StartScreen.cs
 res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
-res://screens/APBarStyleBox.tres
+res://turn_icons/TurnIcon.cs
+res://turn_icons/DropShadow.gdshader
+res://screens/MainScreen.tscn

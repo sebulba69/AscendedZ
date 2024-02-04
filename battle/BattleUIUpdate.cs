@@ -17,7 +17,6 @@ namespace AscendedZ.battle
     {
         private bool _userCanInput = true;
         public BattleResult Result { get; set; }
-        public int CurrentAPBarTurnValue { get; set; }
         public bool UserCanInput { get => _userCanInput; set => _userCanInput = value; }
 
     }

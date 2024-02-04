@@ -1,6 +1,8 @@
+AnimationPlayer
+TextureRect
+HBoxContainer
 CheckBox
 ItemList
-HBoxContainer
 VBoxContainer
 CenterContainer
 TabContainer
@@ -11,5 +13,3 @@ Label
 GridContainer
 Button
 HSlider
-MarginContainer
-RichTextLabel

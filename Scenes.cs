@@ -40,5 +40,8 @@ namespace AscendedZ
         public static readonly string EFFECTS = "res://effects/EffectSprite.tscn";
         public static readonly string DAMAGE_NUM = "res://effects/DamageNumber.tscn";
         public static readonly string STATUS = "res://statuses/StatusIcon.tscn";
+
+        // icons
+        public static readonly string TURN_ICONS = "res://turn_icons/TurnIcon.tscn";
     }
 }

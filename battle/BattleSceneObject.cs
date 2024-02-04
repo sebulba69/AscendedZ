@@ -81,7 +81,6 @@ namespace AscendedZ.battle
         {
             UpdateUI?.Invoke(this, new BattleUIUpdate()
             {
-                CurrentAPBarTurnValue = this.PressTurn.Turns,
                 UserCanInput = (_turnState == TurnState.PLAYER),
                 Result = result
             });
@@ -123,7 +122,7 @@ namespace AscendedZ.battle
             foreach (var entity in turnEntities)
                 entity.StatusHandler.UpdateStatusTurns(entity, true);
 
-            this.PressTurn.Turns = turns * 2;
+            this.PressTurn.SetTurns(turns);
         }
 
         public void HandlePostTurnProcessing(BattleResult result)
