@@ -125,14 +125,21 @@ namespace AscendedZ
         // ICONS + ICON_STRINGS
         public static readonly string ICON_ATLAS = "res://misc_icons/IconSet.png";
 
-        // Skill Icons
+        // Skill Icons - Elements
         public static readonly string FIRE_ICON = "Fire";
-        public static readonly string VOID_FIRE_ICON = "VoidFire";
         public static readonly string ICE_ICON = "Ice";
         public static readonly string ELEC_ICON = "Elec";
         public static readonly string WIND_ICON = "Wind";
         public static readonly string LIGHT_ICON = "Light";
         public static readonly string DARK_ICON = "Dark";
+
+
+        // Skill Icons - Voids
+        public static readonly string VOID_FIRE_ICON = "VoidFire";
+        public static readonly string VOID_ICE_ICON = "VoidIce";
+        public static readonly string VOID_WIND_ICON = "VoidWind";
+
+        // Skill Icons - Other
         public static readonly string HEAL_ICON = "Heal";
         public static readonly string STUN_ICON = "Stun";
         public static readonly string AGRO_ICON = "Agro";
@@ -146,6 +153,8 @@ namespace AscendedZ
         {
             [FIRE_ICON] = new KeyValuePair<int, int>(0, 128),
             [VOID_FIRE_ICON] = new KeyValuePair<int, int>(32, 2144),
+            [VOID_ICE_ICON] = new KeyValuePair<int, int>(224, 2144),
+            [VOID_WIND_ICON] = new KeyValuePair<int, int>(128, 2144),
             [ICE_ICON] = new KeyValuePair<int, int>(32, 128),
             [ELEC_ICON] = new KeyValuePair<int, int>(64, 128),
             [WIND_ICON] = new KeyValuePair<int, int>(160, 128),

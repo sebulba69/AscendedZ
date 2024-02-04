@@ -9,42 +9,47 @@ namespace AscendedZ.entities
     public class PartyNames
     {
         // Pre-made
-        public static readonly string LOCPHIEDON = "Locphiedon";
-        public static readonly string GAGAR = "Gagar";
-        public static readonly string YUUDAM = "Yuudam";
-        public static readonly string PECHEAL = "Pecheal";
-        public static readonly string TOKE = "Toke";
-        public static readonly string MAXWALD = "Maxwald";
-        public static readonly string HALVIA = "Halvia";
-        public static readonly string TYHERE = "Tyhere";
-        public static readonly string PARIA = "Paria";
-        public static readonly string JOAN = "Joan";
-        public static readonly string ANDMOND = "Andmond";
+        public static readonly string Locphiedon = "Locphiedon";
+        public static readonly string Gagar = "Gagar";
+        public static readonly string Yuudam = "Yuudam";
+        public static readonly string Pecheal = "Pecheal";
+        public static readonly string Toke = "Toke";
+        public static readonly string Maxwald = "Maxwald";
+        public static readonly string Halvia = "Halvia";
+        public static readonly string Tyhere = "Tyhere";
+        public static readonly string Paria = "Paria";
+        public static readonly string Joan = "Joan";
+        public static readonly string Andmond = "Andmond";
     }
 
     public class EnemyNames
     {
         // Enemies (Tutorial)
-        public static readonly string CONLEN = "Conlen";
-        public static readonly string LIAMLAS = "Liamlas";
-        public static readonly string ORAHCAR = "Orahcar";
-        public static readonly string FASTROBREN = "Fastrobren";
-        public static readonly string CATTUTDRONI = "Cattu T'Droni";
+        public static readonly string Conlen = "Conlen";
+        public static readonly string Liamlas = "Liamlas";
+        public static readonly string Orachar = "Orahcar";
+        public static readonly string Fastrobren = "Fastrobren";
+        public static readonly string CattuTDroni = "Cattu T'Droni";
 
         // Enemies (Randomized for Floors)
         // agro - status
-        public static readonly string THYLAF = "Thylaf"; // elec
-        public static readonly string ARWIG = "Arwig"; // ice
-        public static readonly string RICCMAN = "Riccman"; // wind
+        public static readonly string Thylaf = "Thylaf"; // elec
+        public static readonly string Arwig = "Arwig"; // ice
+        public static readonly string Riccman = "Riccman"; // wind
 
         // wex hunters
-        public static readonly string ISENALD = "Isenald"; // light
-        public static readonly string GARDMUEL = "Gardmuel"; // dark
-        public static readonly string SACHAEL = "Sachael"; // fire
+        public static readonly string Isenald = "Isenald"; // light
+        public static readonly string Gardmuel = "Gardmuel"; // dark
+        public static readonly string Sachael = "Sachael"; // fire
+
+        // protector enemies
+        public static readonly string Ed = "Ed"; // protects fire
+        public static readonly string Otem = "Otem"; // protects ice
+        public static readonly string Hesret = "Hesret"; // protects wind
 
         // Bosses (Normal)
-        public static readonly string HARBINGER = "Harbinger, Mangler of Legs";
-        public static readonly string ELLIOT_ONYX = "Elliot Onyx";
+        public static readonly string Harbinger = "Harbinger, Mangler of Legs";
+        public static readonly string Elliot_Onyx = "Elliot Onyx";
 
         // Boss (Sigil)
         // tbd

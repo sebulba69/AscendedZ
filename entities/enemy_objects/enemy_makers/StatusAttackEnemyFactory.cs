@@ -14,14 +14,14 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
     {
         public StatusAttackEnemyFactory()
         {
-            _functionDictionary[EnemyNames.THYLAF] = MakeThylaf;
-            _functionDictionary[EnemyNames.ARWIG] = MakeArwig;
-            _functionDictionary[EnemyNames.RICCMAN] = MakeRiccman;
+            _functionDictionary[EnemyNames.Thylaf] = MakeThylaf;
+            _functionDictionary[EnemyNames.Arwig] = MakeArwig;
+            _functionDictionary[EnemyNames.Riccman] = MakeRiccman;
         }
 
         public Enemy MakeThylaf()
         {
-            var thylaf = MakeAgroStatusEnemy(EnemyNames.THYLAF, 6);
+            var thylaf = MakeAgroStatusEnemy(EnemyNames.Thylaf, 6);
 
             thylaf.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
@@ -32,7 +32,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeArwig()
         {
-            var arwig = MakeAgroStatusEnemy(EnemyNames.ARWIG, 6);
+            var arwig = MakeAgroStatusEnemy(EnemyNames.Arwig, 6);
 
             arwig.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
 
@@ -43,7 +43,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeRiccman()
         {
-            var riccman = MakeAgroStatusEnemy(EnemyNames.RICCMAN, 6);
+            var riccman = MakeAgroStatusEnemy(EnemyNames.Riccman, 6);
 
             riccman.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
 

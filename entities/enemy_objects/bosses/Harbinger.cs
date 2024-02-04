@@ -31,7 +31,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
         {
             _isBoss = true;
 
-            Name = EnemyNames.HARBINGER;
+            Name = EnemyNames.Harbinger;
 
             MaxHP = 30;
             Image = CharacterImageAssets.GetImage(Name);

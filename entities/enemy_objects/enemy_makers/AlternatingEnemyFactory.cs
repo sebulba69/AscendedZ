@@ -15,15 +15,15 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
     {
         public AlternatingEnemyFactory()
         {
-            _functionDictionary[EnemyNames.CONLEN] = MakeConlen;
-            _functionDictionary[EnemyNames.ORAHCAR] = MakeOrachar;
-            _functionDictionary[EnemyNames.FASTROBREN] = MakeFastrobren;
-            _functionDictionary[EnemyNames.LIAMLAS] = MakeLiamlas;
+            _functionDictionary[EnemyNames.Conlen] = MakeConlen;
+            _functionDictionary[EnemyNames.Orachar] = MakeOrachar;
+            _functionDictionary[EnemyNames.Fastrobren] = MakeFastrobren;
+            _functionDictionary[EnemyNames.Liamlas] = MakeLiamlas;
         }
 
         public Enemy MakeConlen()
         {
-            var conlen = MakeAlternatingEnemy(EnemyNames.CONLEN, 6);
+            var conlen = MakeAlternatingEnemy(EnemyNames.Conlen, 6);
 
             conlen.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
             conlen.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
@@ -36,7 +36,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeOrachar()
         {
-            var orachar = MakeAlternatingEnemy(EnemyNames.ORAHCAR, 6);
+            var orachar = MakeAlternatingEnemy(EnemyNames.Orachar, 6);
 
             orachar.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
 
@@ -47,7 +47,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeFastrobren()
         {
-            var fastrobren = MakeAlternatingEnemy(EnemyNames.FASTROBREN, 4);
+            var fastrobren = MakeAlternatingEnemy(EnemyNames.Fastrobren, 4);
 
             fastrobren.Resistances = new ResistanceArray();
             fastrobren.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
@@ -59,7 +59,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeLiamlas()
         {
-            var liamlas = MakeAlternatingEnemy(EnemyNames.LIAMLAS, 6);
+            var liamlas = MakeAlternatingEnemy(EnemyNames.Liamlas, 6);
             
             liamlas.Resistances = new ResistanceArray();
             liamlas.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);

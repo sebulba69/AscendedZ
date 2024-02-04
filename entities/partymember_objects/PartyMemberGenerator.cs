@@ -19,12 +19,12 @@ namespace AscendedZ.entities.partymember_objects
         /// </summary>
         private static readonly Dictionary<string, Elements> _partyMemberElementPairs = new Dictionary<string, Elements> 
         {
-            { EnemyNames.CONLEN, Elements.Elec },
-            { EnemyNames.ORAHCAR, Elements.Ice },
-            { PartyNames.ANDMOND, Elements.Dark },
-            { PartyNames.JOAN, Elements.Wind },
-            { PartyNames.TYHERE, Elements.Fir },
-            { PartyNames.PARIA, Elements.Ice }
+            { EnemyNames.Conlen, Elements.Elec },
+            { EnemyNames.Orachar, Elements.Ice },
+            { PartyNames.Andmond, Elements.Dark },
+            { PartyNames.Joan, Elements.Wind },
+            { PartyNames.Tyhere, Elements.Fir },
+            { PartyNames.Paria, Elements.Ice }
         };
 
         private static readonly Dictionary<Elements, Elements> _elementalOpposites = new Dictionary<Elements, Elements> 
@@ -52,42 +52,42 @@ namespace AscendedZ.entities.partymember_objects
         private static void MakePremadePartyMember(OverworldEntity member)
         {
             string name = member.Name;
-            if (name == PartyNames.LOCPHIEDON)
+            if (name == PartyNames.Locphiedon)
             {
                 member.Resistances.SetResistance(ResistanceType.Rs, Elements.Wind);
                 member.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
                 member.Skills.Add(SkillDatabase.Wind1.Clone());
             }
-            else if (name == PartyNames.GAGAR)
+            else if (name == PartyNames.Gagar)
             {
                 member.Resistances.SetResistance(ResistanceType.Rs, Elements.Fir);
                 member.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
                 member.Skills.Add(SkillDatabase.Fire1.Clone());
             }
-            else if (name == PartyNames.YUUDAM)
+            else if (name == PartyNames.Yuudam)
             {
                 member.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
-                member.Skills.Add(SkillDatabase.HEAL_1.Clone());
+                member.Skills.Add(SkillDatabase.Heal1.Clone());
             }
-            else if (name == PartyNames.PECHEAL)
+            else if (name == PartyNames.Pecheal)
             {
                 member.Resistances.SetResistance(ResistanceType.Rs, Elements.Ice);
                 member.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
                 member.Skills.Add(SkillDatabase.Ice1.Clone());
             }
-            else if (name == PartyNames.TOKE)
+            else if (name == PartyNames.Toke)
             {
                 member.Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
                 member.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
                 member.Skills.Add(SkillDatabase.Dark1.Clone());
             }
-            else if (name == PartyNames.MAXWALD)
+            else if (name == PartyNames.Maxwald)
             {
                 member.Resistances.SetResistance(ResistanceType.Rs, Elements.Light);
                 member.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
                 member.Skills.Add(SkillDatabase.Light1.Clone());
             }
-            else if (name == PartyNames.HALVIA)
+            else if (name == PartyNames.Halvia)
             {
                 member.Resistances.SetResistance(ResistanceType.Rs, Elements.Elec);
                 member.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);

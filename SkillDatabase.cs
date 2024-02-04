@@ -81,6 +81,22 @@ namespace AscendedZ
             }
         }
 
+        public static StatusSkill VoidIce
+        {
+            get
+            {
+                return MakeVoidElementSkill("Void Ice", new VoidIceStatus());
+            }
+        }
+
+        public static StatusSkill VoidWind
+        {
+            get
+            {
+                return MakeVoidElementSkill("Void Wind", new VoidWindStatus());
+            }
+        }
+
         private static StatusSkill MakeVoidElementSkill(string name, Status status)
         {
             StatusSkill statusSkill = MakeStatusSkill(name, status);
@@ -115,7 +131,7 @@ namespace AscendedZ
         };
         */
 
-        public static HealSkill HEAL_1 = new HealSkill()
+        public static HealSkill Heal1 = new HealSkill()
         {
             BaseName = "Regen",
             TargetType = TargetTypes.SINGLE_TEAM,
@@ -155,7 +171,7 @@ namespace AscendedZ
             if (tier == 1)
                 skills = new List<ISkill> 
                 {
-                    Fire1, Ice1, Wind1, Elec1, Light1, Dark1, HEAL_1, AgroPlayer
+                    Fire1, Ice1, Wind1, Elec1, Light1, Dark1, Heal1, AgroPlayer
                 };
 
             return skills;

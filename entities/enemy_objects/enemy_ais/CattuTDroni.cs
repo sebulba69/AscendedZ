@@ -24,7 +24,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         private BattlePlayer _target;
         public CattuTDroni() : base()
         {
-            Name = EnemyNames.CATTUTDRONI;
+            Name = EnemyNames.CattuTDroni;
             MaxHP = 8;
             Image = CharacterImageAssets.GetImage(Name);
             Resistances = new ResistanceArray();

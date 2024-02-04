@@ -32,20 +32,23 @@ namespace AscendedZ
 
         private static EnemyMaker _enemyMaker = new EnemyMaker();
 
+        /// <summary>
+        /// Initial list of random encounters to be expanded on during generation.
+        /// </summary>
         private static readonly List<string> RANDOM_ENEMIES = new List<string>
         {
-            EnemyNames.LIAMLAS, EnemyNames.FASTROBREN, 
-            EnemyNames.THYLAF, EnemyNames.ARWIG, EnemyNames.RICCMAN,
-            EnemyNames.GARDMUEL, EnemyNames.SACHAEL, EnemyNames.ISENALD
+            EnemyNames.Liamlas, EnemyNames.Fastrobren, 
+            EnemyNames.Thylaf, EnemyNames.Arwig, EnemyNames.Riccman,
+            EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald
         };
 
         private static readonly List<string>[] TUTORIAL_ENCOUNTERS = new List<string>[] 
         {
-            new List<string>(){ EnemyNames.CONLEN },
-            new List<string>(){ EnemyNames.LIAMLAS, EnemyNames.ORAHCAR },
-            new List<string>(){ EnemyNames.FASTROBREN, EnemyNames.CONLEN, EnemyNames.LIAMLAS },
-            new List<string>(){ EnemyNames.CATTUTDRONI },
-            new List<string>(){ EnemyNames.HARBINGER }
+            new List<string>(){ EnemyNames.Conlen },
+            new List<string>(){ EnemyNames.Liamlas, EnemyNames.Orachar },
+            new List<string>(){ EnemyNames.Fastrobren, EnemyNames.Conlen, EnemyNames.Liamlas },
+            new List<string>(){ EnemyNames.CattuTDroni },
+            new List<string>(){ EnemyNames.Harbinger }
         };
 
         /// <summary>
@@ -53,7 +56,7 @@ namespace AscendedZ
         /// </summary>
         private static readonly List<string> BOSS_ENCOUNTERS = new List<string>
         {
-            EnemyNames.ELLIOT_ONYX
+            EnemyNames.Elliot_Onyx
         };
 
 
@@ -63,11 +66,11 @@ namespace AscendedZ
         /// </summary>
         private static readonly List<string>[] VENDOR_WARES = new List<string>[]
         {
-            new List<string>(){ PartyNames.LOCPHIEDON },
-            new List<string>(){ PartyNames.GAGAR },
-            new List<string>(){ PartyNames.YUUDAM },
-            new List<string>(){ PartyNames.PECHEAL, PartyNames.TOKE },
-            new List<string>(){ PartyNames.MAXWALD, PartyNames.HALVIA }
+            new List<string>(){ PartyNames.Locphiedon },
+            new List<string>(){ PartyNames.Gagar },
+            new List<string>(){ PartyNames.Yuudam },
+            new List<string>(){ PartyNames.Pecheal, PartyNames.Toke },
+            new List<string>(){ PartyNames.Maxwald, PartyNames.Halvia }
         };
 
         /// <summary>
@@ -110,11 +113,23 @@ namespace AscendedZ
                     }
                     else
                     {
-                        int numEnemies = RANDOM.Next(2, 4);
+                        // use RANDOM_ENEMIES as a base
+                        List<string> possibleEncounters = new List<string>(RANDOM_ENEMIES);
+
+                        int numEncounters = 4;
+
+                        // new encounters available past certain tiers
+                        if(tier > 10)
+                        {
+                            possibleEncounters.AddRange(new string[] { EnemyNames.Ed, EnemyNames.Otem, EnemyNames.Hesret });
+                            numEncounters = 6;
+                        }
+
+                        int numEnemies = RANDOM.Next(2, numEncounters);
                         for (int i = 0; i < numEnemies; i++)
                         {
-                            int randomEnemyIndex = RANDOM.Next(RANDOM_ENEMIES.Count);
-                            string enemyName = RANDOM_ENEMIES[randomEnemyIndex];
+                            int randomEnemyIndex = RANDOM.Next(possibleEncounters.Count);
+                            string enemyName = possibleEncounters[randomEnemyIndex];
                             encounterNames.Add(enemyName);
                         }
                     }

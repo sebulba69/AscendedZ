@@ -14,6 +14,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
 {
     /// <summary>
     /// An enemy that only attacks players with a specific status.
+    /// Status skill must be at slot 0.
+    /// Attack skill must be at slot 1.
     /// </summary>
     public class StatusAttackEnemy : Enemy
     {

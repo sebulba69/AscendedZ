@@ -14,14 +14,14 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
     {
         public WeaknessHunterEnemyFactory()
         {
-            _functionDictionary[EnemyNames.ISENALD] = MakeIsenald;
-            _functionDictionary[EnemyNames.GARDMUEL] = MakeGardmuel;
-            _functionDictionary[EnemyNames.SACHAEL] = MakeSachael;
+            _functionDictionary[EnemyNames.Isenald] = MakeIsenald;
+            _functionDictionary[EnemyNames.Gardmuel] = MakeGardmuel;
+            _functionDictionary[EnemyNames.Sachael] = MakeSachael;
         }
 
         public Enemy MakeIsenald()
         {
-            var isenald = MakeWeaknessHunterEnemy(EnemyNames.ISENALD, 5);
+            var isenald = MakeWeaknessHunterEnemy(EnemyNames.Isenald, 5);
 
             isenald.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
             isenald.Resistances.SetResistance(ResistanceType.Rs, Elements.Light);
@@ -33,7 +33,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeGardmuel()
         {
-            var gardmuel = MakeWeaknessHunterEnemy(EnemyNames.GARDMUEL, 7);
+            var gardmuel = MakeWeaknessHunterEnemy(EnemyNames.Gardmuel, 7);
 
             gardmuel.Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
             gardmuel.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
@@ -45,7 +45,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeSachael()
         {
-            var sachael = MakeWeaknessHunterEnemy(EnemyNames.SACHAEL, 6);
+            var sachael = MakeWeaknessHunterEnemy(EnemyNames.Sachael, 6);
 
             sachael.Resistances.SetResistance(ResistanceType.Rs, Elements.Fir);
             sachael.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
@@ -55,7 +55,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return sachael;
         }
 
-        public Enemy MakeWeaknessHunterEnemy(string name, int hp)
+        private Enemy MakeWeaknessHunterEnemy(string name, int hp)
         {
             return new WeaknessHunterEnemy
             {

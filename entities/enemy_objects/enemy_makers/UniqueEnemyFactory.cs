@@ -15,9 +15,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
     {
         public UniqueEnemyFactory()
         {
-            _functionDictionary[EnemyNames.CATTUTDRONI] = MakeCattuTDroni;
-            _functionDictionary[EnemyNames.HARBINGER] = MakeHarbinger;
-            _functionDictionary[EnemyNames.ELLIOT_ONYX] = MakeElliot;
+            _functionDictionary[EnemyNames.CattuTDroni] = MakeCattuTDroni;
+            _functionDictionary[EnemyNames.Harbinger] = MakeHarbinger;
+            _functionDictionary[EnemyNames.Elliot_Onyx] = MakeElliot;
         }
 
         /// <summary>

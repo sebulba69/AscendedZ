@@ -18,7 +18,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
     {
         public WeaknessHunterEnemy() : base()
         {
-            Description = $"Class: Weakness Hunter Enemy\nDescription: Will always pick characters who are weak to a skill they possess.\nIf a weakness isn't present, they will attack randomly.";
+            Description = "Class: Weakness Hunter Enemy\nDescription: Will always pick characters who are weak to a skill they possess.\nIf a weakness isn't present, they will attack randomly.";
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
