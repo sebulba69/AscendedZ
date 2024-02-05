@@ -44,12 +44,10 @@ namespace AscendedZ
 
         public static string GetOverworldTrackNormal()
         {
-            int tier = PersistentGameObjects.GameObjectInstance().MaxTier - 1;
+            int tier = PersistentGameObjects.GameObjectInstance().MaxTier;
             int index = 0;
-            if(tier >= 10 && tier % 10 == 0)
-            {
-                index = tier / 10;
-            }
+            if(tier > 10)
+                index = (tier - (tier % 10)) / 10;
 
             string trackKey = OVERWORLD_TRACKS[index];
             return trackKey;
