@@ -1,6 +1,7 @@
 using AscendedZ.battle;
 using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object;
+using AscendedZ.screens.back_end_screen_scripts;
 using Godot;
 using System;
 using System.Text;
@@ -30,14 +31,24 @@ public partial class PartyMemberDisplay : HBoxContainer
 
         if (partyMember != null)
         {
-            _playerPicture.Texture = ResourceLoader.Load<Texture2D>(partyMember.Image);
-
-            StringBuilder description = new StringBuilder();
-            description.AppendLine(partyMember.DisplayName);
-            description.Append(partyMember.ToString());
-
-            _description.Text = description.ToString();
+            ShowMember(partyMember);
         }
+    }
+
+    public void ShowRandomEntity(RecruitWrapper wrapper)
+    {
+        ShowMember(wrapper.Entity);
+    }
+
+    private void ShowMember(OverworldEntity partyMember)
+    {
+        _playerPicture.Texture = ResourceLoader.Load<Texture2D>(partyMember.Image);
+
+        StringBuilder description = new StringBuilder();
+        description.AppendLine(partyMember.DisplayName);
+        description.Append(partyMember.ToString());
+
+        _description.Text = description.ToString();
     }
 
     public void Clear()

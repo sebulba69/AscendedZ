@@ -30,3 +30,7 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
+res://screens/RecruitCustomScreen.tscn
+res://screens/PartyMemberDisplay.tscn
+res://screens/back_end_screen_scripts/RecruitWrapper.cs
+res://screens/RecruitScreen.tscn

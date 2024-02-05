@@ -15,29 +15,6 @@ namespace AscendedZ.entities.partymember_objects
     {
         private static readonly Random _rng = new Random();
 
-        /// <summary>
-        /// KVPs of enemy party members and the elements they're strong to
-        /// </summary>
-        private static readonly Dictionary<string, Elements> _partyMemberElementPairs = new Dictionary<string, Elements> 
-        {
-            { EnemyNames.Conlen, Elements.Elec },
-            { EnemyNames.Orachar, Elements.Ice },
-            { PartyNames.Andmond, Elements.Dark },
-            { PartyNames.Joan, Elements.Wind },
-            { PartyNames.Tyhere, Elements.Fir },
-            { PartyNames.Paria, Elements.Ice }
-        };
-
-        private static readonly Dictionary<Elements, Elements> _elementalOpposites = new Dictionary<Elements, Elements> 
-        {
-            { Elements.Fir, Elements.Ice },
-            { Elements.Ice, Elements.Fir },
-            { Elements.Wind, Elements.Elec },
-            { Elements.Elec, Elements.Wind },
-            { Elements.Light, Elements.Dark },
-            { Elements.Dark, Elements.Light }
-        };
-
         private static readonly Dictionary<string, Func<OverworldEntity>> _preMadeEntities = new Dictionary<string, Func<OverworldEntity>>
         {
             { PartyNames.Locphiedon, MakeLocphiedon },
@@ -49,6 +26,29 @@ namespace AscendedZ.entities.partymember_objects
             { PartyNames.Halvia, MakeHalvia },
         };
 
+        /// <summary>
+        /// KVPs of enemy party members and the elements they're strong to
+        /// </summary>
+        private static readonly Dictionary<string, Elements> _customPartyMembers = new Dictionary<string, Elements>
+        {
+            { EnemyNames.Conlen, Elements.Elec },
+            { EnemyNames.Orachar, Elements.Ice },
+            { PartyNames.Andmond, Elements.Dark },
+            { PartyNames.Joan, Elements.Wind },
+            { PartyNames.Tyhere, Elements.Fir },
+            { PartyNames.Paria, Elements.Ice }
+        };
+
+        private static readonly Dictionary<Elements, Elements> _elementalOpposites = new Dictionary<Elements, Elements>
+        {
+            { Elements.Fir, Elements.Ice },
+            { Elements.Ice, Elements.Fir },
+            { Elements.Wind, Elements.Elec },
+            { Elements.Elec, Elements.Wind },
+            { Elements.Light, Elements.Dark },
+            { Elements.Dark, Elements.Light }
+        };
+
         public static OverworldEntity MakePartyMember(string name)
         {
             OverworldEntity member;
@@ -56,6 +56,14 @@ namespace AscendedZ.entities.partymember_objects
             if(_preMadeEntities.ContainsKey(name))
             {
                 member = _preMadeEntities[name]();
+            }
+            else if (_customPartyMembers.ContainsKey(name))
+            {
+                member = MakeOverworldEntity(name);
+
+                Elements partyMemberElement = _customPartyMembers[name];
+                member.Resistances.SetResistance(ResistanceType.Rs, partyMemberElement);
+                member.Resistances.SetResistance(ResistanceType.Wk, _elementalOpposites[partyMemberElement]);
             }
             else
             {

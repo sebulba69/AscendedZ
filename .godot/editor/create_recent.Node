@@ -1,9 +1,10 @@
+Button
+VBoxContainer
+HBoxContainer
 AnimationPlayer
 TextureRect
-HBoxContainer
 CheckBox
 ItemList
-VBoxContainer
 CenterContainer
 TabContainer
 PanelContainer
@@ -11,5 +12,3 @@ TabBar
 AudioStreamPlayer
 Label
 GridContainer
-Button
-HSlider

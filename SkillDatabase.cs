@@ -168,11 +168,11 @@ namespace AscendedZ
         public static List<ISkill> GetAllGeneratableSkills(int tier)
         {
             List<ISkill> skills = new List<ISkill>();
-            if (tier == 1)
-                skills = new List<ISkill> 
-                {
-                    Fire1, Ice1, Wind1, Elec1, Light1, Dark1, Heal1, AgroPlayer
-                };
+            
+            skills.AddRange(new ISkill[] { Fire1, Ice1, Wind1, Elec1, Light1, Dark1, Heal1, AgroPlayer });
+
+            if (tier > 10)
+                skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind });
 
             return skills;
         }

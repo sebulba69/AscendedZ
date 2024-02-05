@@ -73,6 +73,11 @@ namespace AscendedZ
             new List<string>(){ PartyNames.Maxwald, PartyNames.Halvia }
         };
 
+        private static readonly List<string> CUSTOM_WARES = new List<string>
+        {
+            EnemyNames.Conlen, EnemyNames.Orachar, PartyNames.Andmond, PartyNames.Joan, PartyNames.Tyhere, PartyNames.Paria
+        };
+
         /// <summary>
         /// A list of indexes that the current tier must be equal to or greater than
         /// to become available in the shop.
@@ -149,26 +154,35 @@ namespace AscendedZ
             return encounter;
         }
 
-        public static List<OverworldEntity> MakeShopVendorWares(int tier)
+        public static List<OverworldEntity> MakeShopVendorWares(int tier, bool isCustom = false)
         {
             List<OverworldEntity> partyMembers = new List<OverworldEntity>();
 
             // Get vendor wares based on the tier we're on
-            int vendorWaresIndex = 0;
-            foreach (int index in SHOP_INDEXES)
+            if (!isCustom)
             {
-                if(tier >= index)
+                int vendorWaresIndex = 0;
+                foreach (int index in SHOP_INDEXES)
                 {
-                    foreach(string member in VENDOR_WARES[vendorWaresIndex])
-                        partyMembers.Add(PartyMemberGenerator.MakePartyMember(member));
+                    if (tier >= index)
+                    {
+                        foreach (string member in VENDOR_WARES[vendorWaresIndex])
+                            partyMembers.Add(PartyMemberGenerator.MakePartyMember(member));
 
-                    vendorWaresIndex++;
-                }
-                else
-                {
-                    break;
+                        vendorWaresIndex++;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
+            else
+            {
+                foreach(string name in CUSTOM_WARES)
+                    partyMembers.Add(PartyMemberGenerator.MakePartyMember(name));
+            }
+
 
             // scale price based on tier
             if(tier > 5)

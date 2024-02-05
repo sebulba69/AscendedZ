@@ -131,8 +131,16 @@ namespace AscendedZ.entities.partymember_objects
         public override string ToString()
         {
             StringBuilder skills = new StringBuilder();
-            foreach (ISkill skill in Skills)
-                skills.AppendLine(skill.ToString());
+            if(Skills.Count > 0)
+            {
+                foreach (ISkill skill in Skills)
+                    skills.AppendLine(skill.ToString());
+            }
+            else
+            {
+                skills.AppendLine("[NONE]");
+            }
+
             return $"{MaxHP} HP\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
         }
     }
