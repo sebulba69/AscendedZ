@@ -11,6 +11,7 @@ namespace AscendedZ.statuses.weak_element
         public WeakFireStatus() : base()
         {
             _id = StatusId.WexElementStatus;
+
             _elementToChange = skills.Elements.Fir;
             _newResType = resistances.ResistanceType.Wk;
             this.Icon = SkillAssets.WEAK_FIRE_ICON;

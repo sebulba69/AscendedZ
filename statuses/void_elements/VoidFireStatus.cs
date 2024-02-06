@@ -13,6 +13,7 @@ namespace AscendedZ.statuses.void_elements
         public VoidFireStatus() : base()
         {
             _id = StatusId.VoidElementStatus;
+
             _elementToChange = skills.Elements.Fir;
             _newResType = resistances.ResistanceType.Nu;
             this.Icon = SkillAssets.VOID_FIRE_ICON;

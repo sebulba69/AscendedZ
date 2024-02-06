@@ -39,7 +39,7 @@ namespace AscendedZ.entities
             bool inList = false;
             foreach(Status s in _statuses)
             {
-                if(s.Id == status.Id)
+                if (s.Id == status.Id)
                 {
                     s.ApplyStatus();
                     inList = true;

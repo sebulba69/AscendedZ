@@ -9,9 +9,17 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.statuses
 {
-    public enum StatusId { StunStatus, 
-        ElementBuffStatus_Wind, ElementBuffStatus_Fire, ElementBuffStatus_Elec, ElementBuffStatus_Ice, 
-        AgroStatus, VoidElementStatus, WexElementStatus }
+    public enum StatusId 
+    { 
+        StunStatus, 
+        ElementBuffStatus_Wind,
+        ElementBuffStatus_Fire,
+        ElementBuffStatus_Elec,
+        ElementBuffStatus_Ice, 
+        AgroStatus,
+        VoidElementStatus,
+        WexElementStatus 
+    }
 
     public class Status
     {
@@ -21,7 +29,7 @@ namespace AscendedZ.statuses
         protected BattleEntity _statusOwner; // the person with this status
 
         protected StatusId _id;
-        public StatusId Id { get => _id; set => _id = value; }
+        public StatusId Id { get => _id; }
         public string Icon { get; set; }
         public bool Active { get => _active; protected set => _active = value; }
         public bool RemoveStatus { get => _removeStatus; protected set => _removeStatus = value; }

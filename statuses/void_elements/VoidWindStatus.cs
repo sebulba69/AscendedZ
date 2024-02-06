@@ -13,6 +13,7 @@ namespace AscendedZ.statuses.void_elements
         public VoidWindStatus() : base()
         {
             _id = StatusId.VoidElementStatus;
+
             _elementToChange = skills.Elements.Wind;
             _newResType = resistances.ResistanceType.Nu;
             this.Icon = SkillAssets.VOID_WIND_ICON;

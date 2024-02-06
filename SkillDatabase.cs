@@ -1,5 +1,6 @@
 ﻿using AscendedZ.skills;
 using AscendedZ.statuses;
+using AscendedZ.statuses.buff_elements;
 using AscendedZ.statuses.void_elements;
 using AscendedZ.statuses.weak_element;
 using System;
@@ -34,26 +35,16 @@ namespace AscendedZ
             };
         }
 
-        public static StatusSkill ElecBuff1 { get => MakeBuffSkill("Elec+", 0.25, Elements.Elec, StatusId.ElementBuffStatus_Elec); }
-        public static StatusSkill FireBuff1 { get => MakeBuffSkill("Fire+", 0.25, Elements.Fir, StatusId.ElementBuffStatus_Fire); }
-        public static StatusSkill WindBuff1 { get => MakeBuffSkill("Wind+", 0.25, Elements.Wind, StatusId.ElementBuffStatus_Wind); }
-        public static StatusSkill IceBuff1 { get => MakeBuffSkill("Ice+", 0.25, Elements.Ice, StatusId.ElementBuffStatus_Ice); }
+        public static StatusSkill ElecBuff1 { get => MakeBuffSkill("Elec+", new BuffElecStatus { Amount = 0.25 }); }
+        public static StatusSkill FireBuff1 { get => MakeBuffSkill("Fire+", new BuffFireStatus { Amount = 0.25 }); }
+        public static StatusSkill WindBuff1 { get => MakeBuffSkill("Wind+", new BuffWindStatus { Amount = 0.25 }); }
+        public static StatusSkill IceBuff1 { get => MakeBuffSkill("Ice+", new BuffIceStatus { Amount = 0.25 }); }
         
-        private static StatusSkill MakeBuffSkill(string name, double amount, Elements element, StatusId id)
+        private static StatusSkill MakeBuffSkill(string name, ElementBuffStatus status)
         {
-            string icon = SkillAssets.GetElementIconByElementEnum(element);
-
-            var elementBuff = new ElementBuffStatus() 
-            { 
-                BuffElement = element,
-                Amount = amount,
-                Icon = icon,
-                Id = id
-            };
-
-            StatusSkill statusSkill = MakeStatusSkill(name, elementBuff);
-            statusSkill.EndupAnimation = SkillAssets.GetAnimationByElementAndTier(1, element);
-            statusSkill.Icon = icon;
+            StatusSkill statusSkill = MakeStatusSkill(name, status);
+            statusSkill.EndupAnimation = SkillAssets.GetAnimationByElementAndTier(1, status.BuffElement);
+            statusSkill.Icon = SkillAssets.GetElementIconByElementEnum(status.BuffElement);
 
             return statusSkill;
         }
