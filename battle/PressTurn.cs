@@ -31,6 +31,9 @@ namespace AscendedZ.battle
             {
                 _turnIcons.Add(2);
             }
+
+            if (turns == 0)
+                TurnEnded = true;
         }
 
         public void HandleTurns(BattleResultType resultType)

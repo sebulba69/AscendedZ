@@ -9,10 +9,13 @@ atlas = ExtResource("1_raqmj")
 region = Rect2(96, 384, 32, 32)
 
 [node name="StatusIcon" type="Control"]
+custom_minimum_size = Vector2(40, 40)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1880.0
+offset_bottom = -1040.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rxuhd")

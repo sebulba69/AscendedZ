@@ -33,11 +33,14 @@ namespace AscendedZ
             { OVERWORLD_4, "res://music/overworld/sound_test_nctrn.ogg" }
         };
 
+        private static readonly string[] BOSS_TRACKS = { "res://music/dungeons/dungeon10.ogg", "res://music/dungeons/dungeon20.ogg" };
+
         public static readonly string DUNGEON1_4 = "res://music/dungeons/dungeon1-4.ogg";
         public static readonly string DUNGEON5 = "res://music/dungeons/dungeon5.ogg";
         public static readonly string DUNGEON6_9 = "res://music/dungeons/dungeon6-9.ogg";
-        public static readonly string DUNGEON10 = "res://music/dungeons/dungeon10.ogg";
+
         public static readonly string[] DUNGEON_TRACKS_REAL = { "res://music/dungeons/dungeon11-19.ogg" };
+
 
         public static readonly string BOSS_VICTORY = "res://music/boss_victory.ogg";
         public static readonly string FIRST_CUTSCENE = "res://music/cutscene.ogg";
@@ -51,7 +54,6 @@ namespace AscendedZ
                 tier--;
                 index = (tier - (tier % 10)) / 10;
             }
-                
 
             string trackKey = OVERWORLD_TRACKS[index];
             return trackKey;
@@ -87,18 +89,22 @@ namespace AscendedZ
             {
                 return DUNGEON6_9;
             }
-            else if(tier == 10)
+            else if(tier >= 10)
             {
-                return DUNGEON10;
-            }
-            else if(tier > 10)
-            {
-                int index = ((tier - (tier % 10))/10) - 1;
-                
-                if (index > DUNGEON_TRACKS_REAL.Length)
-                    index = 0;
+                if(tier % 10 == 0)
+                {
+                    return BOSS_TRACKS[(tier / 10) - 1];
+                }
+                else
+                {
+                    int index = ((tier - (tier % 10)) / 10) - 1;
 
-                return DUNGEON_TRACKS_REAL[index];
+                    if (index > DUNGEON_TRACKS_REAL.Length)
+                        index = 0;
+
+                    return DUNGEON_TRACKS_REAL[index];
+                }
+
             }
             else
             {

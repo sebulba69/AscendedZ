@@ -28,3 +28,8 @@ res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
 res://screens/BattleEnemyScene.tscn
+res://misc_icons/Icon.tscn
+res://screens/PartyBattleDisplayBox.tscn
+res://screens/MainScreen.tscn
+res://statuses/StatusIcon.tscn
+res://screens/EnemyBattleDisplayBox.tscn

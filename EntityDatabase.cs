@@ -56,7 +56,8 @@ namespace AscendedZ
         /// </summary>
         private static readonly List<string> BOSS_ENCOUNTERS = new List<string>
         {
-            EnemyNames.Elliot_Onyx
+            EnemyNames.Elliot_Onyx,
+            EnemyNames.Sable_Vonner
         };
 
 

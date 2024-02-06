@@ -125,7 +125,10 @@ public partial class EntityDisplayBox : PanelContainer
         // ... show statuses ... //
         // clear old statuses
         foreach (var child in _statuses.GetChildren())
+        {
             _statuses.RemoveChild(child);
+            child.QueueFree();
+        }
 
         // place our new, updated statuses on scren
         var entityStatuses = entity.StatusHandler.Statuses;

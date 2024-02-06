@@ -139,6 +139,10 @@ namespace AscendedZ
         public static readonly string VOID_ICE_ICON = "VoidIce";
         public static readonly string VOID_WIND_ICON = "VoidWind";
 
+        // Skill Icons - Weaks
+        public static readonly string WEAK_FIRE_ICON = "WeakFire";
+        public static readonly string WEAK_ELEC_ICON = "WeakElec";
+
         // Skill Icons - Other
         public static readonly string HEAL_ICON = "Heal";
         public static readonly string STUN_ICON = "Stun";
@@ -165,7 +169,9 @@ namespace AscendedZ
             [AGRO_ICON] = new KeyValuePair<int, int>(480, 0),
             [PASS_ICON] = new KeyValuePair<int, int>(352, 128),
             [RETREAT_ICON] = new KeyValuePair<int, int>(288, 576),
-            [VORPEX_ICON] = new KeyValuePair<int, int>(448, 1376)
+            [VORPEX_ICON] = new KeyValuePair<int, int>(448, 1376),
+            [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
+            [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600)
         };
 
         public static KeyValuePair<int, int> GetIcon(string key)

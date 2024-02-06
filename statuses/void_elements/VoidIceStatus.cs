@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.statuses.void_elements
 {
-    public class VoidIceStatus : VoidElementStatus
+    public class VoidIceStatus : ChangeElementStatus
     {
         public VoidIceStatus() : base()
         {
-            _voidElement = skills.Elements.Ice;
+            _id = StatusId.VoidElementStatus;
+            _elementToChange = skills.Elements.Ice;
+            _newResType = resistances.ResistanceType.Nu;
             this.Icon = SkillAssets.VOID_ICE_ICON;
         }
 

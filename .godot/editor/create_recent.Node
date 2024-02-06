@@ -1,8 +1,8 @@
+TextureRect
 Button
 VBoxContainer
 HBoxContainer
 AnimationPlayer
-TextureRect
 CheckBox
 ItemList
 CenterContainer

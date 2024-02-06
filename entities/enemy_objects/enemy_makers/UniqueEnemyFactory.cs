@@ -18,6 +18,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.CattuTDroni] = MakeCattuTDroni;
             _functionDictionary[EnemyNames.Harbinger] = MakeHarbinger;
             _functionDictionary[EnemyNames.Elliot_Onyx] = MakeElliot;
+            _functionDictionary[EnemyNames.Sable_Vonner] = MakeVonner;
         }
 
         /// <summary>
@@ -39,6 +40,11 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         public Enemy MakeElliot()
         {
             return new ElliotOnyx();
+        }
+
+        public Enemy MakeVonner()
+        {
+            return new SableVonner();
         }
     }
 }

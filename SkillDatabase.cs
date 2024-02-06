@@ -1,6 +1,7 @@
 ﻿using AscendedZ.skills;
 using AscendedZ.statuses;
 using AscendedZ.statuses.void_elements;
+using AscendedZ.statuses.weak_element;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,12 +34,12 @@ namespace AscendedZ
             };
         }
 
-        public static StatusSkill ElecBuff1 { get => MakeBuffSkill("Elec+", 0.25, Elements.Elec); }
-        public static StatusSkill FireBuff1 { get => MakeBuffSkill("Fire+", 0.25, Elements.Fir); }
-        public static StatusSkill WindBuff1 { get => MakeBuffSkill("Wind+", 0.25, Elements.Wind); }
-        public static StatusSkill IceBuff1 { get => MakeBuffSkill("Ice+", 0.25, Elements.Ice); }
+        public static StatusSkill ElecBuff1 { get => MakeBuffSkill("Elec+", 0.25, Elements.Elec, StatusId.ElementBuffStatus_Elec); }
+        public static StatusSkill FireBuff1 { get => MakeBuffSkill("Fire+", 0.25, Elements.Fir, StatusId.ElementBuffStatus_Fire); }
+        public static StatusSkill WindBuff1 { get => MakeBuffSkill("Wind+", 0.25, Elements.Wind, StatusId.ElementBuffStatus_Wind); }
+        public static StatusSkill IceBuff1 { get => MakeBuffSkill("Ice+", 0.25, Elements.Ice, StatusId.ElementBuffStatus_Ice); }
         
-        private static StatusSkill MakeBuffSkill(string name, double amount, Elements element)
+        private static StatusSkill MakeBuffSkill(string name, double amount, Elements element, StatusId id)
         {
             string icon = SkillAssets.GetElementIconByElementEnum(element);
 
@@ -46,7 +47,8 @@ namespace AscendedZ
             { 
                 BuffElement = element,
                 Amount = amount,
-                Icon = icon
+                Icon = icon,
+                Id = id
             };
 
             StatusSkill statusSkill = MakeStatusSkill(name, elementBuff);
@@ -97,7 +99,7 @@ namespace AscendedZ
         {
             get
             {
-                return MakeVoidElementSkill("Void Fire", new VoidFireStatus());
+                return MakeChangeElementSkill("Void Fire", new VoidFireStatus());
             }
         }
 
@@ -105,7 +107,7 @@ namespace AscendedZ
         {
             get
             {
-                return MakeVoidElementSkill("Void Ice", new VoidIceStatus());
+                return MakeChangeElementSkill("Void Ice", new VoidIceStatus());
             }
         }
 
@@ -113,11 +115,31 @@ namespace AscendedZ
         {
             get
             {
-                return MakeVoidElementSkill("Void Wind", new VoidWindStatus());
+                return MakeChangeElementSkill("Void Wind", new VoidWindStatus());
             }
         }
 
-        private static StatusSkill MakeVoidElementSkill(string name, Status status)
+        public static StatusSkill WeakFire
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Fire-", new WeakFireStatus());
+                s.TargetType = TargetTypes.SINGLE_OPP;
+                return s;
+            }
+        }
+
+        public static StatusSkill WeakElec
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Elec-", new WeakElecStatus());
+                s.TargetType = TargetTypes.SINGLE_OPP;
+                return s;
+            }
+        }
+
+        private static StatusSkill MakeChangeElementSkill(string name, Status status)
         {
             StatusSkill statusSkill = MakeStatusSkill(name, status);
 
