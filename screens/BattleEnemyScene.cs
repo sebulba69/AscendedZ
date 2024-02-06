@@ -547,7 +547,7 @@ public partial class BattleEnemyScene : Node2D
             _continueButton.Visible = false;
 
         this.GetNode<CenterContainer>("%PlayerContainer").Visible = !visible;
-        _skillDisplayIcons.Visible = !visible;
+        _skillDisplayIcons.Visible = false;
         _enemyMembers.Visible = !visible;
     }
 

@@ -33,6 +33,28 @@ namespace AscendedZ
             };
         }
 
+        public static StatusSkill ElecBuff1 { get => MakeBuffSkill("Elec+", 0.25, Elements.Elec); }
+        public static StatusSkill FireBuff1 { get => MakeBuffSkill("Fire+", 0.25, Elements.Fir); }
+        public static StatusSkill WindBuff1 { get => MakeBuffSkill("Wind+", 0.25, Elements.Wind); }
+        public static StatusSkill IceBuff1 { get => MakeBuffSkill("Ice+", 0.25, Elements.Ice); }
+        
+        private static StatusSkill MakeBuffSkill(string name, double amount, Elements element)
+        {
+            string icon = SkillAssets.GetElementIconByElementEnum(element);
+
+            var elementBuff = new ElementBuffStatus() 
+            { 
+                BuffElement = element,
+                Amount = amount,
+                Icon = icon
+            };
+
+            StatusSkill statusSkill = MakeStatusSkill(name, elementBuff);
+            statusSkill.EndupAnimation = SkillAssets.GetAnimationByElementAndTier(1, element);
+            statusSkill.Icon = icon;
+
+            return statusSkill;
+        }
         #endregion
         public static StatusSkill Stun
         {
@@ -46,8 +68,7 @@ namespace AscendedZ
                 return statusSkill;
             }
         }
-
-        
+  
         public static StatusSkill AgroEnemy
         {
             get
@@ -60,8 +81,7 @@ namespace AscendedZ
                 return statusSkill;
             }
         }
-
-        
+    
         public static StatusSkill AgroPlayer 
         { 
             get 
@@ -118,18 +138,6 @@ namespace AscendedZ
                 Status = status
             };
         }
-
-        /*
-        public static StatusSkill DARK_BUFF_1 = new StatusSkill()
-        {
-            Name = "Dark Boost",
-            TargetType = TargetTypes.SINGLE_TEAM,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.DARK_T1,
-            Icon = SkillAssets.DARK_ICON,
-            Status = new ElementBuffStatus(Elements.Dark, 2)
-        };
-        */
 
         public static HealSkill Heal1 = new HealSkill()
         {

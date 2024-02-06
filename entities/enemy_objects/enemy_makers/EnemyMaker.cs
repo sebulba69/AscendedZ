@@ -18,7 +18,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 new UniqueEnemyFactory(),
                 new StatusAttackEnemyFactory(),
                 new WeaknessHunterEnemyFactory(),
-                new ProtectorEnemyFactory()
+                new ProtectorEnemyFactory(),
+                new BuffEnemyFactory()
             };
         }
 

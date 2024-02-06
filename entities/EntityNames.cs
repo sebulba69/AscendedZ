@@ -47,6 +47,12 @@ namespace AscendedZ.entities
         public static readonly string Otem = "Otem"; // protects ice
         public static readonly string Hesret = "Hesret"; // protects wind
 
+        // more alt enemies w/ buffs
+        public static readonly string Nanfrea = "Nanfrea"; // boost fire
+        public static readonly string Anrol = "Anrol"; // boost ice
+        public static readonly string David = "Da-vid"; // boost wind
+        public static readonly string Ferza = "Ferza"; // boost elec
+
         // Bosses (Normal)
         public static readonly string Harbinger = "Harbinger, Mangler of Legs";
         public static readonly string Elliot_Onyx = "Elliot Onyx";

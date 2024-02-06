@@ -1,9 +1,5 @@
 res://default_env.tres
-res://misc_icons/Icon.tscn
-res://screens/AscendedTextbox.tscn
-res://screens/BattleEnemyScene.tscn
-res://turn_icons/TurnIcon.tscn
-res://screens/MainScreen.tscn
+res://screens/RecruitCustomScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://effects/DamageNumber.cs
@@ -13,6 +9,7 @@ res://misc_icons/Icon.cs
 res://screens/AscendedDialogBox.cs
 res://screens/AscendedTextbox.cs
 res://screens/AscendedYesNoWindow.cs
+res://screens/back_end_screen_scripts/RecruitWrapper.cs
 res://screens/BattleEnemyScene.cs
 res://screens/BossHPBar.cs
 res://screens/CGCutsceneScreen.cs
@@ -30,7 +27,4 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://screens/RecruitCustomScreen.tscn
-res://screens/PartyMemberDisplay.tscn
-res://screens/back_end_screen_scripts/RecruitWrapper.cs
-res://screens/RecruitScreen.tscn
+res://screens/BattleEnemyScene.tscn

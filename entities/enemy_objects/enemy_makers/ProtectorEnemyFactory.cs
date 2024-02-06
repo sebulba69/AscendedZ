@@ -71,7 +71,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 ElementToVoid = elementToVoid
             };
 
-            protector.Resistances.SetResistance(ResistanceType.Nu, elementToVoid);
+            protector.Resistances.SetResistance(ResistanceType.Wk, elementToVoid);
 
             return protector;
         }

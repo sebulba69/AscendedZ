@@ -121,16 +121,23 @@ namespace AscendedZ
                         // use RANDOM_ENEMIES as a base
                         List<string> possibleEncounters = new List<string>(RANDOM_ENEMIES);
 
-                        int numEncounters = 4;
+                        int minEncounters = 2;
+                        int maxEncounters = 4;
 
                         // new encounters available past certain tiers
                         if(tier > 10)
                         {
                             possibleEncounters.AddRange(new string[] { EnemyNames.Ed, EnemyNames.Otem, EnemyNames.Hesret });
-                            numEncounters = 6;
+                            maxEncounters = 6;
                         }
 
-                        int numEnemies = RANDOM.Next(2, numEncounters);
+                        if(tier > 15)
+                        {
+                            possibleEncounters.AddRange(new string[] { EnemyNames.Nanfrea, EnemyNames.Ferza, EnemyNames.Anrol, EnemyNames.David });
+                            minEncounters = 3;
+                        }
+
+                        int numEnemies = RANDOM.Next(minEncounters, maxEncounters);
                         for (int i = 0; i < numEnemies; i++)
                         {
                             int randomEnemyIndex = RANDOM.Next(possibleEncounters.Count);

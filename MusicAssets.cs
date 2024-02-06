@@ -46,8 +46,12 @@ namespace AscendedZ
         {
             int tier = PersistentGameObjects.GameObjectInstance().MaxTier;
             int index = 0;
-            if(tier > 10)
+            if(tier >= 11)
+            {
+                tier--;
                 index = (tier - (tier % 10)) / 10;
+            }
+                
 
             string trackKey = OVERWORLD_TRACKS[index];
             return trackKey;
@@ -93,6 +97,7 @@ namespace AscendedZ
                 
                 if (index > DUNGEON_TRACKS_REAL.Length)
                     index = 0;
+
                 return DUNGEON_TRACKS_REAL[index];
             }
             else

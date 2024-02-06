@@ -49,7 +49,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var fastrobren = MakeAlternatingEnemy(EnemyNames.Fastrobren, 4);
 
-            fastrobren.Resistances = new ResistanceArray();
             fastrobren.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
 
             fastrobren.Skills.Add(SkillDatabase.Dark1.Clone());
@@ -61,7 +60,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var liamlas = MakeAlternatingEnemy(EnemyNames.Liamlas, 6);
             
-            liamlas.Resistances = new ResistanceArray();
             liamlas.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
 
             liamlas.Skills.Add(SkillDatabase.Light1.Clone());
