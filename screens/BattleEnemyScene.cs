@@ -514,7 +514,7 @@ public partial class BattleEnemyScene : Node2D
             }
 
             // do reward stuff here
-            _continueButton.Visible = true;
+            _continueButton.Visible = (gameObject.Tier + 1 != gameObject.TierCap);
 
             int nextTier = gameObject.Tier + 1;
             if (nextTier == gameObject.MaxTier + 1)

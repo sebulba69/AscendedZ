@@ -138,7 +138,7 @@ public partial class EmbarkScreen : CenterContainer
     {
         var go = PersistentGameObjects.GameObjectInstance();
         
-        if (go.Tier == go.MaxTier)
+        if (go.Tier == go.TierCap)
             return;
 
         bool canEmbark = false;

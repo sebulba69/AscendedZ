@@ -48,6 +48,8 @@ namespace AscendedZ.game_object
             }
         }
 
+        public int TierCap { get => TIER_CAP; }
+
         public bool PartyMemberObtained { get => _partyMemberObtained; set => _partyMemberObtained = value; }
 
         public MainPlayer MainPlayer { get; set; }
