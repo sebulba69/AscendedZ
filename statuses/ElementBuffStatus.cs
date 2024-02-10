@@ -13,7 +13,7 @@ namespace AscendedZ.statuses
 {
     public class ElementBuffStatus : Status
     {
-        private int _stacks = 1;
+        protected int _stacks = 1;
         public Elements BuffElement { get; set; }
         public double Amount { get; set; }
         public int Stacks { get => _stacks; set => _stacks = value; }
@@ -76,17 +76,6 @@ namespace AscendedZ.statuses
             wrapper.Description = $"Buff Status: Increase damage for {BuffElement} by {Math.Round(Amount*100,1)}%.";
 
             return wrapper;
-        }
-
-        public override Status Clone()
-        {
-            return new ElementBuffStatus
-            {
-                BuffElement = this.BuffElement,
-                Amount = this.Amount,
-                Stacks = _stacks,
-                Icon = this.Icon
-            };
         }
     }
 }

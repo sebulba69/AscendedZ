@@ -62,31 +62,36 @@ namespace AscendedZ.entities.enemy_objects.bosses
         public ISkill GetNextMove(BattleSceneObject battleSceneObject)
         {
             _pickedSkill = this.Skills[_rng.Next(STUN)];
-            if (_currentScript == 0)
+
+            if(battleSceneObject.AlivePlayers.Count > 1)
             {
-                _pickedSkill = this.Skills[_currentMove];
-            }
-            else
-            {
-                if (_currentMove < 2)
+                if (_currentScript == 0)
                 {
-                    // at this point someone has the stun status
-                    _stunnedPlayer = battleSceneObject.AlivePlayers.Find(p => p.StatusHandler.HasStatus(StatusId.StunStatus));
-                    if (_stunnedPlayer != null)
+                    _pickedSkill = this.Skills[_currentMove];
+                }
+                else
+                {
+                    if (_currentMove < 2)
                     {
-                        for (int i = 0; i < STUN; i++)
+                        // at this point someone has the stun status
+                        _stunnedPlayer = battleSceneObject.AlivePlayers.Find(p => p.StatusHandler.HasStatus(StatusId.StunStatus));
+                        if (_stunnedPlayer != null)
                         {
-                            var element = (ElementSkill)this.Skills[i];
-                            if (_stunnedPlayer.Resistances.IsWeakToElement(element.Element))
+                            for (int i = 0; i < STUN; i++)
                             {
-                                _pickedSkill = element;
-                                break;
+                                var element = (ElementSkill)this.Skills[i];
+                                if (_stunnedPlayer.Resistances.IsWeakToElement(element.Element))
+                                {
+                                    _pickedSkill = element;
+                                    break;
+                                }
                             }
                         }
                     }
                 }
+                _currentMove++;
             }
-            _currentMove++;
+
             return _pickedSkill;
         }
 

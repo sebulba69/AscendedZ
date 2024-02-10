@@ -23,21 +23,6 @@ namespace AscendedZ.entities.enemy_objects
 
         private Color _fgColor, _bgColor;
 
-        public BossHPStatus BossHPUIValues 
-        {
-            get
-            {
-                return new BossHPStatus()
-                {
-                    CurrentBarHP = _currentDisplayHP,
-                    MaxBarHP = _maxHPBarDisplay,
-                    FG = _fgColor,
-                    BG = _bgColor,
-                    NumBars = _bars
-                };
-            }
-        }
-
         public BossHP()
         {
             // by default, the max hp per bar is 1k
@@ -53,48 +38,64 @@ namespace AscendedZ.entities.enemy_objects
             // there's no need to adjust the algorithm for back colors
             if(_totalHP < MAX_HP_PER_BAR)
             {
-                _bars = 1;
+                _bars = 0;
                 _maxHPBarDisplay = _totalHP;
                 _currentDisplayHP = _totalHP;
             }
             else
             {
-                SetHPFullBar(_totalHP);
-            } 
+                int remainder = hp % MAX_HP_PER_BAR;
+                int numerator = hp - remainder;
+                _bars = numerator / MAX_HP_PER_BAR;
+
+                if (remainder == 0)
+                    _currentDisplayHP = numerator / _bars;
+                else
+                    _currentDisplayHP = remainder;
+
+                _bars--;
+            }
+
+            SetBarColors();
         }
 
         public void ChangeHP(int hp)
         {
-            if(_maxHPBarDisplay < MAX_HP_PER_BAR)
+            if (_totalHP == hp)
+                return;
+
+            _totalHP = hp;
+
+            if(_bars == 0)
             {
                 _currentDisplayHP = hp;
             }
             else
             {
-                SetHPFullBar(hp);
-            }
-        }
+                int remainder = hp % MAX_HP_PER_BAR;
+                int numerator = hp - remainder;
+                int bars = numerator / MAX_HP_PER_BAR;
+                int newHPValue = numerator / bars;
 
-        private void SetHPFullBar(int hp)
-        {
-            // totalHP is greater than or equal to MAX_HP_PER_BAR
-            // remainder = how much HP will initially be displayed
-            int remainder = hp % MAX_HP_PER_BAR;
-            int numerator = hp - remainder;
-            _bars = numerator / MAX_HP_PER_BAR;
-            if (remainder == 0)
-                _currentDisplayHP = MAX_HP_PER_BAR;
-            else
-                _currentDisplayHP = remainder;
-            
-            SetBarColors();
+                if (remainder == 0)
+                {
+                    _bars--;
+                    _currentDisplayHP = newHPValue;
+                }
+                else
+                {
+                    _currentDisplayHP = remainder;
+                }
+
+                SetBarColors();
+            }
         }
 
         private void SetBarColors()
         {
-            if(_bars > 1)
+            if(_bars > 0)
             {
-                int fgIndex = (_bars % HPFGColors.Length) - 1;
+                int fgIndex = _bars % HPFGColors.Length;
                 int bgIndex = fgIndex - 1;
                 if (bgIndex < 0)
                     bgIndex = HPFGColors.Length - 1;
@@ -107,6 +108,18 @@ namespace AscendedZ.entities.enemy_objects
                 _fgColor = new Color(HPFGColors[0]);
                 _bgColor = new Color(BGCOLOR);
             }
+        }
+
+        public BossHPStatus GetBossHPUIValues()
+        {
+            return new BossHPStatus()
+            {
+                CurrentBarHP = _currentDisplayHP,
+                MaxBarHP = _maxHPBarDisplay,
+                FG = _fgColor,
+                BG = _bgColor,
+                NumBars = _bars
+            };
         }
     }
 }

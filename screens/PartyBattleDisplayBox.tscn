@@ -12,22 +12,30 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="CharacterCtrlNode2" type="PanelContainer"]
-offset_right = 67.0
-offset_bottom = 113.0
+offset_right = 250.0
+offset_bottom = 263.0
 size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_5n3gq")
 script = ExtResource("1_tnsmk")
 
 [node name="ContainerForCharStuff" type="VBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="ActivePlayerTag" type="ColorRect" parent="ContainerForCharStuff"]
+[node name="PremiereGaming" type="VBoxContainer" parent="ContainerForCharStuff"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ActivePlayerTag" type="ColorRect" parent="ContainerForCharStuff/PremiereGaming"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 color = Color(0.25098, 0.329412, 0.929412, 1)
 
-[node name="Label" type="Label" parent="ContainerForCharStuff/ActivePlayerTag"]
+[node name="Label" type="Label" parent="ContainerForCharStuff/PremiereGaming/ActivePlayerTag"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -42,38 +50,30 @@ theme_override_fonts/font = ExtResource("2_6t5j7")
 text = "● Current ● "
 horizontal_alignment = 1
 
-[node name="TheFullEnchilada" type="PanelContainer" parent="ContainerForCharStuff"]
+[node name="TheFullEnchilada" type="PanelContainer" parent="ContainerForCharStuff/PremiereGaming"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Stats+Pic" type="VBoxContainer" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada"]
 layout_mode = 2
 
-[node name="PremiereGaming" type="VBoxContainer" parent="ContainerForCharStuff/TheFullEnchilada"]
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming"]
-layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming/CenterContainer"]
+[node name="NameLabel" type="Label" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6t5j7")
 theme_override_font_sizes/font_size = 20
 text = "Name"
+horizontal_alignment = 1
 
-[node name="Picture" type="TextureRect" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming"]
+[node name="Picture" type="TextureRect" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(174, 155)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming/Picture"]
-unique_name_in_owner = true
-clip_contents = true
-custom_minimum_size = Vector2(250, 0)
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_right = 250.0
-grow_vertical = 0
-
-[node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming"]
+[node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 21)
 layout_mode = 2
@@ -86,24 +86,29 @@ texture_over = ExtResource("4_m1gsh")
 texture_progress = ExtResource("5_fk57v")
 texture_progress_offset = Vector2(1, 0)
 
-[node name="PanelContainer" type="PanelContainer" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming"]
+[node name="PanelContainer" type="PanelContainer" parent="ContainerForCharStuff"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="ContainerForCharStuff/PanelContainer"]
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming/PanelContainer"]
-layout_mode = 2
-
-[node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming/PanelContainer/CenterContainer"]
+[node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff/PanelContainer/CenterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6t5j7")
 theme_override_font_sizes/font_size = 16
 text = "Resistances"
 
-[node name="PanelContainer2" type="PanelContainer" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming"]
+[node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ContainerForCharStuff/TheFullEnchilada/PremiereGaming"]
-layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 1
+alignment = 1
 
 [node name="EffectContainer" type="CenterContainer" parent="."]
 unique_name_in_owner = true

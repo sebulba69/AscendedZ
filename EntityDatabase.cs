@@ -154,7 +154,8 @@ namespace AscendedZ
                 foreach (string name in encounterNames)
                 {
                     Enemy enemy = _enemyMaker.MakeEnemy(name);
-                    enemy.Boost(tier, boost);
+                    if(tier >= 8)
+                        enemy.Boost(tier, boost);
                     encounter.Add(enemy);
                 }
             }
@@ -193,7 +194,7 @@ namespace AscendedZ
 
 
             // scale price based on tier
-            if(tier > 5)
+            if(tier > 10)
             {
                 int remainder = tier % 5;
                 int numPriceSpikes = (tier - remainder) / 5;

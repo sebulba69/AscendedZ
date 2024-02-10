@@ -22,8 +22,6 @@ public partial class EntityDisplayBox : PanelContainer
     private HBoxContainer _statuses;
     private Label _resistances;
 
-    private string debugName;
-
     private float _x;
 
     // screen shake

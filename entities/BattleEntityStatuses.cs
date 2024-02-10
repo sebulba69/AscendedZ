@@ -26,6 +26,8 @@ namespace AscendedZ.entities
 
         public void Clear()
         {
+            foreach (var status in _statuses)
+                status.ClearStatus();
             _statuses.Clear();
         }
 
@@ -34,17 +36,20 @@ namespace AscendedZ.entities
             return _statuses.FindAll(status => status.Id == id).Count > 0;
         }
 
+        private Status GetStatus(StatusId id)
+        {
+            return _statuses.Find(status => status.Id == id);
+        }
+
         public void AddStatus(BattleEntity entity, Status status)
         {
             bool inList = false;
-            foreach(Status s in _statuses)
+
+            var s = GetStatus(status.Id);
+            if (s != null)
             {
-                if (s.Id == status.Id)
-                {
-                    s.ApplyStatus();
-                    inList = true;
-                    break;
-                }
+                s.ApplyStatus();
+                inList = true;
             }
 
             if (!inList)

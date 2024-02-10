@@ -46,13 +46,13 @@ size_flags_vertical = 4
 
 [node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/Picture"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(284, 0)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -40.0
-offset_right = 40.0
+offset_right = 284.0
 grow_vertical = 0
 
 [node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff"]

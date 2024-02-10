@@ -62,30 +62,37 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             _target = partyMembers[_rng.Next(0, partyMembers.Count)];
             ISkill skill = this.Skills[_rng.Next(ELEC, ICE + 1)];
 
-            var nonStunnedMembers = partyMembers.FindAll(p => !p.StatusHandler.HasStatus(StatusId.StunStatus));
-            
-            // no one has the stun status
-            if (nonStunnedMembers.Count == partyMembers.Count)
+            if(partyMembers.Count > 1)
             {
-                var membersWithWeakness = nonStunnedMembers.FindAll(member =>
-                       member.Resistances.IsWeakToElement(Elements.Elec)
-                    || member.Resistances.IsWeakToElement(Elements.Ice));
+                var nonStunnedMembers = partyMembers.FindAll(p => !p.StatusHandler.HasStatus(StatusId.StunStatus));
 
-                if(membersWithWeakness.Count > 0)
+                // no one has the stun status
+                if (nonStunnedMembers.Count == partyMembers.Count)
                 {
-                    _target = membersWithWeakness[_rng.Next(0, membersWithWeakness.Count)];
-                    skill = this.Skills[STUN];
+                    var membersWithWeakness = nonStunnedMembers.FindAll(member =>
+                           member.Resistances.IsWeakToElement(Elements.Elec)
+                        || member.Resistances.IsWeakToElement(Elements.Ice));
+
+                    if (membersWithWeakness.Count > 0)
+                    {
+                        _target = membersWithWeakness[_rng.Next(0, membersWithWeakness.Count)];
+                        skill = this.Skills[STUN];
+                    }
+                }
+                else
+                {
+                    _target = partyMembers.Find(p => p.StatusHandler.HasStatus(StatusId.StunStatus));
+
+                    if (_target.Resistances.IsWeakToElement(Elements.Elec))
+                        skill = this.Skills[ELEC];
+
+                    if (_target.Resistances.IsWeakToElement(Elements.Ice))
+                        skill = this.Skills[ICE];
                 }
             }
             else
             {
-                _target = partyMembers.Find(p => p.StatusHandler.HasStatus(StatusId.StunStatus));
-                
-                if (_target.Resistances.IsWeakToElement(Elements.Elec))
-                    skill = this.Skills[ELEC];
-
-                if (_target.Resistances.IsWeakToElement(Elements.Ice))
-                    skill = this.Skills[ICE];
+                _target = partyMembers[0];
             }
 
             return skill;

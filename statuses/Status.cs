@@ -53,6 +53,8 @@ namespace AscendedZ.statuses
         /// </summary>
         public virtual void ApplyStatus() {}
 
+        public virtual void ClearStatus() { }
+
         /// <summary>
         /// Update ongoing statuses with the latest battle result
         /// </summary>

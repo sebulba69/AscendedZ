@@ -482,6 +482,7 @@ public partial class BattleEnemyScene : Node2D
         foreach(var member in _battleSceneObject.Players)
         {
             member.HP = member.MaxHP;
+            member.StatusHandler.Clear();
         }
 
         if (didPlayerWin)

@@ -15,5 +15,16 @@ namespace AscendedZ.statuses.buff_elements
             BuffElement = Elements.Wind;
             Icon = SkillAssets.GetElementIconByElementEnum(BuffElement);
         }
+
+        public override Status Clone()
+        {
+            return new BuffWindStatus
+            {
+                BuffElement = this.BuffElement,
+                Amount = this.Amount,
+                Stacks = _stacks,
+                Icon = this.Icon
+            };
+        }
     }
 }

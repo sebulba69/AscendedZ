@@ -1,6 +1,6 @@
+VBoxContainer
 TextureRect
 Button
-VBoxContainer
 HBoxContainer
 AnimationPlayer
 CheckBox

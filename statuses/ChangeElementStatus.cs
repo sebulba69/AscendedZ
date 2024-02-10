@@ -44,6 +44,12 @@ namespace AscendedZ.statuses
             this.RemoveStatus = true;
         }
 
+        public override void ClearStatus()
+        {
+            _statusOwner.Resistances.SetResistance(_oldResType, _elementToChange);
+            this.RemoveStatus = true;
+        }
+
         public override StatusIconWrapper CreateIconWrapper()
         {
             StatusIconWrapper wrapper = new StatusIconWrapper();
