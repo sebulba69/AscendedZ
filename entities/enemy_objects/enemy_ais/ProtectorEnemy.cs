@@ -1,5 +1,6 @@
 ﻿using AscendedZ.battle;
 using AscendedZ.battle.battle_state_machine;
+using AscendedZ.entities.battle_entities;
 using AscendedZ.skills;
 using AscendedZ.statuses;
 using System;
@@ -20,6 +21,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
     public class ProtectorEnemy : WeaknessHunterEnemy
     {
         private const int VOID_SKILL = 0;
+        private const int NON_VOID_DEFAULT = 1;
         private bool _useVoidSkill;
         public Elements ElementToVoid { get; set; }
 
@@ -47,6 +49,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
                     action.Target = target;
                 }
                 action.Skill = Skills[VOID_SKILL];
+            }
+
+            if (!_useVoidSkill)
+            {
+                if (action.Skill.Id == SkillId.Status)
+                    action.Skill = Skills[NON_VOID_DEFAULT];
             }
 
             // use the void skill every other turn

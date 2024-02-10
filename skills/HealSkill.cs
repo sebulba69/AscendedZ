@@ -55,7 +55,7 @@ namespace AscendedZ.skills
         {
             double m = 0.01 * Math.Pow((_level - 10), 2) + 1;
             int boost = (int)(Math.Pow(_level, m)) + 1;
-            boost = (boost / 4) + 1;
+            boost = (boost / 4) + 3;
             return boost;
         }
 
