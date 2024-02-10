@@ -136,12 +136,21 @@ public partial class EmbarkScreen : CenterContainer
 
     private void _OnEmbarkPressed()
     {
+        var go = PersistentGameObjects.GameObjectInstance();
+        
+        if (go.Tier == go.MaxTier)
+            return;
+
         bool canEmbark = false;
 
         foreach(OverworldEntity member in _party.Party)
         {
+            // you need at least 1 party member to embark
             if(member != null)
+            {
                 canEmbark = true;
+                break;
+            }
         }
 
         if (canEmbark)
