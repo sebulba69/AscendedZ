@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "us3cd4JK3zHll5c41SaNYPncmf9XYLlUXx3HcPcROc8O2WgvdSjSCdja+HoMcsTA7ncfz2AA/WASwU3WHiIZvw==",
+  "dgSpecHash": "rJIyVIsLUsXrD6GgDNb/Pj9RNB9Nl53q0PJTI66A8+XETMv/XtervLCHRdKRfDdTaHiaihYCT67H2B3thg3ECA==",
   "success": true,
-  "projectFilePath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
+  "projectFilePath": "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cole\\.nuget\\packages\\godot.sourcegenerators\\4.2.1\\godot.sourcegenerators.4.2.1.nupkg.sha512",
     "C:\\Users\\Cole\\.nuget\\packages\\godotsharp\\4.2.1\\godotsharp.4.2.1.nupkg.sha512",

@@ -40,7 +40,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Name = EnemyNames.Sable_Vonner;
             Image = CharacterImageAssets.GetImage(Name);
             MaxHP = 100;
-            Turns = 4;
+            Turns = 3;
 
             Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
@@ -88,7 +88,6 @@ namespace AscendedZ.entities.enemy_objects.bosses
                     action.Target = this;
                     break;
                 case 2:
-                case 3:
                     Elements wex = (_isElec) ? Elements.Elec : Elements.Fir;
                     action.Skill = GetDamage();
                     action.Target = GetPlayerWithWexTo(battleSceneObject, wex);
