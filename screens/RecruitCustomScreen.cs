@@ -46,12 +46,22 @@ public partial class RecruitCustomScreen : CenterContainer
 		{
 			var mainPlayer = gameObject.MainPlayer;
             var vorpex = mainPlayer.Wallet.Currency[SkillAssets.VORPEX_ICON];
-            
-			if(vorpex.Amount >= _recruitCustomObject.Cost &&
-                !mainPlayer.IsPartyMemberOwned(_recruitCustomObject.SelectedEntity.Name))
+			var selected = _recruitCustomObject.SelectedEntity;
+
+            bool canAfford = (vorpex.Amount >= _recruitCustomObject.Cost);
+			bool isOwnedByPlayer = (mainPlayer.IsPartyMemberOwned(selected.Name));
+			bool hasSkills = _recruitCustomObject.SelectedEntity.Skills.Count > 0;
+
+			if(canAfford && !isOwnedByPlayer && hasSkills)
 			{
 				vorpex.Amount -= _recruitCustomObject.Cost;
-				mainPlayer.ReserveMembers.Add(_recruitCustomObject.SelectedEntity);
+
+				// prevent any references in memory back to this screen
+				var partyMember = PartyMemberGenerator.MakePartyMember(selected.Name);
+				foreach(var skill in selected.Skills)
+					partyMember.Skills.Add(skill.Clone());
+
+				mainPlayer.ReserveMembers.Add(partyMember);
 				ChangePotentialPartyMembers();
                 
 				PersistentGameObjects.Save();
@@ -137,6 +147,6 @@ public partial class RecruitCustomScreen : CenterContainer
 
 	private void UpdateCost()
 	{
-		_costLabel.Text = $"{_recruitCustomObject.Cost} VC";
+		_costLabel.Text = $"Cost: {_recruitCustomObject.Cost} VC";
 	}
 }

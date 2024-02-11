@@ -93,13 +93,7 @@ size_flags_vertical = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer"]
 layout_mode = 2
 
-[node name="TurnIconPanel" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
-self_modulate = Color(1, 1, 1, 0.498039)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="TurnIconContainer" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/TurnIconPanel"]
+[node name="TurnIconContainer" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1

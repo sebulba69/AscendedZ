@@ -4,11 +4,9 @@
 [ext_resource type="Script" path="res://screens/PartyMemberDisplay.cs" id="3"]
 
 [node name="PartyMemberIcon" type="HBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1600.0
-offset_bottom = -1100.0
+custom_minimum_size = Vector2(478, 160)
+offset_right = 478.0
+offset_bottom = 155.0
 script = ExtResource("3")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

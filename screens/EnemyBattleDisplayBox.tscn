@@ -69,21 +69,14 @@ texture_under = ExtResource("3_7q0ym")
 texture_over = ExtResource("4_atrrm")
 texture_progress = ExtResource("4_2fxq6")
 
-[node name="PanelContainer" type="PanelContainer" parent="ContainerForCharStuff"]
-use_parent_material = true
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="ContainerForCharStuff/PanelContainer"]
-use_parent_material = true
-layout_mode = 2
-
-[node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff/PanelContainer/CenterContainer"]
+[node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff"]
 unique_name_in_owner = true
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pkpmd")
 theme_override_font_sizes/font_size = 16
 text = "Resistances"
+horizontal_alignment = 1
 
 [node name="EffectContainer" type="CenterContainer" parent="."]
 unique_name_in_owner = true

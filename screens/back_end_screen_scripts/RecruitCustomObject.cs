@@ -59,8 +59,6 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
                 return isValidSkill;
             });
-
-            SelectedEntity.Skills.Add(AvailableSkills[0].Clone());
         }
 
         public void AddSkill(int index)
