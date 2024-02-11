@@ -38,3 +38,4 @@ res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
 res://screens/PartyMemberDisplay.tscn
+res://screens/PartyBattleDisplayBox.gdshader

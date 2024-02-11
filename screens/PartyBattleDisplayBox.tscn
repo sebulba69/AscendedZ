@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://daese1bd3tqym"]
+[gd_scene load_steps=13 format=3 uid="uid://daese1bd3tqym"]
 
 [ext_resource type="Script" path="res://screens/EntityDisplayBox.cs" id="1_tnsmk"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2_6t5j7"]
+[ext_resource type="Texture2D" uid="uid://wa3vhq2cq4uw" path="res://screens/arrows/current_arrow.png" id="2_tnpt7"]
 [ext_resource type="PackedScene" uid="uid://t6lhru8f8fr7" path="res://effects/EffectSprite.tscn" id="3_anb8q"]
 [ext_resource type="Texture2D" uid="uid://bs4gg4uakqucs" path="res://progressbar_assets/BarV1_Bar.png" id="3_pt5ji"]
 [ext_resource type="Texture2D" uid="uid://cgmiottbplblf" path="res://progressbar_assets/BarV1_ProgressBarBorder.png" id="4_m1gsh"]
@@ -10,6 +11,44 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5n3gq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="Animation" id="Animation_aqqm4"]
+resource_name = "new_animation"
+length = 0.1
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 218, 168), Rect2(0, 168, 217, 168)]
+}
+
+[sub_resource type="Animation" id="Animation_rq2k4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 218, 168)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqayk"]
+_data = {
+"RESET": SubResource("Animation_rq2k4"),
+"new_animation": SubResource("Animation_aqqm4")
+}
 
 [node name="CharacterCtrlNode2" type="PanelContainer"]
 offset_right = 250.0
@@ -29,13 +68,28 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="ActivePlayerTag" type="ColorRect" parent="ContainerForCharStuff/PremiereGaming"]
+[node name="ActivePlayerTag" type="TextureRect" parent="ContainerForCharStuff/PremiereGaming"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(52, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_tnpt7")
+expand_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ContainerForCharStuff/PremiereGaming/ActivePlayerTag"]
+libraries = {
+"": SubResource("AnimationLibrary_dqayk")
+}
+
+[node name="ActivePlayerTagOLD" type="ColorRect" parent="ContainerForCharStuff/PremiereGaming"]
+unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 color = Color(0.25098, 0.329412, 0.929412, 1)
 
-[node name="Label" type="Label" parent="ContainerForCharStuff/PremiereGaming/ActivePlayerTag"]
+[node name="Label" type="Label" parent="ContainerForCharStuff/PremiereGaming/ActivePlayerTagOLD"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

@@ -18,7 +18,6 @@ public partial class EntityDisplayBox : PanelContainer
     private Sprite2D _effect;
     private AudioStreamPlayer _shakeSfx;
     private Vector2 _originalPosition;
-    private ColorRect _activePlayerTag;
     private HBoxContainer _statuses;
     private Label _resistances;
 
@@ -114,7 +113,7 @@ public partial class EntityDisplayBox : PanelContainer
         // change active status if it's a player (players have the graphic, enemies don't)
         if (entity.GetType().Equals(typeof(BattlePlayer)))
         {
-            ColorRect activePlayerTag = this.GetNode<ColorRect>("%ActivePlayerTag");
+            TextureRect activePlayerTag = this.GetNode<TextureRect>("%ActivePlayerTag");
             if (activePlayerTag.Visible != entity.IsActiveEntity)
                 activePlayerTag.Visible = entity.IsActiveEntity;
         }
