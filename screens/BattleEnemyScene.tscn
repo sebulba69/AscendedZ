@@ -126,10 +126,10 @@ layout_mode = 2
 
 [node name="SkillsList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 150)
+custom_minimum_size = Vector2(300, 180)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 allow_search = false
 
 [node name="TargetList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]

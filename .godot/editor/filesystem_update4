@@ -1,15 +1,10 @@
 res://default_env.tres
-res://screens/PartyBattleDisplayBox.tscn
-res://screens/UpgradeScreen.tscn
 res://screens/RecruitCustomScreen.tscn
 res://screens/BattleEnemyScene.tscn
 res://misc_icons/Icon.tscn
+res://screens/PartyBattleDisplayBox.tscn
 res://screens/MainScreen.tscn
-res://statuses/StatusIcon.tscn
-res://screens/EnemyBattleDisplayBox.tscn
-res://screens/BossHPBar.tscn
-res://screens/RecruitScreenTabs.tscn
-res://turn_icons/TurnIcon.tscn
+res://screens/PartyMemberDisplay.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://effects/DamageNumber.cs
@@ -37,5 +32,3 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://screens/PartyMemberDisplay.tscn
-res://screens/PartyBattleDisplayBox.gdshader

@@ -70,7 +70,7 @@ namespace AscendedZ.skills
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon,
-                Status = this.Status
+                Status = this.Status.Clone()
             };
         }
     }

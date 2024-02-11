@@ -12,7 +12,7 @@ namespace AscendedZ.statuses.void_elements
     {
         public VoidFireStatus() : base()
         {
-            _id = StatusId.VoidElementStatus;
+            _id = StatusId.VoidFireStatus;
 
             _elementToChange = skills.Elements.Fir;
             _newResType = resistances.ResistanceType.Nu;

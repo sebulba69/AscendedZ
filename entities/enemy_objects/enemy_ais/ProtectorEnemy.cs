@@ -36,7 +36,15 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             // by default, run the weakness hunter ai
             EnemyAction action = base.GetNextAction(battleSceneObject);
 
-            List<Enemy> enemies = battleSceneObject.AliveEnemies.FindAll(e => !e.StatusHandler.HasStatus(StatusId.VoidElementStatus));
+            // find an enemy without any shields
+            List<Enemy> enemies = battleSceneObject.AliveEnemies.FindAll(e =>
+            {
+                var statusHandler = e.StatusHandler;
+                return !statusHandler.HasStatus(StatusId.VoidIceStatus)
+                || !statusHandler.HasStatus(StatusId.VoidFireStatus)
+                || !statusHandler.HasStatus(StatusId.VoidWindStatus);
+            });
+
             if(enemies.Count > 0 && _useVoidSkill)
             {
                 Enemy target = enemies.Find(e => e.Resistances.IsWeakToElement(ElementToVoid));

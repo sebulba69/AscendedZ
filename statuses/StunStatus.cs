@@ -84,10 +84,5 @@ namespace AscendedZ.statuses
 
             return wrapper;
         }
-
-        public override Status Clone()
-        {
-            return new StunStatus();
-        }
     }
 }

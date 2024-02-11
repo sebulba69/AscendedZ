@@ -128,15 +128,19 @@ public partial class EntityDisplayBox : PanelContainer
         }
 
         // place our new, updated statuses on scren
-        var entityStatuses = entity.StatusHandler.Statuses;
-        foreach (var status in entityStatuses)
+        if(entity.HP > 0)
         {
-            StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();
-            var statusIcon = ResourceLoader.Load<PackedScene>(Scenes.STATUS).Instantiate();
-            _statuses.AddChild(statusIcon);
+            var entityStatuses = entity.StatusHandler.Statuses;
+            foreach (var status in entityStatuses)
+            {
+                StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();
+                var statusIcon = ResourceLoader.Load<PackedScene>(Scenes.STATUS).Instantiate();
+                _statuses.AddChild(statusIcon);
 
-            statusIcon.Call("SetIcon", statusIconWrapper);
+                statusIcon.Call("SetIcon", statusIconWrapper);
+            }
         }
+
     }
 
     public async void UpdateBattleEffects(BattleEffectWrapper effectWrapper)

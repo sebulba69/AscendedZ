@@ -1,9 +1,12 @@
 ﻿using AscendedZ.battle;
 using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
+using AscendedZ.statuses.buff_elements;
+using AscendedZ.statuses.void_elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,14 +14,18 @@ namespace AscendedZ.statuses
 {
     public enum StatusId 
     { 
+        Default,
         StunStatus, 
         ElementBuffStatus_Wind,
         ElementBuffStatus_Fire,
         ElementBuffStatus_Elec,
         ElementBuffStatus_Ice, 
         AgroStatus,
-        VoidElementStatus,
-        WexElementStatus 
+        VoidFireStatus,
+        VoidIceStatus,
+        VoidWindStatus,
+        WexElecStatus,
+        WexFireStatus
     }
 
     public class Status
@@ -78,9 +85,59 @@ namespace AscendedZ.statuses
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// This Clone method will almost always end up getting called post
+        /// Serialization. During battle, if a status needs to preserve state,
+        /// then there should be an underlying Clone method that overwrites this one.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public virtual Status Clone()
         {
-            throw new NotImplementedException();
+            switch (Id)
+            {
+                case StatusId.Default:
+                    // hack for backwards compatibility with v0.02 Pre-Alpha
+                    if (Icon.Contains(SkillAssets.VOID_FIRE_ICON))
+                    {
+                        _id = StatusId.VoidFireStatus;
+                        return this.Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_ICE_ICON))
+                    {
+                        _id = StatusId.VoidIceStatus;
+                        return this.Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_WIND_ICON))
+                    {
+                        _id = StatusId.VoidWindStatus;
+                        return this.Clone();
+                    }
+                    else
+                    {
+                        throw new NotImplementedException();
+                    }
+                case StatusId.StunStatus:
+                    return new StunStatus();
+                case StatusId.AgroStatus:
+                    return new AgroStatus();
+                case StatusId.ElementBuffStatus_Elec:
+                    return new BuffElecStatus();
+                case StatusId.ElementBuffStatus_Fire:
+                    return new BuffFireStatus();
+                case StatusId.ElementBuffStatus_Wind:
+                    return new BuffWindStatus();
+                case StatusId.ElementBuffStatus_Ice:
+                    return new BuffIceStatus();
+                case StatusId.VoidFireStatus:
+                    return new VoidFireStatus();
+                case StatusId.VoidIceStatus:
+                    return new VoidIceStatus();
+                case StatusId.VoidWindStatus:
+                    return new VoidWindStatus();
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

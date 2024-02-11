@@ -143,7 +143,12 @@ namespace AscendedZ.entities.enemy_objects.bosses
             }
             else
             {
-                var status = wexToElement.Find(wexPlayer => wexPlayer.StatusHandler.HasStatus(statuses.StatusId.WexElementStatus));
+                var status = wexToElement.Find(wexPlayer => 
+                {
+                    var statusHandler = wexPlayer.StatusHandler;
+
+                    return statusHandler.HasStatus(statuses.StatusId.WexFireStatus) || statusHandler.HasStatus(statuses.StatusId.WexElecStatus);
+                });
                 if (status == null)
                     return wexToElement[_rng.Next(0, wexToElement.Count)];
                 else

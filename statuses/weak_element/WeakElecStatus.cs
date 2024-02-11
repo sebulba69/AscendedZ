@@ -10,7 +10,7 @@ namespace AscendedZ.statuses.weak_element
     {
         public WeakElecStatus() : base()
         {
-            _id = StatusId.WexElementStatus;
+            _id = StatusId.WexElecStatus;
 
             _elementToChange = skills.Elements.Elec;
             _newResType = resistances.ResistanceType.Wk;
