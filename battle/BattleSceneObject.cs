@@ -40,10 +40,10 @@ namespace AscendedZ.battle
         public List<Enemy> Enemies { get; set; } = new();
         public PressTurn PressTurn { get; set; } = new();
         public TurnState TurnState { get => _turnState; }
-        public BattlePlayer ActivePlayer { get; set; }
-
+        public BattlePlayer ActivePlayer { get => Players.Find(p => p.IsActiveEntity); }
         public List<BattlePlayer> AlivePlayers { get => Players.FindAll(p => p.HP > 0); }
         public List<Enemy> AliveEnemies { get => Enemies.FindAll(e => e.HP > 0); }
+
         public BattleSceneObject()
         {
             _currentState = _states[PLAYER_STATE];

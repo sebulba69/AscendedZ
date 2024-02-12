@@ -37,7 +37,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
 
             Turns = 2;
 
-            Description = $"Class: Stun Enemy (Unique)\nDescription: Applies Stun to a random player without it,\nthen it will repeatedly attack that player\nuntil the status is in effect.";
+            Description = $"[STN]: Applies Stun to a random player without it, then it will repeatedly attack that player until the status is in effect.";
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)

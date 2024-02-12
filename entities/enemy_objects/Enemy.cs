@@ -18,7 +18,7 @@ namespace AscendedZ.entities.enemy_objects
         
         protected Random _rng;
 
-        public string Description { get; protected set; }
+        public string Description { get; set; }
 
         public Enemy() 
         {

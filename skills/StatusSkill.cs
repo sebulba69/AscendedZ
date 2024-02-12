@@ -38,7 +38,7 @@ namespace AscendedZ.skills
             };
 
             target.StatusHandler.AddStatus(target, this.Status);
-
+            result.Log.Append($"{target} now has the status: [color=yellow]{this.Status.Icon}[/color]. {this.Status.CreateIconWrapper().Description}");
             return result;
         }
 

@@ -48,7 +48,7 @@ namespace AscendedZ.statuses
             wrapper.Icon = this.Icon;
             wrapper.Counter = ACTIVE_TURNS - _activeTurns;
             wrapper.CounterColor = Colors.Green;
-            wrapper.Description = $"Agro Status: All enemies target the player with the agro status.";
+            wrapper.Description = $"All enemies target the player with the agro status.";
 
             return wrapper;
         }

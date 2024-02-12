@@ -25,8 +25,6 @@ namespace AscendedZ.battle.battle_state_machine
             {
                 var active = players[_activePlayer];
                 active.IsActiveEntity = true;
-
-                battleSceneObject.ActivePlayer = active;
                 battleSceneObject.SkillSelected += _OnSkillSelected;
             }
         }
@@ -41,6 +39,10 @@ namespace AscendedZ.battle.battle_state_machine
             BattleResult result = default(BattleResult);
 
             ISkill skill = active.Skills[eventArgs.SkillIndex];
+
+            StringBuilder logEntry = new StringBuilder();
+
+            logEntry.Append($"{active.Name} used {skill.Name}. ");
 
             // result cannot be null at the end of this function
             switch (skill.TargetType)
@@ -58,6 +60,10 @@ namespace AscendedZ.battle.battle_state_machine
             }
 
             result.User = active;
+
+            logEntry.Append(result.Log.ToString());
+            result.Log = logEntry;
+            
             battleSceneObject.HandlePostTurnProcessing(result);
         }
 
@@ -72,8 +78,7 @@ namespace AscendedZ.battle.battle_state_machine
                     _activePlayer = 0;
             } while (players[_activePlayer].HP == 0 || !players[_activePlayer].CanAttack);
 
-            battleSceneObject.ActivePlayer = players[_activePlayer];
-            battleSceneObject.ActivePlayer.IsActiveEntity = true;
+            players[_activePlayer].IsActiveEntity = true;
         }
 
         public void EndState(BattleSceneObject battleSceneObject)

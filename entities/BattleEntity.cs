@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AscendedZ.entities.battle_entities
 {
@@ -70,11 +71,13 @@ namespace AscendedZ.entities.battle_entities
                 this.HP += skill.Damage;
 
                 result.ResultType = BattleResultType.Dr;
+                result.Log.Append($"{this.Name} drained {skill.Element.ToString()} for [color=green]{skill.Damage} HP[/color].");
             }
             else if (this.Resistances.IsNullElement(skill.Element))
             {
                 result.HPChanged = 0;
                 result.ResultType = BattleResultType.Nu;
+                result.Log.Append($"{this.Name} voided {skill.Element.ToString()} for [color=blue]0 damage[/color].");
             }
             else if (this.Resistances.IsResistantToElement(skill.Element))
             {
@@ -83,6 +86,8 @@ namespace AscendedZ.entities.battle_entities
 
                 result.HPChanged = damage;
                 result.ResultType = BattleResultType.Rs;
+
+                result.Log.Append($"{this.Name} resisted {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
             }
             else if (this.Resistances.IsWeakToElement(skill.Element))
             {
@@ -91,11 +96,13 @@ namespace AscendedZ.entities.battle_entities
 
                 result.HPChanged = damage;
                 result.ResultType = BattleResultType.Wk;
+                result.Log.Append($"{this.Name} was weak to {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
             }
             else
             {
                 this.HP -= skill.Damage;
                 result.ResultType = BattleResultType.Normal;
+                result.Log.Append($"{this.Name} took [color=red]{skill.Damage} damage[/color].");
             }
 
             return result;
@@ -104,13 +111,15 @@ namespace AscendedZ.entities.battle_entities
         public virtual BattleResult ApplyHealingSkill(HealSkill skill)
         {
             this.HP += skill.HealAmount;
-            return new BattleResult()
+            var result = new BattleResult()
             {
                 HPChanged = skill.HealAmount,
                 Target = this,
                 SkillUsed = skill,
                 ResultType = BattleResultType.HPGain
             };
+            result.Log.Append($"{this.Name} healed for [color=green]{skill.HealAmount} HP[/color].");
+            return result;
         }
     }
 }

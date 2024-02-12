@@ -35,13 +35,7 @@ public partial class ActionMenu : PanelContainer
     public BattleSceneObject BattleSceneObject 
     {
         get => _battleSceneObject;
-        set
-        {
-            if(_battleSceneObject == null)
-            {
-                _battleSceneObject = value;
-            }
-        }
+        set => _battleSceneObject = value;
     }
 
 	// Called when the node enters the scene tree for the first time.
@@ -128,9 +122,13 @@ public partial class ActionMenu : PanelContainer
 
     public void LoadActiveSkillList()
     {
+        var active = BattleSceneObject.ActivePlayer;
+
+        if (active == null)
+            return;
+
         _actionList.Clear();
 
-        var active = BattleSceneObject.ActivePlayer;
         foreach (ISkill skill in active.Skills)
             _actionList.AddItem(skill.GetBattleDisplayString(), SkillAssets.GenerateIcon(skill.Icon));
 

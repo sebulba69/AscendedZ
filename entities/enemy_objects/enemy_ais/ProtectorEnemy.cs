@@ -28,7 +28,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         public ProtectorEnemy()
         {
             _useVoidSkill = true;
-            Description = "Class: Protector Enemy\nDescription: Alternates between hitting weaknesses and covering an ally's weakness.";
+            Description = "[PRCT]: Alternates between hitting weaknesses and covering an ally's weakness.";
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)

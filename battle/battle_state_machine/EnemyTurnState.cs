@@ -49,6 +49,10 @@ namespace AscendedZ.battle.battle_state_machine
             ISkill skill = action.Skill;
             BattleEntity target = action.Target;
 
+            StringBuilder logEntry = new StringBuilder();
+
+            logEntry.Append($"{active.Name} used {skill.Name} on {target.Name}. ");
+
             switch (skill.TargetType)
             {
                 case TargetTypes.SINGLE_OPP:
@@ -58,6 +62,11 @@ namespace AscendedZ.battle.battle_state_machine
             }
 
             result.User = active;
+
+            logEntry.Append(result.Log.ToString());
+
+            result.Log = logEntry;
+
             battleSceneObject.HandlePostTurnProcessing(result);
         }
 

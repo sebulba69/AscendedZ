@@ -29,7 +29,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         public StatusAttackEnemy()
         {
             Turns = 1;
-            Description = $"Class: Status Enemy\nDescription: Randomly applies a status to all players who don't have one,\nthen it focuses on random attacks.";
+            Description = $"Randomly applies a status to all players who don't have one, then it focuses on random attacks.";
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)

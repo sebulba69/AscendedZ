@@ -27,7 +27,11 @@ namespace AscendedZ.skills
 
         public BattleResult ProcessSkill(BattleEntity target)
         {
-            return new BattleResult() { ResultType = BattleResultType.Pass, SkillUsed = this };
+            return new BattleResult() 
+            { 
+                ResultType = BattleResultType.Pass, 
+                SkillUsed = this
+            };
         }
 
         public string GetBattleDisplayString()

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static Godot.HttpRequest;
 
 public partial class EntityDisplayBox : PanelContainer
@@ -40,6 +41,8 @@ public partial class EntityDisplayBox : PanelContainer
         _shakeSfx = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
         _statuses = this.GetNode<HBoxContainer>("%Statuses");
         _resistances = this.GetNode<Label>("%ResistanceLabel");
+
+        _originalPosition = new Vector2(this.Position.X, 0);
     }
 
     /// <summary>
@@ -58,6 +61,7 @@ public partial class EntityDisplayBox : PanelContainer
         else
         {
             _x = this.Position.X;
+            this.Position = new Vector2(_x, _originalPosition.Y);
         }
     }
 
@@ -81,14 +85,9 @@ public partial class EntityDisplayBox : PanelContainer
         }
 
         name.Text = entity.Name;
+
         _resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
         picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
-    }
-
-    public void SetDescription(string description)
-    {
-        TextureRect picture = this.GetNode<TextureRect>("%Picture");
-        picture.TooltipText = description;
     }
 
     public void UpdateEntityDisplay(EntityWrapper wrapper)
@@ -145,7 +144,6 @@ public partial class EntityDisplayBox : PanelContainer
 
             statusIcon.Call("SetIcon", statusIconWrapper);
         }
-
     }
 
     public async void UpdateBattleEffects(BattleEffectWrapper effectWrapper)

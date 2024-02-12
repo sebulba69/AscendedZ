@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using static Godot.HttpRequest;
 using static Godot.WebSocketPeer;
@@ -28,6 +29,7 @@ public partial class BattleEnemyScene : Node2D
     private Button _backToHomeButton, _retryFloorButton, _continueButton;
     private CenterContainer _endBox;
     private bool _uiUpdating = false;
+    private RichTextLabel _combatLog;
 
     private Label _skillName;
     private TextureRect _skillIcon;
@@ -51,6 +53,8 @@ public partial class BattleEnemyScene : Node2D
         _backToHomeButton = this.GetNode<Button>("%BackToHomeBtn");
         _retryFloorButton = this.GetNode<Button>("%RetryFloorBtn");
         _continueButton = this.GetNode<Button>("%ContinueBtn");
+
+        _combatLog = this.GetNode<RichTextLabel>("%CombatLog");
 
         _actionMenu = this.GetNode<ActionMenu>("%ActionMenu");
 
@@ -83,6 +87,8 @@ public partial class BattleEnemyScene : Node2D
 
     private void InitializeBattleScene()
     {
+        _combatLog.Clear();
+
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
         ClearChildrenFromNode(_partyMembers);
@@ -92,6 +98,8 @@ public partial class BattleEnemyScene : Node2D
         background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatBackground(gameObject.Tier));
 
         _battleSceneObject = new BattleSceneObject();
+        _actionMenu.BattleSceneObject = _battleSceneObject;
+
         _battleSceneObject.InitializeEnemies(gameObject.Tier);
         _battleSceneObject.InitializePartyMembers();
 
@@ -105,6 +113,7 @@ public partial class BattleEnemyScene : Node2D
             partyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = member });
         }
 
+        HashSet<Type> enemyTypes = new HashSet<Type>();
         foreach (var enemy in _battleSceneObject.Enemies)
         {
             var enemyBox = (enemy.IsBoss) 
@@ -112,14 +121,23 @@ public partial class BattleEnemyScene : Node2D
                 : ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate();
             
             _enemyMembers.AddChild(enemyBox);
+ 
             enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
-            enemyBox.Call("SetDescription", enemy.Description);
+
+            if (!enemy.IsBoss)
+            {
+                if (!enemyTypes.Contains(enemy.GetType()))
+                {
+                    enemyTypes.Add(enemy.GetType());
+                    PostLogResult(enemy.Description);
+                }
+            }
+                
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff
-        _actionMenu.BattleSceneObject = _battleSceneObject;
-
         _battleSceneObject.StartBattle();
+
         UpdateTurnsUsingTurnState(TurnState.PLAYER);
 
         string dungeonTrack = MusicAssets.GetDungeonTrack(gameObject.Tier);
@@ -183,6 +201,7 @@ public partial class BattleEnemyScene : Node2D
             }
 
             // slight delay so the skill icon doesn't auto vanish
+            PostLogResult(result.Log.ToString());
             await Task.Delay(350);
             ResetSkillIcon();
 
@@ -230,6 +249,11 @@ public partial class BattleEnemyScene : Node2D
             _battleSceneObject.DoEnemyMove();
         else
             _actionMenu.CanInput = true;
+    }
+
+    private void PostLogResult(string result)
+    {
+        _combatLog.AppendText(result + "\n");
     }
 
     private void UpdateTurnsUsingTurnState(TurnState turnState)

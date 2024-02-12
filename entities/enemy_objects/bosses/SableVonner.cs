@@ -93,7 +93,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
                     action.Target = GetPlayerWithWexTo(battleSceneObject, wex);
                     break;
                 default:
-                    _phase = 1;
+                    _phase = 2;
                     _isElec = !_isElec;
                     action = GetNextAction(battleSceneObject);
                     break;

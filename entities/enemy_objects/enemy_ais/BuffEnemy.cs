@@ -14,7 +14,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
 
         public BuffEnemy() : base()
         {
-            Description = $"Class: Buff Enemy\nDescription: Always buffs its element of choice before attacking randomly.";
+            Description = $"[BUFF]: Always buffs its element of choice before attacking randomly.";
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)

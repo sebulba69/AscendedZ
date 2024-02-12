@@ -59,6 +59,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             statusAttackEnemy.Name = $"[AGRO] {statusAttackEnemy.Name}";
             statusAttackEnemy.Status = new AgroStatus();
             statusAttackEnemy.Skills.Add(SkillDatabase.AgroEnemy.Clone());
+            statusAttackEnemy.Description = $"[AGRO]: {statusAttackEnemy.Description}";
 
             return statusAttackEnemy;
         }

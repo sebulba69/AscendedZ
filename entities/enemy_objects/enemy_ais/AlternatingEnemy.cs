@@ -37,7 +37,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         public AlternatingEnemy() : base()
         {
             Turns = 1;
-            Description = $"Class: Alternating Enemy\nDescription: Randomly picks targets for an attack.\nIt will alternate through each of its skills at least once.";
+            Description = $"[AE]: Randomly picks targets for an attack. It will alternate through each of its skills at least once.";
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)

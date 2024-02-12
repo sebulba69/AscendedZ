@@ -57,7 +57,7 @@ namespace AscendedZ.statuses
             wrapper.Icon = this.Icon;
             wrapper.Counter = 1;
             wrapper.CounterColor = Colors.Green;
-            wrapper.Description = $"Change Status: Sets the target's resistance to a specific element to {_newResType} for 1 turn.";
+            wrapper.Description = $"Sets the target's resistance to a specific element to {_newResType} for 1 turn.";
 
             return wrapper;
         }

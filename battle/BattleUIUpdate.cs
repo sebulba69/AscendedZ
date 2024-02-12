@@ -18,6 +18,7 @@ namespace AscendedZ.battle
         private bool _userCanInput = true;
         public BattleResult Result { get; set; }
         public bool UserCanInput { get => _userCanInput; set => _userCanInput = value; }
+        public string LogString { get; set; }
 
     }
 }
