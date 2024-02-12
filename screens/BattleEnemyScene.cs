@@ -25,10 +25,7 @@ public partial class BattleEnemyScene : Node2D
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
     private BattleSceneObject _battleSceneObject;
-    private Button _skillButton;
     private Button _backToHomeButton, _retryFloorButton, _continueButton;
-    private ItemList _skillList;
-    private ItemList _targetList;
     private CenterContainer _endBox;
     private bool _uiUpdating = false;
 
@@ -49,10 +46,6 @@ public partial class BattleEnemyScene : Node2D
         _partyMembers = this.GetNode<HBoxContainer>("%PartyPortraits");
         _enemyMembers = this.GetNode<HBoxContainer>("%EnemyContainerBox");
         _turnIconContainer = this.GetNode<HBoxContainer>("%TurnIconContainer");
-
-        _skillList = this.GetNode<ItemList>("%SkillsList");
-        _targetList = this.GetNode<ItemList>("%TargetList");
-        _skillButton = this.GetNode<Button>("%Skill");
 
         _endBox = this.GetNode<CenterContainer>("%EndBox");
         _backToHomeButton = this.GetNode<Button>("%BackToHomeBtn");
@@ -94,9 +87,6 @@ public partial class BattleEnemyScene : Node2D
 
         ClearChildrenFromNode(_partyMembers);
         ClearChildrenFromNode(_enemyMembers);
-        _skillList.Clear();
-
-        _skillButton.Disabled = false;
 
         TextureRect background = this.GetNode<TextureRect>("%Background");
         background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatBackground(gameObject.Tier));
@@ -152,8 +142,6 @@ public partial class BattleEnemyScene : Node2D
         // handle battle results if any
         if(update.Result != null)
         {
-            _skillButton.Disabled = true;
-
             var result = update.Result;
 
             // check if we're running from this battle
@@ -197,10 +185,6 @@ public partial class BattleEnemyScene : Node2D
             // slight delay so the skill icon doesn't auto vanish
             await Task.Delay(350);
             ResetSkillIcon();
-
-            // if our user can provide inputs, then re-enable the button
-            if (update.UserCanInput)
-                _skillButton.Disabled = false;
 
             _battleSceneObject.ChangeActiveEntity();
         }
@@ -256,8 +240,6 @@ public partial class BattleEnemyScene : Node2D
             SetNewTurns(true);
 
             _actionMenu.LoadActiveSkillList();
-
-            _skillButton.Disabled = false;
         }
         else
         {

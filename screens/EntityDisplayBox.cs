@@ -114,8 +114,13 @@ public partial class EntityDisplayBox : PanelContainer
         if (entity.GetType().Equals(typeof(BattlePlayer)))
         {
             TextureRect activePlayerTag = this.GetNode<TextureRect>("%ActivePlayerTag");
+            CenterContainer spacer = this.GetNode<CenterContainer>("%Spacer");
             if (activePlayerTag.Visible != entity.IsActiveEntity)
+            {
                 activePlayerTag.Visible = entity.IsActiveEntity;
+                spacer.Visible = entity.IsActiveEntity;
+            }
+                
         }
 
 
@@ -128,17 +133,17 @@ public partial class EntityDisplayBox : PanelContainer
         }
 
         // place our new, updated statuses on scren
-        if(entity.HP > 0)
-        {
-            var entityStatuses = entity.StatusHandler.Statuses;
-            foreach (var status in entityStatuses)
-            {
-                StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();
-                var statusIcon = ResourceLoader.Load<PackedScene>(Scenes.STATUS).Instantiate();
-                _statuses.AddChild(statusIcon);
+        var entityStatuses = entity.StatusHandler.Statuses;
 
-                statusIcon.Call("SetIcon", statusIconWrapper);
-            }
+        _statuses.Visible = !(entityStatuses.Count == 0);
+
+        foreach (var status in entityStatuses)
+        {
+            StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();
+            var statusIcon = ResourceLoader.Load<PackedScene>(Scenes.STATUS).Instantiate();
+            _statuses.AddChild(statusIcon);
+
+            statusIcon.Call("SetIcon", statusIconWrapper);
         }
 
     }

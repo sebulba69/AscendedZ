@@ -35,3 +35,5 @@ res://turn_icons/TurnIcon.cs
 res://screens/action_menu/ActionMenu.tscn
 res://screens/RecruitScreen.tscn
 res://screens/ActionMenu.cs
+res://screens/battle_assets/MiniPartyDisplay.tscn
+res://screens/BossHPBar.tscn
