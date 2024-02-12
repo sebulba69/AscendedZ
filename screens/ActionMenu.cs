@@ -107,8 +107,7 @@ public partial class ActionMenu : PanelContainer
 
         if (@event.IsActionPressed(Controls.ENTER))
         {
-            if(_state != ActionMenuState.Menu)
-                _OnMenuItemClicked((long)_selectedIndex, new Vector2(), (long)MouseButton.Left);
+            _OnMenuItemClicked((long)_selectedIndex, new Vector2(), (long)MouseButton.Left);
         }
     }
 
@@ -197,9 +196,21 @@ public partial class ActionMenu : PanelContainer
                     }
                     break;
                 case ActionMenuState.SkillSelect:
+                    // back button
                     if(_selectedIndex == _actionList.ItemCount - 1)
                     {
                         LoadMenu();
+                        break;
+                    }
+
+                    // we are passing
+                    if (_selectedIndex == _actionList.ItemCount - 2)
+                    {
+                        _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, new PlayerTargetSelectedEventArgs 
+                        {
+                            SkillIndex = _selectedIndex
+                        });
+                        _canInput = false;
                         break;
                     }
 
