@@ -150,6 +150,8 @@ namespace AscendedZ
         public static readonly string PASS_ICON = "Pass";
         public static readonly string RETREAT_ICON = "Retreat";
 
+        public static readonly string MAGIC_ICON = "Magic";
+
         // Currency Icons
         public static readonly string VORPEX_ICON = "Vorpex";
 
@@ -171,7 +173,9 @@ namespace AscendedZ
             [RETREAT_ICON] = new KeyValuePair<int, int>(288, 576),
             [VORPEX_ICON] = new KeyValuePair<int, int>(448, 1376),
             [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
-            [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600)
+            [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600),
+            [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480)
+            
         };
 
         public static KeyValuePair<int, int> GetIcon(string key)

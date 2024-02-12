@@ -21,8 +21,6 @@ using static Godot.WebSocketPeer;
 
 public partial class BattleEnemyScene : Node2D
 {
-    private bool _canInput;
-
     private HBoxContainer _partyMembers;
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
@@ -37,6 +35,7 @@ public partial class BattleEnemyScene : Node2D
     private Label _skillName;
     private TextureRect _skillIcon;
     private HBoxContainer _turnIconContainer;
+    private ActionMenu _actionMenu;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -60,8 +59,7 @@ public partial class BattleEnemyScene : Node2D
         _retryFloorButton = this.GetNode<Button>("%RetryFloorBtn");
         _continueButton = this.GetNode<Button>("%ContinueBtn");
 
-        _skillButton.Pressed += _OnSkillButtonPressed;
-        _skillList.Connect("item_selected", new Callable(this, "_OnSkillListItemSelected"));
+        _actionMenu = this.GetNode<ActionMenu>("%ActionMenu");
 
         AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
         PersistentGameObjects.GameObjectInstance().MusicPlayer.SetStreamPlayer(audioPlayer);
@@ -89,67 +87,6 @@ public partial class BattleEnemyScene : Node2D
         InitializeBattleScene();
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        if (!_canInput)
-            return;
-
-        if (@event.IsActionPressed(Controls.UP))
-        {
-            if (_skillList.GetSelectedItems().Length > 0)
-            {
-                int upIndex = _skillList.GetSelectedItems()[0];
-                upIndex--;
-                if (upIndex < 0)
-                    upIndex = 0;
-                _skillList.Select(upIndex);
-                UpdateTargetList();
-            } 
-        }
-
-        if (@event.IsActionPressed(Controls.DOWN))
-        {
-            if (_skillList.GetSelectedItems().Length > 0)
-            {
-                int downIndex = _skillList.GetSelectedItems()[0];
-                downIndex++;
-                if (downIndex >= _skillList.ItemCount)
-                    downIndex = _skillList.ItemCount - 1;
-                _skillList.Select(downIndex);
-                UpdateTargetList();
-            }
-        }
-
-        if (@event.IsActionPressed(Controls.LEFT))
-        {
-            if (_targetList.GetSelectedItems().Length > 0)
-            {
-                int upIndex = _targetList.GetSelectedItems()[0];
-                upIndex--;
-                if (upIndex < 0)
-                    upIndex = 0;
-                _targetList.Select(upIndex);
-            }
-        }
-
-        if (@event.IsActionPressed(Controls.RIGHT))
-        {
-            if (_targetList.GetSelectedItems().Length > 0)
-            {
-                int downIndex = _targetList.GetSelectedItems()[0];
-                downIndex++;
-                if (downIndex >= _targetList.ItemCount)
-                    downIndex = _targetList.ItemCount - 1;
-                _targetList.Select(downIndex);
-            }
-        }
-
-        if (@event.IsActionPressed(Controls.ENTER))
-        {
-            if(!_skillButton.Disabled)
-                _OnSkillButtonPressed();
-        }
-    }
 
     private void InitializeBattleScene()
     {
@@ -190,17 +127,15 @@ public partial class BattleEnemyScene : Node2D
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff
+        _actionMenu.BattleSceneObject = _battleSceneObject;
+
         _battleSceneObject.StartBattle();
         UpdateTurnsUsingTurnState(TurnState.PLAYER);
 
         string dungeonTrack = MusicAssets.GetDungeonTrack(gameObject.Tier);
         gameObject.MusicPlayer.PlayMusic(dungeonTrack, (gameObject.Tier == 5 || gameObject.Tier % 10 == 0));
-        _canInput = true;
-    }
-
-    private void _OnSkillListItemSelected(int index)
-    {
-        UpdateTargetList();
+        _actionMenu.CanInput = true;
+        
     }
 
     private void ClearChildrenFromNode(Node node)
@@ -210,21 +145,6 @@ public partial class BattleEnemyScene : Node2D
             node.RemoveChild(child);
             child.QueueFree();
         }
-    }
-
-    private void _OnSkillButtonPressed()
-    {
-        _canInput = false;
-        _skillButton.Disabled = true;
-
-        int selectedSkillIndex = _skillList.GetSelectedItems()[0];
-        int selectedTargetIndex = _targetList.GetSelectedItems()[0];
-
-        _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, new PlayerTargetSelectedEventArgs() 
-        {
-            SkillIndex = selectedSkillIndex,
-            TargetIndex = selectedTargetIndex
-        });
     }
 
     private async void _OnUIUpdate(object sender, BattleUIUpdate update)
@@ -310,7 +230,7 @@ public partial class BattleEnemyScene : Node2D
             return;
         }
 
-        SetActiveSkills();
+        _actionMenu.LoadActiveSkillList();
 
         SetNewTurns(_battleSceneObject.TurnState == TurnState.PLAYER);
         if (_battleSceneObject.PressTurn.TurnEnded)
@@ -325,25 +245,7 @@ public partial class BattleEnemyScene : Node2D
         if (_battleSceneObject.TurnState == TurnState.ENEMY)
             _battleSceneObject.DoEnemyMove();
         else
-            _canInput = true;
-    }
-
-    private void SetActiveSkills()
-    {
-        // populate skill list with new active player
-        int skillIndex = 0;
-        if (_skillList.GetSelectedItems().Length > 0)
-            skillIndex = _skillList.GetSelectedItems()[0];
-        _skillList.Clear();
-
-        if(_battleSceneObject.ActivePlayer != null)
-        {
-            foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
-                _skillList.AddItem(skill.GetBattleDisplayString(), SkillAssets.GenerateIcon(skill.Icon));
-            _skillList.Select(skillIndex);
-
-            UpdateTargetList();
-        }
+            _actionMenu.CanInput = true;
     }
 
     private void UpdateTurnsUsingTurnState(TurnState turnState)
@@ -353,7 +255,7 @@ public partial class BattleEnemyScene : Node2D
             _battleSceneObject.SetPartyMemberTurns();
             SetNewTurns(true);
 
-            SetActiveSkills();
+            _actionMenu.LoadActiveSkillList();
 
             _skillButton.Disabled = false;
         }
@@ -381,43 +283,6 @@ public partial class BattleEnemyScene : Node2D
             var partyDisplay = _partyMembers.GetChild(j);
             var playerWrapper = new EntityWrapper() { BattleEntity = players[j] };
             partyDisplay.Call("UpdateEntityDisplay", playerWrapper);
-        }
-    }
-
-    private void UpdateTargetList()
-    {
-        int targetIndex = 0;
-        int skillIndex = 0;
-
-        if (_targetList.GetSelectedItems().Length > 0)
-            targetIndex = _targetList.GetSelectedItems()[0];
-
-        if (_skillList.GetSelectedItems().Length > 0)
-            skillIndex = _skillList.GetSelectedItems()[0];
-
-        ISkill skill = _battleSceneObject.ActivePlayer.Skills[skillIndex];
-
-        int count = 1;
-        _targetList.Clear();
-
-        // only show valid targets for the skill we have selected
-        if (skill.TargetType == TargetTypes.SINGLE_OPP)
-        {
-            foreach (var enemy in _battleSceneObject.Enemies.FindAll(enemy => enemy.HP > 0))
-                _targetList.AddItem($"{count++}. {enemy.Name}", CharacterImageAssets.GetTextureForItemList(enemy.Image));
-        }
-        else
-        {
-            foreach (var player in _battleSceneObject.AlivePlayers)
-                _targetList.AddItem($"{count++}. {player.Name}", CharacterImageAssets.GetTextureForItemList(player.Image));
-        }
-
-        if (_targetList.ItemCount > 0)
-        {
-            if (targetIndex >= _targetList.ItemCount)
-                targetIndex = _targetList.ItemCount - 1;
-
-            _targetList.Select(targetIndex);
         }
     }
 
@@ -473,7 +338,7 @@ public partial class BattleEnemyScene : Node2D
 
     private async void EndBattle(bool didPlayerWin, bool retreated=false)
     {
-        _canInput = false;
+        _actionMenu.CanInput = false;
         SetEndScreenVisibility(true);
 
         Label endLabel = this.GetNode<Label>("%EndOfBattleLabel");

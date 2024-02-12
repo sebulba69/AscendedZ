@@ -163,7 +163,7 @@ namespace AscendedZ
         };
 
         #region Temporary Battle Skills
-        public static PassSkill PASS = new PassSkill()
+        public static PassSkill Pass = new PassSkill()
         {
             BaseName = "Pass",
             TargetType = TargetTypes.SINGLE_OPP,
@@ -172,7 +172,7 @@ namespace AscendedZ
             Icon = SkillAssets.PASS_ICON
         };
 
-        public static RetreatSkill RETREAT = new RetreatSkill()
+        public static RetreatSkill Retreat = new RetreatSkill()
         {
             BaseName = "Retreat",
             TargetType = TargetTypes.SINGLE_OPP,

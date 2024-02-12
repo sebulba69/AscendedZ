@@ -55,8 +55,7 @@ namespace AscendedZ.entities.partymember_objects
             foreach (var skill in Skills)
                 player.Skills.Add(skill.Clone());
 
-            player.Skills.Add(SkillDatabase.PASS);
-            player.Skills.Add(SkillDatabase.RETREAT);
+            player.Skills.Add(SkillDatabase.Pass);
             return player;
         }
 

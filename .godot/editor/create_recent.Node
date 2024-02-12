@@ -1,14 +1,14 @@
+Label
+VBoxContainer
+PanelContainer
 AnimationPlayer
 TextureRect
-VBoxContainer
 Button
 HBoxContainer
 CheckBox
 ItemList
 CenterContainer
 TabContainer
-PanelContainer
 TabBar
 AudioStreamPlayer
-Label
 GridContainer
