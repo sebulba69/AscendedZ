@@ -19,6 +19,7 @@ namespace AscendedZ.statuses
             _id = StatusId.AgroStatus;
             _activeTurns = 0;
             this.Icon = SkillAssets.AGRO_ICON;
+            Name = "Agro";
         }
 
         public override void ActivateStatus(BattleEntity owner)

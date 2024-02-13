@@ -13,6 +13,7 @@ namespace AscendedZ.statuses.buff_elements
         {
             _id = StatusId.ElementBuffStatus_Elec;
             BuffElement = skills.Elements.Elec;
+            Name = "Buff Elec";
             Icon = SkillAssets.GetElementIconByElementEnum(BuffElement);
         }
 

@@ -51,7 +51,7 @@ namespace AscendedZ.battle.battle_state_machine
 
             StringBuilder logEntry = new StringBuilder();
 
-            logEntry.Append($"{active.Name} used {skill.Name} on {target.Name}. ");
+            logEntry.Append($"[color=coral]{active.Name}[/color] used [color=burlywood]{skill.Name}[/color] on [color=gold]{target.Name}[/color]. ");
 
             switch (skill.TargetType)
             {

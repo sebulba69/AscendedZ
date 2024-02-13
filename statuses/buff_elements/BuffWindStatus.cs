@@ -13,6 +13,7 @@ namespace AscendedZ.statuses.buff_elements
         {
             _id = StatusId.ElementBuffStatus_Wind;
             BuffElement = Elements.Wind;
+            Name = "Buff Wind";
             Icon = SkillAssets.GetElementIconByElementEnum(BuffElement);
         }
 

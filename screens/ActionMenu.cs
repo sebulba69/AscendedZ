@@ -1,10 +1,12 @@
 ﻿using AscendedZ;
 using AscendedZ.battle;
 using AscendedZ.battle.battle_state_machine;
+using AscendedZ.entities;
 using AscendedZ.skills;
 using Godot;
 using Godot.NativeInterop;
 using System;
+using System.Collections.Generic;
 
 public enum ActionMenuState
 {
@@ -20,9 +22,12 @@ public partial class ActionMenu : PanelContainer
     private bool _canInput;
     private int _selectedIndex;
     private ActionMenuState _state;
+    private TextureRect _icon;
+    private Label _toolTip;
 
     private readonly string MENU_STR = "(D/←) Menu";
     private readonly string SKILL_STR = "(A/→) Skills";
+    private readonly string SKILL_TOOLTIP = "Choose a skill!";
     private readonly string TARGET_STR = "(D/←) Skills";
     private readonly string BACK_STR = "← Back";
 
@@ -42,6 +47,10 @@ public partial class ActionMenu : PanelContainer
 	public override void _Ready()
 	{
         _state = ActionMenuState.SkillSelect;
+
+        _icon = this.GetNode<TextureRect>("%ActionMenuIcon");
+        _toolTip = this.GetNode<Label>("%ActionMenuSkill");
+
 		_actionList = this.GetNode<ItemList>("%ActionList");
 		_menu = this.GetNode<Label>("%MenuLabel");
         _canInput = true;
@@ -49,6 +58,9 @@ public partial class ActionMenu : PanelContainer
 
         // in the menu is Skill, Retreat
         _menu.Text = MENU_STR;
+        _toolTip.Text = SKILL_TOOLTIP;
+        _icon.Visible = false;
+
         // _menu.Text = "Menu ● (Space/Click) Use";
 
         // item_clicked
@@ -115,6 +127,8 @@ public partial class ActionMenu : PanelContainer
 
         _menu.Text = SKILL_STR;
         _state = ActionMenuState.Menu;
+        _toolTip.Text = string.Empty;
+        _icon.Visible = false;
 
         _selectedIndex = 0;
         _actionList.Select(0);
@@ -137,6 +151,8 @@ public partial class ActionMenu : PanelContainer
         _actionList.Select(0);
 
         _menu.Text = MENU_STR;
+        _toolTip.Text = SKILL_TOOLTIP;
+        _icon.Visible = false;
         _state = ActionMenuState.SkillSelect;
     }
 
@@ -151,7 +167,7 @@ public partial class ActionMenu : PanelContainer
         if (skillTargetType == TargetTypes.SINGLE_OPP)
         {
             foreach (var enemy in _battleSceneObject.Enemies.FindAll(enemy => enemy.HP > 0))
-                _actionList.AddItem($"{count++}. {enemy.Name}", CharacterImageAssets.GetTextureForItemList(enemy.Image));
+                _actionList.AddItem($"{count++}. {enemy.Name} ● {enemy.HP} HP ● {enemy.Resistances.GetResistanceString()}", CharacterImageAssets.GetTextureForItemList(enemy.Image));
         }
         else
         {
@@ -162,10 +178,23 @@ public partial class ActionMenu : PanelContainer
         _state = ActionMenuState.TargetSelect;
 
         _menu.Text = TARGET_STR;
+        
+        _icon.Visible = true;
+        
+        ISkill skill = _battleSceneObject.ActivePlayer.Skills[_playerTargetSelectedEventArgs.SkillIndex];
 
+        ChangeSkillIconRegion(SkillAssets.GetIcon(skill.Icon));
+        _toolTip.Text = skill.Name;
+        
         _actionList.AddItem(BACK_STR);
         _selectedIndex = 0;
         _actionList.Select(0);
+    }
+
+    private void ChangeSkillIconRegion(KeyValuePair<int, int> coords)
+    {
+        AtlasTexture atlas = _icon.Texture as AtlasTexture;
+        atlas.Region = new Rect2(coords.Key, coords.Value, 32, 32);
     }
 
     private void _OnMenuItemClicked(long index, Vector2 at_position, long mouse_button_index)

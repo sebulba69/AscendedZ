@@ -119,9 +119,28 @@ script = ExtResource("5_68yxx")
 [node name="ActionListContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu"]
 layout_mode = 2
 
+[node name="IconContainer" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ActionMenuIcon" type="TextureRect" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer/IconContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_jtn52")
+
+[node name="ActionMenuSkill" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer/IconContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
 [node name="ActionList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 180)
+custom_minimum_size = Vector2(400, 180)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 18
@@ -153,7 +172,7 @@ text = "Log"
 horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/VBoxContainer"]
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_vertical = 3
 

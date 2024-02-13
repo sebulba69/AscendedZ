@@ -17,6 +17,8 @@ namespace AscendedZ.statuses.void_elements
             _elementToChange = skills.Elements.Fir;
             _newResType = resistances.ResistanceType.Nu;
             this.Icon = SkillAssets.VOID_FIRE_ICON;
+
+            Name = "Void Fire";
         }
 
         public override Status Clone()

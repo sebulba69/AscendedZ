@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AscendedZ.skills
@@ -20,7 +21,6 @@ namespace AscendedZ.skills
         public string Icon { get; set; }
         public int Level { get; set; }
         public Status Status { get; set; }
-
         public string Name => BaseName;
 
         public StatusSkill()
@@ -38,7 +38,8 @@ namespace AscendedZ.skills
             };
 
             target.StatusHandler.AddStatus(target, this.Status);
-            result.Log.Append($"{target} now has the status: [color=yellow]{this.Status.Icon}[/color]. {this.Status.CreateIconWrapper().Description}");
+
+            result.Log.Append($"[color=gold]{target.Name}[/color] now has the status: [color=yellow]{Status.Name}[/color] ● {this.Status.CreateIconWrapper().Description}");
             return result;
         }
 

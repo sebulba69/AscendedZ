@@ -71,13 +71,13 @@ namespace AscendedZ.entities.battle_entities
                 this.HP += skill.Damage;
 
                 result.ResultType = BattleResultType.Dr;
-                result.Log.Append($"{this.Name} drained {skill.Element.ToString()} for [color=green]{skill.Damage} HP[/color].");
+                result.Log.Append($"[color=gold]{this.Name}[/color] [color=yellow]drained[/color] {skill.Element.ToString()} for [color=green]{skill.Damage} HP[/color].");
             }
             else if (this.Resistances.IsNullElement(skill.Element))
             {
                 result.HPChanged = 0;
                 result.ResultType = BattleResultType.Nu;
-                result.Log.Append($"{this.Name} voided {skill.Element.ToString()} for [color=blue]0 damage[/color].");
+                result.Log.Append($"[color=gold]{this.Name}[/color] [color=yellow]voided[/color] {skill.Element.ToString()} for [color=blue]0 damage[/color].");
             }
             else if (this.Resistances.IsResistantToElement(skill.Element))
             {
@@ -87,7 +87,7 @@ namespace AscendedZ.entities.battle_entities
                 result.HPChanged = damage;
                 result.ResultType = BattleResultType.Rs;
 
-                result.Log.Append($"{this.Name} resisted {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
+                result.Log.Append($"[color=gold]{this.Name}[/color] [color=yellow]resisted[/color] {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
             }
             else if (this.Resistances.IsWeakToElement(skill.Element))
             {
@@ -96,13 +96,13 @@ namespace AscendedZ.entities.battle_entities
 
                 result.HPChanged = damage;
                 result.ResultType = BattleResultType.Wk;
-                result.Log.Append($"{this.Name} was weak to {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
+                result.Log.Append($"[color=gold]{this.Name}[/color] [color=yellow]was weak to[/color] {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
             }
             else
             {
                 this.HP -= skill.Damage;
                 result.ResultType = BattleResultType.Normal;
-                result.Log.Append($"{this.Name} took [color=red]{skill.Damage} damage[/color].");
+                result.Log.Append($"[color=gold]{this.Name}[/color] took [color=red]{skill.Damage} damage[/color].");
             }
 
             return result;

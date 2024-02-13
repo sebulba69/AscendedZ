@@ -15,6 +15,8 @@ namespace AscendedZ.statuses.weak_element
             _elementToChange = skills.Elements.Fir;
             _newResType = resistances.ResistanceType.Wk;
             this.Icon = SkillAssets.WEAK_FIRE_ICON;
+
+            Name = "Weak Fire";
         }
 
         public override Status Clone()

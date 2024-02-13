@@ -17,6 +17,8 @@ namespace AscendedZ.statuses.void_elements
             _elementToChange = skills.Elements.Wind;
             _newResType = resistances.ResistanceType.Nu;
             this.Icon = SkillAssets.VOID_WIND_ICON;
+
+            Name = "Void Wind";
         }
 
         public override Status Clone()

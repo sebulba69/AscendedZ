@@ -14,13 +14,15 @@ namespace AscendedZ.statuses
     public class ElementBuffStatus : Status
     {
         protected int _stacks = 1;
+        private double _baseAmount;
         public Elements BuffElement { get; set; }
         public double Amount { get; set; }
         public int Stacks { get => _stacks; set => _stacks = value; }
 
         public ElementBuffStatus() : base()
         {
-            Amount = 0.25;
+            _baseAmount = 0.25;
+            Amount = _baseAmount;
         }
 
         public override void ActivateStatus(BattleEntity owner)
@@ -34,7 +36,7 @@ namespace AscendedZ.statuses
         {
             _stacks++;
 
-            Amount *= _stacks;
+            Amount = _baseAmount * _stacks;
 
             ApplyBuff();
         }
@@ -73,7 +75,7 @@ namespace AscendedZ.statuses
             wrapper.Icon = this.Icon;
             wrapper.Counter = _stacks;
             wrapper.CounterColor = Colors.White;
-            wrapper.Description = $"Buff Status: Increase damage for {BuffElement} by {Math.Round(Amount*100,1)}%.";
+            wrapper.Description = $"Increase damage for {BuffElement} by {Math.Round(Amount*100,1)}%.";
 
             return wrapper;
         }

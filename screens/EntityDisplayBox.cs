@@ -134,8 +134,6 @@ public partial class EntityDisplayBox : PanelContainer
         // place our new, updated statuses on scren
         var entityStatuses = entity.StatusHandler.Statuses;
 
-        _statuses.Visible = !(entityStatuses.Count == 0);
-
         foreach (var status in entityStatuses)
         {
             StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();

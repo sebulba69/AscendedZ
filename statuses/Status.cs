@@ -44,6 +44,7 @@ namespace AscendedZ.statuses
         /// Update during owner's turn or opponent's turn.
         /// </summary>
         public bool UpdateDuringOwnersTurn { get => _updateEveryOtherTurn; protected set => _updateEveryOtherTurn = value; }
+        public string Name { get; set; }
 
         /// <summary>
         /// This function is called when you activate this status for the first time.

@@ -12,6 +12,7 @@ namespace AscendedZ.statuses.buff_elements
         {
             _id = StatusId.ElementBuffStatus_Fire;
             BuffElement = skills.Elements.Fir;
+            Name = "Buff Fire";
             Icon = SkillAssets.GetElementIconByElementEnum(BuffElement);
         }
 

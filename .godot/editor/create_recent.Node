@@ -1,9 +1,9 @@
+HBoxContainer
 Label
 PanelContainer
 VBoxContainer
 MarginContainer
 RichTextLabel
-HBoxContainer
 CenterContainer
 AnimationPlayer
 ProgressBar

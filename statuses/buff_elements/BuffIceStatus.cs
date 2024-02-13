@@ -12,6 +12,7 @@ namespace AscendedZ.statuses.buff_elements
         {
             _id = StatusId.ElementBuffStatus_Ice;
             BuffElement = skills.Elements.Ice;
+            Name = "Buff Ice";
             Icon = SkillAssets.GetElementIconByElementEnum(BuffElement);
         }
 
