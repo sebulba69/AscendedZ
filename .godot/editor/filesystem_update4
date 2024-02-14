@@ -33,3 +33,5 @@ res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
 res://screens/EmbarkScreen.tscn
 res://screens/PartyMemberDisplay.tscn
+res://screens/PartyEditScreen.cs
+res://screens/PartyEditScreen.tscn
