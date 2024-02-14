@@ -137,50 +137,18 @@ text = "Party"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer"]
+[node name="PM1" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer" instance=ExtResource("3")]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="PM1Button" type="Button" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 30
-text = ">"
-
-[node name="PM1" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer" instance=ExtResource("3")]
+[node name="PM2" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer" instance=ExtResource("3")]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer"]
+[node name="PM3" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer" instance=ExtResource("3")]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="PM2Button" type="Button" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 30
-text = ">"
-
-[node name="PM2" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer2" instance=ExtResource("3")]
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer"]
-layout_mode = 2
-
-[node name="PM3Button" type="Button" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer3"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 30
-text = ">"
-
-[node name="PM3" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer3" instance=ExtResource("3")]
-layout_mode = 2
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer"]
-layout_mode = 2
-
-[node name="PM4Button" type="Button" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer4"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 30
-text = ">"
-
-[node name="PM4" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer4" instance=ExtResource("3")]
+[node name="PM4" parent="VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer" instance=ExtResource("3")]
+unique_name_in_owner = true
 layout_mode = 2

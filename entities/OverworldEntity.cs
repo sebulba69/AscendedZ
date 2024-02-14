@@ -19,7 +19,9 @@ namespace AscendedZ.entities.partymember_objects
         private int _grade = 0;
         private int _vorpexCost = 1;
         private int _shopCost = 1;
+        private bool _isInParty = false;
 
+        public bool IsInParty { get => _isInParty; set => _isInParty = value; }
         public int Level { get => _level; set => _level = value; }
         public int Grade { get => _grade; set => _grade = value; }
         public int VorpexValue { get => _vorpexCost; set => _vorpexCost = value; }

@@ -1,10 +1,13 @@
 using AscendedZ;
+using AscendedZ.battle.battle_state_machine;
+using AscendedZ.battle;
 using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object;
 using Godot;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using static Godot.WebSocketPeer;
 
 /// <summary>
 /// This class is focused on managing Reserve Party members.
@@ -18,12 +21,10 @@ public partial class EmbarkScreen : CenterContainer
    
     // party buttons
     private List<PartyMemberDisplay> _partyMemberDisplayNodes;
-    private List<Button> _buttons;
-    private bool[] _buttonStates;
 
     List<OverworldEntity> _reserves;
     private PlayerParty _party;
-    private int _selected;
+    private int _selectedIndex;
 
     public override void _Ready()
     {
@@ -35,23 +36,17 @@ public partial class EmbarkScreen : CenterContainer
         _party = gameObject.MainPlayer.Party;
         _reserves = gameObject.MainPlayer.ReserveMembers;
         _partyMemberDisplayNodes = new List<PartyMemberDisplay>();
-        _selected = 0;
-        _buttons = new List<Button>();
-        _buttonStates = new bool[] { false, false, false, false };
+        _selectedIndex = 0;
 
         Button leftTier = this.GetNode<Button>("%LeftTierBtn");
         Button rightBtn = this.GetNode<Button>("%RightTierBtn");
         Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button backButton = this.GetNode<Button>("%BackButton");
-        Button pm1button = this.GetNode<Button>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer/PM1Button");
-        Button pm2button = this.GetNode<Button>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer2/PM2Button");
-        Button pm3button = this.GetNode<Button>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer3/PM3Button");
-        Button pm4button = this.GetNode<Button>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer4/PM4Button");
 
-        PartyMemberDisplay pm1 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer/PM1");
-        PartyMemberDisplay pm2 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer2/PM2");
-        PartyMemberDisplay pm3 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer3/PM3");
-        PartyMemberDisplay pm4 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer4/PM4");
+        PartyMemberDisplay pm1 = this.GetNode<PartyMemberDisplay>("%PM1");
+        PartyMemberDisplay pm2 = this.GetNode<PartyMemberDisplay>("%PM2");
+        PartyMemberDisplay pm3 = this.GetNode<PartyMemberDisplay>("%PM3");
+        PartyMemberDisplay pm4 = this.GetNode<PartyMemberDisplay>("%PM4");
 
         gameObject.Tier = gameObject.MaxTier;
         string tierText = "Dungeon Floor:";
@@ -76,28 +71,14 @@ public partial class EmbarkScreen : CenterContainer
         embarkButton.Pressed += _OnEmbarkPressed;
         backButton.Pressed += _OnBackButtonClicked;
 
-        pm1button.Pressed += _OnButton1Pressed;
-        pm2button.Pressed += _OnButton2Pressed;
-        pm3button.Pressed += _OnButton3Pressed;
-        pm4button.Pressed += _OnButton4Pressed;
-
         _partyMemberDisplayNodes.Add(pm1);
         _partyMemberDisplayNodes.Add(pm2);
         _partyMemberDisplayNodes.Add(pm3);
         _partyMemberDisplayNodes.Add(pm4);
 
-        _buttons.Add(pm1button);
-        _buttons.Add(pm2button);
-        _buttons.Add(pm3button);
-        _buttons.Add(pm4button);
+        _reserveItemList.ItemClicked += _OnReserveMemberClicked;
 
-        // display all party members we may have added last time we were in this UI
-        for (int i = 0; i < _party.Party.Length; i++)
-        {
-            // display pre-existing party members
-            if(_party.Party[i] != null)
-                DisplayPartyMemberAtIndex(i);
-        }
+        DisplayPartyMembers();
         RefreshReserveList();
     }
 
@@ -107,18 +88,23 @@ public partial class EmbarkScreen : CenterContainer
 
         foreach (OverworldEntity member in _reserves)
         {
-            _reserveItemList.AddItem(member.DisplayName, CharacterImageAssets.GetTextureForItemList(member.Image));
+            string displayName = member.DisplayName;
+
+            if (member.IsInParty)
+                displayName += " [PARTY]";
+
+            _reserveItemList.AddItem(displayName, CharacterImageAssets.GetTextureForItemList(member.Image));
         }
 
         int totalReserves = _reserveItemList.ItemCount;
         // show first reserves as default
         if (totalReserves > 0)
         {
-            if (_selected == totalReserves)
-                _selected = totalReserves - 1;
+            if (_selectedIndex == totalReserves)
+                _selectedIndex = totalReserves - 1;
 
-            _reserveItemList.Select(_selected);
-            DisplayPreviewMember(_selected);
+            _reserveItemList.Select(_selectedIndex);
+            DisplayPreviewMember(_selectedIndex);
         }
         else
         {
@@ -130,8 +116,8 @@ public partial class EmbarkScreen : CenterContainer
 
     private void _OnItemSelected(int index)
     {
-        _selected = index;
-        DisplayPreviewMember(_selected);
+        _selectedIndex = index;
+        DisplayPreviewMember(_selectedIndex);
     }
 
     private void _OnEmbarkPressed()
@@ -176,81 +162,39 @@ public partial class EmbarkScreen : CenterContainer
         this.QueueFree();
     }
 
-    private void _OnButton1Pressed()
+    private void _OnReserveMemberClicked(long index, Vector2 at_position, long mouse_button_index)
     {
-        ChangeButtonTextState(0);
-    }
+        _selectedIndex = (int)index;
 
-    private void _OnButton2Pressed()
-    {
-        ChangeButtonTextState(1);
-    }
-
-    private void _OnButton3Pressed()
-    {
-        ChangeButtonTextState(2);
-    }
-
-    private void _OnButton4Pressed()
-    {
-        ChangeButtonTextState(3);
-    }
-
-    private void ChangeButtonTextState(int index)
-    {
-        bool buttonState = !_buttonStates[index];
-
-        PlayerParty party = PersistentGameObjects.GameObjectInstance().MainPlayer.Party;
-        OverworldEntity member = party.Party[index];
-
-        // left if true, right if false
-        if (buttonState)
+        if (mouse_button_index == (long)MouseButton.Left)
         {
+            PlayerParty party = PersistentGameObjects.GameObjectInstance().MainPlayer.Party;
+
             // we have a free space open
-            if (member == null && _reserves.Count > 0)
+            if (_reserves.Count > 0)
             {
-                OverworldEntity reserveMember = _reserves[_selected];
+                OverworldEntity reserveMember = _reserves[_selectedIndex];
 
-                // take the selected reserve member
-                if (reserveMember != null)
-                {
-                    _reserves.RemoveAt(_selected);
-                    _party.Party[index] = reserveMember;
-                    DisplayPartyMemberAtIndex(index);
-                    RefreshReserveList();
-                }
-            }
-            else
-            {
-                _buttonStates[index] = false;
-            }
-        }
-        else
-        {
-            if (member != null)
-            {
-                _buttons[index].Text = ">";
-                _buttonStates[index] = false;
+                if (!reserveMember.IsInParty)
+                    _party.AddPartyMember(reserveMember);
+                else
+                    _party.RemovePartyMember(reserveMember);
 
-                // mark the member as not being in the party
-                _reserves.Add(member);
-
-                _partyMemberDisplayNodes[index].Call("Clear");
-
-                party.Party[index] = null;
-
+                DisplayPartyMembers();
                 RefreshReserveList();
             }
         }
-
     }
 
-    private void DisplayPartyMemberAtIndex(int index)
+    private void DisplayPartyMembers()
     {
-        // we only want to change the text if we're provided a party member
-        // so we do it here and not below
-        _buttons[index].Text = "<";
-        _buttonStates[index] = true;
-        _partyMemberDisplayNodes[index].Call("DisplayPartyMember", index, false);
+        for(int i = 0; i < _party.Party.Length; i++)
+        {
+            var member = _party.Party[i];
+            if(member != null)
+                _partyMemberDisplayNodes[i].Call("DisplayPartyMember", i, false);
+            else
+                _partyMemberDisplayNodes[i].Call("Clear");
+        }
     }
 }
