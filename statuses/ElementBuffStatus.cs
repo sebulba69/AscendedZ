@@ -21,7 +21,7 @@ namespace AscendedZ.statuses
 
         public ElementBuffStatus() : base()
         {
-            _baseAmount = 0.25;
+            _baseAmount = 0.15;
             Amount = _baseAmount;
         }
 
