@@ -71,13 +71,13 @@ namespace AscendedZ.entities.battle_entities
                 this.HP += skill.Damage;
 
                 result.ResultType = BattleResultType.Dr;
-                result.Log.Append($"[color=gold]{this.Name}[/color] [color=yellow]drained[/color] {skill.Element.ToString()} for [color=green]{skill.Damage} HP[/color].");
+                result.Log.Append($"{this.GetLogName()} [color=yellow]drained[/color] {skill.Element.ToString()} for [color=green]{skill.Damage} HP[/color].");
             }
             else if (this.Resistances.IsNullElement(skill.Element))
             {
                 result.HPChanged = 0;
                 result.ResultType = BattleResultType.Nu;
-                result.Log.Append($"[color=gold]{this.Name}[/color] [color=yellow]voided[/color] {skill.Element.ToString()} for [color=blue]0 damage[/color].");
+                result.Log.Append($"{this.GetLogName()} [color=yellow]voided[/color] {skill.Element.ToString()} for [color=blue]0 damage[/color].");
             }
             else if (this.Resistances.IsResistantToElement(skill.Element))
             {
@@ -87,7 +87,7 @@ namespace AscendedZ.entities.battle_entities
                 result.HPChanged = damage;
                 result.ResultType = BattleResultType.Rs;
 
-                result.Log.Append($"[color=gold]{this.Name}[/color] [color=yellow]resisted[/color] {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
+                result.Log.Append($"{this.GetLogName()} [color=yellow]resisted[/color] {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
             }
             else if (this.Resistances.IsWeakToElement(skill.Element))
             {
@@ -96,13 +96,13 @@ namespace AscendedZ.entities.battle_entities
 
                 result.HPChanged = damage;
                 result.ResultType = BattleResultType.Wk;
-                result.Log.Append($"[color=gold]{this.Name}[/color] [color=yellow]was weak to[/color] {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
+                result.Log.Append($"{this.GetLogName()} [color=yellow]was weak to[/color] {skill.Element.ToString()} for [color=red]{damage} damage[/color].");
             }
             else
             {
                 this.HP -= skill.Damage;
                 result.ResultType = BattleResultType.Normal;
-                result.Log.Append($"[color=gold]{this.Name}[/color] took [color=red]{skill.Damage} damage[/color].");
+                result.Log.Append($"{this.GetLogName()} took [color=red]{skill.Damage} damage[/color].");
             }
 
             return result;
@@ -118,8 +118,13 @@ namespace AscendedZ.entities.battle_entities
                 SkillUsed = skill,
                 ResultType = BattleResultType.HPGain
             };
-            result.Log.Append($"{this.Name} healed for [color=green]{skill.HealAmount} HP[/color].");
+            result.Log.Append($"{this.GetLogName()} healed for [color=green]{skill.HealAmount} HP[/color].");
             return result;
+        }
+
+        public virtual string GetLogName()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,6 +1,6 @@
 res://default_env.tres
-res://screens/BattleEnemyScene.tscn
 res://screens/BossHPBar.tscn
+res://screens/BattleEnemyScene.tscn
 res://screens/PartyBattleDisplayBox.tscn
 res://screens/EnemyBattleDisplayBox.tscn
 res://battle/BattleEffectWrapper.cs

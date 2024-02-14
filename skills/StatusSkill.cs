@@ -39,7 +39,7 @@ namespace AscendedZ.skills
 
             target.StatusHandler.AddStatus(target, this.Status);
 
-            result.Log.Append($"[color=gold]{target.Name}[/color] now has the status: [color=yellow]{Status.Name}[/color] ● {this.Status.CreateIconWrapper().Description}");
+            result.Log.Append($"{target.GetLogName()} now has the status: [color=yellow]{Status.Name}[/color] ● {this.Status.CreateIconWrapper().Description}");
             return result;
         }
 

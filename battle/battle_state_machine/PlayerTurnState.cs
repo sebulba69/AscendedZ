@@ -42,7 +42,7 @@ namespace AscendedZ.battle.battle_state_machine
 
             StringBuilder logEntry = new StringBuilder();
 
-            logEntry.Append($"[color=coral]{active.Name}[/color] used [color=burlywood]{skill.Name}[/color]. ");
+            logEntry.Append($"{active.GetLogName()} used [color=burlywood]{skill.Name}[/color]. ");
 
             // result cannot be null at the end of this function
             switch (skill.TargetType)

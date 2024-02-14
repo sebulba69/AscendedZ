@@ -19,5 +19,10 @@ namespace AscendedZ.entities.battle_entities
         {
             this.Turns = 1;
         }
+
+        public override string GetLogName()
+        {
+            return $"[color=mediumaquamarine]{this.Name}[/color]";
+        }
     }
 }

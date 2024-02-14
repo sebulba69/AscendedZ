@@ -68,5 +68,10 @@ namespace AscendedZ.entities.enemy_objects
 
             return players.FindAll(player => player.Resistances.IsWeakToElement(element));
         }
+
+        public override string GetLogName()
+        {
+            return $"[color=coral]{this.Name}[/color]";
+        }
     }
 }
