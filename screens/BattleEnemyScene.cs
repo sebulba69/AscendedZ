@@ -26,7 +26,7 @@ public partial class BattleEnemyScene : Node2D
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
     private BattleSceneObject _battleSceneObject;
-    private Button _backToHomeButton, _retryFloorButton, _continueButton;
+    private Button _backToHomeButton, _retryFloorButton, _continueButton, _changePartyButton;
     private CenterContainer _endBox;
     private bool _uiUpdating = false;
     private RichTextLabel _combatLog;
@@ -53,6 +53,7 @@ public partial class BattleEnemyScene : Node2D
         _backToHomeButton = this.GetNode<Button>("%BackToHomeBtn");
         _retryFloorButton = this.GetNode<Button>("%RetryFloorBtn");
         _continueButton = this.GetNode<Button>("%ContinueBtn");
+        _changePartyButton = this.GetNode<Button>("%ChangePartyBtn");
 
         _combatLog = this.GetNode<RichTextLabel>("%CombatLog");
 
@@ -72,6 +73,23 @@ public partial class BattleEnemyScene : Node2D
         {
             SetEndScreenVisibility(false);
             InitializeBattleScene();
+        };
+
+        _changePartyButton.Pressed += async () =>
+        {
+            var vbox = this.GetNode<VBoxContainer>("%EndVBox");
+            vbox.Visible = false;
+
+            var packedScene = ResourceLoader.Load<PackedScene>(Scenes.PARTY_CHANGE);
+            var partyChangeScene = packedScene.Instantiate();
+
+            _endBox.AddChild(partyChangeScene);
+
+            partyChangeScene.Call("DisableEmbarkButton");
+
+            await ToSignal(partyChangeScene, "tree_exited");
+
+            vbox.Visible = true;
         };
 
         _continueButton.Pressed += () =>
@@ -428,6 +446,7 @@ public partial class BattleEnemyScene : Node2D
         _endBox.Visible = visible;
         _backToHomeButton.Visible = visible;
         _retryFloorButton.Visible = visible;
+        _changePartyButton.Visible = visible;
     }
 
     private void _OnExitScene()

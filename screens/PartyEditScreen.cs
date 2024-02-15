@@ -16,28 +16,36 @@ public partial class PartyEditScreen : HBoxContainer
 
     private List<OverworldEntity> _reserves;
     private PlayerParty _party;
+    private Button _embarkButton;
     private int _selectedIndex;
     
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
-        
+
+        Button backButton = this.GetNode<Button>("%BackButton");
+        _embarkButton = this.GetNode<Button>("%EmbarkButton");
+
         _selectedIndex = 0;
         _party = gameObject.MainPlayer.Party;
         _reserves = gameObject.MainPlayer.ReserveMembers;
+
         _partyMemberDisplayNodes = new List<PartyMemberDisplay>();
 
         _reservePreviewMember = this.GetNode<PartyMemberDisplay>("%Preview");
         _reserveItemList = this.GetNode<ItemList>("%InReserveMembers");
 
-        for(int i = 1; i <= 4; i++)
+        for (int i = 1; i <= 4; i++)
         {
             _partyMemberDisplayNodes.Add(this.GetNode<PartyMemberDisplay>($"%PM{i}"));
         }
 
         _reserveItemList.ItemClicked += _OnReserveMemberClicked;
         _reserveItemList.ItemSelected += _OnItemSelected;
+
+        backButton.Pressed += () => { this.QueueFree(); };
+        _embarkButton.Pressed += _OnEmbarkPressed;
 
         DisplayPartyMembers();
         RefreshReserveList();
@@ -64,6 +72,11 @@ public partial class PartyEditScreen : HBoxContainer
             _reserveItemList.Select(_selectedIndex);
             DisplayPreviewMember(_selectedIndex);
         }
+    }
+
+    public void DisableEmbarkButton()
+    {
+        _embarkButton.Visible = false;
     }
 
     private void RefreshReserveList()
@@ -128,6 +141,38 @@ public partial class PartyEditScreen : HBoxContainer
                 DisplayPartyMembers();
                 RefreshReserveList();
             }
+        }
+    }
+
+    private void _OnEmbarkPressed()
+    {
+        var go = PersistentGameObjects.GameObjectInstance();
+
+        if (go.Tier == go.TierCap)
+            return;
+
+        bool canEmbark = false;
+
+        foreach (OverworldEntity member in go.MainPlayer.Party.Party)
+        {
+            // you need at least 1 party member to embark
+            if (member != null)
+            {
+                canEmbark = true;
+                break;
+            }
+        }
+
+        if (canEmbark)
+        {
+            this.GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate());
+
+            // notify parent too
+            this.QueueFree();
+        }
+        else
+        {
+            this.GetNode<Label>("%Tooltip").Text = "You need to have at least 1 Party Member equipped to Embark.";
         }
     }
 }

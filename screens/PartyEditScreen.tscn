@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw0b6jl4ujkib"]
+[gd_scene load_steps=4 format=3 uid="uid://dw0b6jl4ujkib"]
 
+[ext_resource type="Script" path="res://screens/PartyEditScreen.cs" id="1_74tbd"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1_isnm2"]
 [ext_resource type="PackedScene" uid="uid://b5e2ob3gqma0a" path="res://screens/PartyMemberDisplay.tscn" id="2_bur3g"]
 
 [node name="PartyEditScreen" type="HBoxContainer"]
+script = ExtResource("1_74tbd")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2
@@ -41,6 +43,25 @@ theme_override_font_sizes/font_size = 25
 max_text_lines = 10
 auto_height = true
 fixed_column_width = 1
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/Reserves"]
+layout_mode = 2
+columns = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/Reserves/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_isnm2")
+theme_override_font_sizes/font_size = 30
+text = "< Back"
+
+[node name="EmbarkButton" type="Button" parent="CenterContainer/Reserves/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_isnm2")
+theme_override_font_sizes/font_size = 30
+text = "Embark >"
 
 [node name="InPartyMembers" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(500, 400)

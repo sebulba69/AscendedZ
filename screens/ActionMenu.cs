@@ -184,7 +184,7 @@ public partial class ActionMenu : PanelContainer
         ISkill skill = _battleSceneObject.ActivePlayer.Skills[_playerTargetSelectedEventArgs.SkillIndex];
 
         ChangeSkillIconRegion(SkillAssets.GetIcon(skill.Icon));
-        _toolTip.Text = skill.Name;
+        _toolTip.Text = skill.GetBattleDisplayString();
         
         _actionList.AddItem(BACK_STR);
         _selectedIndex = 0;

@@ -25,9 +25,7 @@ public partial class EmbarkScreen : CenterContainer
 
         Button leftTier = this.GetNode<Button>("%LeftTierBtn");
         Button rightBtn = this.GetNode<Button>("%RightTierBtn");
-        Button embarkButton = this.GetNode<Button>("%EmbarkButton");
-        Button backButton = this.GetNode<Button>("%BackButton");
-
+ 
         gameObject.Tier = gameObject.MaxTier;
         string tierText = "Dungeon Floor:";
         
@@ -46,47 +44,10 @@ public partial class EmbarkScreen : CenterContainer
             _tierLabel.Text = $"{tierText} {PersistentGameObjects.GameObjectInstance().Tier}"; 
         };
 
-        embarkButton.Pressed += _OnEmbarkPressed;
-        backButton.Pressed += _OnBackButtonClicked;
 
         this.GetNode<Label>("%Tooltip").Text = "Create a party and ascend the Dungeon Tiers.";
     }
 
-    private void _OnEmbarkPressed()
-    {
-        var go = PersistentGameObjects.GameObjectInstance();
-        
-        if (go.Tier == go.TierCap)
-            return;
 
-        bool canEmbark = false;
-
-        foreach(OverworldEntity member in go.MainPlayer.Party.Party)
-        {
-            // you need at least 1 party member to embark
-            if(member != null)
-            {
-                canEmbark = true;
-                break;
-            }
-        }
-
-        if (canEmbark)
-        {
-            this.GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate());
-
-            // notify parent too
-            this.QueueFree();
-        }
-        else
-        {
-            this.GetNode<Label>("%Tooltip").Text = "You need to have at least 1 Party Member equipped to Embark.";
-        }
-    }
-
-    private void _OnBackButtonClicked()
-    {
-        this.QueueFree();
-    }
 
 }

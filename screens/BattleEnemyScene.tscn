@@ -203,10 +203,11 @@ offset_bottom = 1080.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/EndBox"]
+[node name="EndVBox" type="VBoxContainer" parent="Background/EndBox"]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="EndOfBattleLabel" type="Label" parent="Background/EndBox/VBoxContainer"]
+[node name="EndOfBattleLabel" type="Label" parent="Background/EndBox/EndVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -216,14 +217,14 @@ theme_override_font_sizes/font_size = 120
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BattleEnded" type="CenterContainer" parent="Background/EndBox/VBoxContainer"]
+[node name="BattleEnded" type="CenterContainer" parent="Background/EndBox/EndVBox"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/EndBox/VBoxContainer/BattleEnded"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/EndBox/EndVBox/BattleEnded"]
 layout_mode = 2
 theme_override_constants/separation = 17
 
-[node name="BackToHomeBtn" type="Button" parent="Background/EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
+[node name="BackToHomeBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -231,7 +232,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
 text = "Retreat"
 
-[node name="RetryFloorBtn" type="Button" parent="Background/EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
+[node name="RetryFloorBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -239,7 +240,15 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
 text = "Retry"
 
-[node name="ContinueBtn" type="Button" parent="Background/EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
+[node name="ChangePartyBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 70
+text = "Change Party"
+
+[node name="ContinueBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
