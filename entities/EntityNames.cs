@@ -20,6 +20,20 @@ namespace AscendedZ.entities
         public static readonly string Paria = "Paria";
         public static readonly string Joan = "Joan";
         public static readonly string Andmond = "Andmond";
+
+        // Fusion 1
+        public static readonly string Ancrow = "Ancrow"; // Fire
+        public static readonly string Marchris = "Marchris"; // Fire
+        public static readonly string Candun = "Candun"; // Ice
+        public static readonly string Thryth = "Thryth"; // Ice
+        public static readonly string Samlin = "Samlin"; // Wind
+        public static readonly string Everever = "Everever"; // Wind
+        public static readonly string Ciavid = "Ciavid"; // Elec
+        public static readonly string Eri = "Eri"; // Elec
+        public static readonly string Conson = "Conson"; // Light
+        public static readonly string Winegeful = "Winegeful"; // Light
+        public static readonly string Cermas = "Cermas"; // Dark
+        public static readonly string Fledron = "Fledron"; // Dark
     }
 
     public class EnemyNames

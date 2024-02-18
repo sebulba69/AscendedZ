@@ -73,6 +73,7 @@ namespace AscendedZ.entities.partymember_objects
             return member;
         }
 
+        #region Fusion 0 Party Members
         private static OverworldEntity MakeLocphiedon()
         {
             var member = MakeOverworldEntity(PartyNames.Locphiedon);
@@ -145,6 +146,14 @@ namespace AscendedZ.entities.partymember_objects
             member.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
             member.Skills.Add(SkillDatabase.Elec1.Clone());
             return member;
+        }
+        #endregion
+
+        private static OverworldEntity MakeFusion1Entity(string name)
+        {
+            var overworldEntity = MakeOverworldEntity(name);
+            overworldEntity.FusionGrade = 1;
+            return overworldEntity;
         }
 
         private static OverworldEntity MakeOverworldEntity(string name)
