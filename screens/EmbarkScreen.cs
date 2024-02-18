@@ -45,6 +45,12 @@ public partial class EmbarkScreen : CenterContainer
         };
 
 
+        var partyEditNode = this.GetNode<HBoxContainer>("%PartyEditScreen");
+        partyEditNode.TreeExited += () => 
+        {
+            this.QueueFree();
+        };
+
         this.GetNode<Label>("%Tooltip").Text = "Create a party and ascend the Dungeon Tiers.";
     }
 

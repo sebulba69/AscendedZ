@@ -20,6 +20,6 @@ namespace AscendedZ.skills
     // Elements
     public enum Elements
     {
-        Fir, Ice, Elec, Wind, Dark, Light, None
+        Fir, Ice, Elec, Wind, Dark, Light
     }
 }

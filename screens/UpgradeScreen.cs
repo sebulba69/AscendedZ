@@ -41,9 +41,7 @@ public partial class UpgradeScreen : CenterContainer
 
         _selected = 0;
 
-        _allPartyMembers = new List<OverworldEntity>();
-		_allPartyMembers.AddRange(gameObject.MainPlayer.Party.Party.Where(member => member != null));
-		_allPartyMembers.AddRange(gameObject.MainPlayer.ReserveMembers);
+        _allPartyMembers = new List<OverworldEntity>(gameObject.MainPlayer.ReserveMembers);
 
 		_partyList.Connect("item_selected", new Callable(this, "_OnItemSelected"));
 

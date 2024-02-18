@@ -20,6 +20,7 @@ namespace AscendedZ.entities.partymember_objects
         private int _vorpexCost = 1;
         private int _shopCost = 1;
         private bool _isInParty = false;
+        private int _fusionGrade = 0;
 
         public bool IsInParty { get => _isInParty; set => _isInParty = value; }
         public int Level { get => _level; set => _level = value; }
@@ -42,6 +43,7 @@ namespace AscendedZ.entities.partymember_objects
         }
         public List<ISkill> Skills { get; set; } = new();
         public ResistanceArray Resistances { get; set; } = new();
+        public int FusionGrade { get => _fusionGrade; set => _fusionGrade = value; }
 
         public BattlePlayer MakeBattlePlayer()
         {
