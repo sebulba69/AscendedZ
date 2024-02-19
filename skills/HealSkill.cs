@@ -19,10 +19,13 @@ namespace AscendedZ.skills
         {
             get
             {
-                if(_level == 0)
+                if (_level == 0)
                     return _baseName;
                 else
+                    if (_level < int.MaxValue - 1)
                     return $"{_baseName} +{_level}";
+                else
+                    return $"{_baseName} +MAX";
             }
         }
         public string BaseName { get => _baseName; set => _baseName = value; }
@@ -41,9 +44,23 @@ namespace AscendedZ.skills
         public void LevelUp()
         {
             int boost = GetBoostValue();
+            try
+            {
+                _level++;
+            }
+            catch (Exception)
+            {
+                _level = int.MaxValue - 1;
+            }
 
-            _level++;
-            this.HealAmount += boost;
+            try
+            {
+                this.HealAmount += boost;
+            }
+            catch (Exception)
+            {
+                this.HealAmount = int.MaxValue - 1;
+            }
         }
 
         public string GetUpgradeString()
@@ -53,10 +70,17 @@ namespace AscendedZ.skills
 
         private int GetBoostValue()
         {
-            double m = 0.01 * Math.Pow((_level - 10), 2) + 1;
-            int boost = (int)(Math.Pow(_level, m)) + 1;
-            boost = (boost / 4) + 3;
-            return boost;
+            try
+            {
+                double m = 0.01 * Math.Pow((_level - 10), 2) + 1;
+                int boost = (int)(Math.Pow(_level, m)) + 1;
+                boost = (boost / 4) + 1;
+                return boost;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public BattleResult ProcessSkill(BattleEntity target)

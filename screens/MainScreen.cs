@@ -104,9 +104,19 @@ public partial class MainScreen : Node2D
         TextureRect playerPicture = this.GetNode<TextureRect>("%PlayerPicture");
         Label playerName = this.GetNode<Label>("%PlayerNameLabel");
 
-        MainPlayer player = PersistentGameObjects.GameObjectInstance().MainPlayer;
+        MainPlayer player = gameObject.MainPlayer;
         playerPicture.Texture = ResourceLoader.Load<Texture2D>(player.Image);
         playerName.Text = $"[T. {gameObject.MaxTier}] {player.Name}";
+
+        if(!gameObject.UpgradeShardsUnlocked && gameObject.MaxTier > 20)
+        {
+            gameObject.UpgradeShardsUnlocked = true;
+            UpgradeShard upgradeShard = new UpgradeShard() { Amount = 0 };
+            player.Wallet.Currency.Add(upgradeShard.Name, upgradeShard);
+
+            PersistentGameObjects.Save();
+        }
+        
         UpdateCurrencyDisplay();
     }
 

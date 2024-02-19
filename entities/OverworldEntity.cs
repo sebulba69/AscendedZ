@@ -23,13 +23,16 @@ namespace AscendedZ.entities.partymember_objects
         private int _fusionGrade = 0;
         private int _upgradeShardYield = 10;
         private int _skillCap = 2;
+        private bool _gradeCapHit = false;
 
+        public bool GradeCapHit { get => _gradeCapHit; }
         public bool IsInParty { get => _isInParty; set => _isInParty = value; }
         public int Level { get => _level; set => _level = value; }
         public int Grade { get => _grade; set => _grade = value; }
         public int VorpexValue { get => _vorpexCost; set => _vorpexCost = value; }
         public int ShopCost { get => _shopCost; set => _shopCost = value; }
         public int UpgradeShardYield { get => _upgradeShardYield; set => _upgradeShardYield = value; }
+        public int UpgradeShardValue { get => _vorpexCost * 3; }
         public int MaxHP { get; set; }
         public string GradeString { get; set; }
         public int SkillCap { get => _skillCap; set => _skillCap = value; }
@@ -71,7 +74,15 @@ namespace AscendedZ.entities.partymember_objects
         {
             Level++;
 
-            VorpexValue = VorpexValue + (Level - 1) * 2;
+            try
+            {
+                VorpexValue = VorpexValue + (Level - 1) * 2;
+            }
+            catch (Exception)
+            {
+                VorpexValue = int.MaxValue - 1;
+            }
+            
 
             GradeString = GetLevelString();
 
@@ -100,23 +111,15 @@ namespace AscendedZ.entities.partymember_objects
         {
             string[] grades = { "F", "E", "D", "C", "B", "A", "S", "SS", "SSS" };
             string gradeString = string.Empty;
-            if (Level == 10)
+            if (Level == 50)
             {
                 Level = 0;
                 Grade++;
 
-                if (Grade >= grades.Length)
-                {
-                    int last = grades.Length - 1;
-                    gradeString = $"{grades[last]}";
+                if (Grade == grades.Length - 1)
+                    _gradeCapHit = true;
 
-                    int remainder = Grade - last;
-                    gradeString = $"{gradeString}x{remainder}";
-                }
-                else
-                {
-                    gradeString = $"{grades[Grade]}";
-                }
+                gradeString = $"{grades[Grade]}";
             }
             else
             {
@@ -126,13 +129,16 @@ namespace AscendedZ.entities.partymember_objects
             return gradeString;
         }
 
-        public string GetUpgradeString()
+        public string GetUpgradeString(bool showUpgradeShards)
         {
             StringBuilder skills = new StringBuilder();
             foreach (ISkill skill in Skills)
                 skills.AppendLine(skill.GetUpgradeString());
 
-            return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
+            if(!showUpgradeShards)
+                return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
+            else
+                return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}\nYield → {UpgradeShardYield} US";
         }
 
         public override string ToString()

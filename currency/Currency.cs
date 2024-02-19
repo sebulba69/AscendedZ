@@ -12,7 +12,7 @@ namespace AscendedZ.currency
     /// </summary>
     public class Currency
     {
-        private const int MAX = 999;
+        private const int MAX = 999999999;
 
         private int _amount = 0;
 

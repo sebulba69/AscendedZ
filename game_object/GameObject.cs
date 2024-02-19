@@ -16,6 +16,7 @@ namespace AscendedZ.game_object
         private int _tier = 1;
         private int _maxTier = 1;
         private bool _partyMemberObtained = false;
+        private bool _upgradeShardsUnlocked = false;
 
         /// <summary>
         /// The current floor you're on as displayed to you by the UI.
@@ -47,6 +48,8 @@ namespace AscendedZ.game_object
                     _maxTier = TIER_CAP;
             }
         }
+
+        public bool UpgradeShardsUnlocked { get => _upgradeShardsUnlocked; set => _upgradeShardsUnlocked = value; }
 
         public int TierCap { get => TIER_CAP; }
 

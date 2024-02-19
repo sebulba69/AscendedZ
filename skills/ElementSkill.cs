@@ -26,7 +26,10 @@ namespace AscendedZ.skills
                 if (_level == 0)
                     return _baseName;
                 else
-                    return $"{_baseName} +{_level}";
+                    if (_level < int.MaxValue - 1)
+                        return $"{_baseName} +{_level}";
+                    else
+                        return $"{_baseName} +MAX";
             }
         }
         public string BaseName { get => _baseName; set => _baseName = value; }
@@ -70,8 +73,23 @@ namespace AscendedZ.skills
         {
             int boost = GetBoostValue();
 
-            _level++;
-            this.Damage += boost;
+            try
+            {
+                _level++;
+            }
+            catch (Exception)
+            {
+                _level = int.MaxValue - 1;
+            }
+            
+            try
+            {
+                this.Damage += boost;
+            }
+            catch(Exception)
+            {
+                this.Damage = int.MaxValue - 1;
+            }
         }
 
         public string GetUpgradeString()
@@ -81,10 +99,17 @@ namespace AscendedZ.skills
 
         private int GetBoostValue()
         {
-            double m = 0.01 * Math.Pow((_level - 10), 2) + 1;
-            int boost = (int)(Math.Pow(_level, m)) + 1;
-            boost = (boost / 4) + 1;
-            return boost;
+            try
+            {
+                double m = 0.01 * Math.Pow((_level - 10), 2) + 1;
+                int boost = (int)(Math.Pow(_level, m)) + 1;
+                boost = (boost / 4) + 1;
+                return boost;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public ISkill Clone()

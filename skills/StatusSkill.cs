@@ -59,7 +59,7 @@ namespace AscendedZ.skills
 
         public string GetUpgradeString()
         {
-            return ToString();
+            return $"{GetBattleDisplayString()} [NO UPGRADE]";
         }
 
         public ISkill Clone()

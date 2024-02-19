@@ -82,10 +82,17 @@ size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_krmoi")
 theme_override_font_sizes/font_size = 25
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="GridContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-columns = 3
+alignment = 1
+
+[node name="AscendBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_krmoi")
+text = "Ascend"
 
 [node name="UpgradeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
@@ -98,20 +105,6 @@ theme_override_font_sizes/font_size = 25
 text = "Upgrade
 "
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="CostLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_krmoi")
-theme_override_font_sizes/font_size = 25
-text = "Cost: X VC"
-horizontal_alignment = 1
-
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
@@ -120,7 +113,8 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
+[node name="UpgradeCurrencyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = SubResource("AtlasTexture_ffy3i")
 expand_mode = 2
