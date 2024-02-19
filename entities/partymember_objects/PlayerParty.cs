@@ -38,6 +38,18 @@ namespace AscendedZ.entities.partymember_objects
             _party = new OverworldEntity[MAX];
         }
 
+        public void RefreshPartyMember(OverworldEntity entity)
+        {
+            for(int i = 0; i < _party.Length; i++)
+            {
+                if (_party[i] != null && _party[i].Name.Equals(entity.Name))
+                {
+                    _party[i] = entity;
+                    break;
+                }
+            }
+        }
+
         public void AddPartyMember(OverworldEntity entity)
         {
             if(Count < MAX)

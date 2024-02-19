@@ -1,5 +1,7 @@
-﻿using AscendedZ.entities.partymember_objects;
+﻿using AscendedZ.entities;
+using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object;
+using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,38 +12,70 @@ namespace AscendedZ.screens.back_end_screen_scripts
 {
     public class FusionScreenObject
     {
-        private List<FusionObject> _fusions;
-
-        public List<FusionObject> Fusions { get => _fusions; }
-
         private static FusionScreenObject _fusionScreenObject;
-
         public static FusionScreenObject Instance()
         {
             return new FusionScreenObject();
         }
 
+        private List<FusionObject> _fusions;
+
+        private int _fusionIndex;
+
+        public int FusionIndex { get => _fusionIndex; set => _fusionIndex = value; }
+        public List<FusionObject> Fusions { get => _fusions; }
+        public FusionObject DisplayFusion { get => _fusions[FusionIndex]; }
+
         public FusionScreenObject()
         {
             _fusions = new List<FusionObject>();
+            _fusionIndex = 0;
+        }
+
+        public bool Fuse()
+        {
+            bool isSuccessful = false;
+
+            if (DisplayFusion.Fusion.Skills.Count > 0)
+            {
+                MainPlayer mainPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer;
+                RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material1);
+                RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material2);
+
+                mainPlayer.ReserveMembers.Add(DisplayFusion.Fusion);
+
+                isSuccessful = true;
+
+                PersistentGameObjects.Save();
+            }
+
+            return isSuccessful;
+        }
+
+        private void RemoveMaterialFromMainPlayer(MainPlayer mainPlayer, OverworldEntity material)
+        {
+            if (material.IsInParty)
+                mainPlayer.Party.RemovePartyMember(material);
+
+            mainPlayer.ReserveMembers.Remove(material);
         }
 
         public void PopulateMaterialFusionList()
         {
             _fusions.Clear();
 
-            List<OverworldEntity> party = PersistentGameObjects.GameObjectInstance().MainPlayer.ReserveMembers;
+            List<OverworldEntity> reserves = PersistentGameObjects.GameObjectInstance().MainPlayer.ReserveMembers;
 
             // save the materials + fusion results
-            for(int m1 = 0; m1 < party.Count; m1++)
+            for(int m1 = 0; m1 < reserves.Count; m1++)
             {
-                for(int m2 = 0; m2 < party.Count; m2++)
+                for(int m2 = 0; m2 < reserves.Count; m2++)
                 {
                     if(m1 != m2)
                     {
-                        if (!IsFusionRecipeGenerated(party[m1], party[m2]))
+                        if (!IsFusionRecipeGenerated(reserves[m1], reserves[m2]))
                         {
-                            var fusions = EntityDatabase.MakeFusionEntities(party[m1], party[m2]);
+                            var fusions = EntityDatabase.MakeFusionEntities(reserves[m1], reserves[m2]);
                             if(fusions.Count > 0)
                                 _fusions.AddRange(fusions);
                         }
@@ -68,15 +102,31 @@ namespace AscendedZ.screens.back_end_screen_scripts
             return isGenerated;
         }
 
-        public List<OverworldEntity> GetMaterials(int index)
+        public List<ISkill> GetFusionMaterialSkills()
         {
-            List<OverworldEntity> materials = new List<OverworldEntity>();
-            var fusion = _fusions[index];
+            List<ISkill> skills = new List<ISkill>();
 
-            materials.Add(fusion.Material1);
-            materials.Add(fusion.Material2);
+            skills.AddRange(DisplayFusion.Material1.Skills);
+            skills.AddRange(DisplayFusion.Material2.Skills);
 
-            return materials;
+            return skills;
+        }
+
+        public void AddOrRemoveSkillFromFusion(int selected)
+        {
+            List<ISkill> skills = GetFusionMaterialSkills();
+            ISkill skill = skills[selected];
+            var fusionSkills = DisplayFusion.Fusion.Skills;
+
+            if (!fusionSkills.Contains(skill))
+            {
+                if(fusionSkills.Count < DisplayFusion.Fusion.SkillCap)
+                    fusionSkills.Add(skill);
+            }
+            else
+            {
+                fusionSkills.Remove(skill);
+            }
         }
     }
 }

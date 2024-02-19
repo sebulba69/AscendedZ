@@ -97,7 +97,9 @@ namespace AscendedZ.skills
                 Element = this.Element,
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
-                Icon = this.Icon
+                Icon = this.Icon,
+                Level = this.Level,
+                DamageModifier = this.DamageModifier
             };
         }
 

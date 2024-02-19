@@ -31,6 +31,14 @@ public partial class PartyEditScreen : HBoxContainer
         _party = gameObject.MainPlayer.Party;
         _reserves = gameObject.MainPlayer.ReserveMembers;
 
+        foreach(var reserve in _reserves)
+        {
+            if (reserve.IsInParty)
+            {
+                _party.RefreshPartyMember(reserve);
+            }
+        }
+
         _partyMemberDisplayNodes = new List<PartyMemberDisplay>();
 
         _reservePreviewMember = this.GetNode<PartyMemberDisplay>("%Preview");

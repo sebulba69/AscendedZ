@@ -13,7 +13,7 @@ public partial class FusionScreen : CenterContainer
 	private PartyMemberDisplay _displayFusion, _material1, _material2;
 	private ItemList _fusionSkillList;
 	private Button _fuseButton;
-	private FusionScreenObject _fusionScreenObject;
+	private FusionScreenObject _fSO;
 	private int _selectedIndex = 0;
 
 	private bool _isTransferState;
@@ -29,29 +29,25 @@ public partial class FusionScreen : CenterContainer
 		_fusionSkillList = this.GetNode<ItemList>("%FusionAndSkillList");
         _fuseButton = this.GetNode<Button>("%FuseButton");
 
-		_fuseButton.Pressed += () => 
-		{
-			_isTransferState = true;
-			PopulateSkillTransferList();
-        };
-		
 		Button backButton = this.GetNode<Button>("%BackButton");
-		backButton.Pressed += () => { this.QueueFree(); };
-
-
-
-		_fusionScreenObject = FusionScreenObject.Instance();
-
-		_fusionSkillList.ItemSelected += (long selected) => 
+		backButton.Pressed += () => 
 		{
-			if (!_isTransferState)
+			if (_isTransferState)
 			{
-                _selectedIndex = (int)selected;
-                DisplayFusion();
+                ReturnToMainFusionScreen();
             }
-        };
+			else
+			{
+                this.QueueFree();
+            }
+		};
 
-		_selectedIndex = 0;
+		_fSO = FusionScreenObject.Instance();
+
+		_fusionSkillList.ItemSelected += _OnItemSelectedFusion;
+        _fuseButton.Pressed += _OnFuseButtonPressed;
+
+        _selectedIndex = 0;
         PopulatePossibleFusionList();
     }
 
@@ -60,34 +56,45 @@ public partial class FusionScreen : CenterContainer
 	/// </summary>
 	private void PopulatePossibleFusionList()
 	{
-		_fusionScreenObject.PopulateMaterialFusionList();
+		_fSO.PopulateMaterialFusionList();
 
 		_fusionSkillList.Clear();
 
-        foreach (var fusion in _fusionScreenObject.Fusions)
+        foreach (FusionObject fusion in _fSO.Fusions)
         {
-			var member = fusion.Fusion;
+			OverworldEntity member = fusion.Fusion;
             _fusionSkillList.AddItem(member.DisplayName, CharacterImageAssets.GetTextureForItemList(member.Image));
+        }
+
+        if (_fusionSkillList.ItemCount > 0)
+		{
+			SetFusionSkillListSelectedIndex();
         }
 
 		DisplayFusion();
     }
 
+	/// <summary>
+	/// Add skills to be transfered to a fusion.
+	/// </summary>
 	private void PopulateSkillTransferList()
 	{
 		// fusion is already displayed
-        FusionObject fusion = _fusionScreenObject.Fusions[_selectedIndex];
+        FusionObject fusion = _fSO.DisplayFusion;
 
 		_fusionSkillList.Clear();
 
-		List<ISkill> skills = new List<ISkill>();
-		skills.AddRange(fusion.Material1.Skills);
-		skills.AddRange(fusion.Material2.Skills);
+		List<ISkill> skills = _fSO.GetFusionMaterialSkills();
 
-		foreach (var skill in skills) 
-            _fusionSkillList.AddItem(skill.GetBattleDisplayString(), SkillAssets.GenerateIcon(skill.Icon));
+        foreach (var skill in skills)
+		{
+			string skillDisplayString = skill.GetBattleDisplayString();
 
-		_fusionSkillList.Select(0);
+			if (fusion.Fusion.Skills.Contains(skill))
+				skillDisplayString += " [TRANSFERED]";
+
+            _fusionSkillList.AddItem(skillDisplayString, SkillAssets.GenerateIcon(skill.Icon));
+        }
     }
 
 	/// <summary>
@@ -96,14 +103,73 @@ public partial class FusionScreen : CenterContainer
 	/// <param name="index"></param>
 	private void DisplayFusion()
 	{
-		var fusion = _fusionScreenObject.Fusions[_selectedIndex];
+		if (_fSO.Fusions.Count == 0)
+			return;
+
+        FusionObject fusion = _fSO.Fusions[_fSO.FusionIndex];
 
 		var fusionHolder = new EntityUIWrapper { Entity = fusion.Fusion };
-		var mat1Holder = new EntityUIWrapper { Entity = fusion.Material1 };
-		var mat2Holder = new EntityUIWrapper { Entity = fusion.Material2 };
+		var mat1Holder = new EntityUIWrapper   { Entity = fusion.Material1 };
+		var mat2Holder = new EntityUIWrapper   { Entity = fusion.Material2 };
 
 		_displayFusion.ShowRandomEntity(fusionHolder);
         _material1.ShowRandomEntity(mat1Holder);
 		_material2.ShowRandomEntity(mat2Holder);
+    }
+
+	private void SetFusionSkillListSelectedIndex()
+	{
+		if (_selectedIndex >= _fusionSkillList.ItemCount)
+			_selectedIndex = _fusionSkillList.ItemCount - 1;
+
+        _fusionSkillList.Select(_selectedIndex);
+    }
+
+	private void _OnItemSelectedFusion(long selected)
+	{
+        _selectedIndex = (int)selected;
+
+        if (!_isTransferState)
+		{
+            _fSO.FusionIndex = _selectedIndex;
+        }	
+		else
+		{
+            _fSO.AddOrRemoveSkillFromFusion(_selectedIndex);
+            PopulateSkillTransferList();
+        }
+
+        DisplayFusion();
+    }
+
+	private void _OnFuseButtonPressed()
+	{
+		if (_fSO.Fusions.Count == 0)
+			return;
+
+		if (!_isTransferState)
+		{
+            _isTransferState = true;
+
+            PopulateSkillTransferList();
+
+            _fuseButton.Text = "Confirm";
+        }
+		else
+		{
+			bool successfulFusion = _fSO.Fuse();
+
+			if(successfulFusion)
+				ReturnToMainFusionScreen();
+        }
+    }
+
+	private void ReturnToMainFusionScreen()
+	{
+        _isTransferState = false;
+
+        PopulatePossibleFusionList();
+
+        _fuseButton.Text = "Fuse";
     }
 }

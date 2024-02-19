@@ -22,6 +22,7 @@ namespace AscendedZ.entities.partymember_objects
         private bool _isInParty = false;
         private int _fusionGrade = 0;
         private int _upgradeShardYield = 10;
+        private int _skillCap = 2;
 
         public bool IsInParty { get => _isInParty; set => _isInParty = value; }
         public int Level { get => _level; set => _level = value; }
@@ -31,6 +32,7 @@ namespace AscendedZ.entities.partymember_objects
         public int UpgradeShardYield { get => _upgradeShardYield; set => _upgradeShardYield = value; }
         public int MaxHP { get; set; }
         public string GradeString { get; set; }
+        public int SkillCap { get => _skillCap; set => _skillCap = value; }
         public string DisplayName { get
             {
                 if (string.IsNullOrEmpty(GradeString))
