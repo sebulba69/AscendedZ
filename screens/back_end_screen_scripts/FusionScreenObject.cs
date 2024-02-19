@@ -32,7 +32,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
             _fusionIndex = 0;
         }
 
-        public bool Fuse()
+        public bool TryFuse()
         {
             bool isSuccessful = false;
 

@@ -157,7 +157,7 @@ public partial class FusionScreen : CenterContainer
         }
 		else
 		{
-			bool successfulFusion = _fSO.Fuse();
+			bool successfulFusion = _fSO.TryFuse();
 
 			if(successfulFusion)
 				ReturnToMainFusionScreen();
