@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dbmdkx54xdutv"
-path="res://.godot/imported/tinejoan.png-2167ca8304fb174192bda30a860ce912.ctex"
+path="res://.godot/imported/fledron.png-2d963f60d0bb947961d399fa76214318.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entity_pics/tinejoan.png"
-dest_files=["res://.godot/imported/tinejoan.png-2167ca8304fb174192bda30a860ce912.ctex"]
+source_file="res://entity_pics/fledron.png"
+dest_files=["res://.godot/imported/fledron.png-2d963f60d0bb947961d399fa76214318.ctex"]
 
 [params]
 

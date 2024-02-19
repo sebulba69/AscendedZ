@@ -31,7 +31,7 @@ namespace AscendedZ.entities
         public static readonly string Ciavid = "Ciavid"; // Elec
         public static readonly string Eri = "Eri"; // Elec
         public static readonly string Conson = "Conson"; // Light
-        public static readonly string Winegeful = "Winegeful"; // Light
+        public static readonly string Winegeful = "Winegiful"; // Light
         public static readonly string Cermas = "Cermas"; // Dark
         public static readonly string Fledron = "Fledron"; // Dark
     }

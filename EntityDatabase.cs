@@ -15,6 +15,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using AscendedZ.game_object;
+using AscendedZ.screens.back_end_screen_scripts;
+using System.Xml.Linq;
 
 namespace AscendedZ
 {
@@ -37,12 +39,12 @@ namespace AscendedZ
         /// </summary>
         private static readonly List<string> RANDOM_ENEMIES = new List<string>
         {
-            EnemyNames.Liamlas, EnemyNames.Fastrobren, 
+            EnemyNames.Liamlas, EnemyNames.Fastrobren,
             EnemyNames.Thylaf, EnemyNames.Arwig, EnemyNames.Riccman,
             EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald
         };
 
-        private static readonly List<string>[] TUTORIAL_ENCOUNTERS = new List<string>[] 
+        private static readonly List<string>[] TUTORIAL_ENCOUNTERS = new List<string>[]
         {
             new List<string>(){ EnemyNames.Conlen },
             new List<string>(){ EnemyNames.Liamlas, EnemyNames.Orachar },
@@ -59,7 +61,6 @@ namespace AscendedZ
             EnemyNames.Elliot_Onyx,
             EnemyNames.Sable_Vonner
         };
-
 
         /// <summary>
         /// Based on tier. Each one is cumulative based on the tier.
@@ -84,6 +85,29 @@ namespace AscendedZ
         /// to become available in the shop.
         /// </summary>
         private static readonly int[] SHOP_INDEXES = new int[] { 1, 2, 5, 6, 8 };
+
+        /// <summary>
+        /// List based off the element each character is strong to.
+        /// </summary>
+        private static readonly Dictionary<Elements, string> FUSION1_RESULTS = new Dictionary<Elements, string>() 
+        {
+            { Elements.Fir, PartyNames.Ancrow },
+            { Elements.Ice, PartyNames.Candun},
+            { Elements.Wind, PartyNames.Samlin},
+            { Elements.Elec, PartyNames.Ciavid },
+            { Elements.Light, PartyNames.Conson },
+            { Elements.Dark, PartyNames.Cermas }
+        };
+
+        private static readonly Dictionary<Elements, string> FUSION2_RESULTS = new Dictionary<Elements, string>()
+        {
+            { Elements.Fir, PartyNames.Marchris },
+            { Elements.Ice, PartyNames.Thryth },
+            { Elements.Wind, PartyNames.Everever },
+            { Elements.Elec, PartyNames.Eri },
+            { Elements.Light, PartyNames.Winegeful },
+            { Elements.Dark, PartyNames.Fledron }
+        };
 
         public static List<Enemy> MakeBattleEncounter(int tier)
         {
@@ -208,6 +232,138 @@ namespace AscendedZ
             }
 
             return partyMembers;
+        }
+    
+        public static List<FusionObject> MakeFusionEntities(OverworldEntity material1, OverworldEntity material2)
+        {
+            int fusionGrade = GetFusionResultLevel(material1, material2);
+
+            List<FusionObject> possibleFusions = new List<FusionObject>();
+            Dictionary<Elements, string> fusionResults = new Dictionary<Elements, string>();
+
+            switch (fusionGrade)
+            {
+                case 1:
+                    fusionResults = FUSION1_RESULTS;
+                    break;
+            }
+
+            List<Elements> primaryElements = GetPrimaryElements(material1, material2);
+
+            if (primaryElements.Count == 0)
+            {
+                primaryElements = GetPrimaryWeaknessElements(material1, material2);
+                if(primaryElements.Count == 0)
+                    primaryElements = GetNoneResistances(material1, material2);
+            }
+
+            PopulatePossibleFusions(fusionResults, primaryElements, possibleFusions, material1, material2);
+
+            return possibleFusions;
+        }
+
+        private static int GetFusionResultLevel(OverworldEntity material1, OverworldEntity material2)
+        {
+            // default to mat1 grade (if ==, it'll just be this + 1)
+            int grade = material1.FusionGrade;
+            
+            // handle greater than/less than grades differently
+            if(material1.FusionGrade != material2.FusionGrade)
+            {
+                int gradeDifference = Math.Abs(material1.FusionGrade - material2.FusionGrade);
+
+                // with a difference of 1, default to the highest rank
+                if(gradeDifference == 1)
+                {
+                    // go with the bigger grade
+                    if (material1.FusionGrade > material2.FusionGrade)
+                        grade = material1.FusionGrade;
+                    else
+                        grade = material2.FusionGrade;
+                }
+                else
+                {
+                    // go with the smaller grade
+                    if (material1.FusionGrade < material2.FusionGrade)
+                        grade = material1.FusionGrade;
+                    else
+                        grade = material2.FusionGrade;
+                }
+            }
+
+            return grade + 1;
+        }
+        
+        private static void PopulatePossibleFusions(Dictionary<Elements, string> fusionResults, List<Elements> elements, 
+                                                    List<FusionObject> possibleFusions, OverworldEntity material1, 
+                                                    OverworldEntity material2)
+        {
+            foreach (var element in elements)
+            {
+                possibleFusions.Add(new FusionObject
+                {
+                    Fusion = PartyMemberGenerator.MakePartyMember(fusionResults[element]),
+                    Material1 = material1,
+                    Material2 = material2
+                });
+            }
+        }
+
+        private static List<Elements> GetPrimaryElements(OverworldEntity material1, OverworldEntity material2)
+        {
+            List<Elements> elements = new List<Elements>();
+
+            var mat1Elements = material1.Resistances.GetPrimaryElements();
+            var mat2Elements = material2.Resistances.GetPrimaryElements();
+
+            elements.AddRange(MatchElements(mat1Elements, mat2Elements));
+
+            return elements;
+        }
+
+        private static List<Elements> GetPrimaryWeaknessElements(OverworldEntity material1, OverworldEntity material2)
+        {
+            List<Elements> elements = new List<Elements>();
+
+            var mat1Elements =  material1.Resistances.GetPrimaryWeaknessElements();
+            var mat2Elements =  material2.Resistances.GetPrimaryWeaknessElements();
+
+            elements.AddRange(MatchElements(mat1Elements, mat2Elements));
+
+            return elements;
+        }
+
+        private static List<Elements> GetNoneResistances(OverworldEntity material1, OverworldEntity material2)
+        {
+            List<Elements> primaryElements = new List<Elements>();
+
+            if(material1.Resistances.HasNoResistances() && material2.Resistances.HasNoResistances())
+            {
+                Elements[] elements = Enum.GetValues<Elements>();
+
+                for (int i = 0; i < 2; i++)
+                    primaryElements.Add(elements[RANDOM.Next(0, elements.Length)]);
+            }
+
+            return primaryElements;
+        }
+
+        private static List<Elements> MatchElements(List<Elements> mat1Elements, List<Elements> mat2Elements)
+        {
+            List<Elements> elements = new List<Elements>();
+
+            foreach (Elements mat1Element in mat1Elements)
+            {
+                foreach (Elements mat2Element in mat2Elements)
+                {
+                    if (mat1Element == mat2Element)
+                    {
+                        elements.Add(mat1Element);
+                    }
+                }
+            }
+
+            return elements;
         }
     }
 }

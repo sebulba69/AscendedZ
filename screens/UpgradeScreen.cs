@@ -69,7 +69,7 @@ public partial class UpgradeScreen : CenterContainer
 			
 			RefreshItemList();
 			
-			// PersistentGameObjects.Save();
+			PersistentGameObjects.Save();
         }
     }
 

@@ -26,6 +26,27 @@ namespace AscendedZ.entities.partymember_objects
             { PartyNames.Halvia, MakeHalvia },
         };
 
+        private static readonly Dictionary<string, Elements> _fusion1PartyMembers = new Dictionary<string, Elements>
+        {
+            { PartyNames.Ancrow, Elements.Fir },
+            { PartyNames.Candun, Elements.Ice },
+            { PartyNames.Samlin, Elements.Wind },
+            { PartyNames.Ciavid, Elements.Elec },
+            { PartyNames.Conson, Elements.Light },
+            { PartyNames.Cermas, Elements.Dark },
+        };
+
+        private static readonly Dictionary<string, Elements> _fusion2PartyMembers = new Dictionary<string, Elements>
+        {
+            { PartyNames.Marchris, Elements.Fir },
+            { PartyNames.Thryth, Elements.Ice },
+            { PartyNames.Everever, Elements.Wind },
+            { PartyNames.Eri, Elements.Elec },
+            { PartyNames.Winegeful, Elements.Light },
+            { PartyNames.Fledron, Elements.Dark }
+        };
+
+
         /// <summary>
         /// KVPs of enemy party members and the elements they're strong to
         /// </summary>
@@ -39,16 +60,6 @@ namespace AscendedZ.entities.partymember_objects
             { PartyNames.Paria, Elements.Ice }
         };
 
-        private static readonly Dictionary<Elements, Elements> _elementalOpposites = new Dictionary<Elements, Elements>
-        {
-            { Elements.Fir, Elements.Ice },
-            { Elements.Ice, Elements.Fir },
-            { Elements.Wind, Elements.Elec },
-            { Elements.Elec, Elements.Wind },
-            { Elements.Light, Elements.Dark },
-            { Elements.Dark, Elements.Light }
-        };
-
         public static OverworldEntity MakePartyMember(string name)
         {
             OverworldEntity member;
@@ -57,13 +68,17 @@ namespace AscendedZ.entities.partymember_objects
             {
                 member = _preMadeEntities[name]();
             }
+            else if (_fusion1PartyMembers.ContainsKey(name))
+            {
+                member = MakeFusion1Entity(name);
+            }
             else if (_customPartyMembers.ContainsKey(name))
             {
                 member = MakeOverworldEntity(name);
+                Elements element = _customPartyMembers[name];
 
-                Elements partyMemberElement = _customPartyMembers[name];
-                member.Resistances.SetResistance(ResistanceType.Rs, partyMemberElement);
-                member.Resistances.SetResistance(ResistanceType.Wk, _elementalOpposites[partyMemberElement]);
+                member.Resistances.SetResistance(ResistanceType.Rs, element);
+                member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
             }
             else
             {
@@ -151,8 +166,22 @@ namespace AscendedZ.entities.partymember_objects
 
         private static OverworldEntity MakeFusion1Entity(string name)
         {
+            OverworldEntity member = MakeFusionEntity(name, 1);
+            Elements element = _fusion1PartyMembers[name];
+
+            member.Resistances.SetResistance(ResistanceType.Rs, element);
+            member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
+            return member;
+        }
+
+        private static OverworldEntity MakeFusionEntity(string name, int fusionGrade)
+        {
             var overworldEntity = MakeOverworldEntity(name);
-            overworldEntity.FusionGrade = 1;
+
+            overworldEntity.FusionGrade = fusionGrade;
+
+            overworldEntity.MaxHP *= (fusionGrade + 1);
+
             return overworldEntity;
         }
 

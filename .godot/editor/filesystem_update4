@@ -6,6 +6,7 @@ res://screens/EmbarkScreen.tscn
 res://screens/PartyEditScreen.tscn
 res://screens/RecruitScreen.tscn
 res://screens/RecruitScreenTabs.tscn
+res://screens/UpgradeScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://effects/DamageNumber.cs
@@ -16,12 +17,13 @@ res://screens/ActionMenu.cs
 res://screens/AscendedDialogBox.cs
 res://screens/AscendedTextbox.cs
 res://screens/AscendedYesNoWindow.cs
-res://screens/back_end_screen_scripts/RecruitWrapper.cs
+res://screens/back_end_screen_scripts/EntityUIWrapper.cs
 res://screens/BattleEnemyScene.cs
 res://screens/BossHPBar.cs
 res://screens/CGCutsceneScreen.cs
 res://screens/EmbarkScreen.cs
 res://screens/EntityDisplayBox.cs
+res://screens/FusionScreen.cs
 res://screens/MainScreen.cs
 res://screens/MenuScene.cs
 res://screens/PartyEditScreen.cs
@@ -35,4 +37,4 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://screens/UpgradeScreen.tscn
+res://screens/MainScreen.tscn

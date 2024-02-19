@@ -141,7 +141,7 @@ public partial class RecruitCustomScreen : CenterContainer
     private void ShowPreviewPartyMember()
     {
         _partyMemberDisplay.Call("Clear");
-        _partyMemberDisplay.Call("ShowRandomEntity", new RecruitWrapper { Entity = _recruitCustomObject.SelectedEntity });
+        _partyMemberDisplay.Call("ShowRandomEntity", new EntityUIWrapper { Entity = _recruitCustomObject.SelectedEntity });
         UpdateCost();
     }
 

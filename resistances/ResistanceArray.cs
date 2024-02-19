@@ -11,8 +11,8 @@ namespace AscendedZ.resistances
     public partial class ResistanceArray
     {
         /// <summary>
-        /// Rows = Resistances
-        /// Columns = Elements
+        /// Indexed by element
+        /// Values = type of resistance to elements
         /// </summary>
         public int[] RArray { get; set; }
 
@@ -44,6 +44,74 @@ namespace AscendedZ.resistances
         public ResistanceType GetResistance(Elements element)
         {
             return (ResistanceType)this.RArray[(int)element];
+        }
+
+        /// <summary>
+        /// Get resistances greater than None.
+        /// Returns an Empty list if no resistances satisfy this condition.
+        /// </summary>
+        /// <returns></returns>
+        public List<Elements> GetPrimaryElements()
+        {
+            int noneResistance = (int)ResistanceType.None;
+            List<Elements> elements = new List<Elements>();
+
+            // i = element, res = resistance type
+            for(int i = 0; i < RArray.Length; i++)
+            {
+                int res = RArray[i];
+                if (res > noneResistance)
+                    elements.Add((Elements)i);
+            }
+
+            return elements;
+        }
+
+        /// <summary>
+        /// Grabs the elemental opposite of whatever this entity is weak to
+        /// and treats it as its primary element. Should not be done if there
+        /// exist resistances greater than a weakness.
+        /// </summary>
+        /// <returns></returns>
+        public List<Elements> GetPrimaryWeaknessElements()
+        {
+            int weakness = (int)ResistanceType.Wk;
+            int noneResistance = (int)ResistanceType.None;
+
+            List<Elements> elements = new List<Elements>();
+
+            // i = element, res = resistance type
+            for (int i = 0; i < RArray.Length; i++)
+            {
+                int res = RArray[i];
+                if (res == weakness)
+                {
+                    Elements element = SkillDatabase.ElementalOpposites[(Elements)i];
+                    elements.Add(element);
+                }
+            }
+
+            return elements;
+        }
+
+        /// <summary>
+        /// Check if all Resistances are null
+        /// </summary>
+        /// <returns></returns>
+        public bool HasNoResistances()
+        {
+            bool hasNoResistances = true;
+
+            foreach(int res in this.RArray)
+            {
+                if(res != (int)ResistanceType.None)
+                {
+                    hasNoResistances = false;
+                    break;
+                }
+            }
+
+            return hasNoResistances;
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxot4pfsa0qla"]
+[gd_scene load_steps=4 format=3 uid="uid://bxot4pfsa0qla"]
 
 [ext_resource type="PackedScene" uid="uid://b5e2ob3gqma0a" path="res://screens/PartyMemberDisplay.tscn" id="1_1pkjw"]
+[ext_resource type="Script" path="res://screens/FusionScreen.cs" id="1_ps4ux"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2_01pv5"]
 
 [node name="FusionScreen" type="CenterContainer"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ps4ux")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
@@ -29,6 +31,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FusionResult" parent="PanelContainer/VBoxContainer" instance=ExtResource("1_1pkjw")]
+unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
@@ -37,6 +40,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Material1" parent="PanelContainer/VBoxContainer/FusionMaterials" instance=ExtResource("1_1pkjw")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/FusionMaterials"]
@@ -48,13 +52,17 @@ theme_override_font_sizes/font_size = 75
 text = "+"
 
 [node name="Material2" parent="PanelContainer/VBoxContainer/FusionMaterials" instance=ExtResource("1_1pkjw")]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="PossibleFusionsList" type="ItemList" parent="PanelContainer/VBoxContainer"]
+[node name="PossibleFusionList" type="ItemList" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 300)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_01pv5")
+theme_override_font_sizes/font_size = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2

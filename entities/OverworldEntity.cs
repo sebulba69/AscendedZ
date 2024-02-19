@@ -21,12 +21,14 @@ namespace AscendedZ.entities.partymember_objects
         private int _shopCost = 1;
         private bool _isInParty = false;
         private int _fusionGrade = 0;
+        private int _upgradeShardYield = 10;
 
         public bool IsInParty { get => _isInParty; set => _isInParty = value; }
         public int Level { get => _level; set => _level = value; }
         public int Grade { get => _grade; set => _grade = value; }
         public int VorpexValue { get => _vorpexCost; set => _vorpexCost = value; }
         public int ShopCost { get => _shopCost; set => _shopCost = value; }
+        public int UpgradeShardYield { get => _upgradeShardYield; set => _upgradeShardYield = value; }
         public int MaxHP { get; set; }
         public string GradeString { get; set; }
         public string DisplayName { get

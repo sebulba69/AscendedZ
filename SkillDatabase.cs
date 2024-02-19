@@ -13,6 +13,16 @@ namespace AscendedZ
 {
     public class SkillDatabase
     {
+        public static readonly Dictionary<Elements, Elements> ElementalOpposites = new Dictionary<Elements, Elements>
+        {
+            { Elements.Fir, Elements.Ice },
+            { Elements.Ice, Elements.Fir },
+            { Elements.Wind, Elements.Elec },
+            { Elements.Elec, Elements.Wind },
+            { Elements.Light, Elements.Dark },
+            { Elements.Dark, Elements.Light }
+        };
+
         #region Tier 1 Skills
         public static ElementSkill Elec1 { get => CreateTier1ElementSkill("Spark", Elements.Elec); }
         public static ElementSkill Fire1 { get => CreateTier1ElementSkill("Singe", Elements.Fir); }

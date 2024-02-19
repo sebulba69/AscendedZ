@@ -118,14 +118,19 @@ public partial class MainScreen : Node2D
         Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button recruitButton = this.GetNode<Button>("%RecruitButton");
         Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
+        Button bucethedralButton = this.GetNode<Button>("%BucethedralButton");
 
         if (tier > 5)
             upgradeButton.Visible = true;
+
+        if (tier > 15)
+            bucethedralButton.Visible = true;
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
         recruitButton.Pressed += _OnRecruitButtonPressed;
         upgradeButton.Pressed += _OnUpgradeButtonPressed;
+        bucethedralButton.Pressed += _OnBucethedralButtonPressed;
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
@@ -180,6 +185,11 @@ public partial class MainScreen : Node2D
     private void _OnUpgradeButtonPressed()
     {
         DisplayScene(Scenes.UPGRADE);
+    }
+
+    private void _OnBucethedralButtonPressed()
+    {
+        DisplayScene(Scenes.FUSION);
     }
 
     private void _OnMenuClosed(bool quitToStart)

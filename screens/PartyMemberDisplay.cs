@@ -35,7 +35,7 @@ public partial class PartyMemberDisplay : HBoxContainer
         }
     }
 
-    public void ShowRandomEntity(RecruitWrapper wrapper)
+    public void ShowRandomEntity(EntityUIWrapper wrapper)
     {
         ShowMember(wrapper.Entity);
     }
