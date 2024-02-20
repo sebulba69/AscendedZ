@@ -137,7 +137,7 @@ public partial class UpgradeScreen : CenterContainer
 			if(_ascendedPressed)
 				displayName = $"{member.DisplayName} [{member.UpgradeShardValue} US]";
 			else
-				displayName = $"{member.DisplayName} [{member.VorpexValue} US]";
+				displayName = $"{member.DisplayName} [{member.VorpexValue} VS]";
 
             _partyList.AddItem(displayName, CharacterImageAssets.GetTextureForItemList(member.Image));
         }
