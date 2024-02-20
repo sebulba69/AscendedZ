@@ -53,6 +53,11 @@ namespace AscendedZ.skills
             return ToString();
         }
 
+        public string GetAscendedString(int ascendedLevel)
+        {
+            return GetUpgradeString();
+        }
+
         public ISkill Clone()
         {
             return new PassSkill()

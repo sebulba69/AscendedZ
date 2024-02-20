@@ -118,7 +118,9 @@ public partial class UpgradeScreen : CenterContainer
 
             RefreshItemList();
 
-			PersistentGameObjects.Save();
+            _smeltButton.Text = $"Smelt [{_allPartyMembers.Count - 4}/4]";
+
+            PersistentGameObjects.Save();
         }
 	}
 
@@ -132,6 +134,11 @@ public partial class UpgradeScreen : CenterContainer
 		_ascendedPressed = !_ascendedPressed;
 
 		_smeltButton.Visible = _ascendedPressed;
+
+		if (_smeltButton.Visible)
+		{
+            _smeltButton.Text = $"Smelt [{_allPartyMembers.Count - 4}/4]";
+        }
 
         _upgradeButton.Text = (_ascendedPressed) ? "Ascend" : "Upgrade";
 
@@ -149,7 +156,7 @@ public partial class UpgradeScreen : CenterContainer
 			string displayName;
 
 			if(_ascendedPressed)
-				displayName = $"{member.DisplayName} [{member.UpgradeShardValue} US]";
+				displayName = $"{member.DisplayName} [{member.UpgradeShardYield} US]";
 			else
 				displayName = $"{member.DisplayName} [{member.VorpexValue} VS]";
 

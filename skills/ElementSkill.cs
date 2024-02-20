@@ -99,6 +99,17 @@ namespace AscendedZ.skills
             return $"{ToString()} → {this.Damage + GetBoostValue()}";
         }
 
+        public string GetAscendedString(int ascendedLevel)
+        {
+            ElementSkill newSkill = (ElementSkill)SkillDatabase.GetNextTierOfElementSkill(this.Tier, this).Clone();
+            
+            if(Tier >= 5)
+                newSkill.Damage += (ascendedLevel * 2);
+
+            return $"{ToString()} → {newSkill.ToString()}";
+        }
+
+
         private int GetBoostValue()
         {
             try

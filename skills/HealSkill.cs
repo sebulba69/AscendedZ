@@ -70,6 +70,16 @@ namespace AscendedZ.skills
             return $"{GetBattleDisplayString()} → {this.HealAmount + GetBoostValue()}";
         }
 
+        public string GetAscendedString(int ascendedLevel)
+        {
+            HealSkill newSkill = (HealSkill)SkillDatabase.GetNextTierOfHealSkill(this.Tier).Clone();
+
+            if (Tier >= 5)
+                newSkill.HealAmount += (ascendedLevel * 2);
+
+            return $"{ToString()} → {newSkill.ToString()}";
+        }
+
         private int GetBoostValue()
         {
             try

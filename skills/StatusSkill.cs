@@ -62,6 +62,11 @@ namespace AscendedZ.skills
             return $"{GetBattleDisplayString()} [NO UPGRADE]";
         }
 
+        public string GetAscendedString(int ascendedLevel)
+        {
+            return GetBattleDisplayString();
+        }
+
         public ISkill Clone()
         {
             return new StatusSkill()

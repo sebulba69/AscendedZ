@@ -44,6 +44,11 @@ namespace AscendedZ.skills
         {
         }
 
+        public string GetAscendedString(int ascendedLevel)
+        {
+            return GetUpgradeString();
+        }
+
         public string GetUpgradeString()
         {
             return ToString();

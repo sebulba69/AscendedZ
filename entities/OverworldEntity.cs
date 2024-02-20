@@ -120,6 +120,7 @@ namespace AscendedZ.entities.partymember_objects
             _ascendedLevel++;
             Grade = 0;
             Level = 0;
+            MaxHP = _ascendedLevel * 12;
 
             for (int i = 0; i < Skills.Count; i++)
             {
@@ -223,13 +224,20 @@ namespace AscendedZ.entities.partymember_objects
         public string GetUpgradeString(bool showUpgradeShards)
         {
             StringBuilder skills = new StringBuilder();
-            foreach (ISkill skill in Skills)
-                skills.AppendLine(skill.GetUpgradeString());
 
-            if(!showUpgradeShards)
+
+            if (!showUpgradeShards)
+            {
+                foreach (ISkill skill in Skills)
+                    skills.AppendLine(skill.GetUpgradeString());
+
                 return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
+            } 
             else
             {
+                foreach (ISkill skill in Skills)
+                    skills.AppendLine(skill.GetAscendedString(_ascendedLevel));
+
                 string reqAscendGrade;
 
                 switch (_ascendedLevel)
@@ -255,11 +263,11 @@ namespace AscendedZ.entities.partymember_objects
                 }
                  
 
-                return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n" +
+                return  $"{MaxHP} HP → {(_ascendedLevel + 1) * 12} HP\n" +
                         $"{Resistances.GetResistanceString()}\n" +
                         $"{skills.ToString()}" +
-                        $"Yield → {UpgradeShardYield} US\n" +
-                        $"ASC Grade: {reqAscendGrade}";
+                        $"Ascend Cost: {UpgradeShardValue} US\n" +
+                        $"Req. ASC Grade: {reqAscendGrade}";
             }
 
         }

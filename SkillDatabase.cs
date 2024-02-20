@@ -158,7 +158,8 @@ namespace AscendedZ
 
         private static ElementSkill CreateTier5ElementSkill(string name, Elements element)
         {
-            return MakeNewSingleHitElement(name, element, 18, 5);
+            // _ascendedLevel * 2 gets added to this each time so it's 8 (but really 18)
+            return MakeNewSingleHitElement(name, element, 8, 5);
         }
 
         private static ElementSkill MakeNewSingleHitElement(string name, Elements element, int damage, int tier)
@@ -297,7 +298,7 @@ namespace AscendedZ
         public static HealSkill Heal2 { get => MakeHealSkill("Regen+", 10, 2);    }
         public static HealSkill Heal3 { get => MakeHealSkill("Regen X", 20, 3);   }
         public static HealSkill Heal4 { get => MakeHealSkill("Regen Z", 30, 4);   }
-        public static HealSkill Heal5 { get => MakeHealSkill("Regen ASC", 50, 5); }
+        public static HealSkill Heal5 { get => MakeHealSkill("Regen ASC", 40, 5); }
 
         private static HealSkill MakeHealSkill(string name, int amount, int tier)
         {

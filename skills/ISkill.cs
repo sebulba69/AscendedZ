@@ -29,6 +29,7 @@ namespace AscendedZ.skills
         string GetBattleDisplayString();
         void LevelUp();
         string GetUpgradeString();
+        string GetAscendedString(int ascendedLevel);
         ISkill Clone();
     }
 }
