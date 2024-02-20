@@ -81,10 +81,6 @@ namespace AscendedZ.entities.partymember_objects
 
         public bool CanAscend()
         {
-            // DEBUG UNTIL MORE TIERS ARE ADDED
-            if (_ascendedLevel == TIER_CAP - 1)
-                return false;
-
             bool canAscend = false;
 
             if (_gradeCapHit)
@@ -138,6 +134,20 @@ namespace AscendedZ.entities.partymember_objects
                     {
                         ElementSkill newSkill = (ElementSkill)SkillDatabase.GetNextTierOfElementSkill(elementSkill.Tier, elementSkill).Clone();
                         newSkill.Damage += (_ascendedLevel * 2);
+                        Skills[i] = newSkill;
+                    }
+                }
+                else if (Skills[i].Id == SkillId.Healing)
+                {
+                    HealSkill healSkill = (HealSkill)Skills[i];
+                    if(healSkill.Tier < TIER_CAP)
+                    {
+                        Skills[i] = SkillDatabase.GetNextTierOfHealSkill(healSkill.Tier);
+                    }
+                    else
+                    {
+                        HealSkill newSkill = (HealSkill)SkillDatabase.GetNextTierOfHealSkill(healSkill.Tier).Clone();
+                        newSkill.HealAmount += (_ascendedLevel * 2);
                         Skills[i] = newSkill;
                     }
                 }

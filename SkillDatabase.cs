@@ -3,11 +3,13 @@ using AscendedZ.statuses;
 using AscendedZ.statuses.buff_elements;
 using AscendedZ.statuses.void_elements;
 using AscendedZ.statuses.weak_element;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AscendedZ
 {
@@ -114,6 +116,23 @@ namespace AscendedZ
                     return Tier5ElementSkills[skill.Element];
                 default:
                     return skill;
+            }
+        }
+
+        public static HealSkill GetNextTierOfHealSkill(int tier)
+        {
+            switch (tier)
+            {
+                case 1:
+                    return Heal2;
+                case 2:
+                    return Heal3;
+                case 3:
+                    return Heal4;
+                case 4:
+                    return Heal5;
+                default:
+                    return Heal5;
             }
         }
 
@@ -274,15 +293,26 @@ namespace AscendedZ
             };
         }
 
-        public static HealSkill Heal1 = new HealSkill()
+        public static HealSkill Heal1 { get => MakeHealSkill("Regen", 5, 1); } 
+        public static HealSkill Heal2 { get => MakeHealSkill("Regen+", 10, 2);    }
+        public static HealSkill Heal3 { get => MakeHealSkill("Regen X", 20, 3);   }
+        public static HealSkill Heal4 { get => MakeHealSkill("Regen Z", 30, 4);   }
+        public static HealSkill Heal5 { get => MakeHealSkill("Regen ASC", 50, 5); }
+
+        private static HealSkill MakeHealSkill(string name, int amount, int tier)
         {
-            BaseName = "Regen",
-            TargetType = TargetTypes.SINGLE_TEAM,
-            StartupAnimation = SkillAssets.STARTUP1_MG,
-            EndupAnimation = SkillAssets.HEAL_T1,
-            Icon = SkillAssets.HEAL_ICON,
-            HealAmount = 5
-        };
+            return new HealSkill()
+            {
+                BaseName = name,
+                TargetType = TargetTypes.SINGLE_TEAM,
+                StartupAnimation = SkillAssets.STARTUP1_MG,
+                EndupAnimation = SkillAssets.HEAL_T1,
+                Icon = SkillAssets.HEAL_ICON,
+                HealAmount = amount,
+                Tier = tier
+            };
+        }
+
 
         #region Temporary Battle Skills
         public static PassSkill Pass = new PassSkill()
