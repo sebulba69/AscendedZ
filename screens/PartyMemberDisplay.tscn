@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://screens/PartyMemberDisplay.cs" id="3"]
 
 [node name="PartyMemberIcon" type="HBoxContainer"]
-custom_minimum_size = Vector2(478, 160)
+custom_minimum_size = Vector2(500, 180)
 offset_right = 478.0
 offset_bottom = 155.0
 script = ExtResource("3")
@@ -18,7 +18,7 @@ layout_mode = 2
 expand_mode = 1
 
 [node name="DescriptionBox" type="TextEdit" parent="."]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/line_spacing = -2
 theme_override_fonts/font = ExtResource("1")

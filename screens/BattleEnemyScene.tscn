@@ -227,6 +227,7 @@ theme_override_constants/separation = 17
 [node name="BackToHomeBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
@@ -235,6 +236,7 @@ text = "Retreat"
 [node name="RetryFloorBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
@@ -243,14 +245,16 @@ text = "Retry"
 [node name="ChangePartyBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 70
-text = "Change Party"
+text = "Party"
 
 [node name="ContinueBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
