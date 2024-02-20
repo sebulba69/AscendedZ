@@ -42,8 +42,10 @@ namespace AscendedZ.screens.back_end_screen_scripts
                 RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material1);
                 RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material2);
 
-                DisplayFusion.Fusion.UpgradeShardYield = 
-                    (DisplayFusion.Material1.UpgradeShardYield + DisplayFusion.Material2.UpgradeShardYield) * (DisplayFusion.Fusion.Grade + 1);
+                int upgradeShardYield = (DisplayFusion.Material1.UpgradeShardYield + DisplayFusion.Material2.UpgradeShardYield) * (DisplayFusion.Fusion.Grade + 1);
+                upgradeShardYield += (10 * DisplayFusion.Fusion.Skills.Count);
+                
+                DisplayFusion.Fusion.UpgradeShardYield = upgradeShardYield;
 
                 mainPlayer.ReserveMembers.Add(DisplayFusion.Fusion);
 

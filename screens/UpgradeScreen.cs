@@ -134,6 +134,7 @@ public partial class UpgradeScreen : CenterContainer
 		_smeltButton.Visible = _ascendedPressed;
 
         _upgradeButton.Text = (_ascendedPressed) ? "Ascend" : "Upgrade";
+
         _ascendedCheckbox.Text = (_ascendedPressed) ? "Upgrade": "Ascend";
 
         RefreshItemList();
