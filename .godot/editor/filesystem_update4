@@ -34,3 +34,4 @@ res://screens/UpgradeScreen.tscn
 res://screens/MainScreen.tscn
 res://misc_icons/Icon.tscn
 res://misc_icons/CurrencyDisplay.tscn
+res://effects/EffectSprite.tscn

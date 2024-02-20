@@ -14,6 +14,7 @@ namespace AscendedZ.skills
         private int _level = 0;
         private string _baseName;
         private string _name;
+        private int _tier = 1;
 
         public string Name
         {
@@ -35,6 +36,7 @@ namespace AscendedZ.skills
         public string EndupAnimation { get; set; }
         public string Icon { get ; set; }
         public int HealAmount { get; set; }
+        public int Tier { get => _tier; set => _tier = value; }
 
         public string GetBattleDisplayString()
         {
@@ -102,7 +104,8 @@ namespace AscendedZ.skills
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon,
-                HealAmount = this.HealAmount
+                HealAmount = this.HealAmount,
+                Tier = this.Tier
             };
         }
     }

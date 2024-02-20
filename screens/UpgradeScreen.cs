@@ -1,5 +1,6 @@
 using AscendedZ;
 using AscendedZ.currency;
+using AscendedZ.currency.rewards;
 using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object;
 using Godot;
@@ -16,6 +17,7 @@ public partial class UpgradeScreen : CenterContainer
 	private ItemList _partyList;
 	private TextureRect _partyImage;
 	private Button _upgradeButton;
+	private Button _smeltButton;
 	private Button _backButton;
 	private CheckBox _ascendedCheckbox;
 	private TextureRect _upgradeCurrencyIcon;
@@ -35,6 +37,7 @@ public partial class UpgradeScreen : CenterContainer
         _partyList = this.GetNode<ItemList>("%PartyList");
 		_partyImage = this.GetNode<TextureRect>("%MemberImage");
 		_upgradeButton = this.GetNode<Button>("%UpgradeButton");
+        _smeltButton = this.GetNode<Button>("%SmeltButton");
         _backButton = this.GetNode<Button>("%BackButton");
         _ascendedCheckbox = this.GetNode<CheckBox>("%AscendBox");
 		_upgradeCurrencyIcon = this.GetNode<TextureRect>("%UpgradeCurrencyIcon");
@@ -49,11 +52,13 @@ public partial class UpgradeScreen : CenterContainer
 		_partyList.ItemSelected += _OnItemSelected;
 		_ascendedPressed = false;
 
-        _upgradeButton.Pressed += _OnUpgradeButtonClicked;
+        _upgradeButton.Pressed += _OnUpgradeButtonPressed;
+		_smeltButton.Pressed += _OnSmeltButtonPressed;
 		_backButton.Pressed += _OnBackButtonPressed;
 
         _ascendedCheckbox.Visible = (gameObject.MaxTier > 20);
         _ascendedCheckbox.Pressed += _OnAscendedPressed;
+
 		_ascendedPressed = false;
 
         RefreshItemList();
@@ -65,21 +70,45 @@ public partial class UpgradeScreen : CenterContainer
 		DisplaySelectedItem();
     }
 
-	private void _OnUpgradeButtonClicked()
+	private void _OnUpgradeButtonPressed()
 	{
-		int cost = _selectedEntity.VorpexValue;
-		Currency vorpex = _wallet.Currency[SkillAssets.VORPEX_ICON];
+		if (!_ascendedPressed)
+        {
+            int cost = _selectedEntity.VorpexValue;
+            Currency vorpex = _wallet.Currency[SkillAssets.VORPEX_ICON];
 
-		if(vorpex.Amount >= cost && !_selectedEntity.GradeCapHit)
+            if (vorpex.Amount >= cost && !_selectedEntity.GradeCapHit)
+            {
+                vorpex.Amount -= cost;
+                _selectedEntity.LevelUp();
+
+                RefreshItemList();
+
+                PersistentGameObjects.Save();
+            }
+        }
+		else
 		{
-			vorpex.Amount -= cost;
-            _selectedEntity.LevelUp();
-			
-			RefreshItemList();
-			
-			PersistentGameObjects.Save();
+            // We're Ascending
+            int cost = _selectedEntity.UpgradeShardValue;
+            Currency upgradeShards = _wallet.Currency[SkillAssets.UPGRADESHARD_ICON];
+
+            if (upgradeShards.Amount >= cost && _selectedEntity.CanAscend())
+			{
+                upgradeShards.Amount -= cost;
+                _selectedEntity.Ascend();
+
+                RefreshItemList();
+
+                PersistentGameObjects.Save();
+            }
         }
     }
+
+	private void _OnSmeltButtonPressed()
+	{
+
+	}
 
 	private void _OnBackButtonPressed()
 	{
@@ -89,6 +118,7 @@ public partial class UpgradeScreen : CenterContainer
 	private void _OnAscendedPressed()
 	{
 		_ascendedPressed = !_ascendedPressed;
+		_smeltButton.Visible = _ascendedPressed;
         _upgradeButton.Text = (_ascendedPressed) ? "Ascend" : "Upgrade";
         RefreshItemList();
     }

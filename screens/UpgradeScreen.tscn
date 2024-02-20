@@ -105,6 +105,17 @@ theme_override_font_sizes/font_size = 25
 text = "Upgrade
 "
 
+[node name="SmeltButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_krmoi")
+theme_override_font_sizes/font_size = 25
+text = "Smelt"
+
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 

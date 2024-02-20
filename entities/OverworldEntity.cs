@@ -24,8 +24,10 @@ namespace AscendedZ.entities.partymember_objects
         private int _upgradeShardYield = 10;
         private int _skillCap = 2;
         private bool _gradeCapHit = false;
+        private int _ascendedLevel = 0;
 
-        public bool GradeCapHit { get => _gradeCapHit; }
+        public int AscendedLevel { get => _ascendedLevel; set => _ascendedLevel = value; }
+        public bool GradeCapHit { get => _gradeCapHit; set => _gradeCapHit = value; }
         public bool IsInParty { get => _isInParty; set => _isInParty = value; }
         public int Level { get => _level; set => _level = value; }
         public int Grade { get => _grade; set => _grade = value; }
@@ -36,16 +38,21 @@ namespace AscendedZ.entities.partymember_objects
         public int MaxHP { get; set; }
         public string GradeString { get; set; }
         public int SkillCap { get => _skillCap; set => _skillCap = value; }
-        public string DisplayName { get
+        public string DisplayName 
+        { 
+            get
             {
+                string retString;
+
                 if (string.IsNullOrEmpty(GradeString))
-                {
-                    return Name;
-                }
+                    retString = Name;
                 else
-                {
-                    return $"[{GradeString}] {Name}";
-                }
+                    retString = $"[{GradeString}] {Name}";
+
+                if (_ascendedLevel > 0)
+                    retString += $" [{_ascendedLevel}]";
+
+                return retString;
             } 
         }
         public List<ISkill> Skills { get; set; } = new();
@@ -70,6 +77,73 @@ namespace AscendedZ.entities.partymember_objects
             return player;
         }
 
+        private const int TIER_CAP = 5;
+
+        public bool CanAscend()
+        {
+            // DEBUG UNTIL MORE TIERS ARE ADDED
+            if (_ascendedLevel == TIER_CAP - 1)
+                return false;
+
+            bool canAscend = false;
+
+            if (_gradeCapHit)
+            {
+                canAscend = true;
+            }
+            else
+            {
+                switch (_ascendedLevel)
+                {
+                    case 0:
+                        canAscend = Grade >= 1;
+                        break;
+                    case 1:
+                        canAscend = Grade >= 3;
+                        break;
+                    case 2:
+                        canAscend = Grade >= 5;
+                        break;
+                    case 3:
+                        canAscend =  Grade >= 6;
+                        break;
+                    case 4:
+                        canAscend = Grade >= 7;
+                        break;
+                    default:
+                        canAscend = Grade >= 8;
+                        break;
+                }
+            }
+
+            return canAscend;
+        }
+
+        public void Ascend()
+        {
+            _ascendedLevel++;
+            Grade = 0;
+            Level = 0;
+
+            for(int i = 0; i < Skills.Count; i++)
+            {
+                if(Skills[i].Id == SkillId.Elemental)
+                {
+                    ElementSkill elementSkill = (ElementSkill)Skills[i];
+                    if(elementSkill.Tier < TIER_CAP)
+                    {
+                        Skills[i] = SkillDatabase.GetNextTierOfElementSkill(elementSkill.Tier, elementSkill).Clone();
+                    }
+                    else
+                    {
+                        ElementSkill newSkill = (ElementSkill)SkillDatabase.GetNextTierOfElementSkill(elementSkill.Tier, elementSkill).Clone();
+                        newSkill.Damage += (_ascendedLevel * 2);
+                        Skills[i] = newSkill;
+                    }
+                }
+            }
+        }
+
         public void LevelUp()
         {
             Level++;
@@ -82,7 +156,6 @@ namespace AscendedZ.entities.partymember_objects
             {
                 VorpexValue = int.MaxValue - 1;
             }
-            
 
             GradeString = GetLevelString();
 
@@ -138,7 +211,39 @@ namespace AscendedZ.entities.partymember_objects
             if(!showUpgradeShards)
                 return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
             else
-                return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}\nYield → {UpgradeShardYield} US";
+            {
+                string reqAscendGrade;
+
+                switch (_ascendedLevel)
+                {
+                    case 0:
+                        reqAscendGrade = "E";
+                        break;
+                    case 1:
+                        reqAscendGrade = "C";
+                        break;
+                    case 2:
+                        reqAscendGrade = "A";
+                        break;
+                    case 3:
+                        reqAscendGrade = "S";
+                        break;
+                    case 4:
+                        reqAscendGrade = "SS";
+                        break;
+                    default:
+                        reqAscendGrade = "SSS";
+                        break;
+                }
+                 
+
+                return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n" +
+                        $"{Resistances.GetResistanceString()}\n" +
+                        $"{skills.ToString()}\n" +
+                        $"Yield → {UpgradeShardYield} US\n" +
+                        $"Min. Req. Grade to Ascend: {reqAscendGrade}";
+            }
+
         }
 
         public override string ToString()

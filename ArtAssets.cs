@@ -117,6 +117,21 @@ namespace AscendedZ
         public static readonly string ICE_T1 = "ice1";
         public static readonly string LIGHT_T1 = "light1";
         public static readonly string DARK_T1 = "dark1";
+
+        public static readonly string WIND_T2 = "wind2";
+        public static readonly string FIRE_T2 = "fire2";
+        public static readonly string ELEC_T2 = "elec2";
+        public static readonly string ICE_T2 = "ice2";
+        public static readonly string LIGHT_T2 = "light2";
+        public static readonly string DARK_T2 = "dark2";
+
+        public static readonly string WIND_T3 = "wind3";
+        public static readonly string FIRE_T3 = "fire3";
+        public static readonly string ELEC_T3 = "elec3";
+        public static readonly string ICE_T3 = "ice3";
+        public static readonly string LIGHT_T3 = "light3";
+        public static readonly string DARK_T3 = "dark3";
+
         public static readonly string HEAL_T1 = "heal1";
         public static readonly string STUN_T1 = "stun1";
         public static readonly string AGRO = "agro";
@@ -132,7 +147,6 @@ namespace AscendedZ
         public static readonly string WIND_ICON = "Wind";
         public static readonly string LIGHT_ICON = "Light";
         public static readonly string DARK_ICON = "Dark";
-
 
         // Skill Icons - Voids
         public static readonly string VOID_FIRE_ICON = "VoidFire";
@@ -211,7 +225,8 @@ namespace AscendedZ
 
         public static string GetAnimationByElementAndTier(int tier, Elements element)
         {
-            var tier1Animations = new System.Collections.Generic.Dictionary<Elements, string> { 
+            var tier1Animations = new System.Collections.Generic.Dictionary<Elements, string> 
+            { 
                 { Elements.Fir, FIRE_T1 },
                 { Elements.Ice, ICE_T1 },
                 { Elements.Wind, WIND_T1 },
@@ -220,10 +235,40 @@ namespace AscendedZ
                 { Elements.Light, LIGHT_T1 } 
             };
 
+            var tier2Animations = new System.Collections.Generic.Dictionary<Elements, string> 
+            {
+                { Elements.Fir, FIRE_T2 },
+                { Elements.Ice, ICE_T2 },
+                { Elements.Wind, WIND_T2 },
+                { Elements.Elec, ELEC_T2 },
+                { Elements.Dark, DARK_T2 },
+                { Elements.Light, LIGHT_T2 }
+            };
+
+            var tier3Animations = new System.Collections.Generic.Dictionary<Elements, string> 
+            {
+                { Elements.Fir, FIRE_T3 },
+                { Elements.Ice, ICE_T3 },
+                { Elements.Wind, WIND_T3 },
+                { Elements.Elec, ELEC_T3 },
+                { Elements.Dark, DARK_T3 },
+                { Elements.Light, LIGHT_T3 }
+            };
+
             string animation = string.Empty;
 
-            if(tier == 1)
-                animation = tier1Animations[element];
+            switch (tier)
+            {
+                case 1:
+                    animation = tier1Animations[element];
+                    break;
+                case 2:
+                    animation = tier2Animations[element];
+                    break;
+                default:
+                    animation = tier3Animations[element];
+                    break;
+            }
 
             return animation;
         }

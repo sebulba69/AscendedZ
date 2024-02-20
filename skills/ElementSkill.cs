@@ -15,9 +15,11 @@ namespace AscendedZ.skills
         public SkillId Id => SkillId.Elemental;
         private int _damage;
         private int _damageModifier = 0;
+        private int _tier = 1;
         private int _level = 0;
         private string _baseName;
         private string _name;
+        
 
         public string Name
         {
@@ -37,7 +39,7 @@ namespace AscendedZ.skills
         public Elements Element { get; set; }
         public int Level { get => _level; set => _level = value; }
         public int DamageModifier { private get => _damageModifier; set => _damageModifier = value; }
-
+        public int Tier { get => _tier; set => _tier = value; }
         public int Damage
         {
             get
@@ -124,7 +126,8 @@ namespace AscendedZ.skills
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon,
                 Level = this.Level,
-                DamageModifier = this.DamageModifier
+                DamageModifier = this.DamageModifier,
+                Tier = this.Tier
             };
         }
 

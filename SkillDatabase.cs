@@ -31,17 +31,129 @@ namespace AscendedZ
         public static ElementSkill Wind1 { get => CreateTier1ElementSkill("Breeze", Elements.Wind); }
         public static ElementSkill Dark1 { get => CreateTier1ElementSkill("Shadow", Elements.Dark); }
 
+        public static ElementSkill Elec2 { get => CreateTier2ElementSkill("Zap", Elements.Elec); }
+        public static ElementSkill Fire2 { get => CreateTier2ElementSkill("Flame", Elements.Fir); }
+        public static ElementSkill Ice2 { get => CreateTier2ElementSkill("Ice", Elements.Ice); }
+        public static ElementSkill Light2 { get => CreateTier2ElementSkill("Beam", Elements.Light); }
+        public static ElementSkill Wind2 { get => CreateTier2ElementSkill("Gust", Elements.Wind); }
+        public static ElementSkill Dark2 { get => CreateTier1ElementSkill("Darkness", Elements.Dark); }
+
+        public static ElementSkill Elec3 { get => CreateTier3ElementSkill("Lightning", Elements.Elec); }
+        public static ElementSkill Fire3 { get => CreateTier3ElementSkill("Inferno", Elements.Fir); }
+        public static ElementSkill Ice3 { get => CreateTier3ElementSkill("Frost Cannon", Elements.Ice); }
+        public static ElementSkill Light3 { get => CreateTier3ElementSkill("Holy Light", Elements.Light); }
+        public static ElementSkill Wind3 { get => CreateTier3ElementSkill("Storm", Elements.Wind); }
+        public static ElementSkill Dark3 { get => CreateTier3ElementSkill("Abyss", Elements.Dark); }
+
+        public static ElementSkill Elec4 { get => CreateTier4ElementSkill("Thor's Hammer", Elements.Elec); }
+        public static ElementSkill Fire4 { get => CreateTier4ElementSkill("Hellfire", Elements.Fir); }
+        public static ElementSkill Ice4 { get => CreateTier4ElementSkill("Cold Wave", Elements.Ice); }
+        public static ElementSkill Light4 { get => CreateTier4ElementSkill("Heavenly Gaze", Elements.Light); }
+        public static ElementSkill Wind4 { get => CreateTier4ElementSkill("Tornado of Souls", Elements.Wind); }
+        public static ElementSkill Dark4 { get => CreateTier4ElementSkill("Infinite Despair", Elements.Dark); }
+
+        public static ElementSkill Elec5 { get => CreateTier5ElementSkill("Smite", Elements.Elec); }
+        public static ElementSkill Fire5 { get => CreateTier5ElementSkill("Incinerate", Elements.Fir); }
+        public static ElementSkill Ice5 { get => CreateTier5ElementSkill("Ice Age", Elements.Ice); }
+        public static ElementSkill Light5 { get => CreateTier5ElementSkill("God's Wrath", Elements.Light); }
+        public static ElementSkill Wind5 { get => CreateTier5ElementSkill("Winds of Time", Elements.Wind); }
+        public static ElementSkill Dark5 { get => CreateTier5ElementSkill("Unending Depths", Elements.Dark); }
+
+
+        private static readonly Dictionary<Elements, ElementSkill> Tier2ElementSkills = new Dictionary<Elements, ElementSkill>() 
+        {
+            { Elements.Elec, Elec2 },
+            { Elements.Fir, Fire2 },
+            { Elements.Ice, Ice2 },
+            { Elements.Light, Light2 },
+            { Elements.Wind, Wind2 },
+            { Elements.Dark, Dark2 }
+        };
+
+        private static readonly Dictionary<Elements, ElementSkill> Tier3ElementSkills = new Dictionary<Elements, ElementSkill>()
+        {
+            { Elements.Elec, Elec3 },
+            { Elements.Fir, Fire3 },
+            { Elements.Ice, Ice3 },
+            { Elements.Light, Light3 },
+            { Elements.Wind, Wind3 },
+            { Elements.Dark, Dark3 }
+        };
+
+        private static readonly Dictionary<Elements, ElementSkill> Tier4ElementSkills = new Dictionary<Elements, ElementSkill>()
+        {
+            { Elements.Elec, Elec4 },
+            { Elements.Fir, Fire4 },
+            { Elements.Ice, Ice4 },
+            { Elements.Light, Light4 },
+            { Elements.Wind, Wind4 },
+            { Elements.Dark, Dark4 }
+        };
+
+        private static readonly Dictionary<Elements, ElementSkill> Tier5ElementSkills = new Dictionary<Elements, ElementSkill>()
+        {
+            { Elements.Elec, Elec5 },
+            { Elements.Fir, Fire5 },
+            { Elements.Ice, Ice5 },
+            { Elements.Light, Light5 },
+            { Elements.Wind, Wind5 },
+            { Elements.Dark, Dark5 }
+        };
+
+        public static ElementSkill GetNextTierOfElementSkill(int tier, ElementSkill skill)
+        {
+            switch (tier)
+            {
+                case 1:
+                    return Tier2ElementSkills[skill.Element];
+                case 2:
+                    return Tier3ElementSkills[skill.Element];
+                case 3:
+                    return Tier4ElementSkills[skill.Element];
+                case 4:
+                    return Tier5ElementSkills[skill.Element];
+                default:
+                    return skill;
+            }
+        }
+
         private static ElementSkill CreateTier1ElementSkill(string name, Elements element)
+        {
+            return MakeNewSingleHitElement(name, element, 2, 1);
+        }
+
+        private static ElementSkill CreateTier2ElementSkill(string name, Elements element)
+        {
+            return MakeNewSingleHitElement(name, element, 8, 2);
+        }
+
+        private static ElementSkill CreateTier3ElementSkill(string name, Elements element)
+        {
+            return MakeNewSingleHitElement(name, element, 14, 3);
+        }
+
+        private static ElementSkill CreateTier4ElementSkill(string name, Elements element)
+        {
+            return MakeNewSingleHitElement(name, element, 25, 4);
+        }
+
+        private static ElementSkill CreateTier5ElementSkill(string name, Elements element)
+        {
+            return MakeNewSingleHitElement(name, element, 50, 5);
+        }
+
+        private static ElementSkill MakeNewSingleHitElement(string name, Elements element, int damage, int tier)
         {
             return new ElementSkill
             {
                 BaseName = name,
-                Damage = 2,
+                Damage = damage,
                 TargetType = TargetTypes.SINGLE_OPP,
                 Element = element,
                 StartupAnimation = SkillAssets.STARTUP1_MG,
-                EndupAnimation = SkillAssets.GetAnimationByElementAndTier(1, element),
-                Icon = SkillAssets.GetElementIconByElementEnum(element)
+                EndupAnimation = SkillAssets.GetAnimationByElementAndTier(tier, element),
+                Icon = SkillAssets.GetElementIconByElementEnum(element),
+                Tier = tier
             };
         }
 
