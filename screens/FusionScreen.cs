@@ -109,8 +109,8 @@ public partial class FusionScreen : CenterContainer
         FusionObject fusion = _fSO.Fusions[_fSO.FusionIndex];
 
 		var fusionHolder = new EntityUIWrapper { Entity = fusion.Fusion };
-		var mat1Holder = new EntityUIWrapper   { Entity = fusion.Material1 };
-		var mat2Holder = new EntityUIWrapper   { Entity = fusion.Material2 };
+		var mat1Holder   = new EntityUIWrapper { Entity = fusion.Material1 };
+		var mat2Holder   = new EntityUIWrapper { Entity = fusion.Material2 };
 
 		_displayFusion.ShowRandomEntity(fusionHolder);
         _material1.ShowRandomEntity(mat1Holder);

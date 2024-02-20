@@ -107,7 +107,19 @@ public partial class UpgradeScreen : CenterContainer
 
 	private void _OnSmeltButtonPressed()
 	{
+		if(_allPartyMembers.Count > 4)
+		{
+            int upgradeShardAmount = _selectedEntity.UpgradeShardYield;
+			_wallet.Currency[SkillAssets.UPGRADESHARD_ICON].Amount += upgradeShardAmount;
+			_allPartyMembers.Remove(_selectedEntity);
 
+			if (_selected >= _allPartyMembers.Count)
+				_selected = _allPartyMembers.Count - 1;
+
+            RefreshItemList();
+
+			PersistentGameObjects.Save();
+        }
 	}
 
 	private void _OnBackButtonPressed()
@@ -122,6 +134,7 @@ public partial class UpgradeScreen : CenterContainer
 		_smeltButton.Visible = _ascendedPressed;
 
         _upgradeButton.Text = (_ascendedPressed) ? "Ascend" : "Upgrade";
+        _ascendedCheckbox.Text = (_ascendedPressed) ? "Upgrade": "Ascend";
 
         RefreshItemList();
     }

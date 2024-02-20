@@ -249,9 +249,9 @@ namespace AscendedZ.entities.partymember_objects
 
                 return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n" +
                         $"{Resistances.GetResistanceString()}\n" +
-                        $"{skills.ToString()}\n" +
+                        $"{skills.ToString()}" +
                         $"Yield → {UpgradeShardYield} US\n" +
-                        $"Min. Req. Grade to Ascend: {reqAscendGrade}";
+                        $"ASC Grade: {reqAscendGrade}";
             }
 
         }
