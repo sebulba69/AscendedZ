@@ -118,8 +118,11 @@ public partial class UpgradeScreen : CenterContainer
 	private void _OnAscendedPressed()
 	{
 		_ascendedPressed = !_ascendedPressed;
+
 		_smeltButton.Visible = _ascendedPressed;
+
         _upgradeButton.Text = (_ascendedPressed) ? "Ascend" : "Upgrade";
+
         RefreshItemList();
     }
 
