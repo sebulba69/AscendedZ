@@ -34,7 +34,7 @@ namespace AscendedZ.entities.partymember_objects
         public int VorpexValue { get => _vorpexCost; set => _vorpexCost = value; }
         public int ShopCost { get => _shopCost; set => _shopCost = value; }
         public int UpgradeShardYield { get => _upgradeShardYield; set => _upgradeShardYield = value; }
-        public int UpgradeShardValue { get => _vorpexCost * 3; }
+        public int UpgradeShardValue { get => 100; }
         public int MaxHP { get; set; }
         public string GradeString { get; set; }
         public int SkillCap { get => _skillCap; set => _skillCap = value; }
@@ -121,12 +121,12 @@ namespace AscendedZ.entities.partymember_objects
             Grade = 0;
             Level = 0;
 
-            for(int i = 0; i < Skills.Count; i++)
+            for (int i = 0; i < Skills.Count; i++)
             {
-                if(Skills[i].Id == SkillId.Elemental)
+                if (Skills[i].Id == SkillId.Elemental)
                 {
                     ElementSkill elementSkill = (ElementSkill)Skills[i];
-                    if(elementSkill.Tier < TIER_CAP)
+                    if (elementSkill.Tier < TIER_CAP)
                     {
                         Skills[i] = SkillDatabase.GetNextTierOfElementSkill(elementSkill.Tier, elementSkill).Clone();
                     }
@@ -140,7 +140,7 @@ namespace AscendedZ.entities.partymember_objects
                 else if (Skills[i].Id == SkillId.Healing)
                 {
                     HealSkill healSkill = (HealSkill)Skills[i];
-                    if(healSkill.Tier < TIER_CAP)
+                    if (healSkill.Tier < TIER_CAP)
                     {
                         Skills[i] = SkillDatabase.GetNextTierOfHealSkill(healSkill.Tier);
                     }
@@ -169,7 +169,15 @@ namespace AscendedZ.entities.partymember_objects
 
             GradeString = GetLevelString();
 
-            MaxHP += GetMaxHPUpgradeValue();
+            try
+            {
+                MaxHP += GetMaxHPUpgradeValue();
+            }
+            catch (Exception)
+            {
+                MaxHP = int.MaxValue - 1;
+            }
+            
 
             foreach (ISkill skill in Skills)
                 skill.LevelUp();

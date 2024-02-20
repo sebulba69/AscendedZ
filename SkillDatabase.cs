@@ -143,22 +143,22 @@ namespace AscendedZ
 
         private static ElementSkill CreateTier2ElementSkill(string name, Elements element)
         {
-            return MakeNewSingleHitElement(name, element, 8, 2);
+            return MakeNewSingleHitElement(name, element, 5, 2);
         }
 
         private static ElementSkill CreateTier3ElementSkill(string name, Elements element)
         {
-            return MakeNewSingleHitElement(name, element, 14, 3);
+            return MakeNewSingleHitElement(name, element, 8, 3);
         }
 
         private static ElementSkill CreateTier4ElementSkill(string name, Elements element)
         {
-            return MakeNewSingleHitElement(name, element, 25, 4);
+            return MakeNewSingleHitElement(name, element, 12, 4);
         }
 
         private static ElementSkill CreateTier5ElementSkill(string name, Elements element)
         {
-            return MakeNewSingleHitElement(name, element, 50, 5);
+            return MakeNewSingleHitElement(name, element, 18, 5);
         }
 
         private static ElementSkill MakeNewSingleHitElement(string name, Elements element, int damage, int tier)
