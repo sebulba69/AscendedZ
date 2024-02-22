@@ -162,7 +162,8 @@ alignment = 1
 [node name="Title" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/VBoxContainer/Title"]
+[node name="LogTurnCount" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/VBoxContainer/Title"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
