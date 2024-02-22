@@ -35,6 +35,8 @@ namespace AscendedZ.battle
         private IBattleState[] _states = new IBattleState[] { new PlayerTurnState(), new EnemyTurnState() }; 
         private IBattleState _currentState;
         private TurnState _turnState;
+        private int _turnCount;
+        private int _tier;
 
         public List<BattlePlayer> Players { get; set; } = new();
         public List<Enemy> Enemies { get; set; } = new();
@@ -43,11 +45,14 @@ namespace AscendedZ.battle
         public BattlePlayer ActivePlayer { get => Players.Find(p => p.IsActiveEntity); }
         public List<BattlePlayer> AlivePlayers { get => Players.FindAll(p => p.HP > 0); }
         public List<Enemy> AliveEnemies { get => Enemies.FindAll(e => e.HP > 0); }
-
-        public BattleSceneObject()
+        public int TurnCount { get => _turnCount; }
+        public int Tier { get => _tier; }
+        public BattleSceneObject(int tier)
         {
+            _tier = tier;
             _currentState = _states[PLAYER_STATE];
             _turnState = TurnState.PLAYER;
+            _turnCount = 1;
         }
 
         /// <summary>
@@ -179,6 +184,10 @@ namespace AscendedZ.battle
             {
                 _turnState = TurnState.PLAYER;
                 _currentState = _states[PLAYER_STATE];
+
+                _turnCount++;
+                if (_turnCount >= int.MaxValue - 1)
+                    _turnCount = int.MaxValue - 1;
             }
             _currentState.StartState(this);
         }

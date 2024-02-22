@@ -1,4 +1,4 @@
-using AscendedZ;
+﻿using AscendedZ;
 using AscendedZ.battle;
 using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities;
@@ -30,6 +30,7 @@ public partial class BattleEnemyScene : Node2D
     private CenterContainer _endBox;
     private bool _uiUpdating = false;
     private RichTextLabel _combatLog;
+    private Label _logTurnCount;
 
     private Label _skillName;
     private TextureRect _skillIcon;
@@ -42,13 +43,14 @@ public partial class BattleEnemyScene : Node2D
         this.AddUserSignal("UIUpdated");
 
         _skillName = this.GetNode<Label>("%SkillName");
+        _logTurnCount = this.GetNode<Label>("%LogTurnCount");
         _skillIcon = this.GetNode<TextureRect>("%SkillIcon");
         _skillDisplayIcons = this.GetNode<PanelContainer>("%SkillDisplayIcons");
 
         _partyMembers = this.GetNode<HBoxContainer>("%PartyPortraits");
         _enemyMembers = this.GetNode<HBoxContainer>("%EnemyContainerBox");
         _turnIconContainer = this.GetNode<HBoxContainer>("%TurnIconContainer");
-
+        
         _endBox = this.GetNode<CenterContainer>("%EndBox");
         _backToHomeButton = this.GetNode<Button>("%BackToHomeBtn");
         _retryFloorButton = this.GetNode<Button>("%RetryFloorBtn");
@@ -115,7 +117,7 @@ public partial class BattleEnemyScene : Node2D
         TextureRect background = this.GetNode<TextureRect>("%Background");
         background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatBackground(gameObject.Tier));
 
-        _battleSceneObject = new BattleSceneObject();
+        _battleSceneObject = new BattleSceneObject(gameObject.Tier);
         _actionMenu.BattleSceneObject = _battleSceneObject;
 
         _battleSceneObject.InitializeEnemies(gameObject.Tier);
@@ -175,8 +177,10 @@ public partial class BattleEnemyScene : Node2D
 
     private async void _OnUIUpdate(object sender, BattleUIUpdate update)
     {
+        _logTurnCount.Text = $"Log ● Turn {_battleSceneObject.TurnCount}";
+
         // handle battle results if any
-        if(update.Result != null)
+        if (update.Result != null)
         {
             var result = update.Result;
 
@@ -376,6 +380,8 @@ public partial class BattleEnemyScene : Node2D
 
         if (didPlayerWin)
         {
+            PersistentGameObjects.GameObjectInstance().QuestObject.CheckBattleQuestConditions(_battleSceneObject);
+
             endLabel.Text = "Encounter Complete!";
 
             var gameObject = PersistentGameObjects.GameObjectInstance();

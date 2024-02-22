@@ -67,7 +67,8 @@ namespace AscendedZ.entities.partymember_objects
                 Image = Image,
                 HP = MaxHP,
                 MaxHP = MaxHP,
-                Resistances = Resistances
+                Resistances = Resistances,
+                BaseName = Name
             };
 
             foreach (var skill in Skills)

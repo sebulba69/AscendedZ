@@ -45,6 +45,7 @@ namespace AscendedZ.entities.battle_entities
             }
         }
         public string Name { get; set; }
+        public string BaseName { get; set; }
         public string Image { get; set; }
         public bool CanAttack { set; get; }
         public List<ISkill> Skills { get; set; } = new();
