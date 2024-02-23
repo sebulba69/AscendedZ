@@ -102,10 +102,14 @@ expand_mode = 1
 [node name="Buttons" type="CenterContainer" parent="CenterContainer/MainContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainContainer/Buttons"]
 layout_mode = 2
 
-[node name="MenuButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MenuButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
@@ -113,7 +117,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Menu"
 
-[node name="EmbarkButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+[node name="EmbarkButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(200, 40)
@@ -122,7 +126,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Embark"
 
-[node name="RecruitButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+[node name="RecruitButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
@@ -130,7 +134,20 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Recruit"
 
-[node name="BucethedralButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="UpgradePartyButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 40
+text = "Upgrade Party"
+
+[node name="BucethedralButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(200, 40)
@@ -139,14 +156,14 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Fuse"
 
-[node name="UpgradePartyButton" type="Button" parent="CenterContainer/MainContainer/Buttons/HBoxContainer"]
+[node name="QuestButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
-text = "Upgrade Party"
+text = "Quests"
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer"]
 layout_mode = 2

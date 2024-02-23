@@ -9,7 +9,7 @@ namespace AscendedZ.game_object.quests
     /// <summary>
     /// Check this quest when you're at the end of a battle.
     /// </summary>
-    public class BattleQuest : QuestBase
+    public class BattleQuest : Quest
     {
         private List<string> _requiredPartyMembers = new List<string>();
         private int _minReqPartySize = 0;

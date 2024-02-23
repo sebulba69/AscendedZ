@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.game_object.quests
 {
-    public class PartyQuest : QuestBase
+    public class PartyQuest : Quest
     {
         private List<string> _skillBaseNames = new List<string>();
 

@@ -1,5 +1,7 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object.quests;
+using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +65,50 @@ namespace AscendedZ.game_object
                     quest.Completed = isComplete;
                 }
             }
+        }
+
+        public void CheckPartyQuestConditions(List<OverworldEntity> reserves)
+        {
+            foreach(PartyQuest partyQuest in PartyQuests)
+            {
+                bool isComplete = false;
+                if(!partyQuest.Completed && partyQuest.Registered)
+                {
+                    if (string.IsNullOrEmpty(partyQuest.PartyMemberName))
+                        throw new Exception("Must set a party member name as a bare minimum for the quest.");
+
+                    foreach(OverworldEntity reserve in reserves)
+                    {
+                        isComplete = (partyQuest.PartyMemberName.Equals(reserve.Name));
+
+                        if (!isComplete)
+                            break;
+
+                        if(partyQuest.SkillBaseNames.Count > 0)
+                        {
+                            foreach(ISkill skill in reserve.Skills)
+                            {
+                                isComplete = (partyQuest.SkillBaseNames.Contains(skill.BaseName));
+                                if (!isComplete)
+                                    break;
+                            }
+                        }
+                    }
+
+                    partyQuest.Completed = isComplete;
+                }
+            }
+        }
+
+        public List<Quest> GetQuests()
+        {
+            List<Quest> quests = new List<Quest>();
+
+            quests.AddRange(BattleQuests);
+
+            quests.AddRange(PartyQuests);
+
+            return quests;
         }
     }
 }
