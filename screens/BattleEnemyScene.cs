@@ -146,6 +146,7 @@ public partial class BattleEnemyScene : Node2D
 
             if (!enemy.IsBoss)
             {
+                // Prevent there from being repeat descriptions of enemy ais.
                 if (!enemyTypes.Contains(enemy.GetType()))
                 {
                     enemyTypes.Add(enemy.GetType());

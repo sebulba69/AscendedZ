@@ -1,14 +1,14 @@
 HBoxContainer
-VBoxContainer
+RichTextLabel
 Button
+VBoxContainer
 ItemList
 PanelContainer
-Label
 CenterContainer
+Label
 Control
 Panel
 TabContainer
 MarginContainer
-RichTextLabel
 AnimationPlayer
 ProgressBar

@@ -23,6 +23,7 @@ namespace AscendedZ
         public static readonly string UPGRADE = "res://screens/UpgradeScreen.tscn";
         public static readonly string PARTY_CHANGE = "res://screens/PartyEditScreen.tscn";
         public static readonly string FUSION = "res://screens/FusionScreen.tscn";
+        public static readonly string QUEST = "res://screens/QuestScreen.tscn";
 
         // currency
         public static readonly string CURRENCY_DISPLAY = "res://misc_icons/CurrencyDisplay.tscn";

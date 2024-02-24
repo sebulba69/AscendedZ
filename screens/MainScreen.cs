@@ -128,24 +128,31 @@ public partial class MainScreen : Node2D
         Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button recruitButton = this.GetNode<Button>("%RecruitButton");
         Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
-        Button bucethedralButton = this.GetNode<Button>("%BucethedralButton");
+        Button fuseButton = this.GetNode<Button>("%FuseButton");
+        Button questButton = this.GetNode<Button>("%QuestButton");
 
         if (tier > 5)
             upgradeButton.Visible = true;
 
+        if (tier > 10)
+            questButton.Visible = true;
+
         if (tier > 15)
-            bucethedralButton.Visible = true;
+            fuseButton.Visible = true;
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
         recruitButton.Pressed += _OnRecruitButtonPressed;
         upgradeButton.Pressed += _OnUpgradeButtonPressed;
-        bucethedralButton.Pressed += _OnBucethedralButtonPressed;
+        fuseButton.Pressed += _OnFuseButtonPressed;
+        questButton.Pressed += _OnQuestButtonPressed;
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
+        questButton.MouseEntered += () => { _tooltip.Text = "Get quests to earn Vorpex."; };
         upgradeButton.MouseEntered += () => { _tooltip.Text = "Upgrade Party Members with Vorpex."; };
+        fuseButton.MouseEntered += () => { _tooltip.Text = "Combine Party Members to create new ones and transfer skills."; };
     }
     #endregion
 
@@ -197,9 +204,14 @@ public partial class MainScreen : Node2D
         DisplayScene(Scenes.UPGRADE);
     }
 
-    private void _OnBucethedralButtonPressed()
+    private void _OnFuseButtonPressed()
     {
         DisplayScene(Scenes.FUSION);
+    }
+
+    private void _OnQuestButtonPressed()
+    {
+        DisplayScene(Scenes.QUEST);
     }
 
     private void _OnMenuClosed(bool quitToStart)

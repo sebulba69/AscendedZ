@@ -110,5 +110,23 @@ namespace AscendedZ.game_object
 
             return quests;
         }
+
+        public int GetTotalQuestCount()
+        {
+            return BattleQuests.Count + PartyQuests.Count;
+        }
+
+        public int GetCompletedQuestCount()
+        {
+            int count = 0;
+
+            foreach(var quest in GetQuests())
+            {
+                if (quest.Completed)
+                    count++;
+            }
+
+            return count;
+        }
     }
 }

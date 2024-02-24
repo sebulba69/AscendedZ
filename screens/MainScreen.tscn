@@ -147,15 +147,6 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Upgrade Party"
 
-[node name="BucethedralButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 40
-text = "Fuse"
-
 [node name="QuestButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 visible = false
@@ -164,6 +155,15 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Quests"
+
+[node name="FuseButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 40
+text = "Fuse"
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer"]
 layout_mode = 2
