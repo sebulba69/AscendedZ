@@ -110,7 +110,7 @@ namespace AscendedZ
         // Startups
         public static readonly string STARTUP1_MG = "startup_anim";
 
-        // Effects
+        // Effect Animations
         public static readonly string WIND_T1 = "wind1";
         public static readonly string FIRE_T1 = "fire1";
         public static readonly string ELEC_T1 = "elec1";
