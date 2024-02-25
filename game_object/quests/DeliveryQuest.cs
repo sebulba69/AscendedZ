@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.game_object.quests
 {
-    public class PartyQuest : Quest
+    public class DeliveryQuest : Quest
     {
         private List<string> _skillBaseNames;
 
@@ -21,7 +21,7 @@ namespace AscendedZ.game_object.quests
         /// </summary>
         public List<string> SkillBaseNames { get => _skillBaseNames; set => _skillBaseNames = value; }
 
-        public PartyQuest()
+        public DeliveryQuest()
         {
             _maxChallenges = 1;
             _skillBaseNames = new List<string>();
@@ -29,7 +29,7 @@ namespace AscendedZ.game_object.quests
 
         public override string GetQuestNameString()
         {
-            return $"[{PartyMemberName}] Party Quest";
+            return $"[{PartyMemberName}] Delivery Quest";
         }
 
         public override void GenerateQuest(Random rng, int maxTier)
