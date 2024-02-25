@@ -102,9 +102,9 @@ namespace AscendedZ
             { Elements.Dark, Dark5 }
         };
 
-        public static ElementSkill GetNextTierOfElementSkill(int tier, ElementSkill skill)
+        public static ElementSkill GetNextTierOfElementSkill(int skillTier, ElementSkill skill)
         {
-            switch (tier)
+            switch (skillTier)
             {
                 case 1:
                     return Tier2ElementSkills[skill.Element];
@@ -119,9 +119,9 @@ namespace AscendedZ
             }
         }
 
-        public static HealSkill GetNextTierOfHealSkill(int tier)
+        public static HealSkill GetNextTierOfHealSkill(int skillTier)
         {
-            switch (tier)
+            switch (skillTier)
             {
                 case 1:
                     return Heal2;
@@ -345,7 +345,7 @@ namespace AscendedZ
             
             skills.AddRange(new ISkill[] { Fire1, Ice1, Wind1, Elec1, Light1, Dark1, Heal1, AgroPlayer });
 
-            if (tier > 10)
+            if (tier > TierRequirements.QUESTS)
                 skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind });
 
             return skills;

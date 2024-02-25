@@ -131,13 +131,13 @@ public partial class MainScreen : Node2D
         Button fuseButton = this.GetNode<Button>("%FuseButton");
         Button questButton = this.GetNode<Button>("%QuestButton");
 
-        if (tier > 5)
+        if (tier > TierRequirements.UPGRADE_SCREEN)
             upgradeButton.Visible = true;
 
-        if (tier > 10)
+        if (tier > TierRequirements.QUESTS)
             questButton.Visible = true;
 
-        if (tier > 15)
+        if (tier > TierRequirements.FUSE)
             fuseButton.Visible = true;
 
         menuButton.Pressed += _OnMenuButtonPressed;

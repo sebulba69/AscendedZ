@@ -72,6 +72,10 @@ namespace AscendedZ.entities.partymember_objects
             {
                 member = MakeFusion1Entity(name);
             }
+            else if (_fusion2PartyMembers.ContainsKey(name))
+            {
+                member = MakeFusion2Entity(name);
+            }
             else if (_customPartyMembers.ContainsKey(name))
             {
                 member = MakeOverworldEntity(name);
@@ -168,6 +172,16 @@ namespace AscendedZ.entities.partymember_objects
         {
             OverworldEntity member = MakeFusionEntity(name, 1);
             Elements element = _fusion1PartyMembers[name];
+
+            member.Resistances.SetResistance(ResistanceType.Rs, element);
+            member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
+            return member;
+        }
+
+        private static OverworldEntity MakeFusion2Entity(string name)
+        {
+            OverworldEntity member = MakeFusionEntity(name, 2);
+            Elements element = _fusion2PartyMembers[name];
 
             member.Resistances.SetResistance(ResistanceType.Rs, element);
             member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);

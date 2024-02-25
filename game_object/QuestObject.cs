@@ -12,6 +12,9 @@ namespace AscendedZ.game_object
 {
     public class QuestObject
     {
+        private const int MAX_QUESTS = 5;
+        private Random _rng;
+
         /// <summary>
         /// Public for Serialization. Do not access these outside of this class.
         /// </summary>
@@ -21,11 +24,43 @@ namespace AscendedZ.game_object
 
         public QuestObject()
         {
+            _rng = new Random();
+
             if (BattleQuests == null)
                 BattleQuests = new List<BattleQuest>();
 
             if (PartyQuests == null)
                 PartyQuests = new List<PartyQuest>();
+        }
+
+        public void GenerateQuests(int maxTier)
+        {
+            int questsToGenerate = MAX_QUESTS - GetTotalQuestCount();
+
+            for(int i = 0; i < questsToGenerate; i++)
+            {
+                int vorpexReward = RewardGenerator.GetVorpexAmount(maxTier);
+                int questType = _rng.Next(0, 2);
+
+                if(questType == 0)
+                {
+                    BattleQuest battleQuest = new BattleQuest() { VorpexReward = vorpexReward };
+                    battleQuest.GenerateQuest(_rng, maxTier);
+
+                    BattleQuests.Add(battleQuest);
+                }
+                else if(questType == 1)
+                {
+                    PartyQuest partyQuest = new PartyQuest() { VorpexReward = vorpexReward };
+                    partyQuest.GenerateQuest(_rng, maxTier);
+                    
+                    PartyQuests.Add(partyQuest);
+                }
+                else
+                {
+                    throw new Exception("Type of quest not implemented");
+                }
+            }
         }
 
         /// <summary>
@@ -37,7 +72,7 @@ namespace AscendedZ.game_object
         {
             foreach(BattleQuest quest in BattleQuests)
             {
-                if (!quest.Completed && quest.Registered)
+                if (!quest.Completed)
                 {
                     bool isComplete = false;
 
@@ -49,14 +84,14 @@ namespace AscendedZ.game_object
                     if(quest.ReqTurnCount > 0)
                         isComplete = (quest.ReqTurnCount == battleSceneObject.TurnCount);
 
-                    if (quest.MinReqPartySize > 0)
-                        isComplete = (quest.MinReqPartySize == battleSceneObject.Players.Count);
+                    if (quest.ReqPartySize > 0)
+                        isComplete = (quest.ReqPartySize == battleSceneObject.Players.Count);
 
-                    if(quest.RequiredPartyMembers.Count > 0)
+                    if(quest.ReqPartyBaseNames.Count > 0)
                     {
                         foreach(var member in battleSceneObject.Players)
                         {
-                            isComplete = (quest.RequiredPartyMembers.Contains(member.BaseName));
+                            isComplete = (quest.ReqPartyBaseNames.Contains(member.BaseName));
                             if (!isComplete)
                                 break;
                         }
@@ -72,7 +107,7 @@ namespace AscendedZ.game_object
             foreach(PartyQuest partyQuest in PartyQuests)
             {
                 bool isComplete = false;
-                if(!partyQuest.Completed && partyQuest.Registered)
+                if(!partyQuest.Completed)
                 {
                     if (string.IsNullOrEmpty(partyQuest.PartyMemberName))
                         throw new Exception("Must set a party member name as a bare minimum for the quest.");
@@ -100,6 +135,22 @@ namespace AscendedZ.game_object
             }
         }
 
+        public void Remove(int index)
+        {
+            if(index < BattleQuests.Count)
+            {
+                BattleQuests.RemoveAt(index);
+            }
+            else
+            {
+                index -= BattleQuests.Count;
+                if(index < PartyQuests.Count)
+                {
+                    PartyQuests.RemoveAt(index);
+                }
+            }
+        }
+
         public List<Quest> GetQuests()
         {
             List<Quest> quests = new List<Quest>();
@@ -113,20 +164,7 @@ namespace AscendedZ.game_object
 
         public int GetTotalQuestCount()
         {
-            return BattleQuests.Count + PartyQuests.Count;
-        }
-
-        public int GetCompletedQuestCount()
-        {
-            int count = 0;
-
-            foreach(var quest in GetQuests())
-            {
-                if (quest.Completed)
-                    count++;
-            }
-
-            return count;
+            return GetQuests().Count;
         }
     }
 }

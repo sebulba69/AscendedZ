@@ -365,5 +365,37 @@ namespace AscendedZ
 
             return elements;
         }
+    
+        /// <summary>
+        /// Make party members for a battle quest
+        /// </summary>
+        public static List<string> GetAllPartyNamesForBattleQuest(int tier)
+        {
+            List<string> names = new List<string>();
+
+            PopulatePartyNameList(tier, names);
+
+            return names;
+        }
+
+        private static void PopulatePartyNameList(int tier, List<string> names)
+        {
+            int vendorWaresLength = VENDOR_WARES.Length;
+
+            foreach (var list in VENDOR_WARES)
+                names.AddRange(list);
+
+            if (tier >= TierRequirements.FUSE)
+                names.AddRange(CUSTOM_WARES);
+
+            if (tier > TierRequirements.QUESTS_FUSION_MEMBERS)
+                names.AddRange(FUSION1_RESULTS.Values);
+
+            if (tier > TierRequirements.QUESTS_ALL_FUSION_MEMBERS)
+            {
+                names.AddRange(FUSION2_RESULTS.Values);
+            }
+
+        }
     }
 }

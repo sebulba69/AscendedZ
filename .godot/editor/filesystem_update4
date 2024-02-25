@@ -1,9 +1,11 @@
 res://default_env.tres
+res://screens/QuestScreen.tscn
 res://screens/FusionScreen.tscn
 res://screens/UpgradeScreen.tscn
 res://screens/MainScreen.tscn
-res://effects/EffectSprite.tscn
 res://screens/BattleEnemyScene.tscn
+res://screens/MenuScene.tscn
+res://screens/StartScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://effects/DamageNumber.cs
@@ -25,6 +27,7 @@ res://screens/MainScreen.cs
 res://screens/MenuScene.cs
 res://screens/PartyEditScreen.cs
 res://screens/PartyMemberDisplay.cs
+res://screens/QuestScreen.cs
 res://screens/RecruitCustomScreen.cs
 res://screens/RecruitScreen.cs
 res://screens/RecruitScreenTabs.cs
@@ -34,5 +37,3 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://screens/StartScreen.tscn
-res://screens/QuestScreen.tscn

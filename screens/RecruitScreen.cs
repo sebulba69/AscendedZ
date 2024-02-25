@@ -88,11 +88,10 @@ public partial class RecruitScreen : CenterContainer
         if (_vorpex.Amount >= partyMember.ShopCost)
         {
             if (mainPlayer.IsPartyMemberOwned(partyMember.Name))
-            {
                 return;
-            }
 
             _vorpex.Amount -= partyMember.ShopCost;
+
             mainPlayer.ReserveMembers.Add(partyMember);
 
             RefreshVendorWares(_selected);

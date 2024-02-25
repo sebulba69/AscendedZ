@@ -35,10 +35,9 @@ namespace AscendedZ
         {
             List<Currency> rewards = new List<Currency>();
 
-            if (tier >= 6)
+            if (tier > TierRequirements.UPGRADE_SCREEN)
             {
-                int amount = (int)(A * Math.Log(tier - B) + C);
-                rewards.Add(new Vorpex() { Amount = amount });
+                rewards.Add(new Vorpex() { Amount = GetVorpexAmount(tier) });
             }
             else
             {
@@ -46,6 +45,12 @@ namespace AscendedZ
             }
 
             return rewards;
+        }
+
+        public static int GetVorpexAmount(int tier)
+        {
+            int amount = (int)(A * Math.Log(tier - B) + C);
+            return amount;
         }
     }
 }
