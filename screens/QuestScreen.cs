@@ -40,7 +40,6 @@ public partial class QuestScreen : CenterContainer
 		_questList.Clear();
 
 		QuestObject questObject = _gameObject.QuestObject;
-
 		questObject.GenerateQuests(_gameObject.MaxTier);
 
         List<Quest> quests = questObject.GetQuests();

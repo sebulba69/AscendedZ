@@ -1,4 +1,5 @@
 ﻿using AscendedZ.entities.partymember_objects;
+using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,9 +50,17 @@ namespace AscendedZ.game_object.quests
                 var generatedSkills = SkillDatabase.GetAllGeneratableSkills(maxTier);
 
                 int numSkills = rng.Next(1, 3);
+                HashSet<ISkill> noDupeSkills = new HashSet<ISkill>();
                 for(int s = 0; s < numSkills; s++)
                 {
                     var skill = generatedSkills[rng.Next(generatedSkills.Count)];
+                    if (noDupeSkills.Contains(skill))
+                    {
+                        while(noDupeSkills.Contains(skill))
+                            skill = generatedSkills[rng.Next(generatedSkills.Count)];
+                    }
+
+                    noDupeSkills.Add(skill);
                     partyMember.Skills.Add(skill.Clone());
                 }
             }

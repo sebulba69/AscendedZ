@@ -85,7 +85,14 @@ namespace AscendedZ.game_object.quests
             }
 
             if (numBattleChallenges >= 2)
-                partySize = rng.Next(partyBaseNames.Count, 5);
+            {
+                int minPartyNames = partyBaseNames.Count;
+                if (minPartyNames == 1)
+                    minPartyNames++;
+
+                partySize = rng.Next(minPartyNames, 5);
+            }
+                
 
             Tier = tier;
             ReqPartyBaseNames.AddRange(partyBaseNames);
@@ -100,7 +107,7 @@ namespace AscendedZ.game_object.quests
             desc.AppendLine($"Battle Quest ● Tier: {Tier} ● {VorpexReward}");
 
             if (ReqPartyBaseNames.Count > 0)
-                desc.AppendLine($"Req. Party: {string.Join(", ", ReqPartyBaseNames)}");
+                desc.AppendLine($"Req. in Party: {string.Join(", ", ReqPartyBaseNames)}");
 
             if(ReqPartySize > 0)
                 desc.AppendLine($"Req. Party Size: {ReqPartySize}");

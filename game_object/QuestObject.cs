@@ -12,7 +12,7 @@ namespace AscendedZ.game_object
 {
     public class QuestObject
     {
-        private const int MAX_QUESTS = 5;
+        private const int MAX_QUESTS = 10;
         private Random _rng;
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace AscendedZ.game_object
         /// </summary>
         public List<BattleQuest> BattleQuests { get; set; }
 
-        public List<PartyQuest> PartyQuests { get; set; }
+        public List<DeliveryQuest> DeliveryQuests { get; set; }
 
         public QuestObject()
         {
@@ -29,8 +29,8 @@ namespace AscendedZ.game_object
             if (BattleQuests == null)
                 BattleQuests = new List<BattleQuest>();
 
-            if (PartyQuests == null)
-                PartyQuests = new List<PartyQuest>();
+            if (DeliveryQuests == null)
+                DeliveryQuests = new List<DeliveryQuest>();
         }
 
         public void GenerateQuests(int maxTier)
@@ -51,10 +51,10 @@ namespace AscendedZ.game_object
                 }
                 else if(questType == 1)
                 {
-                    PartyQuest partyQuest = new PartyQuest() { VorpexReward = vorpexReward };
+                    DeliveryQuest partyQuest = new DeliveryQuest() { VorpexReward = vorpexReward };
                     partyQuest.GenerateQuest(_rng, maxTier);
                     
-                    PartyQuests.Add(partyQuest);
+                    DeliveryQuests.Add(partyQuest);
                 }
                 else
                 {
@@ -107,7 +107,7 @@ namespace AscendedZ.game_object
 
         public void CheckPartyQuestConditions(List<OverworldEntity> reserves)
         {
-            foreach(PartyQuest partyQuest in PartyQuests)
+            foreach(DeliveryQuest partyQuest in DeliveryQuests)
             {
                 bool isComplete = false;
                 if(!partyQuest.Completed)
@@ -147,9 +147,9 @@ namespace AscendedZ.game_object
             else
             {
                 index -= BattleQuests.Count;
-                if(index < PartyQuests.Count)
+                if(index < DeliveryQuests.Count)
                 {
-                    PartyQuests.RemoveAt(index);
+                    DeliveryQuests.RemoveAt(index);
                 }
             }
         }
@@ -160,7 +160,7 @@ namespace AscendedZ.game_object
 
             quests.AddRange(BattleQuests);
 
-            quests.AddRange(PartyQuests);
+            quests.AddRange(DeliveryQuests);
 
             return quests;
         }
