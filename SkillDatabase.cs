@@ -423,10 +423,10 @@ namespace AscendedZ
                 skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind });
 
             if (tier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE)
-                skills.AddRange(new ISkill[] { Revive1, RemoveVoidWind });
+                skills.AddRange(new ISkill[] { Revive1, RemoveVoidWind, RemoveVoidIce });
 
             if (tier > TierRequirements.QUESTS_ALL_FUSION_MEMBERS)
-                skills.AddRange(new ISkill[] { RemoveWeakElec, RemoveVoidFire, RemoveWeakFire });
+                skills.AddRange(new ISkill[] { RemoveWeakElec, RemoveWeakFire });
 
             return skills;
         }

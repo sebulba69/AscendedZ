@@ -14,6 +14,7 @@ namespace AscendedZ.entities.enemy_objects
     public class Enemy : BattleEntity
     {
         protected bool _isBoss = false;
+        protected bool _isAgroOverride = false;
         public bool IsBoss { get => _isBoss; }
         
         protected Random _rng;
@@ -58,7 +59,11 @@ namespace AscendedZ.entities.enemy_objects
 
         protected BattleEntity GetTargetAffectedByAgro(BattleSceneObject battleSceneObject)
         {
-            return battleSceneObject.AlivePlayers.Find(p => p.StatusHandler.HasStatus(statuses.StatusId.AgroStatus));
+            var agro = battleSceneObject.AlivePlayers.Find(p => p.StatusHandler.HasStatus(statuses.StatusId.AgroStatus));
+
+            _isAgroOverride = (agro != null);
+
+            return agro;
         }
 
         /// <summary>

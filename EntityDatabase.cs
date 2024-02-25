@@ -49,7 +49,9 @@ namespace AscendedZ
         private static readonly List<string> BOSS_ENCOUNTERS = new List<string>
         {
             EnemyNames.Elliot_Onyx,
-            EnemyNames.Sable_Vonner
+            EnemyNames.Sable_Vonner,
+            EnemyNames.Cloven_Umbra,
+            EnemyNames.Ashen_Ash
         };
 
         /// <summary>
@@ -129,7 +131,8 @@ namespace AscendedZ
                 {
                     if (tier % 10 == 0)
                     {
-                        encounterNames.Add(BOSS_ENCOUNTERS[(tier/10) - 1]);
+                        int bossIndex = (tier / 10) - 1;
+                        encounterNames.Add(BOSS_ENCOUNTERS[bossIndex]);
                     }
                     else
                     {
@@ -408,7 +411,29 @@ namespace AscendedZ
             {
                 names.AddRange(FUSION2_RESULTS.Values);
             }
+        }
 
+        public static int GetBossHP(string bossName)
+        {
+            int index = BOSS_ENCOUNTERS.IndexOf(bossName);
+            if (index == -1)
+                throw new Exception("Boss not defined in encounter list");
+
+            // get the boss number
+            index++;
+
+            int baseHP = 50;
+
+            if(index > 2)
+            {
+                double scalingFactor = 0.5;
+
+                return (int)Math.Ceiling((baseHP * index) * (1 + scalingFactor));
+            }
+            else
+            {
+                return baseHP * index;
+            }
         }
     }
 }

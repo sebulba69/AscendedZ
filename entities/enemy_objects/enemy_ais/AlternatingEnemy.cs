@@ -32,8 +32,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             }
         }
 
-        protected bool _isAgroOverride = false;
-
         public AlternatingEnemy() : base()
         {
             Turns = 1;
@@ -45,17 +43,16 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             ISkill skill = Skills[CurrentMove++];
             BattleEntity target;
 
-            List<BattlePlayer> partyMembers = battleSceneObject.AlivePlayers;
-            BattlePlayer agroStatus = partyMembers.Find(player => { return player.StatusHandler.HasStatus(statuses.StatusId.AgroStatus); });
+            BattleEntity agroStatus = GetTargetAffectedByAgro(battleSceneObject);
 
             // someone has the agro status
-            if (agroStatus != null)
+            if (_isAgroOverride)
             {
-                _isAgroOverride = true;
                 target = agroStatus;
             }
             else
             {
+                List<BattlePlayer> partyMembers = battleSceneObject.AlivePlayers;
                 int i = _rng.Next(partyMembers.Count);
                 target = partyMembers[i];
             }

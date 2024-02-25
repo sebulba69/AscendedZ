@@ -39,7 +39,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
 
             Name = EnemyNames.Sable_Vonner;
             Image = CharacterImageAssets.GetImagePath(Name);
-            MaxHP = 100;
+            MaxHP = EntityDatabase.GetBossHP(Name);
             Turns = 3;
 
             Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
