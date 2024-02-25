@@ -171,7 +171,12 @@ public partial class ActionMenu : PanelContainer
         }
         else
         {
-            foreach (var player in _battleSceneObject.AlivePlayers)
+            var playerTargetList = _battleSceneObject.AlivePlayers;
+
+            if (skillTargetType == TargetTypes.SINGLE_TEAM_DEAD)
+                playerTargetList = _battleSceneObject.DeadPlayers;
+
+            foreach (var player in playerTargetList)
                 _actionList.AddItem($"{count++}. {player.Name}", CharacterImageAssets.GetTextureForItemList(player.Image));
         }
 

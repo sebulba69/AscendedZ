@@ -41,7 +41,7 @@ namespace AscendedZ
 
         public static readonly string[] DUNGEON_TRACKS_REAL = 
         { 
-            "res://music/dungeons/dungeon11-19.ogg" ,
+            "res://music/dungeons/dungeon11-19.ogg",
             "res://music/dungeons/dungeon21-29.ogg"
         };
 

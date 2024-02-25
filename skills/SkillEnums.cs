@@ -14,7 +14,7 @@ namespace AscendedZ.skills
     // all opponents, all teammates, single opponent, single teammate
     public enum TargetTypes
     {
-        SINGLE_OPP, SINGLE_TEAM, MULTI_OPP, MULTI_TEAM, SINGLE_TEAM_DEAD
+        SINGLE_OPP, SINGLE_TEAM, SINGLE_TEAM_DEAD
     };
 
     // Elements

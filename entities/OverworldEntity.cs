@@ -144,11 +144,11 @@ namespace AscendedZ.entities.partymember_objects
                     HealSkill healSkill = (HealSkill)Skills[i];
                     if (healSkill.Tier < TIER_CAP)
                     {
-                        Skills[i] = SkillDatabase.GetNextTierOfHealSkill(healSkill.Tier);
+                        Skills[i] = SkillDatabase.GetNextTierOfHealSkill(healSkill.Tier, healSkill.TargetType);
                     }
                     else
                     {
-                        HealSkill newSkill = (HealSkill)SkillDatabase.GetNextTierOfHealSkill(healSkill.Tier).Clone();
+                        HealSkill newSkill = (HealSkill)SkillDatabase.GetNextTierOfHealSkill(healSkill.Tier, healSkill.TargetType).Clone();
                         newSkill.HealAmount += (_ascendedLevel * 2);
                         Skills[i] = newSkill;
                     }

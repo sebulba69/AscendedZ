@@ -44,6 +44,7 @@ namespace AscendedZ.battle
         public TurnState TurnState { get => _turnState; }
         public BattlePlayer ActivePlayer { get => Players.Find(p => p.IsActiveEntity); }
         public List<BattlePlayer> AlivePlayers { get => Players.FindAll(p => p.HP > 0); }
+        public List<BattlePlayer> DeadPlayers { get => Players.FindAll(p => p.HP == 0); }
         public List<Enemy> AliveEnemies { get => Enemies.FindAll(e => e.HP > 0); }
         public int TurnCount { get => _turnCount; }
         public int Tier { get => _tier; }

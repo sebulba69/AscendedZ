@@ -119,21 +119,41 @@ namespace AscendedZ
             }
         }
 
-        public static HealSkill GetNextTierOfHealSkill(int skillTier)
+        public static HealSkill GetNextTierOfHealSkill(int skillTier, TargetTypes targetType)
         {
-            switch (skillTier)
+            if(targetType == TargetTypes.SINGLE_TEAM_DEAD)
             {
-                case 1:
-                    return Heal2;
-                case 2:
-                    return Heal3;
-                case 3:
-                    return Heal4;
-                case 4:
-                    return Heal5;
-                default:
-                    return Heal5;
+                switch (skillTier)
+                {
+                    case 1:
+                        return Revive2;
+                    case 2:
+                        return Revive3;
+                    case 3:
+                        return Revive4;
+                    case 4:
+                        return Revive5;
+                    default:
+                        return Revive5;
+                }
             }
+            else
+            {
+                switch (skillTier)
+                {
+                    case 1:
+                        return Heal2;
+                    case 2:
+                        return Heal3;
+                    case 3:
+                        return Heal4;
+                    case 4:
+                        return Heal5;
+                    default:
+                        return Heal5;
+                }
+            }
+
         }
 
         private static ElementSkill CreateTier1ElementSkill(string name, Elements element)
@@ -300,12 +320,18 @@ namespace AscendedZ
         public static HealSkill Heal4 { get => MakeHealSkill("Regen Z", 30, 4);   }
         public static HealSkill Heal5 { get => MakeHealSkill("Regen ASC", 40, 5); }
 
-        private static HealSkill MakeHealSkill(string name, int amount, int tier)
+        public static HealSkill Revive1 { get => MakeHealSkill("Revive", 5, 1, true); }
+        public static HealSkill Revive2 { get => MakeHealSkill("Revive+", 10, 2, true); }
+        public static HealSkill Revive3 { get => MakeHealSkill("Revive X", 20, 3, true); }
+        public static HealSkill Revive4 { get => MakeHealSkill("Revive Z", 30, 4, true); }
+        public static HealSkill Revive5 { get => MakeHealSkill("Revive ASC", 40, 5, true); }
+
+        private static HealSkill MakeHealSkill(string name, int amount, int tier, bool isRevive = false)
         {
             return new HealSkill()
             {
                 BaseName = name,
-                TargetType = TargetTypes.SINGLE_TEAM,
+                TargetType = (!isRevive) ? TargetTypes.SINGLE_TEAM : TargetTypes.SINGLE_TEAM_DEAD,
                 StartupAnimation = SkillAssets.STARTUP1_MG,
                 EndupAnimation = SkillAssets.HEAL_T1,
                 Icon = SkillAssets.HEAL_ICON,
@@ -347,6 +373,9 @@ namespace AscendedZ
 
             if (tier > TierRequirements.QUESTS)
                 skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind });
+
+            if (tier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE)
+                skills.Add(Revive1);
 
             return skills;
         }
