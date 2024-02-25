@@ -39,7 +39,7 @@ namespace AscendedZ.game_object
 
             for(int i = 0; i < questsToGenerate; i++)
             {
-                int vorpexReward = RewardGenerator.GetVorpexAmount(maxTier);
+                int vorpexReward = RewardGenerator.GetVorpexAmount(maxTier) * 2;
                 int questType = _rng.Next(0, 2);
 
                 if(questType == 0)
@@ -61,6 +61,9 @@ namespace AscendedZ.game_object
                     throw new Exception("Type of quest not implemented");
                 }
             }
+
+            if (questsToGenerate > 0)
+                PersistentGameObjects.Save();
         }
 
         /// <summary>

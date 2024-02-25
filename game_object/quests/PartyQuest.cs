@@ -46,17 +46,47 @@ namespace AscendedZ.game_object.quests
 
             if(partyMember.Skills.Count == 0)
             {
+                var generatedSkills = SkillDatabase.GetAllGeneratableSkills(maxTier);
 
+                int numSkills = rng.Next(1, 3);
+                for(int s = 0; s < numSkills; s++)
+                {
+                    var skill = generatedSkills[rng.Next(generatedSkills.Count)];
+                    partyMember.Skills.Add(skill.Clone());
+                }
             }
 
             for (int level = 0; level < numLevelUps; level++)
+            {
                 partyMember.LevelUp();
+               
+                if (maxTier >= TierRequirements.ASCENSION && partyMember.CanAscend())
+                {
+                    // 40% chance of an ascended party member being required for this quest
+                    if ((rng.Next(1, 101) > 60))
+                    {
+                        int remainder = maxTier % 100;
+                        int tier = maxTier - remainder;
+                        int ascensionTimes = tier / 100;
+                        for (int i = 0; i < ascensionTimes; i++)
+                        {
+                            partyMember.Ascend();
+                        }
+                    }
+                }
+            }
 
             partyMemberFullName = partyMember.DisplayName;
 
             if (numPartyQuestChallenges > 0)
+            {
                 foreach (var skill in partyMember.Skills)
+                {
                     skillBaseNames.Add(skill.BaseName);
+                }   
+            }
+
+
 
             PartyMemberName = partyMemberFullName;
             SkillBaseNames = skillBaseNames;
@@ -66,11 +96,11 @@ namespace AscendedZ.game_object.quests
         {
             StringBuilder desc = new StringBuilder();
 
-            desc.AppendLine($"Party Quest ● {VorpexReward}");
-            desc.AppendLine($"Member: {PartyMemberName}");
+            desc.AppendLine($"Delivery Quest ● {VorpexReward}");
+            desc.AppendLine($"Deliver: {PartyMemberName}");
             if(SkillBaseNames.Count > 0)
             {
-                desc.AppendLine($"Skills: {string.Join(", ", SkillBaseNames)}");
+                desc.AppendLine($"Req. Skills: {string.Join(", ", SkillBaseNames)}");
             }
 
             return desc.ToString();

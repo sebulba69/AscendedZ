@@ -1,11 +1,11 @@
 res://default_env.tres
-res://screens/QuestScreen.tscn
 res://screens/FusionScreen.tscn
 res://screens/UpgradeScreen.tscn
 res://screens/MainScreen.tscn
 res://screens/BattleEnemyScene.tscn
 res://screens/MenuScene.tscn
 res://screens/StartScreen.tscn
+res://screens/QuestScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://effects/DamageNumber.cs

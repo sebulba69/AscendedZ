@@ -61,19 +61,31 @@ namespace AscendedZ.game_object.quests
             if (numBattleChallenges >= 3)
                 turnCount = rng.Next(3, 6);
 
-            if (numBattleChallenges >= 2)
-                partySize = rng.Next(1, 5);
-
             if (numBattleChallenges >= 1)
             {
                 int basePartySize = 4;
                 List<string> battleQuestBaseNames = EntityDatabase.GetAllPartyNamesForBattleQuest(tier);
 
-                int numParty = (partySize > 0) ? partySize : rng.Next(1, basePartySize);
+                int numParty = rng.Next(1, basePartySize);
 
-                for (int p = 0; p < numBattleChallenges; p++)
-                    partyBaseNames.Add(battleQuestBaseNames[rng.Next(battleQuestBaseNames.Count)]);
+                for (int p = 0; p < numParty; p++)
+                {
+                    string baseName = battleQuestBaseNames[rng.Next(battleQuestBaseNames.Count)];
+                    if(!partyBaseNames.Contains(baseName))
+                        partyBaseNames.Add(baseName);
+                    else
+                    {
+                        while(partyBaseNames.Contains(baseName))
+                            baseName = battleQuestBaseNames[rng.Next(battleQuestBaseNames.Count)];
+
+                        partyBaseNames.Add(baseName);
+                    }
+                }
+                    
             }
+
+            if (numBattleChallenges >= 2)
+                partySize = rng.Next(partyBaseNames.Count, 5);
 
             Tier = tier;
             ReqPartyBaseNames.AddRange(partyBaseNames);
@@ -91,10 +103,10 @@ namespace AscendedZ.game_object.quests
                 desc.AppendLine($"Req. Party: {string.Join(", ", ReqPartyBaseNames)}");
 
             if(ReqPartySize > 0)
-                desc.AppendLine($"Party Size: {ReqPartySize}");
-            
-            if(ReqTurnCount > 0)
-                desc.AppendLine($"Turns: {ReqTurnCount}");
+                desc.AppendLine($"Req. Party Size: {ReqPartySize}");
+
+            if (ReqTurnCount > 0)
+                desc.AppendLine($"Max Turns: {ReqTurnCount}");
 
             return desc.ToString();
         }
