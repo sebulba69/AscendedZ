@@ -12,10 +12,11 @@ namespace AscendedZ.game_object.quests
     {
         private List<string> _skillBaseNames;
 
-        /// <summary>
-        /// Party Member Name <-- includes Grade
-        /// </summary>
+        public string DeliveryDisplayString { get; set; }
         public string PartyMemberName { get; set; }
+        public int Grade { get; set; }
+        public int Level { get; set; }
+        public int AscendedLevel { get; set; }
 
         /// <summary>
         /// Challenge 1
@@ -30,12 +31,15 @@ namespace AscendedZ.game_object.quests
 
         public override string GetQuestNameString()
         {
-            return $"[{PartyMemberName}] Delivery Quest";
+            return $"[{DeliveryDisplayString}] Delivery Quest";
         }
 
         public override void GenerateQuest(Random rng, int maxTier)
         {
-            string partyMemberFullName = string.Empty;
+            string partyMemberBaseName = string.Empty;
+            int grade = 0;
+            int partyLevel = 0;
+            int ascendedLevel = 0;
             List<string> skillBaseNames = new List<string>();
             int numPartyQuestChallenges = rng.Next(MaxChallenges + 1);
 
@@ -85,7 +89,10 @@ namespace AscendedZ.game_object.quests
                 }
             }
 
-            partyMemberFullName = partyMember.DisplayName;
+            partyMemberBaseName = partyMember.Name;
+            grade = partyMember.Grade;
+            partyLevel = partyMember.Level;
+            ascendedLevel = partyMember.AscendedLevel;
 
             if (numPartyQuestChallenges > 0)
             {
@@ -95,10 +102,12 @@ namespace AscendedZ.game_object.quests
                 }   
             }
 
-
-
-            PartyMemberName = partyMemberFullName;
+            PartyMemberName = partyMemberBaseName;
+            Level = partyLevel;
+            AscendedLevel = ascendedLevel;
+            Grade = grade;
             SkillBaseNames = skillBaseNames;
+            DeliveryDisplayString = partyMember.DisplayName;
         }
 
         public override string ToString()
@@ -106,7 +115,7 @@ namespace AscendedZ.game_object.quests
             StringBuilder desc = new StringBuilder();
 
             desc.AppendLine($"Delivery Quest ● {VorpexReward}");
-            desc.AppendLine($"Deliver: {PartyMemberName}");
+            desc.AppendLine($"Deliver (min. level): {DeliveryDisplayString}");
             if(SkillBaseNames.Count > 0)
             {
                 desc.AppendLine($"Req. Skills: {string.Join(", ", SkillBaseNames)}");

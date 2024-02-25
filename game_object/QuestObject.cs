@@ -105,40 +105,42 @@ namespace AscendedZ.game_object
             }
         }
 
-        public void CheckPartyQuestConditions(List<OverworldEntity> reserves)
+        public void CheckDeliveryQuestConditions(List<OverworldEntity> reserves)
         {
-            foreach(DeliveryQuest partyQuest in DeliveryQuests)
+            foreach(DeliveryQuest deliveryQuest in DeliveryQuests)
             {
+                if (string.IsNullOrEmpty(deliveryQuest.PartyMemberName))
+                    throw new Exception("Must set a party member name as a bare minimum for the quest.");
+
                 bool isComplete = false;
-                if(!partyQuest.Completed)
+
+                foreach (OverworldEntity reserve in reserves)
                 {
-                    if (string.IsNullOrEmpty(partyQuest.PartyMemberName))
-                        throw new Exception("Must set a party member name as a bare minimum for the quest.");
+                    isComplete =
+                        deliveryQuest.PartyMemberName.Equals(reserve.Name)
+                        && deliveryQuest.Level <= reserve.Level
+                        && deliveryQuest.AscendedLevel <= reserve.AscendedLevel
+                        && deliveryQuest.Grade <= reserve.Grade;
 
-                    foreach(OverworldEntity reserve in reserves)
+                    if (isComplete && deliveryQuest.SkillBaseNames.Count > 0)
                     {
-                        isComplete = (partyQuest.PartyMemberName.Equals(reserve.Name));
-
-                        if (!isComplete)
-                            break;
-
-                        if(partyQuest.SkillBaseNames.Count > 0)
+                        foreach (ISkill skill in reserve.Skills)
                         {
-                            foreach(ISkill skill in reserve.Skills)
-                            {
-                                isComplete = (partyQuest.SkillBaseNames.Contains(skill.BaseName));
-                                if (!isComplete)
-                                    break;
-                            }
+                            isComplete = (deliveryQuest.SkillBaseNames.Contains(skill.BaseName));
+                            if (!isComplete)
+                                break;
                         }
                     }
 
-                    partyQuest.Completed = isComplete;
+                    if (isComplete)
+                        break;
                 }
+
+                deliveryQuest.Completed = isComplete;
             }
         }
 
-        public void Remove(int index)
+        public void Complete(int index)
         {
             if(index < BattleQuests.Count)
             {
@@ -149,6 +151,15 @@ namespace AscendedZ.game_object
                 index -= BattleQuests.Count;
                 if(index < DeliveryQuests.Count)
                 {
+                    var deliveryQuest = DeliveryQuests[index];
+                    var mp = PersistentGameObjects.GameObjectInstance().MainPlayer;
+                    var partyMember = mp.ReserveMembers.Find(p => p.Name.Equals(deliveryQuest.PartyMemberName));
+                    
+                    if(partyMember.IsInParty)
+                        mp.Party.RemovePartyMember(partyMember);
+
+                    mp.ReserveMembers.Remove(partyMember);
+
                     DeliveryQuests.RemoveAt(index);
                 }
             }

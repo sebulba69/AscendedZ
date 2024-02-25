@@ -3,7 +3,9 @@ using AscendedZ.game_object;
 using AscendedZ.game_object.quests;
 using Godot;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 public partial class QuestScreen : CenterContainer
 {
@@ -40,7 +42,8 @@ public partial class QuestScreen : CenterContainer
 		_questList.Clear();
 
 		QuestObject questObject = _gameObject.QuestObject;
-		questObject.GenerateQuests(_gameObject.MaxTier);
+        questObject.GenerateQuests(_gameObject.MaxTier);
+        questObject.CheckDeliveryQuestConditions(_gameObject.MainPlayer.ReserveMembers);
 
         List<Quest> quests = questObject.GetQuests();
 
@@ -49,9 +52,10 @@ public partial class QuestScreen : CenterContainer
 			string name = quest.GetQuestNameString();
 
 			if (quest.Completed)
-				name = $"{name} [COMPLETED]";
-			
-			_questList.AddItem(name);
+			{
+                name = $"{name} [COMPLETED]";
+            }
+            _questList.AddItem(name);
 		}
 
 		if (_selected >= _questList.ItemCount)
@@ -79,7 +83,7 @@ public partial class QuestScreen : CenterContainer
 		{
 			var wallet = _gameObject.MainPlayer.Wallet;
 			wallet.Currency[SkillAssets.VORPEX_ICON].Amount += quest.VorpexReward;
-			questObject.Remove(_selected);
+			questObject.Complete(_selected);
 
 			PopulateQuestList();
 		}
