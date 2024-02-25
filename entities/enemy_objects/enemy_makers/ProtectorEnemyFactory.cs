@@ -66,7 +66,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             {
                 Name = $"[PRCT] {name}",
                 MaxHP = hp,
-                Image = CharacterImageAssets.GetImage(name),
+                Image = CharacterImageAssets.GetImagePath(name),
                 Resistances = new ResistanceArray(),
                 ElementToVoid = elementToVoid
             };

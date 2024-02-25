@@ -19,7 +19,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 new StatusAttackEnemyFactory(),
                 new WeaknessHunterEnemyFactory(),
                 new ProtectorEnemyFactory(),
-                new BuffEnemyFactory()
+                new BuffEnemyFactory(),
+                new ResistanceChangerEnemyFactory(),
+                new CopyCatEnemyFactory()
             };
         }
 

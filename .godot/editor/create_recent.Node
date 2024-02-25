@@ -1,3 +1,4 @@
+Label
 VBoxContainer
 ItemList
 PanelContainer
@@ -5,7 +6,6 @@ HBoxContainer
 RichTextLabel
 Button
 CenterContainer
-Label
 Control
 Panel
 TabContainer

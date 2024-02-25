@@ -26,10 +26,29 @@ public partial class QuestScreen : CenterContainer
 		{ 
 			_selected = (int)selected;
             DisplaySelected();
+            PopulateQuestList();
         };
 
-		Button completeButton = this.GetNode<Button>("%CompleteButton");
+		_questList.ItemClicked += (index, at_position, mouse_button_index) =>
+		{
+			if (mouse_button_index == (long)MouseButton.Right)
+			{
+				var quest = _gameObject.QuestObject.GetQuests()[(int)index];
+				quest.Save = !quest.Save;
+				PopulateQuestList();
+			}
+		};
+
+        Button completeButton = this.GetNode<Button>("%CompleteButton");
 		completeButton.Pressed += _OnQuestCompleteButtonPressed;
+
+		Button rerollButton = this.GetNode<Button>("%ReRollButton");
+		rerollButton.Pressed += () => 
+		{
+            QuestObject questObject = _gameObject.QuestObject;
+			questObject.Clear();
+			PopulateQuestList();
+        };
 
         Button backButton = this.GetNode<Button>("%BackButton");
 		backButton.Pressed += () => { this.QueueFree(); };
@@ -55,7 +74,13 @@ public partial class QuestScreen : CenterContainer
 			{
                 name = $"{name} [COMPLETED]";
             }
-            _questList.AddItem(name);
+
+			if (quest.Save)
+			{
+				name = $"{name} [SAVED]";
+			}
+
+            _questList.AddItem(name, quest.GetIcon());
 		}
 
 		if (_selected >= _questList.ItemCount)

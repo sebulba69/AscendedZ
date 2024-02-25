@@ -72,7 +72,7 @@ namespace AscendedZ.skills
 
         public string GetAscendedString(int ascendedLevel)
         {
-            HealSkill newSkill = (HealSkill)SkillDatabase.GetNextTierOfHealSkill(this.Tier).Clone();
+            HealSkill newSkill = (HealSkill)SkillDatabase.GetNextTierOfHealSkill(this.Tier, this.TargetType).Clone();
 
             if (Tier >= 5)
                 newSkill.HealAmount += (ascendedLevel * 2);

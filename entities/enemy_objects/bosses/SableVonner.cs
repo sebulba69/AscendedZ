@@ -38,7 +38,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             _phase = 0;
 
             Name = EnemyNames.Sable_Vonner;
-            Image = CharacterImageAssets.GetImage(Name);
+            Image = CharacterImageAssets.GetImagePath(Name);
             MaxHP = 100;
             Turns = 3;
 
@@ -98,6 +98,10 @@ namespace AscendedZ.entities.enemy_objects.bosses
                     action = GetNextAction(battleSceneObject);
                     break;
             }
+
+            var agro = GetTargetAffectedByAgro(battleSceneObject);
+            if (agro != null && action.Skill.TargetType == TargetTypes.SINGLE_OPP)
+                action.Target = agro;
 
             _phase++;
             return action;

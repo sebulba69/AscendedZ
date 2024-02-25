@@ -60,6 +60,13 @@ namespace AscendedZ.entities
             }
         }
 
+        public void RemoveStatus(BattleEntity entity, Status status)
+        {
+            var s = GetStatus(status.Id);
+            if (s != null)
+                _statuses.Remove(s);
+        }
+
         public void ApplyBattleResult(BattleResult result)
         {
             List<Status> removeStatus = new List<Status>();

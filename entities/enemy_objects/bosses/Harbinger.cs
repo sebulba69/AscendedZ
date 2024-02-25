@@ -34,7 +34,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Name = EnemyNames.Harbinger;
 
             MaxHP = 30;
-            Image = CharacterImageAssets.GetImage(Name);
+            Image = CharacterImageAssets.GetImagePath(Name);
 
             Resistances = new ResistanceArray();
 

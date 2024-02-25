@@ -1,5 +1,6 @@
 ﻿using AscendedZ.entities.partymember_objects;
 using AscendedZ.skills;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,17 @@ namespace AscendedZ.game_object.quests
         {
             _maxChallenges = 1;
             _skillBaseNames = new List<string>();
+        }
+
+        public override Texture2D GetIcon()
+        {
+            if (!string.IsNullOrEmpty(PartyMemberName))
+            {
+                string imagePath = CharacterImageAssets.GetImagePath(PartyMemberName);
+                return CharacterImageAssets.GetTextureForItemList(imagePath);
+            } 
+            else
+                return base.GetIcon();
         }
 
         public override string GetQuestNameString()

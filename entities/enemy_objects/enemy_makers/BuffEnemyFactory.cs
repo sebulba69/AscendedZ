@@ -73,7 +73,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             {
                 Name = $"[BUFF] {name}",
                 MaxHP = hp,
-                Image = CharacterImageAssets.GetImage(name),
+                Image = CharacterImageAssets.GetImagePath(name),
                 Resistances = new ResistanceArray()
             };
         }

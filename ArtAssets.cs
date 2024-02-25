@@ -88,7 +88,7 @@ namespace AscendedZ
             }
         }
 
-        public static string GetImage(string name)
+        public static string GetImagePath(string name)
         {
             string nameToLower = name.ToLower();
             return $"{IMAGE_DIR}{nameToLower}.png";
@@ -166,6 +166,8 @@ namespace AscendedZ
 
         public static readonly string MAGIC_ICON = "Magic";
 
+        public static readonly string QUEST_ICON = "Quest";
+
         // Currency Icons
         public static readonly string VORPEX_ICON = "Vorpex";
         public static readonly string UPGRADESHARD_ICON = "Upgrade Shard";
@@ -190,8 +192,8 @@ namespace AscendedZ
             [UPGRADESHARD_ICON] = new KeyValuePair<int, int>(320, 1440),
             [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
             [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600),
+            [QUEST_ICON] = new KeyValuePair<int, int>(480, 352),
             [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480)
-            
         };
 
         public static KeyValuePair<int, int> GetIcon(string key)

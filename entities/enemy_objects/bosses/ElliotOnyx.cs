@@ -28,7 +28,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             _isBoss = true;
 
             Name = EnemyNames.Elliot_Onyx;
-            Image = CharacterImageAssets.GetImage(Name);
+            Image = CharacterImageAssets.GetImagePath(Name);
             MaxHP = 50;
             Turns = 3;
 

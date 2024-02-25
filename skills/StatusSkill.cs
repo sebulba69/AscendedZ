@@ -13,6 +13,8 @@ namespace AscendedZ.skills
 {
     public class StatusSkill : ISkill
     {
+        private bool _isRemoveStatusSkill = false;
+
         public SkillId Id => SkillId.Status;
         public string BaseName { get; set; }
         public TargetTypes TargetType { get; set; }
@@ -22,6 +24,7 @@ namespace AscendedZ.skills
         public int Level { get; set; }
         public Status Status { get; set; }
         public string Name => BaseName;
+        public bool IsRemoveStatusSkill { get => _isRemoveStatusSkill; set => _isRemoveStatusSkill = value; }
 
         public StatusSkill()
         {
@@ -34,12 +37,20 @@ namespace AscendedZ.skills
             {
                 SkillUsed = this,
                 Target = target,
-                ResultType = BattleResultType.StatusApplied
+                ResultType = (!IsRemoveStatusSkill) ? BattleResultType.StatusApplied : BattleResultType.StatusRemoved
             };
 
-            target.StatusHandler.AddStatus(target, this.Status);
-
-            result.Log.Append($"{target.GetLogName()} now has the status: [color=yellow]{Status.Name}[/color] ● {this.Status.CreateIconWrapper().Description}");
+            if (!IsRemoveStatusSkill)
+            {
+                target.StatusHandler.AddStatus(target, this.Status);
+                result.Log.Append($"{target.GetLogName()} now has the status: [color=yellow]{Status.Name}[/color] ● {this.Status.CreateIconWrapper().Description}");
+            }
+            else 
+            {
+                target.StatusHandler.RemoveStatus(target, this.Status);
+                result.Log.Append($"{target.GetLogName()} no longer has the status: [color=yellow]{Status.Name}[/color]");
+            }
+                
             return result;
         }
 
@@ -76,7 +87,8 @@ namespace AscendedZ.skills
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon,
-                Status = this.Status.Clone()
+                Status = this.Status.Clone(),
+                IsRemoveStatusSkill = this.IsRemoveStatusSkill
             };
         }
     }

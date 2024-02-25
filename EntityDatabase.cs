@@ -34,16 +34,6 @@ namespace AscendedZ
 
         private static EnemyMaker _enemyMaker = new EnemyMaker();
 
-        /// <summary>
-        /// Initial list of random encounters to be expanded on during generation.
-        /// </summary>
-        private static readonly List<string> RANDOM_ENEMIES = new List<string>
-        {
-            EnemyNames.Liamlas, EnemyNames.Fastrobren,
-            EnemyNames.Thylaf, EnemyNames.Arwig, EnemyNames.Riccman,
-            EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald
-        };
-
         private static readonly List<string>[] TUTORIAL_ENCOUNTERS = new List<string>[]
         {
             new List<string>(){ EnemyNames.Conlen },
@@ -144,22 +134,45 @@ namespace AscendedZ
                     else
                     {
                         // use RANDOM_ENEMIES as a base
-                        List<string> possibleEncounters = new List<string>(RANDOM_ENEMIES);
+                        List<string> possibleEncounters = new List<string>();
+
+                        string[] randomEncounters = new string[] 
+                        {
+                            EnemyNames.Liamlas, EnemyNames.Fastrobren,
+                            EnemyNames.Thylaf, EnemyNames.Arwig, EnemyNames.Riccman,
+                            EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald 
+                        };
+                        
+                        possibleEncounters.AddRange(randomEncounters);
 
                         int minEncounters = 2;
                         int maxEncounters = 4;
 
                         // new encounters available past certain tiers
-                        if(tier > 10)
+                        if(tier > TierRequirements.TIER2_STRONGER_ENEMIES)
                         {
                             possibleEncounters.AddRange(new string[] { EnemyNames.Ed, EnemyNames.Otem, EnemyNames.Hesret });
                             maxEncounters = 6;
                         }
 
-                        if(tier > 15)
+                        if(tier > TierRequirements.TIER3_STRONGER_ENEMIES)
                         {
                             possibleEncounters.AddRange(new string[] { EnemyNames.Nanfrea, EnemyNames.Ferza, EnemyNames.Anrol, EnemyNames.David });
                             minEncounters = 3;
+                        }
+
+                        if (tier > TierRequirements.TIER4_STRONGER_ENEMIES)
+                        {
+                            possibleEncounters.RemoveRange(0, 2);
+                            possibleEncounters.AddRange(new string[] 
+                            {
+                                EnemyNames.Fledan,
+                                EnemyNames.Walds,
+                                EnemyNames.Naldbear,
+                                EnemyNames.Stroma_Hele,
+                                EnemyNames.Thony,
+                                EnemyNames.Conson
+                            });
                         }
 
                         int numEnemies = RANDOM.Next(minEncounters, maxEncounters);

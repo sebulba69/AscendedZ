@@ -26,7 +26,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         {
             Name = EnemyNames.CattuTDroni;
             MaxHP = 8;
-            Image = CharacterImageAssets.GetImage(Name);
+            Image = CharacterImageAssets.GetImagePath(Name);
             Resistances = new ResistanceArray();
 
             Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);

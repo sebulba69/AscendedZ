@@ -204,7 +204,7 @@ namespace AscendedZ.entities.partymember_objects
             return new OverworldEntity
             {
                 Name = name,
-                Image = CharacterImageAssets.GetImage(name),
+                Image = CharacterImageAssets.GetImagePath(name),
                 MaxHP = 10
             };
         }

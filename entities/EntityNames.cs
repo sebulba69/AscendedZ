@@ -46,6 +46,10 @@ namespace AscendedZ.entities
         public static readonly string CattuTDroni = "Cattu T'Droni";
 
         // Enemies (Randomized for Floors)
+        // alternate enemies (no weakness)
+        public static readonly string Fledan = "Fledan";
+        public static readonly string Walds = "Walds";
+
         // agro - status
         public static readonly string Thylaf = "Thylaf"; // elec
         public static readonly string Arwig = "Arwig"; // ice
@@ -55,6 +59,14 @@ namespace AscendedZ.entities
         public static readonly string Isenald = "Isenald"; // light
         public static readonly string Gardmuel = "Gardmuel"; // dark
         public static readonly string Sachael = "Sachael"; // fire
+
+        // copy cats
+        public static readonly string Naldbear = "Naldbear"; // elec
+        public static readonly string Stroma_Hele = "Stroma Hele"; // fire
+
+        // resistance changers
+        public static readonly string Thony = "Thony"; // Ice --> Fire
+        public static readonly string Conson = "Conson"; // Light --> Dark
 
         // protector enemies
         public static readonly string Ed = "Ed"; // protects fire
@@ -71,8 +83,9 @@ namespace AscendedZ.entities
         public static readonly string Harbinger = "Harbinger, Mangler of Legs";
         public static readonly string Elliot_Onyx = "Elliot Onyx";
         public static readonly string Sable_Vonner = "Sable Vonner";
+        public static readonly string Cloven_Umbra = "Cloven Umbra";
+        public static readonly string Ashen_Ash = "Ashen Ash";
 
-        // Boss (Sigil)
-        // tbd
+        
     }
 }

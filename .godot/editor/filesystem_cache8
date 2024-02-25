@@ -1,9 +1,9 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1708878476
+::res://::1708886771
 ArtAssets.cs::CSharpScript::-1::1708390978::0::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1682824299::0::1::::<><>::
 Controls.cs::CSharpScript::-1::1706675353::0::1::::<><>::
-default_env.tres::Environment::5723441312748911875::1708878476::0::1::::<><>::
+default_env.tres::Environment::5723441312748911875::1708879758::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1682922048::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1708811394::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1707602595::0::1::::<><>::
@@ -19,7 +19,7 @@ SfxAssets.cs::CSharpScript::-1::1708877400::0::1::::<><>::
 SkillDatabase.cs::CSharpScript::-1::1708818590::0::1::::<><>::
 TextboxEditTheme.tres::Theme::-1::1678052884::0::1::::<><>::
 TierRequirements.cs::CSharpScript::-1::1708841836::0::1::::<><>::
-::res://battle/::1708578814
+::res://battle/::1708881816
 BattleEffectWrapper.cs::CSharpScript::-1::1682214319::0::1::::<>Object<>::
 BattleResult.cs::CSharpScript::-1::1707715027::0::1::::<><>::
 BattleSceneObject.cs::CSharpScript::-1::1708578814::0::1::::<><>::
@@ -49,11 +49,11 @@ Wallet.cs::CSharpScript::-1::1683085643::0::1::::<><>::
 ::res://currency/rewards/::1708372171
 UpgradeShard.cs::CSharpScript::-1::1708372171::0::1::::<><>::
 Vorpex.cs::CSharpScript::-1::1706675353::0::1::::<><>::
-::res://effects/::1708878476
+::res://effects/::1708879791
 DamageNumber.cs::CSharpScript::-1::1678768314::0::1::::<>Label<>::
 DamageNumber.tscn::PackedScene::6894463550722434897::1683002911::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://effects/DamageNumber.cs
-EffectAnimation.cs::CSharpScript::-1::1708877285::0::1::::<>Sprite2D<>::
-EffectSprite.tscn::PackedScene::1398265052276628590::1708878476::0::1::::<><>::uid://bi5km2q63knnj::::res://effects/effect_art/Thunder1.png<>uid://cigcwx3bdhdcg::::res://effects/effect_art/StateSleep.png<>uid://c8su2xowwlivt::::res://effects/effect_art/Fire1.png<>uid://bvn1uocyp81kf::::res://effects/effect_art/StateUp1.png<>uid://cunxbll7thl8o::::res://effects/effect_art/Light1.png<>uid://6f7xcnuk7geu::::res://effects/effect_art/Cure4.png<>uid://urhjqhis73gp::::res://effects/effect_art/StateParalys.png<>uid://relkpnc32hm1::::res://effects/effect_art/Magic1.png<>uid://b04xvtb1djnnr::::res://effects/effect_art/Ice1.png<>uid://cf5sh7sexcjo3::::res://effects/effect_art/Darkness3.png<>res://effects/EffectAnimation.cs<>uid://cnj3rxq0uollk::::res://effects/effect_art/Wind3.png<>uid://ctxhhwsdetox6::::res://effects/effect_sounds/wind_1.ogg<>uid://ds1ydgdbv8ws7::::res://effects/effect_sounds/Recovery.ogg<>uid://brl1x0kmmxjre::::res://effects/effect_sounds/Fire1.ogg<>uid://dj3hlyjocwk50::::res://effects/effect_sounds/Thunder1.ogg<>uid://cfoiums6df8kk::::res://effects/effect_sounds/Ice2.ogg<>uid://dckydyoi5rivs::::res://effects/effect_sounds/Magic4.ogg<>uid://danllis01dsb6::::res://effects/effect_sounds/Paralyze3.ogg<>uid://bd6ue8iwjaduk::::res://effects/effect_sounds/Heal3.ogg<>uid://ctaljp7xoykm0::::res://effects/effect_art/Wind2.png<>uid://cwy8uyqbrswsp::::res://effects/effect_sounds/Wind2.ogg<>uid://dxo0kfg4wmyw8::::res://effects/effect_sounds/Wind5.ogg<>uid://dnqh17p0b7rvf::::res://effects/effect_art/Wind5.png<>uid://2wocacuf66od::::res://effects/effect_art/Fire2.png<>uid://doxsgmh11yy3y::::res://effects/effect_sounds/Fire2.ogg<>uid://d37o5jq0i5i3w::::res://effects/effect_art/Fire3.png<>uid://c0d5hkj64j4dp::::res://effects/effect_sounds/Fire3.ogg<>uid://dyc66vqykguxl::::res://effects/effect_art/DarknessT2.png<>uid://cwjalr8ijfpih::::res://effects/effect_sounds/Darkness1.ogg<>uid://cvpd6rgv2xp2e::::res://effects/effect_art/DarknessT3.png<>uid://dep8nm2hwh2fy::::res://effects/effect_sounds/Magic2.ogg<>uid://b0vv4n2a71740::::res://effects/effect_art/Thunder2.png<>uid://bnent8gfbmas6::::res://effects/effect_sounds/Thunder2.ogg<>uid://bmjamt81ekpbw::::res://effects/effect_art/Thunder3.png<>uid://dbjsbogn5l2vo::::res://effects/effect_sounds/Thunder3.ogg<>uid://dkf1irm3apj1f::::res://effects/effect_art/Ice2.png<>uid://lbtl7mixod52::::res://effects/effect_sounds/Ice3.ogg<>uid://dnhra7s0n80vc::::res://effects/effect_art/Ice3.png<>uid://nbs3cmub1bgg::::res://effects/effect_sounds/Ice4.ogg<>uid://0ko0bewylavk::::res://effects/effect_art/Light2.png<>uid://8vh38yhh1idq::::res://effects/effect_art/Light4.png<>uid://ci3c10p0f2xbi::::res://effects/effect_sounds/Skill3.ogg
+EffectAnimation.cs::CSharpScript::-1::1708879791::0::1::::<>Sprite2D<>::
+EffectSprite.tscn::PackedScene::1398265052276628590::1708879758::0::1::::<><>::uid://bi5km2q63knnj::::res://effects/effect_art/Thunder1.png<>uid://cigcwx3bdhdcg::::res://effects/effect_art/StateSleep.png<>uid://c8su2xowwlivt::::res://effects/effect_art/Fire1.png<>uid://bvn1uocyp81kf::::res://effects/effect_art/StateUp1.png<>uid://cunxbll7thl8o::::res://effects/effect_art/Light1.png<>uid://6f7xcnuk7geu::::res://effects/effect_art/Cure4.png<>uid://urhjqhis73gp::::res://effects/effect_art/StateParalys.png<>uid://relkpnc32hm1::::res://effects/effect_art/Magic1.png<>uid://b04xvtb1djnnr::::res://effects/effect_art/Ice1.png<>uid://cf5sh7sexcjo3::::res://effects/effect_art/Darkness3.png<>res://effects/EffectAnimation.cs<>uid://cnj3rxq0uollk::::res://effects/effect_art/Wind3.png<>uid://ctaljp7xoykm0::::res://effects/effect_art/Wind2.png<>uid://dxo0kfg4wmyw8::::res://effects/effect_sounds/Wind5.ogg<>uid://dnqh17p0b7rvf::::res://effects/effect_art/Wind5.png<>uid://2wocacuf66od::::res://effects/effect_art/Fire2.png<>uid://d37o5jq0i5i3w::::res://effects/effect_art/Fire3.png<>uid://dyc66vqykguxl::::res://effects/effect_art/DarknessT2.png<>uid://cvpd6rgv2xp2e::::res://effects/effect_art/DarknessT3.png<>uid://b0vv4n2a71740::::res://effects/effect_art/Thunder2.png<>uid://bmjamt81ekpbw::::res://effects/effect_art/Thunder3.png<>uid://dkf1irm3apj1f::::res://effects/effect_art/Ice2.png<>uid://dnhra7s0n80vc::::res://effects/effect_art/Ice3.png<>uid://0ko0bewylavk::::res://effects/effect_art/Light2.png<>uid://8vh38yhh1idq::::res://effects/effect_art/Light4.png
 ShakeParameters.cs::CSharpScript::-1::1678666158::0::1::::<><>::
 ::res://effects/effect_art/::1708388558
 Cure4.png::CompressedTexture2D::2188160184630136596::1682214319::1682214319::1::::<><>::
@@ -79,7 +79,7 @@ Thunder3.png::CompressedTexture2D::3247288686772161668::1545397855::1708386949::
 Wind2.png::CompressedTexture2D::6107114193923064793::1545397935::1708385291::1::::<><>::
 Wind3.png::CompressedTexture2D::5705607402678104956::1678596549::1678654067::1::::<><>::
 Wind5.png::CompressedTexture2D::8105220217087344003::1545397855::1708385291::1::::<><>::
-::res://effects/effect_sounds/::1708878731
+::res://effects/effect_sounds/::1708878735
 Attack2.ogg::AudioStreamOggVorbis::7250006237762123895::1678679993::1708876208::1::::<><>::
 Damage4.ogg::AudioStreamOggVorbis::8892683469320307343::1545397925::1708876219::1::::<><>::
 Darkness1.ogg::AudioStreamOggVorbis::6335595915193629131::1545397913::1708876219::1::::<><>::
@@ -109,7 +109,7 @@ Up1.ogg::AudioStreamOggVorbis::4801578401146985132::1678653646::1708876219::1:::
 Wind2.ogg::AudioStreamOggVorbis::6368581655505901195::1545397941::1708876219::1::::<><>::
 Wind5.ogg::AudioStreamOggVorbis::8804042799302199501::1545397964::1708876219::1::::<><>::
 wind_1.ogg::AudioStreamOggVorbis::6154348787821489821::1545397963::1708876219::1::::<><>::
-::res://entities/::1708818602
+::res://entities/::1708889692
 BattleEntity.cs::CSharpScript::-1::1708578980::0::1::::<><>::
 BattleEntityStatuses.cs::CSharpScript::-1::1707586735::0::1::::<><>::
 BossHPStatus.cs::CSharpScript::-1::1707594511::0::1::::<><>::
@@ -145,7 +145,7 @@ WeaknessHunterEnemyFactory.cs::CSharpScript::-1::1707080196::0::1::::<><>::
 ::res://entities/partymember_objects/::1708813441
 PartyMemberGenerator.cs::CSharpScript::-1::1708813441::0::1::::<><>::
 PlayerParty.cs::CSharpScript::-1::1708368905::0::1::::<><>::
-::res://entity_pics/::1708298642
+::res://entity_pics/::1708890287
 ancrow.png::CompressedTexture2D::7722478497495348412::1570643153::1708235402::1::::<><>::
 andmond.png::CompressedTexture2D::7960652545697299118::1706675353::1706675353::1::::<><>::
 anrol.png::CompressedTexture2D::6555894014342134010::1485180077::1707186365::1::::<><>::
@@ -163,6 +163,7 @@ eri.png::CompressedTexture2D::5575547035525996658::1485285427::1708235402::1::::
 everever.png::CompressedTexture2D::4853236836193035245::1486852048::1708235402::1::::<><>::
 fastrobren.png::CompressedTexture2D::359074160592275104::1706675354::1706675354::1::::<><>::
 ferza.png::CompressedTexture2D::129822814130035065::1486409785::1707186365::1::::<><>::
+fledan.png::CompressedTexture2D::2530422151306146681::1486039613::1708890293::1::::<><>::
 fledron.png::CompressedTexture2D::7254424692413091731::1485993781::1708297521::1::::<><>::
 gagar.png::CompressedTexture2D::875632849312011820::1706675354::1706675354::1::::<><>::
 gardmuel.png::CompressedTexture2D::4943922391369586854::1706675354::1706675354::1::::<><>::
@@ -175,6 +176,7 @@ liamlas.png::CompressedTexture2D::4683094375901055914::1706675354::1706675354::1
 locphiedon.png::CompressedTexture2D::7172990150909537536::1706675354::1706675354::1::::<><>::
 marchris.png::CompressedTexture2D::9189376015871177880::1486854511::1708235402::1::::<><>::
 maxwald.png::CompressedTexture2D::4374247954209951318::1706675354::1706675354::1::::<><>::
+naldbear.png::CompressedTexture2D::547749907767930896::1486854195::1708890293::1::::<><>::
 nanfrea.png::CompressedTexture2D::8574490269982003724::1570642766::1707187318::1::::<><>::
 orahcar.png::CompressedTexture2D::7319526180349330092::1706675354::1706675354::1::::<><>::
 otem.png::CompressedTexture2D::8781407872161088052::1571026150::1707079669::1::::<><>::
@@ -184,10 +186,13 @@ riccman.png::CompressedTexture2D::4084168144607829946::1706675354::1706675354::1
 sable vonner.png::CompressedTexture2D::3880267892969290431::1570645098::1707190545::1::::<><>::
 sachael.png::CompressedTexture2D::3446259022563123811::1706675354::1706675354::1::::<><>::
 samlin.png::CompressedTexture2D::600265952847894750::1570644139::1708235402::1::::<><>::
+stroma hele.png::CompressedTexture2D::6294881810882259566::1487979292::1708890293::1::::<><>::
+thony.png::CompressedTexture2D::3734001313748443728::1487822912::1708890293::1::::<><>::
 thryth.png::CompressedTexture2D::7038938620256576306::1486856001::1708298642::1::::<><>::
 thylaf.png::CompressedTexture2D::6597255792199536487::1706675354::1706675354::1::::<><>::
 toke.png::CompressedTexture2D::1271874564559622851::1706675354::1706675354::1::::<><>::
 tyhere.png::CompressedTexture2D::8589846159106419579::1706675354::1706675354::1::::<><>::
+walds.png::CompressedTexture2D::6924910645951167955::1487195880::1708890293::1::::<><>::
 winegiful.png::CompressedTexture2D::8876467144239864490::1486302609::1708297561::1::::<><>::
 yuudam.png::CompressedTexture2D::7364819835394886078::1706675354::1706675354::1::::<><>::
 ::res://fonts/::1706675354
@@ -203,7 +208,7 @@ SaveObject.cs::CSharpScript::-1::1706675354::0::1::::<><>::
 BattleQuest.cs::CSharpScript::-1::1708876131::0::1::::<><>::
 DeliveryQuest.cs::CSharpScript::-1::1708846168::0::1::::<><>::
 Quest.cs::CSharpScript::-1::1708847537::0::1::::<><>::
-::res://json_interface_converters/::1682214319
+::res://json_interface_converters/::1708881747
 SkillConverter.cs::CSharpScript::-1::1682214319::0::1::::<><>::
 ::res://misc_icons/::1708389814
 CurrencyDisplay.cs::CSharpScript::-1::1707193258::0::1::::<>GridContainer<>::
@@ -250,7 +255,7 @@ BarV5_ProgressBarBorder.png::CompressedTexture2D::6286064946586930276::167809051
 ::res://resistances/::1708308617
 ResistanceArray.cs::CSharpScript::-1::1708308617::0::1::::<><>::
 ResistanceType.cs::CSharpScript::-1::1678052884::0::1::::<><>::
-::res://screens/::1708877096
+::res://screens/::1708882099
 ActionMenu.cs::CSharpScript::-1::1707970291::0::1::::<>PanelContainer<>::
 APBarStyleBox.tres::StyleBoxFlat::184845878767122209::1707005748::0::1::::<><>::
 AscendedDialogBox.cs::CSharpScript::-1::1679185004::0::1::::<>TextEdit<>::
@@ -270,11 +275,11 @@ EmbarkScreen.tscn::PackedScene::5088382436635843146::1708297580::0::1::::<><>::u
 EnemyBattleDisplayBox.tscn::PackedScene::2394513529241208590::1707966781::0::1::::<><>::res://screens/EntityDisplayBox.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://t6lhru8f8fr7::::res://effects/EffectSprite.tscn<>uid://rc2e70qmjetc::::res://progressbar_assets/BarV5_Bar.png<>uid://ead6ckayi3d::::res://progressbar_assets/BarV5_ProgressBar.png<>uid://cvtatom8ub0ma::::res://progressbar_assets/BarV5_ProgressBarBorder.png<>uid://dyxxgykvs4hrj::::res://effects/effect_sounds/Damage4.ogg
 EntityDisplayBox.cs::CSharpScript::-1::1707797342::0::1::::<>PanelContainer<>::
 FusionScreen.cs::CSharpScript::-1::1708391514::0::1::::<>CenterContainer<>::
-FusionScreen.tscn::PackedScene::4030871583203600894::1708877049::0::1::::<><>::uid://b5e2ob3gqma0a::::res://screens/PartyMemberDisplay.tscn<>res://screens/FusionScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
+FusionScreen.tscn::PackedScene::4030871583203600894::1708879758::0::1::::<><>::uid://b5e2ob3gqma0a::::res://screens/PartyMemberDisplay.tscn<>res://screens/FusionScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 MainScreen.cs::CSharpScript::-1::1708809906::0::1::::<>Node2D<>::
-MainScreen.tscn::PackedScene::3430306132852122212::1708877049::0::1::::<><>::uid://djlrnr8rpcbxa::::res://cg_backgrounds/bg00501.jpg<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/MainScreen.cs
+MainScreen.tscn::PackedScene::3430306132852122212::1708879758::0::1::::<><>::uid://djlrnr8rpcbxa::::res://cg_backgrounds/bg00501.jpg<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/MainScreen.cs
 MenuScene.cs::CSharpScript::-1::1706675360::0::1::::<>CenterContainer<>::
-MenuScene.tscn::PackedScene::998238411540788364::1708877050::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/MenuScene.cs
+MenuScene.tscn::PackedScene::998238411540788364::1708879758::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/MenuScene.cs
 PartyBattleDisplayBox.tscn::PackedScene::7168620978467356148::1708297580::0::1::::<><>::res://screens/EntityDisplayBox.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://wa3vhq2cq4uw::::res://screens/arrows/current_arrow.png<>uid://t6lhru8f8fr7::::res://effects/EffectSprite.tscn<>uid://bs4gg4uakqucs::::res://progressbar_assets/BarV1_Bar.png<>uid://dlog1wys3kq6a::::res://entity_pics/andmond.png<>uid://cgmiottbplblf::::res://progressbar_assets/BarV1_ProgressBarBorder.png<>uid://dlc6ggeck3ft3::::res://progressbar_assets/BarV1_ProgressBar.png<>uid://dyxxgykvs4hrj::::res://effects/effect_sounds/Damage4.ogg
 PartyEditScreen.cs::CSharpScript::-1::1708368981::0::1::::<>HBoxContainer<>::
 PartyEditScreen.tscn::PackedScene::8755142622619047713::1708297580::0::1::::<><>::res://screens/PartyEditScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://b5e2ob3gqma0a::::res://screens/PartyMemberDisplay.tscn
@@ -282,7 +287,7 @@ PartyMemberDisplay.cs::CSharpScript::-1::1708391496::0::1::::<>HBoxContainer<>::
 PartyMemberDisplay.tscn::PackedScene::4502007959842014962::1708405759::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/PartyMemberDisplay.cs
 PopupWindow.tscn::PackedScene::216596305665157802::1706675360::0::1::::<><>::res://screens/AscendedYesNoWindow.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 QuestScreen.cs::CSharpScript::-1::1708847543::0::1::::<>CenterContainer<>::
-QuestScreen.tscn::PackedScene::2186374000741578944::1708877050::0::1::::<><>::res://screens/QuestScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
+QuestScreen.tscn::PackedScene::2186374000741578944::1708879758::0::1::::<><>::res://screens/QuestScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 RecruitCustomScreen.cs::CSharpScript::-1::1708296663::0::1::::<>CenterContainer<>::
 RecruitCustomScreen.tscn::PackedScene::6239557954331749095::1707701223::0::1::::<><>::res://screens/RecruitCustomScreen.cs<>uid://b5e2ob3gqma0a::::res://screens/PartyMemberDisplay.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
 RecruitScreen.cs::CSharpScript::-1::1708810274::0::1::::<>CenterContainer<>::
@@ -293,9 +298,9 @@ RecruitScreenTabs.tscn::PackedScene::7974684508538372717::1708297580::0::1::::<>
 RewardScreen.cs::CSharpScript::-1::1706675360::0::1::::<>Control<>::
 RewardScreen.tscn::PackedScene::2919674233379551489::1706675360::0::1::::<><>::res://screens/RewardScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 StartScreen.cs::CSharpScript::-1::1708299013::0::1::::<>Node2D<>::
-StartScreen.tscn::PackedScene::6381371156909420524::1708877050::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/StartScreen.cs<>res://screens/AscendedDialogBox.cs<>uid://c30uvsnxii3bd::::res://cg_backgrounds/bg00307.jpg<>uid://cgb6kermfdhu::::res://music/theme.ogg
+StartScreen.tscn::PackedScene::6381371156909420524::1708879758::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/StartScreen.cs<>res://screens/AscendedDialogBox.cs<>uid://c30uvsnxii3bd::::res://cg_backgrounds/bg00307.jpg<>uid://cgb6kermfdhu::::res://music/theme.ogg
 UpgradeScreen.cs::CSharpScript::-1::1708399143::0::1::::<>CenterContainer<>::
-UpgradeScreen.tscn::PackedScene::1791545832128563933::1708877049::0::1::::<><>::res://screens/UpgradeScreen.cs<>uid://dlog1wys3kq6a::::res://entity_pics/andmond.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
+UpgradeScreen.tscn::PackedScene::1791545832128563933::1708879758::0::1::::<><>::res://screens/UpgradeScreen.cs<>uid://dlog1wys3kq6a::::res://entity_pics/andmond.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
 ::res://screens/arrows/::1707673533
 current_arrow.png::CompressedTexture2D::1545892531116590130::1707672572::1707672583::1::::<><>::
 ::res://screens/back_end_screen_scripts/::1708397209
@@ -303,7 +308,7 @@ EntityUIWrapper.cs::CSharpScript::-1::1708296664::0::1::::<>Object<>::
 FusionObject.cs::CSharpScript::-1::1708298023::0::1::::<><>::
 FusionScreenObject.cs::CSharpScript::-1::1708397209::0::1::::<><>::
 RecruitCustomObject.cs::CSharpScript::-1::1707668294::0::1::::<><>::
-::res://skills/::1708398715
+::res://skills/::1708886479
 ElementSkill.cs::CSharpScript::-1::1708398563::0::1::::<><>::
 HealSkill.cs::CSharpScript::-1::1708398619::0::1::::<><>::
 ISkill.cs::CSharpScript::-1::1708398647::0::1::::<><>::

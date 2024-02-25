@@ -92,12 +92,15 @@ namespace AscendedZ.game_object
 
                     if(quest.ReqPartyBaseNames.Count > 0)
                     {
-                        foreach(var member in battleSceneObject.Players)
+                        int reqPartyMembers = quest.ReqPartyBaseNames.Count;
+                        int partyCount = 0;
+                        foreach (var member in battleSceneObject.Players)
                         {
-                            isComplete = (quest.ReqPartyBaseNames.Contains(member.BaseName));
-                            if (!isComplete)
-                                break;
+                            if (quest.ReqPartyBaseNames.Contains(member.BaseName))
+                                partyCount++;
                         }
+
+                        isComplete = (partyCount == reqPartyMembers);
                     }
 
                     quest.Completed = isComplete;
@@ -179,6 +182,17 @@ namespace AscendedZ.game_object
         public int GetTotalQuestCount()
         {
             return GetQuests().Count;
+        }
+
+        public void Clear()
+        {
+            ClearQuestList(BattleQuests);
+            ClearQuestList(DeliveryQuests);
+        }
+
+        private void ClearQuestList<E>(List<E> quests) where E : Quest
+        {
+            quests.RemoveAll(q => !q.Save);
         }
     }
 }

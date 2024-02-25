@@ -286,7 +286,11 @@ namespace AscendedZ.entities.partymember_objects
                 skills.AppendLine("[NONE]");
             }
 
-            return $"{MaxHP} HP\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
+            string maxHP = $"{MaxHP} HP";
+            if (FusionGrade > 0)
+                maxHP = $"{maxHP} ● Fusion {FusionGrade}";
+
+            return $"{maxHP}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
         }
     }
 }

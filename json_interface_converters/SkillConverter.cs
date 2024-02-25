@@ -35,6 +35,8 @@ namespace AscendedZ.json_interface_converters
                     case (int)SkillId.Healing:
                         skill = JsonSerializer.Deserialize<HealSkill>(jsonDocument);
                         break;
+                    default:
+                        throw new NotImplementedException();
                 }
             }
 
@@ -54,6 +56,8 @@ namespace AscendedZ.json_interface_converters
                 case SkillId.Healing:
                     JsonSerializer.Serialize(writer, value, typeof(HealSkill), options);
                     break;
+                default:
+                    throw new NotImplementedException();
             }
         }
     }

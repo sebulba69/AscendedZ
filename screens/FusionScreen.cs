@@ -80,6 +80,9 @@ public partial class FusionScreen : CenterContainer
 	private void PopulateSkillTransferList()
 	{
 		// fusion is already displayed
+		if (_fSO.Fusions.Count == 0)
+            return;
+
         FusionObject fusion = _fSO.DisplayFusion;
 
 		_fusionSkillList.Clear();
@@ -104,7 +107,10 @@ public partial class FusionScreen : CenterContainer
 	private void DisplayFusion()
 	{
 		if (_fSO.Fusions.Count == 0)
-			return;
+		{
+			_displayFusion.Clear();
+            return;
+        }
 
         FusionObject fusion = _fSO.Fusions[_fSO.FusionIndex];
 

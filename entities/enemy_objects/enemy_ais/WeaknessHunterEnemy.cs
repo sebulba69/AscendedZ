@@ -59,10 +59,5 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
 
             return action;
         }
-
-        public override void ResetEnemyState()
-        {
-            CurrentMove = 0;
-        }
     }
 }

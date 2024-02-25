@@ -25,7 +25,7 @@ namespace AscendedZ
             { Elements.Dark, Elements.Light }
         };
 
-        #region Tier 1 Skills
+        #region Tiered Skills
         public static ElementSkill Elec1 { get => CreateTier1ElementSkill("Spark", Elements.Elec); }
         public static ElementSkill Fire1 { get => CreateTier1ElementSkill("Singe", Elements.Fir); }
         public static ElementSkill Ice1 { get => CreateTier1ElementSkill("Shiver", Elements.Ice); }
@@ -223,7 +223,6 @@ namespace AscendedZ
                 return statusSkill;
             }
         }
-  
         public static StatusSkill AgroEnemy
         {
             get
@@ -236,7 +235,6 @@ namespace AscendedZ
                 return statusSkill;
             }
         }
-    
         public static StatusSkill AgroPlayer 
         { 
             get 
@@ -247,7 +245,6 @@ namespace AscendedZ
                 return statusSkill;
             } 
         }
-
         public static StatusSkill VoidFire
         {
             get
@@ -255,7 +252,6 @@ namespace AscendedZ
                 return MakeChangeElementSkill("Void Fire", new VoidFireStatus());
             }
         }
-
         public static StatusSkill VoidIce
         {
             get
@@ -263,7 +259,6 @@ namespace AscendedZ
                 return MakeChangeElementSkill("Void Ice", new VoidIceStatus());
             }
         }
-
         public static StatusSkill VoidWind
         {
             get
@@ -271,7 +266,6 @@ namespace AscendedZ
                 return MakeChangeElementSkill("Void Wind", new VoidWindStatus());
             }
         }
-
         public static StatusSkill WeakFire
         {
             get
@@ -281,12 +275,66 @@ namespace AscendedZ
                 return s;
             }
         }
-
         public static StatusSkill WeakElec
         {
             get
             {
                 var s = MakeChangeElementSkill("Elec-", new WeakElecStatus());
+                s.TargetType = TargetTypes.SINGLE_OPP;
+                return s;
+            }
+        }
+
+        public static StatusSkill RemoveWeakElec
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Remove Elec-", new WeakElecStatus());
+                s.IsRemoveStatusSkill = true;
+                s.TargetType = TargetTypes.SINGLE_TEAM;
+                return s;
+            }
+        }
+
+        public static StatusSkill RemoveWeakFire
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Fire-", new WeakFireStatus());
+                s.IsRemoveStatusSkill = true;
+                s.TargetType = TargetTypes.SINGLE_TEAM;
+                return s;
+            }
+        }
+
+        public static StatusSkill RemoveVoidWind
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Remove Void Wind", new VoidWindStatus());
+                s.IsRemoveStatusSkill = true;
+                s.TargetType = TargetTypes.SINGLE_OPP;
+                return s;
+            }
+        }
+
+        public static StatusSkill RemoveVoidFire
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Remove Void Fire", new VoidFireStatus());
+                s.IsRemoveStatusSkill = true;
+                s.TargetType = TargetTypes.SINGLE_OPP;
+                return s;
+            }
+        }
+
+        public static StatusSkill RemoveVoidIce
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Remove Void Ice", new VoidIceStatus());
+                s.IsRemoveStatusSkill = true;
                 s.TargetType = TargetTypes.SINGLE_OPP;
                 return s;
             }
@@ -375,7 +423,10 @@ namespace AscendedZ
                 skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind });
 
             if (tier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE)
-                skills.Add(Revive1);
+                skills.AddRange(new ISkill[] { Revive1, RemoveVoidWind });
+
+            if (tier > TierRequirements.QUESTS_ALL_FUSION_MEMBERS)
+                skills.AddRange(new ISkill[] { RemoveWeakElec, RemoveVoidFire, RemoveWeakFire });
 
             return skills;
         }

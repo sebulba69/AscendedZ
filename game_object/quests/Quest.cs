@@ -1,4 +1,5 @@
 ﻿using AscendedZ.battle;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace AscendedZ.game_object.quests
     /// </summary>
     public class Quest
     {
+        private bool _save = false;
         private bool _completed = false;
         protected int _maxChallenges = 0;
         private int _vorpexReward = 10;
@@ -20,6 +22,12 @@ namespace AscendedZ.game_object.quests
         public bool Completed { get => _completed; set => _completed = value; }
         public int VorpexReward { get => _vorpexReward; set => _vorpexReward = value; }
         public int MaxChallenges { get => _maxChallenges; set => _maxChallenges = value;}
+        public bool Save { get => _save; set => _save = value; }
+
+        public virtual Texture2D GetIcon()
+        {
+            return SkillAssets.GenerateIcon(SkillAssets.QUEST_ICON);
+        }
 
         public virtual void GenerateQuest(Random rng, int maxTier)
         {

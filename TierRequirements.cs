@@ -16,16 +16,19 @@ namespace AscendedZ
         /// <summary>
         /// 10
         /// </summary>
+        public static int TIER2_STRONGER_ENEMIES = 10;
         public static int QUESTS = 10;
 
         /// <summary>
         /// 15
         /// </summary>
+        public static int TIER3_STRONGER_ENEMIES = 15;
         public static int FUSE = 15;
 
         /// <summary>
         /// 20
         /// </summary>
+        public static int TIER4_STRONGER_ENEMIES = 20;
         public static int QUESTS_FUSION_MEMBERS = 20;
 
         /// <summary>

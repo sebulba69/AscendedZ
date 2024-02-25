@@ -56,6 +56,11 @@ namespace AscendedZ.entities.enemy_objects
             throw new NotImplementedException();
         }
 
+        protected BattleEntity GetTargetAffectedByAgro(BattleSceneObject battleSceneObject)
+        {
+            return battleSceneObject.AlivePlayers.Find(p => p.StatusHandler.HasStatus(statuses.StatusId.AgroStatus));
+        }
+
         /// <summary>
         /// Utility function for a feature common to most enemy AI.
         /// </summary>

@@ -46,6 +46,13 @@ namespace AscendedZ.screens.back_end_screen_scripts
                 upgradeShardYield += (10 * DisplayFusion.Fusion.Skills.Count);
                 
                 DisplayFusion.Fusion.UpgradeShardYield = upgradeShardYield;
+                _fusions.Remove(DisplayFusion);
+
+                if (FusionIndex == _fusions.Count)
+                    FusionIndex = _fusions.Count - 1;
+
+                if (FusionIndex < 0)
+                    FusionIndex = 0;
 
                 mainPlayer.ReserveMembers.Add(DisplayFusion.Fusion);
 
