@@ -31,6 +31,7 @@ public partial class BattleEnemyScene : Node2D
     private bool _uiUpdating = false;
     private RichTextLabel _combatLog;
     private Label _logTurnCount;
+    private ItemList _questList;
 
     private Label _skillName;
     private TextureRect _skillIcon;
@@ -50,7 +51,8 @@ public partial class BattleEnemyScene : Node2D
         _partyMembers = this.GetNode<HBoxContainer>("%PartyPortraits");
         _enemyMembers = this.GetNode<HBoxContainer>("%EnemyContainerBox");
         _turnIconContainer = this.GetNode<HBoxContainer>("%TurnIconContainer");
-        
+        _questList = this.GetNode<ItemList>("%BattleQuestList");
+
         _endBox = this.GetNode<CenterContainer>("%EndBox");
         _backToHomeButton = this.GetNode<Button>("%BackToHomeBtn");
         _retryFloorButton = this.GetNode<Button>("%RetryFloorBtn");
@@ -107,9 +109,16 @@ public partial class BattleEnemyScene : Node2D
 
     private void InitializeBattleScene()
     {
+        _questList.Clear();
         _combatLog.Clear();
 
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+
+        foreach(var battleQuest in gameObject.QuestObject.BattleQuests)
+        {
+            if(battleQuest.Tier == gameObject.Tier)
+                _questList.AddItem(battleQuest.GetInBattleDisplayString());
+        }
 
         ClearChildrenFromNode(_partyMembers);
         ClearChildrenFromNode(_enemyMembers);

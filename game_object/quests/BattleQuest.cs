@@ -47,6 +47,28 @@ namespace AscendedZ.game_object.quests
             return $"[T.{Tier}] Battle Quest";
         }
 
+        public string GetInBattleDisplayString()
+        {
+            List<string> displayText = new List<string>();
+            if (ReqPartyBaseNames.Count > 0)
+                displayText.Add(string.Join(", ", ReqPartyBaseNames));
+
+            if (ReqPartySize > 0)
+                displayText.Add($"Party Size: {ReqPartySize}");
+
+            if (ReqTurnCount > 0)
+                displayText.Add($"Turns: {ReqTurnCount}");
+
+            string finalString;
+
+            if (displayText.Count == 0)
+                finalString = $"Complete Tier {Tier}";
+            else
+                finalString = string.Join(" ● ", displayText);
+
+            return finalString;
+        }
+
         public override void GenerateQuest(Random rng, int maxTier)
         {
             int tier = 0;

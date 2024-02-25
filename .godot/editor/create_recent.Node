@@ -1,9 +1,9 @@
-HBoxContainer
-RichTextLabel
-Button
 VBoxContainer
 ItemList
 PanelContainer
+HBoxContainer
+RichTextLabel
+Button
 CenterContainer
 Label
 Control

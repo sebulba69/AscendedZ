@@ -39,7 +39,11 @@ namespace AscendedZ
         public static readonly string DUNGEON5 = "res://music/dungeons/dungeon5.ogg";
         public static readonly string DUNGEON6_9 = "res://music/dungeons/dungeon6-9.ogg";
 
-        public static readonly string[] DUNGEON_TRACKS_REAL = { "res://music/dungeons/dungeon11-19.ogg" };
+        public static readonly string[] DUNGEON_TRACKS_REAL = 
+        { 
+            "res://music/dungeons/dungeon11-19.ogg" ,
+            "res://music/dungeons/dungeon21-29.ogg"
+        };
 
 
         public static readonly string BOSS_VICTORY = "res://music/boss_victory.ogg";
