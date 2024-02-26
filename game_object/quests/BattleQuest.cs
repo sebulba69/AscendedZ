@@ -80,8 +80,7 @@ namespace AscendedZ.game_object.quests
             int numBattleChallenges = rng.Next(MaxChallenges + 1);
             tier = MakeRandomQuestTier(rng, maxTier);
 
-            if (numBattleChallenges >= 3)
-                turnCount = rng.Next(3, 6);
+            turnCount = rng.Next(3, 5);
 
             if (numBattleChallenges >= 1)
             {
