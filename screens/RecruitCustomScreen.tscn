@@ -46,7 +46,6 @@ layout_mode = 2
 
 [node name="PartyMemberDisplay" parent="PanelContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("1_rorgk")]
 unique_name_in_owner = true
-texture_filter = 2
 layout_mode = 2
 alignment = 1
 

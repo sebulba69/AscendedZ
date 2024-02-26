@@ -134,7 +134,7 @@ unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6t5j7")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 text = "Resistances"
 horizontal_alignment = 1
 

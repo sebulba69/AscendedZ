@@ -17,5 +17,4 @@ texture = ExtResource("1")
 expand_mode = 1
 
 [node name="AscendedTextbox" parent="CGBackground" instance=ExtResource("2")]
-texture_filter = 2
 layout_mode = 1
