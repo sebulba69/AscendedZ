@@ -1,9 +1,9 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1708913758
+::res://::1708914339
 ArtAssets.cs::CSharpScript::-1::1708905248::0::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1682824299::0::1::::<><>::
 Controls.cs::CSharpScript::-1::1706675353::0::1::::<><>::
-default_env.tres::Environment::5723441312748911875::1708913758::0::1::::<><>::
+default_env.tres::Environment::5723441312748911875::1708914339::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1682922048::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1708904087::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1707602595::0::1::::<><>::
@@ -353,10 +353,11 @@ VoidWindStatus.cs::CSharpScript::-1::1707796382::0::1::::<><>::
 ::res://statuses/weak_element/::1707796398
 WeakElecStatus.cs::CSharpScript::-1::1707796390::0::1::::<><>::
 WeakFireStatus.cs::CSharpScript::-1::1707796398::0::1::::<><>::
-::res://turn_icons/::1708913862
+::res://turn_icons/::1708914570
 enemy_icon_full.png::CompressedTexture2D::1411012919411345578::1587875308::1708913865::1::::<><>::
 enemy_icon_half.png::CompressedTexture2D::8766660047789177264::1587790623::1708913865::1::::<><>::
 player_icon_full.png::CompressedTexture2D::9017692328541849394::1587874444::1708913865::1::::<><>::
 player_icon_half.png::CompressedTexture2D::3724590022588954658::1587786791::1708913865::1::::<><>::
 TurnIcon.cs::CSharpScript::-1::1707013927::0::1::::<>TextureRect<>::
-TurnIcon.tscn::PackedScene::5448139527358671144::1707668788::0::1::::<><>::uid://btchpoip5fvok::::res://turn_icons/player_icon_half.png<>uid://d1qics4xkuj6q::::res://turn_icons/player_icon_full.png<>res://turn_icons/TurnIcon.cs<>uid://udrgagksu8iw::::res://turn_icons/enemy_icon_full.png<>uid://dw5vu0l2qlcbo::::res://turn_icons/enemy_icon_half.png
+TurnIcon.tscn::PackedScene::5448139527358671144::1708914339::0::1::::<><>::uid://btchpoip5fvok::::res://turn_icons/player_icon_half.png<>uid://d1qics4xkuj6q::::res://turn_icons/player_icon_full.png<>res://turn_icons/TurnIcon.cs<>uid://udrgagksu8iw::::res://turn_icons/enemy_icon_full.png<>uid://dw5vu0l2qlcbo::::res://turn_icons/enemy_icon_half.png
+turn_backdrop.png::CompressedTexture2D::4809709424123653291::1708914546::1708914575::1::::<><>::

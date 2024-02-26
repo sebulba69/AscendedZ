@@ -1,3 +1,6 @@
+CenterContainer
+CanvasLayer
+TextureRect
 Label
 VBoxContainer
 ItemList
@@ -5,10 +8,7 @@ PanelContainer
 HBoxContainer
 RichTextLabel
 Button
-CenterContainer
 Control
 Panel
 TabContainer
 MarginContainer
-AnimationPlayer
-ProgressBar
