@@ -83,7 +83,7 @@ namespace AscendedZ
         /// </summary>
         private static readonly Dictionary<Elements, string> FUSION1_RESULTS = new Dictionary<Elements, string>() 
         {
-            { Elements.Fir, PartyNames.Ancrow },
+            { Elements.Fire, PartyNames.Ancrow },
             { Elements.Ice, PartyNames.Candun},
             { Elements.Wind, PartyNames.Samlin},
             { Elements.Elec, PartyNames.Ciavid },
@@ -93,7 +93,7 @@ namespace AscendedZ
 
         private static readonly Dictionary<Elements, string> FUSION2_RESULTS = new Dictionary<Elements, string>()
         {
-            { Elements.Fir, PartyNames.Marchris },
+            { Elements.Fire, PartyNames.Marchris },
             { Elements.Ice, PartyNames.Thryth },
             { Elements.Wind, PartyNames.Everever },
             { Elements.Elec, PartyNames.Eri },

@@ -32,7 +32,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             MaxHP = EntityDatabase.GetBossHP(Name);
             Turns = 3;
 
-            Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
+            Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
 
             Skills.Add(SkillDatabase.VoidFire.Clone());
             Skills.Add(SkillDatabase.Ice1.Clone());

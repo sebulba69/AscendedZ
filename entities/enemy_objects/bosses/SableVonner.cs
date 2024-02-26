@@ -88,7 +88,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
                     action.Target = this;
                     break;
                 case 2:
-                    Elements wex = (_isElec) ? Elements.Elec : Elements.Fir;
+                    Elements wex = (_isElec) ? Elements.Elec : Elements.Fire;
                     action.Skill = GetDamage();
                     action.Target = GetPlayerWithWexTo(battleSceneObject, wex);
                     break;

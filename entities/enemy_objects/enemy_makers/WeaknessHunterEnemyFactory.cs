@@ -47,7 +47,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var sachael = MakeWeaknessHunterEnemy(EnemyNames.Sachael, 6);
 
-            sachael.Resistances.SetResistance(ResistanceType.Rs, Elements.Fir);
+            sachael.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
             sachael.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
             sachael.Skills.Add(SkillDatabase.Fire1);

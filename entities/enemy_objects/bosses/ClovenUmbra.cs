@@ -23,7 +23,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Turns = 3;
             _isBoss = true;
 
-            Resistances.SetResistance(ResistanceType.Nu, Elements.Fir);
+            Resistances.SetResistance(ResistanceType.Nu, Elements.Fire);
             Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
             Skills.Add(SkillDatabase.VoidIce.Clone());

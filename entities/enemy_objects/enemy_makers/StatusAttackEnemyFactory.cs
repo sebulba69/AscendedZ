@@ -34,7 +34,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var arwig = MakeAgroStatusEnemy(EnemyNames.Arwig, 6);
 
-            arwig.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
+            arwig.Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
 
             arwig.Skills.Add(SkillDatabase.Ice1.Clone());
 

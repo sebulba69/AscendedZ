@@ -59,7 +59,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var nanfrea = MakeBuffEnemy(EnemyNames.Nanfrea, 10);
 
-            nanfrea.Resistances.SetResistance(ResistanceType.Rs, Elements.Fir);
+            nanfrea.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
 
             nanfrea.Skills.Add(SkillDatabase.FireBuff1.Clone());
             nanfrea.Skills.Add(SkillDatabase.Fire1.Clone());

@@ -40,7 +40,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             var orachar = MakeAlternatingEnemy(EnemyNames.Orachar, 6);
 
-            orachar.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
+            orachar.Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
 
             orachar.Skills.Add(SkillDatabase.Ice1.Clone());
 

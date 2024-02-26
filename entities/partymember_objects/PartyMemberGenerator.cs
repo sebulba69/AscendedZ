@@ -28,7 +28,7 @@ namespace AscendedZ.entities.partymember_objects
 
         private static readonly Dictionary<string, Elements> _fusion1PartyMembers = new Dictionary<string, Elements>
         {
-            { PartyNames.Ancrow, Elements.Fir },
+            { PartyNames.Ancrow, Elements.Fire },
             { PartyNames.Candun, Elements.Ice },
             { PartyNames.Samlin, Elements.Wind },
             { PartyNames.Ciavid, Elements.Elec },
@@ -38,7 +38,7 @@ namespace AscendedZ.entities.partymember_objects
 
         private static readonly Dictionary<string, Elements> _fusion2PartyMembers = new Dictionary<string, Elements>
         {
-            { PartyNames.Marchris, Elements.Fir },
+            { PartyNames.Marchris, Elements.Fire },
             { PartyNames.Thryth, Elements.Ice },
             { PartyNames.Everever, Elements.Wind },
             { PartyNames.Eri, Elements.Elec },
@@ -56,7 +56,7 @@ namespace AscendedZ.entities.partymember_objects
             { EnemyNames.Orachar, Elements.Ice },
             { PartyNames.Andmond, Elements.Dark },
             { PartyNames.Joan, Elements.Wind },
-            { PartyNames.Tyhere, Elements.Fir },
+            { PartyNames.Tyhere, Elements.Fire },
             { PartyNames.Paria, Elements.Ice }
         };
 
@@ -108,7 +108,7 @@ namespace AscendedZ.entities.partymember_objects
         {
             var member = MakeOverworldEntity(PartyNames.Gagar);
 
-            member.Resistances.SetResistance(ResistanceType.Rs, Elements.Fir);
+            member.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
             member.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
             member.Skills.Add(SkillDatabase.Fire1.Clone());
 
@@ -130,7 +130,7 @@ namespace AscendedZ.entities.partymember_objects
             var member = MakeOverworldEntity(PartyNames.Pecheal);
 
             member.Resistances.SetResistance(ResistanceType.Rs, Elements.Ice);
-            member.Resistances.SetResistance(ResistanceType.Wk, Elements.Fir);
+            member.Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
             member.Skills.Add(SkillDatabase.Ice1.Clone());
 
             return member;

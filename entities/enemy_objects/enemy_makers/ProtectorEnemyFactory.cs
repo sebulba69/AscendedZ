@@ -20,7 +20,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeEd()
         {
-            Elements elementToVoid = Elements.Fir;
+            Elements elementToVoid = Elements.Fire;
 
             var ed = MakeProtectorEnemy(EnemyNames.Ed, 8, elementToVoid);
 

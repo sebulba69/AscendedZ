@@ -22,7 +22,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             string name = EnemyNames.Thony;
             int hp = 12;
             Elements resist1 = Elements.Ice;
-            Elements resist2 = Elements.Fir;
+            Elements resist2 = Elements.Fire;
 
             var thony = MakeResistanceChangerEnemy(name, hp, resist1, resist2);
 

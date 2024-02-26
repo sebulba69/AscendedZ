@@ -211,7 +211,7 @@ namespace AscendedZ
         {
             switch (element)
             {
-                case Elements.Fir:
+                case Elements.Fire:
                     return FIRE_ICON;
                 case Elements.Ice:
                     return ICE_ICON;
@@ -232,7 +232,7 @@ namespace AscendedZ
         {
             var tier1Animations = new System.Collections.Generic.Dictionary<Elements, string> 
             { 
-                { Elements.Fir, FIRE_T1 },
+                { Elements.Fire, FIRE_T1 },
                 { Elements.Ice, ICE_T1 },
                 { Elements.Wind, WIND_T1 },
                 { Elements.Elec, ELEC_T1 },
@@ -242,7 +242,7 @@ namespace AscendedZ
 
             var tier2Animations = new System.Collections.Generic.Dictionary<Elements, string> 
             {
-                { Elements.Fir, FIRE_T2 },
+                { Elements.Fire, FIRE_T2 },
                 { Elements.Ice, ICE_T2 },
                 { Elements.Wind, WIND_T2 },
                 { Elements.Elec, ELEC_T2 },
@@ -252,7 +252,7 @@ namespace AscendedZ
 
             var tier3Animations = new System.Collections.Generic.Dictionary<Elements, string> 
             {
-                { Elements.Fir, FIRE_T3 },
+                { Elements.Fire, FIRE_T3 },
                 { Elements.Ice, ICE_T3 },
                 { Elements.Wind, WIND_T3 },
                 { Elements.Elec, ELEC_T3 },

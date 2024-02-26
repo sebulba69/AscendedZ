@@ -12,7 +12,7 @@ namespace AscendedZ.statuses.weak_element
         {
             _id = StatusId.WexFireStatus;
 
-            _elementToChange = skills.Elements.Fir;
+            _elementToChange = skills.Elements.Fire;
             _newResType = resistances.ResistanceType.Wk;
             this.Icon = SkillAssets.WEAK_FIRE_ICON;
 

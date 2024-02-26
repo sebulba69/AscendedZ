@@ -37,7 +37,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             int hp = 12;
             var stroma = MakeCopyCatEnemy(name, hp);
 
-            stroma.Resistances.SetResistance(ResistanceType.Nu, Elements.Fir);
+            stroma.Resistances.SetResistance(ResistanceType.Nu, Elements.Fire);
 
             stroma.Skills.Add(SkillDatabase.Fire1.Clone());
 
