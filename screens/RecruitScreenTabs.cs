@@ -1,3 +1,4 @@
+using AscendedZ;
 using AscendedZ.game_object;
 using Godot;
 using System;
@@ -14,14 +15,22 @@ public partial class RecruitScreenTabs : CenterContainer
 
 		GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
-
 		var recruitShop = tabContainer.GetNode("%Recruit Shop");
 		var memberRequestForum = tabContainer.GetNode("%Member Request Forum");
 
 		var backButtonRecruitShop = recruitShop.GetNode<Button>("%BackButton");
 		backButtonRecruitShop.Pressed += _OnBackButtonPressed;
 
-		if(gameObject.MaxTier > 10)
+		tabContainer.TabChanged += (newTab) => 
+		{ 
+			if(newTab > 0 && !gameObject.ProgressFlagObject.CustomPartyMembersViewed)
+			{
+				gameObject.ProgressFlagObject.CustomPartyMembersViewed = true;
+				PersistentGameObjects.Save();
+            }
+		};
+
+		if(gameObject.MaxTier > TierRequirements.QUESTS)
 		{
 			tabContainer.SetTabHidden(MEMBER_REQUEST_FORUM, false);
             var backButtonForum = memberRequestForum.GetNode<Button>("%BackButton");

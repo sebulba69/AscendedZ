@@ -131,11 +131,33 @@ public partial class MainScreen : Node2D
         Button fuseButton = this.GetNode<Button>("%FuseButton");
         Button questButton = this.GetNode<Button>("%QuestButton");
 
+        string upgradeText = "Upgrade";
+        var progressFlagObject = gameObject.ProgressFlagObject;
+
         if (tier > TierRequirements.UPGRADE_SCREEN)
+        {
             upgradeButton.Visible = true;
 
+            if(tier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE
+                && !progressFlagObject.AscensionViewed)
+            {
+                upgradeText += " (!)";
+            }
+
+            upgradeButton.Text = upgradeText;
+        }
+
+        string recruitText = "Recruit";
         if (tier > TierRequirements.QUESTS)
+        {
             questButton.Visible = true;
+            if (!progressFlagObject.CustomPartyMembersViewed)
+            {
+                recruitText += " (!)";
+            }
+
+            recruitButton.Text = recruitText;
+        }
 
         if (tier > TierRequirements.FUSE)
             fuseButton.Visible = true;
@@ -240,6 +262,14 @@ public partial class MainScreen : Node2D
 
         _mainUIContainer.Visible = true;
         _musicSelectContainer.Visible = true;
+
+        var pFlags = PersistentGameObjects.GameObjectInstance().ProgressFlagObject;
+
+        if (pFlags.CustomPartyMembersViewed)
+            this.GetNode<Button>("%RecruitButton").Text = "Recruit";
+
+        if (pFlags.AscensionViewed)
+            this.GetNode<Button>("%UpgradePartyButton").Text = "Upgrade";
 
         UpdateCurrencyDisplay();
     }

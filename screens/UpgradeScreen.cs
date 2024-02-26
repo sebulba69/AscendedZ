@@ -56,7 +56,7 @@ public partial class UpgradeScreen : CenterContainer
 		_smeltButton.Pressed += _OnSmeltButtonPressed;
 		_backButton.Pressed += _OnBackButtonPressed;
 
-        _ascendedCheckbox.Visible = (gameObject.MaxTier > 20);
+        _ascendedCheckbox.Visible = (gameObject.MaxTier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE);
         _ascendedCheckbox.Pressed += _OnAscendedPressed;
 
 		_ascendedPressed = false;
@@ -131,7 +131,14 @@ public partial class UpgradeScreen : CenterContainer
 
 	private void _OnAscendedPressed()
 	{
-		_ascendedPressed = !_ascendedPressed;
+		var gameObject = PersistentGameObjects.GameObjectInstance();
+		if (!gameObject.ProgressFlagObject.AscensionViewed)
+		{
+			gameObject.ProgressFlagObject.AscensionViewed = true;
+            PersistentGameObjects.Save();
+        }
+
+        _ascendedPressed = !_ascendedPressed;
 
 		_smeltButton.Visible = _ascendedPressed;
 
