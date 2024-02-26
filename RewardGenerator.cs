@@ -11,10 +11,6 @@ namespace AscendedZ
 {
     public class RewardGenerator
     {
-        private static int A = 6;
-        private static int B = 5;
-        private static int C = 2;
-
         private static readonly HashSet<int> REWARD_TIERS = new HashSet<int>()
         {
             1, 4, 5
@@ -37,7 +33,7 @@ namespace AscendedZ
 
             if (tier > TierRequirements.UPGRADE_SCREEN)
             {
-                rewards.Add(new Vorpex() { Amount = GetVorpexAmount(tier) });
+                rewards.Add(new Vorpex() { Amount = Equations.GetVorpexAmount(tier: tier) * 3 });
             }
             else
             {
@@ -47,10 +43,6 @@ namespace AscendedZ
             return rewards;
         }
 
-        public static int GetVorpexAmount(int tier)
-        {
-            int amount = (int)(A * Math.Log(tier - B) + C);
-            return amount;
-        }
+
     }
 }

@@ -39,7 +39,7 @@ namespace AscendedZ.game_object
 
             for(int i = 0; i < questsToGenerate; i++)
             {
-                int vorpexReward = RewardGenerator.GetVorpexAmount(maxTier) * 2;
+                int vorpexReward = Equations.GetVorpexAmount(maxTier) * 2;
                 int questType = _rng.Next(0, 2);
 
                 if(questType == 0)

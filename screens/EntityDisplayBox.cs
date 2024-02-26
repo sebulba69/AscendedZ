@@ -84,7 +84,7 @@ public partial class EntityDisplayBox : PanelContainer
             hp.Value = hp.MaxValue;
         }
 
-        name.Text = entity.Name;
+        name.Text = $"{entity.Name} ● {entity.HP}";
 
         _resistances.Text = entity.Resistances.GetResistanceString();
         //_resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";

@@ -73,7 +73,7 @@ namespace AscendedZ.skills
 
         public void LevelUp()
         {
-            int boost = GetBoostValue();
+            int boost = Equations.GetBoostAmount(Level);
 
             try
             {
@@ -96,7 +96,7 @@ namespace AscendedZ.skills
 
         public string GetUpgradeString()
         {
-            return $"{ToString()} → {this.Damage + GetBoostValue()}";
+            return $"{ToString()} → {this.Damage + Equations.GetBoostAmount(Level + 1)}";
         }
 
         public string GetAscendedString(int ascendedLevel)
@@ -107,22 +107,6 @@ namespace AscendedZ.skills
                 newSkill.Damage += (ascendedLevel * 2);
 
             return $"{ToString()} → {newSkill.ToString()}";
-        }
-
-
-        private int GetBoostValue()
-        {
-            try
-            {
-                double m = 0.01 * Math.Pow((_level - 10), 2) + 1;
-                int boost = (int)(Math.Pow(_level, m)) + 1;
-                boost = (boost / 4) + 1;
-                return boost;
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
         }
 
         public ISkill Clone()

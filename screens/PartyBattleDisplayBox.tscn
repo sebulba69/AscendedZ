@@ -79,7 +79,6 @@ size_flags_vertical = 4
 
 [node name="TheFullEnchilada" type="PanelContainer" parent="ContainerForCharStuff/PremiereGaming"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Stats+Pic" type="VBoxContainer" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada"]
@@ -94,7 +93,7 @@ theme_override_font_sizes/font_size = 20
 text = "Name"
 horizontal_alignment = 1
 
-[node name="Picture" type="TextureRect" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
+[node name="Picture" type="TextureRect" parent="ContainerForCharStuff/PremiereGaming"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(174, 155)
@@ -103,7 +102,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("4_hmn3e")
 
-[node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic/Picture"]
+[node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/PremiereGaming/Picture"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 1
@@ -115,7 +114,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 1
 
-[node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
+[node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff/PremiereGaming"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(0, 21)

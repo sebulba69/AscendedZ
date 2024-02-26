@@ -159,27 +159,10 @@ namespace AscendedZ.entities.partymember_objects
         public void LevelUp()
         {
             Level++;
-
-            try
-            {
-                VorpexValue = VorpexValue + (Level - 1) * 2;
-            }
-            catch (Exception)
-            {
-                VorpexValue = int.MaxValue - 1;
-            }
-
             GradeString = GetLevelString();
 
-            try
-            {
-                MaxHP += GetMaxHPUpgradeValue();
-            }
-            catch (Exception)
-            {
-                MaxHP = int.MaxValue - 1;
-            }
-            
+            VorpexValue = Equations.GetVorpexLevelValue(VorpexValue, Level);
+            MaxHP = Equations.GetOWMaxHPUpgrade(MaxHP, Level);
 
             foreach (ISkill skill in Skills)
                 skill.LevelUp();
@@ -192,12 +175,7 @@ namespace AscendedZ.entities.partymember_objects
 
         public string GetHPLevelUpPreview()
         {
-            return $"{MaxHP + GetMaxHPUpgradeValue()} HP";
-        }
-
-        private int GetMaxHPUpgradeValue()
-        {
-            return (7 + 2 * (Level + 1)) / 2;
+            return $"{Equations.GetOWMaxHPUpgrade(MaxHP, Level)} HP";
         }
 
         private string GetLevelString()

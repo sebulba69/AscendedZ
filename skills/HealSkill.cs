@@ -45,7 +45,7 @@ namespace AscendedZ.skills
 
         public void LevelUp()
         {
-            int boost = GetBoostValue();
+            int boost = (Equations.GetBoostAmount(Level)/4) + 1;
             try
             {
                 _level++;

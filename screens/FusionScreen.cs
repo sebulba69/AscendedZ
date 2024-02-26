@@ -56,25 +56,22 @@ public partial class FusionScreen : CenterContainer
 	/// </summary>
 	private void PopulatePossibleFusionList()
 	{
-        if (_fSO.Fusions.Count == 0)
-            return;
-
         _fSO.PopulateMaterialFusionList();
 
-		_fusionSkillList.Clear();
+        _fusionSkillList.Clear();
 
         foreach (FusionObject fusion in _fSO.Fusions)
         {
-			OverworldEntity member = fusion.Fusion;
+            OverworldEntity member = fusion.Fusion;
             _fusionSkillList.AddItem(member.DisplayName, CharacterImageAssets.GetTextureForItemList(member.Image));
         }
 
         if (_fusionSkillList.ItemCount > 0)
-		{
-			SetFusionSkillListSelectedIndex();
+        {
+            SetFusionSkillListSelectedIndex();
         }
 
-		DisplayFusion();
+        DisplayFusion();
     }
 
 	/// <summary>

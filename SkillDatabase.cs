@@ -300,7 +300,7 @@ namespace AscendedZ
         {
             get
             {
-                var s = MakeChangeElementSkill("Fire-", new WeakFireStatus());
+                var s = MakeChangeElementSkill("Remove Fire-", new WeakFireStatus());
                 s.IsRemoveStatusSkill = true;
                 s.TargetType = TargetTypes.SINGLE_TEAM;
                 return s;

@@ -119,8 +119,7 @@ namespace AscendedZ
 
                 List<string> encounterNames = new List<string>();
 
-                double m = 0.01 * Math.Pow((encounterIndex - 10), 2) + 1;
-                int boost = (int)(Math.Pow(encounterIndex, m)) + 2;
+                int boost = Equations.GetBoostAmount(tier);
 
                 // If we have already stored an encounter in this list, we want to re-use it.
                 if (gameObject.Encounters.Count > encounterIndex)
@@ -316,12 +315,16 @@ namespace AscendedZ
         {
             foreach (var element in elements)
             {
-                possibleFusions.Add(new FusionObject
+                if (fusionResults.ContainsKey(element))
                 {
-                    Fusion = PartyMemberGenerator.MakePartyMember(fusionResults[element]),
-                    Material1 = material1,
-                    Material2 = material2
-                });
+                    possibleFusions.Add(new FusionObject
+                    {
+                        Fusion = PartyMemberGenerator.MakePartyMember(fusionResults[element]),
+                        Material1 = material1,
+                        Material2 = material2
+                    });
+                }
+
             }
         }
 
@@ -423,17 +426,7 @@ namespace AscendedZ
             index++;
 
             int baseHP = 50;
-
-            if(index > 2)
-            {
-                double scalingFactor = 0.5;
-
-                return (int)Math.Ceiling((baseHP * index) * (1 + scalingFactor));
-            }
-            else
-            {
-                return baseHP * index;
-            }
+            return baseHP * ((index*10)/2);
         }
     }
 }

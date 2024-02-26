@@ -175,7 +175,7 @@ public partial class ActionMenu : PanelContainer
                 playerTargetList = _battleSceneObject.DeadPlayers;
 
             foreach (var player in playerTargetList)
-                _actionList.AddItem($"{count++}. {player.Name}", CharacterImageAssets.GetTextureForItemList(player.Image));
+                _actionList.AddItem($"{count++}. {player.Name} ● {player.HP} HP", CharacterImageAssets.GetTextureForItemList(player.Image));
         }
 
         _state = ActionMenuState.TargetSelect;

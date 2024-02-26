@@ -13,7 +13,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
 {
     public class ClovenUmbra : WeaknessHunterEnemy
     {
-        private bool _voidUsed = false;
+        private bool _voidUsed;
 
         public ClovenUmbra() : base()
         {
@@ -22,12 +22,12 @@ namespace AscendedZ.entities.enemy_objects.bosses
             MaxHP = EntityDatabase.GetBossHP(Name);
             Turns = 3;
             _isBoss = true;
+            _voidUsed = false;
 
             Resistances.SetResistance(ResistanceType.Nu, Elements.Fire);
             Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
             Skills.Add(SkillDatabase.VoidIce.Clone());
-
             Skills.Add(SkillDatabase.Elec1.Clone());
             Skills.Add(SkillDatabase.Fire1.Clone());
             Skills.Add(SkillDatabase.Dark1.Clone());
@@ -35,7 +35,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
         {
-            var action = base.GetNextAction(battleSceneObject);
+            EnemyAction action = base.GetNextAction(battleSceneObject);
 
             if (!_voidUsed)
             {
@@ -43,8 +43,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
                 action.Target = this;
                 _voidUsed = true;
             }
-
-            if(_voidUsed && action.Skill.Name.Contains("Void"))
+            else if(_voidUsed && action.Skill.Name.Contains("Void"))
             {
                 int skill = _rng.Next(1, 4);
                 action.Skill = Skills[skill];

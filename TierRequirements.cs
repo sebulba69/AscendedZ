@@ -37,6 +37,11 @@ namespace AscendedZ
         public static int QUESTS_PARTY_MEMBERS_UPGRADE = 20;
 
         /// <summary>
+        /// 26
+        /// </summary>
+        public static int RIDICULOUS_HP_SCALING = 26;
+
+        /// <summary>
         /// 30
         /// </summary>
         public static int QUESTS_ALL_FUSION_MEMBERS = 30;

@@ -52,8 +52,6 @@ namespace AscendedZ.entities.enemy_objects
                     _currentDisplayHP = numerator / _bars;
                 else
                     _currentDisplayHP = remainder;
-
-                _bars--;
             }
 
             SetBarColors();
@@ -64,8 +62,6 @@ namespace AscendedZ.entities.enemy_objects
             if (_totalHP == hp)
                 return;
 
-            _totalHP = hp;
-
             if(_bars == 0)
             {
                 _currentDisplayHP = hp;
@@ -75,16 +71,26 @@ namespace AscendedZ.entities.enemy_objects
                 int remainder = hp % MAX_HP_PER_BAR;
                 int numerator = hp - remainder;
                 int bars = numerator / MAX_HP_PER_BAR;
-                int newHPValue = numerator / bars;
 
-                if (remainder == 0)
+                if(bars == 0)
                 {
-                    _bars--;
-                    _currentDisplayHP = newHPValue;
+                    _bars = 0;
+                    ChangeHP(hp);
                 }
                 else
                 {
-                    _currentDisplayHP = remainder;
+                    int newHPValue = numerator / bars;
+
+                    if (bars < _bars)
+                    {
+                        _bars = bars - 1;
+                        _currentDisplayHP = newHPValue;
+                    }
+                    else
+                    {
+                        _currentDisplayHP = remainder;
+                    }
+
                 }
 
                 SetBarColors();
