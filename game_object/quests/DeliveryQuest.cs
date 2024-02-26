@@ -126,7 +126,7 @@ namespace AscendedZ.game_object.quests
         {
             StringBuilder desc = new StringBuilder();
 
-            desc.AppendLine($"Delivery Quest ● Reward: {VorpexReward}VC");
+            desc.AppendLine($"Delivery Quest ● Reward: {VorpexReward} VC");
             desc.AppendLine($"Deliver (min. level): {DeliveryDisplayString}");
             if(SkillBaseNames.Count > 0)
             {

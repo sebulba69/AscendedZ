@@ -128,7 +128,7 @@ namespace AscendedZ.game_object.quests
         {
             StringBuilder desc = new StringBuilder();
 
-            desc.AppendLine($"Battle Quest ● Tier: {Tier} ● Reward: {VorpexReward}VC");
+            desc.AppendLine($"Battle Quest ● Tier: {Tier} ● Reward: {VorpexReward} VC");
 
             if (ReqPartyBaseNames.Count > 0)
                 desc.AppendLine($"Req. in Party: {string.Join(", ", ReqPartyBaseNames)}");
