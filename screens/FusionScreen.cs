@@ -109,6 +109,8 @@ public partial class FusionScreen : CenterContainer
 		if (_fSO.Fusions.Count == 0)
 		{
 			_displayFusion.Clear();
+			_material1.Clear();
+			_material2.Clear();
             return;
         }
 
