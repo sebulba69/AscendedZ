@@ -85,10 +85,10 @@ namespace AscendedZ.game_object
                     isComplete = (quest.Tier == battleSceneObject.Tier);
 
                     if(quest.ReqTurnCount > 0)
-                        isComplete = (quest.ReqTurnCount == battleSceneObject.TurnCount);
+                        isComplete = (battleSceneObject.TurnCount <= quest.ReqTurnCount);
 
                     if (quest.ReqPartySize > 0)
-                        isComplete = (quest.ReqPartySize == battleSceneObject.Players.Count);
+                        isComplete = (battleSceneObject.Players.Count <= quest.ReqPartySize);
 
                     if(quest.ReqPartyBaseNames.Count > 0)
                     {

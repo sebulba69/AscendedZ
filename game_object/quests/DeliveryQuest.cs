@@ -106,14 +106,12 @@ namespace AscendedZ.game_object.quests
             partyLevel = partyMember.Level;
             ascendedLevel = partyMember.AscendedLevel;
 
-            if (numPartyQuestChallenges > 0)
+            if (numPartyQuestChallenges > 0 && partyMember.FusionGrade > 0)
             {
                 foreach (var skill in partyMember.Skills)
-                {
                     skillBaseNames.Add(skill.BaseName);
-                }
 
-                VorpexReward = VorpexReward + (int)Math.Ceiling(VorpexReward * 0.75);
+                VorpexReward = (VorpexReward + (int)Math.Ceiling(VorpexReward * 0.75)) * partyMember.Skills.Count + partyMember.FusionGrade;
             }
 
             PartyMemberName = partyMemberBaseName;
