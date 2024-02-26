@@ -15,7 +15,9 @@ namespace AscendedZ
         public static readonly string OVERWORLD_1 = "[DDS1] River of Samsara";
         public static readonly string OVERWORLD_2 = "[KH2] Hollow Bastion";
         public static readonly string OVERWORLD_3 = "[KH2] Underworld";
-        public static readonly string OVERWORLD_4 = "[SMT3] Sound Test";
+        public static readonly string OVERWORLD_4 = "[Lunacid] Rain of Saint Ishii";
+        public static readonly string OVERWORLD_5 = "[SMT3] Sound Test";
+        
 
         /// <summary>
         /// List of tracks in order the game plays them.
@@ -30,10 +32,17 @@ namespace AscendedZ
             { OVERWORLD_1, "res://music/overworld/overworld1.ogg" },
             { OVERWORLD_2, "res://music/overworld/hollow_bastion.ogg" },
             { OVERWORLD_3, "res://music/overworld/underworld.ogg" },
-            { OVERWORLD_4, "res://music/overworld/sound_test_nctrn.ogg" }
+            { OVERWORLD_4, "res://music/overworld/rainisshi.ogg" },
+            { OVERWORLD_5, "res://music/overworld/sound_test_nctrn.ogg" }
         };
 
-        private static readonly string[] BOSS_TRACKS = { "res://music/dungeons/dungeon10.ogg", "res://music/dungeons/dungeon20.ogg" };
+        private static readonly string[] BOSS_TRACKS = 
+        { 
+            "res://music/dungeons/dungeon10.ogg", 
+            "res://music/dungeons/dungeon20.ogg",
+            "res://music/dungeons/dungeon30.ogg",
+            "res://music/dungeons/dungeon40.ogg"
+        };
 
         public static readonly string DUNGEON1_4 = "res://music/dungeons/dungeon1-4.ogg";
         public static readonly string DUNGEON5 = "res://music/dungeons/dungeon5.ogg";
@@ -42,7 +51,8 @@ namespace AscendedZ
         public static readonly string[] DUNGEON_TRACKS_REAL = 
         { 
             "res://music/dungeons/dungeon11-19.ogg",
-            "res://music/dungeons/dungeon21-29.ogg"
+            "res://music/dungeons/dungeon21-29.ogg",
+            "res://music/dungeons/dungeon31-39.ogg"
         };
 
 

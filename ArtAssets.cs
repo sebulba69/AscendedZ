@@ -17,41 +17,44 @@ namespace AscendedZ
         private static readonly string TIER1_10 = "res://cg_backgrounds/bg00501.jpg";
         private static readonly string TIER11_20 = "res://cg_backgrounds/bg03401.jpg";
         private static readonly string TIER21_30 = "res://cg_backgrounds/bg00607.jpg";
+        private static readonly string TIER31_40 = "res://cg_backgrounds/bg00307.jpg";
+        private static readonly string TIER41_50 = "res://cg_backgrounds/bg00404.jpg";
 
         private static readonly string CBT_TIER1_10 = "res://cg_backgrounds/bg03101.jpg";
         private static readonly string CBT_TIER11_20 = "res://cg_backgrounds/bg02501.jpg";
         private static readonly string CBT_TIER21_30 = "res://cg_backgrounds/bg02402.jpg";
+        private static readonly string CBT_TIER31_40 = "res://cg_backgrounds/bg02801.jpg";
 
-        public static string GetBackground(int maxTier)
+        private static readonly string[] OW_BGS = new string[] 
         {
-            if(maxTier > 20)
+            TIER1_10, TIER11_20,TIER21_30, TIER31_40, TIER41_50
+        };
+
+        private static readonly string[] CBT_BGS = new string[]
+        {
+            CBT_TIER1_10, CBT_TIER11_20, CBT_TIER21_30, CBT_TIER31_40
+        };
+
+        public static string GetBackground(int tier)
+        {
+            int index = 0;
+            if (tier >= 11)
             {
-                return TIER21_30;
+                tier--;
+                index = (tier - (tier % 10)) / 10;
             }
-            else if(maxTier > 10)
-            {
-                return TIER11_20;
-            }
-            else
-            {
-                return TIER1_10;
-            }
+            return OW_BGS[index];
         }
 
-        public static string GetCombatBackground(int maxTier)
+        public static string GetCombatBackground(int tier)
         {
-            if (maxTier > 20)
+            int index = 0;
+            if (tier >= 11)
             {
-                return CBT_TIER21_30;
+                tier--;
+                index = (tier - (tier % 10)) / 10;
             }
-            else if (maxTier > 10)
-            {
-                return CBT_TIER11_20;
-            }
-            else
-            {
-                return CBT_TIER1_10;
-            }
+            return CBT_BGS[index];
         }
     }
 

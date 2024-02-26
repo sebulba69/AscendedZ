@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://deh746evs6yr3"
+uid="uid://bttqd7fegekc3"
 path="res://.godot/imported/dungeon21-29.ogg-8a7eac437d1484ae114d0ec2b1aa31fa.oggvorbisstr"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/dungeon21-29.ogg-8a7eac437d1484ae114d0ec2b1aa
 [params]
 
 loop=true
-loop_offset=0
-bpm=0
+loop_offset=107.03
+bpm=120.0
 beat_count=0
 bar_beats=4
