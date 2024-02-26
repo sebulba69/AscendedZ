@@ -261,6 +261,9 @@ namespace AscendedZ
                 case 1:
                     fusionResults = FUSION1_RESULTS;
                     break;
+                case 2:
+                    fusionResults = FUSION2_RESULTS;
+                    break;
             }
 
             List<Elements> primaryElements = GetPrimaryElements(material1, material2);

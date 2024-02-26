@@ -84,7 +84,7 @@ public partial class EntityDisplayBox : PanelContainer
             hp.Value = hp.MaxValue;
         }
 
-        name.Text = $"{entity.Name} ● {entity.HP}";
+        name.Text = $"{entity.Name} ● {entity.HP} HP";
 
         _resistances.Text = entity.Resistances.GetResistanceString();
         //_resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
@@ -124,6 +124,7 @@ public partial class EntityDisplayBox : PanelContainer
                 
         }
 
+        this.GetNode<Label>("%NameLabel").Text = $"{entity.Name} ● {entity.HP} HP";
 
         // ... show statuses ... //
         // clear old statuses
