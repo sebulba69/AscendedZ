@@ -56,6 +56,8 @@ public partial class UpgradeScreen : CenterContainer
 		_smeltButton.Pressed += _OnSmeltButtonPressed;
 		_backButton.Pressed += _OnBackButtonPressed;
 
+        _upgradeButton.Text = "Upgrade";
+
         _ascendedCheckbox.Visible = (gameObject.MaxTier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE);
         _ascendedCheckbox.Pressed += _OnAscendedPressed;
 

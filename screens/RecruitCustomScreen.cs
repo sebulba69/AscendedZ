@@ -99,7 +99,7 @@ public partial class RecruitCustomScreen : CenterContainer
             if (mainPlayer.IsPartyMemberOwned(availablePartyMember.Name))
                 owned = " [OWNED]";
 
-            _potentialPartyMembers.AddItem($"{availablePartyMember.DisplayName} - {(int)(availablePartyMember.ShopCost * 1.5)} VC{owned}", CharacterImageAssets.GetTextureForItemList(availablePartyMember.Image));
+            _potentialPartyMembers.AddItem($"{availablePartyMember.DisplayName}{owned}", CharacterImageAssets.GetTextureForItemList(availablePartyMember.Image));
         }
 
 		if (_selectedIndexMembers >= _potentialPartyMembers.ItemCount)

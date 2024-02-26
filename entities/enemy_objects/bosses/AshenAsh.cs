@@ -28,8 +28,6 @@ namespace AscendedZ.entities.enemy_objects.bosses
 
             _phase = 0;
 
-            this.Resistances.SetResistance(ResistanceType.Nu, Elements.Wind);
-
             Skills.Add(SkillDatabase.Wind2.Clone());
             Skills.Add(SkillDatabase.Ice1.Clone());
             Skills.Add(SkillDatabase.Light2.Clone());

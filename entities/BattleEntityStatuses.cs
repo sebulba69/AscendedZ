@@ -64,7 +64,11 @@ namespace AscendedZ.entities
         {
             var s = GetStatus(status.Id);
             if (s != null)
+            {
+                s.ClearStatus();
                 _statuses.Remove(s);
+            }
+                
         }
 
         public void ApplyBattleResult(BattleResult result)

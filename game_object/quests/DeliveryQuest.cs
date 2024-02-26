@@ -107,7 +107,7 @@ namespace AscendedZ.game_object.quests
             grade = partyMember.Grade;
             partyLevel = partyMember.Level;
             ascendedLevel = partyMember.AscendedLevel;
-
+            
             if (numPartyQuestChallenges > 0 && partyMember.FusionGrade > 0)
             {
                 foreach (var skill in partyMember.Skills)
@@ -122,17 +122,18 @@ namespace AscendedZ.game_object.quests
             Grade = grade;
             SkillBaseNames = skillBaseNames;
             DeliveryDisplayString = partyMember.DisplayName;
+            VorpexReward += (Grade * 2);
         }
 
         public override string ToString()
         {
             StringBuilder desc = new StringBuilder();
 
-            desc.AppendLine($"Delivery Quest ● Reward: {VorpexReward} VC");
-            desc.AppendLine($"Deliver (min. level): {DeliveryDisplayString}");
+            desc.Append($"Delivery Quest ● Reward: {VorpexReward} VC\n");
+            desc.Append($"Deliver (min. level): {DeliveryDisplayString}\n");
             if(SkillBaseNames.Count > 0)
             {
-                desc.AppendLine($"Req. Skills: {string.Join(", ", SkillBaseNames)}");
+                desc.Append($"Req. Skills: {string.Join(", ", SkillBaseNames)}");
             }
 
             return desc.ToString();

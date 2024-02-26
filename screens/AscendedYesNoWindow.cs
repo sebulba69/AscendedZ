@@ -26,6 +26,9 @@ public partial class AscendedYesNoWindow : CenterContainer
 		_yesButton = this.GetNode<Button>("%YesButton");
         _noButton = this.GetNode<Button>("%NoButton");
 
+		_yesButton.Text = "Yes";
+		_noButton.Text = "No";
+
 		_yesButton.Pressed += () => ButtonPressed(true);
 		_noButton.Pressed += () => ButtonPressed(false);
 	}

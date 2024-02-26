@@ -208,14 +208,14 @@ namespace AscendedZ.entities.partymember_objects
             if (!showUpgradeShards)
             {
                 foreach (ISkill skill in Skills)
-                    skills.AppendLine(skill.GetUpgradeString());
+                    skills.Append(skill.GetUpgradeString()+"\n");
 
                 return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
             } 
             else
             {
                 foreach (ISkill skill in Skills)
-                    skills.AppendLine(skill.GetAscendedString(_ascendedLevel));
+                    skills.Append(skill.GetAscendedString(_ascendedLevel)+"\n");
 
                 string reqAscendGrade;
 

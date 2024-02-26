@@ -118,6 +118,7 @@ namespace AscendedZ.game_object.quests
             }
 
             VorpexReward *= 2;
+            VorpexReward += tier;
             Tier = tier;
             ReqPartyBaseNames.AddRange(partyBaseNames);
             ReqPartySize = partySize;
@@ -128,16 +129,16 @@ namespace AscendedZ.game_object.quests
         {
             StringBuilder desc = new StringBuilder();
 
-            desc.AppendLine($"Battle Quest ● Tier: {Tier} ● Reward: {VorpexReward} VC");
+            desc.Append($"Battle Quest ● Tier: {Tier} ● Reward: {VorpexReward} VC\n");
 
             if (ReqPartyBaseNames.Count > 0)
-                desc.AppendLine($"Req. in Party: {string.Join(", ", ReqPartyBaseNames)}");
+                desc.Append($"Req. in Party: {string.Join(", ", ReqPartyBaseNames)}\n");
 
             if(ReqPartySize > 0)
-                desc.AppendLine($"Req. Party Size: {ReqPartySize}");
+                desc.Append($"Req. Party Size: {ReqPartySize}\n");
 
             if (ReqTurnCount > 0)
-                desc.AppendLine($"Max Turns: {ReqTurnCount}");
+                desc.Append($"Max Turns: {ReqTurnCount}");
 
             return desc.ToString();
         }
