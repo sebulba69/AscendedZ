@@ -47,7 +47,7 @@ namespace AscendedZ.game_object.quests
             if (maxTier + 1 % 10 != 0)
                 maxTier++;
 
-            tier = rng.Next(maxTier - 8, maxTier);
+            tier = rng.Next(maxTier - 5, maxTier);
 
             if (tier % 10 == 0)
                 tier++;

@@ -54,10 +54,10 @@ namespace AscendedZ.game_object.quests
                 displayText.Add(string.Join(", ", ReqPartyBaseNames));
 
             if (ReqPartySize > 0)
-                displayText.Add($"Party Size: {ReqPartySize}");
+                displayText.Add($"Party <= {ReqPartySize}");
 
             if (ReqTurnCount > 0)
-                displayText.Add($"Complete in Turns: {ReqTurnCount}");
+                displayText.Add($"Turns <= {ReqTurnCount}");
 
             string finalString;
 

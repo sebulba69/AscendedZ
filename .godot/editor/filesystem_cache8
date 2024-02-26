@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1708982965
+::res://::1708983393
 ArtAssets.cs::CSharpScript::-1::1708921123::0::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1682824299::0::1::::<><>::
 Controls.cs::CSharpScript::-1::1706675353::0::1::::<><>::
@@ -7,7 +7,7 @@ default_env.tres::Environment::5723441312748911875::1708982902::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1682922048::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1708981757::0::1::::<><>::
 Equations.cs::CSharpScript::-1::1708970077::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1708982295::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1708983100::0::1::::<><>::
 FrontBoxBossHP.tres::StyleBoxFlat::1760076622593413787::1707598232::0::1::::<><>::
 icon.png::CompressedTexture2D::8476979344923658186::1676529745::1678052909::1::::<><>::
 JsonUtil.cs::CSharpScript::-1::1706675353::0::1::::<><>::
@@ -216,10 +216,10 @@ ProgressFlagObject.cs::CSharpScript::-1::1708913049::0::1::::<><>::
 QuestObject.cs::CSharpScript::-1::1708968080::0::1::::<><>::
 SaveEntry.cs::CSharpScript::-1::1706675354::0::1::::<><>::
 SaveObject.cs::CSharpScript::-1::1706675354::0::1::::<><>::
-::res://game_object/quests/::1708927013
+::res://game_object/quests/::1708983007
 BattleQuest.cs::CSharpScript::-1::1708927013::0::1::::<><>::
 DeliveryQuest.cs::CSharpScript::-1::1708926668::0::1::::<><>::
-Quest.cs::CSharpScript::-1::1708904885::0::1::::<><>::
+Quest.cs::CSharpScript::-1::1708983007::0::1::::<><>::
 ::res://json_interface_converters/::1708881747
 SkillConverter.cs::CSharpScript::-1::1708881747::0::1::::<><>::
 ::res://misc_icons/::1708982225
