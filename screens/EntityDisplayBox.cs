@@ -86,7 +86,8 @@ public partial class EntityDisplayBox : PanelContainer
 
         name.Text = entity.Name;
 
-        _resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
+        _resistances.Text = entity.Resistances.GetResistanceString();
+        //_resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
         picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
     }
 
@@ -106,7 +107,8 @@ public partial class EntityDisplayBox : PanelContainer
             var hp = this.GetNode<TextureProgressBar>("%HP");
             hp.Value = entity.HP;
         }
-        _resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
+        _resistances.Text = entity.Resistances.GetResistanceString();
+        //_resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
 
         // ... change active status ... //
         // change active status if it's a player (players have the graphic, enemies don't)

@@ -158,7 +158,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 text = "Quests"
 horizontal_alignment = 1
 
@@ -204,17 +204,17 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 horizontal_alignment = 1
 
 [node name="ActionList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer"]
 unique_name_in_owner = true
 texture_filter = 2
-custom_minimum_size = Vector2(400, 200)
+custom_minimum_size = Vector2(450, 200)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 25
 allow_search = false
 
 [node name="MenuLabel" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer"]
@@ -243,7 +243,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 text = "Log"
 horizontal_alignment = 1
 

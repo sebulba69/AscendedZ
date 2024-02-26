@@ -61,8 +61,6 @@ public partial class ActionMenu : PanelContainer
         _toolTip.Text = SKILL_TOOLTIP;
         _icon.Visible = false;
 
-        // _menu.Text = "Menu ● (Space/Click) Use";
-
         // item_clicked
         _actionList.ItemSelected += (long selected) => { _selectedIndex = (int)selected; };
         _actionList.ItemClicked += _OnMenuItemClicked;
@@ -167,7 +165,7 @@ public partial class ActionMenu : PanelContainer
         if (skillTargetType == TargetTypes.SINGLE_OPP)
         {
             foreach (var enemy in _battleSceneObject.Enemies.FindAll(enemy => enemy.HP > 0))
-                _actionList.AddItem($"{count++}. {enemy.Name} ● {enemy.HP} HP ● {enemy.Resistances.GetResistanceString()}", CharacterImageAssets.GetTextureForItemList(enemy.Image));
+                _actionList.AddItem($"{enemy.HP} HP ● {enemy.Resistances.GetResistanceString()}", CharacterImageAssets.GetTextureForItemList(enemy.Image));
         }
         else
         {

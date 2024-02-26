@@ -31,11 +31,14 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         {
             EnemyAction action = base.GetNextAction(battleSceneObject);
 
-            if (!_isAgroOverride)
-                action.Target = _lastUsedSkill.User;
-
             if(_lastUsedSkill != null)
+            {
                 action.Skill = _lastUsedSkill.SkillUsed.Clone();
+                if (!_isAgroOverride && _lastUsedSkill.User.HP > 0)
+                {
+                    action.Target = _lastUsedSkill.User;
+                }   
+            }
 
             return action;
         }
