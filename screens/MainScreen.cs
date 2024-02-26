@@ -29,6 +29,19 @@ public partial class MainScreen : Node2D
         TextureRect background = this.GetNode<TextureRect>("%Background");
         background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetBackground(gameObject.MaxTier));
 
+        // backwards compatibility line
+        foreach(var member in gameObject.MainPlayer.Party.Party)
+        {
+            if(member != null)
+            {
+                if (!gameObject.MainPlayer.ReserveMembers.Contains(member))
+                {
+                    member.IsInParty = true;
+                    gameObject.MainPlayer.ReserveMembers.Add(member);
+                }
+            }
+        }
+
         InitializeMusicButton(gameObject);
         InitializePlayerInformation(gameObject);
         InitializeButtons(gameObject);

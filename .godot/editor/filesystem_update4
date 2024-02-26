@@ -1,8 +1,6 @@
 res://default_env.tres
-res://screens/StartScreen.tscn
-res://screens/MainScreen.tscn
-res://screens/RecruitScreen.tscn
-res://screens/RecruitScreenTabs.tscn
+res://turn_icons/TurnIcon.tscn
+res://screens/BattleEnemyScene.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://effects/DamageNumber.cs
@@ -34,5 +32,3 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://turn_icons/TurnIcon.tscn
-res://screens/BattleEnemyScene.tscn
