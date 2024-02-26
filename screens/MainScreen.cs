@@ -30,17 +30,24 @@ public partial class MainScreen : Node2D
         background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetBackground(gameObject.MaxTier));
 
         // backwards compatibility line
-        foreach(var member in gameObject.MainPlayer.Party.Party)
+        if (gameObject.OldAlphaSave)
         {
-            if(member != null)
+            foreach (var member in gameObject.MainPlayer.Party.Party)
             {
-                if (!gameObject.MainPlayer.ReserveMembers.Contains(member))
+                if (member != null)
                 {
-                    member.IsInParty = true;
-                    gameObject.MainPlayer.ReserveMembers.Add(member);
+                    if (!gameObject.MainPlayer.ReserveMembers.Contains(member) && !member.IsInParty)
+                    {
+                        member.IsInParty = true;
+                        gameObject.MainPlayer.ReserveMembers.Add(member);
+                    }
                 }
             }
+
+            gameObject.OldAlphaSave = false;
+            PersistentGameObjects.Save();
         }
+
 
         InitializeMusicButton(gameObject);
         InitializePlayerInformation(gameObject);

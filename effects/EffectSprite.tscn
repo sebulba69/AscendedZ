@@ -1288,6 +1288,7 @@ _data = {
 }
 
 [node name="EffectSprite" type="Sprite2D"]
+texture_filter = 2
 texture = ExtResource("1_pwjhv")
 hframes = 5
 vframes = 3

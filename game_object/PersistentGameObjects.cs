@@ -57,6 +57,7 @@ namespace AscendedZ.game_object
         {
             _instance = new GameObject 
             {
+                OldAlphaSave = false,
                 MainPlayer = new MainPlayer 
                 {
                     Name = name,

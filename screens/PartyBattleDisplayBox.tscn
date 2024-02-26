@@ -87,6 +87,7 @@ layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6t5j7")
 theme_override_font_sizes/font_size = 20
@@ -95,6 +96,7 @@ horizontal_alignment = 1
 
 [node name="Picture" type="TextureRect" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(174, 155)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -115,6 +117,7 @@ theme_override_constants/separation = 1
 
 [node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(0, 21)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -128,6 +131,7 @@ texture_progress_offset = Vector2(1, 0)
 
 [node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_6t5j7")
 theme_override_font_sizes/font_size = 16

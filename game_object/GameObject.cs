@@ -13,6 +13,7 @@ namespace AscendedZ.game_object
     {
         private const int TIER_CAP = 41;
 
+        private bool _oldAlphaSave = true;
         private int _tier = 1;
         private int _maxTier = 1;
         private bool _partyMemberObtained = false;
@@ -65,6 +66,8 @@ namespace AscendedZ.game_object
         /// Randomly generated encounters saved for re-use. Starts at Tier 6.
         /// </summary>
         public List<List<string>> Encounters { get; set; }
+
+        public bool OldAlphaSave { get => _oldAlphaSave; set => _oldAlphaSave = value; }
 
         public GameObject()
         {

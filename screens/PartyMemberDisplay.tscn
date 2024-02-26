@@ -4,20 +4,24 @@
 [ext_resource type="Script" path="res://screens/PartyMemberDisplay.cs" id="3"]
 
 [node name="PartyMemberIcon" type="HBoxContainer"]
+texture_filter = 2
 custom_minimum_size = Vector2(500, 180)
 offset_right = 478.0
 offset_bottom = 155.0
 script = ExtResource("3")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+texture_filter = 2
 layout_mode = 2
 
 [node name="PlayerProfile" type="TextureRect" parent="PanelContainer"]
+texture_filter = 2
 custom_minimum_size = Vector2(174, 155)
 layout_mode = 2
 expand_mode = 1
 
 [node name="DescriptionBox" type="TextEdit" parent="."]
+texture_filter = 2
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_constants/line_spacing = -2

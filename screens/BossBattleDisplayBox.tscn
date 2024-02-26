@@ -10,29 +10,36 @@
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="CharacterCtrlNode" type="PanelContainer"]
+texture_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ceifb")
 script = ExtResource("1_s8640")
 
 [node name="CharacterCtrlNode" type="VBoxContainer" parent="."]
+texture_filter = 2
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CharacterCtrlNode"]
+texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="SubContainer" type="VBoxContainer" parent="CharacterCtrlNode/PanelContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="DisplayContainer" type="PanelContainer" parent="CharacterCtrlNode/PanelContainer/SubContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="CenterContainer2" type="CenterContainer" parent="CharacterCtrlNode/PanelContainer/SubContainer"]
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="NameLabel" type="Label" parent="CharacterCtrlNode/PanelContainer/SubContainer/CenterContainer2"]
 unique_name_in_owner = true
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nwbcd")
@@ -41,6 +48,7 @@ text = "Name"
 
 [node name="Picture" type="TextureRect" parent="CharacterCtrlNode/PanelContainer/SubContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -48,6 +56,7 @@ size_flags_vertical = 4
 
 [node name="Statuses" type="HBoxContainer" parent="CharacterCtrlNode/PanelContainer/SubContainer/Picture"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
 anchors_preset = 2
@@ -58,16 +67,19 @@ offset_right = 40.0
 grow_vertical = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="CharacterCtrlNode/PanelContainer/SubContainer"]
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="CenterContainer" type="CenterContainer" parent="CharacterCtrlNode/PanelContainer/SubContainer/PanelContainer"]
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 
 [node name="ResistanceLabel" type="Label" parent="CharacterCtrlNode/PanelContainer/SubContainer/PanelContainer/CenterContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nwbcd")
@@ -85,6 +97,7 @@ volume_db = -15.0
 
 [node name="EffectContainer" type="CenterContainer" parent="."]
 unique_name_in_owner = true
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4

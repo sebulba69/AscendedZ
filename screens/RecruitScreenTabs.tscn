@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cu5quwy1w03eh" path="res://screens/RecruitCustomScreen.tscn" id="2_vx1bb"]
 
 [node name="RecruitScreenTabs" type="CenterContainer"]
+texture_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,6 +16,7 @@ script = ExtResource("1_icywx")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_k52ob")
 tab_alignment = 1
@@ -26,4 +28,5 @@ layout_mode = 2
 [node name="Member Request Forum" parent="TabContainer" instance=ExtResource("2_vx1bb")]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 layout_mode = 2

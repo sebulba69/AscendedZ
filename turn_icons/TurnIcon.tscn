@@ -160,6 +160,7 @@ _data = {
 }
 
 [node name="TurnIcon" type="TextureRect"]
+texture_filter = 2
 custom_minimum_size = Vector2(100, 110)
 offset_right = 100.0
 offset_bottom = 110.0

@@ -5,14 +5,17 @@
 [ext_resource type="Script" path="res://screens/MainScreen.cs" id="4"]
 
 [node name="MainScreenScene" type="Node2D"]
+texture_filter = 2
 script = ExtResource("4")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+texture_filter = 2
 offset_right = 1511.0
 offset_bottom = 850.0
 
 [node name="Background" type="TextureRect" parent="CenterContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 2
 texture = ExtResource("2")
@@ -20,6 +23,7 @@ expand_mode = 1
 
 [node name="MusicSelectContainer" type="PanelContainer" parent="CenterContainer/Background"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -29,16 +33,19 @@ offset_bottom = 47.0
 grow_horizontal = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Background/MusicSelectContainer"]
+texture_filter = 2
 layout_mode = 2
 alignment = 1
 
 [node name="CheckBox" type="CheckBox" parent="CenterContainer/Background/MusicSelectContainer/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 text = "Custom"
 
 [node name="Label" type="Label" parent="CenterContainer/Background/MusicSelectContainer/HBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 35
@@ -49,6 +56,7 @@ vertical_alignment = 1
 [node name="MusicOptionsButton" type="OptionButton" parent="CenterContainer/Background/MusicSelectContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(367, 55)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -58,59 +66,73 @@ alignment = 1
 
 [node name="MainContainer" type="VBoxContainer" parent="CenterContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MainContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainContainer/CenterContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="CurrencyPanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="Currency" type="HBoxContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/CurrencyPanelContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer"]
+texture_filter = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer2"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="PlayerNameLabel" type="Label" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer2/CenterContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 35
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="PlayerPicture" type="TextureRect" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(270, 240)
 layout_mode = 2
 expand_mode = 1
 
 [node name="Buttons" type="CenterContainer" parent="CenterContainer/MainContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainContainer/Buttons"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 alignment = 1
 
 [node name="MenuButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -120,6 +142,7 @@ text = "Menu"
 [node name="EmbarkButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -128,6 +151,7 @@ text = "Embark"
 
 [node name="RecruitButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -135,12 +159,14 @@ theme_override_font_sizes/font_size = 40
 text = "Recruit"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 alignment = 1
 
 [node name="UpgradePartyButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -150,6 +176,7 @@ text = "Upgrade Party"
 [node name="QuestButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -159,6 +186,7 @@ text = "Quests"
 [node name="FuseButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -166,10 +194,12 @@ theme_override_font_sizes/font_size = 40
 text = "Fuse"
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="Tooltip" type="Label" parent="CenterContainer/MainContainer/PanelContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

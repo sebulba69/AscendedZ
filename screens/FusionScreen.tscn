@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2_01pv5"]
 
 [node name="FusionScreen" type="CenterContainer"]
+texture_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,14 +14,17 @@ grow_vertical = 2
 script = ExtResource("1_ps4ux")
 
 [node name="FusionScreen" type="PanelContainer" parent="."]
+texture_filter = 2
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FusionScreen"]
+texture_filter = 2
 layout_mode = 2
 alignment = 1
 
 [node name="Tooltip" type="Label" parent="FusionScreen/VBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
@@ -36,6 +40,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="FusionMaterials" type="HBoxContainer" parent="FusionScreen/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 alignment = 1
 
@@ -44,6 +49,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [node name="Label" type="Label" parent="FusionScreen/VBoxContainer/FusionMaterials"]
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -57,6 +63,7 @@ layout_mode = 2
 
 [node name="FusionAndSkillList" type="ItemList" parent="FusionScreen/VBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(500, 300)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -65,11 +72,13 @@ theme_override_fonts/font = ExtResource("2_01pv5")
 theme_override_font_sizes/font_size = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="FusionScreen/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 alignment = 1
 
 [node name="FuseButton" type="Button" parent="FusionScreen/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -80,6 +89,7 @@ text = "Fuse"
 
 [node name="BackButton" type="Button" parent="FusionScreen/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

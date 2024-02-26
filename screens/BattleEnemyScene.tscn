@@ -17,6 +17,7 @@ script = ExtResource("2")
 
 [node name="Background" type="TextureRect" parent="."]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(1920, 1080)
 offset_right = 1511.0
 offset_bottom = 850.0
@@ -24,6 +25,7 @@ texture = ExtResource("1")
 expand_mode = 1
 
 [node name="EnemyMargins" type="MarginContainer" parent="Background"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -75,6 +77,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 22
 
 [node name="PlayerMargins" type="MarginContainer" parent="Background"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -90,23 +93,28 @@ theme_override_constants/margin_bottom = 50
 
 [node name="PlayerContainer" type="CenterContainer" parent="Background/PlayerMargins"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer"]
+texture_filter = 2
 layout_mode = 2
 alignment = 1
 
 [node name="PartyPortraits" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
 [node name="CharacterCtrlNode2" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/PartyPortraits" instance=ExtResource("6_ulr8v")]
+texture_filter = 2
 layout_mode = 2
 
 [node name="TurnIcons" type="CenterContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
+texture_filter = 2
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
@@ -115,19 +123,21 @@ unique_name_in_owner = true
 
 [node name="TextureRect" type="TextureRect" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/TurnIcons/LayerContainer"]
 self_modulate = Color(1, 1, 1, 0.380392)
+texture_filter = 2
 custom_minimum_size = Vector2(0, 110)
 offset_left = 393.5
-offset_top = 656.0
+offset_top = 651.0
 offset_right = 1526.5
-offset_bottom = 766.0
+offset_bottom = 761.0
 texture = ExtResource("5_4jwes")
 
 [node name="TurnIconContainer" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/TurnIcons/LayerContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 offset_left = 393.5
-offset_top = 658.0
+offset_top = 653.0
 offset_right = 1526.5
-offset_bottom = 658.0
+offset_bottom = 653.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
@@ -143,6 +153,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="QuestLabel" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/QuestPanel/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -153,6 +164,7 @@ horizontal_alignment = 1
 
 [node name="BattleQuestList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/QuestPanel/VBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(375, 200)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -161,26 +173,33 @@ allow_search = false
 
 [node name="ActionMenu" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("5_68yxx")
 
 [node name="ActionListContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu"]
+texture_filter = 2
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="IconContainer" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
+size_flags_vertical = 4
 alignment = 1
 
 [node name="ActionMenuIcon" type="TextureRect" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer/IconContainer"]
 unique_name_in_owner = true
-visible = false
+texture_filter = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_jtn52")
 
 [node name="ActionMenuSkill" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer/IconContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -190,14 +209,17 @@ horizontal_alignment = 1
 
 [node name="ActionList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 18
 allow_search = false
 
 [node name="MenuLabel" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/ActionMenu/ActionListContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -206,14 +228,17 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log"]
+texture_filter = 2
 layout_mode = 2
 alignment = 1
 
 [node name="Title" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="LogTurnCount" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/VBoxContainer/Title"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -223,11 +248,13 @@ text = "Log"
 horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/VBoxContainer"]
+texture_filter = 2
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/VBoxContainer/PanelContainer"]
+texture_filter = 2
 layout_mode = 2
 theme_override_constants/margin_left = 2
 theme_override_constants/margin_top = 2
@@ -236,6 +263,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="CombatLog" type="RichTextLabel" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/Menu+Log/VBoxContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -247,6 +275,7 @@ scroll_following = true
 [node name="EndBox" type="CenterContainer" parent="Background"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(1511, 850)
 layout_mode = 0
 offset_right = 1920.0
@@ -256,10 +285,12 @@ size_flags_vertical = 6
 
 [node name="EndVBox" type="VBoxContainer" parent="Background/EndBox"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 
 [node name="EndOfBattleLabel" type="Label" parent="Background/EndBox/EndVBox"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
@@ -269,15 +300,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BattleEnded" type="CenterContainer" parent="Background/EndBox/EndVBox"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Background/EndBox/EndVBox/BattleEnded"]
+texture_filter = 2
 layout_mode = 2
 theme_override_constants/separation = 17
 
 [node name="BackToHomeBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -287,6 +321,7 @@ text = "Retreat"
 [node name="RetryFloorBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -296,6 +331,7 @@ text = "Retry"
 [node name="ChangePartyBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
@@ -305,6 +341,7 @@ text = "Party"
 [node name="ContinueBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3")

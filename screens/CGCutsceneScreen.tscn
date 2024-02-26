@@ -8,6 +8,7 @@
 script = ExtResource("3")
 
 [node name="CGBackground" type="TextureRect" parent="."]
+texture_filter = 2
 custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,4 +17,5 @@ texture = ExtResource("1")
 expand_mode = 1
 
 [node name="AscendedTextbox" parent="CGBackground" instance=ExtResource("2")]
+texture_filter = 2
 layout_mode = 1

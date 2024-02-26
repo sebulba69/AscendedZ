@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dyxxgykvs4hrj" path="res://effects/effect_sounds/Damage4.ogg" id="7_lo5kf"]
 
 [node name="CharacterCtrlNode2" type="PanelContainer"]
+texture_filter = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,15 +23,18 @@ size_flags_horizontal = 4
 script = ExtResource("1_314aw")
 
 [node name="ContainerForCharStuff" type="VBoxContainer" parent="."]
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="ContainerForCharStuff"]
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 
 [node name="NameLabel" type="Label" parent="ContainerForCharStuff/CenterContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pkpmd")
@@ -39,6 +43,7 @@ text = "Name"
 
 [node name="Picture" type="TextureRect" parent="ContainerForCharStuff"]
 unique_name_in_owner = true
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -46,6 +51,7 @@ size_flags_vertical = 4
 
 [node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/Picture"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(284, 0)
 layout_mode = 1
 anchors_preset = 2
@@ -57,6 +63,7 @@ grow_vertical = 0
 
 [node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff"]
 unique_name_in_owner = true
+texture_filter = 2
 use_parent_material = true
 custom_minimum_size = Vector2(0, 21)
 layout_mode = 2
@@ -71,6 +78,7 @@ texture_progress = ExtResource("4_2fxq6")
 
 [node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff"]
 unique_name_in_owner = true
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pkpmd")
@@ -80,6 +88,7 @@ horizontal_alignment = 1
 
 [node name="EffectContainer" type="CenterContainer" parent="."]
 unique_name_in_owner = true
+texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 size_flags_horizontal = 4

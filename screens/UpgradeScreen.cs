@@ -47,7 +47,7 @@ public partial class UpgradeScreen : CenterContainer
 
         _selected = 0;
 
-        _allPartyMembers = new List<OverworldEntity>(gameObject.MainPlayer.ReserveMembers);
+        _allPartyMembers = gameObject.MainPlayer.ReserveMembers;
 
 		_partyList.ItemSelected += _OnItemSelected;
 		_ascendedPressed = false;

@@ -11,6 +11,7 @@ region = Rect2(448, 1372, 32, 32)
 margin = Rect2(0, -5, 0, 0)
 
 [node name="UpgradeScreen" type="CenterContainer"]
+texture_filter = 2
 custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,9 +21,11 @@ grow_vertical = 2
 script = ExtResource("1_6bmuu")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+texture_filter = 2
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+texture_filter = 2
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -30,17 +33,21 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+texture_filter = 2
 layout_mode = 2
 alignment = 1
 
 [node name="NameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_krmoi")
 theme_override_font_sizes/font_size = 30
@@ -48,17 +55,21 @@ text = "Name"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="MemberImage" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 texture = ExtResource("1_8uklk")
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+texture_filter = 2
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -67,6 +78,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="MemberDescription" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_krmoi")
@@ -76,6 +88,7 @@ text = "Book fart I'm money fart makes me more intelligent"
 
 [node name="PartyList" type="ItemList" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 size_flags_vertical = 3
@@ -83,6 +96,7 @@ theme_override_fonts/font = ExtResource("2_krmoi")
 theme_override_font_sizes/font_size = 25
 
 [node name="GridContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
@@ -90,12 +104,14 @@ alignment = 1
 [node name="AscendBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_krmoi")
 text = "Ascend"
 
 [node name="UpgradeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -108,6 +124,7 @@ text = "Upgrade
 [node name="SmeltButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -117,21 +134,25 @@ theme_override_font_sizes/font_size = 25
 text = "Smelt"
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2"]
+texture_filter = 2
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
 [node name="UpgradeCurrencyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_ffy3i")
 expand_mode = 2
 
 [node name="VorpexCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_krmoi")
@@ -140,10 +161,12 @@ text = "12"
 horizontal_alignment = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
+texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
