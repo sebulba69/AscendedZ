@@ -57,6 +57,10 @@ namespace AscendedZ.battle.battle_state_machine
                     var player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
                     result = skill.ProcessSkill(player);
                     break;
+                case TargetTypes.SINGLE_TEAM_DEAD:
+                    var deadPlayer = battleSceneObject.DeadPlayers[eventArgs.TargetIndex];
+                    result = skill.ProcessSkill(deadPlayer);
+                    break;
             }
 
             result.User = active;
