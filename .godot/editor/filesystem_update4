@@ -34,3 +34,4 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
+res://turn_icons/TurnIcon.tscn
