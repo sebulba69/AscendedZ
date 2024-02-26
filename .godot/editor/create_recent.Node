@@ -1,10 +1,10 @@
+PanelContainer
+VBoxContainer
 CenterContainer
 CanvasLayer
 TextureRect
 Label
-VBoxContainer
 ItemList
-PanelContainer
 HBoxContainer
 RichTextLabel
 Button

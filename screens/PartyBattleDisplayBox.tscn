@@ -129,10 +129,15 @@ texture_over = ExtResource("4_m1gsh")
 texture_progress = ExtResource("5_fk57v")
 texture_progress_offset = Vector2(1, 0)
 
-[node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff/PremiereGaming/TheFullEnchilada/Stats+Pic"]
+[node name="PanelContainer" type="PanelContainer" parent="ContainerForCharStuff/PremiereGaming"]
+layout_mode = 2
+
+[node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff/PremiereGaming/PanelContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_6t5j7")
 theme_override_font_sizes/font_size = 18
 text = "Resistances"

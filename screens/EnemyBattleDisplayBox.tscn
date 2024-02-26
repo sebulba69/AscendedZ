@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bad6j156d7tuk"]
+[gd_scene load_steps=9 format=3 uid="uid://bad6j156d7tuk"]
 
 [ext_resource type="Script" path="res://screens/EntityDisplayBox.cs" id="1_314aw"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2_pkpmd"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://ead6ckayi3d" path="res://progressbar_assets/BarV5_ProgressBar.png" id="4_2fxq6"]
 [ext_resource type="Texture2D" uid="uid://cvtatom8ub0ma" path="res://progressbar_assets/BarV5_ProgressBarBorder.png" id="4_atrrm"]
 [ext_resource type="AudioStream" uid="uid://dyxxgykvs4hrj" path="res://effects/effect_sounds/Damage4.ogg" id="7_lo5kf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r10jx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="CharacterCtrlNode2" type="PanelContainer"]
 texture_filter = 2
@@ -20,6 +23,7 @@ offset_bottom = -940.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_r10jx")
 script = ExtResource("1_314aw")
 
 [node name="ContainerForCharStuff" type="VBoxContainer" parent="."]
@@ -27,12 +31,18 @@ texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="ContainerForCharStuff"]
+[node name="PanelContainer" type="PanelContainer" parent="ContainerForCharStuff"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ContainerForCharStuff/PanelContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ContainerForCharStuff/PanelContainer/VBoxContainer"]
 texture_filter = 2
 use_parent_material = true
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="ContainerForCharStuff/CenterContainer"]
+[node name="NameLabel" type="Label" parent="ContainerForCharStuff/PanelContainer/VBoxContainer/CenterContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 use_parent_material = true
@@ -41,7 +51,7 @@ theme_override_fonts/font = ExtResource("2_pkpmd")
 theme_override_font_sizes/font_size = 20
 text = "Name"
 
-[node name="Picture" type="TextureRect" parent="ContainerForCharStuff"]
+[node name="Picture" type="TextureRect" parent="ContainerForCharStuff/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 use_parent_material = true
@@ -49,7 +59,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/Picture"]
+[node name="Statuses" type="HBoxContainer" parent="ContainerForCharStuff/PanelContainer/VBoxContainer/Picture"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(284, 0)
@@ -61,7 +71,7 @@ offset_top = -40.0
 offset_right = 284.0
 grow_vertical = 0
 
-[node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff"]
+[node name="HP" type="TextureProgressBar" parent="ContainerForCharStuff/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 use_parent_material = true
@@ -76,11 +86,16 @@ texture_under = ExtResource("3_7q0ym")
 texture_over = ExtResource("4_atrrm")
 texture_progress = ExtResource("4_2fxq6")
 
-[node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff"]
+[node name="PanelContainer2" type="PanelContainer" parent="ContainerForCharStuff"]
+layout_mode = 2
+
+[node name="ResistanceLabel" type="Label" parent="ContainerForCharStuff/PanelContainer2"]
 unique_name_in_owner = true
 texture_filter = 2
 use_parent_material = true
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_pkpmd")
 theme_override_font_sizes/font_size = 20
 text = "Resistances"
