@@ -56,7 +56,10 @@ public partial class FusionScreen : CenterContainer
 	/// </summary>
 	private void PopulatePossibleFusionList()
 	{
-		_fSO.PopulateMaterialFusionList();
+        if (_fSO.Fusions.Count == 0)
+            return;
+
+        _fSO.PopulateMaterialFusionList();
 
 		_fusionSkillList.Clear();
 

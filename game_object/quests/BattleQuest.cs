@@ -116,8 +116,8 @@ namespace AscendedZ.game_object.quests
 
                 VorpexReward = VorpexReward + (int)Math.Ceiling(VorpexReward * 0.75);
             }
-                
 
+            VorpexReward *= 2;
             Tier = tier;
             ReqPartyBaseNames.AddRange(partyBaseNames);
             ReqPartySize = partySize;

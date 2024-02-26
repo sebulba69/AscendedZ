@@ -101,6 +101,8 @@ namespace AscendedZ.game_object.quests
                 }
             }
 
+            VorpexReward = VorpexReward + (VorpexReward * partyMember.FusionGrade);
+
             partyMemberBaseName = partyMember.Name;
             grade = partyMember.Grade;
             partyLevel = partyMember.Level;

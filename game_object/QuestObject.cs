@@ -82,25 +82,28 @@ namespace AscendedZ.game_object
                     if (quest.Tier == 0)
                         throw new Exception("Tier must be set by a quest.");
 
-                    isComplete = (quest.Tier == battleSceneObject.Tier);
+                    isComplete = (quest.Tier == battleSceneObject.Tier) && (battleSceneObject.TurnCount <= quest.ReqTurnCount);
 
-                    if(quest.ReqTurnCount > 0)
-                        isComplete = (battleSceneObject.TurnCount <= quest.ReqTurnCount);
-
-                    if (quest.ReqPartySize > 0)
-                        isComplete = (battleSceneObject.Players.Count <= quest.ReqPartySize);
-
-                    if(quest.ReqPartyBaseNames.Count > 0)
+                    if (isComplete)
                     {
-                        int reqPartyMembers = quest.ReqPartyBaseNames.Count;
-                        int partyCount = 0;
-                        foreach (var member in battleSceneObject.Players)
-                        {
-                            if (quest.ReqPartyBaseNames.Contains(member.BaseName))
-                                partyCount++;
-                        }
+                        if (quest.ReqPartySize > 0)
+                            isComplete = (battleSceneObject.Players.Count <= quest.ReqPartySize);
 
-                        isComplete = (partyCount == reqPartyMembers);
+                        if (isComplete)
+                        {
+                            if (quest.ReqPartyBaseNames.Count > 0)
+                            {
+                                int reqPartyMembers = quest.ReqPartyBaseNames.Count;
+                                int partyCount = 0;
+                                foreach (var member in battleSceneObject.Players)
+                                {
+                                    if (quest.ReqPartyBaseNames.Contains(member.BaseName))
+                                        partyCount++;
+                                }
+
+                                isComplete = (partyCount == reqPartyMembers);
+                            }
+                        }
                     }
 
                     quest.Completed = isComplete;
