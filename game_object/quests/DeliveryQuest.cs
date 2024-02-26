@@ -111,7 +111,9 @@ namespace AscendedZ.game_object.quests
                 foreach (var skill in partyMember.Skills)
                 {
                     skillBaseNames.Add(skill.BaseName);
-                }   
+                }
+
+                VorpexReward = VorpexReward + (int)Math.Ceiling(VorpexReward * 0.75);
             }
 
             PartyMemberName = partyMemberBaseName;

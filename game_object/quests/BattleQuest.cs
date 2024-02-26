@@ -102,7 +102,8 @@ namespace AscendedZ.game_object.quests
                         partyBaseNames.Add(baseName);
                     }
                 }
-                    
+
+                VorpexReward = VorpexReward + (int)Math.Ceiling(VorpexReward * 0.75);
             }
 
             if (numBattleChallenges >= 2)
@@ -112,6 +113,8 @@ namespace AscendedZ.game_object.quests
                     minPartyNames++;
 
                 partySize = rng.Next(minPartyNames, 5);
+
+                VorpexReward = VorpexReward + (int)Math.Ceiling(VorpexReward * 0.75);
             }
                 
 
