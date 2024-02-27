@@ -27,6 +27,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             _isBoss = true;
 
             _phase = 0;
+            Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
 
             Skills.Add(SkillDatabase.Wind2.Clone());
             Skills.Add(SkillDatabase.Ice1.Clone());

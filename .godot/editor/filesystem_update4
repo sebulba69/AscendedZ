@@ -8,10 +8,6 @@ res://effects/EffectSprite.tscn
 res://misc_icons/Icon.tscn
 res://statuses/StatusIcon.tscn
 res://screens/StartScreen.tscn
-res://screens/RewardScreen.tscn
-res://screens/RecruitScreenTabs.tscn
-res://screens/RecruitScreen.tscn
-res://screens/RecruitCustomScreen.tscn
 res://screens/QuestScreen.tscn
 res://screens/PopupWindow.tscn
 res://screens/PartyMemberDisplay.tscn
