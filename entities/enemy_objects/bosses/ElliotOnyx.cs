@@ -29,7 +29,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
 
             Name = EnemyNames.Elliot_Onyx;
             Image = CharacterImageAssets.GetImagePath(Name);
-            MaxHP = EntityDatabase.GetBossHP(Name);
+            MaxHP = 100;
             Turns = 3;
 
             Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
