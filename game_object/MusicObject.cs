@@ -37,7 +37,7 @@ namespace AscendedZ.game_object
         public MusicObject()
         {
             if (string.IsNullOrEmpty(_overworldTheme))
-                _overworldTheme = MusicAssets.OVERWORLD_1;
+                _overworldTheme = MusicAssets.OverworldTracks[0];
 
             _streamPlayer = new AudioStreamPlayer();
             _lastPlayedPosition = new Dictionary<string, float>();

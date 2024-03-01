@@ -12,49 +12,44 @@ namespace AscendedZ
 {
     public class MusicAssets
     {
-        public static readonly string OVERWORLD_1 = "[DDS1] River of Samsara";
-        public static readonly string OVERWORLD_2 = "[KH2] Hollow Bastion";
-        public static readonly string OVERWORLD_3 = "[KH2] Underworld";
-        public static readonly string OVERWORLD_4 = "[Lunacid] Rain of Saint Ishii";
-        public static readonly string OVERWORLD_5 = "[SMT3] Sound Test";
-        
-
+        public static readonly string OW_MUSIC_FOLDER = "res://music/overworld/";
         /// <summary>
         /// List of tracks in order the game plays them.
         /// </summary>
-        private static readonly List<string> OVERWORLD_TRACKS = new List<string> 
-        {
-            OVERWORLD_1, OVERWORLD_2, OVERWORLD_3, OVERWORLD_4, OVERWORLD_5
-        };
+        private static readonly List<string> _overworldTracks = new List<string>();
         
-        private static readonly Dictionary<string, string> OVERWORLD_DICT = new Dictionary<string, string>
+        public static List<string> OverworldTracks
         {
-            { OVERWORLD_1, "res://music/overworld/overworld1.ogg" },
-            { OVERWORLD_2, "res://music/overworld/hollow_bastion.ogg" },
-            { OVERWORLD_3, "res://music/overworld/underworld.ogg" },
-            { OVERWORLD_4, "res://music/overworld/rainisshi.ogg" },
-            { OVERWORLD_5, "res://music/overworld/sound_test_nctrn.ogg" }
-        };
+            get
+            {
+                AssetUtil.GetFilesFromDir(_overworldTracks, OW_MUSIC_FOLDER);
+                return _overworldTracks;
+            }
+        }
 
-        private static readonly string[] BOSS_TRACKS = 
-        { 
-            "res://music/dungeons/dungeon10.ogg", 
-            "res://music/dungeons/dungeon20.ogg",
-            "res://music/dungeons/dungeon30.ogg",
-            "res://music/dungeons/dungeon40.ogg"
-        };
+        private static readonly string BOSS_MUSIC = "res://music/dungeon_bosses/";
+        private static readonly List<string> _bossTracks = new List<string>();
 
-        public static readonly string DUNGEON1_4 = "res://music/dungeons/dungeon1-4.ogg";
-        public static readonly string DUNGEON5 = "res://music/dungeons/dungeon5.ogg";
-        public static readonly string DUNGEON6_9 = "res://music/dungeons/dungeon6-9.ogg";
+        public static List<string> BossTracks
+        {
+            get
+            {
+                AssetUtil.GetFilesFromDir(_bossTracks, BOSS_MUSIC);
+                return _bossTracks;
+            }
+        }
 
-        public static readonly string[] DUNGEON_TRACKS_REAL = 
-        { 
-            "res://music/dungeons/dungeon11-19.ogg",
-            "res://music/dungeons/dungeon21-29.ogg",
-            "res://music/dungeons/dungeon31-39.ogg"
-        };
+        private static readonly string DUNGEON_REAL = "res://music/dungeons_tiers/";
+        private static readonly List<string> _dungeonTrackReal = new List<string>();
 
+        private static List<string> DungeonTracksReal
+        {
+            get
+            {
+                AssetUtil.GetFilesFromDir(_dungeonTrackReal, DUNGEON_REAL);
+                return _dungeonTrackReal;
+            }
+        }
 
         public static readonly string BOSS_VICTORY = "res://music/boss_victory.ogg";
         public static readonly string FIRST_CUTSCENE = "res://music/cutscene.ogg";
@@ -62,30 +57,8 @@ namespace AscendedZ
         public static string GetOverworldTrackNormal()
         {
             int tier = PersistentGameObjects.GameObjectInstance().MaxTier;
-            int index = 0;
-            if(tier >= 11)
-            {
-                tier--;
-                index = (tier - (tier % 10)) / 10;
-            }
-
-            string trackKey = OVERWORLD_TRACKS[index];
-            return trackKey;
-        }
-
-        /// <summary>
-        /// Returns the track path for the overworld key
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static string GetOverworldTrackPath(string key)
-        {
-            return OVERWORLD_DICT[key];
-        }
-
-        public static List<string> GetOverworldTrackKeys()
-        {
-            return OVERWORLD_DICT.Keys.ToList<string>();
+            int index = Equations.GetTierIndexBy10(tier);
+            return OverworldTracks[index];
         }
 
         public static string GetDungeonTrack(int tier)
@@ -93,30 +66,30 @@ namespace AscendedZ
             // tiers 5 - 10 have special tracks
             if(tier < 5)
             {
-                return DUNGEON1_4;
+                return "res://music/dungeons_tutorial/dungeon1-4.ogg";
             }
             else if(tier == 5)
             {
-                return DUNGEON5;
+                return "res://music/dungeons_tutorial/dungeon5.ogg";
             }
             else if(tier > 5 && tier <= 9)
             {
-                return DUNGEON6_9;
+                return "res://music/dungeons_tutorial/dungeon6-9.ogg";
             }
             else if(tier >= 10)
             {
                 if(tier % 10 == 0)
                 {
-                    return BOSS_TRACKS[(tier / 10) - 1];
+                    return BossTracks[(tier / 10) - 1];
                 }
                 else
                 {
                     int index = ((tier - (tier % 10)) / 10) - 1;
 
-                    if (index > DUNGEON_TRACKS_REAL.Length)
+                    if (index > DungeonTracksReal.Count)
                         index = 0;
 
-                    return DUNGEON_TRACKS_REAL[index];
+                    return DungeonTracksReal[index];
                 }
 
             }

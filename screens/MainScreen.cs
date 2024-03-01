@@ -61,7 +61,7 @@ public partial class MainScreen : Node2D
         CheckBox checkBox = this.GetNode<CheckBox>("%CheckBox");
 
         MusicObject musicPlayer = gameObject.MusicPlayer;
-        List<string> overworldTracks = MusicAssets.GetOverworldTrackKeys();
+        List<string> overworldTracks = MusicAssets.OverworldTracks;
 
         musicPlayer.SetStreamPlayer(_audioPlayer);
 
@@ -72,6 +72,8 @@ public partial class MainScreen : Node2D
             if (track.Equals(gameObject.MusicPlayer.OverworldThemeCustom))
                 indexOfSongToDisplay = i;
 
+            track = track.Replace(".ogg", "");
+            track = track.Substring(MusicAssets.OW_MUSIC_FOLDER.Length);
             musicOptionsButton.AddItem(track);
         }
 
@@ -79,10 +81,10 @@ public partial class MainScreen : Node2D
 
         musicOptionsButton.ItemSelected += (long index) =>
         {
-            musicPlayer.OverworldThemeCustom = musicOptionsButton.GetItemText((int)index);
+            musicPlayer.OverworldThemeCustom = MusicAssets.OverworldTracks[(int)index];
             PersistentGameObjects.Save();
 
-            musicPlayer.PlayMusic(MusicAssets.GetOverworldTrackPath(musicPlayer.OverworldThemeCustom));
+            musicPlayer.PlayMusic(musicPlayer.OverworldThemeCustom);
         };
 
         checkBox.Toggled += (bool state) => 
@@ -106,14 +108,14 @@ public partial class MainScreen : Node2D
             musicOptionsButton.Visible = true;
             checkBox.Text = "Normal";
             checkBox.ButtonPressed = true;
-            track = MusicAssets.GetOverworldTrackPath(musicPlayer.OverworldThemeCustom);
+            track = musicPlayer.OverworldThemeCustom;
         }
         else
         {
             musicOptionsButton.Visible = false;
             checkBox.Text = "Custom";
             checkBox.ButtonPressed = false;
-            track = MusicAssets.GetOverworldTrackPath(musicPlayer.OverworldTheme);
+            track = musicPlayer.OverworldTheme;
         }
 
         musicPlayer.PlayMusic(track);
