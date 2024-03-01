@@ -24,7 +24,7 @@ namespace AscendedZ
         /// </summary>
         private static readonly List<string> OVERWORLD_TRACKS = new List<string> 
         {
-            OVERWORLD_1, OVERWORLD_2, OVERWORLD_3, OVERWORLD_4
+            OVERWORLD_1, OVERWORLD_2, OVERWORLD_3, OVERWORLD_4, OVERWORLD_5
         };
         
         private static readonly Dictionary<string, string> OVERWORLD_DICT = new Dictionary<string, string>

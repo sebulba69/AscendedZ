@@ -193,7 +193,7 @@ namespace AscendedZ
                 foreach (string name in encounterNames)
                 {
                     Enemy enemy = _enemyMaker.MakeEnemy(name);
-                    if(tier > 10)
+                    if(tier >= 10)
                         enemy.Boost(tier, boost);
                     encounter.Add(enemy);
                 }

@@ -22,7 +22,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
         {
             Name = EnemyNames.Ashen_Ash;
             Image = CharacterImageAssets.GetImagePath(Name);
-            MaxHP = EntityDatabase.GetBossHP(Name);
+            MaxHP = EntityDatabase.GetBossHP(Name) + 400;
             Turns = 3;
             _isBoss = true;
 
@@ -96,5 +96,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
                 this.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[skill.Element]);
             }
         }
+
+        public override void ResetEnemyState() {}
     }
 }

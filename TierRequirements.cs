@@ -46,6 +46,12 @@ namespace AscendedZ
         /// </summary>
         public static int QUESTS_ALL_FUSION_MEMBERS = 30;
 
+        
+        /// <summary>
+        /// 40
+        /// </summary>
+        public static int FLOOD_GATES_OPEN = 40;
+
         /// <summary>
         /// 100 - Tier I can reasonably expect players to have ascended characters
         /// </summary>

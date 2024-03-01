@@ -29,6 +29,13 @@ namespace AscendedZ.entities.enemy_objects
         public void Boost(int tier, int boost)
         {
             MaxHP += ((boost+tier)*2);
+
+            if(tier < TierRequirements.FLOOD_GATES_OPEN)
+            {
+                MaxHP /= 2;
+                MaxHP -= 10;
+            }
+
             int numLevelUps = tier / 2;
 
             for (int i = 0; i < numLevelUps; i++)
