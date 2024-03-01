@@ -14,6 +14,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
     public class AshenAsh : Enemy
     {
         private int _phase;
+        private bool _randomAttack;
 
         // phase, skill
         private Dictionary<int, ElementSkill> elements;
@@ -22,9 +23,10 @@ namespace AscendedZ.entities.enemy_objects.bosses
         {
             Name = EnemyNames.Ashen_Ash;
             Image = CharacterImageAssets.GetImagePath(Name);
-            MaxHP = EntityDatabase.GetBossHP(Name) + 400;
+            MaxHP = EntityDatabase.GetBossHP(Name);
             Turns = 3;
             _isBoss = true;
+            _randomAttack = true;
 
             _phase = 0;
             Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
@@ -57,12 +59,25 @@ namespace AscendedZ.entities.enemy_objects.bosses
             else
             {
                 List<BattlePlayer> partyMembers = battleSceneObject.AlivePlayers;
-                partyMembers = partyMembers.OrderBy(p => (p.HP / p.MaxHP) * 100).ToList();
-                action.Target = partyMembers[0];
+                partyMembers = OrderByHP();
+                if (_phase % 2 == 0)
+                {
+                    // highest HP
+                    action.Target = partyMembers[partyMembers.Count - 1];
+                }
+                else
+                {
+                    // lowest HP
+                    action.Target = partyMembers[0];
+                }
+
+                List<BattlePlayer> OrderByHP()
+                {
+                    return partyMembers.OrderBy(p => (p.HP / p.MaxHP) * 100).ToList();
+                }
             }
 
             IncrementPhase();
-
             return action;
         }
 
@@ -97,6 +112,8 @@ namespace AscendedZ.entities.enemy_objects.bosses
             }
         }
 
-        public override void ResetEnemyState() {}
+        public override void ResetEnemyState() 
+        {
+        }
     }
 }

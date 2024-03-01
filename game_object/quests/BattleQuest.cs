@@ -16,29 +16,12 @@ namespace AscendedZ.game_object.quests
         private int _minReqPartySize = 0;
         private int _reqTurnCount = 0;
 
-        /// <summary>
-        /// Tier to repeat.
-        /// </summary>
         public int Tier { get; set; }
-
-        /// <summary>
-        /// Challenge 1 = List of PartyNames
-        /// </summary>
         public List<string> ReqPartyBaseNames { get => _requiredPartyMembers; set => _requiredPartyMembers = value; }
-        
-        /// <summary>
-        /// Challenge 2
-        /// </summary>
-        public int ReqPartySize { get => _minReqPartySize; set => _minReqPartySize = value; }
-        
-        /// <summary>
-        /// Challenge 3
-        /// </summary>
         public int ReqTurnCount { get => _reqTurnCount; set => _reqTurnCount = value; }
 
         public BattleQuest()
         {
-            _maxChallenges = 3;
             _requiredPartyMembers = new List<string>();
         }
 
@@ -50,23 +33,12 @@ namespace AscendedZ.game_object.quests
         public string GetInBattleDisplayString()
         {
             List<string> displayText = new List<string>();
-            if (ReqPartyBaseNames.Count > 0)
-                displayText.Add(string.Join(", ", ReqPartyBaseNames));
 
-            if (ReqPartySize > 0)
-                displayText.Add($"Party <= {ReqPartySize}");
+            displayText.Add(string.Join(", ", ReqPartyBaseNames));
+            
+            displayText.Add($"Turns <= {ReqTurnCount}");
 
-            if (ReqTurnCount > 0)
-                displayText.Add($"Turns <= {ReqTurnCount}");
-
-            string finalString;
-
-            if (displayText.Count == 0)
-                finalString = $"Complete Tier {Tier}";
-            else
-                finalString = string.Join(" ● ", displayText);
-
-            return finalString;
+            return string.Join(" ● ", displayText);
         }
 
         public override void GenerateQuest(Random rng, int maxTier)
@@ -77,52 +49,37 @@ namespace AscendedZ.game_object.quests
             List<string> partyBaseNames = new List<string>();
 
             // get the number of challenges
-            int numBattleChallenges = rng.Next(MaxChallenges + 1);
             tier = MakeRandomQuestTier(rng, maxTier);
 
             turnCount = rng.Next(3, 5);
 
-            if (numBattleChallenges >= 1)
+            int basePartySize = 4;
+            List<string> battleQuestBaseNames = EntityDatabase.GetAllPartyNamesForBattleQuest(tier);
+
+            int numParty = rng.Next(1, basePartySize);
+
+            for (int p = 0; p < numParty; p++)
             {
-                int basePartySize = 4;
-                List<string> battleQuestBaseNames = EntityDatabase.GetAllPartyNamesForBattleQuest(tier);
-
-                int numParty = rng.Next(1, basePartySize);
-
-                for (int p = 0; p < numParty; p++)
+                string baseName = battleQuestBaseNames[rng.Next(battleQuestBaseNames.Count)];
+                if (!partyBaseNames.Contains(baseName))
+                    partyBaseNames.Add(baseName);
+                else
                 {
-                    string baseName = battleQuestBaseNames[rng.Next(battleQuestBaseNames.Count)];
-                    if(!partyBaseNames.Contains(baseName))
-                        partyBaseNames.Add(baseName);
-                    else
-                    {
-                        while(partyBaseNames.Contains(baseName))
-                            baseName = battleQuestBaseNames[rng.Next(battleQuestBaseNames.Count)];
+                    while (partyBaseNames.Contains(baseName))
+                        baseName = battleQuestBaseNames[rng.Next(battleQuestBaseNames.Count)];
 
-                        partyBaseNames.Add(baseName);
-                    }
+                    partyBaseNames.Add(baseName);
                 }
-
-                VorpexReward = VorpexReward + (int)Math.Ceiling(VorpexReward * 0.75);
             }
 
-            if (numBattleChallenges >= 2)
-            {
-                int minPartyNames = partyBaseNames.Count;
-                if (minPartyNames == 1)
-                    minPartyNames++;
+            int minPartyNames = partyBaseNames.Count;
+            if (minPartyNames == 1)
+                minPartyNames++;
 
-                partySize = rng.Next(minPartyNames, 5);
-
-                VorpexReward = VorpexReward + (int)Math.Ceiling(VorpexReward * 0.75);
-            }
-
-            VorpexReward *= 2;
-            VorpexReward += tier;
             Tier = tier;
             ReqPartyBaseNames.AddRange(partyBaseNames);
-            ReqPartySize = partySize;
             ReqTurnCount = turnCount;
+            VorpexReward = (Math.Abs(tier - ReqTurnCount) * ReqPartyBaseNames.Count);
         }
 
         public override string ToString()
@@ -130,15 +87,8 @@ namespace AscendedZ.game_object.quests
             StringBuilder desc = new StringBuilder();
 
             desc.Append($"Battle Quest ● Tier: {Tier} ● Reward: {VorpexReward} VC\n");
-
-            if (ReqPartyBaseNames.Count > 0)
-                desc.Append($"Req. in Party: {string.Join(", ", ReqPartyBaseNames)}\n");
-
-            if(ReqPartySize > 0)
-                desc.Append($"Req. Party Size: {ReqPartySize}\n");
-
-            if (ReqTurnCount > 0)
-                desc.Append($"Max Turns: {ReqTurnCount}");
+            desc.Append($"Req. in Party: {string.Join(", ", ReqPartyBaseNames)}\n");
+            desc.Append($"Max Turns: {ReqTurnCount}");
 
             return desc.ToString();
         }

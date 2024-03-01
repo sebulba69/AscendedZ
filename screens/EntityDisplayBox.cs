@@ -21,7 +21,7 @@ public partial class EntityDisplayBox : PanelContainer
     private Vector2 _originalPosition;
     private HBoxContainer _statuses;
     private Label _resistances;
-
+    private Label _hp;
     private float _x;
 
     // screen shake
@@ -41,7 +41,7 @@ public partial class EntityDisplayBox : PanelContainer
         _shakeSfx = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
         _statuses = this.GetNode<HBoxContainer>("%Statuses");
         _resistances = this.GetNode<Label>("%ResistanceLabel");
-
+        _hp = this.GetNode<Label>("%HPLabel");
         _originalPosition = new Vector2(this.Position.X, 0);
     }
 
@@ -84,8 +84,8 @@ public partial class EntityDisplayBox : PanelContainer
             hp.Value = hp.MaxValue;
         }
 
-        name.Text = $"{entity.Name} ● {entity.HP} HP";
-
+        name.Text = entity.Name;
+        _hp.Text = $"{entity.HP}/{entity.MaxHP} HP";
         _resistances.Text = entity.Resistances.GetResistanceString();
         //_resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
         picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
@@ -114,6 +114,7 @@ public partial class EntityDisplayBox : PanelContainer
         // change active status if it's a player (players have the graphic, enemies don't)
         if (entity.GetType().Equals(typeof(BattlePlayer)))
         {
+            
             TextureRect activePlayerTag = this.GetNode<TextureRect>("%ActivePlayerTag");
             CenterContainer spacer = this.GetNode<CenterContainer>("%Spacer");
             if (activePlayerTag.Visible != entity.IsActiveEntity)
@@ -124,7 +125,8 @@ public partial class EntityDisplayBox : PanelContainer
                 
         }
 
-        this.GetNode<Label>("%NameLabel").Text = $"{entity.Name} ● {entity.HP} HP";
+        this.GetNode<Label>("%NameLabel").Text = entity.Name;
+        _hp.Text = $"{entity.HP}/{entity.MaxHP} HP";
 
         // ... show statuses ... //
         // clear old statuses

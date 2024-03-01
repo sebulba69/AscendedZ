@@ -17,16 +17,9 @@ namespace AscendedZ.game_object.quests
         public string PartyMemberName { get; set; }
         public int Grade { get; set; }
         public int Level { get; set; }
-        public int AscendedLevel { get; set; }
-
-        /// <summary>
-        /// Challenge 1
-        /// </summary>
-        public List<string> SkillBaseNames { get => _skillBaseNames; set => _skillBaseNames = value; }
 
         public DeliveryQuest()
         {
-            _maxChallenges = 1;
             _skillBaseNames = new List<string>();
         }
 
@@ -49,80 +42,22 @@ namespace AscendedZ.game_object.quests
         public override void GenerateQuest(Random rng, int maxTier)
         {
             string partyMemberBaseName = string.Empty;
-            int grade = 0;
-            int partyLevel = 0;
-            int ascendedLevel = 0;
-            List<string> skillBaseNames = new List<string>();
-            int numPartyQuestChallenges = rng.Next(MaxChallenges + 1);
-
+            
             List<string> partyQuestBaseNames = EntityDatabase.GetAllPartyNamesForBattleQuest(maxTier);
             string partyQuestBaseName = partyQuestBaseNames[rng.Next(partyQuestBaseNames.Count)];
             OverworldEntity partyMember = PartyMemberGenerator.MakePartyMember(partyQuestBaseName);
 
             int numLevelUps = (int)Math.Ceiling(Math.Round(maxTier / Math.Sqrt(maxTier), 2));
-
-            if(partyMember.Skills.Count == 0)
-            {
-                var generatedSkills = SkillDatabase.GetAllGeneratableSkills(maxTier);
-
-                int numSkills = rng.Next(1, 3);
-                HashSet<ISkill> noDupeSkills = new HashSet<ISkill>();
-                for(int s = 0; s < numSkills; s++)
-                {
-                    var skill = generatedSkills[rng.Next(generatedSkills.Count)];
-                    if (noDupeSkills.Contains(skill))
-                    {
-                        while(noDupeSkills.Contains(skill))
-                            skill = generatedSkills[rng.Next(generatedSkills.Count)];
-                    }
-
-                    noDupeSkills.Add(skill);
-                    partyMember.Skills.Add(skill.Clone());
-                }
-            }
-
             for (int level = 0; level < numLevelUps; level++)
-            {
                 partyMember.LevelUp();
-               
-                if (maxTier >= TierRequirements.ASCENSION && partyMember.CanAscend())
-                {
-                    // 40% chance of an ascended party member being required for this quest
-                    if ((rng.Next(1, 101) > 60))
-                    {
-                        int remainder = maxTier % 100;
-                        int tier = maxTier - remainder;
-                        int ascensionTimes = tier / 100;
-                        for (int i = 0; i < ascensionTimes; i++)
-                        {
-                            partyMember.Ascend();
-                        }
-                    }
-                }
-            }
 
-            VorpexReward = VorpexReward + (VorpexReward * partyMember.FusionGrade);
-
-            partyMemberBaseName = partyMember.Name;
-            grade = partyMember.Grade;
-            partyLevel = partyMember.Level;
-            ascendedLevel = partyMember.AscendedLevel;
-            
-            if (numPartyQuestChallenges > 0 && partyMember.FusionGrade > 0)
-            {
-                foreach (var skill in partyMember.Skills)
-                    skillBaseNames.Add(skill.BaseName);
-
-                VorpexReward = (VorpexReward + (int)Math.Ceiling(VorpexReward * 0.75)) * partyMember.Skills.Count + partyMember.FusionGrade;
-            }
-
-            PartyMemberName = partyMemberBaseName;
-            Level = partyLevel;
-            AscendedLevel = ascendedLevel;
-            Grade = grade;
-            SkillBaseNames = skillBaseNames;
+            PartyMemberName = partyMember.Name;
+            Level = partyMember.Level;
+            Grade = partyMember.Grade;
             DeliveryDisplayString = partyMember.DisplayName;
-            VorpexReward += (Grade * 2);
+
+            int multiplier = (partyMember.FusionGrade + 1);
+            VorpexReward = (partyMember.Level + partyMember.VorpexValue * multiplier)/2;
         }
 
         public override string ToString()
@@ -131,10 +66,6 @@ namespace AscendedZ.game_object.quests
 
             desc.Append($"Delivery Quest ● Reward: {VorpexReward} VC\n");
             desc.Append($"Deliver (min. level): {DeliveryDisplayString}\n");
-            if(SkillBaseNames.Count > 0)
-            {
-                desc.Append($"Req. Skills: {string.Join(", ", SkillBaseNames)}");
-            }
 
             return desc.ToString();
         }

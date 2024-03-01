@@ -147,20 +147,19 @@ namespace AscendedZ
                         
                         possibleEncounters.AddRange(randomEncounters);
 
-                        int minEncounters = 2;
-                        int maxEncounters = 4;
+                        int minEnemies = 2;
+                        int maxEnemies = 4;
 
                         // new encounters available past certain tiers
                         if(tier > TierRequirements.TIER2_STRONGER_ENEMIES)
                         {
                             possibleEncounters.AddRange(new string[] { EnemyNames.Ed, EnemyNames.Otem, EnemyNames.Hesret });
-                            maxEncounters = 6;
                         }
 
                         if(tier > TierRequirements.TIER3_STRONGER_ENEMIES)
                         {
                             possibleEncounters.AddRange(new string[] { EnemyNames.Nanfrea, EnemyNames.Ferza, EnemyNames.Anrol, EnemyNames.David });
-                            minEncounters = 3;
+                            minEnemies = 3;
                         }
 
                         if (tier > TierRequirements.TIER4_STRONGER_ENEMIES)
@@ -177,7 +176,7 @@ namespace AscendedZ
                             });
                         }
 
-                        int numEnemies = RANDOM.Next(minEncounters, maxEncounters);
+                        int numEnemies = RANDOM.Next(minEnemies, maxEnemies);
                         for (int i = 0; i < numEnemies; i++)
                         {
                             int randomEnemyIndex = RANDOM.Next(possibleEncounters.Count);
@@ -428,7 +427,7 @@ namespace AscendedZ
             // get the boss number
             index++;
 
-            int baseHP = 50;
+            int baseHP = 20;
             return baseHP * ((index*10)/2);
         }
     }

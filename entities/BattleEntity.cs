@@ -92,7 +92,7 @@ namespace AscendedZ.entities.battle_entities
             }
             else if (this.Resistances.IsWeakToElement(skill.Element))
             {
-                int damage = (int)(skill.Damage * 1.75);
+                int damage = skill.Damage + (int)(skill.Damage * 0.5);
                 this.HP -= damage;
 
                 result.HPChanged = damage;

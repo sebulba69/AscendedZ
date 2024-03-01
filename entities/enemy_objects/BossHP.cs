@@ -52,6 +52,9 @@ namespace AscendedZ.entities.enemy_objects
                     _currentDisplayHP = numerator / _bars;
                 else
                     _currentDisplayHP = remainder;
+
+                if (_currentDisplayHP == MAX_HP_PER_BAR)
+                    _bars--;
             }
 
             SetBarColors();

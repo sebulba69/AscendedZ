@@ -31,7 +31,7 @@ namespace AscendedZ
             try
             {
                 int upgrade = (7 + 2 * (level + 1)) / 2;
-                hp += upgrade;
+                hp += upgrade/2;
             }
             catch (Exception)
             {
@@ -58,7 +58,7 @@ namespace AscendedZ
             if (boost < 0)
                 return 1;
             else
-                return boost;
+                return (boost/4) + 1;
         }
 
         public static int GetTierIndexBy10(int tier)

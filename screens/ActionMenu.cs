@@ -165,7 +165,8 @@ public partial class ActionMenu : PanelContainer
         if (skillTargetType == TargetTypes.SINGLE_OPP)
         {
             foreach (var enemy in _battleSceneObject.Enemies.FindAll(enemy => enemy.HP > 0))
-                _actionList.AddItem($"{enemy.HP} HP ● {enemy.Resistances.GetResistanceString()}", CharacterImageAssets.GetTextureForItemList(enemy.Image));
+                _actionList.AddItem($"{enemy.HP}/{enemy.MaxHP} HP", CharacterImageAssets.GetTextureForItemList(enemy.Image));
+                //_actionList.AddItem($"{enemy.HP}/{enemy.MaxHP} HP ● {enemy.Resistances.GetResistanceString()}", CharacterImageAssets.GetTextureForItemList(enemy.Image));
         }
         else
         {
@@ -175,7 +176,7 @@ public partial class ActionMenu : PanelContainer
                 playerTargetList = _battleSceneObject.DeadPlayers;
 
             foreach (var player in playerTargetList)
-                _actionList.AddItem($"{count++}. {player.Name} ● {player.HP} HP", CharacterImageAssets.GetTextureForItemList(player.Image));
+                _actionList.AddItem($"{player.HP}/{player.MaxHP} HP", CharacterImageAssets.GetTextureForItemList(player.Image));
         }
 
         _state = ActionMenuState.TargetSelect;

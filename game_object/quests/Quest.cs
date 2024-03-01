@@ -16,12 +16,10 @@ namespace AscendedZ.game_object.quests
     {
         private bool _save = false;
         private bool _completed = false;
-        protected int _maxChallenges = 0;
         private int _vorpexReward = 10;
 
         public bool Completed { get => _completed; set => _completed = value; }
         public int VorpexReward { get => _vorpexReward; set => _vorpexReward = value; }
-        public int MaxChallenges { get => _maxChallenges; set => _maxChallenges = value;}
         public bool Save { get => _save; set => _save = value; }
 
         public virtual Texture2D GetIcon()

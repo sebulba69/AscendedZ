@@ -77,36 +77,23 @@ namespace AscendedZ.game_object
             {
                 if (!quest.Completed)
                 {
-                    bool isComplete = false;
-
                     if (quest.Tier == 0)
-                        throw new Exception("Tier must be set by a quest.");
+                        throw new Exception("Tier is 0. You forgot to set it before generating the quest.");
 
-                    isComplete = (quest.Tier == battleSceneObject.Tier) && (battleSceneObject.TurnCount <= quest.ReqTurnCount);
+                    quest.Completed = IsTurnCountValid() && ArePartyMembersValid();
 
-                    if (isComplete)
+                    bool IsTurnCountValid() => (quest.Tier == battleSceneObject.Tier) && (battleSceneObject.TurnCount <= quest.ReqTurnCount);
+                    bool ArePartyMembersValid() 
                     {
-                        if (quest.ReqPartySize > 0)
-                            isComplete = (battleSceneObject.Players.Count <= quest.ReqPartySize);
-
-                        if (isComplete)
+                        int reqPartyMembers = quest.ReqPartyBaseNames.Count;
+                        int partyCount = 0;
+                        foreach (var member in battleSceneObject.Players)
                         {
-                            if (quest.ReqPartyBaseNames.Count > 0)
-                            {
-                                int reqPartyMembers = quest.ReqPartyBaseNames.Count;
-                                int partyCount = 0;
-                                foreach (var member in battleSceneObject.Players)
-                                {
-                                    if (quest.ReqPartyBaseNames.Contains(member.BaseName))
-                                        partyCount++;
-                                }
-
-                                isComplete = (partyCount == reqPartyMembers);
-                            }
+                            if (quest.ReqPartyBaseNames.Contains(member.BaseName))
+                                partyCount++;
                         }
-                    }
-
-                    quest.Completed = isComplete;
+                        return (partyCount == reqPartyMembers);
+                    };
                 }
             }
         }
@@ -125,18 +112,7 @@ namespace AscendedZ.game_object
                     isComplete =
                         deliveryQuest.PartyMemberName.Equals(reserve.Name)
                         && deliveryQuest.Level <= reserve.Level
-                        && deliveryQuest.AscendedLevel <= reserve.AscendedLevel
                         && deliveryQuest.Grade <= reserve.Grade;
-
-                    if (isComplete && deliveryQuest.SkillBaseNames.Count > 0)
-                    {
-                        foreach (ISkill skill in reserve.Skills)
-                        {
-                            isComplete = (deliveryQuest.SkillBaseNames.Contains(skill.BaseName));
-                            if (!isComplete)
-                                break;
-                        }
-                    }
 
                     if (isComplete)
                         break;

@@ -33,7 +33,7 @@ namespace AscendedZ
 
             if (tier > TierRequirements.UPGRADE_SCREEN)
             {
-                rewards.Add(new Vorpex() { Amount = Equations.GetVorpexAmount(tier: tier) * 3 });
+                rewards.Add(new Vorpex() { Amount = Equations.GetVorpexAmount(tier: tier) });
             }
             else
             {

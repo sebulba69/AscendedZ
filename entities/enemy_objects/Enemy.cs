@@ -29,12 +29,7 @@ namespace AscendedZ.entities.enemy_objects
         public void Boost(int tier, int boost)
         {
             MaxHP += ((boost+tier)*2);
-
-            if(tier < TierRequirements.FLOOD_GATES_OPEN)
-            {
-                MaxHP /= 2;
-                MaxHP -= 10;
-            }
+            MaxHP /= 2;
 
             int numLevelUps = tier / 2;
 
@@ -45,7 +40,6 @@ namespace AscendedZ.entities.enemy_objects
                     skill.LevelUp();
                 }
             }
-
         }
 
         public virtual void ResetEnemyState()

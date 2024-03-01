@@ -321,6 +321,10 @@ public partial class BattleEnemyScene : Node2D
             var partyDisplay = _partyMembers.GetChild(j);
             var playerWrapper = new EntityWrapper() { BattleEntity = players[j] };
             partyDisplay.Call("UpdateEntityDisplay", playerWrapper);
+
+            var partyDisplayVbox = partyDisplay.GetNode<VBoxContainer>("%CharacterVBox");
+            if (players[j].IsActiveEntity)
+                _actionMenu.Reparent(partyDisplayVbox);
         }
     }
 
@@ -453,7 +457,7 @@ public partial class BattleEnemyScene : Node2D
             _continueButton.Visible = false;
 
         this.GetNode<CanvasLayer>("%LayerContainer").Visible = !visible;
-        this.GetNode<CenterContainer>("%PlayerContainer").Visible = !visible;
+        this.GetNode<GridContainer>("%PlayerStuff").Visible = !visible;
         _skillDisplayIcons.Visible = false;
         _enemyMembers.Visible = !visible;
     }
