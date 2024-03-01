@@ -12,49 +12,64 @@ using System.Threading.Tasks;
 
 namespace AscendedZ
 {
+    public class AssetUtil
+    {
+        public static void GetFilesFromDir(List<string> files, string path)
+        {
+            if(files.Count == 0)
+            {
+                using (DirAccess dir = DirAccess.Open(path))
+                {
+                    dir.ListDirBegin();
+                    string filename;
+                    while (!string.IsNullOrEmpty(filename = dir.GetNext()))
+                    {
+                        filename = filename.Replace("png.import", "png");
+                        string file = System.IO.Path.Combine(dir.GetCurrentDir(), filename);
+                        files.Add(file);
+                        filename = dir.GetNext();
+                    }
+
+                    dir.ListDirEnd();
+                }
+            }
+        }
+    }
+
     public class BackgroundAssets
     {
-        private static readonly string TIER1_10 = "res://cg_backgrounds/bg00501.jpg";
-        private static readonly string TIER11_20 = "res://cg_backgrounds/bg03401.jpg";
-        private static readonly string TIER21_30 = "res://cg_backgrounds/bg00607.jpg";
-        private static readonly string TIER31_40 = "res://cg_backgrounds/bg00307.jpg";
-        private static readonly string TIER41_50 = "res://cg_backgrounds/bg00404.jpg";
+        private static List<string> _overworldBgs = new List<string>();
 
-        private static readonly string CBT_TIER1_10 = "res://cg_backgrounds/bg03101.jpg";
-        private static readonly string CBT_TIER11_20 = "res://cg_backgrounds/bg02501.jpg";
-        private static readonly string CBT_TIER21_30 = "res://cg_backgrounds/bg02402.jpg";
-        private static readonly string CBT_TIER31_40 = "res://cg_backgrounds/bg02801.jpg";
-
-        private static readonly string[] OW_BGS = new string[] 
+        public static List<string> OverworldBgs
         {
-            TIER1_10, TIER11_20,TIER21_30, TIER31_40, TIER41_50
-        };
+            get
+            {
+                AssetUtil.GetFilesFromDir(_overworldBgs, "res://cg_backgrounds/overworld/");
+                return _overworldBgs;
+            }
+        }
 
-        private static readonly string[] CBT_BGS = new string[]
+        private static List<string> _combatBgs = new List<string>();
+
+        public static List<string> CombatBgs
         {
-            CBT_TIER1_10, CBT_TIER11_20, CBT_TIER21_30, CBT_TIER31_40
-        };
+            get
+            {
+                AssetUtil.GetFilesFromDir(_combatBgs, "res://cg_backgrounds/dungeon/");
+                return _combatBgs;
+            }
+        }
 
         public static string GetBackground(int tier)
         {
-            int index = 0;
-            if (tier >= 11)
-            {
-                tier--;
-                index = (tier - (tier % 10)) / 10;
-            }
-            return OW_BGS[index];
+            int index = Equations.GetTierIndexBy10(tier);
+            return OverworldBgs[index];
         }
 
         public static string GetCombatBackground(int tier)
         {
-            int index = 0;
-            if (tier >= 11)
-            {
-                tier--;
-                index = (tier - (tier % 10)) / 10;
-            }
-            return CBT_BGS[index];
+            int index = Equations.GetTierIndexBy10(tier);
+            return CombatBgs[index];
         }
     }
 
@@ -63,30 +78,13 @@ namespace AscendedZ
     /// </summary>
     public class CharacterImageAssets
     {
-        private static readonly string IMAGE_DIR = "res://entity_pics/";
         private static List<string> _playerPics = new List<string>();
 
         public static List<string> PlayerPics
         {
             get
             {
-                if (_playerPics.Count == 0)
-                {
-                    using (DirAccess dir = DirAccess.Open("res://player_pics/"))
-                    {
-                        dir.ListDirBegin();
-                        string filename;
-                        while (!string.IsNullOrEmpty(filename = dir.GetNext()))
-                        {
-                            filename = filename.Replace("png.import", "png");
-                            string path = System.IO.Path.Combine(dir.GetCurrentDir(), filename);
-                            _playerPics.Add(path);
-                            filename = dir.GetNext();
-                        }
-
-                        dir.ListDirEnd();
-                    }
-                }
+                AssetUtil.GetFilesFromDir(_playerPics, "res://player_pics/");
                 return _playerPics;
             }
         }
@@ -94,7 +92,7 @@ namespace AscendedZ
         public static string GetImagePath(string name)
         {
             string nameToLower = name.ToLower();
-            return $"{IMAGE_DIR}{nameToLower}.png";
+            return $"res://entity_pics/{nameToLower}.png";
         }
 
         public static Texture2D GetTextureForItemList(string imagePath)

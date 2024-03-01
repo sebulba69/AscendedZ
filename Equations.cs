@@ -60,5 +60,16 @@ namespace AscendedZ
             else
                 return boost;
         }
+
+        public static int GetTierIndexBy10(int tier)
+        {
+            int index = 0;
+            if (tier >= 11)
+            {
+                tier--;
+                index = (tier - (tier % 10)) / 10;
+            }
+            return index;
+        }
     }
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://kwvklwjkep5q"]
 
-[ext_resource type="Texture2D" uid="uid://c5xd4it2pk7uq" path="res://cg_backgrounds/bg03101.jpg" id="1"]
+[ext_resource type="Texture2D" uid="uid://c5xd4it2pk7uq" path="res://cg_backgrounds/dungeon/1bg03101.jpg" id="1"]
 [ext_resource type="Script" path="res://screens/BattleEnemyScene.cs" id="2"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="3"]
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="4_38pxl"]
