@@ -17,6 +17,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Isenald] = MakeIsenald;
             _functionDictionary[EnemyNames.Gardmuel] = MakeGardmuel;
             _functionDictionary[EnemyNames.Sachael] = MakeSachael;
+            _functionDictionary[EnemyNames.Pebrand] = MakePebrand;
+            _functionDictionary[EnemyNames.Leofuwil] = MakeLeofuwil;
         }
 
         public Enemy MakeIsenald()
@@ -53,6 +55,28 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             sachael.Skills.Add(SkillDatabase.Fire1);
 
             return sachael;
+        }
+
+        public Enemy MakePebrand()
+        {
+            var pebrand = MakeWeaknessHunterEnemy(EnemyNames.Pebrand, 10);
+
+            pebrand.Resistances.SetResistance(ResistanceType.Nu, Elements.Ice);
+
+            pebrand.Skills.Add(SkillDatabase.Ice2);
+
+            return pebrand;
+        }
+
+        public Enemy MakeLeofuwil()
+        {
+            var leofuwil = MakeWeaknessHunterEnemy(EnemyNames.Leofuwil, 10);
+
+            leofuwil.Resistances.SetResistance(ResistanceType.Nu, Elements.Elec);
+
+            leofuwil.Skills.Add(SkillDatabase.Elec2);
+
+            return leofuwil;
         }
 
         private Enemy MakeWeaknessHunterEnemy(string name, int hp)

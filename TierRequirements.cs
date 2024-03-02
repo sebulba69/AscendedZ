@@ -50,7 +50,7 @@ namespace AscendedZ
         /// <summary>
         /// 40
         /// </summary>
-        public static int FLOOD_GATES_OPEN = 40;
+        public static int TIER5_STRONGER_ENEMIES = 40;
 
         /// <summary>
         /// 100 - Tier I can reasonably expect players to have ascended characters

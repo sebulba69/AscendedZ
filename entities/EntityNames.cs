@@ -55,14 +55,23 @@ namespace AscendedZ.entities
         public static readonly string Arwig = "Arwig"; // ice
         public static readonly string Riccman = "Riccman"; // wind
 
+        public static readonly string Gormacwen = "Gormacwen"; // fire
+        public static readonly string Vidwerd = "Vidwerd"; // dark
+
         // wex hunters
         public static readonly string Isenald = "Isenald"; // light
         public static readonly string Gardmuel = "Gardmuel"; // dark
         public static readonly string Sachael = "Sachael"; // fire
 
+        public static readonly string Pebrand = "Pebrand"; // ice
+        public static readonly string Leofuwil = "Leofuwil"; // elec
+
         // copy cats
         public static readonly string Naldbear = "Naldbear"; // elec
         public static readonly string Stroma_Hele = "Stroma Hele"; // fire
+
+        public static readonly string Sylla = "Sylla"; // wind
+        public static readonly string Venforth = "Venforth"; // ice
 
         // resistance changers
         public static readonly string Thony = "Thony"; // Ice --> Fire

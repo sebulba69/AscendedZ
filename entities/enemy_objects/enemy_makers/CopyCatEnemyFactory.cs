@@ -17,12 +17,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             _functionDictionary[EnemyNames.Naldbear] = MakeNaldbear;
             _functionDictionary[EnemyNames.Stroma_Hele] = MakeStromaHele;
+            _functionDictionary[EnemyNames.Sylla] = MakeSylla;
+            _functionDictionary[EnemyNames.Venforth] = MakeVenforth;
         }
         public Enemy MakeNaldbear()
         {
-            string name = EnemyNames.Naldbear;
-            int hp = 12;
-            var naldbear = MakeCopyCatEnemy(name, hp);
+            var naldbear = MakeCopyCatEnemy(EnemyNames.Naldbear, 12);
 
             naldbear.Resistances.SetResistance(ResistanceType.Nu, Elements.Elec);
 
@@ -33,15 +33,35 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeStromaHele()
         {
-            string name = EnemyNames.Stroma_Hele;
-            int hp = 12;
-            var stroma = MakeCopyCatEnemy(name, hp);
+            var stroma = MakeCopyCatEnemy(EnemyNames.Stroma_Hele, 12);
 
             stroma.Resistances.SetResistance(ResistanceType.Nu, Elements.Fire);
 
             stroma.Skills.Add(SkillDatabase.Fire1.Clone());
 
             return stroma;
+        }
+
+        public Enemy MakeSylla()
+        {
+            var sylla = MakeCopyCatEnemy(EnemyNames.Sylla, 12);
+
+            sylla.Resistances.SetResistance(ResistanceType.Nu, Elements.Ice);
+
+            sylla.Skills.Add(SkillDatabase.Ice2.Clone());
+
+            return sylla;
+        }
+
+        public Enemy MakeVenforth()
+        {
+            var venforth = MakeCopyCatEnemy(EnemyNames.Venforth, 12);
+
+            venforth.Resistances.SetResistance(ResistanceType.Nu, Elements.Elec);
+
+            venforth.Skills.Add(SkillDatabase.Elec2.Clone());
+
+            return venforth;
         }
 
         protected Enemy MakeCopyCatEnemy(string name, int hp)

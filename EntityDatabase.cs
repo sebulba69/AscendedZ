@@ -176,6 +176,19 @@ namespace AscendedZ
                             });
                         }
 
+                        if(tier > TierRequirements.TIER5_STRONGER_ENEMIES)
+                        {
+                            possibleEncounters.AddRange(new string[]
+                            {
+                                EnemyNames.Pebrand,
+                                EnemyNames.Leofuwil,
+                                EnemyNames.Gormacwen,
+                                EnemyNames.Vidwerd,
+                                EnemyNames.Sylla,
+                                EnemyNames.Venforth
+                            });
+                        }
+
                         int numEnemies = RANDOM.Next(minEnemies, maxEnemies);
                         for (int i = 0; i < numEnemies; i++)
                         {

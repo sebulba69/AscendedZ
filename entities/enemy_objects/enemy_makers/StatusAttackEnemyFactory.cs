@@ -17,6 +17,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Thylaf] = MakeThylaf;
             _functionDictionary[EnemyNames.Arwig] = MakeArwig;
             _functionDictionary[EnemyNames.Riccman] = MakeRiccman;
+            _functionDictionary[EnemyNames.Gormacwen] = MakeGormacwen;
+            _functionDictionary[EnemyNames.Vidwerd] = MakeVidwerd;
         }
 
         public Enemy MakeThylaf()
@@ -50,6 +52,28 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             riccman.Skills.Add(SkillDatabase.Wind1.Clone());
 
             return riccman;
+        }
+
+        public Enemy MakeGormacwen()
+        {
+            var gormacwen = MakeAgroStatusEnemy(EnemyNames.Gormacwen, 10);
+
+            gormacwen.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
+
+            gormacwen.Skills.Add(SkillDatabase.Fire2.Clone());
+
+            return gormacwen;
+        }
+
+        public Enemy MakeVidwerd()
+        {
+            var vidwerd = MakeAgroStatusEnemy(EnemyNames.Vidwerd, 10);
+
+            vidwerd.Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
+
+            vidwerd.Skills.Add(SkillDatabase.Dark2.Clone());
+
+            return vidwerd;
         }
 
         private Enemy MakeAgroStatusEnemy(string name, int hp)
