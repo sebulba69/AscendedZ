@@ -168,9 +168,9 @@ namespace AscendedZ.entities.partymember_objects
                 skill.LevelUp();
         }
 
-        public void BoostShopCost()
+        public void BoostShopCost(int numPriceSpikes)
         {
-            ShopCost = (ShopCost + Level) * 2;
+            ShopCost = Equations.BoostShopCost(ShopCost, numPriceSpikes);
         }
 
         public string GetHPLevelUpPreview()

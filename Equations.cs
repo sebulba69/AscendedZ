@@ -71,5 +71,15 @@ namespace AscendedZ
             }
             return index;
         }
+
+        public static int BoostShopCost(int shopCost, int numCalculations)
+        {
+            for(int i = 0; i < numCalculations; i++)
+                shopCost *= 2;
+
+            shopCost /= 3;
+
+            return shopCost;
+        }
     }
 }

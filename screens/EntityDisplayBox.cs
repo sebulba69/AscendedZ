@@ -42,6 +42,7 @@ public partial class EntityDisplayBox : PanelContainer
         _statuses = this.GetNode<HBoxContainer>("%Statuses");
         _resistances = this.GetNode<Label>("%ResistanceLabel");
         _hp = this.GetNode<Label>("%HPLabel");
+        _x = -1;
         _originalPosition = new Vector2(this.Position.X, 0);
     }
 
@@ -60,7 +61,10 @@ public partial class EntityDisplayBox : PanelContainer
         }
         else
         {
-            _x = this.Position.X;
+            if(_x < 0)
+            {
+                _x = this.Position.X;
+            }
             this.Position = new Vector2(_x, _originalPosition.Y);
         }
     }

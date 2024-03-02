@@ -236,13 +236,11 @@ namespace AscendedZ
             {
                 int remainder = tier % 5;
                 int numPriceSpikes = (tier - remainder) / 5;
-                for(int times = 0; times < numPriceSpikes; times++)
+                foreach (var member in partyMembers)
                 {
-                    foreach (var member in partyMembers)
-                    {
-                        member.BoostShopCost();
-                    }  
+                    member.BoostShopCost(numPriceSpikes);
                 }
+                
             }
 
             return partyMembers;

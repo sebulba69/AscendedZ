@@ -25,47 +25,6 @@ offset_bottom = 850.0
 texture = ExtResource("1")
 expand_mode = 1
 
-[node name="TurnIcons" type="CenterContainer" parent="Background"]
-texture_filter = 2
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -591.5
-offset_right = 591.5
-offset_bottom = 100.0
-grow_horizontal = 2
-
-[node name="LayerContainer" type="CanvasLayer" parent="Background/TurnIcons"]
-unique_name_in_owner = true
-
-[node name="TextureRect" type="TextureRect" parent="Background/TurnIcons/LayerContainer"]
-self_modulate = Color(1, 1, 1, 0.380392)
-texture_filter = 2
-custom_minimum_size = Vector2(0, 110)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -566.5
-offset_right = 566.5
-offset_bottom = 110.0
-grow_horizontal = 2
-texture = ExtResource("5_4jwes")
-
-[node name="TurnIconContainer" type="HBoxContainer" parent="Background/TurnIcons/LayerContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -566.5
-offset_right = 566.5
-grow_horizontal = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
 [node name="EnemyMargins" type="MarginContainer" parent="Background"]
 texture_filter = 2
 layout_mode = 1
@@ -121,7 +80,8 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 22
 
-[node name="PlayerMargins" type="MarginContainer" parent="Background"]
+[node name="PlayerVBoxContainer" type="VBoxContainer" parent="Background"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -129,29 +89,57 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -352.0
-offset_top = -286.0
+offset_top = -410.0
 offset_right = 352.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Background/PlayerVBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.380392)
+texture_filter = 2
+custom_minimum_size = Vector2(704, 110)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("5_4jwes")
+
+[node name="TurnIconContainer" type="HBoxContainer" parent="Background/PlayerVBoxContainer/TextureRect"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -566.5
+offset_right = 566.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="PlayerMargins" type="MarginContainer" parent="Background/PlayerVBoxContainer"]
+layout_mode = 2
 theme_override_constants/margin_bottom = 20
 
-[node name="PlayerStuff" type="GridContainer" parent="Background/PlayerMargins"]
+[node name="PlayerStuff" type="GridContainer" parent="Background/PlayerVBoxContainer/PlayerMargins"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 15
 columns = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerStuff"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff"]
 texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
-[node name="Title" type="PanelContainer" parent="Background/PlayerMargins/PlayerStuff/VBoxContainer"]
+[node name="Title" type="PanelContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/VBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="LogTurnCount" type="Label" parent="Background/PlayerMargins/PlayerStuff/VBoxContainer/Title"]
+[node name="LogTurnCount" type="Label" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/VBoxContainer/Title"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
@@ -162,13 +150,13 @@ theme_override_font_sizes/font_size = 25
 text = "Log"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Background/PlayerMargins/PlayerStuff/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/VBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/PlayerMargins/PlayerStuff/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/VBoxContainer/PanelContainer"]
 texture_filter = 2
 layout_mode = 2
 theme_override_constants/margin_left = 2
@@ -176,7 +164,7 @@ theme_override_constants/margin_top = 2
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
-[node name="CombatLog" type="RichTextLabel" parent="Background/PlayerMargins/PlayerStuff/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="CombatLog" type="RichTextLabel" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/VBoxContainer/PanelContainer/MarginContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
@@ -187,33 +175,39 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 scroll_following = true
 
-[node name="PlayerParty" type="VBoxContainer" parent="Background/PlayerMargins/PlayerStuff"]
+[node name="PlayerParty" type="VBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
 alignment = 1
 
-[node name="PartyPortraits" type="HBoxContainer" parent="Background/PlayerMargins/PlayerStuff/PlayerParty"]
+[node name="PartyPortraits" type="HBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/PlayerParty"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="CharacterCtrlNode2" parent="Background/PlayerMargins/PlayerStuff/PlayerParty/PartyPortraits" instance=ExtResource("6_ulr8v")]
+[node name="CharacterCtrlNode2" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/PlayerParty/PartyPortraits" instance=ExtResource("6_ulr8v")]
 texture_filter = 2
 layout_mode = 2
 
-[node name="QuestPanel" type="PanelContainer" parent="Background/PlayerMargins/PlayerStuff"]
+[node name="Spacer" type="CenterContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/PlayerParty"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+
+[node name="QuestPanel" type="PanelContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerStuff/QuestPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/QuestPanel"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="QuestLabel" type="Label" parent="Background/PlayerMargins/PlayerStuff/QuestPanel/VBoxContainer"]
+[node name="QuestLabel" type="Label" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/QuestPanel/VBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
@@ -224,7 +218,7 @@ theme_override_font_sizes/font_size = 25
 text = "Quests"
 horizontal_alignment = 1
 
-[node name="BattleQuestList" type="ItemList" parent="Background/PlayerMargins/PlayerStuff/QuestPanel/VBoxContainer"]
+[node name="BattleQuestList" type="ItemList" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/QuestPanel/VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(250, 200)
@@ -363,7 +357,7 @@ horizontal_alignment = 1
 [node name="ActionList" type="ItemList" parent="Background/Menu+Log/ActionMenu/ActionListContainer"]
 unique_name_in_owner = true
 texture_filter = 2
-custom_minimum_size = Vector2(174, 150)
+custom_minimum_size = Vector2(200, 150)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3

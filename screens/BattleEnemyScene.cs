@@ -267,7 +267,10 @@ public partial class BattleEnemyScene : Node2D
 
         _actionMenu.LoadActiveSkillList();
 
-        SetNewTurns(_battleSceneObject.TurnState == TurnState.PLAYER);
+        bool playerTurn = _battleSceneObject.TurnState == TurnState.PLAYER;
+        SetNewTurns(playerTurn);
+        _actionMenu.Visible = playerTurn;
+        this.GetNode<CenterContainer>("%Spacer").Visible = !playerTurn;
         if (_battleSceneObject.PressTurn.TurnEnded)
         {
             _battleSceneObject.PressTurn.TurnEnded = false; // set turns
@@ -456,8 +459,7 @@ public partial class BattleEnemyScene : Node2D
         if (_continueButton.Visible)
             _continueButton.Visible = false;
 
-        this.GetNode<CanvasLayer>("%LayerContainer").Visible = !visible;
-        this.GetNode<GridContainer>("%PlayerStuff").Visible = !visible;
+        this.GetNode<VBoxContainer>("%PlayerVBoxContainer").Visible = !visible;
         _skillDisplayIcons.Visible = false;
         _enemyMembers.Visible = !visible;
     }
