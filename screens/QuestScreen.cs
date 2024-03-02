@@ -95,7 +95,7 @@ public partial class QuestScreen : CenterContainer
 	{
         QuestObject questObject = _gameObject.QuestObject;
         List<Quest> quests = questObject.GetQuests();
-        _questDescription.Text = quests[_selected].ToString();
+		_questDescription.Text = $"[center]{quests[_selected].ToString()}[/center]";
     }
 
 	private void _OnQuestCompleteButtonPressed()

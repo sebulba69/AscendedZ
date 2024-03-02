@@ -58,7 +58,9 @@ namespace AscendedZ.screens.back_end_screen_scripts
                     FusionIndex = 0;
 
                 var newMember = PartyMemberGenerator.MakePartyMember(DisplayFusion.Fusion.DisplayName);
-                
+
+                newMember.VorpexValue = (DisplayFusion.Material1.VorpexValue + DisplayFusion.Material2.VorpexValue) / 2;
+
                 newMember.Skills.AddRange(DisplayFusion.Fusion.Skills);
 
                 newMember.UpgradeShardYield = upgradeShardYield;

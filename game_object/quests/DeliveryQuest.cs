@@ -66,6 +66,7 @@ namespace AscendedZ.game_object.quests
 
             desc.Append($"Delivery Quest ● Reward: {VorpexReward} VC\n");
             desc.Append($"Deliver (min. level): {DeliveryDisplayString}\n");
+            desc.Append($"Party member is lost on completion.\n");
 
             return desc.ToString();
         }

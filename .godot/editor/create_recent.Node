@@ -1,9 +1,9 @@
 VBoxContainer
+HBoxContainer
 CenterContainer
 MarginContainer
 GridContainer
 SplitContainer
-HBoxContainer
 PanelContainer
 CanvasLayer
 TextureRect
