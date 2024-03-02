@@ -61,10 +61,7 @@ public partial class EntityDisplayBox : PanelContainer
         }
         else
         {
-            if(_x < 0)
-            {
-                _x = this.Position.X;
-            }
+            _x = this.Position.X;
             this.Position = new Vector2(_x, _originalPosition.Y);
         }
     }

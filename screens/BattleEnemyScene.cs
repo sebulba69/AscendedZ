@@ -269,13 +269,18 @@ public partial class BattleEnemyScene : Node2D
 
         bool playerTurn = _battleSceneObject.TurnState == TurnState.PLAYER;
         SetNewTurns(playerTurn);
+
+        if (!playerTurn)
+            _actionMenu.Reparent(this);
+
         _actionMenu.Visible = playerTurn;
         this.GetNode<CenterContainer>("%Spacer").Visible = !playerTurn;
+
         if (_battleSceneObject.PressTurn.TurnEnded)
         {
             _battleSceneObject.PressTurn.TurnEnded = false; // set turns
             _battleSceneObject.ChangeTurnState(); // change turn state
-            UpdateTurnsUsingTurnState(_battleSceneObject.TurnState); // change ap bar visuals
+            UpdateTurnsUsingTurnState(_battleSceneObject.TurnState);
         }
 
         // after we fully display an animation and process a skill
