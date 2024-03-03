@@ -11,26 +11,15 @@ namespace AscendedZ.dungeon_crawling.backend
     /// </summary>
     public class Tile
     {
-        /// <summary>
-        /// The layer above other tiles this node is on
-        /// </summary>
-        public int Layer { get; set; }
-        public int Value { get; set; }
+        private bool _occupied = false;
+        private bool _isExit = false;
         public Tile Left { get; set; }
         public Tile Right { get; set; }
-        public bool Occupied { get; set; }
-        /// <summary>
-        /// Tiles on lower layers connected to this one
-        /// </summary>
-        public List<Tile> Connected { get; set; }
-
-        public Tile()
-        {
-            if (Connected == null)
-            {
-                Connected = new List<Tile>();
-                Occupied = false;
-            }
-        }
+        public Tile BottomLeft { get; set; }
+        public Tile BottomRight { get; set; }
+        public int Layer { get; set; }
+        public int Value { get; set; }
+        public bool Occupied { get => _occupied; set => _occupied = value; }
+        public bool IsExit { get => _isExit; set => _isExit = value; }
     }
 }

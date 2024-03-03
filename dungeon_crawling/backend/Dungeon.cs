@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,60 +12,67 @@ namespace AscendedZ.dungeon_crawling.backend
     /// </summary>
     public class Dungeon
     {
-        private int _maxTileCount = 12;
-        private int _tileCount = 1;
-        public int MaxTileCount { get => _maxTileCount; set => _maxTileCount = value; }
-        public int TileCount { get => _tileCount; set => _tileCount = value; }
+        private DungeonGenerator _dungeonGenerator;
         public Tile Root { get; set; }
-        public Tile Exit { get; set; }
         public Tile CurrentTile { get; set; }
         public Dungeon()
         {
-            if(Root == null)
-            {
-                Root = new Tile()
-                {
-                    Value = 0,
-                    Occupied = true
-                };
+            _dungeonGenerator = new DungeonGenerator();
 
+            if (Root != null && CurrentTile == null)
                 CurrentTile = Root;
-            }
         }
 
-        public void MoveRight()
+        public void Generate()
         {
-            if(CurrentTile.Right == null)
-            {
-                if(TileCount < MaxTileCount)
-                {
-                    int value = CurrentTile.Value + 1;
-                    CurrentTile.Occupied = false;
+            if (Root != null)
+                return;
 
-                    CurrentTile.Right = new Tile()
-                    {
-                        Value = value,
-                        Occupied = true
-                    };
+            Root = new Tile() { Layer = 0, Value = 0 };
+            
+            CurrentTile = Root;
 
-                    IncrementTileCount();
-                }
-            }
-            else
-            {
-                CurrentTile.Occupied = false;
-                CurrentTile = CurrentTile.Right;
-            }
+            _dungeonGenerator.Generate(Root);
         }
 
-        private void IncrementTileCount()
+        public void MoveUpLeft()
         {
-            TileCount++;
-            if (TileCount == MaxTileCount)
-                Exit = CurrentTile;
+            CurrentTile = CurrentTile.Left;
         }
-        
 
+        public void MoveUpRight()
+        {
+            CurrentTile = CurrentTile.Right;
+        }
 
+        public void MoveDownRight()
+        {
+            CurrentTile = CurrentTile.BottomRight;
+        }
+
+        public void MoveDownLeft()
+        {
+            CurrentTile = CurrentTile.BottomLeft;
+        }
+
+        public bool CanMoveLeft()
+        {
+            return CurrentTile.Left != null;
+        }
+
+        public bool CanMoveRight()
+        {
+            return CurrentTile.Right != null;
+        }
+
+        public bool CanMoveDownRight()
+        {
+            return CurrentTile.BottomRight != null;
+        }
+
+        public bool CanMoveDownLeft()
+        {
+            return CurrentTile.BottomLeft != null;
+        }
     }
 }
