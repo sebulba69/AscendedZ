@@ -10,15 +10,12 @@ namespace AscendedZ.dungeon_crawling.backend
     /// <summary>
     /// 1 dungeon floor
     /// </summary>
-    public class Dungeon
+    public class Floor
     {
-        private DungeonGenerator _dungeonGenerator;
         public Tile Root { get; set; }
         public Tile CurrentTile { get; set; }
-        public Dungeon()
+        public Floor()
         {
-            _dungeonGenerator = new DungeonGenerator();
-
             if (Root != null && CurrentTile == null)
                 CurrentTile = Root;
         }
@@ -28,11 +25,18 @@ namespace AscendedZ.dungeon_crawling.backend
             if (Root != null)
                 return;
 
-            Root = new Tile() { Layer = 0, Value = 0 };
+            Root = new Tile() { X = 0, Y = 0};
             
             CurrentTile = Root;
+            FloorGenerator floorGenerator = new FloorGenerator(Root);
+            floorGenerator.Generate(Root);
+            Godot.GD.Print($"Count: {floorGenerator.TileCount}");
+        }
 
-            _dungeonGenerator.Generate(Root);
+        public void ClearNodes()
+        {
+            if(Root != null)
+                Root = null;
         }
 
         public void MoveUpLeft()

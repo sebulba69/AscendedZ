@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://86hlflgnxjcc"]
+
+[ext_resource type="PackedScene" uid="uid://bqrhisukorc1o" path="res://dungeon_crawling/scenes/TileScene.tscn" id="1_75q31"]
+[ext_resource type="Script" path="res://dungeon_crawling/scenes/DungeonScreen.cs" id="1_7745h"]
+
+[node name="DungeonScreen" type="Node2D"]
+script = ExtResource("1_7745h")
+
+[node name="TileScene" parent="." instance=ExtResource("1_75q31")]
+unique_name_in_owner = true
+
+[node name="ChildNodes" type="Marker2D" parent="TileScene"]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="TileScene"]

@@ -17,8 +17,8 @@ namespace AscendedZ.dungeon_crawling.backend
         public Tile Right { get; set; }
         public Tile BottomLeft { get; set; }
         public Tile BottomRight { get; set; }
-        public int Layer { get; set; }
-        public int Value { get; set; }
+        public int Y { get; set; }
+        public int X { get; set; }
         public bool Occupied { get => _occupied; set => _occupied = value; }
         public bool IsExit { get => _isExit; set => _isExit = value; }
     }
