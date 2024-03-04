@@ -30,7 +30,6 @@ namespace AscendedZ.dungeon_crawling.backend
             CurrentTile = Root;
             FloorGenerator floorGenerator = new FloorGenerator(Root);
             floorGenerator.Generate(Root);
-            Godot.GD.Print($"Count: {floorGenerator.TileCount}");
         }
 
         public void ClearNodes()

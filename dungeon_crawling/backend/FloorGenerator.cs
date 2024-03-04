@@ -18,7 +18,7 @@ namespace AscendedZ.dungeon_crawling.backend
 
         private Random _rng;
         public int MaxTileCount { get => _maxTileCount; set => _maxTileCount = value; }
-        public int TileCount { get => _tileCount; set => _tileCount = value; }
+        public int TileCount { get => _tileCount; }
         public bool MaxTileCountReached { get => _maxTileCountReached; set => _maxTileCountReached = value; }
         
         public FloorGenerator(Tile root)
@@ -27,52 +27,71 @@ namespace AscendedZ.dungeon_crawling.backend
             _root = root;
         }
 
-        public void Generate(Tile tile)
+        public void Generate(Tile root)
         {
-            if (TileCount >= MaxTileCount)
-                return;
+            Stack<Tile> stack = new Stack<Tile>();
+            HashSet<int> directions = new HashSet<int>();
+            stack.Push(root);
 
-            int numPaths = GetNumberOfPaths();
-
-            if(numPaths == 0)
+            while (stack.Count > 0)
             {
-                if (!_exitSet && TileCount >= MaxTileCount)
+                int paths = GetNumberOfPaths();
+                Tile tile = stack.Pop();
+
+                GetRandomDirections(directions, paths);
+                foreach (int dir in directions)
                 {
-                    tile.IsExit = true;
-                    _exitSet = true;
+                    Tile tileToAdd = null;
+                    switch (dir)
+                    {
+                        case 0:
+                            AddLeft(tile);
+                            tileToAdd = tile.Left;
+                            break;
+                        case 1:
+                            AddRight(tile);
+                            tileToAdd = tile.Right;
+                            break;
+                        case 2:
+                            AddBLeft(tile);
+                            tileToAdd = tile.BottomLeft;
+                            break;
+                        case 3:
+                            AddBRight(tile);
+                            tileToAdd = tile.BottomRight;
+                            break;
+                    }
+                    
+                    if(tileToAdd != null)
+                        stack.Push(tileToAdd);
                 }
             }
-            else
+        }
+        
+        private int GetNumberOfPaths()
+        {
+            int numPaths = _rng.Next(1, 5);
+            int addedPathCount = numPaths + _tileCount;
+            if (addedPathCount >= MaxTileCount)
+            {
+                numPaths = addedPathCount - MaxTileCount;
+                if (numPaths < 0)
+                    numPaths = 0;
+            }
+            return numPaths;
+        }
+
+        private void GetRandomDirections(HashSet<int> directions, int paths)
+        {
+            directions.Clear();
+            for (int i = 0; i < paths; i++)
             {
                 int dir = _rng.Next(4);
-                HashSet<int> directions = new HashSet<int>();
-                for (int i = 0; i < numPaths; i++)
-                {
-                    while (!directions.Contains(dir))
-                    {
-                        directions.Add(dir);
-                        switch (dir)
-                        {
-                            case 0:
-                                AddLeft(tile);
-                                Generate(tile.Left);
-                                break;
-                            case 1:
-                                AddRight(tile);
-                                Generate(tile.Right);
-                                break;
-                            case 2:
-                                AddBLeft(tile);
-                                Generate(tile.BottomLeft);
-                                break;
-                            case 3:
-                                AddBRight(tile);
-                                Generate(tile.BottomRight);
-                                break;
-                        }
-                    }
+
+                while (directions.Contains(dir))
                     dir = _rng.Next(4);
-                }
+
+                directions.Add(dir);
             }
         }
 
@@ -85,9 +104,12 @@ namespace AscendedZ.dungeon_crawling.backend
 
             if (existing == null)
             {
+                if (_tileCount + 1 >= MaxTileCount)
+                    return;
+
                 tile.Left = new Tile() { Y = layer, X = value };
                 tile.Left.BottomRight = tile;
-                TileCount++;
+                _tileCount++;
             }
             else
             {
@@ -104,9 +126,12 @@ namespace AscendedZ.dungeon_crawling.backend
 
             if (existing == null)
             {
+                if (_tileCount + 1 >= MaxTileCount)
+                    return;
+
                 tile.BottomLeft = new Tile() { Y = layer, X = value };
                 tile.BottomLeft.Right = tile;
-                TileCount++;
+                _tileCount++;
             }
             else
             {
@@ -122,9 +147,12 @@ namespace AscendedZ.dungeon_crawling.backend
             Tile existing = FindExistingTile(_root, layer, value);
             if (existing == null)
             {
+                if(_tileCount + 1 >= MaxTileCount)
+                    return;
+                
                 tile.Right = new Tile() { Y = layer, X = value };
                 tile.Right.BottomLeft = tile;
-                TileCount++;
+                _tileCount++;
             }
             else
             {
@@ -140,27 +168,17 @@ namespace AscendedZ.dungeon_crawling.backend
             Tile existing = FindExistingTile(_root, layer, value);
             if (existing == null)
             {
+                if (_tileCount + 1 >= MaxTileCount)
+                    return;
+
                 tile.BottomRight = new Tile() { Y = layer, X = value };
                 tile.BottomRight.Left = tile;
-                TileCount++;
+                _tileCount++;
             }
             else
             {
                 existing.Left = tile;
             }
-        }
-
-        private int GetNumberOfPaths()
-        {
-            int numPaths = _rng.Next(1, 5);
-            int addedPathCount = numPaths + TileCount;
-            if (addedPathCount >= MaxTileCount)
-            {
-                numPaths = addedPathCount - MaxTileCount;
-                if (numPaths < 0)
-                    numPaths = 0;
-            }
-            return numPaths;
         }
 
         private Tile FindExistingTile(Tile root, int value, int layer)

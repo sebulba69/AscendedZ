@@ -33,11 +33,13 @@ public partial class DungeonScreen : Node2D
             child.QueueFree();
 
         _floor.ClearNodes();
-
         _floor.Generate();
 
         _root.ClearPoints();
 
+
+
+        /* REDO THIS
         MapTilesR(_floor.Root, _root, new HashSet<Vector2>() { _root.GlobalPosition });
 
         // in-line function to avoid Godot adding Tiles to its partial class
@@ -137,7 +139,7 @@ public partial class DungeonScreen : Node2D
                     bLeft.QueueFree();
                 }
             }
-        }
+        }*/
     }
 
     private TileScene GetTileScene()
