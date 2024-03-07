@@ -7,6 +7,8 @@ public partial class TileScene : Node2D
 	private Line2D _line;
 	private Marker2D _center, _left, _right, _bottomRight, _bottomLeft;
 
+    public delegate Vector2 Clicked();
+
 	public override void _Ready()
 	{
 		_line = this.GetNode<Line2D>("%Line2D");
@@ -15,6 +17,8 @@ public partial class TileScene : Node2D
 		_right = this.GetNode<Marker2D>("%Right");
 		_bottomRight = this.GetNode<Marker2D>("%BottomRight");
         _bottomLeft = this.GetNode<Marker2D>("%BottomLeft");
+
+        Area2D area = this.GetNode<Area2D>("%Area2D");
 
         _line.AddPoint(_center.Position);
     }

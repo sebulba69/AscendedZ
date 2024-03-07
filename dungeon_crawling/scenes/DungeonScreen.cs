@@ -17,13 +17,14 @@ public partial class DungeonScreen : Node2D
 		_root = this.GetNode<TileScene>("%TileScene");
         _childNodes = this.GetNode<Marker2D>("%ChildNodes");
         _floor = new Floor();
-	}
+
+        MapDungeon();
+    }
 
     public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed(Controls.UP))
         {
-            MapDungeon();
         }
     }
 
@@ -37,11 +38,8 @@ public partial class DungeonScreen : Node2D
 
         _root.ClearPoints();
 
-
-
-        /* REDO THIS
         MapTilesR(_floor.Root, _root, new HashSet<Vector2>() { _root.GlobalPosition });
-
+        
         // in-line function to avoid Godot adding Tiles to its partial class
         // we do this so we can serialize the tiles
         void MapTilesR(Tile tile, TileScene scene, HashSet<Vector2> visited)
@@ -139,7 +137,7 @@ public partial class DungeonScreen : Node2D
                     bLeft.QueueFree();
                 }
             }
-        }*/
+        }
     }
 
     private TileScene GetTileScene()

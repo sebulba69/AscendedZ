@@ -1,6 +1,4 @@
 res://default_env.tres
-res://dungeon_crawling/scenes/DungeonScreen.tscn
-res://dungeon_crawling/scenes/TileScene.tscn
 res://turn_icons/TurnIcon.tscn
 res://screens/BattleEnemyScene.tscn
 res://screens/UpgradeScreen.tscn
@@ -23,8 +21,11 @@ res://screens/BossHPBar.tscn
 res://screens/BossBattleDisplayBox.tscn
 res://screens/AscendedTextbox.tscn
 res://misc_icons/CurrencyDisplay.tscn
+res://dungeon_crawling/scenes/DungeonScreen.tscn
+res://dungeon_crawling/scenes/TileScene.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
+res://dungeon_crawling/scenes/DungeonScreen.cs
 res://dungeon_crawling/scenes/TileScene.cs
 res://effects/DamageNumber.cs
 res://effects/EffectAnimation.cs
@@ -55,4 +56,3 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://dungeon_crawling/scenes/DungeonScreen.cs
