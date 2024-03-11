@@ -6,20 +6,11 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.dungeon_crawling.backend
 {
-    /// <summary>
-    /// Dungeon Tile
-    /// </summary>
     public class Tile
     {
-        private bool _occupied = false;
         private bool _isExit = false;
-        public Tile Left { get; set; }
-        public Tile Right { get; set; }
-        public Tile BottomLeft { get; set; }
-        public Tile BottomRight { get; set; }
-        public int Y { get; set; }
-        public int X { get; set; }
-        public bool Occupied { get => _occupied; set => _occupied = value; }
+        private bool _pathsGenerated = false;
         public bool IsExit { get => _isExit; set => _isExit = value; }
+        public bool PathsGenerated { get => _pathsGenerated; set => _pathsGenerated = value; }
     }
 }

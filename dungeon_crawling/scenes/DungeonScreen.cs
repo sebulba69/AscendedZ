@@ -10,6 +10,7 @@ public partial class DungeonScreen : Node2D
     private readonly string TILE_SCENE = "res://dungeon_crawling/scenes/TileScene.tscn";
     private Floor _floor;
     private Marker2D _childNodes;
+    private TileScene[,] _dungeonScenes;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -17,126 +18,95 @@ public partial class DungeonScreen : Node2D
 		_root = this.GetNode<TileScene>("%TileScene");
         _childNodes = this.GetNode<Marker2D>("%ChildNodes");
         _floor = new Floor();
-
-        MapDungeon();
     }
 
     public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed(Controls.UP))
         {
+            if (_floor.IsPathUp())
+            {
+                TileScene previousTile = _dungeonScenes[_floor.R, _floor.C];
+                previousTile.SetTileOccupied(false);
+                GD.Print("UP");
+                _floor.MoveUp();
+
+                if (_dungeonScenes[_floor.R, _floor.C] == null)
+                {
+                    TileScene up = GetTileScene();
+                    _dungeonScenes[_floor.R, _floor.C] = up; // by this point, floor R and C have been incremented
+                    this.AddChild(up);
+                    up.Position = previousTile.GetUpPosition();
+                }
+
+                _dungeonScenes[_floor.R, _floor.C].SetTileOccupied(true);
+            }
         }
-    }
 
-    private void MapDungeon()
-    {
-        foreach(var child in _childNodes.GetChildren())
-            child.QueueFree();
-
-        _floor.ClearNodes();
-        _floor.Generate();
-
-        _root.ClearPoints();
-
-        MapTilesR(_floor.Root, _root, new HashSet<Vector2>() { _root.GlobalPosition });
-        
-        // in-line function to avoid Godot adding Tiles to its partial class
-        // we do this so we can serialize the tiles
-        void MapTilesR(Tile tile, TileScene scene, HashSet<Vector2> visited)
+        if (@event.IsActionPressed(Controls.LEFT))
         {
-            if (tile.Left != null)
+            if (_floor.IsPathLeft())
             {
-                scene.AddLeftLine();
+                TileScene previousTile = _dungeonScenes[_floor.R, _floor.C];
+                previousTile.SetTileOccupied(false);
+                GD.Print("LEFT");
+                _floor.MoveLeft();
 
-                TileScene left = GetTileScene();
-
-                this.AddChild(left);
-
-                Vector2 leftPos = scene.GetLeftPosition();
-
-                if (!visited.Contains(leftPos))
+                if (_dungeonScenes[_floor.R, _floor.C] == null)
                 {
-                    visited.Add(leftPos);
-                    left.Position = leftPos;
-                    left.Reparent(_childNodes);
+                    TileScene left = GetTileScene();
+                    _dungeonScenes[_floor.R, _floor.C] = left; // by this point, floor R and C have been incremented
+                    this.AddChild(left);
+                    left.Position = previousTile.GetLeftPosition();
+                }
 
-                    MapTilesR(tile.Left, left, visited);
-                }
-                else
-                {
-                    left.QueueFree();
-                }
+                _dungeonScenes[_floor.R, _floor.C].SetTileOccupied(true);
             }
+        }
 
-            if (tile.Right != null)
+        if (@event.IsActionPressed(Controls.RIGHT))
+        {
+            if (_floor.IsPathRight())
             {
-                scene.AddRightLine();
+                TileScene previousTile = _dungeonScenes[_floor.R, _floor.C];
+                previousTile.SetTileOccupied(false);
+                GD.Print("RIGHT");
+                _floor.MoveRight();
 
-                TileScene right = GetTileScene();
-
-                this.AddChild(right);
-
-                Vector2 rightPos = scene.GetRightPosition();
-                if (!visited.Contains(rightPos))
+                if (_dungeonScenes[_floor.R, _floor.C] == null)
                 {
-                    visited.Add(rightPos);
-                    right.Position = rightPos;
-                    right.Reparent(_childNodes);
+                    TileScene right = GetTileScene();
+                    _dungeonScenes[_floor.R, _floor.C] = right; // by this point, floor R and C have been incremented
+                    this.AddChild(right);
+                    right.Position = previousTile.GetRightPosition();
+                }
 
-                    MapTilesR(tile.Right, right, visited);
-                }
-                else
-                {
-                    right.QueueFree();
-                }
-                
+                _dungeonScenes[_floor.R, _floor.C].SetTileOccupied(true);
             }
+        }
 
-            if (tile.BottomRight != null)
-            {
-                scene.AddBottomRightLine();
+        if (@event.IsActionPressed(Controls.ENTER))
+        {
+            _floor.StartDungeon(1);
 
-                TileScene bRight = GetTileScene();
+            Tile[,] dungeon = _floor.DungeonFloor;
+            int rows = dungeon.GetLength(0);
+            int columns = dungeon.GetLength(1);
 
-                this.AddChild(bRight);
+            _dungeonScenes = new TileScene[rows, columns];
 
-                Vector2 bRightPos = scene.GetBRightPosition();
-                if (!visited.Contains(bRightPos))
-                {
-                    visited.Add(bRightPos);
-                    bRight.Position = bRightPos;
-                    bRight.Reparent(_childNodes);
+            _dungeonScenes[_floor.R, _floor.C] = _root;
+            TileScene current = _dungeonScenes[_floor.R, _floor.C];
+            current.SetTileOccupied(true);
 
-                    MapTilesR(tile.BottomRight, bRight, visited);
-                }
-                else
-                {
-                    bRight.QueueFree();
-                }
-            }
+            if (_floor.IsPathUp())
+                current.AddUpLine();
 
-            if (tile.BottomLeft != null)
-            {
-                scene.AddBottomLeftLine();
+            if (_floor.IsPathLeft())
+                current.AddLeftLine();
 
-                TileScene bLeft = GetTileScene();
-
-                this.AddChild(bLeft);
-
-                Vector2 bLeftPos = scene.GetBLeftPosition();
-                if (!visited.Contains(bLeftPos))
-                {
-                    visited.Add(bLeftPos);
-                    bLeft.Position = bLeftPos;
-                    bLeft.Reparent(_childNodes);
-
-                    MapTilesR(tile.BottomLeft, bLeft, visited);
-                }
-                else
-                {
-                    bLeft.QueueFree();
-                }
-            }
+            if (_floor.IsPathRight())
+                current.AddRightLine();
         }
     }
 
