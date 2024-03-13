@@ -1,4 +1,5 @@
 using AscendedZ;
+using AscendedZ.currency;
 using AscendedZ.dungeon_crawling.backend;
 using Godot;
 using System;
@@ -28,15 +29,19 @@ public partial class DungeonScreen : Node2D
             {
                 TileScene previousTile = _dungeonScenes[_floor.R, _floor.C];
                 previousTile.SetTileOccupied(false);
-                GD.Print("UP");
+
                 _floor.MoveUp();
 
                 if (_dungeonScenes[_floor.R, _floor.C] == null)
                 {
                     TileScene up = GetTileScene();
                     _dungeonScenes[_floor.R, _floor.C] = up; // by this point, floor R and C have been incremented
+                    
                     this.AddChild(up);
+
                     up.Position = previousTile.GetUpPosition();
+
+                    GeneratePaths();
                 }
 
                 _dungeonScenes[_floor.R, _floor.C].SetTileOccupied(true);
@@ -49,7 +54,7 @@ public partial class DungeonScreen : Node2D
             {
                 TileScene previousTile = _dungeonScenes[_floor.R, _floor.C];
                 previousTile.SetTileOccupied(false);
-                GD.Print("LEFT");
+
                 _floor.MoveLeft();
 
                 if (_dungeonScenes[_floor.R, _floor.C] == null)
@@ -58,6 +63,7 @@ public partial class DungeonScreen : Node2D
                     _dungeonScenes[_floor.R, _floor.C] = left; // by this point, floor R and C have been incremented
                     this.AddChild(left);
                     left.Position = previousTile.GetLeftPosition();
+                    GeneratePaths();
                 }
 
                 _dungeonScenes[_floor.R, _floor.C].SetTileOccupied(true);
@@ -70,7 +76,7 @@ public partial class DungeonScreen : Node2D
             {
                 TileScene previousTile = _dungeonScenes[_floor.R, _floor.C];
                 previousTile.SetTileOccupied(false);
-                GD.Print("RIGHT");
+   
                 _floor.MoveRight();
 
                 if (_dungeonScenes[_floor.R, _floor.C] == null)
@@ -79,8 +85,20 @@ public partial class DungeonScreen : Node2D
                     _dungeonScenes[_floor.R, _floor.C] = right; // by this point, floor R and C have been incremented
                     this.AddChild(right);
                     right.Position = previousTile.GetRightPosition();
+                    GeneratePaths();
                 }
 
+                _dungeonScenes[_floor.R, _floor.C].SetTileOccupied(true);
+            }
+        }
+
+        if (@event.IsActionPressed(Controls.DOWN))
+        {
+            if (_floor.IsPathDown())
+            {
+                TileScene previousTile = _dungeonScenes[_floor.R, _floor.C];
+                previousTile.SetTileOccupied(false);
+                _floor.MoveDown();
                 _dungeonScenes[_floor.R, _floor.C].SetTileOccupied(true);
             }
         }
@@ -98,16 +116,22 @@ public partial class DungeonScreen : Node2D
             _dungeonScenes[_floor.R, _floor.C] = _root;
             TileScene current = _dungeonScenes[_floor.R, _floor.C];
             current.SetTileOccupied(true);
-
-            if (_floor.IsPathUp())
-                current.AddUpLine();
-
-            if (_floor.IsPathLeft())
-                current.AddLeftLine();
-
-            if (_floor.IsPathRight())
-                current.AddRightLine();
+            GeneratePaths();
         }
+    }
+
+    private void GeneratePaths()
+    {
+        TileScene current = _dungeonScenes[_floor.R, _floor.C];
+
+        if (_floor.IsPathUp())
+            current.AddUpLine();
+
+        if (_floor.IsPathLeft())
+            current.AddLeftLine();
+
+        if (_floor.IsPathRight())
+            current.AddRightLine();
     }
 
     private TileScene GetTileScene()

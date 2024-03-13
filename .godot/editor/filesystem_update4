@@ -1,6 +1,6 @@
 res://default_env.tres
-res://dungeon_crawling/scenes/TileScene.tscn
 res://dungeon_crawling/scenes/DungeonScreen.tscn
+res://dungeon_crawling/scenes/TileScene.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/DungeonScreen.cs

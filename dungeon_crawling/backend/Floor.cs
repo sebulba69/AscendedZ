@@ -128,6 +128,12 @@ namespace AscendedZ.dungeon_crawling.backend
             }
         }
 
+        private void Move()
+        {
+            if (!DungeonFloor[R, C].PathsGenerated)
+                MakePaths();
+        }
+
         public void MoveDown()
         {
             int r = R + 1;
@@ -151,8 +157,8 @@ namespace AscendedZ.dungeon_crawling.backend
         public bool IsPathLeft()
         {
             bool pathLeft = false;
-            int c = C + 1;
-            if (c <= WIDTH)
+            int c = C - 1;
+            if (c >= 0)
             {
                 pathLeft = (DungeonFloor[R, c] != null);
             }
@@ -162,8 +168,8 @@ namespace AscendedZ.dungeon_crawling.backend
         public bool IsPathRight()
         {
             bool pathRight = false;
-            int c = C - 1;
-            if (c >= 0)
+            int c = C + 1;
+            if (c <= WIDTH)
             {
                 pathRight = (DungeonFloor[R, c] != null);
             }
@@ -179,12 +185,6 @@ namespace AscendedZ.dungeon_crawling.backend
                 pathDown = (DungeonFloor[r, C] != null);
             }
             return pathDown;
-        }
-
-        private void Move()
-        {
-            if (!DungeonFloor[R, C].PathsGenerated)
-                MakePaths();
         }
 
         private void MakePaths()
