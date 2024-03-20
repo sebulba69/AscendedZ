@@ -27,11 +27,6 @@ public partial class TileScene : Node2D
         _line.AddPoint(_center.Position);
     }
 
-    public void SetTileOccupied(bool isOccupied)
-    {
-        this.GetNode<Sprite2D>("%Sprite2D").Visible = isOccupied;
-    }
-
     public void AddUpLine()
     {
         _line.AddPoint(_up.Position);
@@ -74,6 +69,16 @@ public partial class TileScene : Node2D
     public Vector2 GetUpPosition()
     {
         return _up.GlobalPosition;
+    }
+
+    public Vector2 GetCenterPosition()
+    {
+        return _center.GlobalPosition;
+    }
+
+    public double GetTileDistance()
+    {
+        return Math.Abs(_center.GlobalPosition.Y - _up.GlobalPosition.Y);
     }
 
     public void ClearPoints()

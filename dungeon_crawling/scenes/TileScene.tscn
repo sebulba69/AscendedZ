@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqrhisukorc1o"]
+[gd_scene load_steps=4 format=3 uid="uid://bqrhisukorc1o"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/scenes/TileScene.cs" id="1_q0og1"]
-[ext_resource type="Texture2D" uid="uid://bongfd04m6nm0" path="res://entity_pics/aldmas.png" id="2_j4fgh"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_e6mwp"]
+[sub_resource type="SphereMesh" id="SphereMesh_bgjls"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gcdw4"]
 radius = 34.1321
@@ -15,27 +14,34 @@ script = ExtResource("1_q0og1")
 unique_name_in_owner = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Area2D"]
-scale = Vector2(50, 28.571)
-mesh = SubResource("CapsuleMesh_e6mwp")
+position = Vector2(4.76837e-07, 1.2219e-05)
+scale = Vector2(68.0771, 68)
+mesh = SubResource("SphereMesh_bgjls")
+metadata/_edit_lock_ = true
 
 [node name="Left" type="Marker2D" parent="Area2D/MeshInstance2D"]
 unique_name_in_owner = true
 position = Vector2(-2.5, 0)
+metadata/_edit_lock_ = true
 
 [node name="Right" type="Marker2D" parent="Area2D/MeshInstance2D"]
 unique_name_in_owner = true
 position = Vector2(2.5, 0)
+metadata/_edit_lock_ = true
 
 [node name="Up" type="Marker2D" parent="Area2D/MeshInstance2D"]
 unique_name_in_owner = true
-position = Vector2(0, -5)
+position = Vector2(0, -2.5)
+metadata/_edit_lock_ = true
 
 [node name="Down" type="Marker2D" parent="Area2D/MeshInstance2D"]
 unique_name_in_owner = true
-position = Vector2(0, 5)
+position = Vector2(0, 2.5)
+metadata/_edit_lock_ = true
 
 [node name="Center" type="Marker2D" parent="Area2D/MeshInstance2D"]
 unique_name_in_owner = true
+metadata/_edit_lock_ = true
 
 [node name="Line2D" type="Line2D" parent="Area2D/MeshInstance2D"]
 unique_name_in_owner = true
@@ -44,9 +50,4 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_gcdw4")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_j4fgh")
+metadata/_edit_lock_ = true
