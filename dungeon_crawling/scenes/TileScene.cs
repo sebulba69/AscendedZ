@@ -1,4 +1,4 @@
-using AscendedZ.dungeon_crawling.backend;
+using AscendedZ.dungeon_crawling.backend.Tiles;
 using Godot;
 using System;
 using System.Linq;
@@ -7,13 +7,19 @@ public partial class TileScene : Node2D
 {
 	private Line2D _line;
 	private Marker2D _center, _left, _right, _down, _up;
-    private Tile _tile;
+    private NormalTile _tile;
 
     public delegate Vector2 Clicked();
+    private bool _addedRight, _addedLeft, _addedUp, _addedDown;
 
 	public override void _Ready()
 	{
-		_line = this.GetNode<Line2D>("%Line2D");
+        _addedRight = false;
+        _addedLeft = false;
+        _addedUp = false;
+        _addedDown = false;
+
+        _line = this.GetNode<Line2D>("%Line2D");
 
         _center = this.GetNode<Marker2D>("%Center");
 
@@ -29,26 +35,42 @@ public partial class TileScene : Node2D
 
     public void AddUpLine()
     {
+        if (_addedUp)
+            return;
+
         _line.AddPoint(_up.Position);
         _line.AddPoint(_center.Position);
+        _addedUp = true;
     }
 
     public void AddRightLine()
 	{
+        if (_addedRight)
+            return;
+
         _line.AddPoint(_right.Position);
         _line.AddPoint(_center.Position);
+        _addedRight = true;
     }
 
 	public void AddLeftLine()
 	{
+        if (_addedLeft)
+            return;
+
         _line.AddPoint(_left.Position);
         _line.AddPoint(_center.Position);
+        _addedLeft = true;
     }
 
 	public void AddDownLine()
 	{
+        if (_addedDown)
+            return;
+
         _line.AddPoint(_down.Position);
         _line.AddPoint(_center.Position);
+        _addedDown = true;
     }
 
     public Vector2 GetRightPosition()
