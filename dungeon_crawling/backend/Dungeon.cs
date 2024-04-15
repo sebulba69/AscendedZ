@@ -5,57 +5,177 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AscendedZ.dungeon_crawling.backend.Tiles;
+using Godot;
 
 namespace AscendedZ.dungeon_crawling.backend
 {
+    public class WeightedItem<E>
+    {
+        private E _item;
+        private int _weight;
+
+        public E Item { get => _item; }
+        public int Weight { get => _weight; }
+
+        public WeightedItem(E item, int weight)
+        {
+            _item = item;
+            _weight = weight;  
+        }
+    }
+
+    /// <summary>
+    /// Dungeon that exists as a straight line.
+    /// Contains 20 encounters divided into groups.
+    /// 20 tiles from left to right
+    ///     Encounters laid out like so (None, Encounter, None, Event, None, Encounter)
+    /// </summary>
     public class Dungeon
     {
         private Random _rng;
+        private const int MAX_TILES = 20;
+        private int _totalWeight = 0;
+        private int _level;
         private bool _doorFlagSet = false;
 
-        private List<Func<ITile, ITile>> _tileGenFunctions;
+        private List<WeightedItem<Func<ITile>>> _tileGenFunctions;
+        private ITile _currentTile;
 
-        private ITile _current;
-        private ITile _root;
-        private int _level;
-
-        public ITile Root { get => _root; }
+        public ITile CurrentTile { get => _currentTile; }
 
         public Dungeon(int level)
         {
             _rng = new Random();
             _level = level;
 
-            _tileGenFunctions = new List<Func<ITile, ITile>>() 
+            _tileGenFunctions = new List<WeightedItem<Func<ITile>>>() 
             {
-                MakeItemPath,
-                MakeHealPath,
-                MakeShopPath,
-                MakeDoorPath
+                new WeightedItem<Func<ITile>>(MakeItemPath, 35),
+                new WeightedItem<Func<ITile>>(MakeHealPath, 20),
+                new WeightedItem<Func<ITile>>(MakeShopPath, 15),
+                new WeightedItem<Func<ITile>>(MakeDoorPath, 35)
             };
+
+            _tileGenFunctions.ForEach(tileGenFunc => _totalWeight += tileGenFunc.Weight);
         }
 
         public void Start()
         {
-            _root = new NormalTile();
+            List<ITile> mainPathTiles = new List<ITile>();
+            bool generateEvent = (_rng.Next(2) % 2 == 0);
 
-            ITile right = new NormalTile();
-            
-            Root.Right = right;
-            
-            right.Left = Root;
-            
-            _current = Root;
+            List<int> eventIndexes = new List<int>();
+
+            _currentTile = new MainPathTile();
+            ITile tile = _currentTile;
+            for (int t = 0; t < MAX_TILES; t++)
+            {
+                ITile right;
+                if (t % 2 == 0)
+                {
+                    right = new MainPathTile();
+                }
+                else
+                {
+                    ITile eventTile;
+
+                    if (!generateEvent)
+                    {
+                        eventTile = new MainEncounterTile();
+                    }
+                    else
+                    {
+                        eventTile = GetEventPath();
+                        eventIndexes.Add(t);
+                    }
+
+                    right = eventTile;
+                    generateEvent = !generateEvent;
+                }
+
+                tile.Right = right;
+                right.Left = tile;
+                tile = right;
+            }
         }
 
-        public void GenerateTile()
+        public void MoveRight()
         {
-            var tileGenFunction = _tileGenFunctions[_rng.Next(_tileGenFunctions.Count)];
-            ITile eventPath = tileGenFunction.Invoke(_current);
+            if (_currentTile.Right != null)
+                _currentTile = _currentTile.Right;
         }
 
-        private ITile MakeItemPath(ITile startOfPath)
+        public void MoveLeft()
         {
+            if (_currentTile.Left != null)
+                _currentTile = _currentTile.Left;
+        }
+
+        public void MoveDown()
+        {
+            if (_currentTile.Down != null)
+                _currentTile = _currentTile.Down;
+        }
+
+        public void MoveUp()
+        {
+            if (_currentTile.Up != null)
+                _currentTile = _currentTile.Up;
+        }
+
+        #region Tile Gen Functions
+        /// <summary>
+        /// Event paths have MainPathNodes as their root.
+        /// These should always be connected to from the left
+        /// if travelling right.
+        /// </summary>
+        /// <returns></returns>
+        private ITile GetEventPath()
+        {
+            ITile eventPath;
+            if (!_doorFlagSet)
+            {
+                Func<ITile> tileGenFunction = GetTileGenFunction();
+                if (tileGenFunction != null)
+                {
+                    eventPath = tileGenFunction.Invoke();
+                }
+                else
+                {
+                    eventPath = new MainPathTile();
+                }
+            }
+            else
+            {
+                eventPath = MakeItemPath();
+            }
+
+            return eventPath;
+        }
+
+        private Func<ITile> GetTileGenFunction()
+        {
+            int random = _rng.Next(_totalWeight);
+            
+            Func<ITile> tileGenFunc = null;
+
+            foreach(var func in _tileGenFunctions)
+            {
+                if(random < func.Weight)
+                {
+                    tileGenFunc = func.Item;
+                    break;
+                }
+
+                random -= func.Weight;
+            }
+
+            return tileGenFunc;
+        }
+
+        private ITile MakeItemPath()
+        {
+            ITile startOfPath = new MainPathTile();
             ITile encounterTile = new EncounterTile();
             ITile itemTile = new ItemTile();
 
@@ -78,7 +198,7 @@ namespace AscendedZ.dungeon_crawling.backend
             }
 
             // down
-            if(_rng.Next(0,1) == 1)
+            if (_rng.Next(0, 1) == 1)
             {
                 startOfPath.Down = encounterTile;
                 encounterTile.Up = startOfPath;
@@ -88,12 +208,12 @@ namespace AscendedZ.dungeon_crawling.backend
                 startOfPath.Up = encounterTile;
                 encounterTile.Down = startOfPath;
             }
-
             return startOfPath;
         }
 
-        private ITile MakeHealPath(ITile startOfPath)
+        private ITile MakeHealPath()
         {
+            ITile startOfPath = new MainPathTile();
             ITile encounterTile = new EncounterTile();
             ITile itemTile = new ItemTile();
             ITile healTile = new HealTile();
@@ -117,8 +237,9 @@ namespace AscendedZ.dungeon_crawling.backend
             return startOfPath;
         }
 
-        private ITile MakeDoorPath(ITile startOfPath)
+        private ITile MakeDoorPath()
         {
+            ITile startOfPath = new MainPathTile();
             ITile itemTile = new ItemTile();
             ITile doorTile = new DoorTile();
 
@@ -142,8 +263,9 @@ namespace AscendedZ.dungeon_crawling.backend
             return startOfPath;
         }
 
-        private ITile MakeShopPath(ITile startOfPath)
+        private ITile MakeShopPath()
         {
+            ITile startOfPath = new MainPathTile();
             ITile shopTile = new ShopTile();
             
             if (_rng.Next(0, 1) == 1)
@@ -159,5 +281,7 @@ namespace AscendedZ.dungeon_crawling.backend
 
             return startOfPath;
         }
+        #endregion
+
     }
 }

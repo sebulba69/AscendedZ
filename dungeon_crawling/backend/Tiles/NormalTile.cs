@@ -8,6 +8,7 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
 {
     public class NormalTile : ITile
     {
+        public bool IsMainTile { get; set; } = false;
         public bool IsExit { get; set; }
         public ITile Left { get; set; }
         public ITile Right { get; set; }

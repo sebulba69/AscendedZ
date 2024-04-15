@@ -8,6 +8,8 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
 {
     public class HealTile : ITile
     {
+        public bool IsMainTile { get; set; } = false;
+        public int Weight { get; set; } = 20;
         public bool IsExit { get; set; }
         public ITile Left { get; set; }
         public ITile Right { get; set; }
