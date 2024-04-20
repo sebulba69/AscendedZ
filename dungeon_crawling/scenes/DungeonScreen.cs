@@ -40,7 +40,7 @@ public partial class DungeonScreen : Node2D
 		_tiles = this.GetNode<Marker2D>("%Tiles");
         _player = this.GetNode<Sprite2D>("%Player");
 
-        _dungeon = new Dungeon(1);
+        _dungeon = new Dungeon(1, 2);
 
         _dungeon.Start();
 
