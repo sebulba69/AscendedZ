@@ -38,3 +38,4 @@ res://dungeon_crawling/scenes/PlayerScene.tscn
 res://dungeon_crawling/scenes/DungeonPlayer.cs
 res://dungeon_crawling/scenes/DungeonEntity.tscn
 res://dungeon_crawling/scenes/DungeonEntity.cs
+res://dungeon_crawling/backend/GraphicWrapper.cs

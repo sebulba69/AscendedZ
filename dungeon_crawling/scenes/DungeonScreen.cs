@@ -41,7 +41,7 @@ public partial class DungeonScreen : Node2D
 		_tiles = this.GetNode<Marker2D>("%Tiles");
         _player = this.GetNode<DungeonEntity>("%Player");
 
-        _dungeon = new Dungeon(1, 2);
+        _dungeon = new Dungeon(1, 6);
 
         _dungeon.Generate();
 
@@ -179,6 +179,8 @@ public partial class DungeonScreen : Node2D
         if (visited.Contains(tile))
             return;
 
+        uiTile.Scene.SetGraphic(tile.Graphic);
+
         visited.Add(tile);
         if(tile.Up != null && uiTile.Up == null)
         {
@@ -188,7 +190,6 @@ public partial class DungeonScreen : Node2D
             up.Down = uiTile;
 
             AddDoors(uiTile, up, Direction.Up);
-            up.Scene.SetGraphic(tile.Graphic);
             DrawBranchingTiles(up, tile.Up, visited);
         }
 
@@ -200,7 +201,6 @@ public partial class DungeonScreen : Node2D
             down.Up = uiTile;
 
             AddDoors(uiTile, down, Direction.Down);
-            down.Scene.SetGraphic(tile.Graphic);
             DrawBranchingTiles(down, tile.Down, visited);
         }
 
@@ -212,7 +212,6 @@ public partial class DungeonScreen : Node2D
             left.Right = uiTile;
 
             AddDoors(uiTile, left, Direction.Left);
-            left.Scene.SetGraphic(tile.Graphic);
             DrawBranchingTiles(left, tile.Left, visited);
         }
 
@@ -224,7 +223,6 @@ public partial class DungeonScreen : Node2D
             right.Left = uiTile;
 
             AddDoors(uiTile, right, Direction.Right);
-            right.Scene.SetGraphic(tile.Graphic);
             DrawBranchingTiles(right, tile.Right, visited);
         }
     }

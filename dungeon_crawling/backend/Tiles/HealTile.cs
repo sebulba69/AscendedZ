@@ -11,7 +11,6 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
         public string Graphic { get => "res://dungeon_crawling/art_assets/entity_icons/health.png"; }
         public bool IsMainTile { get; set; } = false;
         public int Weight { get; set; } = 20;
-        public bool IsExit { get; set; }
         public ITile Left { get; set; }
         public ITile Right { get; set; }
         public ITile Up { get; set; }

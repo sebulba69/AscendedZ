@@ -1,3 +1,4 @@
+using AscendedZ.dungeon_crawling.backend;
 using AscendedZ.dungeon_crawling.backend.Tiles;
 using Godot;
 using Godot.Collections;
@@ -42,11 +43,11 @@ public partial class TileScene : Node2D
 
     public void SetGraphic(string graphic)
     {
-        if(!string.IsNullOrEmpty(graphic))
-        {
-            _graphic.Visible = true;
-            _graphic.SetGraphic(graphic);
-        }
+        if (graphic.Equals(""))
+            return;
+
+        _graphic.Visible = true;
+        _graphic.SetGraphic(graphic);
     }
 
     public void AddLine(Direction direction)

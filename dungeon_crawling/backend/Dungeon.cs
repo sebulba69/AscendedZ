@@ -39,26 +39,17 @@ namespace AscendedZ.dungeon_crawling.backend
             _rng = new Random();
             _level = level;
             _eventCount = eventCount;
-
-            IPathFactory itemPathFactory = new ItemPathFactory(_rng);
-            IPathFactory healPathFactory = new HealPathFactory(_rng);
-            IPathFactory shopPathFactory = new ShopPathFactory(_rng);
-
-            _tileGenFunctions = new List<WeightedItem<IPathFactory>>() 
-            {
-                new WeightedItem<IPathFactory>(itemPathFactory, 35),
-                new WeightedItem<IPathFactory>(healPathFactory, 20),
-                new WeightedItem<IPathFactory>(shopPathFactory, 15),
-            };
-
-            _tileGenFunctions.ForEach(tileGenFunc => _totalWeight += tileGenFunc.Weight);
         }
 
         public void Generate()
         {
             List<ITile> mainPathTiles = new List<ITile>();
 
+            SetPathFactories();
+
             Direction primaryDirection = (Direction)_rng.Next(0, Enum.GetNames(typeof(Direction)).Length);
+            Direction alternateUpDirection = (_rng.Next(0, 2) == 1) ? Direction.Left : Direction.Right;
+            Direction alternateLeftDirection = (_rng.Next(0, 2) == 1) ? Direction.Up : Direction.Down;
 
             _currentTile = new MainPathTile(primaryDirection);
             ITile tile = _currentTile;
@@ -87,25 +78,34 @@ namespace AscendedZ.dungeon_crawling.backend
                 {
                     if(primaryDirection == Direction.Up || primaryDirection == Direction.Down)
                     {
-                        int dir = _rng.Next(0, 2);
-                        if (dir == 0)
-                            primaryDirection = Direction.Left;
-                        else
-                            primaryDirection = Direction.Right;
+                        primaryDirection = alternateUpDirection;
                     }
                     else
                     {
-                        int dir = _rng.Next(0, 2);
-                        if (dir == 0)
-                            primaryDirection = Direction.Up;
-                        else
-                            primaryDirection = Direction.Down;
+                        primaryDirection = alternateLeftDirection;
                     }
                 }
             }
 
-            ITile last = new MainPathTile(primaryDirection) { IsExit = true };
+            ITile last = new ExitTile(primaryDirection);
             tile = AttachTiles(tile, last, primaryDirection);
+        }
+
+        private void SetPathFactories()
+        {
+            _totalWeight = 0;
+            IPathFactory itemPathFactory = new ItemPathFactory(_rng);
+            IPathFactory healPathFactory = new HealPathFactory(_rng);
+            IPathFactory shopPathFactory = new ShopPathFactory(_rng);
+
+            _tileGenFunctions = new List<WeightedItem<IPathFactory>>()
+            {
+                new WeightedItem<IPathFactory>(itemPathFactory, 55),
+                new WeightedItem<IPathFactory>(healPathFactory, 20),
+                new WeightedItem<IPathFactory>(shopPathFactory, 15)
+            };
+
+            _tileGenFunctions.ForEach(tileGenFunc => _totalWeight += tileGenFunc.Weight);
         }
 
         private ITile AttachTiles(ITile tile, ITile next, Direction direction)
@@ -128,8 +128,6 @@ namespace AscendedZ.dungeon_crawling.backend
                     tile.Right = next;
                     next.Left = tile;
                     break;
-                default:
-                    throw new NotImplementedException($"Enum {direction} not implemented.");
             }
 
             return next;
@@ -188,11 +186,14 @@ namespace AscendedZ.dungeon_crawling.backend
 
             IPathFactory tilePathFactory = null;
 
-            foreach(var factory in _tileGenFunctions)
+            for(int f = 0; f < _tileGenFunctions.Count; f++)
             {
+                var factory = _tileGenFunctions[f];
                 if(random < factory.Weight)
                 {
                     tilePathFactory = factory.Item;
+                    if(tilePathFactory.GetType().Equals(typeof(ShopPathFactory)))
+                        _tileGenFunctions.Remove(factory);
                     break;
                 }
 

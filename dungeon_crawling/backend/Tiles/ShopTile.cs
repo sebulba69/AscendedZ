@@ -10,7 +10,6 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
     {
         public string Graphic { get => "res://dungeon_crawling/art_assets/entity_icons/shop.png"; }
         public bool IsMainTile { get; set; } = false;
-        public bool IsExit { get; set; }
         public ITile Left { get; set; }
         public ITile Right { get; set; }
         public ITile Up { get; set; }

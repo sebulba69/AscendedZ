@@ -13,7 +13,6 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
     {
         public string Graphic { get => ""; }
         public bool IsMainTile { get; set; } = true;
-        public bool IsExit { get; set; }
         public ITile Left { get; set; }
         public ITile Right { get; set; }
         public ITile Up { get; set; }

@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.dungeon_crawling.backend.Tiles
 {
-    public class ItemTile : ITile
+    public class ExitTile : ITile
     {
-        public string Graphic { get => "res://dungeon_crawling/art_assets/entity_icons/item.png"; }
-        public bool IsMainTile { get; set; } = false;
+        public string Graphic { get => "res://dungeon_crawling/art_assets/entity_icons/exit.png"; }
+        public bool IsMainTile { get; set; } = true;
         public ITile Left { get; set; }
         public ITile Right { get; set; }
         public ITile Up { get; set; }
         public ITile Down { get; set; }
 
-        public void Enter()
+        private Direction _direction;
+
+        public ExitTile(Direction direction)
         {
-            
+            _direction = direction;
         }
 
-        public virtual Direction GetDirection()
+        public void Enter()
         {
-            throw new NotImplementedException();
+
+        }
+
+        public Direction GetDirection()
+        {
+            return _direction;
         }
     }
 }
