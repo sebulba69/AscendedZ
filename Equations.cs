@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -80,6 +81,13 @@ namespace AscendedZ
             shopCost /= 3;
 
             return shopCost;
+        }
+
+        public static BigInteger GetDungeonCrawlingHPBoost(int tier)
+        {
+            BigInteger hpIncrease = 2;
+
+            return hpIncrease * (tier);
         }
     }
 }

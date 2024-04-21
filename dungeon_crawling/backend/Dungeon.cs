@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AscendedZ.dungeon_crawling.backend.PathMakers;
 using AscendedZ.dungeon_crawling.backend.TileEvents;
 using AscendedZ.dungeon_crawling.backend.Tiles;
+using AscendedZ.dungeon_crawling.databases;
 using Godot;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Net.WebRequestMethods;
@@ -31,19 +31,23 @@ namespace AscendedZ.dungeon_crawling.backend
 
         private Random _rng;
         private int _totalWeight = 0;
-        private int _level;
+        private int _tier;
         private int _eventCount;
 
-        private List<WeightedItem<IPathFactory>> _tileGenFunctions;
         private ITile _currentTile;
+        private EnemyDCFactory _enemyDCFactory;
+        private PathFactory _pathFactory;
+        private List<WeightedItem<PathType>> _pathTypes;
 
         public ITile CurrentTile { get => _currentTile; }
 
-        public Dungeon(int level, int eventCount)
+        public Dungeon(int tier, int eventCount)
         {
             _rng = new Random();
-            _level = level;
+            _tier = tier;
             _eventCount = eventCount;
+            _pathFactory = new PathFactory(_rng);
+            _enemyDCFactory = new EnemyDCFactory(_tier, _rng);
         }
 
         public void Generate()
@@ -67,12 +71,12 @@ namespace AscendedZ.dungeon_crawling.backend
 
                 if (generateEvent)
                 {
-                    next = GetEventPath(primaryDirection);
+                    next = _pathFactory.MakePath(primaryDirection, GetPathType());
                     eventCount++;
                 }
                 else
                 {
-                    next = new MainEncounterTile(primaryDirection);
+                    next = new MainEncounterTile(primaryDirection, _enemyDCFactory.MakeEnemy());
                 }
 
                 generateEvent = !generateEvent;
@@ -99,18 +103,16 @@ namespace AscendedZ.dungeon_crawling.backend
         private void SetPathFactories()
         {
             _totalWeight = 0;
-            IPathFactory itemPathFactory = new ItemPathFactory(_rng);
-            IPathFactory healPathFactory = new HealPathFactory(_rng);
-            IPathFactory shopPathFactory = new ShopPathFactory(_rng);
 
-            _tileGenFunctions = new List<WeightedItem<IPathFactory>>()
+            _pathTypes = new List<WeightedItem<PathType>>()
             {
-                new WeightedItem<IPathFactory>(itemPathFactory, 55),
-                new WeightedItem<IPathFactory>(healPathFactory, 20),
-                new WeightedItem<IPathFactory>(shopPathFactory, 15)
+                new WeightedItem<PathType>(PathType.Item, 55),
+                new WeightedItem<PathType>(PathType.Heal, 20),
+                new WeightedItem<PathType>(PathType.Shop, 15),
+                new WeightedItem<PathType>(PathType.Blacksmith, 15)
             };
 
-            _tileGenFunctions.ForEach(tileGenFunc => _totalWeight += tileGenFunc.Weight);
+            _pathTypes.ForEach(tileGenFunc => _totalWeight += tileGenFunc.Weight);
         }
 
         private ITile AttachTiles(ITile tile, ITile next, Direction direction)
@@ -181,49 +183,25 @@ namespace AscendedZ.dungeon_crawling.backend
             }
         }
 
-        /// <summary>
-        /// Event paths have MainPathNodes as their root.
-        /// These should always be connected to from the left
-        /// if travelling right.
-        /// </summary>
-        /// <returns></returns>
-        private ITile GetEventPath(Direction primaryDirection)
-        {
-            ITile eventPath;
-            IPathFactory tileGenFactory = GetTileGenFactory();
-            if (tileGenFactory != null)
-            {
-                eventPath = tileGenFactory.MakePath(primaryDirection);
-            }
-            else
-            {
-                eventPath = new MainPathTile(primaryDirection);
-            }
-
-            return eventPath;
-        }
-
-        private IPathFactory GetTileGenFactory()
+        private PathType GetPathType()
         {
             int random = _rng.Next(_totalWeight);
 
-            IPathFactory tilePathFactory = null;
+            PathType pathType = PathType.Item;
 
-            for(int f = 0; f < _tileGenFunctions.Count; f++)
+            for(int f = 0; f < _pathTypes.Count; f++)
             {
-                var factory = _tileGenFunctions[f];
+                var factory = _pathTypes[f];
                 if(random < factory.Weight)
                 {
-                    tilePathFactory = factory.Item;
-                    if(tilePathFactory.GetType().Equals(typeof(ShopPathFactory)))
-                        _tileGenFunctions.Remove(factory);
+                    pathType = factory.Item;
                     break;
                 }
 
                 random -= factory.Weight;
             }
 
-            return tilePathFactory;
+            return pathType;
         }
 
     }

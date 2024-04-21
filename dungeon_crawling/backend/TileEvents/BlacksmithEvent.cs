@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.dungeon_crawling.backend.TileEvents
 {
-    public enum TileEventId
+    public class BlacksmithEvent : ITileEvent
     {
-        Encounter, Item, Shop, Heal, Exit, Blacksmith
+        public TileEventId Id { get => TileEventId.Blacksmith; }
     }
 }

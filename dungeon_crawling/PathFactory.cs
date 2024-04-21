@@ -5,8 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AscendedZ.dungeon_crawling.backend.PathMakers
+namespace AscendedZ.dungeon_crawling
 {
+    public enum PathType
+    {
+        Heal, Item, Shop, Blacksmith
+    }
+
     public class PathFactory
     {
         private Random _rng;
@@ -15,7 +20,35 @@ namespace AscendedZ.dungeon_crawling.backend.PathMakers
             _rng = rng;
         }
 
-        protected void MakePathFromDirection(ITile startOfPath, ITile specialTile, Direction direction)
+        public ITile MakePath(Direction direction, PathType path)
+        {
+            ITile startOfTile = new MainPathTile(direction);
+            ITile specialTile;
+
+            switch (path)
+            {
+                case PathType.Heal:
+                    specialTile = new HealTile();
+                    break;
+                case PathType.Blacksmith:
+                    specialTile = new BlacksmithTile();
+                    break;
+                case PathType.Item:
+                    specialTile = new ItemTile();
+                    break;
+                case PathType.Shop:
+                    specialTile = new ShopTile();
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+
+            MakePathFromDirection(startOfTile, specialTile, direction);
+
+            return startOfTile;
+        }
+
+        private void MakePathFromDirection(ITile startOfPath, ITile specialTile, Direction direction)
         {
             if (direction == Direction.Left || direction == Direction.Right)
             {
