@@ -7,30 +7,16 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.dungeon_crawling.backend.PathMakers
 {
-    public class ShopPathFactory : IPathFactory
+    public class ShopPathFactory : PathFactory, IPathFactory
     {
-        private Random _rng;
+        public ShopPathFactory(Random rng) : base(rng) { }
 
-        public ShopPathFactory(Random rng)
+        public ITile MakePath(Direction direction)
         {
-            _rng = rng;
-        }
-
-        public ITile MakePath()
-        {
-            ITile startOfPath = new MainPathTile();
+            ITile startOfPath = new MainPathTile(direction);
             ITile shopTile = new ShopTile();
 
-            if (_rng.Next(0, 1) == 1)
-            {
-                startOfPath.Up = shopTile;
-                shopTile.Down = startOfPath;
-            }
-            else
-            {
-                startOfPath.Down = shopTile;
-                shopTile.Up = startOfPath;
-            }
+            MakePathFromDirection(startOfPath, shopTile, direction);
 
             return startOfPath;
         }

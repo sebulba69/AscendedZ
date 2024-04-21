@@ -9,6 +9,6 @@ namespace AscendedZ.dungeon_crawling.backend.PathMakers
 {
     public interface IPathFactory
     {
-        ITile MakePath();
+        ITile MakePath(Direction direction);
     }
 }

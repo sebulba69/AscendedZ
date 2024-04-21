@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Transactions;
+using static System.Net.Mime.MediaTypeNames;
 
 public class UITile
 {
@@ -22,7 +23,7 @@ public partial class DungeonScreen : Node2D
 {
     private readonly string TILE_SCENE = "res://dungeon_crawling/scenes/TileScene.tscn";
     private Marker2D _tiles;
-    private Sprite2D _player;
+    private DungeonEntity _player;
 
     private List<TileScene> _scenes;
     private UITile _currentScene;
@@ -38,11 +39,11 @@ public partial class DungeonScreen : Node2D
     public override void _Ready()
 	{
 		_tiles = this.GetNode<Marker2D>("%Tiles");
-        _player = this.GetNode<Sprite2D>("%Player");
+        _player = this.GetNode<DungeonEntity>("%Player");
 
         _dungeon = new Dungeon(1, 2);
 
-        _dungeon.Start();
+        _dungeon.Generate();
 
         StartDungeon();
     }
@@ -52,49 +53,35 @@ public partial class DungeonScreen : Node2D
         if (@event.IsActionPressed(Controls.RIGHT))
         {
             _dungeon.MoveRight();
-            
-            if(_currentScene.Right != null)
-            {
-                _currentScene = _currentScene.Right;
-                _player.Position = _currentScene.Scene.Position;
-            }
-
-            DrawNextTile();
+            MoveDirection(_currentScene.Right, Direction.Right);
         }
 
         if (@event.IsActionPressed(Controls.LEFT))
         {
             _dungeon.MoveLeft();
-            if (_currentScene.Left != null)
-            {
-                _currentScene = _currentScene.Left;
-                _player.Position = _currentScene.Scene.Position;
-            }
+            MoveDirection(_currentScene.Left, Direction.Left);
         }
 
         if (@event.IsActionPressed(Controls.DOWN))
         {
             _dungeon.MoveDown();
-            if (_currentScene.Down != null)
-            {
-                _currentScene = _currentScene.Down;
-                _player.Position = _currentScene.Scene.Position;
-                _onMainPath = _dungeon.CurrentTile.IsMainTile;
-            }
-
+            MoveDirection(_currentScene.Down, Direction.Down);
         }
 
         if (@event.IsActionPressed(Controls.UP))
         {
             _dungeon.MoveUp();
-            if (_currentScene.Up != null)
-            {
-                _currentScene = _currentScene.Up;
-                _player.Position = _currentScene.Scene.Position;
-                _onMainPath = _dungeon.CurrentTile.IsMainTile;
-            }
+            MoveDirection(_currentScene.Up, Direction.Up);
+        }
+    }
 
-
+    private void MoveDirection(UITile tile, Direction direction)
+    {
+        if(tile != null)
+        {
+            _currentScene = tile;
+            _player.Position = _currentScene.Scene.Position;
+            _onMainPath = _dungeon.CurrentTile.IsMainTile;
         }
     }
 
@@ -109,28 +96,82 @@ public partial class DungeonScreen : Node2D
 
         _currentScene = MakeNewUITile();
         _onMainPath = true;
-        DrawNextTile();
+
+        DrawNextTile(_dungeon.CurrentTile.GetDirection());
     }
 
-    private void DrawNextTile()
+    private void DrawNextTile(Direction direction)
     {
-        if(_dungeon.CurrentTile.Right != null 
-            && _currentScene.Right == null
-            && _onMainPath)
+        if (_onMainPath)
         {
-            // draw the initial scene
-            UITile next = MakeNewUITile();
-
-            _currentScene.Right = next;
-            next.Left = _currentScene;
-
-            _currentScene.Scene.AddRightLine();
-            next.Scene.Position = _currentScene.Scene.GetRightPosition();
-
-            // draw any paths that branch off from the main path
             HashSet<ITile> visited = new HashSet<ITile>();
-            DrawBranchingTiles(next, _dungeon.CurrentTile.Right, visited);
+
+            switch (direction)
+            {
+                case Direction.Right:
+                    if(_dungeon.CurrentTile.Right != null && _currentScene.Right == null)
+                    {
+                        UITile next = MakeNewUITile();
+
+                        _currentScene.Right = next;
+                        next.Left = _currentScene;
+
+                        AddDoors(_currentScene, next, direction);
+                        // draw any paths that branch off from the main path
+                        DrawBranchingTiles(next, _dungeon.CurrentTile.Right, visited);
+                    }
+                    break;
+
+                case Direction.Left:
+                    if (_dungeon.CurrentTile.Left != null && _currentScene.Left == null)
+                    {
+                        UITile next = MakeNewUITile();
+
+                        _currentScene.Left = next;
+                        next.Right = _currentScene;
+
+                        AddDoors(_currentScene, next, direction);
+                        DrawBranchingTiles(next, _dungeon.CurrentTile.Left, visited);
+                    }
+                    break;
+
+                case Direction.Up:
+                    if (_dungeon.CurrentTile.Up != null && _currentScene.Up == null)
+                    {
+                        UITile next = MakeNewUITile();
+
+                        _currentScene.Up = next;
+                        next.Down = _currentScene;
+
+                        AddDoors(_currentScene, next, direction);
+
+                        DrawBranchingTiles(next, _dungeon.CurrentTile.Up, visited);
+                    }
+                    break;
+
+
+                case Direction.Down:
+                    if (_dungeon.CurrentTile.Down != null && _currentScene.Down == null)
+                    {
+                        UITile next = MakeNewUITile();
+
+                        _currentScene.Down = next;
+                        next.Up = _currentScene;
+
+                        AddDoors(_currentScene, next, direction);
+
+                        DrawBranchingTiles(next, _dungeon.CurrentTile.Down, visited);
+                    }
+                    break;
+            }
         }
+    }
+
+    private void AddDoors(UITile current, UITile destination, Direction direction)
+    {
+        current.Scene.AddLine(direction);
+        destination.Scene.AddOppositeLine(direction);
+        destination.Scene.Position = current.Scene.GetGlobalPosition(direction);
     }
 
     private void DrawBranchingTiles(UITile uiTile, ITile tile, HashSet<ITile> visited)
@@ -146,8 +187,8 @@ public partial class DungeonScreen : Node2D
             uiTile.Up = up;
             up.Down = uiTile;
 
-            uiTile.Scene.AddUpLine();
-            up.Scene.Position = uiTile.Scene.GetUpPosition();
+            AddDoors(uiTile, up, Direction.Up);
+            up.Scene.SetGraphic(tile.Graphic);
             DrawBranchingTiles(up, tile.Up, visited);
         }
 
@@ -158,8 +199,8 @@ public partial class DungeonScreen : Node2D
             uiTile.Down = down;
             down.Up = uiTile;
 
-            uiTile.Scene.AddDownLine();
-            down.Scene.Position = uiTile.Scene.GetDownPosition();
+            AddDoors(uiTile, down, Direction.Down);
+            down.Scene.SetGraphic(tile.Graphic);
             DrawBranchingTiles(down, tile.Down, visited);
         }
 
@@ -170,20 +211,20 @@ public partial class DungeonScreen : Node2D
             uiTile.Left = left;
             left.Right = uiTile;
 
-            uiTile.Scene.AddLeftLine();
-            left.Scene.Position = uiTile.Scene.GetLeftPosition();
+            AddDoors(uiTile, left, Direction.Left);
+            left.Scene.SetGraphic(tile.Graphic);
             DrawBranchingTiles(left, tile.Left, visited);
         }
 
-        if (tile.Right != null && !tile.Right.IsMainTile && uiTile.Right == null)
+        if (tile.Right != null && uiTile.Right == null)
         {
             UITile right = MakeNewUITile();
 
             uiTile.Right = right;
             right.Left = uiTile;
 
-            uiTile.Scene.AddRightLine();
-            right.Scene.Position = uiTile.Scene.GetRightPosition();
+            AddDoors(uiTile, right, Direction.Right);
+            right.Scene.SetGraphic(tile.Graphic);
             DrawBranchingTiles(right, tile.Right, visited);
         }
     }

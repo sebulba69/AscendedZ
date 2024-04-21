@@ -8,6 +8,7 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
 {
     public class HealTile : ITile
     {
+        public string Graphic { get => "res://dungeon_crawling/art_assets/entity_icons/health.png"; }
         public bool IsMainTile { get; set; } = false;
         public int Weight { get; set; } = 20;
         public bool IsExit { get; set; }
@@ -17,6 +18,11 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
         public ITile Down { get; set; }
 
         public void Enter()
+        {
+            
+        }
+
+        public virtual Direction GetDirection()
         {
             throw new NotImplementedException();
         }

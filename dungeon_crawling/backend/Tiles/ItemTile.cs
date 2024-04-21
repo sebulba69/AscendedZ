@@ -8,6 +8,7 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
 {
     public class ItemTile : ITile
     {
+        public string Graphic { get => "res://dungeon_crawling/art_assets/entity_icons/item.png"; }
         public bool IsMainTile { get; set; } = false;
         public bool IsExit { get; set; }
         public ITile Left { get; set; }
@@ -16,6 +17,11 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
         public ITile Down { get; set; }
 
         public void Enter()
+        {
+            
+        }
+
+        public virtual Direction GetDirection()
         {
             throw new NotImplementedException();
         }

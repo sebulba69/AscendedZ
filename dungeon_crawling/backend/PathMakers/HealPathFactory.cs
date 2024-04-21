@@ -7,37 +7,17 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.dungeon_crawling.backend.PathMakers
 {
-    public class HealPathFactory : IPathFactory
+    public class HealPathFactory : PathFactory, IPathFactory
     {
-        private Random _rng;
+        public string Graphic { get => ""; }
+        public HealPathFactory(Random rng) : base(rng) { }
 
-        public HealPathFactory(Random rng)
+        public ITile MakePath(Direction direction)
         {
-            _rng = rng;
-        }
-
-        public ITile MakePath()
-        {
-            ITile startOfPath = new MainPathTile();
-            ITile encounterTile = new EncounterTile();
-            ITile itemTile = new ItemTile();
+            ITile startOfPath = new MainPathTile(direction);
             ITile healTile = new HealTile();
 
-            encounterTile.Left = itemTile;
-            encounterTile.Right = healTile;
-            itemTile.Right = encounterTile;
-            healTile.Left = encounterTile;
-
-            if (_rng.Next(0, 1) == 1)
-            {
-                startOfPath.Up = encounterTile;
-                encounterTile.Down = startOfPath;
-            }
-            else
-            {
-                startOfPath.Down = encounterTile;
-                encounterTile.Up = startOfPath;
-            }
+            MakePathFromDirection(startOfPath, healTile, direction);
 
             return startOfPath;
         }

@@ -7,24 +7,15 @@ using System.Threading.Tasks;
 using AscendedZ.dungeon_crawling.backend.PathMakers;
 using AscendedZ.dungeon_crawling.backend.Tiles;
 using Godot;
+using static Godot.TextServer;
+
+public enum Direction
+{
+    Left, Up, Right, Down
+}
 
 namespace AscendedZ.dungeon_crawling.backend
 {
-    public class WeightedItem<E>
-    {
-        private E _item;
-        private int _weight;
-
-        public E Item { get => _item; }
-        public int Weight { get => _weight; }
-
-        public WeightedItem(E item, int weight)
-        {
-            _item = item;
-            _weight = weight;  
-        }
-    }
-
     /// <summary>
     /// Dungeon that exists as a straight line.
     /// Contains 20 encounters divided into groups.
@@ -63,52 +54,87 @@ namespace AscendedZ.dungeon_crawling.backend
             _tileGenFunctions.ForEach(tileGenFunc => _totalWeight += tileGenFunc.Weight);
         }
 
-        public void Start()
+        public void Generate()
         {
             List<ITile> mainPathTiles = new List<ITile>();
 
-            _currentTile = new MainPathTile();
+            Direction primaryDirection = (Direction)_rng.Next(0, Enum.GetNames(typeof(Direction)).Length);
+
+            _currentTile = new MainPathTile(primaryDirection);
             ITile tile = _currentTile;
-            bool mainTile = false;
-            bool generateEvent = true;
+            bool generateEvent = false;
             int eventCount = 0;
 
-            while(eventCount < _eventCount)
+            while (eventCount < _eventCount)
             {
-                ITile right;
-                if (mainTile)
+                ITile next;
+
+                if (generateEvent)
                 {
-                    right = new MainPathTile();
+                    next = GetEventPath(primaryDirection);
+                    eventCount++;
                 }
                 else
                 {
-                    ITile eventTile;
+                    next = new MainEncounterTile(primaryDirection);
+                }
 
-                    if (generateEvent)
+                generateEvent = !generateEvent;
+
+                tile = AttachTiles(tile, next, primaryDirection);
+
+                if(!generateEvent)
+                {
+                    if(primaryDirection == Direction.Up || primaryDirection == Direction.Down)
                     {
-                        eventTile = GetEventPath();
-                        eventCount++;
+                        int dir = _rng.Next(0, 2);
+                        if (dir == 0)
+                            primaryDirection = Direction.Left;
+                        else
+                            primaryDirection = Direction.Right;
                     }
                     else
                     {
-                        eventTile = new MainEncounterTile();
+                        int dir = _rng.Next(0, 2);
+                        if (dir == 0)
+                            primaryDirection = Direction.Up;
+                        else
+                            primaryDirection = Direction.Down;
                     }
-
-                    right = eventTile;
-                    generateEvent = !generateEvent;
                 }
-
-                tile.Right = right;
-                right.Left = tile;
-                tile = right;
-
-                mainTile = !mainTile;
             }
 
-            ITile last = new MainPathTile() { IsExit = true };
-            tile.Right = last;
-            last.Left = tile;
+            ITile last = new MainPathTile(primaryDirection) { IsExit = true };
+            tile = AttachTiles(tile, last, primaryDirection);
         }
+
+        private ITile AttachTiles(ITile tile, ITile next, Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.Up:
+                    tile.Up = next;
+                    next.Down = tile;
+                    break;
+                case Direction.Down:
+                    tile.Down = next;
+                    next.Up = tile;
+                    break;
+                case Direction.Left:
+                    tile.Left = next;
+                    next.Right = tile;
+                    break;
+                case Direction.Right:
+                    tile.Right = next;
+                    next.Left = tile;
+                    break;
+                default:
+                    throw new NotImplementedException($"Enum {direction} not implemented.");
+            }
+
+            return next;
+        }
+
 
         public void MoveRight()
         {
@@ -140,17 +166,17 @@ namespace AscendedZ.dungeon_crawling.backend
         /// if travelling right.
         /// </summary>
         /// <returns></returns>
-        private ITile GetEventPath()
+        private ITile GetEventPath(Direction primaryDirection)
         {
             ITile eventPath;
             IPathFactory tileGenFactory = GetTileGenFactory();
             if (tileGenFactory != null)
             {
-                eventPath = tileGenFactory.MakePath();
+                eventPath = tileGenFactory.MakePath(primaryDirection);
             }
             else
             {
-                eventPath = new MainPathTile();
+                eventPath = new MainPathTile(primaryDirection);
             }
 
             return eventPath;

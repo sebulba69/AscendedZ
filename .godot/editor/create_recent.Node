@@ -1,7 +1,7 @@
 Sprite2D
-Marker2D
-Camera2D
 Node2D
+Camera2D
+Marker2D
 GridContainer
 GridMap
 Control
