@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AscendedZ.dungeon_crawling.backend.TileEvents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
     /// </summary>
     public class MainPathTile : ITile
     {
+        public bool EventTriggered { get; set; } = true;
         public string Graphic { get => ""; }
         public bool IsMainTile { get; set; } = true;
         public ITile Left { get; set; }
@@ -25,14 +27,14 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
             _direction = direction;
         }
 
-        public void Enter()
-        {
-
-        }
-
         public Direction GetDirection()
         {
             return _direction;
+        }
+
+        public ITileEvent GetTileEvent()
+        {
+            throw new NotImplementedException();
         }
     }
 }

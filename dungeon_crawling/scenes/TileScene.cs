@@ -12,6 +12,8 @@ public partial class TileScene : Node2D
     private Dictionary<Direction, Direction> _oppositeDirections;
     private DungeonEntity _graphic;
 
+    public string TempGraphic { get; set; }
+
 	public override void _Ready()
 	{
         _graphic = this.GetNode<DungeonEntity>("%Graphic");
@@ -46,8 +48,14 @@ public partial class TileScene : Node2D
         if (graphic.Equals(""))
             return;
 
+        TempGraphic = graphic;
         _graphic.Visible = true;
         _graphic.SetGraphic(graphic);
+    }
+
+    public void TurnOffGraphic()
+    {
+        _graphic.Visible = false;
     }
 
     public void AddLine(Direction direction)

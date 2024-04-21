@@ -1,6 +1,7 @@
 using AscendedZ;
 using AscendedZ.currency;
 using AscendedZ.dungeon_crawling.backend;
+using AscendedZ.dungeon_crawling.backend.TileEvents;
 using AscendedZ.dungeon_crawling.backend.Tiles;
 using Godot;
 using System;
@@ -28,6 +29,7 @@ public partial class DungeonScreen : Node2D
     private List<TileScene> _scenes;
     private UITile _currentScene;
     private bool _onMainPath;
+    private bool _processingEvent;
 
     private TileScene _currentSceneOLD;
 
@@ -45,32 +47,33 @@ public partial class DungeonScreen : Node2D
 
         _dungeon.Generate();
 
+        _dungeon.TileEventTriggered += OnTileEventTriggered;
+
         StartDungeon();
     }
 
     public override void _Input(InputEvent @event)
     {
+        if (_processingEvent)
+            return;
+
         if (@event.IsActionPressed(Controls.RIGHT))
         {
-            _dungeon.MoveRight();
             MoveDirection(_currentScene.Right, Direction.Right);
         }
 
         if (@event.IsActionPressed(Controls.LEFT))
         {
-            _dungeon.MoveLeft();
             MoveDirection(_currentScene.Left, Direction.Left);
         }
 
         if (@event.IsActionPressed(Controls.DOWN))
         {
-            _dungeon.MoveDown();
             MoveDirection(_currentScene.Down, Direction.Down);
         }
 
         if (@event.IsActionPressed(Controls.UP))
         {
-            _dungeon.MoveUp();
             MoveDirection(_currentScene.Up, Direction.Up);
         }
     }
@@ -81,6 +84,7 @@ public partial class DungeonScreen : Node2D
         {
             _currentScene = tile;
             _player.Position = _currentScene.Scene.Position;
+            _dungeon.MoveDirection(direction);
             _onMainPath = _dungeon.CurrentTile.IsMainTile;
         }
     }
@@ -229,25 +233,55 @@ public partial class DungeonScreen : Node2D
 
     private UITile MakeNewUITile() 
     {
-        UITile scene = new UITile() { Scene = MakeTileScene() };
-        _tiles.AddChild(scene.Scene);
-        return scene;
+        TileScene tileScene = ResourceLoader.Load<PackedScene>(TILE_SCENE).Instantiate<TileScene>();
+        UITile uiTile = new UITile() { Scene = tileScene };
+        _tiles.AddChild(uiTile.Scene);
+        return uiTile;
     }
 
-    private void AddTileSceneToMainPathOLD()
+    private void OnTileEventTriggered(object sender, ITileEvent tileEvent)
     {
-        TileScene scene = MakeTileScene();
-        _scenes.Add(scene);
-        _tiles.AddChild(scene);
-    }
+        // start of the event, prevent further inputs
+        _processingEvent = true;
 
-    private void Clear()
-    {
+        TileEventId id = tileEvent.Id;
+        
+        switch (id)
+        {
+            case TileEventId.Item:
+                ItemEvent itemEvent = (ItemEvent)tileEvent;
+                ItemTile itemTile = itemEvent.Tile;
+                // get the item from the tile
+                // play a little jingle :)
+                // show what you got
+                _currentScene.Scene.TurnOffGraphic();
+                break;
 
-    }
+            case TileEventId.Encounter:
+                EncounterEvent encounterEvent = (EncounterEvent)tileEvent;
+                MainEncounterTile mainEncounterTile = encounterEvent.Tile;
+                // put up battle scene <-- handle rewards there
 
-    private TileScene MakeTileScene()
-    {
-        return ResourceLoader.Load<PackedScene>(TILE_SCENE).Instantiate<TileScene>();
+                _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
+                break;
+
+            case TileEventId.Heal:
+                // heal some amount of HP/MP
+
+                _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
+                break;
+
+            case TileEventId.Shop:
+                // bring up the shop scene
+                break;
+
+            case TileEventId.Exit:
+                // handle dungeon end stuff (do yes/no box)
+                break;
+        }
+
+
+        // on completion of the event
+        _processingEvent = false;
     }
 }

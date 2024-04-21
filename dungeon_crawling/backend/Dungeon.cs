@@ -5,8 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AscendedZ.dungeon_crawling.backend.PathMakers;
+using AscendedZ.dungeon_crawling.backend.TileEvents;
 using AscendedZ.dungeon_crawling.backend.Tiles;
 using Godot;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
 using static Godot.TextServer;
 
 public enum Direction
@@ -24,6 +27,8 @@ namespace AscendedZ.dungeon_crawling.backend
     /// </summary>
     public class Dungeon
     {
+        public EventHandler<ITileEvent> TileEventTriggered;
+
         private Random _rng;
         private int _totalWeight = 0;
         private int _level;
@@ -133,29 +138,47 @@ namespace AscendedZ.dungeon_crawling.backend
             return next;
         }
 
-
-        public void MoveRight()
+        public void MoveDirection(Direction direction)
         {
-            if (_currentTile.Right != null)
-                _currentTile = _currentTile.Right;
+            switch (direction)
+            {
+                case Direction.Up:
+                    if (_currentTile.Up != null)
+                    {
+                        _currentTile = _currentTile.Up;
+                    }
+                    break;
+                case Direction.Down:
+                    if (_currentTile.Down != null)
+                    {
+                        _currentTile = _currentTile.Down;
+                    }
+                    break;
+                case Direction.Left:
+                    if (_currentTile.Left != null)
+                    {
+                        _currentTile = _currentTile.Left;
+                    }
+                    break;
+                case Direction.Right:
+                    if (_currentTile.Right != null)
+                    {
+                        _currentTile = _currentTile.Right;
+                    }
+                    break;
+            }
+
+            CheckTileEvent();
         }
 
-        public void MoveLeft()
+        private void CheckTileEvent()
         {
-            if (_currentTile.Left != null)
-                _currentTile = _currentTile.Left;
-        }
-
-        public void MoveDown()
-        {
-            if (_currentTile.Down != null)
-                _currentTile = _currentTile.Down;
-        }
-
-        public void MoveUp()
-        {
-            if (_currentTile.Up != null)
-                _currentTile = _currentTile.Up;
+            if (!_currentTile.EventTriggered)
+            {
+                _currentTile.EventTriggered = true;
+                ITileEvent tileEvent = _currentTile.GetTileEvent();
+                TileEventTriggered?.Invoke(this, tileEvent);
+            }
         }
 
         /// <summary>

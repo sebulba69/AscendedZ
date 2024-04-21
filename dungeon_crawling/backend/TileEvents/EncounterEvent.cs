@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AscendedZ.dungeon_crawling.backend.Tiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,6 @@ namespace AscendedZ.dungeon_crawling.backend.TileEvents
     public class EncounterEvent : ITileEvent
     {
         public TileEventId Id { get => TileEventId.Encounter; }
-        public string Encounter { get; set; }
+        public MainEncounterTile Tile { get; set; }
     }
 }
