@@ -417,7 +417,7 @@ namespace AscendedZ
         {
             List<ISkill> skills = new List<ISkill>();
             
-            skills.AddRange(new ISkill[] { Fire1, Ice1, Wind1, Elec1, Light1, Dark1, Heal1, AgroPlayer });
+            skills.AddRange(new ISkill[] { Fire1, Ice1, Wind1, Elec1, Light1, Dark1, Heal1 });
 
             if (tier > TierRequirements.QUESTS)
                 skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind });
