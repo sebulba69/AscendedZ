@@ -1,3 +1,4 @@
+using AscendedZ.dungeon_crawling.combat.armordc;
 using AscendedZ.entities;
 using AscendedZ.skills;
 using Godot;
@@ -145,6 +146,13 @@ namespace AscendedZ
 
         public static readonly string QUEST_ICON = "Quest";
 
+        // Armor
+        public static readonly string HEAD = "Head";
+        public static readonly string TORSO = "Torso";
+        public static readonly string ARMS = "Arms";
+        public static readonly string WAIST = "Waist";
+        public static readonly string LEGS = "Legs";
+
         // Currency Icons
         public static readonly string VORPEX_ICON = "Vorpex";
         public static readonly string UPGRADESHARD_ICON = "Upgrade Shard";
@@ -170,8 +178,32 @@ namespace AscendedZ
             [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
             [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600),
             [QUEST_ICON] = new KeyValuePair<int, int>(480, 352),
-            [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480)
+            [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480),
+            [HEAD] = new KeyValuePair<int, int>(128, 256),
+            [TORSO] = new KeyValuePair<int, int>(288, 256),
+            [ARMS] = new KeyValuePair<int, int>(480, 256),
+            [WAIST] = new KeyValuePair<int, int>(192, 288),
+            [LEGS] = new KeyValuePair<int, int>(416, 256)
         };
+
+        public static string GetArmorIconFromPiece(ArmorPiece piece)
+        {
+            switch(piece)
+            {
+                case ArmorPiece.Head:
+                    return HEAD;
+                case ArmorPiece.Torso:
+                    return TORSO;
+                case ArmorPiece.Arms:
+                    return ARMS;
+                case ArmorPiece.Waist:
+                    return WAIST;
+                case ArmorPiece.Legs:
+                    return LEGS;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
 
         public static KeyValuePair<int, int> GetIcon(string key)
         {

@@ -16,6 +16,7 @@ namespace AscendedZ.dungeon_crawling.combat.skillsdc
         /// Id is for deserialization
         /// </summary>
         public SkillId Id { get; set; }
+        public string Icon { get; set; }
         public Elements Element { get; set; } // will not be used if the id isn't elemental
         public string Name { get; set; }
         public TargetTypes TargetType { get; set; }
