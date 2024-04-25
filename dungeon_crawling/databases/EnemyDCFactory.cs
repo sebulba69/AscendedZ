@@ -1,4 +1,4 @@
-﻿using AscendedZ.dungeon_crawling.combat;
+﻿using AscendedZ.dungeon_crawling.combat.battledc;
 using AscendedZ.entities;
 using System;
 using System.Collections.Generic;
@@ -19,9 +19,9 @@ namespace AscendedZ.dungeon_crawling.databases
             _rng = rng;
         }
 
-        public EnemyDC MakeEnemy()
+        public BEnemyDC MakeEnemy()
         {
-            EnemyDC enemy = new EnemyDC(_tier);
+            BEnemyDC enemy = new BEnemyDC(_tier);
 
             if(_tier < 10)
             {

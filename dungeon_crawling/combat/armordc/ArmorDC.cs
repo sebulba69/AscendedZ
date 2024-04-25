@@ -1,17 +1,15 @@
 ﻿using AscendedZ.dungeon_crawling.combat.skillsdc;
+using AscendedZ.json_interface_converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace AscendedZ.dungeon_crawling.combat.armordc
 {
-    public enum ArmorPiece
-    {
-        Head, Torso, Arms, Waist, Legs
-    }
 
     public class ArmorDC
     {
@@ -28,24 +26,16 @@ namespace AscendedZ.dungeon_crawling.combat.armordc
             }
             set => _icon = value; 
         }
-        public BigInteger HP { get; set; }
-        public string Name { get; set; }
-        public BigInteger Level { get; set; }
-        public ArmorPiece Piece { get; set; }
-        public List<SkillDC> Skills { get; set; } = new List<SkillDC>();
 
-        public void LevelUp()
-        {
-            Level++;
-            HP += 5;
-            
-            foreach (var skill in Skills)
-                skill.LevelUp();
-        }
+        public string Name { get; set; }
+
+        public ArmorPiece Piece { get; set; }
+
+        public StatsDC StatsDC { get; set; } = new();
 
         public override string ToString()
         {
-            return $"[{HP}] {Name} {Level}";
+            return $"[{StatsDC.HP}] {Name} {StatsDC.Level}";
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AscendedZ.dungeon_crawling.backend.TileEvents;
-using AscendedZ.dungeon_crawling.combat;
+using AscendedZ.dungeon_crawling.combat.battledc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +18,11 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
         public ITile Right { get; set; }
         public ITile Up { get; set; }
         public ITile Down { get; set; }
-        public EnemyDC Encounter { get; set; }
+        public BEnemyDC Encounter { get; set; }
 
         private Direction _direction;
 
-        public MainEncounterTile(Direction direction, EnemyDC enemyDC)
+        public MainEncounterTile(Direction direction, BEnemyDC enemyDC)
         {
             _direction = direction;
             Encounter = enemyDC;

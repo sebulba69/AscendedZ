@@ -8,7 +8,6 @@
     <EmbeddedResource Remove="screens\Dungeons\**" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="dungeon_crawling\combat\battledc\" />
     <Folder Include="dungeon_crawling\scenes\" />
   </ItemGroup>
 </Project>

@@ -1,11 +1,11 @@
+TextureRect
+Control
 Sprite2D
 Node2D
 Camera2D
 Marker2D
 GridContainer
 GridMap
-Control
-TextureRect
 CollisionShape2D
 Area2D
 Line2D
