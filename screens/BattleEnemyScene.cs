@@ -137,9 +137,15 @@ public partial class BattleEnemyScene : Node2D
         // add players to the scene
         foreach (var member in _battleSceneObject.Players)
         {
-            var partyBox = ResourceLoader.Load<PackedScene>(Scenes.PARTY_BOX).Instantiate();
-            _partyMembers.AddChild(partyBox);
-            partyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = member });
+            HBoxContainer hBoxContainer = new HBoxContainer() { Alignment = BoxContainer.AlignmentMode.Center };
+            var partyBox = ResourceLoader.Load<PackedScene>(Scenes.PARTY_BOX).Instantiate<EntityDisplayBox>();
+
+            _partyMembers.AddChild(hBoxContainer);
+            hBoxContainer.AddChild(partyBox);
+
+            partyBox.InstanceEntity(new EntityWrapper() { BattleEntity = member });
+            if (member.IsActiveEntity)
+                _actionMenu.Reparent(hBoxContainer);
         }
 
         HashSet<Type> enemyTypes = new HashSet<Type>();
@@ -322,9 +328,14 @@ public partial class BattleEnemyScene : Node2D
     {
         for (int j = 0; j < players.Count; j++)
         {
-            var partyDisplay = _partyMembers.GetChild(j);
+            var vBoxContainer = _partyMembers.GetChild(j);
+            var partyDisplay = vBoxContainer.GetChild(0);
+
             var playerWrapper = new EntityWrapper() { BattleEntity = players[j] };
             partyDisplay.Call("UpdateEntityDisplay", playerWrapper);
+
+            if (players[j].IsActiveEntity)
+                _actionMenu.Reparent(vBoxContainer);
         }
     }
 
@@ -336,7 +347,7 @@ public partial class BattleEnemyScene : Node2D
         if (entity.GetType() == typeof(BattlePlayer))
         {
             int pIndex = _battleSceneObject.Players.IndexOf((BattlePlayer)entity);
-            nodeToFind = _partyMembers.GetChild(pIndex);
+            nodeToFind = _partyMembers.GetChild(pIndex).GetChild(0);
         }
         else
         {

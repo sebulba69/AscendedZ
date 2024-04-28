@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3mtohsramppe"]
+[gd_scene load_steps=9 format=3 uid="uid://b3mtohsramppe"]
 
 [ext_resource type="Texture2D" uid="uid://c5xd4it2pk7uq" path="res://cg_backgrounds/dungeon/1bg03101.jpg" id="1"]
 [ext_resource type="Script" path="res://screens/BattleEnemyScene.cs" id="2"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bad6j156d7tuk" path="res://screens/EnemyBattleDisplayBox.tscn" id="4_8lmgp"]
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="4_38pxl"]
 [ext_resource type="Texture2D" uid="uid://car4hgrdysj7x" path="res://turn_icons/turn_backdrop.png" id="5_4jwes"]
-[ext_resource type="PackedScene" uid="uid://daese1bd3tqym" path="res://screens/PartyBattleDisplayBox.tscn" id="6_ulr8v"]
 [ext_resource type="PackedScene" uid="uid://b8adwqax888v1" path="res://action_menu.tscn" id="8_cr1uv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtn52"]
@@ -88,11 +87,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -459.5
-offset_top = -529.0
-offset_right = 459.5
+offset_left = -459.0
+offset_top = -667.0
+offset_right = 460.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Background/PlayerVBoxContainer"]
 self_modulate = Color(1, 1, 1, 0.380392)
@@ -123,11 +124,12 @@ alignment = 1
 layout_mode = 2
 theme_override_constants/margin_bottom = 20
 
-[node name="PlayerStuff" type="GridContainer" parent="Background/PlayerVBoxContainer/PlayerMargins"]
+[node name="PlayerStuff" type="HBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/h_separation = 15
-columns = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 75
+alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff"]
 texture_filter = 2
@@ -185,16 +187,8 @@ alignment = 1
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 50
 alignment = 1
-
-[node name="CharacterCtrlNode2" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/PlayerParty/PartyPortraits" instance=ExtResource("6_ulr8v")]
-texture_filter = 2
-layout_mode = 2
-
-[node name="ActionMenu" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff" instance=ExtResource("8_cr1uv")]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="QuestPanel" type="PanelContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff"]
 layout_mode = 2
@@ -225,9 +219,8 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 18
 allow_search = false
 
-[node name="Spacer" type="CenterContainer" parent="Background/PlayerVBoxContainer"]
+[node name="ActionMenu" parent="Background/PlayerVBoxContainer" instance=ExtResource("8_cr1uv")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 152)
 layout_mode = 2
 
 [node name="EndBox" type="CenterContainer" parent="Background"]
