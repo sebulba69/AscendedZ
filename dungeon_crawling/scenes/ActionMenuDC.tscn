@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://1usal33qhvxb"]
+
+[ext_resource type="Script" path="res://dungeon_crawling/scenes/ActionMenuDC.cs" id="1_p4bxu"]
+[ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="2_wmjkd"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="3_6kgmo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtn52"]
+atlas = ExtResource("2_wmjkd")
+region = Rect2(160, 128, 32, 32)
+
+[node name="ActionMenu" type="PanelContainer"]
+texture_filter = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_p4bxu")
+
+[node name="ActionListContainer" type="VBoxContainer" parent="."]
+texture_filter = 2
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="IconContainer" type="HBoxContainer" parent="ActionListContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ActionMenuIcon" type="TextureRect" parent="ActionListContainer/IconContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+texture = SubResource("AtlasTexture_jtn52")
+
+[node name="ActionMenuSkill" type="Label" parent="ActionListContainer/IconContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_6kgmo")
+theme_override_font_sizes/font_size = 20
+text = "test"
+horizontal_alignment = 1
+
+[node name="ActionList" type="ItemList" parent="ActionListContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_6kgmo")
+theme_override_font_sizes/font_size = 20
+allow_search = false
+
+[node name="MenuLabel" type="Label" parent="ActionListContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_6kgmo")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1

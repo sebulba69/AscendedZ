@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ciu3w6wi6o5c0"]
+[gd_scene load_steps=4 format=3 uid="uid://ciu3w6wi6o5c0"]
 
 [ext_resource type="Texture2D" uid="uid://ckr3vcjsfll7e" path="res://dungeon_crawling/art_assets/backgrounds/bg_31.png" id="1_xnswm"]
+[ext_resource type="PackedScene" uid="uid://c8yut6sbxwnlh" path="res://dungeon_crawling/combat/combat_scenes/PlayerScene.tscn" id="2_k5gqc"]
+[ext_resource type="PackedScene" uid="uid://b8adwqax888v1" path="res://screens/ActionMenu.tscn" id="3_7kj3u"]
 
 [node name="DungeonCombat" type="Node2D"]
 
@@ -12,3 +14,19 @@ offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("1_xnswm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CombatBg"]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 502.0
+offset_right = 785.0
+offset_bottom = 759.0
+scale = Vector2(1.5, 1.5)
+alignment = 1
+
+[node name="PlayerScene" parent="CombatBg/HBoxContainer" instance=ExtResource("2_k5gqc")]
+layout_mode = 2
+
+[node name="ActionMenu" parent="CombatBg/HBoxContainer" instance=ExtResource("3_7kj3u")]
+unique_name_in_owner = true
+layout_mode = 2

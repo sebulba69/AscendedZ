@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bad6j156d7tuk" path="res://screens/EnemyBattleDisplayBox.tscn" id="4_8lmgp"]
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="4_38pxl"]
 [ext_resource type="Texture2D" uid="uid://car4hgrdysj7x" path="res://turn_icons/turn_backdrop.png" id="5_4jwes"]
-[ext_resource type="PackedScene" uid="uid://b8adwqax888v1" path="res://action_menu.tscn" id="8_cr1uv"]
+[ext_resource type="PackedScene" uid="uid://b8adwqax888v1" path="res://screens/ActionMenu.tscn" id="8_cr1uv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtn52"]
 atlas = ExtResource("4_38pxl")
