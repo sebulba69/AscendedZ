@@ -23,7 +23,7 @@ public partial class DamageNumber : Label
 		_tween.Play();
     }
 
-	public void SetDisplayInfo(int dmg, bool isHPGainedFromMove, string resultString)
+	public void SetDisplayInfo(System.Numerics.BigInteger dmg, bool isHPGainedFromMove, string resultString)
 	{
 		if (isHPGainedFromMove)
 		{

@@ -186,8 +186,8 @@ public partial class EntityDisplayBox : PanelContainer
                     }
    
                     // play damage number
-                    var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate();
-                    dmgNumber.Call("SetDisplayInfo", result.HPChanged, isHPGainedFromMove, result.GetResultString());
+                    var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate<DamageNumber>();
+                    dmgNumber.SetDisplayInfo(result.HPChanged, isHPGainedFromMove, result.GetResultString());
 
                     CenterContainer effectContainer = this.GetNode<CenterContainer>("%EffectContainer");
                     effectContainer.AddChild(dmgNumber);

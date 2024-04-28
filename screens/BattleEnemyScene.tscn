@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bad6j156d7tuk" path="res://screens/EnemyBattleDisplayBox.tscn" id="4_8lmgp"]
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="4_38pxl"]
 [ext_resource type="Texture2D" uid="uid://car4hgrdysj7x" path="res://turn_icons/turn_backdrop.png" id="5_4jwes"]
-[ext_resource type="Script" path="res://screens/ActionMenu.cs" id="5_68yxx"]
 [ext_resource type="PackedScene" uid="uid://daese1bd3tqym" path="res://screens/PartyBattleDisplayBox.tscn" id="6_ulr8v"]
+[ext_resource type="PackedScene" uid="uid://b8adwqax888v1" path="res://action_menu.tscn" id="8_cr1uv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtn52"]
 atlas = ExtResource("4_38pxl")
@@ -88,9 +88,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -352.0
-offset_top = -410.0
-offset_right = 352.0
+offset_left = -459.5
+offset_top = -529.0
+offset_right = 459.5
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -127,7 +127,7 @@ theme_override_constants/margin_bottom = 20
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 15
-columns = 3
+columns = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff"]
 texture_filter = 2
@@ -192,10 +192,8 @@ alignment = 1
 texture_filter = 2
 layout_mode = 2
 
-[node name="Spacer" type="CenterContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/PlayerParty"]
+[node name="ActionMenu" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff" instance=ExtResource("8_cr1uv")]
 unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
 
 [node name="QuestPanel" type="PanelContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff"]
@@ -226,6 +224,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 18
 allow_search = false
+
+[node name="Spacer" type="CenterContainer" parent="Background/PlayerVBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 152)
+layout_mode = 2
 
 [node name="EndBox" type="CenterContainer" parent="Background"]
 unique_name_in_owner = true
@@ -302,78 +305,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 80
 text = "Proceed"
-
-[node name="Menu+Log" type="VBoxContainer" parent="Background"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -140.0
-offset_bottom = 140.0
-grow_horizontal = 0
-grow_vertical = 2
-alignment = 1
-
-[node name="ActionMenu" type="PanelContainer" parent="Background/Menu+Log"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("5_68yxx")
-
-[node name="ActionListContainer" type="VBoxContainer" parent="Background/Menu+Log/ActionMenu"]
-texture_filter = 2
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="IconContainer" type="HBoxContainer" parent="Background/Menu+Log/ActionMenu/ActionListContainer"]
-texture_filter = 2
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_vertical = 4
-alignment = 1
-
-[node name="ActionMenuIcon" type="TextureRect" parent="Background/Menu+Log/ActionMenu/ActionListContainer/IconContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-texture = SubResource("AtlasTexture_jtn52")
-
-[node name="ActionMenuSkill" type="Label" parent="Background/Menu+Log/ActionMenu/ActionListContainer/IconContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
-text = "test"
-horizontal_alignment = 1
-
-[node name="ActionList" type="ItemList" parent="Background/Menu+Log/ActionMenu/ActionListContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(200, 150)
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
-allow_search = false
-
-[node name="MenuLabel" type="Label" parent="Background/Menu+Log/ActionMenu/ActionListContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
-horizontal_alignment = 1
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -12.5

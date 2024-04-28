@@ -1,0 +1,193 @@
+[gd_scene load_steps=11 format=3 uid="uid://c8yut6sbxwnlh"]
+
+[ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/PlayerScene.cs" id="1_ka2fs"]
+[ext_resource type="Texture2D" uid="uid://bccubabd2bgpu" path="res://dungeon_crawling/art_assets/general/character_border.png" id="1_lwgdc"]
+[ext_resource type="Texture2D" uid="uid://cwk4bbifhudkx" path="res://player_pics/newpicture6.png" id="2_fvis3"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="3_3xtvb"]
+[ext_resource type="PackedScene" uid="uid://t6lhru8f8fr7" path="res://effects/EffectSprite.tscn" id="4_ddwxi"]
+[ext_resource type="AudioStream" uid="uid://dyxxgykvs4hrj" path="res://effects/effect_sounds/Damage4.ogg" id="5_jgmg1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04jxu"]
+bg_color = Color(0, 0, 0, 0.156863)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gp3be"]
+bg_color = Color(0.6, 0.713726, 0.333333, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tpa4"]
+bg_color = Color(0, 0, 0, 0.156863)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i54dk"]
+bg_color = Color(0.172549, 0.745098, 0.784314, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[node name="PlayerScene" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ka2fs")
+
+[node name="UIContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 192.0
+theme_override_constants/separation = 0
+
+[node name="Outline" type="TextureRect" parent="UIContainer"]
+layout_mode = 2
+texture = ExtResource("1_lwgdc")
+stretch_mode = 2
+
+[node name="PlayerPic" type="TextureRect" parent="UIContainer/Outline"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -88.0
+offset_right = 88.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fvis3")
+stretch_mode = 2
+
+[node name="EffectSprite" parent="UIContainer/Outline/PlayerPic" instance=ExtResource("4_ddwxi")]
+unique_name_in_owner = true
+visible = false
+z_index = 3
+position = Vector2(85, 85)
+scale = Vector2(1.5, 1.5)
+
+[node name="MarginContainer" type="MarginContainer" parent="UIContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="BarContainer" type="VBoxContainer" parent="UIContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="HP" type="HBoxContainer" parent="UIContainer/MarginContainer/BarContainer"]
+layout_mode = 2
+
+[node name="HPBarNumber" type="PanelContainer" parent="UIContainer/MarginContainer/BarContainer/HP"]
+texture_filter = 2
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+
+[node name="NumberOfBarsLabel" type="Label" parent="UIContainer/MarginContainer/BarContainer/HP/HPBarNumber"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_3xtvb")
+theme_override_font_sizes/font_size = 19
+text = "HP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPContainer" type="PanelContainer" parent="UIContainer/MarginContainer/BarContainer/HP"]
+layout_mode = 2
+
+[node name="HP" type="ProgressBar" parent="UIContainer/MarginContainer/BarContainer/HP/HPContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_3xtvb")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/background = SubResource("StyleBoxFlat_04jxu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gp3be")
+value = 50.0
+show_percentage = false
+
+[node name="HPAmount" type="Label" parent="UIContainer/MarginContainer/BarContainer/HP/HPContainer/HP"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 248.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_3xtvb")
+text = "10"
+
+[node name="MP" type="HBoxContainer" parent="UIContainer/MarginContainer/BarContainer"]
+layout_mode = 2
+
+[node name="MPBarNumber" type="PanelContainer" parent="UIContainer/MarginContainer/BarContainer/MP"]
+texture_filter = 2
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+
+[node name="MPLabel" type="Label" parent="UIContainer/MarginContainer/BarContainer/MP/MPBarNumber"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("3_3xtvb")
+theme_override_font_sizes/font_size = 19
+text = "MP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MPContainer" type="PanelContainer" parent="UIContainer/MarginContainer/BarContainer/MP"]
+layout_mode = 2
+
+[node name="MP" type="ProgressBar" parent="UIContainer/MarginContainer/BarContainer/MP/MPContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 25)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("3_3xtvb")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/background = SubResource("StyleBoxFlat_6tpa4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i54dk")
+value = 50.0
+show_percentage = false
+
+[node name="MPAmount" type="Label" parent="UIContainer/MarginContainer/BarContainer/MP/MPContainer/MP"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 248.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_3xtvb")
+text = "10"
+
+[node name="PanelContainer" type="PanelContainer" parent="UIContainer/MarginContainer/BarContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="UIContainer/MarginContainer/BarContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="StatusGrid" type="GridContainer" parent="UIContainer/MarginContainer/BarContainer/PanelContainer/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 10
+columns = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_jgmg1")
+volume_db = -15.0

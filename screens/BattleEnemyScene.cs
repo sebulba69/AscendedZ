@@ -270,11 +270,7 @@ public partial class BattleEnemyScene : Node2D
         bool playerTurn = _battleSceneObject.TurnState == TurnState.PLAYER;
         SetNewTurns(playerTurn);
 
-        if (!playerTurn)
-            _actionMenu.Reparent(this);
-
         _actionMenu.Visible = playerTurn;
-        this.GetNode<CenterContainer>("%Spacer").Visible = !playerTurn;
 
         if (_battleSceneObject.PressTurn.TurnEnded)
         {
@@ -329,10 +325,6 @@ public partial class BattleEnemyScene : Node2D
             var partyDisplay = _partyMembers.GetChild(j);
             var playerWrapper = new EntityWrapper() { BattleEntity = players[j] };
             partyDisplay.Call("UpdateEntityDisplay", playerWrapper);
-
-            var partyDisplayVbox = partyDisplay.GetNode<VBoxContainer>("%CharacterVBox");
-            if (players[j].IsActiveEntity)
-                _actionMenu.Reparent(partyDisplayVbox);
         }
     }
 

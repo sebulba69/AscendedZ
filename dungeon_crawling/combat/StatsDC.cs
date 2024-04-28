@@ -21,14 +21,19 @@ namespace AscendedZ.dungeon_crawling.combat
         public BigInteger Level { get; set; } = 1;
 
         [JsonConverter(typeof(BigIntegerConverter))]
+        public BigInteger MaxHP { get; set; } = new BigInteger(0);
+
+        [JsonConverter(typeof(BigIntegerConverter))]
         public BigInteger HP { get; set; } = new BigInteger(0);
         
         [JsonConverter(typeof(BigIntegerConverter))]
         public BigInteger MP { get; set; } = new BigInteger(0);
 
         [JsonConverter(typeof(BigIntegerConverter))]
-        public BigInteger AP { get; set; } = 0;
+        public BigInteger MaxMP { get; set; } = new BigInteger(0);
 
+        [JsonConverter(typeof(BigIntegerConverter))]
+        public BigInteger AP { get; set; } = 0;
         public List<Elements> Weak { get; set; } = new();
         public List<Elements> Resist { get; set; } = new();
         
@@ -156,7 +161,7 @@ namespace AscendedZ.dungeon_crawling.combat
             return builder.ToString();
         }
 
-        private void LevelUp()
+        public void LevelUp()
         {
             Level++;
 

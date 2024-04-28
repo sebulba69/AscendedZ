@@ -17,6 +17,8 @@ namespace AscendedZ.dungeon_crawling.combat.skillsdc
         /// Id is for deserialization
         /// </summary>
         public SkillId Id { get; set; }
+        [JsonConverter(typeof(BigIntegerConverter))]
+        public BigInteger MPCost { get; set; }
         public string Icon { get; set; }
         public Elements Element { get; set; } // will not be used if the id isn't elemental
         public string Name { get; set; }
@@ -29,8 +31,12 @@ namespace AscendedZ.dungeon_crawling.combat.skillsdc
         public Status Status { get; set; }
         public void LevelUp()
         {
-            Level++;
-            Value += ((Level/2) + 1);
+            if(Value != 0)
+            {
+                Level++;
+                Value += ((Level / 2) + 1);
+                MPCost += ((Level / 4) + 1);
+            }
         }
 
         public string GetInfoString()

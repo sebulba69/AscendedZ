@@ -1,4 +1,5 @@
-﻿using AscendedZ.dungeon_crawling.combat.battledc;
+﻿using AscendedZ.dungeon_crawling.combat;
+using AscendedZ.dungeon_crawling.combat.battledc;
 using AscendedZ.entities;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace AscendedZ.dungeon_crawling.databases
 
         public BEnemyDC MakeEnemy()
         {
-            BEnemyDC enemy = new BEnemyDC(_tier);
+            BEnemyDC enemy = new BEnemyDC(_tier, MakeEnemyStats());
 
             if(_tier < 10)
             {
@@ -38,6 +39,20 @@ namespace AscendedZ.dungeon_crawling.databases
             }
 
             return enemy;
+        }
+
+        private StatsDC MakeEnemyStats()
+        {
+            StatsDC statsDC = new StatsDC() 
+            {
+                HP = 10,
+                MP = 999
+            };
+
+            for (int l = 1; l < _tier; l++)
+                statsDC.LevelUp();
+
+            return statsDC;
         }
     }
 }

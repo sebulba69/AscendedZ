@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://screens/BossHPBar.cs" id="1_7j0de"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1_8dmex"]
-[ext_resource type="StyleBox" uid="uid://71215yqdd343" path="res://BackBoxBossHP.tres" id="2_u1pt2"]
-[ext_resource type="StyleBox" uid="uid://0cug71njxm88" path="res://FrontBoxBossHP.tres" id="3_nc66m"]
+[ext_resource type="StyleBox" uid="uid://dap8kpbmm32h6" path="res://BackBoxBossHPDC.tres" id="3_41pth"]
+[ext_resource type="StyleBox" uid="uid://em56nfn2uiix" path="res://FrontBoxBossHPDC.tres" id="4_cwe3k"]
 
 [node name="BossHPBar" type="HBoxContainer"]
 texture_filter = 2
@@ -30,21 +30,13 @@ vertical_alignment = 1
 texture_filter = 2
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HPBarContainer"]
-texture_filter = 2
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="HPBar" type="ProgressBar" parent="HPBarContainer/MarginContainer"]
+[node name="HPBar" type="ProgressBar" parent="HPBarContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_styles/background = ExtResource("2_u1pt2")
-theme_override_styles/fill = ExtResource("3_nc66m")
+theme_override_styles/background = ExtResource("3_41pth")
+theme_override_styles/fill = ExtResource("4_cwe3k")
 value = 50.0
 show_percentage = false
