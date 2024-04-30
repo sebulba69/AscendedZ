@@ -18,7 +18,9 @@ namespace AscendedZ.dungeon_crawling.combat.skillsdc
         /// </summary>
         public SkillId Id { get; set; }
         [JsonConverter(typeof(BigIntegerConverter))]
-        public BigInteger MPCost { get; set; }
+        public BigInteger MPCost { get; set; } = new BigInteger(1);
+        [JsonConverter(typeof(BigIntegerConverter))]
+        public BigInteger APCost { get; set; } = new BigInteger(1);
         public string Icon { get; set; }
         public Elements Element { get; set; } // will not be used if the id isn't elemental
         public string Name { get; set; }

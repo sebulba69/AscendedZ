@@ -1,32 +1,65 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciu3w6wi6o5c0"]
+[gd_scene load_steps=6 format=3 uid="uid://ciu3w6wi6o5c0"]
 
+[ext_resource type="Script" path="res://dungeon_crawling/scenes/DungeonCombat.cs" id="1_np2vi"]
 [ext_resource type="Texture2D" uid="uid://ckr3vcjsfll7e" path="res://dungeon_crawling/art_assets/backgrounds/bg_31.png" id="1_xnswm"]
 [ext_resource type="PackedScene" uid="uid://c8yut6sbxwnlh" path="res://dungeon_crawling/combat/combat_scenes/PlayerScene.tscn" id="2_k5gqc"]
-[ext_resource type="PackedScene" uid="uid://b8adwqax888v1" path="res://screens/ActionMenu.tscn" id="3_7kj3u"]
+[ext_resource type="PackedScene" uid="uid://1usal33qhvxb" path="res://dungeon_crawling/scenes/ActionMenuDC.tscn" id="4_ks800"]
+[ext_resource type="PackedScene" uid="uid://c8mcrxad8jfaw" path="res://dungeon_crawling/combat/combat_scenes/EnemyScene.tscn" id="5_7m5n4"]
 
 [node name="DungeonCombat" type="Node2D"]
+script = ExtResource("1_np2vi")
 
 [node name="CombatBg" type="TextureRect" parent="."]
 texture_filter = 1
 custom_minimum_size = Vector2(1920, 1080)
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 4
 texture = ExtResource("1_xnswm")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CombatBg"]
-layout_mode = 0
-offset_left = 292.0
-offset_top = 502.0
-offset_right = 785.0
-offset_bottom = 759.0
+[node name="Player" type="Marker2D" parent="CombatBg"]
+position = Vector2(361, 741)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CombatBg/Player"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -246.5
+offset_top = -257.0
+offset_right = 246.5
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(1.5, 1.5)
-alignment = 1
+size_flags_horizontal = 4
+metadata/_edit_lock_ = true
 
-[node name="PlayerScene" parent="CombatBg/HBoxContainer" instance=ExtResource("2_k5gqc")]
-layout_mode = 2
-
-[node name="ActionMenu" parent="CombatBg/HBoxContainer" instance=ExtResource("3_7kj3u")]
+[node name="PlayerScene" parent="CombatBg/Player/HBoxContainer" instance=ExtResource("2_k5gqc")]
 unique_name_in_owner = true
 layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="ActionMenu" parent="CombatBg/Player/HBoxContainer" instance=ExtResource("4_ks800")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Enemy" type="Marker2D" parent="CombatBg"]
+position = Vector2(1560, 408)
+
+[node name="EnemyScene" parent="CombatBg/Enemy" instance=ExtResource("5_7m5n4")]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -295.0
+offset_top = -251.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+metadata/_edit_lock_ = true

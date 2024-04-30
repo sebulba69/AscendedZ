@@ -15,7 +15,6 @@ namespace AscendedZ.dungeon_crawling.combat.skillsdc
             {
                 Id = SkillId.Elemental,
                 Name = element.ToString(),
-                MPCost = 2,
                 Icon = SkillAssets.GetElementIconByElementEnum(element),
                 Element = element,
                 TargetType = TargetTypes.SINGLE_OPP,

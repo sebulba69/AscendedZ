@@ -1,7 +1,9 @@
-VBoxContainer
-HBoxContainer
-Button
 Marker2D
+Control
+TextureRect
+HBoxContainer
+VBoxContainer
+Button
 CenterContainer
 PanelContainer
 GridContainer
@@ -10,5 +12,3 @@ MarginContainer
 Panel
 ProgressBar
 TextureProgressBar
-TextureRect
-Control

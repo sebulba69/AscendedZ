@@ -9,7 +9,13 @@ script = ExtResource("1_7745h")
 [node name="Tiles" type="Marker2D" parent="."]
 unique_name_in_owner = true
 
+[node name="FightCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+enabled = false
+
 [node name="Player" parent="." instance=ExtResource("2_p1r2d")]
 unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+unique_name_in_owner = true

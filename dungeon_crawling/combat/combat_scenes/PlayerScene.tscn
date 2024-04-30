@@ -32,6 +32,7 @@ border_width_bottom = 2
 border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="PlayerScene" type="VBoxContainer"]
+texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
 offset_right = 295.0
 offset_bottom = 251.0
@@ -39,6 +40,7 @@ alignment = 1
 script = ExtResource("1_ka2fs")
 
 [node name="Outline" type="TextureRect" parent="."]
+texture_filter = 2
 layout_mode = 2
 texture = ExtResource("1_lwgdc")
 stretch_mode = 3
@@ -69,14 +71,17 @@ position = Vector2(85, 85)
 scale = Vector2(1.5, 1.5)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+texture_filter = 2
 layout_mode = 2
 theme_override_constants/margin_top = 5
 
 [node name="BarContainer" type="VBoxContainer" parent="MarginContainer"]
+texture_filter = 2
 layout_mode = 2
 theme_override_constants/separation = 3
 
 [node name="HP" type="HBoxContainer" parent="MarginContainer/BarContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="HPBarNumber" type="PanelContainer" parent="MarginContainer/BarContainer/HP"]
@@ -124,6 +129,7 @@ theme_override_fonts/font = ExtResource("3_3xtvb")
 text = "10"
 
 [node name="MP" type="HBoxContainer" parent="MarginContainer/BarContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="MPBarNumber" type="PanelContainer" parent="MarginContainer/BarContainer/MP"]
@@ -171,6 +177,7 @@ theme_override_fonts/font = ExtResource("3_3xtvb")
 text = "10"
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/BarContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/BarContainer/PanelContainer"]

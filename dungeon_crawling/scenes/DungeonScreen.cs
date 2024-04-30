@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Transactions;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -36,18 +37,20 @@ public partial class DungeonScreen : Node2D
     private Dungeon _dungeon;
     private HashSet<int> _addedScenes;
     private int _currentIndex;
+    private Camera2D _camera;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
 		_tiles = this.GetNode<Marker2D>("%Tiles");
         _player = this.GetNode<DungeonEntity>("%Player");
+        _camera = this.GetNode<Camera2D>("%Camera2D");
 
         _dungeon = new Dungeon(1, 6);
 
         _dungeon.Generate();
 
-        _dungeon.TileEventTriggered += OnTileEventTriggered;
+        _dungeon.TileEventTriggered += OnTileEventTriggeredAsync;
 
         StartDungeon();
     }
@@ -239,7 +242,7 @@ public partial class DungeonScreen : Node2D
         return uiTile;
     }
 
-    private void OnTileEventTriggered(object sender, ITileEvent tileEvent)
+    private async void OnTileEventTriggeredAsync(object sender, ITileEvent tileEvent)
     {
         // start of the event, prevent further inputs
         _processingEvent = true;
@@ -261,6 +264,12 @@ public partial class DungeonScreen : Node2D
                 EncounterEvent encounterEvent = (EncounterEvent)tileEvent;
                 MainEncounterTile mainEncounterTile = encounterEvent.Tile;
                 // put up battle scene <-- handle rewards there
+
+                var combatScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_COMBAT).Instantiate<DungeonCombat>();
+                this.AddChild(combatScene);
+                _camera.Enabled = false;
+                await ToSignal(combatScene, "tree_exited");
+                _camera.Enabled = true;
 
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
                 break;
