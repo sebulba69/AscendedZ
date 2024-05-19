@@ -1,3 +1,4 @@
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace AscendedZ
         public static readonly string FUSION = "res://screens/FusionScreen.tscn";
         public static readonly string QUEST = "res://screens/QuestScreen.tscn";
 
+        public static readonly string TRANSITION = "res://screens/SceneTransition.tscn";
+
         // currency
         public static readonly string CURRENCY_DISPLAY = "res://misc_icons/CurrencyDisplay.tscn";
 
@@ -50,5 +53,8 @@ namespace AscendedZ
         // dungeon crawling
         public static readonly string AP_ICON = "res://dungeon_crawling/combat/combat_scenes/APNode.tscn";
         public static readonly string DUNGEON_COMBAT = "res://dungeon_crawling/scenes/DungeonCombat.tscn";
+
+        public static readonly string DUNGEON_MAIN = "res://screens/DungeonCrawlMainScreen.tscn";
+    
     }
 }

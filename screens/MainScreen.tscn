@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo4wv12lv7581"]
+[gd_scene load_steps=5 format=3 uid="uid://bo4wv12lv7581"]
 
 [ext_resource type="Texture2D" uid="uid://djlrnr8rpcbxa" path="res://cg_backgrounds/overworld/1bg00501.jpg" id="2"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="3"]
 [ext_resource type="Script" path="res://screens/MainScreen.cs" id="4"]
+[ext_resource type="PackedScene" uid="uid://bf7cs0q6o8n8u" path="res://screens/MainPlayerContainer.tscn" id="4_ujo55"]
 
 [node name="MainScreenScene" type="Node2D"]
 texture_filter = 2
@@ -69,53 +70,9 @@ unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MainContainer"]
-texture_filter = 2
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MainContainer/CenterContainer"]
-texture_filter = 2
-layout_mode = 2
-
-[node name="CurrencyPanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-
-[node name="Currency" type="HBoxContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/CurrencyPanelContainer"]
+[node name="MainPlayerContainer" parent="CenterContainer/MainContainer" instance=ExtResource("4_ujo55")]
 unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer"]
-texture_filter = 2
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer2"]
-texture_filter = 2
-layout_mode = 2
-
-[node name="PlayerNameLabel" type="Label" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer2/CenterContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 35
-
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-
-[node name="PlayerPicture" type="TextureRect" parent="CenterContainer/MainContainer/CenterContainer/VBoxContainer/PanelContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(270, 240)
-layout_mode = 2
-expand_mode = 1
 
 [node name="Buttons" type="CenterContainer" parent="CenterContainer/MainContainer"]
 texture_filter = 2
@@ -193,6 +150,20 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Fuse"
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+alignment = 1
+
+[node name="DungeonCrawlButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 40
+text = "The Labyribuce"
+
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer"]
 texture_filter = 2
 layout_mode = 2
@@ -211,4 +182,4 @@ vertical_alignment = 1
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
-volume_db = -10.0
+volume_db = -80.0

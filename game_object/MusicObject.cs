@@ -73,7 +73,7 @@ namespace AscendedZ.game_object
             _lastPlayedPosition.Clear();
         }
 
-        public void PlayMusic(string music, bool isBoss = false)
+        public void PlayMusic(string music)
         {
             if (music != _currentSong)
             {
@@ -86,8 +86,8 @@ namespace AscendedZ.game_object
                 float seekToPosition = 0;
 
                 // if this song we're about to play is already saved, then resume playing where it left off
-                if (_lastPlayedPosition.ContainsKey(_currentSong) && !isBoss)
-                    seekToPosition = _lastPlayedPosition[_currentSong];
+                //if (_lastPlayedPosition.ContainsKey(_currentSong) && !skipTrackPositionSeek)
+                //   seekToPosition = _lastPlayedPosition[_currentSong];
 
                 _streamPlayer.Play(seekToPosition);
             }

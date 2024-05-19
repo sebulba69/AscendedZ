@@ -2,6 +2,7 @@ using AscendedZ;
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
 using AscendedZ.game_object;
+using AscendedZ.screens;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Xml.Linq;
 
-public partial class StartScreen : Node2D
+public partial class StartScreen : Transitionable2DScene
 {
 	private readonly string VERSION = "Pre-Alpha v0.03";
 
@@ -236,8 +237,6 @@ public partial class StartScreen : Node2D
 
     private void EnterMainScreen()
 	{
-		PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
-		this.GetTree().Root.AddChild(mainScreenScene.Instantiate());
-		this.QueueFree();
+		TransitionScenes(Scenes.MAIN, this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer"));
 	}
 }

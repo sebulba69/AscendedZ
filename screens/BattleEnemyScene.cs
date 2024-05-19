@@ -177,7 +177,8 @@ public partial class BattleEnemyScene : Node2D
         UpdateTurnsUsingTurnState(TurnState.PLAYER);
 
         string dungeonTrack = MusicAssets.GetDungeonTrack(gameObject.Tier);
-        gameObject.MusicPlayer.PlayMusic(dungeonTrack, (gameObject.Tier == 5 || gameObject.Tier % 10 == 0));
+        bool isBoss = (gameObject.Tier == 5 || gameObject.Tier % 10 == 0);
+        gameObject.MusicPlayer.PlayMusic(dungeonTrack);
         _actionMenu.CanInput = true;
         
     }

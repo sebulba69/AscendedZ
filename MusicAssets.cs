@@ -13,6 +13,7 @@ namespace AscendedZ
     public class MusicAssets
     {
         public static readonly string OW_MUSIC_FOLDER = "res://music/overworld/";
+        public static readonly string OW_DC = "res://music/overworldDC.ogg";
         /// <summary>
         /// List of tracks in order the game plays them.
         /// </summary>

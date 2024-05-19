@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf7cs0q6o8n8u"]
+
+[ext_resource type="Script" path="res://screens/MainPlayerContainer.cs" id="1_hwanr"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1_sjmhr"]
+
+[node name="CenterContainer" type="CenterContainer"]
+texture_filter = 2
+script = ExtResource("1_hwanr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+texture_filter = 2
+layout_mode = 2
+
+[node name="CurrencyPanelContainer" type="PanelContainer" parent="VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+
+[node name="Currency" type="HBoxContainer" parent="VBoxContainer/CurrencyPanelContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/PanelContainer2"]
+texture_filter = 2
+layout_mode = 2
+
+[node name="PlayerNameLabel" type="Label" parent="VBoxContainer/PanelContainer2/CenterContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_sjmhr")
+theme_override_font_sizes/font_size = 35
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+
+[node name="PlayerPicture" type="TextureRect" parent="VBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(270, 240)
+layout_mode = 2
+expand_mode = 1

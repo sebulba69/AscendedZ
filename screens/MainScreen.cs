@@ -2,11 +2,12 @@
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
 using AscendedZ.game_object;
+using AscendedZ.screens;
 using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class MainScreen : Node2D
+public partial class MainScreen : Transitionable2DScene
 {
     private CenterContainer _root;
     private VBoxContainer _mainUIContainer;
@@ -14,6 +15,7 @@ public partial class MainScreen : Node2D
     private AudioStreamPlayer _audioPlayer;
     private PanelContainer _musicSelectContainer;
     private bool _checkBoxPressed;
+    MainPlayerContainer _mainPlayerContainer;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -48,6 +50,7 @@ public partial class MainScreen : Node2D
             PersistentGameObjects.Save();
         }
 
+        _mainPlayerContainer = this.GetNode<MainPlayerContainer>("%MainPlayerContainer");
 
         InitializeMusicButton(gameObject);
         InitializePlayerInformation(gameObject);
@@ -97,6 +100,19 @@ public partial class MainScreen : Node2D
         SwapOverworldTracks(musicPlayer);
     }
 
+    private void InitializePlayerInformation(GameObject gameObject)
+    {
+        _mainPlayerContainer.InitializePlayerInformation(gameObject);
+        DoEmbarkButtonCheck(gameObject);
+    }
+
+    private void DoEmbarkButtonCheck(GameObject gameObject)
+    {
+        var embarkButton = this.GetNode<Button>("%EmbarkButton");
+        if (gameObject.PartyMemberObtained)
+            embarkButton.Visible = true;
+    }
+
     private void SwapOverworldTracks(MusicObject musicPlayer)
     {
         OptionButton musicOptionsButton = this.GetNode<OptionButton>("%MusicOptionsButton");
@@ -118,28 +134,9 @@ public partial class MainScreen : Node2D
             track = musicPlayer.OverworldTheme;
         }
 
+        _audioPlayer.VolumeDb = -80;
         musicPlayer.PlayMusic(track);
-    }
-
-    private void InitializePlayerInformation(GameObject gameObject)
-    {
-        TextureRect playerPicture = this.GetNode<TextureRect>("%PlayerPicture");
-        Label playerName = this.GetNode<Label>("%PlayerNameLabel");
-
-        MainPlayer player = gameObject.MainPlayer;
-        playerPicture.Texture = ResourceLoader.Load<Texture2D>(player.Image);
-        playerName.Text = $"[T. {gameObject.MaxTier}] {player.Name}";
-
-        if(!gameObject.UpgradeShardsUnlocked && gameObject.MaxTier > 20)
-        {
-            gameObject.UpgradeShardsUnlocked = true;
-            UpgradeShard upgradeShard = new UpgradeShard() { Amount = 0 };
-            player.Wallet.Currency.Add(upgradeShard.Name, upgradeShard);
-
-            PersistentGameObjects.Save();
-        }
-        
-        UpdateCurrencyDisplay();
+        this.GetTree().CreateTween().TweenProperty(_audioPlayer, "volume_db", -10, 0.5);
     }
 
     private void InitializeButtons(GameObject gameObject)
@@ -152,6 +149,7 @@ public partial class MainScreen : Node2D
         Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
         Button fuseButton = this.GetNode<Button>("%FuseButton");
         Button questButton = this.GetNode<Button>("%QuestButton");
+        Button dungeonCrawlButton = this.GetNode<Button>("%DungeonCrawlButton");
 
         string upgradeText = "Upgrade";
         var progressFlagObject = gameObject.ProgressFlagObject;
@@ -181,8 +179,8 @@ public partial class MainScreen : Node2D
             recruitButton.Text = recruitText;
         }
 
-        if (tier > TierRequirements.FUSE)
-            fuseButton.Visible = true;
+        fuseButton.Visible = (tier > TierRequirements.FUSE);
+        dungeonCrawlButton.Visible = (tier > 5);
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
@@ -190,6 +188,7 @@ public partial class MainScreen : Node2D
         upgradeButton.Pressed += _OnUpgradeButtonPressed;
         fuseButton.Pressed += _OnFuseButtonPressed;
         questButton.Pressed += _OnQuestButtonPressed;
+        dungeonCrawlButton.Pressed += _OnDungeonCrawButtonPressed;
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
@@ -197,33 +196,10 @@ public partial class MainScreen : Node2D
         questButton.MouseEntered += () => { _tooltip.Text = "Get quests to earn Vorpex."; };
         upgradeButton.MouseEntered += () => { _tooltip.Text = "Upgrade Party Members with Vorpex."; };
         fuseButton.MouseEntered += () => { _tooltip.Text = "Combine Party Members to create new ones and transfer skills."; };
+        dungeonCrawlButton.MouseEntered += () => { _tooltip.Text = "Buce-onix power essence foretells of a new dungeon to be conquered."; };
     }
     #endregion
-
-    private void UpdateCurrencyDisplay()
-    {
-        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
-
-        var currencyDisplay = this.GetNode("%Currency");
-        var embarkButton = this.GetNode<Button>("%EmbarkButton");
-        var wallet = gameObject.MainPlayer.Wallet;
-
-        foreach (var child in currencyDisplay.GetChildren())
-        {
-            currencyDisplay.RemoveChild(child);
-        }
-
-        foreach (var key in wallet.Currency.Keys)
-        {
-            var display = ResourceLoader.Load<PackedScene>(Scenes.CURRENCY_DISPLAY).Instantiate();
-            currencyDisplay.AddChild(display);
-            var currency = wallet.Currency[key];
-            display.Call("SetCurrencyToDisplay", currency.Icon, currency.Amount);
-        }
-
-        if (gameObject.PartyMemberObtained)
-            embarkButton.Visible = true;
-    }
+    
     private void _OnMenuButtonPressed()
     {
         _mainUIContainer.Visible = false;
@@ -272,6 +248,11 @@ public partial class MainScreen : Node2D
         }
     }
 
+    private void _OnDungeonCrawButtonPressed()
+    {
+        TransitionScenes(Scenes.DUNGEON_MAIN, _audioPlayer);
+    }
+
     private async void DisplayScene(string packedScenePath)
     {
         _mainUIContainer.Visible = false;
@@ -293,6 +274,7 @@ public partial class MainScreen : Node2D
         if (pFlags.AscensionViewed)
             this.GetNode<Button>("%UpgradePartyButton").Text = "Upgrade";
 
-        UpdateCurrencyDisplay();
+        _mainPlayerContainer.UpdateCurrencyDisplay();
+        DoEmbarkButtonCheck(PersistentGameObjects.GameObjectInstance());
     }
 }
