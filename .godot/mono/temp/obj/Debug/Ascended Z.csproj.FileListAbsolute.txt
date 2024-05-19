@@ -22,3 +22,4 @@ C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\As
 C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\Ascended Z.dll
 C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\ref\Ascended Z.dll
 C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\Ascended Z.pdb
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\Debug\Ascended Z.sourcelink.json

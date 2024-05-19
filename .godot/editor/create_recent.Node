@@ -1,14 +1,14 @@
+AudioStreamPlayer
+Sprite2D
 AnimationPlayer
 CenterContainer
 TextureRect
 MeshInstance2D
 ColorRect
 CanvasLayer
-AudioStreamPlayer
 Marker2D
 Control
 HBoxContainer
 VBoxContainer
 Button
 PanelContainer
-GridContainer
