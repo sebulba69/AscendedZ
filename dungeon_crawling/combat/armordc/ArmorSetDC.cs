@@ -22,7 +22,10 @@ namespace AscendedZ.dungeon_crawling.combat.armordc
             StatsDC stats = new StatsDC();
             foreach(ArmorDC armor in _armor)
             {
-                armor.StatsDC.ApplyStats(stats);
+                if(armor != null)
+                {
+                    armor.StatsDC.ApplyStats(stats);
+                }
             }
             return stats;
         }

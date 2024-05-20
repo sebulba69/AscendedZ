@@ -12,22 +12,34 @@ namespace AscendedZ.dungeon_crawling.combat
 {
     public class PlayerDC
     {
-        public string Image { get; set; }
+        public StatsDC Stats { get; set; }
 
-        public StatsDC Stats { get; set; } = new StatsDC() 
+        public ArmorSetDC ArmorSet { get; set; }
+
+        public List<ArmorDC> Reserves { get; set; }
+
+        public PlayerDC()
         {
-            Level = 1,
-            HP = 10,
-            MP = 10,
-            AP = 1,
-            AttackRate = 1,
-            CriticalRate = 10,
-            HealAmount = 2
-        };
+            if(Stats == null)
+            {
+                Stats = new StatsDC()
+                 {
+                     Level = 1,
+                     HP = 10,
+                     MP = 10,
+                     AP = 1,
+                     AttackRate = 1,
+                     CriticalRate = 10,
+                     HealAmount = 2
+                 };
+            }
 
-        public ArmorSetDC ArmorSet { get; set; } = new();
+            if (ArmorSet == null)
+                ArmorSet = new ArmorSetDC();
 
-        public List<ArmorDC> Reserves { get; set; } = new();
+            if(Reserves == null)
+                Reserves = new List<ArmorDC>();
+        }
 
         /// <summary>
         /// Equip armor from Reserves to ArmorSet

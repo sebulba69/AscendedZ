@@ -25,12 +25,13 @@ public partial class DungeonCrawlMainScreen : Transitionable2DScene
 		gameObject.MusicPlayer.PlayMusic(MusicAssets.OW_DC);
         this.GetTree().CreateTween().TweenProperty(_audioStreamPlayer, "volume_db", -10, 0.5);
 
+        Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button endlessDungeonButton = this.GetNode<Button>("%ReturnButton");
 
+        embarkButton.MouseEntered += () => { _tooltip.Text = "Journey into the Labyribuce."; };
 		endlessDungeonButton.MouseEntered += () => { _tooltip.Text = "Resume your journey and Ascend."; };
-		endlessDungeonButton.Pressed += async () => 
-		{
-            TransitionScenes(Scenes.MAIN, _audioStreamPlayer);
-        };
+
+        embarkButton.Pressed += () => TransitionScenes(Scenes.DUNGEON_CRAWL, _audioStreamPlayer);
+		endlessDungeonButton.Pressed += () => TransitionScenes(Scenes.MAIN, _audioStreamPlayer);
     }
 }

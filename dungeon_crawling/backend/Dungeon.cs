@@ -41,11 +41,11 @@ namespace AscendedZ.dungeon_crawling.backend
 
         public ITile CurrentTile { get => _currentTile; }
 
-        public Dungeon(int tier, int eventCount)
+        public Dungeon(int tier)
         {
             _rng = new Random();
             _tier = tier;
-            _eventCount = eventCount;
+            _eventCount = Equations.GetDungeonCrawlEncounters(tier);
             _pathFactory = new PathFactory(_rng);
             _enemyDCFactory = new EnemyDCFactory(_tier, _rng);
         }

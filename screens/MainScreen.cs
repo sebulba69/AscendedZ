@@ -1,5 +1,6 @@
 ﻿using AscendedZ;
 using AscendedZ.currency.rewards;
+using AscendedZ.dungeon_crawling.combat;
 using AscendedZ.entities;
 using AscendedZ.game_object;
 using AscendedZ.screens;
@@ -30,25 +31,6 @@ public partial class MainScreen : Transitionable2DScene
 
         TextureRect background = this.GetNode<TextureRect>("%Background");
         background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetBackground(gameObject.MaxTier));
-
-        // backwards compatibility line
-        if (gameObject.OldAlphaSave)
-        {
-            foreach (var member in gameObject.MainPlayer.Party.Party)
-            {
-                if (member != null)
-                {
-                    if (!gameObject.MainPlayer.ReserveMembers.Contains(member) && !member.IsInParty)
-                    {
-                        member.IsInParty = true;
-                        gameObject.MainPlayer.ReserveMembers.Add(member);
-                    }
-                }
-            }
-
-            gameObject.OldAlphaSave = false;
-            PersistentGameObjects.Save();
-        }
 
         _mainPlayerContainer = this.GetNode<MainPlayerContainer>("%MainPlayerContainer");
 

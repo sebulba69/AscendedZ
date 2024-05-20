@@ -12,10 +12,13 @@ namespace AscendedZ.game_object
     public class GameObject
     {
         private const int TIER_CAP = 41;
+        private const int TIER_CAP_DC = 999;
 
         private bool _oldAlphaSave = true;
         private int _tier = 1;
+        private int _tierDC = 1;
         private int _maxTier = 1;
+        private int _maxTierDC = 1;
         private bool _partyMemberObtained = false;
         private bool _upgradeShardsUnlocked = false;
 
@@ -37,6 +40,23 @@ namespace AscendedZ.game_object
         }
 
         /// <summary>
+        /// The current floor you're on as displayed to you by the UI.
+        /// </summary>
+        public int TierDC
+        {
+            get => _tierDC;
+            set
+            {
+                _tierDC = value;
+                if (_tierDC >= MaxTierDC)
+                    _tierDC = MaxTierDC;
+
+                if (_tierDC < 1)
+                    _tierDC = 1;
+            }
+        }
+
+        /// <summary>
         /// The highest possible tier you can get to at your current point in the game.
         /// </summary>
         public int MaxTier
@@ -47,6 +67,20 @@ namespace AscendedZ.game_object
                 _maxTier = value;
                 if (_maxTier > TIER_CAP)
                     _maxTier = TIER_CAP;
+            }
+        }
+
+        /// <summary>
+        /// The highest possible dungeon crawling tier you can get to at your current point in the game.
+        /// </summary>
+        public int MaxTierDC
+        {
+            get => _maxTierDC;
+            set
+            {
+                _maxTierDC = value;
+                if (_maxTierDC > TIER_CAP_DC)
+                    _maxTierDC = TIER_CAP_DC;
             }
         }
 

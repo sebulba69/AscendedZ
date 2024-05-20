@@ -52,6 +52,17 @@ namespace AscendedZ
             }
         }
 
+        private static readonly List<string> _dungeonTrackDCReal = new List<string>();
+        private static readonly string DUNGEON_REAL_DC = "res://music/dungoen_crawl/";
+        private static List<string> DungeonTracksDCReal
+        {
+            get
+            {
+                AssetUtil.GetFilesFromDir(_dungeonTrackDCReal, DUNGEON_REAL_DC);
+                return _dungeonTrackDCReal;
+            }
+        }
+
         public static readonly string BOSS_VICTORY = "res://music/boss_victory.ogg";
         public static readonly string FIRST_CUTSCENE = "res://music/cutscene.ogg";
 
@@ -98,6 +109,16 @@ namespace AscendedZ
             {
                 return "temp";
             }
+        }
+
+        public static string GetDungeonTrackDC(int tier)
+        {
+            int index = ((tier - (tier % 10)) / 10) - 1;
+
+            if (index > DungeonTracksDCReal.Count || index < 0)
+                index = 0;
+
+            return DungeonTracksDCReal[index];
         }
     }
 }

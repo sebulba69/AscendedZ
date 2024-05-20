@@ -83,6 +83,12 @@ namespace AscendedZ
             return shopCost;
         }
 
+
+        public static int GetDungeonCrawlEncounters(int tier)
+        {
+            return (tier / 10) + 2;
+        }
+
         public static BigInteger GetDungeonCrawlingHPBoost(int tier)
         {
             BigInteger hpIncrease = 2;

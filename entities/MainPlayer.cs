@@ -1,4 +1,5 @@
 using AscendedZ.currency;
+using AscendedZ.dungeon_crawling.combat;
 using AscendedZ.entities.partymember_objects;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace AscendedZ.entities
     {
         public Wallet Wallet { get; set; }
         public PlayerParty Party { get; set; }
-
+        public PlayerDC DungeonPlayer { get; set; }
         public MainPlayer()
         {
             if (Wallet == null)
@@ -26,6 +27,9 @@ namespace AscendedZ.entities
 
             if (Party == null)
                 Party = new PlayerParty();
+
+            if(DungeonPlayer == null)
+                DungeonPlayer = new PlayerDC();
         }
 
         /// <summary>
@@ -34,7 +38,7 @@ namespace AscendedZ.entities
         public List<OverworldEntity> ReserveMembers { get; set; } = new();
 
         /// <summary>
-        /// Check if a party member is in your reserves/party by name.
+        /// Check if a party member is in your red  serves/party by name.
         /// </summary>
         /// <param name="partyMemberName"></param>
         /// <returns></returns>

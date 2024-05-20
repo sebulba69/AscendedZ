@@ -23,9 +23,13 @@ namespace AscendedZ.screens
             transition.PlayFadeIn();
 
             await ToSignal(transition.Player, "animation_finished");
+
+            this.Visible = false;
+
             root.AddChild(destination);
-            transition.PlayFadeOut();
             transition.TreeExited += () => { this.QueueFree(); };
+            transition.PlayFadeOut();
+
         }
     }
 }

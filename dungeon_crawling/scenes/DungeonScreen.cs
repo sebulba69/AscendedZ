@@ -3,6 +3,7 @@ using AscendedZ.currency;
 using AscendedZ.dungeon_crawling.backend;
 using AscendedZ.dungeon_crawling.backend.TileEvents;
 using AscendedZ.dungeon_crawling.backend.Tiles;
+using AscendedZ.game_object;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,8 @@ public partial class DungeonScreen : Node2D
     private HashSet<int> _addedScenes;
     private int _currentIndex;
     private Camera2D _camera;
+    private AudioStreamPlayer _audioStreamPlayer;
+    private GameObject _gameObject;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -45,9 +48,17 @@ public partial class DungeonScreen : Node2D
 		_tiles = this.GetNode<Marker2D>("%Tiles");
         _player = this.GetNode<DungeonEntity>("%Player");
         _camera = this.GetNode<Camera2D>("%Camera2D");
+        _audioStreamPlayer = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
 
-        _dungeon = new Dungeon(1, 6);
+        _gameObject = PersistentGameObjects.GameObjectInstance();
+        int tier = _gameObject.TierDC;
+        string track = MusicAssets.GetDungeonTrackDC(tier);
+        _gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);
 
+        _player.SetGraphic(_gameObject.MainPlayer.Image);
+        _gameObject.MusicPlayer.PlayMusic(track);
+
+        _dungeon = new Dungeon(tier);
         _dungeon.Generate();
 
         _dungeon.TileEventTriggered += OnTileEventTriggeredAsync;
@@ -261,12 +272,19 @@ public partial class DungeonScreen : Node2D
                 break;
 
             case TileEventId.Encounter:
+                
                 EncounterEvent encounterEvent = (EncounterEvent)tileEvent;
                 MainEncounterTile mainEncounterTile = encounterEvent.Tile;
                 // put up battle scene <-- handle rewards there
 
                 var combatScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_COMBAT).Instantiate<DungeonCombat>();
                 this.AddChild(combatScene);
+
+                var player = _gameObject.MainPlayer.DungeonPlayer.MakeBattlePlayerDC();
+                player.Image = _gameObject.MainPlayer.Image;
+
+                combatScene.Initialize(player, mainEncounterTile.Encounter);
+
                 _camera.Enabled = false;
                 await ToSignal(combatScene, "tree_exited");
                 _camera.Enabled = true;

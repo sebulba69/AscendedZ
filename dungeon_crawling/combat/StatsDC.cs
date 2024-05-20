@@ -90,45 +90,26 @@ namespace AscendedZ.dungeon_crawling.combat
 
         public void ApplyStats(StatsDC baseStats)
         {
-            baseStats.HP += HP;
-            baseStats.MP += MP;
-            baseStats.AP += AP;
+            HP += baseStats.HP;
+            MP += baseStats.MP;
+            AP += baseStats.AP;
 
-            baseStats.AttackRate += AttackRate;
-            baseStats.CriticalRate += CriticalRate;
-            baseStats.CriticalBoost += CriticalBoost;
-            baseStats.HealAmount += HealAmount;
+            AttackRate += baseStats.AttackRate;
+            CriticalRate += baseStats.CriticalRate;
+            CriticalBoost += baseStats.CriticalBoost;
+            HealAmount += baseStats.HealAmount;
 
-            baseStats.Fire += Fire;
-            baseStats.Ice += Ice;
-            baseStats.Wind += Wind;
-            baseStats.Elec += Elec;
-            baseStats.Light += Light;
-            baseStats.Dark += Dark;
+            Fire += baseStats.Fire;
+            Ice += baseStats.Ice;
+            Wind += baseStats.Wind;
+            Elec += baseStats.Elec;
+            Light += baseStats.Light;
+            Dark += baseStats.Dark;
 
-            baseStats.Weak.AddRange(Weak);
-            baseStats.Resist.AddRange(Resist);
+            Weak.AddRange(baseStats.Weak);
+            Resist.AddRange(baseStats.Resist);
 
-            baseStats.Skills.AddRange(Skills);
-        }
-
-        public void RemoveStats(StatsDC baseStats)
-        {
-            baseStats.HP -= HP;
-            baseStats.MP -= MP;
-            baseStats.AP -= AP;
-
-            baseStats.AttackRate -= AttackRate;
-            baseStats.CriticalRate -= CriticalRate;
-            baseStats.CriticalBoost -= CriticalBoost;
-            baseStats.HealAmount -= HealAmount;
-
-            baseStats.Fire -= Fire;
-            baseStats.Ice -= Ice;
-            baseStats.Wind -= Wind;
-            baseStats.Elec -= Elec;
-            baseStats.Light -= Light;
-            baseStats.Dark -= Dark;
+            Skills.AddRange(baseStats.Skills);
         }
 
         public override string ToString()

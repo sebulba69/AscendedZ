@@ -1,10 +1,11 @@
 res://default_env.tres
-res://screens/SceneTransition.tscn
-res://misc_icons/IconOutline.gdshader
 res://dungeon_crawling/scenes/DungeonCombat.tscn
+res://misc_icons/IconOutline.gdshader
 res://dungeon_crawling/scenes/DungeonScreen.tscn
 res://screens/MainScreen.tscn
 res://screens/DungeonCrawlMainScreen.tscn
+res://screens/MainPlayerContainer.tscn
+res://dungeon_crawling/combat/combat_scenes/PlayerScene.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/combat/combat_scenes/EnemyScene.cs
@@ -48,4 +49,4 @@ res://screens/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://screens/MainPlayerContainer.tscn
+res://dungeon_crawling/combat/combat_scenes/EnemyScene.tscn

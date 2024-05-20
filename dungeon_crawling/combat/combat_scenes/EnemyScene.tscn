@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8mcrxad8jfaw"]
+[gd_scene load_steps=14 format=3 uid="uid://c8mcrxad8jfaw"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/EnemyScene.cs" id="1_0o57d"]
 [ext_resource type="Texture2D" uid="uid://bccubabd2bgpu" path="res://dungeon_crawling/art_assets/general/character_border.png" id="2_6nrc7"]
@@ -30,6 +30,43 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="Animation" id="Animation_jrfju"]
+resource_name = "new_animation"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 5)]
+}
+
+[sub_resource type="Animation" id="Animation_4b0p5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bvowb"]
+_data = {
+"RESET": SubResource("Animation_4b0p5"),
+"new_animation": SubResource("Animation_jrfju")
+}
 
 [node name="EnemyScene" type="VBoxContainer"]
 texture_filter = 2
@@ -203,3 +240,9 @@ columns = 5
 unique_name_in_owner = true
 stream = ExtResource("6_0fr2r")
 volume_db = -15.0
+
+[node name="FloatyEnemy" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bvowb")
+}
+autoplay = "new_animation"
