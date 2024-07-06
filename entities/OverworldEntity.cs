@@ -200,55 +200,14 @@ namespace AscendedZ.entities.partymember_objects
             return gradeString;
         }
 
-        public string GetUpgradeString(bool showUpgradeShards)
+        public string GetUpgradeString()
         {
             StringBuilder skills = new StringBuilder();
 
+            foreach (ISkill skill in Skills)
+                skills.Append(skill.GetUpgradeString() + "\n");
 
-            if (!showUpgradeShards)
-            {
-                foreach (ISkill skill in Skills)
-                    skills.Append(skill.GetUpgradeString()+"\n");
-
-                return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
-            } 
-            else
-            {
-                foreach (ISkill skill in Skills)
-                    skills.Append(skill.GetAscendedString(_ascendedLevel)+"\n");
-
-                string reqAscendGrade;
-
-                switch (_ascendedLevel)
-                {
-                    case 0:
-                        reqAscendGrade = "E";
-                        break;
-                    case 1:
-                        reqAscendGrade = "C";
-                        break;
-                    case 2:
-                        reqAscendGrade = "A";
-                        break;
-                    case 3:
-                        reqAscendGrade = "S";
-                        break;
-                    case 4:
-                        reqAscendGrade = "SS";
-                        break;
-                    default:
-                        reqAscendGrade = "SSS";
-                        break;
-                }
-                 
-
-                return  $"{MaxHP} HP → {(_ascendedLevel + 1) * 12} HP\n" +
-                        $"{Resistances.GetResistanceString()}\n" +
-                        $"{skills.ToString()}" +
-                        $"Ascend Cost: {UpgradeShardValue} US\n" +
-                        $"Req. ASC Grade: {reqAscendGrade}";
-            }
-
+            return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
         }
 
         public override string ToString()

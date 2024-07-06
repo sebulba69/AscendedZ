@@ -24,7 +24,6 @@ public partial class UpgradeScreen : CenterContainer
 	private OverworldEntity _selectedEntity;
 	private int _selected;
 	private Wallet _wallet;
-	private bool _ascendedPressed;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -46,14 +45,11 @@ public partial class UpgradeScreen : CenterContainer
         _allPartyMembers = gameObject.MainPlayer.ReserveMembers;
 
 		_partyList.ItemSelected += _OnItemSelected;
-		_ascendedPressed = false;
 
         _upgradeButton.Pressed += _OnUpgradeButtonPressed;
 		_backButton.Pressed += _OnBackButtonPressed;
 
         _upgradeButton.Text = "Upgrade";
-
-		_ascendedPressed = false;
 
         RefreshItemList();
     }
@@ -66,36 +62,17 @@ public partial class UpgradeScreen : CenterContainer
 
 	private void _OnUpgradeButtonPressed()
 	{
-		if (!_ascendedPressed)
+        int cost = _selectedEntity.VorpexValue;
+        Currency vorpex = _wallet.Currency[SkillAssets.VORPEX_ICON];
+
+        if (vorpex.Amount >= cost && !_selectedEntity.GradeCapHit)
         {
-            int cost = _selectedEntity.VorpexValue;
-            Currency vorpex = _wallet.Currency[SkillAssets.VORPEX_ICON];
+            vorpex.Amount -= cost;
+            _selectedEntity.LevelUp();
 
-            if (vorpex.Amount >= cost && !_selectedEntity.GradeCapHit)
-            {
-                vorpex.Amount -= cost;
-                _selectedEntity.LevelUp();
+            RefreshItemList();
 
-                RefreshItemList();
-
-                PersistentGameObjects.Save();
-            }
-        }
-		else
-		{
-            // We're Ascending
-            int cost = _selectedEntity.UpgradeShardValue;
-            Currency upgradeShards = _wallet.Currency[SkillAssets.UPGRADESHARD_ICON];
-
-            if (upgradeShards.Amount >= cost && _selectedEntity.CanAscend())
-			{
-                upgradeShards.Amount -= cost;
-                _selectedEntity.Ascend();
-
-                RefreshItemList();
-
-                PersistentGameObjects.Save();
-            }
+            PersistentGameObjects.Save();
         }
     }
 
@@ -113,8 +90,6 @@ public partial class UpgradeScreen : CenterContainer
             PersistentGameObjects.Save();
         }
 
-        _upgradeButton.Text = (_ascendedPressed) ? "Ascend" : "Upgrade";
-
         RefreshItemList();
     }
 
@@ -124,12 +99,7 @@ public partial class UpgradeScreen : CenterContainer
 
         foreach (var member in _allPartyMembers)
         {
-			string displayName;
-
-			if(_ascendedPressed)
-				displayName = $"{member.DisplayName} [{member.UpgradeShardYield} US]";
-			else
-				displayName = $"{member.DisplayName} [{member.VorpexValue} VC]";
+			string displayName = $"{member.DisplayName} [{member.VorpexValue} VC]";
 
             _partyList.AddItem(displayName, CharacterImageAssets.GetTextureForItemList(member.Image));
         }
@@ -144,9 +114,9 @@ public partial class UpgradeScreen : CenterContainer
 
 		_nameLabel.Text = _selectedEntity.DisplayName;
 		_partyImage.Texture = ResourceLoader.Load<Texture2D>(_selectedEntity.Image);
-		_description.Text = _selectedEntity.GetUpgradeString(_ascendedPressed);
+		_description.Text = _selectedEntity.GetUpgradeString();
 
-		string icon = (_ascendedPressed) ? SkillAssets.UPGRADESHARD_ICON : SkillAssets.VORPEX_ICON;
+		string icon = SkillAssets.VORPEX_ICON;
 
         _upgradeCurrencyIcon.Texture = SkillAssets.GenerateIcon(icon);
         _vorpexCount.Text = _wallet.Currency[icon].Amount.ToString();
