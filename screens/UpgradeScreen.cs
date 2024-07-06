@@ -53,7 +53,6 @@ public partial class UpgradeScreen : CenterContainer
 		_ascendedPressed = false;
 
         _upgradeButton.Pressed += _OnUpgradeButtonPressed;
-		_smeltButton.Pressed += _OnSmeltButtonPressed;
 		_backButton.Pressed += _OnBackButtonPressed;
 
         _upgradeButton.Text = "Upgrade";
@@ -106,25 +105,6 @@ public partial class UpgradeScreen : CenterContainer
             }
         }
     }
-
-	private void _OnSmeltButtonPressed()
-	{
-		if(_allPartyMembers.Count > 4)
-		{
-            int upgradeShardAmount = _selectedEntity.UpgradeShardYield;
-			_wallet.Currency[SkillAssets.UPGRADESHARD_ICON].Amount += upgradeShardAmount;
-			_allPartyMembers.Remove(_selectedEntity);
-
-			if (_selected >= _allPartyMembers.Count)
-				_selected = _allPartyMembers.Count - 1;
-
-            RefreshItemList();
-
-            _smeltButton.Text = $"Smelt [{_allPartyMembers.Count - 4}/4]";
-
-            PersistentGameObjects.Save();
-        }
-	}
 
 	private void _OnBackButtonPressed()
 	{
