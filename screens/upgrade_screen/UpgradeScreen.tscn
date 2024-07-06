@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://0r3q62ummh0p"]
 
-[ext_resource type="Script" path="res://screens/UpgradeScreen.cs" id="1_6bmuu"]
+[ext_resource type="Script" path="res://screens/upgrade_screen/UpgradeScreen.cs" id="1_6bmuu"]
 [ext_resource type="Texture2D" uid="uid://dlog1wys3kq6a" path="res://entity_pics/andmond.png" id="1_8uklk"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2_krmoi"]
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="3_u3tap"]
