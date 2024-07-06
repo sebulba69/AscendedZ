@@ -17,9 +17,7 @@ public partial class UpgradeScreen : CenterContainer
 	private ItemList _partyList;
 	private TextureRect _partyImage;
 	private Button _upgradeButton;
-	private Button _smeltButton;
 	private Button _backButton;
-	private CheckBox _ascendedCheckbox;
 	private TextureRect _upgradeCurrencyIcon;
 
 	private List<OverworldEntity> _allPartyMembers;
@@ -37,9 +35,7 @@ public partial class UpgradeScreen : CenterContainer
         _partyList = this.GetNode<ItemList>("%PartyList");
 		_partyImage = this.GetNode<TextureRect>("%MemberImage");
 		_upgradeButton = this.GetNode<Button>("%UpgradeButton");
-        _smeltButton = this.GetNode<Button>("%SmeltButton");
         _backButton = this.GetNode<Button>("%BackButton");
-        _ascendedCheckbox = this.GetNode<CheckBox>("%AscendBox");
 		_upgradeCurrencyIcon = this.GetNode<TextureRect>("%UpgradeCurrencyIcon");
 
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
@@ -56,9 +52,6 @@ public partial class UpgradeScreen : CenterContainer
 		_backButton.Pressed += _OnBackButtonPressed;
 
         _upgradeButton.Text = "Upgrade";
-
-        _ascendedCheckbox.Visible = (gameObject.MaxTier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE);
-        _ascendedCheckbox.Pressed += _OnAscendedPressed;
 
 		_ascendedPressed = false;
 
@@ -120,18 +113,7 @@ public partial class UpgradeScreen : CenterContainer
             PersistentGameObjects.Save();
         }
 
-        _ascendedPressed = !_ascendedPressed;
-
-		_smeltButton.Visible = _ascendedPressed;
-
-		if (_smeltButton.Visible)
-		{
-            _smeltButton.Text = $"Smelt [{_allPartyMembers.Count - 4}/4]";
-        }
-
         _upgradeButton.Text = (_ascendedPressed) ? "Ascend" : "Upgrade";
-
-        _ascendedCheckbox.Text = (_ascendedPressed) ? "Upgrade": "Ascend";
 
         RefreshItemList();
     }
