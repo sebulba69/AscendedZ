@@ -135,7 +135,6 @@ theme_override_constants/separation = 0
 alignment = 1
 
 [node name="UpgradeCurrencyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
-unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_ffy3i")

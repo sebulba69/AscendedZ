@@ -1,24 +1,13 @@
 ﻿using AscendedZ;
 using AscendedZ.battle;
-using AscendedZ.battle.battle_state_machine;
-using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.entities.enemy_objects;
 using AscendedZ.game_object;
-using AscendedZ.skills;
-using AscendedZ.statuses;
 using Godot;
-using Godot.Collections;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
-using static Godot.HttpRequest;
-using static Godot.WebSocketPeer;
+
 
 public partial class BattleEnemyScene : Node2D
 {
@@ -31,7 +20,6 @@ public partial class BattleEnemyScene : Node2D
     private bool _uiUpdating = false;
     private RichTextLabel _combatLog;
     private Label _logTurnCount;
-    private ItemList _questList;
 
     private Label _skillName;
     private TextureRect _skillIcon;
@@ -51,7 +39,6 @@ public partial class BattleEnemyScene : Node2D
         _partyMembers = this.GetNode<HBoxContainer>("%PartyPortraits");
         _enemyMembers = this.GetNode<HBoxContainer>("%EnemyContainerBox");
         _turnIconContainer = this.GetNode<HBoxContainer>("%TurnIconContainer");
-        _questList = this.GetNode<ItemList>("%BattleQuestList");
 
         _endBox = this.GetNode<CenterContainer>("%EndBox");
         _backToHomeButton = this.GetNode<Button>("%BackToHomeBtn");
@@ -109,16 +96,9 @@ public partial class BattleEnemyScene : Node2D
 
     private void InitializeBattleScene()
     {
-        _questList.Clear();
         _combatLog.Clear();
 
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
-
-        foreach(var battleQuest in gameObject.QuestObject.BattleQuests)
-        {
-            if(battleQuest.Tier == gameObject.Tier)
-                _questList.AddItem(battleQuest.GetInBattleDisplayString());
-        }
 
         ClearChildrenFromNode(_partyMembers);
         ClearChildrenFromNode(_enemyMembers);
@@ -406,8 +386,6 @@ public partial class BattleEnemyScene : Node2D
 
         if (didPlayerWin)
         {
-            PersistentGameObjects.GameObjectInstance().QuestObject.CheckBattleQuestConditions(_battleSceneObject);
-
             endLabel.Text = "Encounter Complete!";
 
             var gameObject = PersistentGameObjects.GameObjectInstance();

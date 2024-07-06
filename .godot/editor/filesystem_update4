@@ -50,3 +50,6 @@ res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
 res://screens/UpgradeScreen.tscn
+res://screens/upgrade_screen/UpgradeScreen.tscn
+res://screens/MainScreen.tscn
+res://screens/BattleEnemyScene.tscn

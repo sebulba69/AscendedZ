@@ -93,8 +93,6 @@ namespace AscendedZ.game_object
         public MainPlayer MainPlayer { get; set; }
 
         public MusicObject MusicPlayer { get; set; }
-
-        public QuestObject QuestObject { get; set; }
         public ProgressFlagObject ProgressFlagObject { get; set; }
         /// <summary>
         /// Randomly generated encounters saved for re-use. Starts at Tier 6.
@@ -107,9 +105,6 @@ namespace AscendedZ.game_object
         {
             if (MusicPlayer == null)
                 MusicPlayer = new MusicObject();
-
-            if (QuestObject == null)
-                QuestObject = new QuestObject();
 
             if (ProgressFlagObject == null)
                 ProgressFlagObject = new ProgressFlagObject();

@@ -130,36 +130,16 @@ public partial class MainScreen : Transitionable2DScene
         Button recruitButton = this.GetNode<Button>("%RecruitButton");
         Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
         Button fuseButton = this.GetNode<Button>("%FuseButton");
-        Button questButton = this.GetNode<Button>("%QuestButton");
         Button dungeonCrawlButton = this.GetNode<Button>("%DungeonCrawlButton");
 
         string upgradeText = "Upgrade";
         var progressFlagObject = gameObject.ProgressFlagObject;
 
         if (tier > TierRequirements.UPGRADE_SCREEN)
-        {
             upgradeButton.Visible = true;
 
-            if(tier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE
-                && !progressFlagObject.AscensionViewed)
-            {
-                upgradeText += " (!)";
-            }
-
-            upgradeButton.Text = upgradeText;
-        }
-
         string recruitText = "Recruit";
-        if (tier > TierRequirements.QUESTS)
-        {
-            questButton.Visible = true;
-            if (!progressFlagObject.CustomPartyMembersViewed)
-            {
-                recruitText += " (!)";
-            }
 
-            recruitButton.Text = recruitText;
-        }
 
         fuseButton.Visible = (tier > TierRequirements.FUSE);
         dungeonCrawlButton.Visible = (tier > 5);
@@ -169,13 +149,11 @@ public partial class MainScreen : Transitionable2DScene
         recruitButton.Pressed += _OnRecruitButtonPressed;
         upgradeButton.Pressed += _OnUpgradeButtonPressed;
         fuseButton.Pressed += _OnFuseButtonPressed;
-        questButton.Pressed += _OnQuestButtonPressed;
         dungeonCrawlButton.Pressed += _OnDungeonCrawButtonPressed;
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
-        questButton.MouseEntered += () => { _tooltip.Text = "Get quests to earn Vorpex."; };
         upgradeButton.MouseEntered += () => { _tooltip.Text = "Upgrade Party Members with Vorpex."; };
         fuseButton.MouseEntered += () => { _tooltip.Text = "Combine Party Members to create new ones and transfer skills."; };
         dungeonCrawlButton.MouseEntered += () => { _tooltip.Text = "Buce-onix power essence foretells of a new dungeon to be conquered."; };
@@ -209,11 +187,6 @@ public partial class MainScreen : Transitionable2DScene
     private void _OnFuseButtonPressed()
     {
         DisplayScene(Scenes.FUSION);
-    }
-
-    private void _OnQuestButtonPressed()
-    {
-        DisplayScene(Scenes.QUEST);
     }
 
     private void _OnMenuClosed(bool quitToStart)
@@ -252,9 +225,6 @@ public partial class MainScreen : Transitionable2DScene
 
         if (pFlags.CustomPartyMembersViewed)
             this.GetNode<Button>("%RecruitButton").Text = "Recruit";
-
-        if (pFlags.AscensionViewed)
-            this.GetNode<Button>("%UpgradePartyButton").Text = "Upgrade";
 
         _mainPlayerContainer.UpdateCurrencyDisplay();
         DoEmbarkButtonCheck(PersistentGameObjects.GameObjectInstance());
