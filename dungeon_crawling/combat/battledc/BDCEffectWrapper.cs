@@ -11,7 +11,6 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
     public class BDCEffectWrapper
     {
         public BigInteger HPChanged { get; set; }
-        public SkillDC Skill { get; set; }
         public string Result { get; set; }
     }
 }

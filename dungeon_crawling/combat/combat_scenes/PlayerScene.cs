@@ -20,15 +20,13 @@ public partial class PlayerScene : EntityScene
         this.AddUserSignal("EffectPlayed");
 
         var hp = this.GetNode<ProgressBar>("%HP");
-        var mp = this.GetNode<ProgressBar>("%MP");
         var hpl = this.GetNode<Label>("%HPAmount");
-        var mpl = this.GetNode<Label>("%MPAmount");
         var playerPic = this.GetNode<TextureRect>("%PlayerPic");
         var statuses = this.GetNode<GridContainer>("%StatusGrid");
 
         var effect = this.GetNode<EffectAnimation>("%EffectSprite");
         var shakeSfx = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
 
-        ComposeUI(hp, mp, hpl, mpl, statuses, effect, shakeSfx, playerPic);
+        ComposeUI(hp, hpl, statuses, effect, shakeSfx, playerPic);
     }
 }

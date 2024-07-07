@@ -1,3 +1,8 @@
+MarginContainer
+Button
+HBoxContainer
+VBoxContainer
+PanelContainer
 AnimationPlayer
 AnimationTree
 CanvasLayer
@@ -8,7 +13,3 @@ Sprite2D
 CenterContainer
 MeshInstance2D
 ColorRect
-Marker2D
-Control
-HBoxContainer
-VBoxContainer

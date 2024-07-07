@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8yut6sbxwnlh"]
+[gd_scene load_steps=12 format=3 uid="uid://c8yut6sbxwnlh"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/PlayerScene.cs" id="1_ka2fs"]
 [ext_resource type="Texture2D" uid="uid://bccubabd2bgpu" path="res://dungeon_crawling/art_assets/general/character_border.png" id="1_lwgdc"]
@@ -13,18 +13,6 @@ border_color = Color(0.8, 0.8, 0.8, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gp3be"]
 bg_color = Color(0.6, 0.713726, 0.333333, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.8, 0.8, 0.8, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tpa4"]
-bg_color = Color(0, 0, 0, 0.156863)
-border_color = Color(0.8, 0.8, 0.8, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i54dk"]
-bg_color = Color(0.172549, 0.745098, 0.784314, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -154,54 +142,6 @@ value = 50.0
 show_percentage = false
 
 [node name="HPAmount" type="Label" parent="MarginContainer/BarContainer/HP/HPContainer/HP"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 4.0
-offset_top = 2.0
-offset_right = 248.0
-offset_bottom = 23.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("3_3xtvb")
-text = "10"
-
-[node name="MP" type="HBoxContainer" parent="MarginContainer/BarContainer"]
-texture_filter = 2
-layout_mode = 2
-
-[node name="MPBarNumber" type="PanelContainer" parent="MarginContainer/BarContainer/MP"]
-texture_filter = 2
-custom_minimum_size = Vector2(35, 0)
-layout_mode = 2
-
-[node name="MPLabel" type="Label" parent="MarginContainer/BarContainer/MP/MPBarNumber"]
-texture_filter = 2
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("3_3xtvb")
-theme_override_font_sizes/font_size = 19
-text = "MP"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MPContainer" type="PanelContainer" parent="MarginContainer/BarContainer/MP"]
-layout_mode = 2
-
-[node name="MP" type="ProgressBar" parent="MarginContainer/BarContainer/MP/MPContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 25)
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3_3xtvb")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/background = SubResource("StyleBoxFlat_6tpa4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_i54dk")
-value = 50.0
-show_percentage = false
-
-[node name="MPAmount" type="Label" parent="MarginContainer/BarContainer/MP/MPContainer/MP"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 4.0

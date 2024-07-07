@@ -76,7 +76,7 @@ namespace AscendedZ.dungeon_crawling.combat
         [JsonConverter(typeof(BigIntegerConverter))]
         public BigInteger XPRequired { get; set; } = new BigInteger(10);
 
-        public List<SkillDC> Skills { get; set; } = new List<SkillDC>();
+        //public List<SkillDC> Skills { get; set; } = new List<SkillDC>();
 
         public void AddXP(BigInteger xp)
         {
@@ -109,7 +109,7 @@ namespace AscendedZ.dungeon_crawling.combat
             Weak.AddRange(baseStats.Weak);
             Resist.AddRange(baseStats.Resist);
 
-            Skills.AddRange(baseStats.Skills);
+            //Skills.AddRange(baseStats.Skills);
         }
 
         public override string ToString()
@@ -137,7 +137,7 @@ namespace AscendedZ.dungeon_crawling.combat
             AddStatToString(builder, "Dark", Dark);
             AddStatToString(builder, "Light", Light);
 
-            builder.AppendLine(string.Join(", ", Skills));
+           // builder.AppendLine(string.Join(", ", Skills));
 
             return builder.ToString();
         }
@@ -162,8 +162,8 @@ namespace AscendedZ.dungeon_crawling.combat
             Dark = LevelStat(Dark, 1);
             Light = LevelStat(Light, 1);
 
-            foreach (var skill in Skills)
-                skill.LevelUp();
+            //foreach (var skill in Skills)
+            //    skill.LevelUp();
 
             XP -= XPRequired;
             XPRequired *= 2;

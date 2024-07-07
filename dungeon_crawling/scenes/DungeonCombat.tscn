@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ciu3w6wi6o5c0"]
+[gd_scene load_steps=7 format=3 uid="uid://ciu3w6wi6o5c0"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/scenes/DungeonCombat.cs" id="1_np2vi"]
 [ext_resource type="PackedScene" uid="uid://c8yut6sbxwnlh" path="res://dungeon_crawling/combat/combat_scenes/PlayerScene.tscn" id="2_k5gqc"]
 [ext_resource type="Texture2D" uid="uid://dww5loey3m4kp" path="res://cg_backgrounds/bg00701.jpg" id="2_y0pdy"]
-[ext_resource type="PackedScene" uid="uid://1usal33qhvxb" path="res://dungeon_crawling/scenes/ActionMenuDC.tscn" id="4_ks800"]
+[ext_resource type="PackedScene" uid="uid://1nha1wpboqro" path="res://dungeon_crawling/scenes/gb_battle_ui/GBSkillList.tscn" id="5_4w3kn"]
 [ext_resource type="PackedScene" uid="uid://c8mcrxad8jfaw" path="res://dungeon_crawling/combat/combat_scenes/EnemyScene.tscn" id="5_7m5n4"]
+[ext_resource type="PackedScene" uid="uid://dknbuj5e2l1c8" path="res://dungeon_crawling/scenes/gb_battle_ui/GBStatusList.tscn" id="6_ipgid"]
 
 [node name="DungeonCombat" type="Node2D"]
 script = ExtResource("1_np2vi")
@@ -18,9 +19,10 @@ offset_bottom = 1081.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 texture = ExtResource("2_y0pdy")
+metadata/_edit_lock_ = true
 
 [node name="Player" type="Marker2D" parent="CombatBg"]
-position = Vector2(361, 741)
+position = Vector2(431, 546)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CombatBg/Player"]
 anchors_preset = 7
@@ -28,25 +30,39 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -184.5
-offset_top = -257.0
-offset_right = 308.5
+offset_left = -190.0
+offset_top = -260.0
+offset_right = 110.0
+offset_bottom = 77.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.5, 1.5)
 size_flags_horizontal = 4
+metadata/_edit_lock_ = true
 
 [node name="PlayerScene" parent="CombatBg/Player/HBoxContainer" instance=ExtResource("2_k5gqc")]
 unique_name_in_owner = true
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="ActionMenu" parent="CombatBg/Player/HBoxContainer" instance=ExtResource("4_ks800")]
-unique_name_in_owner = true
+[node name="PlayerMenu" type="Marker2D" parent="CombatBg"]
+position = Vector2(444, 632)
+
+[node name="PlayerSkillStatusContainer" type="VBoxContainer" parent="CombatBg/PlayerMenu"]
+offset_left = -190.0
+offset_top = 89.5
+offset_right = 110.0
+offset_bottom = 193.5
+metadata/_edit_lock_ = true
+
+[node name="GbSkillList" parent="CombatBg/PlayerMenu/PlayerSkillStatusContainer" instance=ExtResource("5_4w3kn")]
+layout_mode = 2
+
+[node name="GBStatusList" parent="CombatBg/PlayerMenu/PlayerSkillStatusContainer" instance=ExtResource("6_ipgid")]
 layout_mode = 2
 
 [node name="Enemy" type="Marker2D" parent="CombatBg"]
-position = Vector2(1151, 408)
+position = Vector2(1151, 242)
 
 [node name="EnemyScene" parent="CombatBg/Enemy" instance=ExtResource("5_7m5n4")]
 unique_name_in_owner = true

@@ -25,18 +25,14 @@ namespace AscendedZ.dungeon_crawling.combat.combat_scenes
         private TextureRect _entityPicture;
 
         protected void ComposeUI(
-            ProgressBar hp, ProgressBar mp, 
-            Label hpLabel, Label mpLabel, 
-            GridContainer statusGrid, EffectAnimation effectAnimation,
-            AudioStreamPlayer shakeSfx, TextureRect entityPicture)
+            ProgressBar hp, Label hpLabel, GridContainer statusGrid,
+            EffectAnimation effectAnimation, AudioStreamPlayer shakeSfx, TextureRect entityPicture)
         {
             _shakeParameters = new ShakeParameters();
             _randomNumberGenerator = new RandomNumberGenerator();
             _randomNumberGenerator.Randomize();
             _hp = hp;
-            _mp = mp;
             _hpl = hpLabel;
-            _mpl = mpLabel;
             _statuses = statusGrid;
             _effect = effectAnimation;
             _shakeSfx = shakeSfx;
@@ -69,20 +65,15 @@ namespace AscendedZ.dungeon_crawling.combat.combat_scenes
         public void InitializeEntityValues(BigInteger hp, BigInteger mp, string pic)
         {
             _hp.Value = 100;
-            _mp.Value = 100;
 
             _hpl.Text = hp.ToString();
-            _mpl.Text = mp.ToString();
             _entityPicture.Texture = ResourceLoader.Load<Texture2D>(pic);
         }
 
         public void UpdateDisplay(BDCUpdateWrapper wrapper)
         {
             _hp.Value = (double)wrapper.HPPercentage;
-            _mp.Value = (double)wrapper.MPPercentage;
-
             _hpl.Text = wrapper.HP.ToString();
-            _mpl.Text = wrapper.MP.ToString();
 
             // ... show statuses ... //
             // clear old statuses
@@ -103,31 +94,6 @@ namespace AscendedZ.dungeon_crawling.combat.combat_scenes
                 _statuses.AddChild(statusIcon);
                 statusIcon.SetIcon(statusIconWrapper);
             }*/
-        }
-
-        public async void UpdateBattleEffects(BDCEffectWrapper bDCEffectWrapper)
-        {
-            string startupAnimationString = bDCEffectWrapper.Skill.StartupAnimation;
-            string endupAnimationString = bDCEffectWrapper.Skill.EndupAnimation;
-
-            if (!string.IsNullOrEmpty(startupAnimationString))
-            {
-                // wait for play effect to finish before proceeding
-                await PlayEffect(startupAnimationString);
-            }
-
-            // play damage number
-            var dmgNumber = ResourceLoader.Load<DamageNumber>(Scenes.DAMAGE_NUM);
-
-            dmgNumber.SetDisplayInfo(bDCEffectWrapper.HPChanged, bDCEffectWrapper.HPChanged != 0, bDCEffectWrapper.Result);
-
-            CenterContainer effectContainer = this.GetNode<CenterContainer>("%EffectContainer");
-            effectContainer.AddChild(dmgNumber);
-
-            // for some reason, we can't seem to emit the signal if we don't await at least once in this thread
-            // this seems to be a Godot quirk, not sure why this is the case
-            await Task.Delay(100);
-            this.EmitSignal("EffectPlayed");
         }
 
         private async Task PlayEffect(string effectName)

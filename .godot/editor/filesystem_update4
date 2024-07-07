@@ -52,3 +52,12 @@ res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
 res://screens/PartyBattleDisplayBox.tscn
 res://screens/DungeonCrawlMainScreen.tscn
+res://dungeon_crawling/combat/combat_scenes/PlayerScene.tscn
+res://dungeon_crawling/combat/combat_scenes/EnemyScene.tscn
+res://dungeon_crawling/scenes/DungeonScreen.tscn
+res://dungeon_crawling/scenes/DungeonEntity.tscn
+res://dungeon_crawling/scenes/DungeonCombat.tscn
+res://dungeon_crawling/scenes/gb_battle_ui/GBSkillList.tscn
+res://dungeon_crawling/scenes/gb_battle_ui/GBStatusList.tscn
+res://dungeon_crawling/scenes/gb_battle_ui/GBSkillList.cs
+res://dungeon_crawling/scenes/gb_battle_ui/GBStatusList.cs

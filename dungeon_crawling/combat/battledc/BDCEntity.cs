@@ -19,29 +19,5 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
         {
             _statsDC = statsDC;
         }
-
-        public void ApplySkill(SkillDC skill)
-        {
-            switch (skill.Id)
-            {
-                case SkillId.Elemental:
-                    BigInteger damage = skill.Value;
-
-                    if (Stats.Weak.Contains(skill.Element))
-                        damage *= 2;
-
-                    if (Stats.Resist.Contains(skill.Element))
-                        damage /= 2;
-
-                    Stats.HP -= damage;
-
-                    break;
-
-                case SkillId.Healing:
-                    BigInteger health = skill.Value;
-                    Stats.HP += health;
-                    break;
-            }
-        }
     }
 }

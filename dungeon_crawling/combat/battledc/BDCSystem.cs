@@ -9,7 +9,6 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
 {
     public class BDCSystem
     {
-        private Queue<SkillDC> _moveQ;
         private BPlayerDC _player;
         private BEnemyDC _enemy;
 
@@ -20,12 +19,6 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
         {
             _player = player;
             _enemy = enemy;
-            _moveQ = new Queue<SkillDC>();
-        }
-
-        public void QueueMove(SkillDC skill)
-        {
-            _moveQ.Enqueue(skill);
         }
     }
 }
