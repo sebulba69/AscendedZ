@@ -42,9 +42,9 @@ public partial class FusionScreen : CenterContainer
             }
 		};
 
-		_fSO = FusionScreenObject.Instance();
+		_fSO = new FusionScreenObject();
 
-		_fusionSkillList.ItemSelected += _OnItemSelectedFusion;
+        _fusionSkillList.ItemSelected += _OnItemSelectedFusion;
         _fuseButton.Pressed += _OnFuseButtonPressed;
 
         _selectedIndex = 0;

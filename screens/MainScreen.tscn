@@ -121,12 +121,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Recruit"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons/VBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-alignment = 1
-
-[node name="UpgradePartyButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
+[node name="UpgradePartyButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 texture_filter = 2
@@ -138,7 +133,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Upgrade Party"
 
-[node name="FuseButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
+[node name="FuseButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 visible = false
 texture_filter = 2
@@ -149,6 +144,11 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Fuse"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+alignment = 1
 
 [node name="DungeonCrawlButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true

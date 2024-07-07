@@ -205,7 +205,7 @@ namespace AscendedZ.entities.partymember_objects
             {
                 Name = name,
                 Image = CharacterImageAssets.GetImagePath(name),
-                MaxHP = 10
+                MaxHP = 20
             };
         }
     }

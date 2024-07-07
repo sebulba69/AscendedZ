@@ -18,8 +18,7 @@ namespace AscendedZ.skills
         private int _tier = 1;
         private int _level = 0;
         private string _baseName;
-        private string _name;
-        
+
 
         public string Name
         {
@@ -73,7 +72,7 @@ namespace AscendedZ.skills
 
         public void LevelUp()
         {
-            int boost = Level;
+            int boost = (Level/2) + 1;
             if (boost == 0)
                 boost = 1;
 

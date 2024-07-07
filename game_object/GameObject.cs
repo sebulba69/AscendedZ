@@ -14,13 +14,11 @@ namespace AscendedZ.game_object
         private const int TIER_CAP = 41;
         private const int TIER_CAP_DC = 999;
 
-        private bool _oldAlphaSave = true;
         private int _tier = 1;
         private int _tierDC = 1;
         private int _maxTier = 1;
         private int _maxTierDC = 1;
         private bool _partyMemberObtained = false;
-        private bool _upgradeShardsUnlocked = false;
 
         /// <summary>
         /// The current floor you're on as displayed to you by the UI.
@@ -84,8 +82,6 @@ namespace AscendedZ.game_object
             }
         }
 
-        public bool UpgradeShardsUnlocked { get => _upgradeShardsUnlocked; set => _upgradeShardsUnlocked = value; }
-
         public int TierCap { get => TIER_CAP; }
 
         public bool PartyMemberObtained { get => _partyMemberObtained; set => _partyMemberObtained = value; }
@@ -98,9 +94,6 @@ namespace AscendedZ.game_object
         /// Randomly generated encounters saved for re-use. Starts at Tier 6.
         /// </summary>
         public List<List<string>> Encounters { get; set; }
-
-        public bool OldAlphaSave { get => _oldAlphaSave; set => _oldAlphaSave = value; }
-
         public GameObject()
         {
             if (MusicPlayer == null)

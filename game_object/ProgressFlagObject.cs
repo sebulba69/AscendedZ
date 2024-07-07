@@ -8,8 +8,7 @@ namespace AscendedZ.game_object
 {
     public class ProgressFlagObject
     {
-        private bool _customPartyMembersViewed = false;
-
-        public bool CustomPartyMembersViewed { get => _customPartyMembersViewed; set => _customPartyMembersViewed = value; }
+        public bool CustomPartyMembersViewed { get; set; }
+        public bool DungeonCrawlWeaponObtained { get; set; }
     }
 }

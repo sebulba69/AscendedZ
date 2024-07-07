@@ -160,7 +160,6 @@ public partial class ActionMenu : PanelContainer
 
         TargetTypes skillTargetType = _battleSceneObject.ActivePlayer.Skills[_playerTargetSelectedEventArgs.SkillIndex].TargetType;
         
-        int count = 1;
         // only show valid targets for the skill we have selected
         if (skillTargetType == TargetTypes.SINGLE_OPP)
         {

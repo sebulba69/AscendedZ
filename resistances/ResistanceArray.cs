@@ -76,8 +76,6 @@ namespace AscendedZ.resistances
         public List<Elements> GetPrimaryWeaknessElements()
         {
             int weakness = (int)ResistanceType.Wk;
-            int noneResistance = (int)ResistanceType.None;
-
             List<Elements> elements = new List<Elements>();
 
             // i = element, res = resistance type

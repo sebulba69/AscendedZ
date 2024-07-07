@@ -179,7 +179,7 @@ namespace AscendedZ
         private static ElementSkill CreateTier5ElementSkill(string name, Elements element)
         {
             // _ascendedLevel * 2 gets added to this each time so it's 8 (but really 18)
-            return MakeNewSingleHitElement(name, element, 8, 5);
+            return MakeNewSingleHitElement(name, element, 15, 5);
         }
 
         private static ElementSkill MakeNewSingleHitElement(string name, Elements element, int damage, int tier)
@@ -419,31 +419,7 @@ namespace AscendedZ
             
             skills.AddRange(new ISkill[] { Fire1, Ice1, Wind1, Elec1, Light1, Dark1, Heal1 });
 
-            if(tier >= TierRequirements.TIER2_ELEMENTALSPELLS)
-            {
-                skills.Clear();
-                skills.AddRange(new ISkill[] { Fire2, Ice2, Wind2, Elec2, Light2, Dark2, Heal2 });
-            }
-
-            if (tier >= TierRequirements.TIER3_ELEMENTALSPELLS)
-            {
-                skills.Clear();
-                skills.AddRange(new ISkill[] { Fire3, Ice3, Wind3, Elec3, Light3, Dark3, Heal3 });
-            }
-
-            if (tier >= TierRequirements.TIER4_ELEMENTALSPELLS)
-            {
-                skills.Clear();
-                skills.AddRange(new ISkill[] { Fire4, Ice4, Wind4, Elec4, Light4, Dark4, Heal4 });
-            }
-
-            if (tier >= TierRequirements.TIER5_ELEMENTALSPELLS)
-            {
-                skills.Clear();
-                skills.AddRange(new ISkill[] { Fire5, Ice5, Wind5, Elec5, Light5, Dark5, Heal5 });
-            }
-
-            if (tier > TierRequirements.QUESTS)
+            if (tier > TierRequirements.TIER2_STRONGER_ENEMIES)
                 skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind });
 
             if (tier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE)

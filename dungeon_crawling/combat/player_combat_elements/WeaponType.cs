@@ -8,6 +8,6 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
 {
     public enum WeaponType
     {
-        Dagger, Sword, Flail, Axe, Whip, Staff, Bow, Crossbow, Flintlock, Claw, Spear, Mace, Club, Greatsword, Hammer
+        Dagger, Sword, Flail, Axe, Whip, Staff, Bow, Crossbow, Flintlock, Claw, Spear, Greatsword, Hammer
     }
 }

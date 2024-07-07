@@ -9,13 +9,13 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
 {
     public class BDCSystem
     {
-        private BPlayerDC _player;
+        private GBBattlePlayer _player;
         private BEnemyDC _enemy;
 
-        public BPlayerDC Player { get => _player; }
+        public GBBattlePlayer Player { get => _player; }
         public BEnemyDC Enemy { get => _enemy; }
 
-        public BDCSystem(BPlayerDC player, BEnemyDC enemy)
+        public BDCSystem(GBBattlePlayer player, BEnemyDC enemy)
         {
             _player = player;
             _enemy = enemy;

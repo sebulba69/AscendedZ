@@ -10,8 +10,8 @@ namespace AscendedZ.currency.rewards
     {
         public Vorpex()
         {
-            this.Name = "Vorpex";
-            this.Icon = SkillAssets.VORPEX_ICON;
+            this.Name = SkillAssets.VORPEX_ICON;
+            this.Icon = Name;
         }
     }
 }

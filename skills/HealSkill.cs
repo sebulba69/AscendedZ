@@ -14,7 +14,6 @@ namespace AscendedZ.skills
         public SkillId Id => SkillId.Healing;
         private int _level = 0;
         private string _baseName;
-        private string _name;
         private int _tier = 1;
 
         public string Name
@@ -47,7 +46,7 @@ namespace AscendedZ.skills
 
         public void LevelUp()
         {
-            int boost = Level * 5;
+            int boost = Level * 2;
             
             try
             {

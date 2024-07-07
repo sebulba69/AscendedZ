@@ -17,7 +17,6 @@ namespace AscendedZ
         /// 10
         /// </summary>
         public static int TIER2_STRONGER_ENEMIES = 10;
-        public static int QUESTS = 10;
 
         /// <summary>
         /// 15
@@ -35,11 +34,6 @@ namespace AscendedZ
         /// 20
         /// </summary>
         public static int QUESTS_PARTY_MEMBERS_UPGRADE = 20;
-
-        /// <summary>
-        /// 26
-        /// </summary>
-        public static int RIDICULOUS_HP_SCALING = 26;
 
         /// <summary>
         /// 30

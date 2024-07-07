@@ -39,7 +39,7 @@ namespace AscendedZ
             new List<string>(){ EnemyNames.Conlen },
             new List<string>(){ EnemyNames.Liamlas, EnemyNames.Orachar },
             new List<string>(){ EnemyNames.Fastrobren, EnemyNames.Conlen, EnemyNames.Liamlas },
-            new List<string>(){ EnemyNames.CattuTDroni, EnemyNames.Orachar, EnemyNames.CattuTDroni  },
+            new List<string>(){ EnemyNames.CattuTDroni, EnemyNames.Orachar, EnemyNames.Conlen  },
             new List<string>(){ EnemyNames.Harbinger }
         };
 
@@ -61,10 +61,11 @@ namespace AscendedZ
         private static readonly List<string>[] VENDOR_WARES = new List<string>[]
         {
             new List<string>(){ PartyNames.Locphiedon },
-            new List<string>(){ PartyNames.Gagar },
+            new List<string>(){ PartyNames.Gagar},
+            new List<string>(){ PartyNames.Maxwald },
             new List<string>(){ PartyNames.Yuudam },
             new List<string>(){ PartyNames.Pecheal, PartyNames.Toke },
-            new List<string>(){ PartyNames.Maxwald, PartyNames.Halvia }
+            new List<string>(){ PartyNames.Halvia }
         };
 
         private static readonly List<string> CUSTOM_WARES = new List<string>
@@ -76,7 +77,7 @@ namespace AscendedZ
         /// A list of indexes that the current tier must be equal to or greater than
         /// to become available in the shop.
         /// </summary>
-        private static readonly int[] SHOP_INDEXES = new int[] { 1, 2, 5, 6, 8 };
+        private static readonly int[] SHOP_INDEXES = new int[] { 1, 2, 3, 5, 6, 8 };
 
         /// <summary>
         /// List based off the element each character is strong to.

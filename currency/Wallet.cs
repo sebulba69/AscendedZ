@@ -14,5 +14,10 @@ namespace AscendedZ.currency
         public Dictionary<string, Currency> Currency { get; set; } = new();
 
         public Wallet() {}
+
+        public void AddCurrency(Currency currency)
+        {
+            Currency.Add(currency.Name, currency);
+        }
     }
 }

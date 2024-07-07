@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://86hlflgnxjcc"]
+
+[ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/DungeonScreen.cs" id="1_7745h"]
+[ext_resource type="PackedScene" uid="uid://djlhy6ga7e5t2" path="res://dungeon_crawling/combat/combat_scenes/DungeonEntity.tscn" id="2_p1r2d"]
+[ext_resource type="Texture2D" uid="uid://dww5loey3m4kp" path="res://cg_backgrounds/bg00701.jpg" id="3_qvvl2"]
+
+[node name="DungeonScreen" type="Node2D"]
+script = ExtResource("1_7745h")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_qvvl2")
+
+[node name="Tiles" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="FightCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+enabled = false
+
+[node name="Player" parent="." instance=ExtResource("2_p1r2d")]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+unique_name_in_owner = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+volume_db = -10.0

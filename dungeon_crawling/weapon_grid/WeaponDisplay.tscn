@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://y0giv5ch18vp"]
+
+[ext_resource type="PackedScene" uid="uid://bqmfi0ome6yn4" path="res://misc_icons/Icon.tscn" id="1_mdgyv"]
+[ext_resource type="Script" path="res://dungeon_crawling/weapon_grid/WeaponDisplay.cs" id="1_ndduc"]
+[ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="2_eywu4"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="3_hwgcu"]
+[ext_resource type="Script" path="res://misc_icons/Icon.cs" id="4_2hfap"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g455m"]
+atlas = ExtResource("2_eywu4")
+region = Rect2(160, 128, 32, 32)
+
+[node name="WeaponDisplay" type="VBoxContainer"]
+texture_filter = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_ndduc")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+texture_filter = 2
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WeaponIcon" parent="PanelContainer" instance=ExtResource("1_mdgyv")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ElementIcon" type="TextureRect" parent="PanelContainer/WeaponIcon"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 32.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_g455m")
+script = ExtResource("4_2hfap")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+texture_filter = 2
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HPLabel" type="Label" parent="HBoxContainer/PanelContainer2"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.584314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_hwgcu")
+theme_override_font_sizes/font_size = 25
+text = "12"
+horizontal_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="AttackLabel" type="Label" parent="HBoxContainer/PanelContainer3"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.447059, 0.482353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_hwgcu")
+theme_override_font_sizes/font_size = 25
+text = "12"
+horizontal_alignment = 1

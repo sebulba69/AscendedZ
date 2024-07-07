@@ -96,8 +96,7 @@ public partial class MainScreen : Transitionable2DScene
         {
             embarkButton.Visible = true;
             upgradeButton.Visible = true;
-        }
-            
+        }    
     }
 
     private void SwapOverworldTracks(MusicObject musicPlayer)
@@ -136,6 +135,12 @@ public partial class MainScreen : Transitionable2DScene
         Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
         Button fuseButton = this.GetNode<Button>("%FuseButton");
         Button dungeonCrawlButton = this.GetNode<Button>("%DungeonCrawlButton");
+
+        if(tier > TierRequirements.TIER2_STRONGER_ENEMIES
+            && !gameObject.ProgressFlagObject.CustomPartyMembersViewed)
+        {
+            recruitButton.Text = "! Recruit";
+        }
 
         var progressFlagObject = gameObject.ProgressFlagObject;
 

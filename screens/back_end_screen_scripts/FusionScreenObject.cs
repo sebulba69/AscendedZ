@@ -12,12 +12,6 @@ namespace AscendedZ.screens.back_end_screen_scripts
 {
     public class FusionScreenObject
     {
-        private static FusionScreenObject _fusionScreenObject;
-        public static FusionScreenObject Instance()
-        {
-            return new FusionScreenObject();
-        }
-
         private List<FusionObject> _fusions;
 
         private int _fusionIndex;

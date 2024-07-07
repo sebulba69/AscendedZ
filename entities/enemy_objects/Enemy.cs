@@ -28,11 +28,11 @@ namespace AscendedZ.entities.enemy_objects
 
         public void Boost(int tier)
         {
-            int boost = (tier+1) / 2;
+            int boost = (tier+1);
             if(boost == 0)
                 boost = 1;
 
-            MaxHP *= boost;
+            MaxHP *= (int)(boost * 0.75);
 
             for (int i = 0; i < boost; i++)
             {

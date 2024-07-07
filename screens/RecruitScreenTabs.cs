@@ -30,7 +30,7 @@ public partial class RecruitScreenTabs : CenterContainer
             }
 		};
 
-		if(gameObject.MaxTier > TierRequirements.QUESTS)
+		if(gameObject.MaxTier > TierRequirements.TIER2_STRONGER_ENEMIES)
 		{
 			tabContainer.SetTabHidden(MEMBER_REQUEST_FORUM, false);
             var backButtonForum = memberRequestForum.GetNode<Button>("%BackButton");
