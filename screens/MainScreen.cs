@@ -137,9 +137,6 @@ public partial class MainScreen : Transitionable2DScene
         if (tier > TierRequirements.UPGRADE_SCREEN)
             upgradeButton.Visible = true;
 
-        string recruitText = "Recruit";
-
-
         fuseButton.Visible = (tier > TierRequirements.FUSE);
         dungeonCrawlButton.Visible = (tier > 5);
 
