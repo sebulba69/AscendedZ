@@ -64,9 +64,6 @@ namespace AscendedZ.battle.battle_state_machine
             }
 
             result.User = active;
-
-            logEntry.Append(result.Log.ToString());
-            result.Log = logEntry;
             
             battleSceneObject.HandlePostTurnProcessing(result);
         }

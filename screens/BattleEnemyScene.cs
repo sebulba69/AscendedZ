@@ -18,7 +18,6 @@ public partial class BattleEnemyScene : Node2D
     private Button _backToHomeButton, _retryFloorButton, _continueButton, _changePartyButton;
     private CenterContainer _endBox;
     private bool _uiUpdating = false;
-    private RichTextLabel _combatLog;
     private Label _logTurnCount;
 
     private Label _skillName;
@@ -45,8 +44,6 @@ public partial class BattleEnemyScene : Node2D
         _retryFloorButton = this.GetNode<Button>("%RetryFloorBtn");
         _continueButton = this.GetNode<Button>("%ContinueBtn");
         _changePartyButton = this.GetNode<Button>("%ChangePartyBtn");
-
-        _combatLog = this.GetNode<RichTextLabel>("%CombatLog");
 
         _actionMenu = this.GetNode<ActionMenu>("%ActionMenu");
 
@@ -96,8 +93,6 @@ public partial class BattleEnemyScene : Node2D
 
     private void InitializeBattleScene()
     {
-        _combatLog.Clear();
-
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
         ClearChildrenFromNode(_partyMembers);
@@ -145,7 +140,6 @@ public partial class BattleEnemyScene : Node2D
                 if (!enemyTypes.Contains(enemy.GetType()))
                 {
                     enemyTypes.Add(enemy.GetType());
-                    PostLogResult(enemy.Description);
                 }
             }
                 
@@ -220,7 +214,6 @@ public partial class BattleEnemyScene : Node2D
             }
 
             // slight delay so the skill icon doesn't auto vanish
-            PostLogResult(result.Log.ToString());
             await Task.Delay(350);
             ResetSkillIcon();
 
@@ -272,11 +265,6 @@ public partial class BattleEnemyScene : Node2D
             _battleSceneObject.DoEnemyMove();
         else
             _actionMenu.CanInput = true;
-    }
-
-    private void PostLogResult(string result)
-    {
-        _combatLog.AppendText(result + "\n");
     }
 
     private void UpdateTurnsUsingTurnState(TurnState turnState)

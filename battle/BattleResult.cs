@@ -26,11 +26,9 @@ namespace AscendedZ.battle
         public BattleEntity User { get; set; }
         public BattleEntity Target { get; set; }
         public ISkill SkillUsed { get; set; }
-        public StringBuilder Log { get; set; }
         
         public BattleResult() 
         {
-            Log = new StringBuilder();
         }
 
         public string GetResultString()

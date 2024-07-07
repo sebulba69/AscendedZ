@@ -132,7 +132,6 @@ public partial class MainScreen : Transitionable2DScene
         Button fuseButton = this.GetNode<Button>("%FuseButton");
         Button dungeonCrawlButton = this.GetNode<Button>("%DungeonCrawlButton");
 
-        string upgradeText = "Upgrade";
         var progressFlagObject = gameObject.ProgressFlagObject;
 
         if (tier > TierRequirements.UPGRADE_SCREEN)

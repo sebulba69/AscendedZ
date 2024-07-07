@@ -9,10 +9,6 @@ namespace AscendedZ
 {
     public class Equations
     {
-        private static int A = 6;
-        private static int B = 5;
-        private static int C = 2;
-
         public static int GetVorpexLevelValue(int initialVCValue, int level)
         {
             int vorpex;
@@ -55,13 +51,6 @@ namespace AscendedZ
         public static int GetDungeonCrawlEncounters(int tier)
         {
             return (tier / 10) + 2;
-        }
-
-        public static BigInteger GetDungeonCrawlingHPBoost(int tier)
-        {
-            BigInteger hpIncrease = 2;
-
-            return hpIncrease * (tier);
         }
     }
 }

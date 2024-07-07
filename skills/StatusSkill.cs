@@ -43,12 +43,10 @@ namespace AscendedZ.skills
             if (!IsRemoveStatusSkill)
             {
                 target.StatusHandler.AddStatus(target, this.Status);
-                result.Log.Append($"{target.GetLogName()} now has the status: [color=yellow]{Status.Name}[/color] ● {this.Status.CreateIconWrapper().Description}");
             }
             else 
             {
                 target.StatusHandler.RemoveStatus(target, this.Status);
-                result.Log.Append($"{target.GetLogName()} no longer has the status: [color=yellow]{Status.Name}[/color]");
             }
                 
             return result;
