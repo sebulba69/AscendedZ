@@ -140,7 +140,7 @@ public partial class MainScreen : Transitionable2DScene
         var progressFlagObject = gameObject.ProgressFlagObject;
 
         fuseButton.Visible = (tier > TierRequirements.FUSE);
-        dungeonCrawlButton.Visible = (tier > 5);
+        dungeonCrawlButton.Visible = (tier >= 5);
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
