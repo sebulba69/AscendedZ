@@ -73,7 +73,7 @@ namespace AscendedZ.skills
 
         public void LevelUp()
         {
-            int boost = Equations.GetBoostAmount(Level);
+            int boost = Level;
 
             try
             {
@@ -96,7 +96,7 @@ namespace AscendedZ.skills
 
         public string GetUpgradeString()
         {
-            return $"{ToString()} → {this.Damage + Equations.GetBoostAmount(Level + 1)}";
+            return $"{ToString()} → {this.Damage + (Level + 1)}";
         }
 
         public string GetAscendedString(int ascendedLevel)

@@ -130,7 +130,7 @@ public partial class RecruitScreen : CenterContainer
             DisplayPartyMemberOnScreen(lastSelected);
         }
 
-        _partyCoinCost.Text = $"{_partyCoins.Amount} VC";
+        _partyCoinCost.Text = $"{_partyCoins.Amount} PC";
     }
 
     private void DisplayPartyMemberOnScreen(int index)

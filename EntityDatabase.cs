@@ -119,8 +119,6 @@ namespace AscendedZ
 
                 List<string> encounterNames = new List<string>();
 
-                int boost = Equations.GetBoostAmount(tier);
-
                 // If we have already stored an encounter in this list, we want to re-use it.
                 if (gameObject.Encounters.Count > encounterIndex)
                 {
@@ -206,7 +204,7 @@ namespace AscendedZ
                 {
                     Enemy enemy = _enemyMaker.MakeEnemy(name);
                     if(tier >= 10)
-                        enemy.Boost(tier, boost);
+                        enemy.Boost(tier, tier);
                     encounter.Add(enemy);
                 }
             }

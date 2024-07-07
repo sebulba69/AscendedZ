@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace AscendedZ.skills
@@ -29,6 +30,7 @@ namespace AscendedZ.skills
                     return $"{_baseName} +MAX";
             }
         }
+
         public string BaseName { get => _baseName; set => _baseName = value; }
         public int Level { get => _level; set => _level = value; }
         public TargetTypes TargetType { get; set; }
@@ -45,7 +47,8 @@ namespace AscendedZ.skills
 
         public void LevelUp()
         {
-            int boost = (Equations.GetBoostAmount(Level)/4) + 1;
+            int boost = Level * 5;
+            
             try
             {
                 _level++;

@@ -28,12 +28,9 @@ namespace AscendedZ.entities.enemy_objects
 
         public void Boost(int tier, int boost)
         {
-            MaxHP += ((boost+tier)*2);
-            MaxHP /= 2;
+            MaxHP *= tier;
 
-            int numLevelUps = tier / 2;
-
-            for (int i = 0; i < numLevelUps; i++)
+            for (int i = 0; i < tier; i++)
             {
                 foreach (ISkill skill in Skills)
                 {
