@@ -13,6 +13,8 @@ using System.Reflection;
 
 public partial class RecruitScreen : CenterContainer
 {
+    private const int COST = 1;
+
     /// <summary>
     /// Party members available for recruiting.
     /// </summary>
@@ -37,14 +39,14 @@ public partial class RecruitScreen : CenterContainer
     /// Displays the Talisman the player owns that are relevant to
     /// the selected party member in the vendor list.
     /// </summary>
-    private TextEdit _vorpexCost;
+    private TextEdit _partyCoinCost;
 
     /// <summary>
     /// Available party members the vendor has to offer.
     /// </summary>
     private List<OverworldEntity> _availablePartyMembers;
 
-    private Currency _vorpex;
+    private Currency _partyCoins;
 
     private int _selected;
 
@@ -55,7 +57,7 @@ public partial class RecruitScreen : CenterContainer
         _displayImage = this.GetNode<TextureRect>("VBoxContainer/HBoxContainer/VBoxContainer/CharContainer/CharImageBox");
         _displayName = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/CenterContainer/CharNameLabel");
         _displayDescription = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/CharDescription/MarginContainer/CharDescriptionBox");
-        _vorpexCost = this.GetNode<TextEdit>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/OwnedTalismans");
+        _partyCoinCost = this.GetNode<TextEdit>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/OwnedTalismans");
 
         Button buyButton = this.GetNode<Button>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/BuyButton");
 
@@ -65,7 +67,7 @@ public partial class RecruitScreen : CenterContainer
         _availablePartyMembers.Reverse();
         _availableRecruits.Connect("item_selected",new Callable(this,"_OnItemSelected"));
 
-        _vorpex = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet.Currency[SkillAssets.VORPEX_ICON];
+        _partyCoins = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON];
         RefreshVendorWares(0);
     }
 
@@ -85,12 +87,12 @@ public partial class RecruitScreen : CenterContainer
 
         OverworldEntity partyMember = _availablePartyMembers[_selected];
 
-        if (_vorpex.Amount >= partyMember.ShopCost)
+        if (_partyCoins.Amount >= COST)
         {
             if (mainPlayer.IsPartyMemberOwned(partyMember.Name))
                 return;
 
-            _vorpex.Amount -= partyMember.ShopCost;
+            _partyCoins.Amount -= COST;
 
             mainPlayer.ReserveMembers.Add(partyMember);
 
@@ -114,7 +116,7 @@ public partial class RecruitScreen : CenterContainer
             if (mainPlayer.IsPartyMemberOwned(availablePartyMember.Name))
                 owned = " [OWNED]";
 
-            _availableRecruits.AddItem($"{availablePartyMember.DisplayName} - {availablePartyMember.ShopCost} VC{owned}", CharacterImageAssets.GetTextureForItemList(availablePartyMember.Image));
+            _availableRecruits.AddItem($"{availablePartyMember.DisplayName} - {COST} PC{owned}", CharacterImageAssets.GetTextureForItemList(availablePartyMember.Image));
         }
 
         if(_availablePartyMembers.Count == 0)
@@ -128,7 +130,7 @@ public partial class RecruitScreen : CenterContainer
             DisplayPartyMemberOnScreen(lastSelected);
         }
 
-        _vorpexCost.Text = $"{_vorpex.Amount} VC";
+        _partyCoinCost.Text = $"{_partyCoins.Amount} VC";
     }
 
     private void DisplayPartyMemberOnScreen(int index)

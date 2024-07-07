@@ -1,5 +1,6 @@
 using AscendedZ;
 using AscendedZ.currency;
+using AscendedZ.currency.rewards;
 using AscendedZ.game_object;
 using Godot;
 using System;
@@ -18,7 +19,12 @@ public partial class RewardScreen : Control
         _claimRewardsButton = this.GetNode<Button>("%ClaimButton");
 
 		int tier = PersistentGameObjects.GameObjectInstance().Tier;
-		_rewards = RewardGenerator.GenerateReward(tier);
+        _rewards = new List<Currency>() 
+        {
+            new Vorpex() { Amount = tier },
+            new PartyCoin() { Amount = 1 }
+        };
+
         foreach (Currency reward in _rewards)
         {
             string rewardString = $"{reward.Name} x{reward.Amount}";

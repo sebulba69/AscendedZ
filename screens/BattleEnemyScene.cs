@@ -395,21 +395,17 @@ public partial class BattleEnemyScene : Node2D
                 gameObject.MusicPlayer.PlayMusic(MusicAssets.BOSS_VICTORY);
                 gameObject.MusicPlayer.ResetAllTracksAfterBoss();
             }
-                
 
             if (gameObject.Tier == gameObject.MaxTier)
             {
                 gameObject.MaxTier++;
-                if (RewardGenerator.CanGenerateRewardsAtTier(gameObject.Tier))
-                {
-                    ChangeEndScreenVisibilityOnly(false);
+                ChangeEndScreenVisibilityOnly(false);
 
-                    var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate();
-                    this.GetTree().Root.AddChild(rewardScene);
-                    await ToSignal(rewardScene, "tree_exited");
+                var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
+                this.GetTree().Root.AddChild(rewardScene);
+                await ToSignal(rewardScene, "tree_exited");
 
-                    ChangeEndScreenVisibilityOnly(true);
-                }
+                ChangeEndScreenVisibilityOnly(true);
             }
 
             // do reward stuff here

@@ -16,15 +16,6 @@ public partial class MainPlayerContainer : CenterContainer
         playerPicture.Texture = ResourceLoader.Load<Texture2D>(player.Image);
         playerName.Text = $"[T. {gameObject.MaxTier}] {player.Name}";
 
-        if (!gameObject.UpgradeShardsUnlocked && gameObject.MaxTier > 20)
-        {
-            gameObject.UpgradeShardsUnlocked = true;
-            UpgradeShard upgradeShard = new UpgradeShard() { Amount = 0 };
-            player.Wallet.Currency.Add(upgradeShard.Name, upgradeShard);
-
-            PersistentGameObjects.Save();
-        }
-
         UpdateCurrencyDisplay();
     }
 

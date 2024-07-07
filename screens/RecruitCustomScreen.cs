@@ -10,7 +10,7 @@ public partial class RecruitCustomScreen : CenterContainer
 	private Node _partyMemberDisplay;
 	private ItemList _potentialSkills;
 	private ItemList _potentialPartyMembers;
-	private TextEdit _ownedVorpex;
+	private TextEdit _ownedPartyCoin;
 	private Label _costLabel;
 
 	private int _selectedIndexMembers = 0;
@@ -24,7 +24,7 @@ public partial class RecruitCustomScreen : CenterContainer
 		_partyMemberDisplay = this.GetNode("%PartyMemberDisplay");
 		_potentialSkills = this.GetNode<ItemList>("%PotentialSkills");
 		_potentialPartyMembers = this.GetNode<ItemList>("%PotentialMembers");
-		_ownedVorpex = this.GetNode<TextEdit>("%OwnedVorpex");
+		_ownedPartyCoin = this.GetNode<TextEdit>("%OwnedPartyCoin");
         _costLabel = this.GetNode<Label>("%CostLabel");
 
         _potentialPartyMembers.Connect("item_selected",new Callable(this, "_OnRecruitSelected"));
@@ -45,16 +45,16 @@ public partial class RecruitCustomScreen : CenterContainer
 		buyButton.Pressed += () => 
 		{
 			var mainPlayer = gameObject.MainPlayer;
-            var vorpex = mainPlayer.Wallet.Currency[SkillAssets.VORPEX_ICON];
+            var partyCoin = mainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON];
 			var selected = _recruitCustomObject.SelectedEntity;
 
-            bool canAfford = (vorpex.Amount >= _recruitCustomObject.Cost);
+            bool canAfford = (partyCoin.Amount >= _recruitCustomObject.Cost);
 			bool isOwnedByPlayer = (mainPlayer.IsPartyMemberOwned(selected.Name));
 			bool hasSkills = _recruitCustomObject.SelectedEntity.Skills.Count > 0;
 
 			if(canAfford && !isOwnedByPlayer && hasSkills)
 			{
-				vorpex.Amount -= _recruitCustomObject.Cost;
+				partyCoin.Amount -= _recruitCustomObject.Cost;
 
 				// prevent any references in memory back to this screen
 				var partyMember = PartyMemberGenerator.MakePartyMember(selected.Name);
@@ -67,7 +67,7 @@ public partial class RecruitCustomScreen : CenterContainer
 				PersistentGameObjects.Save();
             }
 
-			_ownedVorpex.Text = $"{vorpex.Amount} VC";
+			_ownedPartyCoin.Text = $"{partyCoin.Amount} PC";
         };
 
 		addButton.Pressed += () => 
@@ -84,7 +84,7 @@ public partial class RecruitCustomScreen : CenterContainer
 			UpdateCost();
         };
 
-		_ownedVorpex.Text = $"{gameObject.MainPlayer.Wallet.Currency[SkillAssets.VORPEX_ICON].Amount} VC";
+		_ownedPartyCoin.Text = $"{gameObject.MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON].Amount} PC";
     }
 
 	private void ChangePotentialPartyMembers()
@@ -147,6 +147,6 @@ public partial class RecruitCustomScreen : CenterContainer
 
 	private void UpdateCost()
 	{
-		_costLabel.Text = $"Cost: {_recruitCustomObject.Cost} VC";
+		_costLabel.Text = $"Cost: {_recruitCustomObject.Cost} PC";
 	}
 }

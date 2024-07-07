@@ -15,6 +15,7 @@ namespace AscendedZ.entities.partymember_objects
 {
     public class OverworldEntity : Entity
     {
+        private int _maxLevelCap = 999;
         private int _level = 0;
         private int _grade = 0;
         private int _vorpexCost = 1;
@@ -23,18 +24,11 @@ namespace AscendedZ.entities.partymember_objects
         private int _fusionGrade = 0;
         private int _upgradeShardYield = 10;
         private int _skillCap = 2;
-        private bool _gradeCapHit = false;
-        private int _ascendedLevel = 0;
 
-        public int AscendedLevel { get => _ascendedLevel; set => _ascendedLevel = value; }
-        public bool GradeCapHit { get => _gradeCapHit; set => _gradeCapHit = value; }
         public bool IsInParty { get => _isInParty; set => _isInParty = value; }
         public int Level { get => _level; set => _level = value; }
         public int Grade { get => _grade; set => _grade = value; }
         public int VorpexValue { get => _vorpexCost; set => _vorpexCost = value; }
-        public int ShopCost { get => _shopCost; set => _shopCost = value; }
-        public int UpgradeShardYield { get => _upgradeShardYield; set => _upgradeShardYield = value; }
-        public int UpgradeShardValue { get => 100; }
         public int MaxHP { get; set; }
         public string GradeString { get; set; }
         public int SkillCap { get => _skillCap; set => _skillCap = value; }
@@ -48,9 +42,6 @@ namespace AscendedZ.entities.partymember_objects
                     retString = Name;
                 else
                     retString = $"[{GradeString}] {Name}";
-
-                if (_ascendedLevel > 0)
-                    retString += $" [{_ascendedLevel}]";
 
                 return retString;
             } 
@@ -80,82 +71,6 @@ namespace AscendedZ.entities.partymember_objects
 
         private const int TIER_CAP = 5;
 
-        public bool CanAscend()
-        {
-            bool canAscend = false;
-
-            if (_gradeCapHit)
-            {
-                canAscend = true;
-            }
-            else
-            {
-                switch (_ascendedLevel)
-                {
-                    case 0:
-                        canAscend = Grade >= 1;
-                        break;
-                    case 1:
-                        canAscend = Grade >= 3;
-                        break;
-                    case 2:
-                        canAscend = Grade >= 5;
-                        break;
-                    case 3:
-                        canAscend =  Grade >= 6;
-                        break;
-                    case 4:
-                        canAscend = Grade >= 7;
-                        break;
-                    default:
-                        canAscend = Grade >= 8;
-                        break;
-                }
-            }
-
-            return canAscend;
-        }
-
-        public void Ascend()
-        {
-            _ascendedLevel++;
-            Grade = 0;
-            Level = 0;
-            MaxHP = _ascendedLevel * 12;
-
-            for (int i = 0; i < Skills.Count; i++)
-            {
-                if (Skills[i].Id == SkillId.Elemental)
-                {
-                    ElementSkill elementSkill = (ElementSkill)Skills[i];
-                    if (elementSkill.Tier < TIER_CAP)
-                    {
-                        Skills[i] = SkillDatabase.GetNextTierOfElementSkill(elementSkill.Tier, elementSkill).Clone();
-                    }
-                    else
-                    {
-                        ElementSkill newSkill = (ElementSkill)SkillDatabase.GetNextTierOfElementSkill(elementSkill.Tier, elementSkill).Clone();
-                        newSkill.Damage += (_ascendedLevel * 2);
-                        Skills[i] = newSkill;
-                    }
-                }
-                else if (Skills[i].Id == SkillId.Healing)
-                {
-                    HealSkill healSkill = (HealSkill)Skills[i];
-                    if (healSkill.Tier < TIER_CAP)
-                    {
-                        Skills[i] = SkillDatabase.GetNextTierOfHealSkill(healSkill.Tier, healSkill.TargetType);
-                    }
-                    else
-                    {
-                        HealSkill newSkill = (HealSkill)SkillDatabase.GetNextTierOfHealSkill(healSkill.Tier, healSkill.TargetType).Clone();
-                        newSkill.HealAmount += (_ascendedLevel * 2);
-                        Skills[i] = newSkill;
-                    }
-                }
-            }
-        }
-
         public void LevelUp()
         {
             Level++;
@@ -168,11 +83,6 @@ namespace AscendedZ.entities.partymember_objects
                 skill.LevelUp();
         }
 
-        public void BoostShopCost(int numPriceSpikes)
-        {
-            ShopCost = Equations.BoostShopCost(ShopCost, numPriceSpikes);
-        }
-
         public string GetHPLevelUpPreview()
         {
             return $"{Equations.GetOWMaxHPUpgrade(MaxHP, Level)} HP";
@@ -180,15 +90,17 @@ namespace AscendedZ.entities.partymember_objects
 
         private string GetLevelString()
         {
-            string[] grades = { "F", "E", "D", "C", "B", "A", "S", "SS", "SSS" };
+            string[] grades = { "F", "E", "D", "C", "B", "A", "S", "SS", "SSS", "SX4", "SX5", "SX6", "SX7", "SX8", "SX9", "SX10", "XG", "XXG", "X3G", "X4G", "X5G", "ASC" };
             string gradeString = string.Empty;
-            if (Level == 50)
+            if (Level == _maxLevelCap)
             {
                 Level = 0;
                 Grade++;
 
                 if (Grade == grades.Length - 1)
-                    _gradeCapHit = true;
+                {
+                    _maxLevelCap *= 2;
+                }
 
                 gradeString = $"{grades[Grade]}";
             }

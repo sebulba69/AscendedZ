@@ -31,8 +31,8 @@ namespace AscendedZ
         {
             try
             {
-                int upgrade = (7 + 2 * (level + 1)) / 2;
-                hp += upgrade/2;
+                int upgrade = (7 + 2 * (level + 1)) / 4;
+                hp = upgrade;
             }
             catch (Exception)
             {

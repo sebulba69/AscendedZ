@@ -1,12 +1,12 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1720300844
+::res://::1720316635
 ArtAssets.cs::CSharpScript::-1::1720300319::0::1::::<><>::
 ascended_icon.png::CompressedTexture2D::5218734614891675472::1708994907::1708994916::1::::<><>::
 AssetUtil.cs::CSharpScript::-1::1720300319::0::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1714150226::0::1::::<><>::
 BackBoxBossHPDC.tres::StyleBoxFlat::7192250026047991769::1717339644::0::1::::<><>::
 Controls.cs::CSharpScript::-1::1720300319::0::1::::<><>::
-default_env.tres::Environment::5723441312748911875::1720301172::0::1::::<><>::
+default_env.tres::Environment::5723441312748911875::1720304663::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1720300319::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1720300319::0::1::::<><>::
 Equations.cs::CSharpScript::-1::1720300418::0::1::::<><>::
@@ -24,19 +24,19 @@ SfxAssets.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 SkillDatabase.cs::CSharpScript::-1::1720300441::0::1::::<><>::
 TextboxEditTheme.tres::Theme::-1::1678056484::0::1::::<><>::
 TierRequirements.cs::CSharpScript::-1::1720300320::0::1::::<><>::
-::res://battle/::1720300441
+::res://battle/::1720311392
 BattleEffectWrapper.cs::CSharpScript::-1::1720300249::0::1::::<>Object<>::
 BattleResult.cs::CSharpScript::-1::1720300320::0::1::::<><>::
-BattleSceneObject.cs::CSharpScript::-1::1720300441::0::1::::<><>::
+BattleSceneObject.cs::CSharpScript::-1::1720311392::0::1::::<><>::
 BattleUIUpdate.cs::CSharpScript::-1::1720300249::0::1::::<><>::
 EntityWrapper.cs::CSharpScript::-1::1720300249::0::1::::<>Object<>::
 PressTurn.cs::CSharpScript::-1::1720300441::0::1::::<><>::
-::res://battle/battle_state_machine/::1720300441
-BattleState.cs::CSharpScript::-1::1720300249::0::1::::<><>::
+::res://battle/battle_state_machine/::1720311392
+BattleState.cs::CSharpScript::-1::1720308403::0::1::::<><>::
 EnemyAction.cs::CSharpScript::-1::1720300249::0::1::::<><>::
 EnemyTurnState.cs::CSharpScript::-1::1720300441::0::1::::<><>::
 PlayerTargetSelectedEventArgs.cs::CSharpScript::-1::1720300441::0::1::::<><>::
-PlayerTurnState.cs::CSharpScript::-1::1720300441::0::1::::<><>::
+PlayerTurnState.cs::CSharpScript::-1::1720311392::0::1::::<><>::
 ::res://cg_backgrounds/::1714863603
 bg00101.jpg::CompressedTexture2D::5673669740224643055::1676769283::1678056509::1::::<><>::
 bg00701.jpg::CompressedTexture2D::8750674817855771255::1676742528::1708908815::1::::<><>::
@@ -117,10 +117,10 @@ BDCSystem.cs::CSharpScript::-1::1720300250::0::1::::<><>::
 BDCUpdateWrapper.cs::CSharpScript::-1::1720300250::0::1::::<><>::
 BEnemyDC.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 BPlayerDC.cs::CSharpScript::-1::1720300250::0::1::::<><>::
-::res://dungeon_crawling/combat/combat_scenes/::1720300565
+::res://dungeon_crawling/combat/combat_scenes/::1720311392
 EnemyScene.cs::CSharpScript::-1::1720300250::0::1::::<>Control<>::
 EnemyScene.tscn::PackedScene::7113998741189722466::1720300565::0::1::::<><>::res://dungeon_crawling/combat/combat_scenes/EnemyScene.cs<>uid://bccubabd2bgpu::::res://dungeon_crawling/art_assets/general/character_border.png<>uid://dsn1t4qadrkqi::::res://player_pics/newpicture37.png<>uid://t6lhru8f8fr7::::res://effects/EffectSprite.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://dyxxgykvs4hrj::::res://effects/effect_sounds/Damage4.ogg
-EntityScene.cs::CSharpScript::-1::1720300320::0::1::::<>Control<>::
+EntityScene.cs::CSharpScript::-1::1720311392::0::1::::<>Control<>::
 PlayerScene.cs::CSharpScript::-1::1720300250::0::1::::<>Control<>::
 PlayerScene.tscn::PackedScene::7139868199585612913::1720300565::0::1::::<><>::res://dungeon_crawling/combat/combat_scenes/PlayerScene.cs<>uid://bccubabd2bgpu::::res://dungeon_crawling/art_assets/general/character_border.png<>uid://cwk4bbifhudkx::::res://player_pics/newpicture6.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://t6lhru8f8fr7::::res://effects/EffectSprite.tscn<>uid://dyxxgykvs4hrj::::res://effects/effect_sounds/Damage4.ogg
 ::res://dungeon_crawling/combat/skillsdc/::1720300441
@@ -139,11 +139,11 @@ DungeonScreen.cs::CSharpScript::-1::1720300418::0::1::::<>Node2D<>::
 DungeonScreen.tscn::PackedScene::2380672493013739506::1720300587::0::1::::<><>::res://dungeon_crawling/scenes/DungeonScreen.cs<>uid://djlhy6ga7e5t2::::res://dungeon_crawling/scenes/DungeonEntity.tscn<>uid://dww5loey3m4kp::::res://cg_backgrounds/bg00701.jpg
 TileScene.cs::CSharpScript::-1::1720300250::0::1::::<>Node2D<>::
 TileScene.tscn::PackedScene::3544976885811365042::1720300250::0::1::::<><>::res://dungeon_crawling/scenes/TileScene.cs<>uid://p2lm6a6lgn7g::::res://dungeon_crawling/art_assets/general/shadow.png<>uid://lcmlb3tl5am4::::res://dungeon_crawling/art_assets/general/bg.png<>uid://fu3igr300nxf::::res://dungeon_crawling/art_assets/general/ground.png<>uid://cehb84va41u6::::res://dungeon_crawling/art_assets/general/interior_lines.png<>uid://it8nvcl7m621::::res://dungeon_crawling/art_assets/general/up.png<>uid://c6xy28b3dqkai::::res://dungeon_crawling/art_assets/general/down.png<>uid://btsejbvti508d::::res://dungeon_crawling/art_assets/general/left.png<>uid://bkeaa6q4ebbmj::::res://dungeon_crawling/art_assets/general/right.png<>uid://djlhy6ga7e5t2::::res://dungeon_crawling/scenes/DungeonEntity.tscn
-::res://effects/::1720300320
+::res://effects/::1720311392
 DamageNumber.cs::CSharpScript::-1::1720300250::0::1::::<>Label<>::
 DamageNumber.tscn::PackedScene::6894463550722434897::1720300250::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://effects/DamageNumber.cs
-EffectAnimation.cs::CSharpScript::-1::1720300320::0::1::::<>Sprite2D<>::
-EffectSprite.tscn::PackedScene::1398265052276628590::1720300250::0::1::::<><>::uid://bi5km2q63knnj::::res://effects/effect_art/Thunder1.png<>uid://cigcwx3bdhdcg::::res://effects/effect_art/StateSleep.png<>uid://c8su2xowwlivt::::res://effects/effect_art/Fire1.png<>uid://bvn1uocyp81kf::::res://effects/effect_art/StateUp1.png<>uid://cunxbll7thl8o::::res://effects/effect_art/Light1.png<>uid://6f7xcnuk7geu::::res://effects/effect_art/Cure4.png<>uid://urhjqhis73gp::::res://effects/effect_art/StateParalys.png<>uid://relkpnc32hm1::::res://effects/effect_art/Magic1.png<>uid://b04xvtb1djnnr::::res://effects/effect_art/Ice1.png<>uid://cf5sh7sexcjo3::::res://effects/effect_art/Darkness3.png<>res://effects/EffectAnimation.cs<>uid://cnj3rxq0uollk::::res://effects/effect_art/Wind3.png<>uid://ctaljp7xoykm0::::res://effects/effect_art/Wind2.png<>uid://dxo0kfg4wmyw8::::res://effects/effect_sounds/Wind5.ogg<>uid://dnqh17p0b7rvf::::res://effects/effect_art/Wind5.png<>uid://2wocacuf66od::::res://effects/effect_art/Fire2.png<>uid://d37o5jq0i5i3w::::res://effects/effect_art/Fire3.png<>uid://dyc66vqykguxl::::res://effects/effect_art/DarknessT2.png<>uid://cvpd6rgv2xp2e::::res://effects/effect_art/DarknessT3.png<>uid://b0vv4n2a71740::::res://effects/effect_art/Thunder2.png<>uid://bmjamt81ekpbw::::res://effects/effect_art/Thunder3.png<>uid://dkf1irm3apj1f::::res://effects/effect_art/Ice2.png<>uid://dnhra7s0n80vc::::res://effects/effect_art/Ice3.png<>uid://0ko0bewylavk::::res://effects/effect_art/Light2.png<>uid://8vh38yhh1idq::::res://effects/effect_art/Light4.png
+EffectAnimation.cs::CSharpScript::-1::1720311392::0::1::::<>Sprite2D<>::
+EffectSprite.tscn::PackedScene::1398265052276628590::1720311392::0::1::::<><>::uid://bi5km2q63knnj::::res://effects/effect_art/Thunder1.png<>uid://cigcwx3bdhdcg::::res://effects/effect_art/StateSleep.png<>uid://c8su2xowwlivt::::res://effects/effect_art/Fire1.png<>uid://bvn1uocyp81kf::::res://effects/effect_art/StateUp1.png<>uid://cunxbll7thl8o::::res://effects/effect_art/Light1.png<>uid://6f7xcnuk7geu::::res://effects/effect_art/Cure4.png<>uid://urhjqhis73gp::::res://effects/effect_art/StateParalys.png<>uid://relkpnc32hm1::::res://effects/effect_art/Magic1.png<>uid://b04xvtb1djnnr::::res://effects/effect_art/Ice1.png<>uid://cf5sh7sexcjo3::::res://effects/effect_art/Darkness3.png<>res://effects/EffectAnimation.cs<>uid://cnj3rxq0uollk::::res://effects/effect_art/Wind3.png<>uid://ctaljp7xoykm0::::res://effects/effect_art/Wind2.png<>uid://dxo0kfg4wmyw8::::res://effects/effect_sounds/Wind5.ogg<>uid://dnqh17p0b7rvf::::res://effects/effect_art/Wind5.png<>uid://2wocacuf66od::::res://effects/effect_art/Fire2.png<>uid://d37o5jq0i5i3w::::res://effects/effect_art/Fire3.png<>uid://dyc66vqykguxl::::res://effects/effect_art/DarknessT2.png<>uid://cvpd6rgv2xp2e::::res://effects/effect_art/DarknessT3.png<>uid://b0vv4n2a71740::::res://effects/effect_art/Thunder2.png<>uid://bmjamt81ekpbw::::res://effects/effect_art/Thunder3.png<>uid://dkf1irm3apj1f::::res://effects/effect_art/Ice2.png<>uid://dnhra7s0n80vc::::res://effects/effect_art/Ice3.png<>uid://0ko0bewylavk::::res://effects/effect_art/Light2.png<>uid://8vh38yhh1idq::::res://effects/effect_art/Light4.png
 ShakeParameters.cs::CSharpScript::-1::1720300250::0::1::::<><>::
 ::res://effects/effect_art/::1720300250
 Cure4.png::CompressedTexture2D::2188160184630136596::1720300250::1720300250::1::::<><>::
@@ -199,14 +199,14 @@ Up1.ogg::AudioStreamOggVorbis::4801578401146985132::1720300251::1720300251::1:::
 Wind2.ogg::AudioStreamOggVorbis::6368581655505901195::1720300251::1720300251::1::::<><>::
 Wind5.ogg::AudioStreamOggVorbis::8804042799302199501::1720300251::1720300251::1::::<><>::
 wind_1.ogg::AudioStreamOggVorbis::6154348787821489821::1720300251::1720300251::1::::<><>::
-::res://entities/::1720301074
-BattleEntity.cs::CSharpScript::-1::1720300320::0::1::::<><>::
+::res://entities/::1720311392
+BattleEntity.cs::CSharpScript::-1::1720311392::0::1::::<><>::
 BattleEntityStatuses.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 BossHPStatus.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 Entity.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 EntityNames.cs::CSharpScript::-1::1720300251::0::1::::<><>::
 MainPlayer.cs::CSharpScript::-1::1720300418::0::1::::<><>::
-OverworldEntity.cs::CSharpScript::-1::1720300320::0::1::::<><>::
+OverworldEntity.cs::CSharpScript::-1::1720301174::0::1::::<><>::
 ::res://entities/battle_entities/::1720300343
 BattlePlayer.cs::CSharpScript::-1::1720300343::0::1::::<><>::
 ::res://entities/enemy_objects/::1720300320
@@ -307,12 +307,11 @@ winegiful.png::CompressedTexture2D::8876467144239864490::1486306209::1708301161:
 yuudam.png::CompressedTexture2D::7364819835394886078::1706678954::1706678954::1::::<><>::
 ::res://fonts/::1706678954
 ufonts.com_compacta-bold-bt.ttf::FontFile::3607509694698024957::1676703665::1706678954::1::::<><>::
-::res://game_object/::1720300418
-GameObject.cs::CSharpScript::-1::1720300418::0::1::::<><>::
+::res://game_object/::1720302327
+GameObject.cs::CSharpScript::-1::1720302327::0::1::::<><>::
 MusicObject.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 PersistentGameObjects.cs::CSharpScript::-1::1720300320::0::1::::<><>::
-ProgressFlagObject.cs::CSharpScript::-1::1720300320::0::1::::<><>::
-QuestObject.cs::CSharpScript::-1::1720300320::0::1::::<><>::
+ProgressFlagObject.cs::CSharpScript::-1::1720302020::0::1::::<><>::
 SaveEntry.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 SaveObject.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 ::res://game_object/quests/::1720300320
@@ -322,12 +321,12 @@ Quest.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 ::res://json_interface_converters/::1720300343
 BigIntegerConverter.cs::CSharpScript::-1::1720300343::0::1::::<><>::
 SkillConverter.cs::CSharpScript::-1::1720300251::0::1::::<><>::
-::res://misc_icons/::1720300844
+::res://misc_icons/::1720316626
 CurrencyDisplay.cs::CSharpScript::-1::1720300320::0::1::::<>GridContainer<>::
 CurrencyDisplay.tscn::PackedScene::8562439097474497904::1720300251::0::1::::<><>::res://misc_icons/CurrencyDisplay.cs<>uid://bqmfi0ome6yn4::::res://misc_icons/Icon.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 Icon.cs::CSharpScript::-1::1720300320::0::1::::<>TextureRect<>::
 Icon.tscn::PackedScene::3534533921528240495::1720300320::0::1::::<><>::uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>res://misc_icons/Icon.cs<>res://misc_icons/IconOutline.gdshader
-IconOutline.gdshader::Shader::-1::1720301172::0::1::::<><>::
+IconOutline.gdshader::Shader::-1::1720316626::0::1::::<><>::
 IconSet.png::CompressedTexture2D::550291359472638980::1720300251::1720300251::1::::<><>::
 ::res://music/::1720300418
 boss_victory.ogg::AudioStreamOggVorbis::5818420752927080643::1706678954::1706678954::1::::<><>::
@@ -356,13 +355,6 @@ dungeon_crawl_01.ogg::AudioStreamOggVorbis::7146374783145671517::1720300418::172
 3. [KH2] Underworld.ogg::AudioStreamOggVorbis::4576157723881432096::1706678960::1709265661::1::::<><>::
 4. [Lunacid] Rain of Saint Ishii.ogg::AudioStreamOggVorbis::5980616266817580325::1708913678::1709265697::1::::<><>::
 5. [SMT3] Sound Test.ogg::AudioStreamOggVorbis::1218904620314050069::1706678960::1709265708::1::::<><>::
-::res://old shit/::1720300249
-::res://old shit/dungeon_crawling/::1720300249
-::res://old shit/dungeon_crawling/art_assets/::1720300249
-::res://old shit/dungeon_crawling/art_assets/health_bar/::1720299973
-::res://old shit/game_object/::1720300249
-::res://old shit/game_object/gbf_profile/::1720299973
-::res://old shit/game_object/lor_profile/::1720299973
 ::res://player_pics/::1706678960
 newpicture6.png::CompressedTexture2D::6339402348666751527::1676533764::1682923971::1::::<><>::
 newpicture8.png::CompressedTexture2D::7264560546441407001::1676874216::1682923971::1::::<><>::
@@ -384,17 +376,17 @@ BarV5_ProgressBarBorder.png::CompressedTexture2D::6286064946586930276::167809411
 ::res://resistances/::1720300320
 ResistanceArray.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 ResistanceType.cs::CSharpScript::-1::1720300251::0::1::::<><>::
-::res://screens/::1720301151
-ActionMenu.cs::CSharpScript::-1::1720300441::0::1::::<>PanelContainer<>::
+::res://screens/::1720311392
+ActionMenu.cs::CSharpScript::-1::1720311392::0::1::::<>PanelContainer<>::
 ActionMenu.tscn::PackedScene::4702874803656428896::1720300251::0::1::::<><>::res://screens/ActionMenu.cs<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 APBarStyleBox.tres::StyleBoxFlat::184845878767122209::1720300251::0::1::::<><>::
 AscendedDialogBox.cs::CSharpScript::-1::1720300320::0::1::::<>TextEdit<>::
 AscendedTextbox.cs::CSharpScript::-1::1720300320::0::1::::<>VBoxContainer<>::
 AscendedTextbox.tscn::PackedScene::701208902181673061::1720300320::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/AscendedTextbox.cs
 AscendedYesNoWindow.cs::CSharpScript::-1::1720300320::0::1::::<>CenterContainer<>::
-BattleEnemyScene.cs::CSharpScript::-1::1720300320::0::1::::<>Node2D<>::
+BattleEnemyScene.cs::CSharpScript::-1::1720311392::0::1::::<>Node2D<>::
 BattleEnemyScene.gdshader::Shader::-1::1720300320::0::1::::<><>::
-BattleEnemyScene.tscn::PackedScene::4377659858826778686::1720300320::0::1::::<><>::uid://c5xd4it2pk7uq::::res://cg_backgrounds/dungeon/1bg03101.jpg<>res://screens/BattleEnemyScene.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://bad6j156d7tuk::::res://screens/EnemyBattleDisplayBox.tscn<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>uid://car4hgrdysj7x::::res://turn_icons/turn_backdrop.png<>uid://b8adwqax888v1::::res://screens/ActionMenu.tscn
+BattleEnemyScene.tscn::PackedScene::4377659858826778686::1720304663::0::1::::<><>::uid://c5xd4it2pk7uq::::res://cg_backgrounds/dungeon/1bg03101.jpg<>res://screens/BattleEnemyScene.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://bad6j156d7tuk::::res://screens/EnemyBattleDisplayBox.tscn<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>uid://car4hgrdysj7x::::res://turn_icons/turn_backdrop.png<>uid://b8adwqax888v1::::res://screens/ActionMenu.tscn
 BossBattleDisplayBox.tscn::PackedScene::1443048075609414175::1720300251::0::1::::<><>::res://screens/EntityDisplayBox.cs<>uid://k65a7vnci8t7::::res://screens/BossHPBar.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://cwk4bbifhudkx::::res://player_pics/newpicture6.png<>uid://t6lhru8f8fr7::::res://effects/EffectSprite.tscn<>uid://dyxxgykvs4hrj::::res://effects/effect_sounds/Damage4.ogg
 BossHPBar.cs::CSharpScript::-1::1720300320::0::1::::<>HBoxContainer<>::
 BossHPBar.tscn::PackedScene::767707370320954602::1720300251::0::1::::<><>::res://screens/BossHPBar.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://dap8kpbmm32h6::::res://BackBoxBossHPDC.tres<>uid://em56nfn2uiix::::res://FrontBoxBossHPDC.tres
@@ -405,13 +397,13 @@ DungeonCrawlMainScreen.tscn::PackedScene::1390525242627650127::1720300565::0::1:
 EmbarkScreen.cs::CSharpScript::-1::1720300321::0::1::::<>CenterContainer<>::
 EmbarkScreen.tscn::PackedScene::5088382436635843146::1720300321::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/EmbarkScreen.cs<>uid://dw0b6jl4ujkib::::res://screens/PartyEditScreen.tscn
 EnemyBattleDisplayBox.tscn::PackedScene::2394513529241208590::1720300441::0::1::::<><>::res://screens/EntityDisplayBox.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://t6lhru8f8fr7::::res://effects/EffectSprite.tscn<>uid://rc2e70qmjetc::::res://progressbar_assets/BarV5_Bar.png<>uid://dia3dfa8mltm7::::res://entity_pics/ancrow.png<>uid://ead6ckayi3d::::res://progressbar_assets/BarV5_ProgressBar.png<>uid://cvtatom8ub0ma::::res://progressbar_assets/BarV5_ProgressBarBorder.png<>uid://dyxxgykvs4hrj::::res://effects/effect_sounds/Damage4.ogg
-EntityDisplayBox.cs::CSharpScript::-1::1720300441::0::1::::<>PanelContainer<>::
+EntityDisplayBox.cs::CSharpScript::-1::1720311392::0::1::::<>PanelContainer<>::
 FusionScreen.cs::CSharpScript::-1::1720300321::0::1::::<>CenterContainer<>::
 FusionScreen.tscn::PackedScene::4030871583203600894::1720300321::0::1::::<><>::uid://b5e2ob3gqma0a::::res://screens/PartyMemberDisplay.tscn<>res://screens/FusionScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 MainPlayerContainer.cs::CSharpScript::-1::1720300321::0::1::::<>CenterContainer<>::
 MainPlayerContainer.tscn::PackedScene::2803579907518141170::1720300565::0::1::::<><>::res://screens/MainPlayerContainer.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
-MainScreen.cs::CSharpScript::-1::1720300418::0::1::::<>Node2D<>::
-MainScreen.tscn::PackedScene::3430306132852122212::1720300321::0::1::::<><>::uid://djlrnr8rpcbxa::::res://cg_backgrounds/overworld/1bg00501.jpg<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/MainScreen.cs<>uid://bf7cs0q6o8n8u::::res://screens/MainPlayerContainer.tscn
+MainScreen.cs::CSharpScript::-1::1720302249::0::1::::<>Node2D<>::
+MainScreen.tscn::PackedScene::3430306132852122212::1720304662::0::1::::<><>::uid://djlrnr8rpcbxa::::res://cg_backgrounds/overworld/1bg00501.jpg<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/MainScreen.cs<>uid://bf7cs0q6o8n8u::::res://screens/MainPlayerContainer.tscn
 MenuScene.cs::CSharpScript::-1::1720300343::0::1::::<>CenterContainer<>::
 MenuScene.tscn::PackedScene::998238411540788364::1720300321::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/MenuScene.cs
 PartyBattleDisplayBox.tscn::PackedScene::7168620978467356148::1720300321::0::1::::<><>::res://screens/EntityDisplayBox.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://wa3vhq2cq4uw::::res://screens/arrows/current_arrow.png<>uid://t6lhru8f8fr7::::res://effects/EffectSprite.tscn<>uid://bs4gg4uakqucs::::res://progressbar_assets/BarV1_Bar.png<>uid://dlog1wys3kq6a::::res://entity_pics/andmond.png<>uid://cgmiottbplblf::::res://progressbar_assets/BarV1_ProgressBarBorder.png<>uid://dlc6ggeck3ft3::::res://progressbar_assets/BarV1_ProgressBar.png<>uid://dyxxgykvs4hrj::::res://effects/effect_sounds/Damage4.ogg
@@ -420,8 +412,6 @@ PartyEditScreen.tscn::PackedScene::8755142622619047713::1720300321::0::1::::<><>
 PartyMemberDisplay.cs::CSharpScript::-1::1720300321::0::1::::<>HBoxContainer<>::
 PartyMemberDisplay.tscn::PackedScene::4502007959842014962::1720300321::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/PartyMemberDisplay.cs
 PopupWindow.tscn::PackedScene::216596305665157802::1720300321::0::1::::<><>::res://screens/AscendedYesNoWindow.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
-QuestScreen.cs::CSharpScript::-1::1720300321::0::1::::<>CenterContainer<>::
-QuestScreen.tscn::PackedScene::2186374000741578944::1720300321::0::1::::<><>::res://screens/QuestScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 RecruitCustomScreen.cs::CSharpScript::-1::1720300321::0::1::::<>CenterContainer<>::
 RecruitCustomScreen.tscn::PackedScene::6239557954331749095::1720300321::0::1::::<><>::res://screens/RecruitCustomScreen.cs<>uid://b5e2ob3gqma0a::::res://screens/PartyMemberDisplay.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
 RecruitScreen.cs::CSharpScript::-1::1720300321::0::1::::<>CenterContainer<>::
@@ -434,10 +424,8 @@ RewardScreen.tscn::PackedScene::2919674233379551489::1720300251::0::1::::<><>::r
 SceneTransition.cs::CSharpScript::-1::1720300321::0::1::::<>CanvasLayer<>::
 SceneTransition.tscn::PackedScene::2992404124348779741::1720300321::0::1::::<><>::res://screens/SceneTransition.cs<>uid://buwuurpybkt52::::res://transitions/circle-xxl.png
 StartScreen.cs::CSharpScript::-1::1720300321::0::1::::<>Node2D<>::
-StartScreen.tscn::PackedScene::6381371156909420524::1720300321::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/StartScreen.cs<>res://screens/AscendedDialogBox.cs<>uid://c30uvsnxii3bd::::res://cg_backgrounds/overworld/4bg00307.jpg<>uid://cgb6kermfdhu::::res://music/theme.ogg
+StartScreen.tscn::PackedScene::6381371156909420524::1720311392::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/StartScreen.cs<>res://screens/AscendedDialogBox.cs<>uid://c30uvsnxii3bd::::res://cg_backgrounds/overworld/4bg00307.jpg<>uid://cgb6kermfdhu::::res://music/theme.ogg
 Transitionable2DScene.cs::CSharpScript::-1::1720300418::0::1::::<>Node2D<>::
-UpgradeScreen.cs::CSharpScript::-1::1720301080::0::1::::<>CenterContainer<>::
-UpgradeScreen.tscn::PackedScene::1791545832128563933::1720301172::0::1::::<><>::res://screens/UpgradeScreen.cs<>uid://dlog1wys3kq6a::::res://entity_pics/andmond.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
 ::res://screens/arrows/::1720300321
 current_arrow.png::CompressedTexture2D::1545892531116590130::1720300321::1720300321::1::::<><>::
 ::res://screens/back_end_screen_scripts/::1720300321
@@ -445,7 +433,12 @@ EntityUIWrapper.cs::CSharpScript::-1::1720300321::0::1::::<>Object<>::
 FusionObject.cs::CSharpScript::-1::1720300321::0::1::::<><>::
 FusionScreenObject.cs::CSharpScript::-1::1720300321::0::1::::<><>::
 RecruitCustomObject.cs::CSharpScript::-1::1720300321::0::1::::<><>::
-::res://screens/upgrade_screen/::1720301147
+::res://screens/upgrade_screen/::1720304662
+UpgradeItemListDisplay.cs::CSharpScript::-1::1720301842::0::1::::<><>::
+UpgradeScreen.cs::CSharpScript::-1::1720302116::0::1::::<><>::
+UpgradeScreen.tscn::PackedScene::1791545832128563933::1720304662::0::1::::<><>::res://screens/upgrade_screen/UpgradeScreen.cs<>uid://dlog1wys3kq6a::::res://entity_pics/andmond.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
+UpgradeScreenDisplay.cs::CSharpScript::-1::1720301609::0::1::::<><>::
+UpgradeScreenObject.cs::CSharpScript::-1::1720302084::0::1::::<><>::
 ::res://skills/::1720300441
 ElementSkill.cs::CSharpScript::-1::1720300441::0::1::::<><>::
 HealSkill.cs::CSharpScript::-1::1720300441::0::1::::<><>::

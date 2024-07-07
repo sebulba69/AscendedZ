@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.currency.rewards
 {
-    public partial class UpgradeShard : Currency
+    public class PartyCoin : Currency
     {
-        public UpgradeShard()
+        public PartyCoin()
         {
-            this.Name = "Upgrade Shard";
-            this.Icon = SkillAssets.UPGRADESHARD_ICON;
+            Name = SkillAssets.PARTY_COIN_ICON;
+            Icon = Name;
         }
     }
 }

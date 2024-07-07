@@ -155,7 +155,7 @@ namespace AscendedZ
 
         // Currency Icons
         public static readonly string VORPEX_ICON = "Vorpex";
-        public static readonly string UPGRADESHARD_ICON = "Upgrade Shard";
+        public static readonly string PARTY_COIN_ICON = "Party Coins";
 
         public static readonly System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>> ICONS = new System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>>()
         {
@@ -174,7 +174,7 @@ namespace AscendedZ
             [PASS_ICON] = new KeyValuePair<int, int>(352, 128),
             [RETREAT_ICON] = new KeyValuePair<int, int>(288, 576),
             [VORPEX_ICON] = new KeyValuePair<int, int>(448, 1376),
-            [UPGRADESHARD_ICON] = new KeyValuePair<int, int>(320, 1440),
+            [PARTY_COIN_ICON] = new KeyValuePair<int, int>(320, 608),
             [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
             [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600),
             [QUEST_ICON] = new KeyValuePair<int, int>(480, 352),

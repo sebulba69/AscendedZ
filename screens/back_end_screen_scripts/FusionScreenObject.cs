@@ -48,9 +48,6 @@ namespace AscendedZ.screens.back_end_screen_scripts
                         return false;
                 }
 
-                int upgradeShardYield = (DisplayFusion.Material1.UpgradeShardYield + DisplayFusion.Material2.UpgradeShardYield) * (DisplayFusion.Fusion.Grade + 1);
-                upgradeShardYield += (10 * DisplayFusion.Fusion.Skills.Count);
-                
                 if (FusionIndex == _fusions.Count)
                     FusionIndex = _fusions.Count - 1;
 
@@ -60,15 +57,9 @@ namespace AscendedZ.screens.back_end_screen_scripts
                 var newMember = PartyMemberGenerator.MakePartyMember(DisplayFusion.Fusion.DisplayName);
 
                 newMember.MaxHP = (DisplayFusion.Material1.MaxHP + DisplayFusion.Material2.MaxHP) / 2;
-
                 newMember.Level = (DisplayFusion.Material1.Level + DisplayFusion.Material2.Level) / 2;
-
                 newMember.VorpexValue = (DisplayFusion.Material1.VorpexValue + DisplayFusion.Material2.VorpexValue) / 2;
-
                 newMember.Skills.AddRange(DisplayFusion.Fusion.Skills);
-
-                newMember.UpgradeShardYield = upgradeShardYield;
-
                 mainPlayer.ReserveMembers.Add(newMember);
 
                 _fusions.Remove(DisplayFusion);

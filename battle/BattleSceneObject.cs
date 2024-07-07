@@ -47,7 +47,7 @@ namespace AscendedZ.battle
         public List<BattlePlayer> DeadPlayers { get => Players.FindAll(p => p.HP == 0); }
         public List<Enemy> AliveEnemies { get => Enemies.FindAll(e => e.HP > 0); }
         public int TurnCount { get => _turnCount; }
-        public int Tier { get => _tier; }
+
         public BattleSceneObject(int tier)
         {
             _tier = tier;

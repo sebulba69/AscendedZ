@@ -243,19 +243,6 @@ namespace AscendedZ
                     partyMembers.Add(PartyMemberGenerator.MakePartyMember(name));
             }
 
-
-            // scale price based on tier
-            if(tier > 10)
-            {
-                int remainder = tier % 5;
-                int numPriceSpikes = (tier - remainder) / 5;
-                foreach (var member in partyMembers)
-                {
-                    member.BoostShopCost(numPriceSpikes);
-                }
-                
-            }
-
             return partyMembers;
         }
     

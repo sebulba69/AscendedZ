@@ -35,7 +35,7 @@ namespace AscendedZ.screens.upgrade_screen
             int cost = _selected.VorpexValue;
             Currency vorpex = _wallet.Currency[SkillAssets.VORPEX_ICON];
 
-            if (vorpex.Amount >= cost && !_selected.GradeCapHit)
+            if (vorpex.Amount >= cost)
             {
                 vorpex.Amount -= cost;
                 _selected.LevelUp();

@@ -44,7 +44,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
                 SelectedEntity.Skills.Clear();
 
             SelectedEntity = AvailableMembers[index];
-            Cost = (int)(SelectedEntity.ShopCost * 1.5);
+            Cost = SelectedEntity.Skills.Count + 1;
 
             List<ISkill> skills = SkillDatabase.GetAllGeneratableSkills(_gameObject.MaxTier);
             AvailableSkills = skills.FindAll(skill => 
@@ -91,7 +91,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
         private void UpdateCost()
         {
-            Cost = SelectedEntity.ShopCost * (int)(SelectedEntity.Skills.Count * 1.25);
+            Cost = SelectedEntity.Skills.Count + 1;
         }
 
         private bool DoesSelectedHaveSkill(int index)

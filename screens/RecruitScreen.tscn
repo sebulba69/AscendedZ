@@ -6,8 +6,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_plgda"]
 atlas = ExtResource("3_ynfuk")
-region = Rect2(448, 1372, 32, 32)
-margin = Rect2(0, -5, 0, 0)
+region = Rect2(320, 608, 32, 32)
 
 [node name="NewRecruit" type="CenterContainer"]
 texture_filter = 2
