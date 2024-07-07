@@ -91,8 +91,13 @@ public partial class MainScreen : Transitionable2DScene
     private void DoEmbarkButtonCheck(GameObject gameObject)
     {
         var embarkButton = this.GetNode<Button>("%EmbarkButton");
+        Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
         if (gameObject.PartyMemberObtained)
+        {
             embarkButton.Visible = true;
+            upgradeButton.Visible = true;
+        }
+            
     }
 
     private void SwapOverworldTracks(MusicObject musicPlayer)
@@ -133,9 +138,6 @@ public partial class MainScreen : Transitionable2DScene
         Button dungeonCrawlButton = this.GetNode<Button>("%DungeonCrawlButton");
 
         var progressFlagObject = gameObject.ProgressFlagObject;
-
-        if (tier > TierRequirements.UPGRADE_SCREEN)
-            upgradeButton.Visible = true;
 
         fuseButton.Visible = (tier > TierRequirements.FUSE);
         dungeonCrawlButton.Visible = (tier > 5);

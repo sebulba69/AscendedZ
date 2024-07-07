@@ -21,7 +21,7 @@ public partial class RewardScreen : Control
 		int tier = PersistentGameObjects.GameObjectInstance().Tier;
         _rewards = new List<Currency>() 
         {
-            new Vorpex() { Amount = tier },
+            new Vorpex() { Amount = tier * 2 },
             new PartyCoin() { Amount = 1 }
         };
 

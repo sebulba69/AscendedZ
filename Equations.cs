@@ -27,7 +27,10 @@ namespace AscendedZ
         {
             try
             {
-                hp += 5 + level;
+                int boost = level / 2;
+                if (boost == 0)
+                    boost = 1;
+                hp += (2 + boost);
             }
             catch (Exception)
             {

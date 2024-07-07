@@ -74,6 +74,8 @@ namespace AscendedZ.skills
         public void LevelUp()
         {
             int boost = Level;
+            if (boost == 0)
+                boost = 1;
 
             try
             {

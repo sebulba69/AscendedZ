@@ -15,23 +15,11 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
     {
         public UniqueEnemyFactory()
         {
-            _functionDictionary[EnemyNames.CattuTDroni] = MakeCattuTDroni;
             _functionDictionary[EnemyNames.Harbinger] = MakeHarbinger;
             _functionDictionary[EnemyNames.Elliot_Onyx] = MakeElliot;
             _functionDictionary[EnemyNames.Sable_Vonner] = MakeVonner;
             _functionDictionary[EnemyNames.Cloven_Umbra] = MakeUmbra;
             _functionDictionary[EnemyNames.Ashen_Ash] = MakeAshen;
-        }
-
-        /// <summary>
-        /// Mini-bosses.
-        /// </summary>
-        /// <returns></returns>
-        public Enemy MakeCattuTDroni()
-        {
-            Enemy droni = new CattuTDroni();
-            droni.Name = $"[STN] {droni.Name}";
-            return droni;
         }
 
         public Enemy MakeHarbinger()

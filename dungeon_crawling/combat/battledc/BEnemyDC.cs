@@ -16,6 +16,7 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
         
         public BEnemyDC(int tier, StatsDC statsDC) : base(statsDC)
         {
+            Stats.HP = _baseHP + (tier * 2);
         }
     }
 }

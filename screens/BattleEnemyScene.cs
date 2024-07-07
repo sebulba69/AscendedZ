@@ -18,7 +18,6 @@ public partial class BattleEnemyScene : Node2D
     private Button _backToHomeButton, _retryFloorButton, _continueButton, _changePartyButton;
     private CenterContainer _endBox;
     private bool _uiUpdating = false;
-    private Label _logTurnCount;
 
     private Label _skillName;
     private TextureRect _skillIcon;
@@ -31,7 +30,6 @@ public partial class BattleEnemyScene : Node2D
         this.AddUserSignal("UIUpdated");
 
         _skillName = this.GetNode<Label>("%SkillName");
-        _logTurnCount = this.GetNode<Label>("%LogTurnCount");
         _skillIcon = this.GetNode<TextureRect>("%SkillIcon");
         _skillDisplayIcons = this.GetNode<PanelContainer>("%SkillDisplayIcons");
 
@@ -168,8 +166,6 @@ public partial class BattleEnemyScene : Node2D
 
     private async void _OnUIUpdate(object sender, BattleUIUpdate update)
     {
-        _logTurnCount.Text = $"Log ● Turn {_battleSceneObject.TurnCount}";
-
         // handle battle results if any
         if (update.Result != null)
         {

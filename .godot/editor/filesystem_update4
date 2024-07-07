@@ -51,3 +51,4 @@ res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
 res://screens/PartyBattleDisplayBox.tscn
+res://screens/DungeonCrawlMainScreen.tscn

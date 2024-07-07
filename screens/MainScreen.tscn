@@ -150,12 +150,7 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Fuse"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons/VBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-alignment = 1
-
-[node name="DungeonCrawlButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer3"]
+[node name="DungeonCrawlButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(200, 40)

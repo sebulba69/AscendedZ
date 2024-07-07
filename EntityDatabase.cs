@@ -39,7 +39,7 @@ namespace AscendedZ
             new List<string>(){ EnemyNames.Conlen },
             new List<string>(){ EnemyNames.Liamlas, EnemyNames.Orachar },
             new List<string>(){ EnemyNames.Fastrobren, EnemyNames.Conlen, EnemyNames.Liamlas },
-            new List<string>(){ EnemyNames.CattuTDroni },
+            new List<string>(){ EnemyNames.CattuTDroni, EnemyNames.Orachar, EnemyNames.CattuTDroni  },
             new List<string>(){ EnemyNames.Harbinger }
         };
 
@@ -108,7 +108,9 @@ namespace AscendedZ
             {
                 foreach (string enemyName in TUTORIAL_ENCOUNTERS[tier - 1])
                 {
-                    encounter.Add(_enemyMaker.MakeEnemy(enemyName));
+                    var enemy = _enemyMaker.MakeEnemy(enemyName);
+                    enemy.Boost(tier);
+                    encounter.Add(enemy);
                 }
             }
             else
@@ -140,7 +142,8 @@ namespace AscendedZ
                         {
                             EnemyNames.Liamlas, EnemyNames.Fastrobren,
                             EnemyNames.Thylaf, EnemyNames.Arwig, EnemyNames.Riccman,
-                            EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald 
+                            EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald, 
+                            EnemyNames.CattuTDroni
                         };
                         
                         possibleEncounters.AddRange(randomEncounters);
@@ -203,8 +206,7 @@ namespace AscendedZ
                 foreach (string name in encounterNames)
                 {
                     Enemy enemy = _enemyMaker.MakeEnemy(name);
-                    if(tier >= 10)
-                        enemy.Boost(tier, tier);
+                    enemy.Boost(tier);
                     encounter.Add(enemy);
                 }
             }
@@ -423,8 +425,8 @@ namespace AscendedZ
             // get the boss number
             index++;
 
-            int baseHP = 20;
-            return baseHP * ((index*10)/2);
+            int baseHP = 6;
+            return baseHP * ((index*5)/2);
         }
     }
 }

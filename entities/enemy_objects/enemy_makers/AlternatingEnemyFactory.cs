@@ -21,6 +21,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Liamlas] = MakeLiamlas;
             _functionDictionary[EnemyNames.Fledan] = MakeFledan;
             _functionDictionary[EnemyNames.Walds] = MakeWalds;
+            _functionDictionary[EnemyNames.CattuTDroni] = CattuTDroni;
         }
 
         public Enemy MakeConlen()
@@ -34,6 +35,19 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             conlen.Skills.Add(SkillDatabase.Fire1.Clone());
 
             return conlen;
+        }
+
+        public Enemy CattuTDroni()
+        {
+            var droni = MakeAlternatingEnemy(EnemyNames.CattuTDroni, 8);
+
+            droni.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
+            droni.Resistances.SetResistance(ResistanceType.Rs, Elements.Elec);
+
+            droni.Skills.Add(SkillDatabase.Elec1.Clone());
+            droni.Skills.Add(SkillDatabase.Ice1.Clone());
+
+            return droni;
         }
 
         public Enemy MakeOrachar()

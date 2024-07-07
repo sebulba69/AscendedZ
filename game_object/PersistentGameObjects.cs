@@ -69,7 +69,7 @@ namespace AscendedZ.game_object
 
             var mainPlayer = _instance.MainPlayer;
 
-            var vorpex = new Vorpex() { Amount = 1 };
+            var vorpex = new Vorpex() { Amount = 0 };
             var partyCoin = new PartyCoin() { Amount = 1 };
             mainPlayer.Wallet.Currency.Add(vorpex.Name, vorpex);
             mainPlayer.Wallet.Currency.Add(partyCoin.Name, partyCoin);

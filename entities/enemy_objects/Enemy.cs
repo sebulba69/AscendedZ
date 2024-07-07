@@ -26,11 +26,15 @@ namespace AscendedZ.entities.enemy_objects
             _rng = new Random();
         }
 
-        public void Boost(int tier, int boost)
+        public void Boost(int tier)
         {
-            MaxHP *= tier;
+            int boost = (tier+1) / 2;
+            if(boost == 0)
+                boost = 1;
 
-            for (int i = 0; i < tier; i++)
+            MaxHP *= boost;
+
+            for (int i = 0; i < boost; i++)
             {
                 foreach (ISkill skill in Skills)
                 {

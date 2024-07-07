@@ -52,6 +52,11 @@ namespace AscendedZ
         /// </summary>
         public static int TIER5_STRONGER_ENEMIES = 40;
 
+        public static int TIER2_ELEMENTALSPELLS = 50;
+        public static int TIER3_ELEMENTALSPELLS = 100;
+        public static int TIER4_ELEMENTALSPELLS = 200;
+        public static int TIER5_ELEMENTALSPELLS = 300;
+
         /// <summary>
         /// 100 - Tier I can reasonably expect players to have ascended characters
         /// </summary>

@@ -21,7 +21,7 @@ namespace AscendedZ
         public static readonly string MAIN_EMBARK_DISPLAY = "res://screens/PartyMemberDisplay.tscn";
         public static readonly string BATTLE_SCENE = "res://screens/BattleEnemyScene.tscn";
         public static readonly string MENU = "res://screens/MenuScene.tscn";
-        public static readonly string UPGRADE = "res://screens/UpgradeScreen.tscn";
+        public static readonly string UPGRADE = "res://screens/upgrade_screen/UpgradeScreen.tscn";
         public static readonly string PARTY_CHANGE = "res://screens/PartyEditScreen.tscn";
         public static readonly string FUSION = "res://screens/FusionScreen.tscn";
 
