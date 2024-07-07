@@ -1,0 +1,169 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq85vpodhjeg6"]
+
+[ext_resource type="Script" path="res://dungeon_crawling/scenes/weapon_armory/ArmoryScene.cs" id="1_0vpyw"]
+[ext_resource type="PackedScene" uid="uid://crkhtpvpyk08n" path="res://dungeon_crawling/weapon_grid/WeaponGridDisplay.tscn" id="1_hypvj"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1_pef3v"]
+
+[node name="ArmoryScene" type="CenterContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0vpyw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ReserveLabel" type="Label" parent="VBoxContainer/PanelContainer"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Equip weapons to your grid with matching elements for extra damage!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="EquipUnequipLevel" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Reserves" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+layout_mode = 2
+
+[node name="ReserveLabel" type="Label" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/PanelContainer"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Reserves
+"
+horizontal_alignment = 1
+
+[node name="ReserveWeaponList" type="ItemList" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+allow_search = false
+
+[node name="SmeltWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Smelt into Equipped Weapon"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PrimaryWeaponContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 232)
+layout_mode = 2
+
+[node name="TotalHPPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TotalHPLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/TotalHPPanel"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.584314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 25
+text = "12"
+horizontal_alignment = 1
+
+[node name="TotalAttackPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="TotalAttackLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/TotalAttackPanel"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.447059, 0.482353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 25
+text = "12"
+horizontal_alignment = 1
+
+[node name="Equipped" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
+layout_mode = 2
+
+[node name="EquippedLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/PanelContainer"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Equipped
+"
+horizontal_alignment = 1
+
+[node name="EquippedWeaponList" type="ItemList" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+allow_search = false
+
+[node name="SetPrimaryWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Set Selected as Primary"
+
+[node name="WeaponGridDisplay" parent="VBoxContainer/HBoxContainer/HBoxContainer" instance=ExtResource("1_hypvj")]
+unique_name_in_owner = true
+layout_mode = 2

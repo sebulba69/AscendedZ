@@ -23,7 +23,7 @@ public partial class WeaponDisplay : VBoxContainer
 		
 		_weaponIcon.SetIcon(weapon.Icon);
 		_elementIcon.SetIcon(elementIcon);
-		_hp.Text = weapon.HP.ToString();
-		_attack.Text = weapon.Attack.ToString();
+		_hp.Text = $"{weapon.HP} HP";
+		_attack.Text = $"{weapon.Attack} ATK";
 	}
 }

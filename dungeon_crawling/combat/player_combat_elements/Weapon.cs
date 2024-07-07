@@ -21,6 +21,8 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
         public long Attack { get; set; }
         public int HitRate { get; set; } // the number of hits you get
         public double CritChance { get; set; }
+        public int XP { get; set; }
+        public int XPRequired { get; set; }
 
         public Weapon()
         {
@@ -28,6 +30,31 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
             HitRate = 1;
             CritChance = 0.15;
             Equipped = false;
+            XP = 0;
+            XPRequired = 10;
+        }
+
+        public void AddXP(int xp)
+        {
+            XP += xp;
+            while (XP > XPRequired) 
+            {
+                XP = XP - XPRequired;
+                LevelUp();
+            }
+        }
+
+        private void LevelUp()
+        {
+            if (Level + 1 > LEVEL_CAP)
+                return;
+
+            double percentageIncrease = 0.1;
+
+            Level++;
+            HP += (long)(HP * percentageIncrease) + 1;
+            Attack += (long)(Attack * percentageIncrease) + 1;
+            XPRequired += 10;
         }
     }
 }

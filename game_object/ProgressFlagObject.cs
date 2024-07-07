@@ -9,6 +9,6 @@ namespace AscendedZ.game_object
     public class ProgressFlagObject
     {
         public bool CustomPartyMembersViewed { get; set; }
-        public bool DungeonCrawlWeaponObtained { get; set; }
+        public bool PrimaryWeaponEquippedForFirstTime { get; set; }
     }
 }

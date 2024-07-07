@@ -30,17 +30,17 @@ public partial class DungeonCrawlMainScreen : Transitionable2DScene
         this.GetTree().CreateTween().TweenProperty(_audioStreamPlayer, "volume_db", -10, 0.5);
 
         Button menuButton = this.GetNode<Button>("%MenuButton");
-        Button armoryButton = this.GetNode<Button>("%ArmoryButton");
+        Button weaponShopBtn = this.GetNode<Button>("%WeaponShopBtn");
         Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button endlessDungeonButton = this.GetNode<Button>("%ReturnButton");
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
-        armoryButton.MouseEntered += () => { _tooltip.Text = "Spin the wheel of Bucilicus for weapons."; };
+        weaponShopBtn.MouseEntered += () => { _tooltip.Text = "Pull weapons from the randomized Bucilicus."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Journey into the Labyribuce."; };
 		endlessDungeonButton.MouseEntered += () => { _tooltip.Text = "Resume your journey and Ascend."; };
 
         menuButton.Pressed += () => DisplayScene(Scenes.MENU);
-        armoryButton.Pressed += () => DisplayScene(Scenes.DUNGEON_WEAPON_GACHA_SCREEN);
+        weaponShopBtn.Pressed += () => DisplayScene(Scenes.DUNGEON_WEAPON_GACHA_SCREEN);
         embarkButton.Pressed += () => TransitionScenes(Scenes.DUNGEON_CRAWL, _audioStreamPlayer);
 		endlessDungeonButton.Pressed += () => TransitionScenes(Scenes.MAIN, _audioStreamPlayer);
 
@@ -66,7 +66,7 @@ public partial class DungeonCrawlMainScreen : Transitionable2DScene
         var pFlags = PersistentGameObjects.GameObjectInstance().ProgressFlagObject;
 
         var embarkButton = this.GetNode<Button>("%EmbarkButton");
-        if (pFlags.DungeonCrawlWeaponObtained)
+        if (pFlags.PrimaryWeaponEquippedForFirstTime)
         {
             embarkButton.Visible = true;
         }
