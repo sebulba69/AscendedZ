@@ -12,6 +12,7 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
     {
         private const int LEVEL_CAP = 999;
 
+        public bool PrimaryWeapon { get; set; }
         public bool Equipped { get; set; }
         public int Level { get; set; }
         public string Icon { get; set; }
@@ -30,6 +31,7 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
             HitRate = 1;
             CritChance = 0.15;
             Equipped = false;
+            PrimaryWeapon = false;
             XP = 0;
             XPRequired = 10;
         }
@@ -55,6 +57,18 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
             HP += (long)(HP * percentageIncrease) + 1;
             Attack += (long)(Attack * percentageIncrease) + 1;
             XPRequired += 10;
+        }
+
+        public string GetArmoryDisplayString()
+        {
+            string displayString = $"L.{Level} {Type} {Element} ({XP}/{XPRequired})\n{HP} HP ● {Attack} ATK\nHitx{HitRate} ● {CritChance * 100}% CRT";
+
+            if (PrimaryWeapon && Equipped)
+                displayString = "[PW] " + displayString;
+            else if (Equipped)
+                displayString = "[E] " + displayString;
+
+            return displayString;
         }
     }
 }

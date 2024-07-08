@@ -27,7 +27,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_pef3v")
 theme_override_font_sizes/font_size = 20
-text = "Equip weapons to your grid with matching elements for extra damage!"
+text = "Right-click to equip/unequip weapons from your Reserves. Try matching all weapon elements for a damage buce-st!"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -38,6 +38,7 @@ layout_mode = 2
 
 [node name="Reserves" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel"]
 layout_mode = 2
+alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
 layout_mode = 2
@@ -56,7 +57,6 @@ horizontal_alignment = 1
 [node name="ReserveWeaponList" type="ItemList" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
 unique_name_in_owner = true
 texture_filter = 2
-custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -64,6 +64,12 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("1_pef3v")
 theme_override_font_sizes/font_size = 20
 allow_search = false
+max_text_lines = 3
+auto_height = true
+text_overrun_behavior = 0
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2i(48, 48)
 
 [node name="SmeltWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
 unique_name_in_owner = true
@@ -153,7 +159,10 @@ theme_override_fonts/font = ExtResource("1_pef3v")
 theme_override_font_sizes/font_size = 20
 allow_search = false
 
-[node name="SetPrimaryWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
+layout_mode = 2
+
+[node name="SetPrimaryWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
@@ -163,6 +172,17 @@ theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("1_pef3v")
 theme_override_font_sizes/font_size = 20
 text = "Set Selected as Primary"
+
+[node name="BackBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Back"
 
 [node name="WeaponGridDisplay" parent="VBoxContainer/HBoxContainer/HBoxContainer" instance=ExtResource("1_hypvj")]
 unique_name_in_owner = true

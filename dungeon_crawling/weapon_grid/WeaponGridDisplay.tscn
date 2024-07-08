@@ -7,6 +7,8 @@ texture_filter = 2
 custom_minimum_size = Vector2(608, 704)
 offset_right = 248.0
 offset_bottom = 296.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_obesq")
 
 [node name="WeaponGridContainer" type="GridContainer" parent="."]

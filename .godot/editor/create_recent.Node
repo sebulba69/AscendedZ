@@ -1,8 +1,8 @@
-Button
 VBoxContainer
+HBoxContainer
+Button
 PanelContainer
 ItemList
-HBoxContainer
 CenterContainer
 TextureRect
 Control

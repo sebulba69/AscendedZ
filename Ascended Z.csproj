@@ -7,7 +7,4 @@
     <Compile Remove="screens\Dungeons\**" />
     <EmbeddedResource Remove="screens\Dungeons\**" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="dungeon_crawling\scenes\" />
-  </ItemGroup>
 </Project>

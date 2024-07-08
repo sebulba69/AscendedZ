@@ -190,7 +190,6 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_gacha
         {
             Weapon spear = MakeClaw(tier);
 
-            
             spear.Type = WeaponType.Spear;
             spear.Icon = _weaponIconValuePairs[spear.Type];
             spear.HitRate = 1;

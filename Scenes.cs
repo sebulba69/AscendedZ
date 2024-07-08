@@ -51,6 +51,7 @@ namespace AscendedZ
 
         // dungeon crawling
         public static readonly string DUNGEON_MAIN = "res://dungeon_crawling/scenes/DungeonCrawlMainScreen.tscn";
+        public static readonly string DUNGEON_CRAWL_ARMORY = "res://dungeon_crawling/scenes/weapon_armory/ArmoryScene.tscn";
         public static readonly string DUNGEON_WEAPON_DISPLAY = "res://dungeon_crawling/weapon_grid/WeaponDisplay.tscn";
         public static readonly string DUNGEON_COMBAT = "res://dungeon_crawling/combat/combat_scenes/DungeonCombat.tscn";
         public static readonly string DUNGEON_CRAWL = "res://dungeon_crawling/combat/combat_scenes/DungeonScreen.tscn";
