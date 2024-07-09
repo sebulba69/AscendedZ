@@ -26,9 +26,8 @@ public partial class DungeonCombat : Node2D
 
     public void Initialize(GBBattlePlayer player, BEnemyDC enemy)
 	{
-		/*
 		_bdcSystem = new BDCSystem(player, enemy);
-		_playerScene.InitializeEntityValues(player.Stats.HP, player.Stats.MP, player.Image);
-        _enemyScene.InitializeEntityValues(enemy.Stats.HP, enemy.Stats.MP, enemy.Image);*/
+		_playerScene.InitializeEntityValues(player.HP, player.Image);
+        _enemyScene.InitializeEntityValues(enemy.HP, enemy.Image);
     }
 }

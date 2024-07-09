@@ -74,26 +74,12 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
 
         public long GetTotalHP()
         {
-            long total = _player.WeaponGrid.GetHP();
-
-            if (_player.PrimaryWeapon != null)
-            {
-                total += _player.PrimaryWeapon.HP;
-            }
-
-            return total;
+            return _player.GetTotalHP();
         }
 
         public long GetTotalAtk()
         {
-            long total = _player.WeaponGrid.GetAttack();
-
-            if (_player.PrimaryWeapon != null)
-            {
-                total += _player.PrimaryWeapon.Attack;
-            }
-
-            return total;
+            return _player.GetTotalAtk();
         }
 
         public Weapon GetPrimaryWeapon()

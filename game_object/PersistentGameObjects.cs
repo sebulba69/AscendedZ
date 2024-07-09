@@ -1,4 +1,5 @@
 using AscendedZ.currency.rewards;
+using AscendedZ.dungeon_crawling.combat.player_combat_elements;
 using AscendedZ.entities;
 using Godot;
 using System;
@@ -60,15 +61,18 @@ namespace AscendedZ.game_object
                 MainPlayer = new MainPlayer 
                 {
                     Name = name,
-                    Image = image
+                    Image = image,
+                    DungeonPlayer = new GBPlayer() { Image = image, Name = name }
                 },
                 Tier = 1,
-                MaxTier = 1
+                TierDC = 1,
+                MaxTier = 1,
+                MaxTierDC = 1
             };
 
             var mainPlayer = _instance.MainPlayer;
 
-            var vorpex = new Vorpex() { Amount = 0 };
+            var vorpex = new Vorpex() { Amount = 1 };
             var partyCoin = new PartyCoin() { Amount = 1 };
             var dellencoin = new Dellencoin() { Amount = 10 };
 

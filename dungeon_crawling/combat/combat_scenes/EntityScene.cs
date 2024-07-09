@@ -62,10 +62,9 @@ namespace AscendedZ.dungeon_crawling.combat.combat_scenes
             }
         }
 
-        public void InitializeEntityValues(BigInteger hp, BigInteger mp, string pic)
+        public void InitializeEntityValues(long hp, string pic)
         {
             _hp.Value = 100;
-
             _hpl.Text = hp.ToString();
             _entityPicture.Texture = ResourceLoader.Load<Texture2D>(pic);
         }

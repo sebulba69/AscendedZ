@@ -34,9 +34,6 @@ namespace AscendedZ.entities
 
             if (Party == null)
                 Party = new PlayerParty();
-
-            if (DungeonPlayer == null)
-                DungeonPlayer = new GBPlayer();
         }
 
         /// <summary>

@@ -39,6 +39,7 @@ public partial class DungeonScreen : Node2D
     private Camera2D _camera;
     private AudioStreamPlayer _audioStreamPlayer;
     private GameObject _gameObject;
+    private TextureRect _background;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -46,20 +47,13 @@ public partial class DungeonScreen : Node2D
 		_tiles = this.GetNode<Marker2D>("%Tiles");
         _player = this.GetNode<DungeonEntity>("%Player");
         _camera = this.GetNode<Camera2D>("%Camera2D");
+        _background = this.GetNode<TextureRect>("%Background");
         _audioStreamPlayer = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
 
         _gameObject = PersistentGameObjects.GameObjectInstance();
-        int tier = _gameObject.TierDC;
-        string track = MusicAssets.GetDungeonTrackDC(tier);
         _gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);
 
         _player.SetGraphic(_gameObject.MainPlayer.Image);
-        _gameObject.MusicPlayer.PlayMusic(track);
-
-        _dungeon = new Dungeon(tier);
-        _dungeon.Generate();
-
-        _dungeon.TileEventTriggered += OnTileEventTriggeredAsync;
 
         StartDungeon();
     }
@@ -103,6 +97,13 @@ public partial class DungeonScreen : Node2D
 
     private void StartDungeon()
     {
+        string track = MusicAssets.GetDungeonTrackDC(_gameObject.TierDC);
+        _gameObject.MusicPlayer.PlayMusic(track);
+
+        _dungeon = new Dungeon(_gameObject.TierDC);
+        _dungeon.Generate();
+        _dungeon.TileEventTriggered += OnTileEventTriggeredAsync;
+
         for (int c = 0; c < _tiles.GetChildCount(); c++)
         {
             var child = _tiles.GetChild(c);
@@ -282,9 +283,9 @@ public partial class DungeonScreen : Node2D
 
                 combatScene.Initialize(player, mainEncounterTile.Encounter);
 
-                _camera.Enabled = false;
+                SetEncounterVisibility(false);
                 await ToSignal(combatScene, "tree_exited");
-                _camera.Enabled = true;
+                SetEncounterVisibility(true);
 
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
                 break;
@@ -307,5 +308,12 @@ public partial class DungeonScreen : Node2D
 
         // on completion of the event
         _processingEvent = false;
+    }
+
+    private void SetEncounterVisibility(bool visible)
+    {
+        _tiles.Visible = visible;
+        _camera.Enabled = visible;
+        _player.Visible = visible;
     }
 }

@@ -40,19 +40,5 @@ namespace AscendedZ.dungeon_crawling.databases
 
             return enemy;
         }
-
-        private StatsDC MakeEnemyStats()
-        {
-            StatsDC statsDC = new StatsDC() 
-            {
-                HP = 10,
-                MP = 999
-            };
-
-            for (int l = 1; l < _tier; l++)
-                statsDC.LevelUp();
-
-            return statsDC;
-        }
     }
 }

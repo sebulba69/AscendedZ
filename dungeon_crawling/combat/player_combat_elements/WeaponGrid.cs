@@ -30,6 +30,42 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
             return count;
         }
 
+        public long GetHP(Weapon primaryWeapon) 
+        {
+            double percentage = 0;
+            long hp = GetHP();
+
+            foreach(var weapon in Weapons)
+            {
+                if(weapon.Element == primaryWeapon.Element)
+                {
+                    percentage += 0.15;
+                }
+            }
+
+            hp = hp + (long)(hp * percentage);
+
+            return hp;
+        }
+
+        public long GetAttack(Weapon primaryWeapon)
+        {
+            double percentage = 0;
+            long atk = GetAttack();
+
+            foreach (var weapon in Weapons)
+            {
+                if (weapon.Element == primaryWeapon.Element)
+                {
+                    percentage += 0.15;
+                }
+            }
+
+            atk = atk + (long)(atk * percentage);
+
+            return atk;
+        }
+
         public long GetHP()
         {
             return Weapons.Sum(w => w.HP);

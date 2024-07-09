@@ -55,3 +55,4 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
+res://dungeon_crawling/combat/combat_scenes/DungeonScreen.tscn

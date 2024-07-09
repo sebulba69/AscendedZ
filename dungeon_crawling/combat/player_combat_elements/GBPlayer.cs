@@ -23,12 +23,48 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
             ShopLevel = 1;
         }
 
+        public long GetTotalHP()
+        {
+            long total;
+
+            if (PrimaryWeapon != null)
+            {
+                total = WeaponGrid.GetHP(PrimaryWeapon);
+                total += PrimaryWeapon.HP;
+            }
+            else
+            {
+                total = WeaponGrid.GetHP();
+            }
+
+            return total;
+        }
+
+        public long GetTotalAtk()
+        {
+            long total;
+
+            if (PrimaryWeapon != null)
+            {
+                total = WeaponGrid.GetAttack(PrimaryWeapon);
+                total += PrimaryWeapon.Attack;
+            }
+            else
+            {
+                total = WeaponGrid.GetAttack();
+            }
+
+            return total;
+        }
+
         public GBBattlePlayer MakeGBBattlePlayer()
         {
             GBBattlePlayer gBBattlePlayer = new GBBattlePlayer() 
             {
                 Name = Name,
-                Image = Image
+                Image = Image,
+                MaxHP = GetTotalHP(),
+                Attack = GetTotalAtk()
             };
 
             return gBBattlePlayer;

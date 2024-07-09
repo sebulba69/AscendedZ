@@ -10,14 +10,17 @@ script = ExtResource("1_7745h")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = 360.0
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_qvvl2")
@@ -25,13 +28,10 @@ texture = ExtResource("3_qvvl2")
 [node name="Tiles" type="Marker2D" parent="."]
 unique_name_in_owner = true
 
-[node name="FightCamera" type="Camera2D" parent="."]
-unique_name_in_owner = true
-anchor_mode = 0
-enabled = false
-
 [node name="Player" parent="." instance=ExtResource("2_p1r2d")]
 unique_name_in_owner = true
+z_index = 3
+texture_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 unique_name_in_owner = true

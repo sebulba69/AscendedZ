@@ -88,7 +88,11 @@ public partial class WeaponGachaScreen : Control
 	private void ClaimBtnPressed()
 	{
 		_weaponGachaObject.ClaimWeapons();
-		_weaponGachaDisplay.GetChildren().Clear();
+		var children = _weaponGachaDisplay.GetChildren();
+
+		foreach(var child in children)
+			_weaponGachaDisplay.RemoveChild(child);
+
 		ResetButtons();
 
 		PersistentGameObjects.Save();
