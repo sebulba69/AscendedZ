@@ -34,5 +34,10 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
 
             Reserves.Add(weapon);
         }
+
+        internal void Remove(Weapon reserve)
+        {
+            Reserves.Remove(reserve);
+        }
     }
 }

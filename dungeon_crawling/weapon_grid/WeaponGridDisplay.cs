@@ -22,6 +22,11 @@ public partial class WeaponGridDisplay : PanelContainer
 
 	public void Clear()
 	{
-		_weaponGridContainer.GetChildren().Clear();
+		var children = _weaponGridContainer.GetChildren();
+
+		foreach(var child in children)
+		{
+			_weaponGridContainer.RemoveChild(child);
+		}
 	}
 }

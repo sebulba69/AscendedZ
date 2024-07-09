@@ -7,24 +7,24 @@
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\scenes\\weapon_armory\\armoryscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\combat\\player_combat_elements\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\combat\\player_combat_elements\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\scenes\\weapon_armory\\armoryobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\scenes\\weapon_armory\\armoryobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\entitydisplaybox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\entitydisplaybox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\weapon_grid\\weapondisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\weapon_grid\\weapondisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\weapon_grid\\weapongriddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\weapon_grid\\weapongriddisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\scenes\\weapon_armory\\armoryobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\scenes\\weapon_armory\\armoryobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\combat\\player_combat_elements\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\combat\\player_combat_elements\\weapon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\weapon_grid\\weapondisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\weapon_grid\\weapondisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\scenes\\dungeoncrawlmainscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\weapon_armory\\ArmoryScene.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\weapon_armory\\ArmoryScene.cs",
               "RelativeToolTip": "dungeon_crawling\\scenes\\weapon_armory\\ArmoryScene.cs",
-              "ViewState": "AQIAADkAAAAAAAAAAAAowE4AAAA5AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEcAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-07T22:25:09.642Z",
               "IsPinned": true,
@@ -69,7 +69,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "WeaponDisplay.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\weapon_grid\\WeaponDisplay.cs",
               "RelativeDocumentMoniker": "dungeon_crawling\\weapon_grid\\WeaponDisplay.cs",
@@ -77,25 +77,24 @@
               "RelativeToolTip": "dungeon_crawling\\weapon_grid\\WeaponDisplay.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T05:34:59.402Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T05:34:59.402Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "WeaponGridDisplay.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\weapon_grid\\WeaponGridDisplay.cs",
               "RelativeDocumentMoniker": "dungeon_crawling\\weapon_grid\\WeaponGridDisplay.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\weapon_grid\\WeaponGridDisplay.cs",
               "RelativeToolTip": "dungeon_crawling\\weapon_grid\\WeaponGridDisplay.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBEAAABtAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBQAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-08T05:33:23.804Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Weapon.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\combat\\player_combat_elements\\Weapon.cs",
               "RelativeDocumentMoniker": "dungeon_crawling\\combat\\player_combat_elements\\Weapon.cs",
@@ -103,18 +102,17 @@
               "RelativeToolTip": "dungeon_crawling\\combat\\player_combat_elements\\Weapon.cs",
               "ViewState": "AQIAACoAAAAAAAAAAAAiwD8AAAB9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T05:25:21.603Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T05:25:21.603Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "ArmoryObject.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\weapon_armory\\ArmoryObject.cs",
               "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\weapon_armory\\ArmoryObject.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\weapon_armory\\ArmoryObject.cs",
               "RelativeToolTip": "dungeon_crawling\\scenes\\weapon_armory\\ArmoryObject.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAkAAAA",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAswDUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-08T05:15:45.744Z",
               "EditorCaption": ""
@@ -129,8 +127,7 @@
               "RelativeToolTip": "dungeon_crawling\\scenes\\DungeonCrawlMainScreen.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAgwCYAAABuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T04:52:57.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T04:52:57.753Z"
             }
           ]
         }

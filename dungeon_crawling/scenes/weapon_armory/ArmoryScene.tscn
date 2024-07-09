@@ -93,42 +93,6 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 232)
 layout_mode = 2
 
-[node name="TotalHPPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TotalHPLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/TotalHPPanel"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.584314, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 25
-text = "12"
-horizontal_alignment = 1
-
-[node name="TotalAttackPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
-texture_filter = 2
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-
-[node name="TotalAttackLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/TotalAttackPanel"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.447059, 0.482353, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 25
-text = "12"
-horizontal_alignment = 1
-
 [node name="Equipped" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -159,10 +123,7 @@ theme_override_fonts/font = ExtResource("1_pef3v")
 theme_override_font_sizes/font_size = 20
 allow_search = false
 
-[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
-layout_mode = 2
-
-[node name="SetPrimaryWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer"]
+[node name="SetPrimaryWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
@@ -173,7 +134,59 @@ theme_override_fonts/font = ExtResource("1_pef3v")
 theme_override_font_sizes/font_size = 20
 text = "Set Selected as Primary"
 
-[node name="BackBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
+layout_mode = 2
+
+[node name="EquippedLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/PanelContainer2"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "TOTAL"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
+layout_mode = 2
+
+[node name="TotalHPPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TotalHPLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer/TotalHPPanel"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.584314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 25
+text = "12"
+horizontal_alignment = 1
+
+[node name="TotalAttackPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="TotalAttackLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer/TotalAttackPanel"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.447059, 0.482353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 25
+text = "12"
+horizontal_alignment = 1
+
+[node name="BackBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2

@@ -1,11 +1,11 @@
 res://default_env.tres
-res://dungeon_crawling/scenes/weapon_gacha/WeaponGachaScreen.tscn
-res://misc_icons/IconOutline.gdshader
-res://misc_icons/Icon.tscn
-res://dungeon_crawling/weapon_grid/WeaponGridDisplay.tscn
-res://dungeon_crawling/weapon_grid/WeaponDisplay.tscn
 res://dungeon_crawling/scenes/DungeonCrawlMainScreen.tscn
-res://screens/MainScreen.tscn
+res://misc_icons/IconOutline.gdshader
+res://dungeon_crawling/scenes/weapon_armory/ArmoryScene.tscn
+res://dungeon_crawling/scenes/weapon_gacha/WeaponGachaScreen.tscn
+res://screens/EmbarkScreen.tscn
+res://screens/PartyEditScreen.tscn
+res://dungeon_crawling/weapon_grid/WeaponGridDisplay.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/combat/combat_scenes/DungeonCombat.cs
@@ -19,6 +19,7 @@ res://dungeon_crawling/combat/combat_scenes/gb_battle_ui/GBStatusList.cs
 res://dungeon_crawling/combat/combat_scenes/PlayerScene.cs
 res://dungeon_crawling/combat/combat_scenes/TileScene.cs
 res://dungeon_crawling/scenes/DungeonCrawlMainScreen.cs
+res://dungeon_crawling/scenes/weapon_armory/ArmoryScene.cs
 res://dungeon_crawling/scenes/weapon_gacha/WeaponGachaScreen.cs
 res://dungeon_crawling/weapon_grid/WeaponDisplay.cs
 res://dungeon_crawling/weapon_grid/WeaponGridContainer.cs
@@ -54,11 +55,3 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://dungeon_crawling/scenes/weapon_armory/ArmoryScene.tscn
-res://screens/MainPlayerContainer.tscn
-res://screens/AscendedTextbox.tscn
-res://screens/BattleEnemyScene.tscn
-res://screens/ActionMenu.tscn
-res://screens/EmbarkScreen.tscn
-res://screens/PartyEditScreen.tscn
-res://dungeon_crawling/scenes/weapon_armory/ArmoryScene.cs
