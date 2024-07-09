@@ -66,10 +66,10 @@ public partial class DungeonCrawlMainScreen : Transitionable2DScene
 
     private void DoEmbarkButtonCheck(GameObject gameObject)
     {
-        var pFlags = PersistentGameObjects.GameObjectInstance().ProgressFlagObject;
+        var dPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer.DungeonPlayer;
 
         var embarkButton = this.GetNode<Button>("%EmbarkButton");
-        if (pFlags.PrimaryWeaponEquippedForFirstTime)
+        if (dPlayer.PrimaryWeapon != null)
         {
             embarkButton.Visible = true;
         }

@@ -22,7 +22,7 @@ namespace AscendedZ.dungeon_crawling.databases
 
         public BEnemyDC MakeEnemy()
         {
-            BEnemyDC enemy = new BEnemyDC(_tier, MakeEnemyStats());
+            BEnemyDC enemy = new BEnemyDC(_tier);
 
             if(_tier < 10)
             {

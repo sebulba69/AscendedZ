@@ -1,4 +1,5 @@
 ﻿using AscendedZ.dungeon_crawling.combat.player_combat_elements;
+using AscendedZ.game_object;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,8 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
                 grid.Weapons.Add(reserve);
                 reserve.Equipped = true;
             }
+
+            PersistentGameObjects.Save();
         }
 
         public void SetPrimaryWeapon(int index)
@@ -51,6 +54,8 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
                 equipped.PrimaryWeapon = true;
                 _player.WeaponGrid.Weapons.Remove(equipped);
                 _player.PrimaryWeapon = equipped;
+
+                PersistentGameObjects.Save();
             }
         }
 
@@ -62,6 +67,8 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
             {
                 _player.Reserves.Remove(reserve);
                 equipped.AddXP(1);
+
+                PersistentGameObjects.Save();
             }
         }
 
