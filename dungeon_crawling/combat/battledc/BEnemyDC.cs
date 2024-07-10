@@ -10,14 +10,15 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
     /// <summary>
     /// DC stands for dungoen crawl
     /// </summary>
-    public class BEnemyDC
+    public class BEnemyDC : GBEntity
     {
-        public string Image { get; set; }
-        public long HP { get; set; }
+        private const long BASEHP = 10;
+        private const long GROWTH_RATE = 2;
 
         public BEnemyDC(int tier)
         {
-            HP = tier * 10;
+            MaxHP = BASEHP * (long)Math.Pow(GROWTH_RATE, tier - 1);
+            HP = MaxHP;
         }
     }
 }

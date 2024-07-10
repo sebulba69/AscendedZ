@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ciu3w6wi6o5c0"]
+[gd_scene load_steps=9 format=3 uid="uid://ciu3w6wi6o5c0"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/DungeonCombat.cs" id="1_np2vi"]
 [ext_resource type="PackedScene" uid="uid://c8yut6sbxwnlh" path="res://dungeon_crawling/combat/combat_scenes/PlayerScene.tscn" id="2_k5gqc"]
+[ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/ShakeCamera.cs" id="2_u6tal"]
 [ext_resource type="Texture2D" uid="uid://dww5loey3m4kp" path="res://cg_backgrounds/bg00701.jpg" id="2_y0pdy"]
 [ext_resource type="PackedScene" uid="uid://1nha1wpboqro" path="res://dungeon_crawling/combat/combat_scenes/gb_battle_ui/GBSkillList.tscn" id="5_4w3kn"]
 [ext_resource type="PackedScene" uid="uid://c8mcrxad8jfaw" path="res://dungeon_crawling/combat/combat_scenes/EnemyScene.tscn" id="5_7m5n4"]
@@ -10,6 +11,11 @@
 
 [node name="DungeonCombat" type="Node2D"]
 script = ExtResource("1_np2vi")
+
+[node name="ShakeCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+script = ExtResource("2_u6tal")
 
 [node name="CombatBg" type="TextureRect" parent="."]
 texture_filter = 1
@@ -56,14 +62,18 @@ offset_right = 236.0
 offset_bottom = 196.5
 
 [node name="GbSkillList" parent="CombatBg/PlayerMenu/PlayerSkillStatusContainer" instance=ExtResource("5_4w3kn")]
+unique_name_in_owner = true
 layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="GBPlayerStatusList" parent="CombatBg/PlayerMenu/PlayerSkillStatusContainer" instance=ExtResource("6_ipgid")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="GbPlayerMoveQueue" parent="CombatBg/PlayerMenu" instance=ExtResource("6_vfckq")]
+visible = false
 offset_left = 247.0
 offset_top = -103.0
 offset_right = 297.0
@@ -81,10 +91,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(2, 2)
 metadata/_edit_lock_ = true
 
 [node name="GBEnemyStatusList" parent="CombatBg/Enemy" instance=ExtResource("6_ipgid")]
+unique_name_in_owner = true
+visible = false
 offset_top = 483.0
 offset_right = 576.0
 offset_bottom = 533.0

@@ -8,6 +8,8 @@ public partial class AscendedYesNoWindow : CenterContainer
 	private Button _noButton;
 	private bool _buttonPressed;
 
+	public EventHandler<bool> AnswerSelected;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -43,6 +45,8 @@ public partial class AscendedYesNoWindow : CenterContainer
 		_buttonPressed = true;
 
 		this.EmitSignal("AnswerSelected", isYesButton);
-		this.QueueFree();
+		AnswerSelected?.Invoke(null, isYesButton);
+
+        this.QueueFree();
 	}
 }

@@ -62,6 +62,16 @@ namespace AscendedZ
         public static ElementSkill Dark5 { get => CreateTier5ElementSkill("Unending Depths", Elements.Dark); }
 
 
+        private static readonly Dictionary<Elements, ElementSkill> Tier1ElementSkills = new Dictionary<Elements, ElementSkill>()
+        {
+            { Elements.Elec, Elec1 },
+            { Elements.Fire, Fire1 },
+            { Elements.Ice, Ice1 },
+            { Elements.Light, Light1 },
+            { Elements.Wind, Wind1 },
+            { Elements.Dark, Dark1 }
+        };
+
         private static readonly Dictionary<Elements, ElementSkill> Tier2ElementSkills = new Dictionary<Elements, ElementSkill>() 
         {
             { Elements.Elec, Elec2 },
@@ -102,20 +112,46 @@ namespace AscendedZ
             { Elements.Dark, Dark5 }
         };
 
+        /// <summary>
+        /// Get Skill assuming Tier is base 1 -> 5
+        /// </summary>
+        /// <param name="tier"></param>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static ElementSkill GetSkillByElement(int tier, Elements element)
+        {
+            tier--;
+
+            ElementSkill[] eSkills =
+            {
+                Tier1ElementSkills[element],
+                Tier2ElementSkills[element],
+                Tier3ElementSkills[element],
+                Tier4ElementSkills[element],
+                Tier5ElementSkills[element]
+            };
+
+            return eSkills[tier];
+        }
+
         public static ElementSkill GetNextTierOfElementSkill(int skillTier, ElementSkill skill)
         {
-            switch (skillTier)
+            ElementSkill[] eSkills = 
+            { 
+                skill, 
+                Tier2ElementSkills[skill.Element],
+                Tier3ElementSkills[skill.Element],
+                Tier4ElementSkills[skill.Element],
+                Tier5ElementSkills[skill.Element]
+            };
+
+            try
             {
-                case 1:
-                    return Tier2ElementSkills[skill.Element];
-                case 2:
-                    return Tier3ElementSkills[skill.Element];
-                case 3:
-                    return Tier4ElementSkills[skill.Element];
-                case 4:
-                    return Tier5ElementSkills[skill.Element];
-                default:
-                    return skill;
+                return eSkills[skillTier];
+            }
+            catch (Exception) 
+            { 
+                return skill; 
             }
         }
 

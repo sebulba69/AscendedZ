@@ -36,6 +36,11 @@ namespace AscendedZ.dungeon_crawling.databases
                 };
 
                 enemy.Image = CharacterImageAssets.GetImagePath(tier1_9Images[_rng.Next(tier1_9Images.Count)]);
+
+                if (string.IsNullOrEmpty(enemy.Image)) 
+                {
+                    enemy = MakeEnemy();
+                }
             }
 
             return enemy;

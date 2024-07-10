@@ -27,7 +27,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_pef3v")
 theme_override_font_sizes/font_size = 20
-text = "Right-click to equip/unequip weapons from your Reserves. Try matching all weapon elements for a damage buce-st!"
+text = "Right-click to equip/unequip weapons from your Reserves. Left-click an equipped weapon to select it for smelting. Try matching all weapon elements for a damage buce-st!"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -54,10 +54,16 @@ text = "Reserves
 "
 horizontal_alignment = 1
 
-[node name="ReserveWeaponList" type="ItemList" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+custom_minimum_size = Vector2(550, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ReserveWeaponList" type="ItemList" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/ScrollContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -66,10 +72,18 @@ theme_override_font_sizes/font_size = 20
 allow_search = false
 max_text_lines = 3
 auto_height = true
-text_overrun_behavior = 0
 same_column_width = true
-icon_mode = 0
-fixed_icon_size = Vector2i(48, 48)
+
+[node name="SetPrimaryWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Set Selected as Primary"
 
 [node name="SmeltWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
 unique_name_in_owner = true
@@ -82,6 +96,73 @@ theme_override_fonts/font = ExtResource("1_pef3v")
 theme_override_font_sizes/font_size = 20
 text = "Smelt into Equipped Weapon"
 
+[node name="Equipped" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/Equipped"]
+layout_mode = 2
+
+[node name="EquippedLabel" type="Label" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/Equipped/PanelContainer2"]
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "TOTAL"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/Equipped"]
+layout_mode = 2
+columns = 2
+
+[node name="TotalHPPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/Equipped/HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TotalHPLabel" type="Label" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/Equipped/HBoxContainer/TotalHPPanel"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.584314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 25
+text = "12"
+horizontal_alignment = 1
+
+[node name="TotalAttackPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/Equipped/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TotalAttackLabel" type="Label" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/Equipped/HBoxContainer/TotalAttackPanel"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.447059, 0.482353, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 25
+text = "12"
+horizontal_alignment = 1
+
+[node name="BackBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Back"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
@@ -92,110 +173,6 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 232)
 layout_mode = 2
-
-[node name="Equipped" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
-layout_mode = 2
-
-[node name="EquippedLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/PanelContainer"]
-texture_filter = 2
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 20
-text = "Equipped
-"
-horizontal_alignment = 1
-
-[node name="EquippedWeaponList" type="ItemList" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 20
-allow_search = false
-
-[node name="SetPrimaryWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 20
-text = "Set Selected as Primary"
-
-[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
-layout_mode = 2
-
-[node name="EquippedLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/PanelContainer2"]
-texture_filter = 2
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 20
-text = "TOTAL"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
-layout_mode = 2
-
-[node name="TotalHPPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TotalHPLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer/TotalHPPanel"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.584314, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 25
-text = "12"
-horizontal_alignment = 1
-
-[node name="TotalAttackPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer"]
-texture_filter = 2
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-
-[node name="TotalAttackLabel" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped/HBoxContainer/TotalAttackPanel"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.447059, 0.482353, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 25
-text = "12"
-horizontal_alignment = 1
-
-[node name="BackBtn" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer/VBoxContainer/Equipped"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 20
-text = "Back"
 
 [node name="WeaponGridDisplay" parent="VBoxContainer/HBoxContainer/HBoxContainer" instance=ExtResource("1_hypvj")]
 unique_name_in_owner = true

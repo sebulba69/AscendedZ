@@ -7,95 +7,57 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using static Godot.HttpRequest;
 using Vector2 = Godot.Vector2;
 
 namespace AscendedZ.dungeon_crawling.combat.combat_scenes
 {
+    public delegate void Shake();
+
     public partial class EntityScene : Control
     {
+        public Shake Shake;
+
         private EffectAnimation _effect;
         private AudioStreamPlayer _shakeSfx;
-        private Vector2 _originalPosition;
-        private float _x;
         private ProgressBar _hp, _mp;
         private Label _hpl, _mpl;
         private GridContainer _statuses;
-        private ShakeParameters _shakeParameters;
-        private RandomNumberGenerator _randomNumberGenerator;
         private TextureRect _entityPicture;
+        private CenterContainer _effectContainer;
 
         protected void ComposeUI(
             ProgressBar hp, Label hpLabel, GridContainer statusGrid,
-            EffectAnimation effectAnimation, AudioStreamPlayer shakeSfx, TextureRect entityPicture)
+            EffectAnimation effectAnimation, AudioStreamPlayer shakeSfx, 
+            TextureRect entityPicture, CenterContainer effectContainer)
         {
-            _shakeParameters = new ShakeParameters();
-            _randomNumberGenerator = new RandomNumberGenerator();
-            _randomNumberGenerator.Randomize();
             _hp = hp;
             _hpl = hpLabel;
             _statuses = statusGrid;
             _effect = effectAnimation;
             _shakeSfx = shakeSfx;
             _entityPicture = entityPicture;
-            _x = -1;
-            _originalPosition = new Vector2(this.Position.X, 0);
+            _effectContainer = effectContainer;
         }
 
-
-        /// <summary>
-        /// We're going to use Process to reset the strength of our Screen Shake back to 0.
-        /// </summary>
-        /// <param name="delta"></param>
-        public override void _Process(double delta)
-        {
-            if (_shakeParameters.ShakeValue > 0)
-            {
-                _shakeParameters.ShakeValue = (float)Mathf.Lerp((double)_shakeParameters.ShakeValue, 0, (double)_shakeParameters.ShakeDecay * delta);
-                float x = _randomNumberGenerator.RandfRange(-_shakeParameters.ShakeValue, _shakeParameters.ShakeValue);
-                float y = _randomNumberGenerator.RandfRange(-_shakeParameters.ShakeValue, _shakeParameters.ShakeValue);
-                this.Position = new Vector2(_x + x, y);
-            }
-            else
-            {
-                _x = this.Position.X;
-                this.Position = new Vector2(_x, _originalPosition.Y);
-            }
-        }
-
-        public void InitializeEntityValues(long hp, string pic)
+        public void InitializeEntityValues(GBEntity entity)
         {
             _hp.Value = 100;
-            _hpl.Text = hp.ToString();
-            _entityPicture.Texture = ResourceLoader.Load<Texture2D>(pic);
+            _hpl.Text = entity.HP.ToString();
+            _entityPicture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
+
+            entity.PlayEffect += PlayEffect;
+            entity.UpdateHP += UpdateHPDisplay;
+            entity.PlayDamageNumberAnimation += PlayDamageNumberAnimation;
         }
 
-        public void UpdateDisplay(BDCUpdateWrapper wrapper)
+        public void UpdateHPDisplay(int hpPercentage, long hp)
         {
-            _hp.Value = (double)wrapper.HPPercentage;
-            _hpl.Text = wrapper.HP.ToString();
-
-            // ... show statuses ... //
-            // clear old statuses
-            foreach (var child in _statuses.GetChildren())
-            {
-                _statuses.RemoveChild(child);
-                child.QueueFree();
-            }
-
-            /* To be filled out later
-            // place our new, updated statuses on scren
-            var entityStatuses = wrapper.Statuses;
-
-            foreach (var status in entityStatuses)
-            {
-                StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();
-                var statusIcon = ResourceLoader.Load<StatusIcon>(Scenes.STATUS);
-                _statuses.AddChild(statusIcon);
-                statusIcon.SetIcon(statusIconWrapper);
-            }*/
+            _hp.Value = hpPercentage;
+            _hpl.Text = hp.ToString();
         }
 
-        private async Task PlayEffect(string effectName)
+        public async Task PlayEffect(string effectName)
         {
             _effect.Visible = true;
             _effect.PlayAnimation(effectName);
@@ -103,6 +65,19 @@ namespace AscendedZ.dungeon_crawling.combat.combat_scenes
             await ToSignal(_effect, "EffectAnimationCompletedEventHandler");
 
             _effect.Visible = false;
+        }
+
+        public void PlayDamageNumberAnimation(long damage, string resultString)
+        {
+            // play damage sfx
+            Shake();
+            _shakeSfx.Play();
+
+            // play damage number
+            var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate<DamageNumber>();
+            dmgNumber.SetDisplayInfo(new BigInteger(damage), false, resultString);
+
+            _effectContainer.AddChild(dmgNumber);
         }
     }
 }

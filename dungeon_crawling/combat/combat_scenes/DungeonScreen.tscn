@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://86hlflgnxjcc"]
+[gd_scene load_steps=8 format=3 uid="uid://86hlflgnxjcc"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/DungeonScreen.cs" id="1_7745h"]
 [ext_resource type="PackedScene" uid="uid://djlhy6ga7e5t2" path="res://dungeon_crawling/combat/combat_scenes/DungeonEntity.tscn" id="2_p1r2d"]
 [ext_resource type="Texture2D" uid="uid://dww5loey3m4kp" path="res://cg_backgrounds/bg00701.jpg" id="3_qvvl2"]
+[ext_resource type="AudioStream" uid="uid://b3unft7ukkxtf" path="res://effects/effect_sounds/Battle1.ogg" id="4_fit8f"]
+[ext_resource type="PackedScene" uid="uid://cm0ln1sy56au3" path="res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn" id="5_837pb"]
+[ext_resource type="AudioStream" uid="uid://bd6ue8iwjaduk" path="res://effects/effect_sounds/Heal3.ogg" id="5_xyr8c"]
+[ext_resource type="AudioStream" uid="uid://q25xxaiw4e1c" path="res://effects/effect_sounds/Item1.ogg" id="6_mi2s1"]
 
 [node name="DungeonScreen" type="Node2D"]
 script = ExtResource("1_7745h")
@@ -39,3 +43,28 @@ unique_name_in_owner = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 volume_db = -10.0
+
+[node name="EncounterSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_fit8f")
+volume_db = -10.0
+
+[node name="HealSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_xyr8c")
+volume_db = -10.0
+
+[node name="ItemSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_mi2s1")
+volume_db = -10.0
+
+[node name="CrawlUI" type="CanvasLayer" parent="."]
+
+[node name="DungeonCrawlUi" parent="CrawlUI" instance=ExtResource("5_837pb")]
+unique_name_in_owner = true
+offset_right = 105.0
+offset_bottom = 84.0
+
+[node name="Popups" type="CanvasLayer" parent="."]
+unique_name_in_owner = true

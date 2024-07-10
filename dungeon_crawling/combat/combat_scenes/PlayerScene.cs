@@ -14,6 +14,8 @@ using Vector2 = Godot.Vector2;
 
 public partial class PlayerScene : EntityScene
 {
+    private ShakeParameters _shakeParameters = new ShakeParameters();
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -26,7 +28,7 @@ public partial class PlayerScene : EntityScene
 
         var effect = this.GetNode<EffectAnimation>("%EffectSprite");
         var shakeSfx = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
-
-        ComposeUI(hp, hpl, statuses, effect, shakeSfx, playerPic);
+        var effectContainer = this.GetNode<CenterContainer>("%EffectContainer");
+        ComposeUI(hp, hpl, statuses, effect, shakeSfx, playerPic, effectContainer);
     }
 }

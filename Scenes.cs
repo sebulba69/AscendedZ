@@ -57,5 +57,6 @@ namespace AscendedZ
         public static readonly string DUNGEON_CRAWL = "res://dungeon_crawling/combat/combat_scenes/DungeonScreen.tscn";
         public static readonly string DUNGEON_TILE_SCENE = "res://dungeon_crawling/combat/combat_scenes/TileScene.tscn";
         public static readonly string DUNGEON_WEAPON_GACHA_SCREEN = "res://dungeon_crawling/scenes/weapon_gacha/WeaponGachaScreen.tscn";
+        public static readonly string ITEM_COLLECT = "res://dungeon_crawling/scenes/crawl_ui/RandomWeapon.tscn";
     }
 }

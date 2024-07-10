@@ -72,7 +72,7 @@ namespace AscendedZ.game_object
 
             var mainPlayer = _instance.MainPlayer;
 
-            var vorpex = new Vorpex() { Amount = 1 };
+            var vorpex = new Vorpex() { Amount = 0 };
             var partyCoin = new PartyCoin() { Amount = 1 };
             var dellencoin = new Dellencoin() { Amount = 10 };
 

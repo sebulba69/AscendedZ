@@ -18,7 +18,7 @@ public partial class EnemyScene : EntityScene
 
         var effect = this.GetNode<EffectAnimation>("%EffectSprite");
         var shakeSfx = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
-        
-        ComposeUI(hp, hpl, statuses, effect, shakeSfx, enemyPic);
+        var effectContainer = this.GetNode<CenterContainer>("%EffectContainer");
+        ComposeUI(hp, hpl, statuses, effect, shakeSfx, enemyPic, effectContainer);
     }
 }

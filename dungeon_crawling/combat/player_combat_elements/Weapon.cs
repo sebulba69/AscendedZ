@@ -14,6 +14,7 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
 
         public bool PrimaryWeapon { get; set; }
         public bool Equipped { get; set; }
+        public bool SmeltInto { get; set; }
         public int Level { get; set; }
         public string Icon { get; set; }
         public WeaponType Type { get; set; }
@@ -61,12 +62,15 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
 
         public string GetArmoryDisplayString()
         {
-            string displayString = $"L.{Level} {Type} {Element} ({XP}/{XPRequired})\n{HP} HP ● {Attack} ATK\nHitx{HitRate} ● {CritChance * 100}% CRT";
+            string displayString = $"L.{Level} {Type} {Element} ({XP}/{XPRequired})\n{HP} HP ● {Attack} ATK ● Hitx{HitRate} ● {CritChance * 100}% CRT";
 
             if (PrimaryWeapon && Equipped)
                 displayString = "[PW] " + displayString;
             else if (Equipped)
                 displayString = "[E] " + displayString;
+
+            if (SmeltInto)
+                displayString = "[UG] " + displayString;
 
             return displayString;
         }

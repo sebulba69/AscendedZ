@@ -30,7 +30,7 @@ namespace AscendedZ
         /// <summary>
         /// The max tier where we start generating enemies randomly.
         /// </summary>
-        private static readonly int RANDOM_TIER = 6;
+        private static readonly int RANDOM_TIER = 5;
 
         private static EnemyMaker _enemyMaker = new EnemyMaker();
 
@@ -40,7 +40,6 @@ namespace AscendedZ
             new List<string>(){ EnemyNames.Liamlas, EnemyNames.Orachar },
             new List<string>(){ EnemyNames.Fastrobren, EnemyNames.Conlen, EnemyNames.Liamlas },
             new List<string>(){ EnemyNames.CattuTDroni, EnemyNames.Orachar, EnemyNames.Conlen  },
-            new List<string>(){ EnemyNames.Harbinger }
         };
 
         /// <summary>
@@ -48,6 +47,7 @@ namespace AscendedZ
         /// </summary>
         private static readonly List<string> BOSS_ENCOUNTERS = new List<string>
         {
+            EnemyNames.Harbinger,
             EnemyNames.Elliot_Onyx,
             EnemyNames.Sable_Vonner,
             EnemyNames.Cloven_Umbra,
@@ -77,7 +77,7 @@ namespace AscendedZ
         /// A list of indexes that the current tier must be equal to or greater than
         /// to become available in the shop.
         /// </summary>
-        private static readonly int[] SHOP_INDEXES = new int[] { 1, 2, 3, 5, 6, 8 };
+        private static readonly int[] SHOP_INDEXES = new int[] { 1, 2, 3, 5, 11, 13 };
 
         /// <summary>
         /// List based off the element each character is strong to.

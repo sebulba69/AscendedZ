@@ -36,6 +36,7 @@ namespace AscendedZ
             get
             {
                 AssetUtil.GetFilesFromDir(_bossTracks, BOSS_MUSIC);
+                _bossTracks.Insert(0, "res://music/dungeons_tutorial/dungeon5.ogg");
                 return _bossTracks;
             }
         }
@@ -76,17 +77,9 @@ namespace AscendedZ
         public static string GetDungeonTrack(int tier)
         {
             // tiers 5 - 10 have special tracks
-            if(tier < 5)
+            if(tier < 10)
             {
                 return "res://music/dungeons_tutorial/dungeon1-4.ogg";
-            }
-            else if(tier == 5)
-            {
-                return "res://music/dungeons_tutorial/dungeon5.ogg";
-            }
-            else if(tier > 5 && tier <= 9)
-            {
-                return "res://music/dungeons_tutorial/dungeon6-9.ogg";
             }
             else if(tier >= 10)
             {

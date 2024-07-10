@@ -7,14 +7,15 @@ using System;
 
 public partial class MainPlayerContainer : CenterContainer
 {
-	public void InitializePlayerInformation(GameObject gameObject)
+	public void InitializePlayerInformation(GameObject gameObject, bool isDungeonCrawling = false)
 	{
         TextureRect playerPicture = this.GetNode<TextureRect>("%PlayerPicture");
         Label playerName = this.GetNode<Label>("%PlayerNameLabel");
 
         MainPlayer player = gameObject.MainPlayer;
         playerPicture.Texture = ResourceLoader.Load<Texture2D>(player.Image);
-        playerName.Text = $"[T. {gameObject.MaxTier}] {player.Name}";
+        int tier = (isDungeonCrawling) ? gameObject.MaxTierDC : gameObject.MaxTier;
+        playerName.Text = $"[T. {tier}] {player.Name}";
 
         UpdateCurrencyDisplay();
     }

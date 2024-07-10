@@ -12,29 +12,48 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
     public class ArmoryObject
     {
         private GBPlayer _player;
+        private List<Weapon> _fullWeaponList;
+
+        private Weapon _smeltSelect;
 
         public ArmoryObject(GBPlayer player)
         {
             _player = player;
+            _fullWeaponList = new List<Weapon>();
+            SetupWeaponList();
+        }
+
+        private void SetupWeaponList()
+        {
+            _fullWeaponList.Clear();
+
+            if (_player.PrimaryWeapon != null)
+                _fullWeaponList.Add(_player.PrimaryWeapon);
+
+            _fullWeaponList.AddRange(_player.WeaponGrid.Weapons);
+            _fullWeaponList.AddRange(_player.Reserves.Reserves.FindAll(x => !x.Equipped));
         }
 
         public void ChangeGridStatus(int index)
         {
-            var reserve = GetReserves()[index];
+            var reserve = _player.Reserves.Reserves[index];
             var grid = _player.WeaponGrid;
 
             if (reserve.Equipped)
             {
                 if(!reserve.PrimaryWeapon)
                 {
+                    if (_smeltSelect == reserve)
+                        _smeltSelect = null;
+
+                    reserve.SmeltInto = false;
                     grid.Weapons.Remove(reserve);
                     reserve.Equipped = false;
                 }
             }
             else
             {
-                grid.Weapons.Add(reserve);
-                reserve.Equipped = true;
+                grid.Add(reserve);
             }
 
             PersistentGameObjects.Save();
@@ -42,8 +61,8 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
 
         public void SetPrimaryWeapon(int index)
         {
-            var equipped = GetEquipped()[index];
-            if (!equipped.PrimaryWeapon)
+            var equipped = _fullWeaponList[index];
+            if (!equipped.PrimaryWeapon && equipped.Equipped)
             {
                 if (_player.PrimaryWeapon != null)
                 {
@@ -59,15 +78,27 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
             }
         }
 
-        public void SmeltReserveWeapon(int rIndex, int eIndex)
+        public void SetSmelt(int index) 
         {
-            var reserve = GetReserves()[rIndex];
-            var equipped = GetEquipped()[eIndex];
-            if (!reserve.PrimaryWeapon && !reserve.Equipped)
+            var select = _fullWeaponList[index];
+            if (select.Equipped)
+            {
+                if (_smeltSelect != null)
+                    _smeltSelect.SmeltInto = false;
+
+                _smeltSelect = select;
+                _smeltSelect.SmeltInto = true;
+            }
+        }
+
+        public void SmeltReserveWeapon(int rIndex)
+        {
+            var reserve = _fullWeaponList[rIndex];
+            if(_smeltSelect != null && !reserve.PrimaryWeapon && !reserve.Equipped)
             {
                 _player.Reserves.Remove(reserve);
-                equipped.AddXP(1);
-
+                _smeltSelect.AddXP(1);
+                SetupWeaponList();
                 PersistentGameObjects.Save();
             }
         }
@@ -87,14 +118,9 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
             return _player.PrimaryWeapon;
         }
 
-        public List<Weapon> GetEquipped()
+        public List<Weapon> GetWeaponList()
         {
-            return _player.Reserves.Reserves.FindAll(x => x.Equipped);
-        }
-
-        public List<Weapon> GetReserves()
-        {
-            return _player.Reserves.Reserves;
+            return _fullWeaponList;
         }
     }
 }

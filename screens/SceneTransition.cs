@@ -21,11 +21,6 @@ public partial class SceneTransition : CanvasLayer
 	public void PlayFadeOut()
 	{
 		_player.Play("fade_out");
-		_player.AnimationFinished += _OnAnimationFinished;
-	}
-
-	private void _OnAnimationFinished(StringName animation)
-	{
-		this.QueueFree();
+		_player.AnimationFinished += (animationName) => { this.QueueFree(); };
 	}
 }

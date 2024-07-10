@@ -7,18 +7,9 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.dungeon_crawling.combat.battledc
 {
-    public class GBBattlePlayer
+    public class GBBattlePlayer : GBEntity
     {
-        private long _mhp;
-
         public string Name { get; set; }
-        public string Image { get; set; }
-        public long MaxHP 
-        {
-            get { return _mhp; }
-            set { _mhp = value; HP = _mhp; } 
-        }
-        public long HP { get; set; }
         public long Attack { get; set; }
         public Elements Element { get; set; }
         public int HitRate { get; set; }

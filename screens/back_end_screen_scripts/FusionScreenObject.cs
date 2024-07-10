@@ -50,9 +50,9 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
                 var newMember = PartyMemberGenerator.MakePartyMember(DisplayFusion.Fusion.DisplayName);
 
-                newMember.MaxHP = (DisplayFusion.Material1.MaxHP + DisplayFusion.Material2.MaxHP) / 2;
+                newMember.MaxHP = ((DisplayFusion.Material1.MaxHP + DisplayFusion.Material2.MaxHP) / 2) + (newMember.FusionGrade * 5);
                 newMember.Level = (DisplayFusion.Material1.Level + DisplayFusion.Material2.Level) / 2;
-                newMember.VorpexValue = (int)((DisplayFusion.Material1.VorpexValue + DisplayFusion.Material2.VorpexValue) / 1.25);
+                newMember.VorpexValue = (int)((DisplayFusion.Material1.VorpexValue + DisplayFusion.Material2.VorpexValue) / 2);
                 newMember.Skills.AddRange(DisplayFusion.Fusion.Skills);
                 mainPlayer.ReserveMembers.Add(newMember);
 

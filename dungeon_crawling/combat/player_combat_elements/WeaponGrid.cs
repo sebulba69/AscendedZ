@@ -15,6 +15,15 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
             Weapons = new List<Weapon>();
         }
 
+        public void Add(Weapon weapon)
+        {
+            if (Weapons.Count == 9)
+                return;
+
+            weapon.Equipped = true;
+            Weapons.Add(weapon);
+        }
+
         public int GetWeaponCountThatMatchesElement(Elements element)
         {
             int count = 0;

@@ -43,7 +43,7 @@ public partial class TileScene : Node2D
 
     public void SetGraphic(string graphic)
     {
-        if (graphic.Equals(""))
+        if (string.IsNullOrEmpty(graphic))
             return;
 
         _graphic.Visible = true;

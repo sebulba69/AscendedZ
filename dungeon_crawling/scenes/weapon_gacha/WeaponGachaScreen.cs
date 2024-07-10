@@ -100,6 +100,7 @@ public partial class WeaponGachaScreen : Control
 
     private async void GenerateWeapons(int number)
     {
+		_claimBtn.Disabled = true;
         var weapons = _weaponGachaObject.GenerateWeapons(number);
         _ownedDellencoin.Text = $"{_weaponGachaObject.GetDellenCoinsOwned()} D$";
         foreach (var weapon in weapons)
@@ -107,7 +108,8 @@ public partial class WeaponGachaScreen : Control
             var display = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_WEAPON_DISPLAY).Instantiate<WeaponDisplay>();
             _weaponGachaDisplay.AddChild(display);
             display.Initialize(weapon);
-            await Task.Delay(500);
+            await Task.Delay(250);
         }
+		_claimBtn.Disabled = false;
     }
 }

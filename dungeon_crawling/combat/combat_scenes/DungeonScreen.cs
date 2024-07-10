@@ -3,7 +3,10 @@ using AscendedZ.currency;
 using AscendedZ.dungeon_crawling.backend;
 using AscendedZ.dungeon_crawling.backend.TileEvents;
 using AscendedZ.dungeon_crawling.backend.Tiles;
+using AscendedZ.dungeon_crawling.combat.battledc;
+using AscendedZ.entities.battle_entities;
 using AscendedZ.game_object;
+using AscendedZ.screens;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -30,6 +33,7 @@ public partial class DungeonScreen : Node2D
     private UITile _currentScene;
     private bool _onMainPath;
     private bool _processingEvent;
+    private bool _endingScene;
 
     private TileScene _currentSceneOLD;
 
@@ -37,9 +41,12 @@ public partial class DungeonScreen : Node2D
     private HashSet<int> _addedScenes;
     private int _currentIndex;
     private Camera2D _camera;
-    private AudioStreamPlayer _audioStreamPlayer;
+    private AudioStreamPlayer _audioStreamPlayer, _encounterSfxPlayer, _healSfxPlayer, _itemSfxPlayer;
     private GameObject _gameObject;
     private TextureRect _background;
+    private DungeonCrawlUI _crawlUI;
+    private GBBattlePlayer _battlePlayer;
+    private CanvasLayer _popup;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -49,17 +56,25 @@ public partial class DungeonScreen : Node2D
         _camera = this.GetNode<Camera2D>("%Camera2D");
         _background = this.GetNode<TextureRect>("%Background");
         _audioStreamPlayer = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
+        _encounterSfxPlayer = this.GetNode<AudioStreamPlayer>("%EncounterSfxPlayer");
+        _healSfxPlayer = this.GetNode<AudioStreamPlayer>("%HealSfxPlayer");
+        _itemSfxPlayer = this.GetNode<AudioStreamPlayer>("%ItemSfxPlayer");
+        _crawlUI = this.GetNode<DungeonCrawlUI>("%DungeonCrawlUi");
+        _popup = this.GetNode<CanvasLayer>("%Popups");
 
         _gameObject = PersistentGameObjects.GameObjectInstance();
         _gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);
-
+        _battlePlayer = _gameObject.MainPlayer.DungeonPlayer.MakeGBBattlePlayer();
         _player.SetGraphic(_gameObject.MainPlayer.Image);
-
+        
         StartDungeon();
     }
 
     public override void _Input(InputEvent @event)
     {
+        if (_endingScene)
+            return;
+
         if (_processingEvent)
             return;
 
@@ -84,36 +99,54 @@ public partial class DungeonScreen : Node2D
         }
     }
 
+    private void SetCrawlValues()
+    {
+        var dp = _gameObject.MainPlayer.DungeonPlayer;
+        _crawlUI.SetValues(_gameObject.TierDC, 
+            _battlePlayer.HP, 
+            _battlePlayer.MaxHP, 
+            _gameObject.MainPlayer.Wallet.Currency[SkillAssets.DELLENCOIN].Amount, 
+            dp.Reserves.GetReserveString());
+    }
+
     private void MoveDirection(UITile tile, Direction direction)
     {
         if(tile != null)
         {
             _currentScene = tile;
-            _player.Position = _currentScene.Scene.Position;
-            _dungeon.MoveDirection(direction);
-            _onMainPath = _dungeon.CurrentTile.IsMainTile;
+            _processingEvent = true;
+
+            var tween = CreateTween();
+            tween.TweenProperty(_player, "position", _currentScene.Scene.Position, 0.25);
+            tween.Finished += () => 
+            {
+                _processingEvent = false;
+                _dungeon.MoveDirection(direction);
+                _onMainPath = _dungeon.CurrentTile.IsMainTile;
+            };
+
         }
     }
 
     private void StartDungeon()
     {
+        SetCrawlValues();
+
         string track = MusicAssets.GetDungeonTrackDC(_gameObject.TierDC);
         _gameObject.MusicPlayer.PlayMusic(track);
-
+        _currentScene = null;
         _dungeon = new Dungeon(_gameObject.TierDC);
         _dungeon.Generate();
         _dungeon.TileEventTriggered += OnTileEventTriggeredAsync;
 
-        for (int c = 0; c < _tiles.GetChildCount(); c++)
+        foreach(var child in _tiles.GetChildren())
         {
-            var child = _tiles.GetChild(c);
-            child.QueueFree();
             _tiles.RemoveChild(child);
         }
 
         _currentScene = MakeNewUITile();
         _onMainPath = true;
-
+        _player.Position = _currentScene.Scene.Position;
         DrawNextTile(_dungeon.CurrentTile.GetDirection());
     }
 
@@ -262,11 +295,15 @@ public partial class DungeonScreen : Node2D
         switch (id)
         {
             case TileEventId.Item:
-                ItemEvent itemEvent = (ItemEvent)tileEvent;
-                ItemTile itemTile = itemEvent.Tile;
-                // get the item from the tile
-                // play a little jingle :)
-                // show what you got
+                var randomWeapon = ResourceLoader.Load<PackedScene>(Scenes.ITEM_COLLECT).Instantiate<RandomWeapon>();
+                _itemSfxPlayer.Play();
+
+                _crawlUI.Visible = false;
+                _popup.AddChild(randomWeapon);
+
+                await ToSignal(randomWeapon, "tree_exited");
+                SetCrawlValues();
+                _crawlUI.Visible = true;
                 _currentScene.Scene.TurnOffGraphic();
                 break;
 
@@ -277,22 +314,37 @@ public partial class DungeonScreen : Node2D
                 // put up battle scene <-- handle rewards there
 
                 var combatScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_COMBAT).Instantiate<DungeonCombat>();
-                this.AddChild(combatScene);
+                var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
 
-                var player = _gameObject.MainPlayer.DungeonPlayer.MakeGBBattlePlayer();
+                this.AddChild(transition);
 
-                combatScene.Initialize(player, mainEncounterTile.Encounter);
+                _encounterSfxPlayer.Play();
+
+                transition.PlayFadeIn();
+                await ToSignal(transition.Player, "animation_finished");
 
                 SetEncounterVisibility(false);
-                await ToSignal(combatScene, "tree_exited");
-                SetEncounterVisibility(true);
 
+                this.AddChild(combatScene);
+                combatScene.Initialize(_battlePlayer, mainEncounterTile.Encounter);
+
+                transition.PlayFadeOut();
+                await ToSignal(transition.Player, "animation_finished");
+
+                await ToSignal(combatScene, "tree_exited");
+
+                SetEncounterVisibility(true);
+                SetCrawlValues();
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
                 break;
 
             case TileEventId.Heal:
                 // heal some amount of HP/MP
-
+                double percent = _battlePlayer.MaxHP * 0.15;
+                long hp = (long)(_battlePlayer.HP + percent);
+                _battlePlayer.Heal(hp);
+                _healSfxPlayer.Play();
+                SetCrawlValues();
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
                 break;
 
@@ -300,8 +352,65 @@ public partial class DungeonScreen : Node2D
                 // bring up the shop scene
                 break;
 
+            case TileEventId.Blacksmith:
+                _tiles.Visible = false;
+                _crawlUI.Visible = false;
+                var armory = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL_ARMORY).Instantiate<ArmoryScene>();
+
+                _popup.AddChild(armory);
+
+                await ToSignal(armory, "tree_exited");
+
+                var battlePlayer = _gameObject.MainPlayer.DungeonPlayer.MakeGBBattlePlayer();
+                battlePlayer.HP = _battlePlayer.HP;
+                if (battlePlayer.HP > battlePlayer.MaxHP)
+                    battlePlayer.HP = battlePlayer.MaxHP;
+
+                _battlePlayer = battlePlayer;
+                _tiles.Visible = true;
+                _crawlUI.Visible = true;
+                SetCrawlValues();
+
+                break;
+
             case TileEventId.Exit:
                 // handle dungeon end stuff (do yes/no box)
+                _endingScene = true;
+                var popupWindow = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP).Instantiate<AscendedYesNoWindow>();
+                _popup.AddChild(popupWindow);
+                popupWindow.SetDialogMessage("Ascend?");
+                popupWindow.AnswerSelected += async (sender, isYesSelected) => 
+                {
+                    if(isYesSelected)
+                    {
+                        var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
+                        _popup.AddChild(rewards);
+                        rewards.InitializeGranblueTierRewards();
+                        _itemSfxPlayer.Play();
+                        await ToSignal(rewards, "tree_exited");
+                        
+                        var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
+
+                        AddChild(transition);
+                        transition.PlayFadeIn();
+
+                        await ToSignal(transition.Player, "animation_finished");
+
+                        _gameObject.MaxTierDC++;
+                        _gameObject.TierDC++;
+                        StartDungeon();
+
+                        transition.PlayFadeOut();
+                        await ToSignal(transition.Player, "animation_finished");
+                        _endingScene = false;
+                    }
+                    else
+                    {
+                        _endingScene = false;
+                    }
+                };
+
+
                 break;
         }
 
@@ -315,5 +424,7 @@ public partial class DungeonScreen : Node2D
         _tiles.Visible = visible;
         _camera.Enabled = visible;
         _player.Visible = visible;
+        _crawlUI.Visible = visible;
+        _popup.Visible = visible;
     }
 }

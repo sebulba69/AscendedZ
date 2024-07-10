@@ -374,7 +374,7 @@ public partial class BattleEnemyScene : Node2D
 
             var gameObject = PersistentGameObjects.GameObjectInstance();
 
-            if(gameObject.Tier == 5 || gameObject.Tier % 10 == 0)
+            if(gameObject.Tier % 10 == 0)
             {
                 gameObject.MusicPlayer.PlayMusic(MusicAssets.BOSS_VICTORY);
                 gameObject.MusicPlayer.ResetAllTracksAfterBoss();
@@ -387,6 +387,7 @@ public partial class BattleEnemyScene : Node2D
 
                 var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
                 this.GetTree().Root.AddChild(rewardScene);
+                rewardScene.InitializeSMTRewards();
                 await ToSignal(rewardScene, "tree_exited");
 
                 ChangeEndScreenVisibilityOnly(true);
