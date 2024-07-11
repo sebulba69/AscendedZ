@@ -22,7 +22,7 @@ public partial class DungeonCrawlMainScreen : Transitionable2DScene
         _mainPlayerContainer = this.GetNode<MainPlayerContainer>("%MainPlayerContainer");
         _audioStreamPlayer = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
         _tooltip = this.GetNode<Label>("%Tooltip");
-		_mainPlayerContainer.InitializePlayerInformation(gameObject);
+		_mainPlayerContainer.InitializePlayerInformation(gameObject, true);
 
         _audioStreamPlayer.VolumeDb = -80;
 		gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);

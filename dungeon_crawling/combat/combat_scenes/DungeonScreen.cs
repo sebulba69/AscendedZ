@@ -25,7 +25,7 @@ public class UITile
     public UITile Right { get; set; }
 }
 
-public partial class DungeonScreen : Node2D
+public partial class DungeonScreen : Transitionable2DScene
 {
     private Marker2D _tiles;
     private DungeonEntity _player;
@@ -67,6 +67,7 @@ public partial class DungeonScreen : Node2D
 
         _floorExitScene.Stay.Pressed += _OnStayButtonPressed;
         _floorExitScene.Continue.Pressed += _OnContinueToNextFloor;
+        _floorExitScene.Back.Pressed += _OnRetreatButtonPressed;
 
         _gameObject = PersistentGameObjects.GameObjectInstance();
         _gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);
@@ -429,6 +430,16 @@ public partial class DungeonScreen : Node2D
         _floorExitScene.Stay.Visible = false;
         _floorExitScene.Visible = false;
         SetEncounterVisibility(true, true);
+    }
+
+    private void _OnRetreatButtonPressed()
+    {
+        if(_floorExitScene.Continue.Visible)
+        {
+            _gameObject.MaxTierDC++;
+        }
+        SetEncounterVisibility(false);
+        TransitionScenes(Scenes.DUNGEON_MAIN, _audioStreamPlayer);
     }
 
     private void SetEncounterVisibility(bool visible, bool keepCamera = false)
