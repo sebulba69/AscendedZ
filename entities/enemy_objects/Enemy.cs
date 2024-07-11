@@ -34,7 +34,7 @@ namespace AscendedZ.entities.enemy_objects
 
             MaxHP *= (int)(boost * 0.75);
 
-            for (int i = 0; i < boost; i++)
+            for (int i = 0; i < (boost/2)+1; i++)
             {
                 foreach (ISkill skill in Skills)
                 {

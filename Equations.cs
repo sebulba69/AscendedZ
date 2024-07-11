@@ -30,7 +30,7 @@ namespace AscendedZ
                 int boost = level / 2;
                 if (boost == 0)
                     boost = 1;
-                hp += (5 + boost);
+                hp += ((level + 1) + boost);
             }
             catch (Exception)
             {

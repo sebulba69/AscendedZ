@@ -42,21 +42,15 @@ namespace AscendedZ.screens.back_end_screen_scripts
                         return false;
                 }
 
+                mainPlayer.ReserveMembers.Add(DisplayFusion.Fusion);
+
+                _fusions.Remove(DisplayFusion);
+
                 if (FusionIndex == _fusions.Count)
                     FusionIndex = _fusions.Count - 1;
 
                 if (FusionIndex < 0)
                     FusionIndex = 0;
-
-                var newMember = PartyMemberGenerator.MakePartyMember(DisplayFusion.Fusion.DisplayName);
-
-                newMember.MaxHP = ((DisplayFusion.Material1.MaxHP + DisplayFusion.Material2.MaxHP) / 2) + (newMember.FusionGrade * 5);
-                newMember.Level = (DisplayFusion.Material1.Level + DisplayFusion.Material2.Level) / 2;
-                newMember.VorpexValue = (int)((DisplayFusion.Material1.VorpexValue + DisplayFusion.Material2.VorpexValue) / 2);
-                newMember.Skills.AddRange(DisplayFusion.Fusion.Skills);
-                mainPlayer.ReserveMembers.Add(newMember);
-
-                _fusions.Remove(DisplayFusion);
 
                 isSuccessful = true;
 
@@ -90,8 +84,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
                         if (!IsFusionRecipeGenerated(reserves[m1], reserves[m2]))
                         {
                             var fusions = EntityDatabase.MakeFusionEntities(reserves[m1], reserves[m2]);
-                            if(fusions.Count > 0)
-                                _fusions.AddRange(fusions);
+                            _fusions.AddRange(fusions);
                         }
                     }
                 }
@@ -120,9 +113,19 @@ namespace AscendedZ.screens.back_end_screen_scripts
         {
             List<ISkill> skills = new List<ISkill>();
 
-            skills.AddRange(DisplayFusion.Material1.Skills);
-            skills.AddRange(DisplayFusion.Material2.Skills);
+            skills.AddRange(PopulateSubFusionList(DisplayFusion.Material1));
+            skills.AddRange(PopulateSubFusionList(DisplayFusion.Material2));
 
+            return skills;
+        }
+
+        private List<ISkill> PopulateSubFusionList(OverworldEntity displayFusion)
+        {
+            List<ISkill> skills = new List<ISkill>();
+            foreach (var skill in displayFusion.Skills)
+            {
+                skills.Add(skill.Clone());
+            }
             return skills;
         }
 
@@ -131,15 +134,22 @@ namespace AscendedZ.screens.back_end_screen_scripts
             List<ISkill> skills = GetFusionMaterialSkills();
             ISkill skill = skills[selected];
             var fusionSkills = DisplayFusion.Fusion.Skills;
+            var searchSkill = fusionSkills.Find((fSkill) => fSkill.BaseName == skill.BaseName);
 
-            if (!fusionSkills.Contains(skill))
+            if (searchSkill == null)
             {
                 if(fusionSkills.Count < DisplayFusion.Fusion.SkillCap)
+                {
+                    for (int f = 0; f < DisplayFusion.Fusion.FusionGrade; f++)
+                        skill.LevelUp();
+
                     fusionSkills.Add(skill);
+                }
+                    
             }
             else
             {
-                fusionSkills.Remove(skill);
+                fusionSkills.Remove(searchSkill);
             }
         }
     }

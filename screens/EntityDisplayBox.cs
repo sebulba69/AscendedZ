@@ -75,8 +75,8 @@ public partial class EntityDisplayBox : PanelContainer
 
         if (wrapper.IsBoss)
         {
-            var bossHP = this.GetNode<HBoxContainer>("%HP");
-            bossHP.Call("InitializeBossHPBar", entity.HP);
+            var bossHP = this.GetNode<BossHPBar>("%HP");
+            bossHP.InitializeBossHPBar(entity.HP);
         }
         else
         {
@@ -100,8 +100,8 @@ public partial class EntityDisplayBox : PanelContainer
         // set HP values
         if (wrapper.IsBoss)
         {
-            var bossHP = this.GetNode<HBoxContainer>("%HP");
-            bossHP.Call("UpdateBossHP", entity.HP);
+            var bossHP = this.GetNode<BossHPBar>("%HP");
+            bossHP.UpdateBossHP(entity.HP);
         }
         else
         {

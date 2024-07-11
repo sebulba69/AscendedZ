@@ -36,7 +36,6 @@ namespace AscendedZ
             get
             {
                 AssetUtil.GetFilesFromDir(_bossTracks, BOSS_MUSIC);
-                _bossTracks.Insert(0, "res://music/dungeons_tutorial/dungeon5.ogg");
                 return _bossTracks;
             }
         }

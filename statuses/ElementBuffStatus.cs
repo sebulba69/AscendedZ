@@ -14,6 +14,7 @@ namespace AscendedZ.statuses
     public class ElementBuffStatus : Status
     {
         protected int _stacks = 1;
+        private int _turnCount;
         private double _baseAmount;
         public Elements BuffElement { get; set; }
         public double Amount { get; set; }
@@ -23,6 +24,7 @@ namespace AscendedZ.statuses
         {
             _baseAmount = 0.15;
             Amount = _baseAmount;
+            _turnCount = 0;
         }
 
         public override void ActivateStatus(BattleEntity owner)
@@ -66,6 +68,10 @@ namespace AscendedZ.statuses
         /// </summary>
         public override void UpdateStatusTurns(BattleEntity entity)
         {
+            _turnCount++;
+
+            if (_turnCount == 2)
+                RemoveStatus = true;
         }
 
         public override StatusIconWrapper CreateIconWrapper()
@@ -74,7 +80,10 @@ namespace AscendedZ.statuses
 
             wrapper.Icon = this.Icon;
             wrapper.Counter = _stacks;
-            wrapper.CounterColor = Colors.White;
+            wrapper.CounterColor = Colors.Green;
+            if (_turnCount == 2)
+                wrapper.CounterColor = Colors.Red;
+
             wrapper.Description = $"Increase damage for {BuffElement} by {Math.Round(Amount*100,1)}%.";
 
             return wrapper;

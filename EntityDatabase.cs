@@ -318,12 +318,29 @@ namespace AscendedZ
             {
                 if (fusionResults.ContainsKey(element))
                 {
-                    possibleFusions.Add(new FusionObject
+                    var fusionObject = new FusionObject
                     {
-                        Fusion = PartyMemberGenerator.MakePartyMember(fusionResults[element]),
                         Material1 = material1,
                         Material2 = material2
-                    });
+                    };
+
+                    var fusion = PartyMemberGenerator.MakePartyMember(fusionResults[element]);
+                    fusion.MaxHP = (material1.MaxHP + material2.MaxHP) / 3;
+                    fusion.MaxHP += fusion.FusionGrade * 10;
+
+                    double percentageOff = fusion.FusionGrade * 0.1;
+                    int discount = (int)(fusion.VorpexValue * percentageOff);
+                    fusion.VorpexValue = (material1.VorpexValue + material2.VorpexValue)/ 2;
+                    fusion.VorpexValue -= discount;
+
+                    int level = (material1.Level + material2.Level)/ 2;
+
+                    for (int l = 0; l < level; l++)
+                        fusion.LevelUp();
+
+                    fusionObject.Fusion = fusion;
+
+                    possibleFusions.Add(fusionObject);
                 }
 
             }
@@ -426,8 +443,9 @@ namespace AscendedZ
             // get the boss number
             index++;
 
-            int baseHP = 6;
-            return baseHP * ((index*5)/2);
+            int baseHP = 10;
+            int startingHP = 10 * index;
+            return (baseHP * ((index*5)/2)) + startingHP;
         }
     }
 }

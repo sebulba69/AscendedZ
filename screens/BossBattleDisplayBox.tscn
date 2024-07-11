@@ -58,19 +58,12 @@ offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
 
-[node name="PanelContainer2" type="PanelContainer" parent="CharacterCtrlNode/Picture"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -75.0
-offset_top = -26.0
-grow_horizontal = 0
-grow_vertical = 0
+[node name="PanelContainer3" type="PanelContainer" parent="CharacterCtrlNode"]
+custom_minimum_size = Vector2(174, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="HPLabel" type="Label" parent="CharacterCtrlNode/Picture/PanelContainer2"]
+[node name="HPLabel" type="Label" parent="CharacterCtrlNode/PanelContainer3"]
 unique_name_in_owner = true
 texture_filter = 2
 use_parent_material = true

@@ -68,3 +68,12 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
+res://screens/BossHPBar.tscn
+res://BackBoxBossHPDC.tres
+res://FrontBoxBossHPDC.tres
+res://screens/APBarStyleBox.tres
+res://BackBoxBossHP.tres
+res://FrontBoxBossHP.tres
+res://screens/BossBattleDisplayBox.tscn
+res://screens/PartyBattleDisplayBox.tscn
+res://screens/EnemyBattleDisplayBox.tscn

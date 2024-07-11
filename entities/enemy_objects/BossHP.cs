@@ -27,34 +27,32 @@ namespace AscendedZ.entities.enemy_objects
         {
             // by default, the max hp per bar is 1k
             _maxHPBarDisplay = MAX_HP_PER_BAR;
+            _bars = 0;
         }
 
-        public void InitializeBossHP(int hp)
+        public void InitializeBossHP(int hp, bool doNotSetMaxHPValue = false)
         {
             _totalHP = hp;
+            _bars = 0;
 
             // if the total HP is less than MAX_HP_PER_BAR, then we
             // will just set up a custom bar with custom HP values
             // there's no need to adjust the algorithm for back colors
-            if(_totalHP < MAX_HP_PER_BAR)
+            if (_totalHP < MAX_HP_PER_BAR && !doNotSetMaxHPValue)
             {
-                _bars = 0;
                 _maxHPBarDisplay = _totalHP;
                 _currentDisplayHP = _totalHP;
             }
             else
             {
-                int remainder = hp % MAX_HP_PER_BAR;
-                int numerator = hp - remainder;
-                _bars = numerator / MAX_HP_PER_BAR;
+                int totalHP = _totalHP;
+                while (totalHP > MAX_HP_PER_BAR)
+                {
+                    _bars++;
+                    totalHP -= MAX_HP_PER_BAR;
+                }
 
-                if (remainder == 0)
-                    _currentDisplayHP = numerator / _bars;
-                else
-                    _currentDisplayHP = remainder;
-
-                if (_currentDisplayHP == MAX_HP_PER_BAR)
-                    _bars--;
+                _currentDisplayHP = totalHP;
             }
 
             SetBarColors();
@@ -71,32 +69,7 @@ namespace AscendedZ.entities.enemy_objects
             }
             else
             {
-                int remainder = hp % MAX_HP_PER_BAR;
-                int numerator = hp - remainder;
-                int bars = numerator / MAX_HP_PER_BAR;
-
-                if(bars == 0)
-                {
-                    _bars = 0;
-                    ChangeHP(hp);
-                }
-                else
-                {
-                    int newHPValue = numerator / bars;
-
-                    if (bars < _bars)
-                    {
-                        _bars = bars - 1;
-                        _currentDisplayHP = newHPValue;
-                    }
-                    else
-                    {
-                        _currentDisplayHP = remainder;
-                    }
-
-                }
-
-                SetBarColors();
+                InitializeBossHP(hp, true);
             }
         }
 
@@ -104,10 +77,12 @@ namespace AscendedZ.entities.enemy_objects
         {
             if(_bars > 0)
             {
-                int fgIndex = _bars % HPFGColors.Length;
+                int fgIndex = (_bars % HPFGColors.Length);
                 int bgIndex = fgIndex - 1;
                 if (bgIndex < 0)
+                {
                     bgIndex = HPFGColors.Length - 1;
+                }
 
                 _fgColor = new Color(HPFGColors[fgIndex]);
                 _bgColor = new Color(HPFGColors[bgIndex]);

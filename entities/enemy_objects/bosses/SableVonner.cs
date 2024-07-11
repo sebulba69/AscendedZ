@@ -92,9 +92,12 @@ namespace AscendedZ.entities.enemy_objects.bosses
                     action.Skill = GetDamage();
                     action.Target = GetPlayerWithWexTo(battleSceneObject, wex);
                     break;
+                case 3:
+                    action.Skill = (_isElec) ? Skills[ELEC] : Skills[FIRE];
+                    action.Target = GetRandomPlayer(battleSceneObject);
+                    break;
                 default:
-                    _phase = 2;
-                    _isElec = !_isElec;
+                    _phase = 3;
                     action = GetNextAction(battleSceneObject);
                     break;
             }
