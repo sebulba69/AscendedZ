@@ -13,8 +13,8 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_gacha
     {
         private Random _random;
 
-        private const long DEFAULT_MIN_HP = 5;
-        private const long DEFAULT_MAX_HP = 10;
+        private const long DEFAULT_MIN_HP = 45;
+        private const long DEFAULT_MAX_HP = 50;
         private const long DEFAULT_MIN_ATK = 10;
         private const long DEFAULT_MAX_ATK = 20;
 

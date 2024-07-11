@@ -432,11 +432,18 @@ public partial class DungeonScreen : Transitionable2DScene
         SetEncounterVisibility(true, true);
     }
 
-    private void _OnRetreatButtonPressed()
+    private async void _OnRetreatButtonPressed()
     {
         if(_floorExitScene.Continue.Visible)
         {
             _gameObject.MaxTierDC++;
+            _crawlUI.Visible = false;
+            _floorExitScene.Visible = false;
+            var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
+            _popup.AddChild(rewards);
+            rewards.InitializeGranblueTierRewards();
+            _itemSfxPlayer.Play();
+            await ToSignal(rewards, "tree_exited");
         }
         SetEncounterVisibility(false);
         TransitionScenes(Scenes.DUNGEON_MAIN, _audioStreamPlayer);

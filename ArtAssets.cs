@@ -166,6 +166,8 @@ namespace AscendedZ
         public static readonly string GREATSWORD_ICON = "Greatsword";
         public static readonly string HAMMER_ICON = "Hammer";
 
+        // GB Statuses
+
         public static readonly System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>> ICONS = new System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>>()
         {
             [FIRE_ICON] = new KeyValuePair<int, int>(0, 128),
