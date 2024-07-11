@@ -77,3 +77,5 @@ res://FrontBoxBossHP.tres
 res://screens/BossBattleDisplayBox.tscn
 res://screens/PartyBattleDisplayBox.tscn
 res://screens/EnemyBattleDisplayBox.tscn
+res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.tscn
+res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.cs

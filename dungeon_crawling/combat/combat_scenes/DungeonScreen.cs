@@ -48,6 +48,8 @@ public partial class DungeonScreen : Node2D
     private GBBattlePlayer _battlePlayer;
     private CanvasLayer _popup;
 
+    private FloorExitScene _floorExitScene;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
@@ -61,6 +63,10 @@ public partial class DungeonScreen : Node2D
         _itemSfxPlayer = this.GetNode<AudioStreamPlayer>("%ItemSfxPlayer");
         _crawlUI = this.GetNode<DungeonCrawlUI>("%DungeonCrawlUi");
         _popup = this.GetNode<CanvasLayer>("%Popups");
+        _floorExitScene = this.GetNode<FloorExitScene>("%FloorExitScene");
+
+        _floorExitScene.Stay.Pressed += _OnStayButtonPressed;
+        _floorExitScene.Continue.Pressed += _OnContinueToNextFloor;
 
         _gameObject = PersistentGameObjects.GameObjectInstance();
         _gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);
@@ -376,41 +382,12 @@ public partial class DungeonScreen : Node2D
             case TileEventId.Exit:
                 // handle dungeon end stuff (do yes/no box)
                 _endingScene = true;
-                var popupWindow = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP).Instantiate<AscendedYesNoWindow>();
-                _popup.AddChild(popupWindow);
-                popupWindow.SetDialogMessage("Ascend?");
-                popupWindow.AnswerSelected += async (sender, isYesSelected) => 
-                {
-                    if(isYesSelected)
-                    {
-                        var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
-                        _popup.AddChild(rewards);
-                        rewards.InitializeGranblueTierRewards();
-                        _itemSfxPlayer.Play();
-                        await ToSignal(rewards, "tree_exited");
-                        
-                        var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
-
-                        AddChild(transition);
-                        transition.PlayFadeIn();
-
-                        await ToSignal(transition.Player, "animation_finished");
-
-                        _gameObject.MaxTierDC++;
-                        _gameObject.TierDC++;
-                        StartDungeon();
-
-                        transition.PlayFadeOut();
-                        await ToSignal(transition.Player, "animation_finished");
-                        _endingScene = false;
-                    }
-                    else
-                    {
-                        _endingScene = false;
-                    }
-                };
-
-
+                _floorExitScene.Visible = true;
+                SetEncounterVisibility(false, true);
+                _floorExitScene.EndOfBattleLabel.Text = "Ascend?";
+                _floorExitScene.Stay.Visible = true;
+                _floorExitScene.Retry.Visible = false;
+                _dungeon.CurrentTile.EventTriggered = false;
                 break;
         }
 
@@ -419,12 +396,50 @@ public partial class DungeonScreen : Node2D
         _processingEvent = false;
     }
 
-    private void SetEncounterVisibility(bool visible)
+    private async void _OnContinueToNextFloor()
+    {
+        _floorExitScene.Visible = false;
+        var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
+        _popup.AddChild(rewards);
+        rewards.InitializeGranblueTierRewards();
+        _itemSfxPlayer.Play();
+        await ToSignal(rewards, "tree_exited");
+
+        var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
+
+        AddChild(transition);
+        transition.PlayFadeIn();
+
+        await ToSignal(transition.Player, "animation_finished");
+
+        _gameObject.MaxTierDC++;
+        _gameObject.TierDC++;
+        SetEncounterVisibility(true, true);
+        StartDungeon();
+
+        transition.PlayFadeOut();
+        await ToSignal(transition.Player, "animation_finished");
+
+        _endingScene = false;
+    }
+
+    private void _OnStayButtonPressed()
+    {
+        _endingScene = false;
+        _floorExitScene.Stay.Visible = false;
+        _floorExitScene.Visible = false;
+        SetEncounterVisibility(true, true);
+    }
+
+    private void SetEncounterVisibility(bool visible, bool keepCamera = false)
     {
         _tiles.Visible = visible;
         _camera.Enabled = visible;
         _player.Visible = visible;
-        _crawlUI.Visible = visible;
-        _popup.Visible = visible;
+        if(!keepCamera)
+        {
+            _crawlUI.Visible = visible;
+            _popup.Visible = visible;
+        }
     }
 }

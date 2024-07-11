@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://86hlflgnxjcc"]
+[gd_scene load_steps=9 format=3 uid="uid://86hlflgnxjcc"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/DungeonScreen.cs" id="1_7745h"]
 [ext_resource type="PackedScene" uid="uid://djlhy6ga7e5t2" path="res://dungeon_crawling/combat/combat_scenes/DungeonEntity.tscn" id="2_p1r2d"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cm0ln1sy56au3" path="res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn" id="5_837pb"]
 [ext_resource type="AudioStream" uid="uid://bd6ue8iwjaduk" path="res://effects/effect_sounds/Heal3.ogg" id="5_xyr8c"]
 [ext_resource type="AudioStream" uid="uid://q25xxaiw4e1c" path="res://effects/effect_sounds/Item1.ogg" id="6_mi2s1"]
+[ext_resource type="PackedScene" uid="uid://mw6i3d6rx53r" path="res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.tscn" id="8_m0cb0"]
 
 [node name="DungeonScreen" type="Node2D"]
 script = ExtResource("1_7745h")
@@ -68,3 +69,7 @@ offset_bottom = 84.0
 
 [node name="Popups" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+
+[node name="FloorExitScene" parent="Popups" instance=ExtResource("8_m0cb0")]
+unique_name_in_owner = true
+visible = false
