@@ -15,7 +15,7 @@ public partial class ArmoryScene : CenterContainer
 	private Label _totalHP, _totalAtk;
 	private PanelContainer _primaryWeaponContainer;
 	private WeaponGridDisplay _weaponGridDisplay;
-	private Button _smeltBtn, _setPrimaryBtn;
+	private Button _smeltBtn, _setPrimaryBtn, _sortBtn;
 
 	private ArmoryObject _armoryObject;
 
@@ -31,23 +31,27 @@ public partial class ArmoryScene : CenterContainer
 		_weaponGridDisplay = this.GetNode<WeaponGridDisplay>("%WeaponGridDisplay");
 		_smeltBtn = this.GetNode<Button>("%SmeltWeaponBtn");
 		_setPrimaryBtn = this.GetNode<Button>("%SetPrimaryWeaponBtn");
+		_sortBtn = this.GetNode<Button>("%SortBtn");
+        Button back = this.GetNode<Button>("%BackBtn");
 
-		_reserves.ItemClicked += _OnReserveItemClicked;
+        _reserves.ItemClicked += _OnReserveItemClicked;
 
 		_smeltBtn.Pressed += _OnSmeltBtnPressed;
 		_setPrimaryBtn.Pressed += _OnSetPrimaryBtnPressed;
+		_sortBtn.Pressed += () => 
+		{
+			_armoryObject.SetupWeaponList();
+			UpdateUI();
+        };
 
-        Button back = this.GetNode<Button>("%BackBtn");
 		back.Pressed += () =>
 		{
-			foreach (var weapon in _armoryObject.GetWeaponList())
-				weapon.SmeltInto = false;
-
             PersistentGameObjects.Save();
             this.QueueFree();
 		};
 
 		var go = PersistentGameObjects.GameObjectInstance();
+
 		_armoryObject = new ArmoryObject(go.MainPlayer.DungeonPlayer);
 
 		_rSelected = 0;
@@ -81,9 +85,6 @@ public partial class ArmoryScene : CenterContainer
 			
             _reserves.AddItem(reserve.GetArmoryDisplayString(), SkillAssets.GenerateIcon(reserve.Icon));
         }
-			
-
-
 
 		SetSelectedIndeces();
 

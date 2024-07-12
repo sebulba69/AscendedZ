@@ -40,62 +40,6 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
-layout_mode = 2
-
-[node name="ReserveLabel" type="Label" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/PanelContainer"]
-texture_filter = 2
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 20
-text = "Reserves
-"
-horizontal_alignment = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
-custom_minimum_size = Vector2(550, 0)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ReserveWeaponList" type="ItemList" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/ScrollContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 20
-allow_search = false
-max_text_lines = 3
-auto_height = true
-same_column_width = true
-
-[node name="SetPrimaryWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 20
-text = "Set Selected as Primary"
-
-[node name="SmeltWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("1_pef3v")
-theme_override_font_sizes/font_size = 20
-text = "Smelt into Equipped Weapon"
-
 [node name="Equipped" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
 layout_mode = 2
 alignment = 1
@@ -152,7 +96,63 @@ theme_override_font_sizes/font_size = 25
 text = "12"
 horizontal_alignment = 1
 
-[node name="BackBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+custom_minimum_size = Vector2(550, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ReserveWeaponList" type="ItemList" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/ScrollContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+allow_search = false
+max_text_lines = 3
+auto_height = true
+same_column_width = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves"]
+layout_mode = 2
+
+[node name="SetPrimaryWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Set Selected as Primary"
+
+[node name="SmeltWeaponBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Smelt into Equipped Weapon"
+
+[node name="SortBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_pef3v")
+theme_override_font_sizes/font_size = 20
+text = "Sort Weapons"
+
+[node name="BackBtn" type="Button" parent="VBoxContainer/HBoxContainer/EquipUnequipLevel/Reserves/HBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2

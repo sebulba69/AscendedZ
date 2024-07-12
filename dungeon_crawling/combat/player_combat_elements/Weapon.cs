@@ -1,4 +1,5 @@
-﻿using AscendedZ.skills;
+﻿using AscendedZ.dungeon_crawling.combat.battledc.gbskills;
+using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
         public double CritChance { get; set; }
         public int XP { get; set; }
         public int XPRequired { get; set; }
+        public List<GBSkill> Skills { get; set; }
 
         public Weapon()
         {
@@ -35,6 +37,7 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
             PrimaryWeapon = false;
             XP = 0;
             XPRequired = 10;
+            Skills = new List<GBSkill>();
         }
 
         public void AddXP(int xp)
@@ -62,7 +65,7 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
 
         public string GetArmoryDisplayString()
         {
-            string displayString = $"L.{Level} {Type} {Element} ({XP}/{XPRequired}) {HP} HP ● {Attack} ATK ● Hitx{HitRate} ● {CritChance * 100}% CRT";
+            string displayString = $"L.{Level} {Element}/({(XP/XPRequired) * 100}%)/{HP}HP/{Attack}ATK/Hitx{HitRate}/{CritChance * 100}% CRT";
 
             if (PrimaryWeapon && Equipped)
                 displayString = "[PW] " + displayString;

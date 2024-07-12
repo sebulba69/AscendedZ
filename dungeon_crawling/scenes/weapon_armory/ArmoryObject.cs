@@ -1,5 +1,6 @@
 ﻿using AscendedZ.dungeon_crawling.combat.player_combat_elements;
 using AscendedZ.game_object;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,23 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
         {
             _player = player;
             _fullWeaponList = new List<Weapon>();
+
             SetupWeaponList();
+
+            foreach(var weapon in _fullWeaponList)
+            {
+                weapon.SmeltInto = false;
+            }
         }
 
-        private void SetupWeaponList()
+        public void SetupWeaponList()
         {
             _fullWeaponList.Clear();
 
             if (_player.PrimaryWeapon != null)
+            {
                 _fullWeaponList.Add(_player.PrimaryWeapon);
+            }
 
             _fullWeaponList.AddRange(_player.WeaponGrid.Weapons);
             _fullWeaponList.AddRange(_player.Reserves.Reserves.FindAll(x => !x.Equipped));
@@ -36,7 +45,7 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
 
         public void ChangeGridStatus(int index)
         {
-            var reserve = _player.Reserves.Reserves[index];
+            var reserve = _fullWeaponList[index];
             var grid = _player.WeaponGrid;
 
             if (reserve.Equipped)
@@ -87,7 +96,10 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_armory
                     _smeltSelect.SmeltInto = false;
 
                 _smeltSelect = select;
-                _smeltSelect.SmeltInto = true;
+                if(_smeltSelect.SmeltInto)
+                    _smeltSelect.SmeltInto = false;
+                else
+                    _smeltSelect.SmeltInto = true;
             }
         }
 

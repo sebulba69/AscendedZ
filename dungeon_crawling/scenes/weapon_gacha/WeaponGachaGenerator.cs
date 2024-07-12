@@ -1,4 +1,6 @@
-﻿using AscendedZ.dungeon_crawling.combat.player_combat_elements;
+﻿using AscendedZ.dungeon_crawling.combat.battledc.gbskills;
+using AscendedZ.dungeon_crawling.combat.battledc.gbstatus;
+using AscendedZ.dungeon_crawling.combat.player_combat_elements;
 using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,10 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_gacha
     {
         private Random _random;
 
-        private const long DEFAULT_MIN_HP = 45;
-        private const long DEFAULT_MAX_HP = 50;
-        private const long DEFAULT_MIN_ATK = 10;
-        private const long DEFAULT_MAX_ATK = 20;
+        private const long DEFAULT_MIN_HP = 5;
+        private const long DEFAULT_MAX_HP = 10;
+        private const long DEFAULT_MIN_ATK = 2;
+        private const long DEFAULT_MAX_ATK = 5;
 
         private readonly Dictionary<WeaponType, string> _weaponIconValuePairs = new Dictionary<WeaponType, string>()
         {
@@ -73,6 +75,16 @@ namespace AscendedZ.dungeon_crawling.scenes.weapon_gacha
             Weapon dagger = MakeWeaponBase(tier, WeaponType.Dagger);
             dagger.Attack /= 2;
             dagger.CritChance = 0.5;
+
+            GBSkill parry = new GBSkill() 
+            {
+                Name = "Parry",
+                Icon = SkillAssets.DAGGER_ICON,
+                Status = GBStatusId.DaggerParry,
+                TargetType = GBTargetType.Self
+            };
+
+            dagger.Skills.Add(parry);
 
             return dagger;
         }

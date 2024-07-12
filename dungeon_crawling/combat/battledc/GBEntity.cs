@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AscendedZ.dungeon_crawling.combat.battledc.gbstatus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,12 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
         public long MaxHP { get; set; }
         public long HP { get; set; }
         public string Image { get; set; }
+        public List<GBStatus> Statuses { get; set; }
+
+        public GBEntity()
+        {
+            Statuses = new List<GBStatus>();
+        }
 
         public void Heal(long amount)
         {

@@ -60,16 +60,22 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
         public GBBattlePlayer MakeGBBattlePlayer()
         {
             long hp = GetTotalHP();
+            Weapon weapon = new Weapon() 
+            {
+                Attack = GetTotalAtk(),
+                HitRate = PrimaryWeapon.HitRate,
+                Element = PrimaryWeapon.Element,
+                CritChance = PrimaryWeapon.CritChance,
+                Type = PrimaryWeapon.Type
+            };
+
             GBBattlePlayer gBBattlePlayer = new GBBattlePlayer() 
             {
                 Name = Name,
                 Image = Image,
                 MaxHP = hp,
                 HP = hp,
-                Attack = GetTotalAtk(),
-                HitRate = PrimaryWeapon.HitRate,
-                Element = PrimaryWeapon.Element,
-                CritChance = PrimaryWeapon.CritChance
+                Weapon = weapon
             };
 
             return gBBattlePlayer;
