@@ -8,7 +8,7 @@ namespace AscendedZ.dungeon_crawling.backend.TileEvents
 {
     public class ShopEvent : ITileEvent
     {
-        public TileEventId Id { get => TileEventId.Shop; }
+        public TileEventId Id { get => TileEventId.MinionShop; }
         
     }
 }

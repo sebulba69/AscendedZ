@@ -8,6 +8,6 @@ namespace AscendedZ.dungeon_crawling.backend.TileEvents
 {
     public enum TileEventId
     {
-        Encounter, Item, Shop, Heal, Exit, Blacksmith
+        Encounter, Item, MinionShop, Heal, Exit, Blacksmith
     }
 }

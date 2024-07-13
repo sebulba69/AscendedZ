@@ -312,6 +312,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 SetCrawlValues();
                 _crawlUI.Visible = true;
                 _currentScene.Scene.TurnOffGraphic();
+                PersistentGameObjects.Save();
                 break;
 
             case TileEventId.Encounter:
@@ -342,6 +343,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 SetEncounterVisibility(true);
                 SetCrawlValues();
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
+                PersistentGameObjects.Save();
                 break;
 
             case TileEventId.Heal:
@@ -349,13 +351,29 @@ public partial class DungeonScreen : Transitionable2DScene
                 double percent = _battlePlayer.MaxHP * 0.15;
                 long hp = (long)(_battlePlayer.HP + percent);
                 _battlePlayer.Heal(hp);
+                foreach(var minion in _battlePlayer.Minions)
+                    minion.Heal(hp);
+
                 _healSfxPlayer.Play();
                 SetCrawlValues();
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
+                PersistentGameObjects.Save();
                 break;
 
-            case TileEventId.Shop:
-                // bring up the shop scene
+            case TileEventId.MinionShop:
+                var minionHut = ResourceLoader.Load<PackedScene>(Scenes.MINION_HUT).Instantiate<RandomWeapon>();
+                _itemSfxPlayer.Play();
+
+                _crawlUI.Visible = false;
+                _popup.AddChild(minionHut);
+
+                await ToSignal(minionHut, "tree_exited");
+
+                MakeNewBattlePlayer();
+
+                SetCrawlValues();
+                _crawlUI.Visible = true;
+                
                 break;
 
             case TileEventId.Blacksmith:
@@ -367,16 +385,11 @@ public partial class DungeonScreen : Transitionable2DScene
 
                 await ToSignal(armory, "tree_exited");
 
-                var battlePlayer = _gameObject.MainPlayer.DungeonPlayer.MakeGBBattlePlayer();
-                battlePlayer.HP = _battlePlayer.HP;
-                if (battlePlayer.HP > battlePlayer.MaxHP)
-                    battlePlayer.HP = battlePlayer.MaxHP;
-
-                _battlePlayer = battlePlayer;
+                MakeNewBattlePlayer();
+                
                 _tiles.Visible = true;
                 _crawlUI.Visible = true;
                 SetCrawlValues();
-
                 break;
 
             case TileEventId.Exit:
@@ -394,6 +407,24 @@ public partial class DungeonScreen : Transitionable2DScene
 
         // on completion of the event
         _processingEvent = false;
+    }
+
+    private void MakeNewBattlePlayer()
+    {
+        var battlePlayer = _gameObject.MainPlayer.DungeonPlayer.MakeGBBattlePlayer();
+        battlePlayer.HP = _battlePlayer.HP;
+        if (battlePlayer.HP > battlePlayer.MaxHP)
+            battlePlayer.HP = battlePlayer.MaxHP;
+
+        for(int m = 0; m < battlePlayer.Minions.Count; m++)
+        {
+            var minion = _battlePlayer.Minions[m];
+            double percentage = minion.GetHPPercentage() / 100;
+
+            battlePlayer.Minions[m].HP = (int)(battlePlayer.Minions[m].MaxHP * percentage);
+        }
+
+        _battlePlayer = battlePlayer;
     }
 
     private async void _OnContinueToNextFloor()
@@ -421,6 +452,8 @@ public partial class DungeonScreen : Transitionable2DScene
         await ToSignal(transition.Player, "animation_finished");
 
         _endingScene = false;
+
+        PersistentGameObjects.Save();
     }
 
     private void _OnStayButtonPressed()
@@ -446,6 +479,7 @@ public partial class DungeonScreen : Transitionable2DScene
             await ToSignal(rewards, "tree_exited");
         }
         SetEncounterVisibility(false);
+        PersistentGameObjects.Save();
         TransitionScenes(Scenes.DUNGEON_MAIN, _audioStreamPlayer);
     }
 
