@@ -35,12 +35,11 @@ public partial class PlayerScene : EntityScene
 
     public override void InitializeEntityValues(GBEntity entity)
     {
-        entity.SetCurrent -= SetCurrent;
         entity.SetCurrent += SetCurrent;
         base.InitializeEntityValues(entity);
     }
 
-    private void SetCurrent(bool isCurrent)
+    public void SetCurrent(bool isCurrent)
     {
         this.GetNode<Sprite2D>("%CurrentBlinker").Visible = isCurrent;
     }

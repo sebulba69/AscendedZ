@@ -30,6 +30,9 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
         private bool _endBattle, _playerTurn;
         private int _queueLimit;
 
+        public List<GBBattlePlayer> Players { get => _players; }
+        public BEnemyDC EnemyDC { get => _enemy; }
+
         public BDCSystem(GBBattlePlayer player, BEnemyDC enemy)
         {
             _players = new List<GBBattlePlayer>() { player };

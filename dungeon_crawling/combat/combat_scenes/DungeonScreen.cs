@@ -436,6 +436,7 @@ public partial class DungeonScreen : Transitionable2DScene
         if(_floorExitScene.Continue.Visible)
         {
             _gameObject.MaxTierDC++;
+            _gameObject.TierDC++;
             _crawlUI.Visible = false;
             _floorExitScene.Visible = false;
             var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();

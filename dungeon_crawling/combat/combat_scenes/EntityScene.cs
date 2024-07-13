@@ -42,10 +42,6 @@ namespace AscendedZ.dungeon_crawling.combat.combat_scenes
 
         public virtual void InitializeEntityValues(GBEntity entity)
         {
-            entity.PlayEffect -= PlayEffect;
-            entity.UpdateHP -= UpdateHPDisplay;
-            entity.PlayDamageNumberAnimation -= PlayDamageNumberAnimation;
-
             _hp.Value = entity.GetHPPercentage();
             _hpl.Text = entity.HP.ToString();
             _entityPicture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);

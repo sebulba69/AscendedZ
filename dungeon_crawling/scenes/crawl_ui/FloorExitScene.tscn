@@ -58,15 +58,6 @@ theme_override_fonts/font = ExtResource("1_d3i21")
 theme_override_font_sizes/font_size = 80
 text = "Retry"
 
-[node name="ChangePartyBtn" type="Button" parent="PanelContainer/EndVBox/BattleEnded/HBoxContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_d3i21")
-theme_override_font_sizes/font_size = 70
-text = "Party"
-
 [node name="StayOnFloor" type="Button" parent="PanelContainer/EndVBox/BattleEnded/HBoxContainer"]
 unique_name_in_owner = true
 visible = false

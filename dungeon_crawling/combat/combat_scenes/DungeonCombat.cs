@@ -1,6 +1,8 @@
 using AscendedZ;
 using AscendedZ.dungeon_crawling.combat.battledc;
 using AscendedZ.dungeon_crawling.combat.player_combat_elements;
+using AscendedZ.entities;
+using AscendedZ.entities.enemy_objects;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -77,7 +79,6 @@ public partial class DungeonCombat : Node2D
 				icon.SetIcon(item.Weapon.Icon);
 			}
 		}
-
     }
 
 	private async void EndBattle(bool didPlayerWin)
@@ -96,7 +97,25 @@ public partial class DungeonCombat : Node2D
             rewardScene.InitializeGranblueEncounterRewards();
             await ToSignal(rewardScene, "tree_exited");
 
-			Visible = false;
+			for(int p = 0; p < _playerScenes.Count; p++)
+			{
+				var player = _playerScenes[p];
+				var entity = _bdcSystem.Players[p];
+
+                player.Shake -= _camera.Shake;
+                entity.SetCurrent -= player.SetCurrent;
+                entity.PlayEffect -= player.PlayEffect;
+                entity.UpdateHP -= player.UpdateHPDisplay;
+                entity.PlayDamageNumberAnimation -= player.PlayDamageNumberAnimation;
+            }
+
+            _enemyScene.Shake -= _camera.Shake;
+            _gbSkillList.DoPlayerAttack -= _bdcSystem._OnDoPlayerAttack;
+            _bdcSystem.ResetAttackButton -= _gbSkillList.SetUIForPlayerTurn;
+            _bdcSystem.EndBattle -= EndBattle;
+            _bdcSystem.ShowCurrentMoveQueue -= DisplayCurrentMoveQueue;
+
+            QueueFree();
         }
 	}
 }
