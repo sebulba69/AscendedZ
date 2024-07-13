@@ -21,6 +21,11 @@ namespace AscendedZ.entities
         public static readonly string Joan = "Joan";
         public static readonly string Andmond = "Andmond";
 
+        // Minions
+        public static readonly string BuceyRed = "Bucey Red";
+        public static readonly string BuceyBlue = "Bucey Blue";
+        public static readonly string BuceyGreen = "Bucey Green";
+
         // Fusion 1
         public static readonly string Ancrow = "Ancrow"; // Fire
         public static readonly string Marchris = "Marchris"; // Fire

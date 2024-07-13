@@ -34,18 +34,21 @@ public partial class DungeonCrawlMainScreen : Transitionable2DScene
         Button weaponShopBtn = this.GetNode<Button>("%WeaponShopBtn");
         Button embarkButton = this.GetNode<Button>("%EmbarkButton");
         Button endlessDungeonButton = this.GetNode<Button>("%ReturnButton");
+        Button minionHutButton = this.GetNode<Button>("%MinionHutBtn");
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         armoryButton.MouseEntered += () => { _tooltip.Text = "Equip your Bucelous Weaponodus for maximum power."; };
         weaponShopBtn.MouseEntered += () => { _tooltip.Text = "Pull weapons from the randomized Bucilicus."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Journey into the Labyribuce."; };
 		endlessDungeonButton.MouseEntered += () => { _tooltip.Text = "Resume your journey and Ascend."; };
+        minionHutButton.MouseEntered += () => { _tooltip.Text = "Visit the Minion Hut to acquire party members for your journey."; };
 
         menuButton.Pressed += () => DisplayScene(Scenes.MENU);
         armoryButton.Pressed += () => DisplayScene(Scenes.DUNGEON_CRAWL_ARMORY);
         weaponShopBtn.Pressed += () => DisplayScene(Scenes.DUNGEON_WEAPON_GACHA_SCREEN);
         embarkButton.Pressed += () => TransitionScenes(Scenes.DUNGEON_CRAWL, _audioStreamPlayer);
 		endlessDungeonButton.Pressed += () => TransitionScenes(Scenes.MAIN, _audioStreamPlayer);
+        minionHutButton.Pressed += () => DisplayScene(Scenes.MINION_HUT);
 
         DoEmbarkButtonCheck(gameObject);
     }
@@ -58,6 +61,7 @@ public partial class DungeonCrawlMainScreen : Transitionable2DScene
         _root.AddChild(instanceOfPackedScene);
 
         await ToSignal(instanceOfPackedScene, "tree_exited");
+        _root.RemoveChild(instanceOfPackedScene);
 
         _mainContainer.Visible = true;
         _mainPlayerContainer.UpdateCurrencyDisplay();
@@ -67,7 +71,6 @@ public partial class DungeonCrawlMainScreen : Transitionable2DScene
     private void DoEmbarkButtonCheck(GameObject gameObject)
     {
         var dPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer.DungeonPlayer;
-
         var embarkButton = this.GetNode<Button>("%EmbarkButton");
         if (dPlayer.PrimaryWeapon != null)
         {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8yut6sbxwnlh"]
+[gd_scene load_steps=16 format=3 uid="uid://c8yut6sbxwnlh"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/PlayerScene.cs" id="1_ka2fs"]
 [ext_resource type="Texture2D" uid="uid://bccubabd2bgpu" path="res://dungeon_crawling/art_assets/general/character_border.png" id="1_lwgdc"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="3_3xtvb"]
 [ext_resource type="PackedScene" uid="uid://t6lhru8f8fr7" path="res://effects/EffectSprite.tscn" id="4_ddwxi"]
 [ext_resource type="AudioStream" uid="uid://dyxxgykvs4hrj" path="res://effects/effect_sounds/Damage4.ogg" id="5_jgmg1"]
+[ext_resource type="Texture2D" uid="uid://wa3vhq2cq4uw" path="res://screens/arrows/current_arrow.png" id="7_0r30p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04jxu"]
 bg_color = Color(0, 0, 0, 0.156863)
@@ -56,13 +57,54 @@ _data = {
 "floaty": SubResource("Animation_hve5p")
 }
 
+[sub_resource type="Animation" id="Animation_a7fru"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CurrentBlinker:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(275, 96)]
+}
+
+[sub_resource type="Animation" id="Animation_k1hfd"]
+resource_name = "current_player_animation"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CurrentBlinker:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(275, 96), Vector2(293, 96)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rau01"]
+_data = {
+"RESET": SubResource("Animation_a7fru"),
+"current_player_animation": SubResource("Animation_k1hfd")
+}
+
 [node name="PlayerScene" type="VBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
 offset_right = 295.0
-offset_bottom = 257.0
+offset_bottom = 281.0
 alignment = 1
 script = ExtResource("1_ka2fs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
 
 [node name="Outline" type="TextureRect" parent="."]
 texture_filter = 2
@@ -162,19 +204,19 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_3xtvb")
 text = "10"
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/BarContainer"]
-texture_filter = 2
-layout_mode = 2
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/BarContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="StatusGrid" type="GridContainer" parent="MarginContainer/BarContainer/PanelContainer/CenterContainer"]
+[node name="StatusGrid" type="HBoxContainer" parent="MarginContainer/BarContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/h_separation = 10
-columns = 5
+
+[node name="CurrentBlinker" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(275, 96)
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("7_0r30p")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -186,3 +228,9 @@ libraries = {
 "": SubResource("AnimationLibrary_r7nft")
 }
 autoplay = "floaty"
+
+[node name="CurrentPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rau01")
+}
+autoplay = "current_player_animation"

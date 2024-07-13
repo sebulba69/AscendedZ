@@ -15,11 +15,13 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
         public Weapon PrimaryWeapon { get; set; }
         public WeaponGrid WeaponGrid { get; set; }
         public WeaponReserves Reserves { get; set; }
+        public List<GBMinion> Minions { get; set; }
 
         public GBPlayer() 
         {
             WeaponGrid = new WeaponGrid();
             Reserves = new WeaponReserves();
+            Minions = new List<GBMinion>();
             ShopLevel = 1;
         }
 
@@ -62,6 +64,7 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
             long hp = GetTotalHP();
             Weapon weapon = new Weapon() 
             {
+                Icon = PrimaryWeapon.Icon,
                 Attack = GetTotalAtk(),
                 HitRate = PrimaryWeapon.HitRate,
                 Element = PrimaryWeapon.Element,
@@ -69,13 +72,17 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
                 Type = PrimaryWeapon.Type
             };
 
+            List<GBMinion> minions = new List<GBMinion>();
+
+            minions.AddRange(Minions.FindAll(m => m.Equipped));
+
             GBBattlePlayer gBBattlePlayer = new GBBattlePlayer() 
             {
-                Name = Name,
                 Image = Image,
                 MaxHP = hp,
                 HP = hp,
-                Weapon = weapon
+                Weapon = weapon,
+                Minions = minions
             };
 
             return gBBattlePlayer;

@@ -77,5 +77,10 @@ namespace AscendedZ.dungeon_crawling.combat.player_combat_elements
 
             return displayString;
         }
+
+        public string GetMinionString()
+        {
+            return $"L.{Level} {Element}/{HP}HP/{Attack}ATK/Hitx{HitRate}/{CritChance * 100}% CRT";
+        }
     }
 }

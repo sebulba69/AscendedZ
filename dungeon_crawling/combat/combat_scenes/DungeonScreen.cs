@@ -337,7 +337,6 @@ public partial class DungeonScreen : Transitionable2DScene
 
                 transition.PlayFadeOut();
                 await ToSignal(transition.Player, "animation_finished");
-
                 await ToSignal(combatScene, "tree_exited");
 
                 SetEncounterVisibility(true);

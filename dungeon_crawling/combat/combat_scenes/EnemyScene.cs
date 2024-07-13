@@ -14,7 +14,7 @@ public partial class EnemyScene : EntityScene
         var hp = this.GetNode<ProgressBar>("%HP");
         var hpl = this.GetNode<Label>("%HPAmount");
         var enemyPic = this.GetNode<TextureRect>("%EnemyPic");
-        var statuses = this.GetNode<GridContainer>("%StatusGrid");
+        var statuses = this.GetNode<HBoxContainer>("%StatusGrid");
 
         var effect = this.GetNode<EffectAnimation>("%EffectSprite");
         var shakeSfx = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");

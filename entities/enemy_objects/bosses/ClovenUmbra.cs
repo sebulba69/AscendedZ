@@ -1,5 +1,6 @@
 ﻿using AscendedZ.battle;
 using AscendedZ.battle.battle_state_machine;
+using AscendedZ.entities.battle_entities;
 using AscendedZ.entities.enemy_objects.enemy_ais;
 using AscendedZ.resistances;
 using AscendedZ.skills;
@@ -13,48 +14,87 @@ namespace AscendedZ.entities.enemy_objects.bosses
 {
     public class ClovenUmbra : WeaknessHunterEnemy
     {
-        private bool _voidUsed;
+        private List<int> _script;
+        private int _scriptPlacement;
+        private bool _flip = true;
 
         public ClovenUmbra() : base()
         {
             Name = EnemyNames.Cloven_Umbra;
             Image = CharacterImageAssets.GetImagePath(Name);
             MaxHP = EntityDatabase.GetBossHP(Name);
-            Turns = 3;
+            Turns = 1;
             _isBoss = true;
-            _voidUsed = false;
 
             Resistances.SetResistance(ResistanceType.Nu, Elements.Fire);
+            Resistances.SetResistance(ResistanceType.Nu, Elements.Dark);
             Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
+            Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
 
-            Skills.Add(SkillDatabase.VoidIce.Clone());
-            Skills.Add(SkillDatabase.Elec1.Clone());
             Skills.Add(SkillDatabase.Fire1.Clone());
             Skills.Add(SkillDatabase.Dark1.Clone());
+            Skills.Add(SkillDatabase.Ice1.Clone());
+            Skills.Add(SkillDatabase.Light1.Clone());
+            Skills.Add(SkillDatabase.Heal1.Clone());
+
+            _scriptPlacement = 0;
+            _script = new List<int>() { 0, 1 };
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
         {
-            EnemyAction action = base.GetNextAction(battleSceneObject);
+            EnemyAction action = new EnemyAction();
 
-            if (!_voidUsed)
+            int index = _script[_scriptPlacement];
+            var element = Skills[index] as ElementSkill;
+            var wex = FindPlayersWithWeaknessToElement(battleSceneObject, element.Element);
+
+            if(wex.Count == 0)
             {
-                action.Skill = Skills[0];
+                action.Skill = Skills[Skills.Count - 1];
                 action.Target = this;
-                _voidUsed = true;
             }
-            else if(_voidUsed && action.Skill.Name.Contains("Void"))
+            else
             {
-                int skill = _rng.Next(1, 4);
-                action.Skill = Skills[skill];
+                action.Skill = Skills[index];
+                action.Target = wex[_rng.Next(wex.Count)];
             }
+
+            _scriptPlacement++;
+
+            if (_scriptPlacement == _script.Count)
+                _scriptPlacement = 0;
 
             return action;
         }
 
         public override void ResetEnemyState()
         {
-            _voidUsed = false;
+            _script.Clear();
+
+            if (_flip)
+            {
+                Resistances.SetResistance(ResistanceType.Nu, Elements.Ice);
+                Resistances.SetResistance(ResistanceType.Nu, Elements.Light);
+                Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
+                Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
+
+                _script.Add(2);
+                _script.Add(3);
+            }
+            else
+            {
+                Resistances.SetResistance(ResistanceType.Nu, Elements.Fire);
+                Resistances.SetResistance(ResistanceType.Nu, Elements.Dark);
+                Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
+                Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
+
+                _script.Add(0);
+                _script.Add(1);
+            }
+
+            _flip = !_flip;
+            _scriptPlacement = 0;
             base.ResetEnemyState();
         }
     }

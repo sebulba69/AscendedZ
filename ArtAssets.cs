@@ -150,6 +150,7 @@ namespace AscendedZ
         public static readonly string VORPEX_ICON = "Vorpex";
         public static readonly string PARTY_COIN_ICON = "Party Coins";
         public static readonly string DELLENCOIN = "Dellencoin";
+        public static readonly string MINION_SHARD = "Minion Shards";
 
         // Dungeon Crawling Icons
         public static readonly string DAGGER_ICON = "Dagger";
@@ -205,6 +206,7 @@ namespace AscendedZ
             [SPEAR_ICON] = new KeyValuePair<int, int>(352, 192),
             [GREATSWORD_ICON] = new KeyValuePair<int, int>(32, 224),
             [HAMMER_ICON] = new KeyValuePair<int, int>(62, 224),
+            [MINION_SHARD] = new KeyValuePair<int, int>(320, 1440)
         };
 
         public static KeyValuePair<int, int> GetIcon(string key)

@@ -11,6 +11,7 @@ public partial class RewardScreen : Control
 	private ItemList _rewardsList;
 	private Button _claimRewardsButton;
 	private List<Currency> _rewards;
+    private GameObject _gameObject;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -18,14 +19,15 @@ public partial class RewardScreen : Control
 		_rewardsList = this.GetNode<ItemList>("%RewardList");
         _claimRewardsButton = this.GetNode<Button>("%ClaimButton");
         _claimRewardsButton.Pressed += _OnClaimRewardsPressed;
+        _gameObject = PersistentGameObjects.GameObjectInstance();
     }
 
     public void InitializeSMTRewards()
     {
-        int tier = PersistentGameObjects.GameObjectInstance().Tier;
+        int tier = _gameObject.Tier;
         _rewards = new List<Currency>()
         {
-            new Vorpex() { Amount = tier * 3 },
+            new Vorpex() { Amount = tier * 5 },
             new PartyCoin() { Amount = 1 }
         };
         SetupRewards();
@@ -33,21 +35,23 @@ public partial class RewardScreen : Control
 
     public void InitializeGranblueEncounterRewards()
     {
-        int tier = PersistentGameObjects.GameObjectInstance().TierDC;
+        int tier = _gameObject.TierDC;
         _rewards = new List<Currency>()
         {
-            new Dellencoin() { Amount = tier }
+            new Dellencoin() { Amount = tier },
+            new MinionShard() { Amount = 2 }
         };
         SetupRewards();
     }
 
     public void InitializeGranblueTierRewards()
     {
-        int tier = PersistentGameObjects.GameObjectInstance().TierDC;
+        int tier = _gameObject.TierDC;
         _rewards = new List<Currency>()
         {
-            new Vorpex() { Amount = tier * 2 },
-            new Dellencoin() { Amount = tier * 10 }
+            new Vorpex() { Amount = tier * 3 },
+            new Dellencoin() { Amount = tier * 10 },
+            new MinionShard() { Amount = 4 }
         };
         SetupRewards();
     }
@@ -63,7 +67,7 @@ public partial class RewardScreen : Control
 
     private void _OnClaimRewardsPressed()
 	{
-        var currency = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet.Currency;
+        var currency = _gameObject.MainPlayer.Wallet.Currency;
         foreach (Currency reward in _rewards)
         {
             if (currency.ContainsKey(reward.Name))

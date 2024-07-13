@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ciu3w6wi6o5c0"]
+[gd_scene load_steps=7 format=3 uid="uid://ciu3w6wi6o5c0"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/DungeonCombat.cs" id="1_np2vi"]
 [ext_resource type="PackedScene" uid="uid://c8yut6sbxwnlh" path="res://dungeon_crawling/combat/combat_scenes/PlayerScene.tscn" id="2_k5gqc"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dww5loey3m4kp" path="res://cg_backgrounds/bg00701.jpg" id="2_y0pdy"]
 [ext_resource type="PackedScene" uid="uid://1nha1wpboqro" path="res://dungeon_crawling/combat/combat_scenes/gb_battle_ui/GBSkillList.tscn" id="5_4w3kn"]
 [ext_resource type="PackedScene" uid="uid://c8mcrxad8jfaw" path="res://dungeon_crawling/combat/combat_scenes/EnemyScene.tscn" id="5_7m5n4"]
-[ext_resource type="PackedScene" uid="uid://dknbuj5e2l1c8" path="res://dungeon_crawling/combat/combat_scenes/gb_battle_ui/GBStatusList.tscn" id="6_ipgid"]
-[ext_resource type="PackedScene" uid="uid://cai1s11s4rv3j" path="res://dungeon_crawling/combat/combat_scenes/gb_battle_ui/GBPlayerMoveQueue.tscn" id="6_vfckq"]
 
 [node name="DungeonCombat" type="Node2D"]
 script = ExtResource("1_np2vi")
@@ -29,58 +27,56 @@ texture = ExtResource("2_y0pdy")
 metadata/_edit_lock_ = true
 
 [node name="Player" type="Marker2D" parent="CombatBg"]
-position = Vector2(431, 546)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CombatBg/Player"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -190.0
-offset_top = -260.0
-offset_right = 110.0
-offset_bottom = 77.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(1.5, 1.5)
-size_flags_horizontal = 4
+position = Vector2(521, 596)
 metadata/_edit_lock_ = true
 
-[node name="PlayerScene" parent="CombatBg/Player/HBoxContainer" instance=ExtResource("2_k5gqc")]
+[node name="PlayerScene" parent="CombatBg/Player" instance=ExtResource("2_k5gqc")]
 unique_name_in_owner = true
-layout_mode = 2
+offset_right = 289.0
+metadata/_edit_lock_ = true
+
+[node name="Minion2" type="Marker2D" parent="CombatBg"]
+position = Vector2(267, 301)
+
+[node name="MinionScene1" parent="CombatBg/Minion2" instance=ExtResource("2_k5gqc")]
+unique_name_in_owner = true
+visible = false
+offset_right = 289.0
+metadata/_edit_lock_ = true
+
+[node name="Minion3" type="Marker2D" parent="CombatBg"]
+position = Vector2(136, 600)
+
+[node name="MinionScene2" parent="CombatBg/Minion3" instance=ExtResource("2_k5gqc")]
+unique_name_in_owner = true
+visible = false
+offset_right = 289.0
 metadata/_edit_lock_ = true
 
 [node name="PlayerMenu" type="Marker2D" parent="CombatBg"]
-position = Vector2(444, 632)
+position = Vector2(420, 648)
 
 [node name="PlayerSkillStatusContainer" type="VBoxContainer" parent="CombatBg/PlayerMenu"]
-offset_left = -172.0
-offset_top = 92.5
-offset_right = 236.0
-offset_bottom = 196.5
+offset_left = -159.0
+offset_top = 253.0
+offset_right = 249.0
+offset_bottom = 357.0
 
 [node name="GbSkillList" parent="CombatBg/PlayerMenu/PlayerSkillStatusContainer" instance=ExtResource("5_4w3kn")]
 unique_name_in_owner = true
 layout_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="GBPlayerStatusList" parent="CombatBg/PlayerMenu/PlayerSkillStatusContainer" instance=ExtResource("6_ipgid")]
-unique_name_in_owner = true
-visible = false
+[node name="PanelContainer" type="PanelContainer" parent="CombatBg/PlayerMenu/PlayerSkillStatusContainer"]
 layout_mode = 2
-metadata/_edit_lock_ = true
 
-[node name="GbPlayerMoveQueue" parent="CombatBg/PlayerMenu" instance=ExtResource("6_vfckq")]
-visible = false
-offset_left = 247.0
-offset_top = -103.0
-offset_right = 297.0
-offset_bottom = 197.0
+[node name="GbPlayerMoveQueue" type="HBoxContainer" parent="CombatBg/PlayerMenu/PlayerSkillStatusContainer/PanelContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
 
 [node name="Enemy" type="Marker2D" parent="CombatBg"]
-position = Vector2(1151, 242)
+position = Vector2(1055, 355)
 
 [node name="EnemyScene" parent="CombatBg/Enemy" instance=ExtResource("5_7m5n4")]
 unique_name_in_owner = true
@@ -92,10 +88,3 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
 metadata/_edit_lock_ = true
-
-[node name="GBEnemyStatusList" parent="CombatBg/Enemy" instance=ExtResource("6_ipgid")]
-unique_name_in_owner = true
-visible = false
-offset_top = 483.0
-offset_right = 576.0
-offset_bottom = 533.0

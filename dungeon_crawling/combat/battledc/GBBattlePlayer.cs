@@ -13,37 +13,13 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
 {
     public class GBBattlePlayer : GBEntity
     {
-        private readonly Dictionary<GBStatusId, Action> _statusHandlers;
-
-        public string Name { get; set; }
-        public long Attack { get; set; }
-        public Elements Element { get; set; }
         public Weapon Weapon { get; set; }
 
-        public GBBattlePlayer()
-        {
-            _statusHandlers = new Dictionary<GBStatusId, Action>()
-            {
-                { GBStatusId.DaggerParry, ApplyParryStance }
-            };
-        }
+        public List<GBMinion> Minions { get; set; }
 
-        public void HandleSelfStatus(GBStatusId id)
+        public GBBattlePlayer() : base()
         {
-            _statusHandlers[id].Invoke();
-        }
-
-        private void ApplyParryStance()
-        {
-            var parry = new GBStatus() 
-            {
-                Id = GBStatusId.DaggerParry,
-                Icon = SkillAssets.DAGGER_ICON,
-                Owner = this,
-                TurnCount = 0
-            };
-
-            Statuses.Add(parry);
+            Minions = new List<GBMinion>();
         }
     }
 }

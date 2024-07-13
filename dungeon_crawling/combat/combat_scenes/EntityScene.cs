@@ -22,12 +22,12 @@ namespace AscendedZ.dungeon_crawling.combat.combat_scenes
         private AudioStreamPlayer _shakeSfx;
         private ProgressBar _hp, _mp;
         private Label _hpl, _mpl;
-        private GridContainer _statuses;
+        private HBoxContainer _statuses;
         private TextureRect _entityPicture;
         private CenterContainer _effectContainer;
 
         protected void ComposeUI(
-            ProgressBar hp, Label hpLabel, GridContainer statusGrid,
+            ProgressBar hp, Label hpLabel, HBoxContainer statusGrid,
             EffectAnimation effectAnimation, AudioStreamPlayer shakeSfx, 
             TextureRect entityPicture, CenterContainer effectContainer)
         {
@@ -40,9 +40,13 @@ namespace AscendedZ.dungeon_crawling.combat.combat_scenes
             _effectContainer = effectContainer;
         }
 
-        public void InitializeEntityValues(GBEntity entity)
+        public virtual void InitializeEntityValues(GBEntity entity)
         {
-            _hp.Value = 100;
+            entity.PlayEffect -= PlayEffect;
+            entity.UpdateHP -= UpdateHPDisplay;
+            entity.PlayDamageNumberAnimation -= PlayDamageNumberAnimation;
+
+            _hp.Value = entity.GetHPPercentage();
             _hpl.Text = entity.HP.ToString();
             _entityPicture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
 
@@ -71,7 +75,7 @@ namespace AscendedZ.dungeon_crawling.combat.combat_scenes
         {
             // play damage sfx
             Shake();
-            _shakeSfx.Play();
+            _shakeSfx?.Play();
 
             // play damage number
             var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate<DamageNumber>();

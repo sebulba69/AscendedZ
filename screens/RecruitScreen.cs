@@ -65,16 +65,16 @@ public partial class RecruitScreen : CenterContainer
 
         _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.GameObjectInstance().MaxTier);
         _availablePartyMembers.Reverse();
-        _availableRecruits.Connect("item_selected",new Callable(this,"_OnItemSelected"));
+        _availableRecruits.ItemSelected += _OnItemSelected;
 
         _partyCoins = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON];
         RefreshVendorWares(0);
     }
 
-    private void _OnItemSelected(int index)
+    private void _OnItemSelected(long index)
     {
-        _selected = index;
-        DisplayPartyMemberOnScreen(index);
+        _selected = (int)index;
+        DisplayPartyMemberOnScreen(_selected);
     }
 
     private void _OnBuyButtonPressed()

@@ -1,8 +1,8 @@
 res://default_env.tres
-res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.tscn
+res://dungeon_crawling/combat/combat_scenes/DungeonCombat.tscn
 res://misc_icons/IconOutline.gdshader
-res://dungeon_crawling/combat/combat_scenes/DungeonScreen.tscn
-res://misc_icons/Icon.tscn
+res://dungeon_crawling/combat/combat_scenes/PlayerScene.tscn
+res://dungeon_crawling/combat/combat_scenes/EnemyScene.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/combat/combat_scenes/DungeonCombat.cs
@@ -12,7 +12,6 @@ res://dungeon_crawling/combat/combat_scenes/EnemyScene.cs
 res://dungeon_crawling/combat/combat_scenes/EntityScene.cs
 res://dungeon_crawling/combat/combat_scenes/gb_battle_ui/GBPlayerMoveQueue.cs
 res://dungeon_crawling/combat/combat_scenes/gb_battle_ui/GBSkillList.cs
-res://dungeon_crawling/combat/combat_scenes/gb_battle_ui/GBStatusList.cs
 res://dungeon_crawling/combat/combat_scenes/PlayerScene.cs
 res://dungeon_crawling/combat/combat_scenes/ShakeCamera.cs
 res://dungeon_crawling/combat/combat_scenes/TileScene.cs
@@ -20,6 +19,7 @@ res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.cs
 res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.cs
 res://dungeon_crawling/scenes/crawl_ui/RandomWeapon.cs
 res://dungeon_crawling/scenes/DungeonCrawlMainScreen.cs
+res://dungeon_crawling/scenes/minion_hut/MinionHut.cs
 res://dungeon_crawling/scenes/weapon_armory/ArmoryScene.cs
 res://dungeon_crawling/scenes/weapon_gacha/WeaponGachaScreen.cs
 res://dungeon_crawling/weapon_grid/WeaponDisplay.cs
@@ -56,4 +56,5 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://dungeon_crawling/scenes/weapon_armory/ArmoryScene.tscn
+res://screens/BattleEnemyScene.tscn
+res://dungeon_crawling/combat/combat_scenes/DungeonScreen.tscn

@@ -1,6 +1,8 @@
 ﻿using AscendedZ.dungeon_crawling.combat;
 using AscendedZ.dungeon_crawling.combat.battledc;
+using AscendedZ.dungeon_crawling.combat.battledc.gbskills;
 using AscendedZ.entities;
+using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,26 +26,45 @@ namespace AscendedZ.dungeon_crawling.databases
         {
             BEnemyDC enemy = new BEnemyDC(_tier);
 
-            if(_tier < 10)
+            List<string> images = new List<string>()
             {
-                List<string> tier1_9Images = new List<string>() 
-                {
-                    EnemyNames.Anrol,
-                    EnemyNames.Conlen,
-                    EnemyNames.David,
-                    EnemyNames.Nanfrea,
-                    EnemyNames.CattuTDroni
-                };
+                EnemyNames.Anrol,
+                EnemyNames.Conlen,
+                EnemyNames.David,
+                EnemyNames.Nanfrea,
+                EnemyNames.CattuTDroni
+            };
 
-                enemy.Image = CharacterImageAssets.GetImagePath(tier1_9Images[_rng.Next(tier1_9Images.Count)]);
+            List<Elements> elements = new List<Elements>() 
+            {
+                Elements.Ice,
+                Elements.Elec,
+                Elements.Wind,
+                Elements.Fire,
+                Elements.Wind
+            };
 
-                if (string.IsNullOrEmpty(enemy.Image)) 
-                {
-                    enemy = MakeEnemy();
-                }
-            }
+            int index = _rng.Next(images.Count);
+
+            enemy.Turns = 1;
+            enemy.Image = CharacterImageAssets.GetImagePath(images[index]);
+            enemy.Skills.Add(MakeElementSkill(elements[index]));
 
             return enemy;
+        }
+
+        private GBSkill MakeElementSkill(Elements element)
+        {
+            GBSkill skill = new GBSkill();
+
+            skill.Name = $"{element} Burst";
+            skill.Element = element;
+            skill.Value = (2 * _tier) + 5;
+            skill.Icon = SkillAssets.GetElementIconByElementEnum(element);
+            skill.Type = GBSkillType.EnemyElement;
+            skill.TargetType = GBTargetType.Opponent;
+
+            return skill;
         }
     }
 }

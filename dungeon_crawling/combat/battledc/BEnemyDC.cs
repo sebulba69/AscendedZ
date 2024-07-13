@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AscendedZ.dungeon_crawling.combat.battledc.gbskills;
+using AscendedZ.skills;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -12,13 +14,20 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
     /// </summary>
     public class BEnemyDC : GBEntity
     {
-        private const long BASEHP = 10;
-        private const long GROWTH_RATE = 2;
+        private const long BASEHP = 1000;
+        public int Turns { get; set; }
+        public List<GBSkill> Skills { get; set; }
 
         public BEnemyDC(int tier)
         {
-            MaxHP = BASEHP * (long)Math.Pow(GROWTH_RATE, tier - 1);
+            MaxHP = BASEHP * tier;
             HP = MaxHP;
+            Skills=new List<GBSkill>();
+        }
+
+        public GBSkill GetSkill()
+        {
+            return Skills[0];
         }
     }
 }
