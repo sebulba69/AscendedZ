@@ -67,6 +67,7 @@ namespace AscendedZ.dungeon_crawling.backend
                 if (generateEvent)
                 {
                     next = _pathFactory.MakePath(primaryDirection, GetPathType());
+                    eventCount++;
                 }
                 else
                 {
@@ -77,7 +78,6 @@ namespace AscendedZ.dungeon_crawling.backend
                     else
                     {
                         next = new MainEncounterTile(primaryDirection);
-                        eventCount++;
                     }
 
                     wait++;
