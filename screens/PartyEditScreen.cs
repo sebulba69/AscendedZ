@@ -19,6 +19,8 @@ public partial class PartyEditScreen : HBoxContainer
     private Button _embarkButton;
     private int _selectedIndex;
 
+    public EventHandler Embark;
+
     public bool DungeonCrawling { get; set; }
     
     // Called when the node enters the scene tree for the first time.
@@ -201,6 +203,7 @@ public partial class PartyEditScreen : HBoxContainer
                 battleScene.SetupForNormalEncounter();
             }
 
+            Embark?.Invoke(null, EventArgs.Empty);
             QueueFree();
         }
         else

@@ -358,23 +358,6 @@ public partial class DungeonScreen : Transitionable2DScene
                 PersistentGameObjects.Save();
                 break;
 
-            case TileEventId.MinionShop:
-                /*
-                var minionHut = ResourceLoader.Load<PackedScene>(Scenes.MINION_HUT).Instantiate<RandomWeapon>();
-                _itemSfxPlayer.Play();
-
-                _crawlUI.Visible = false;
-                _popup.AddChild(minionHut);
-
-                await ToSignal(minionHut, "tree_exited");
-
-                MakeNewBattlePlayer();
-
-                SetCrawlValues();
-                _crawlUI.Visible = true;
-                */
-                break;
-
             case TileEventId.Blacksmith:
                 /*
                 _tiles.Visible = false;

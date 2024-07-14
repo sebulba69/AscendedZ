@@ -34,10 +34,10 @@ public partial class MainPlayerContainer : CenterContainer
 
         foreach (var key in wallet.Currency.Keys)
         {
-            var display = ResourceLoader.Load<PackedScene>(Scenes.CURRENCY_DISPLAY).Instantiate();
+            var display = ResourceLoader.Load<PackedScene>(Scenes.CURRENCY_DISPLAY).Instantiate<CurrencyDisplay>();
             currencyDisplay.AddChild(display);
             var currency = wallet.Currency[key];
-            display.Call("SetCurrencyToDisplay", currency.Icon, currency.Amount);
+            display.SetCurrencyToDisplay(currency.Icon, currency.Amount);
         }
     }
 }

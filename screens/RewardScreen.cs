@@ -42,9 +42,9 @@ public partial class RewardScreen : Control
         int tier = _gameObject.TierDC;
         _rewards = new List<Currency>()
         {
-            new Vorpex() {Amount = tier * 3 },
-            new PartyCoin() { Amount = tier },
-            new Dellencoin() { Amount = tier },
+            new Vorpex() {Amount = tier + 5 },
+            new PartyCoin() { Amount = 1 },
+            new Dellencoin() { Amount = 10 },
         };
         SetupRewards();
     }
@@ -54,9 +54,9 @@ public partial class RewardScreen : Control
         int tier = _gameObject.TierDC;
         _rewards = new List<Currency>()
         {
-            new Vorpex() { Amount = tier * 5 },
-            new Dellencoin() { Amount = tier * 10 },
-            new PartyCoin() { Amount = tier * 3 }
+            new Vorpex() { Amount = tier + 3 },
+            new Dellencoin() { Amount = 20 },
+            new PartyCoin() { Amount = 5 }
         };
         SetupRewards();
     }
@@ -66,9 +66,9 @@ public partial class RewardScreen : Control
         int tier = _gameObject.TierDC;
         var rewards = new List<Currency>()
         {
-            new Vorpex() { Amount = tier * 5 },
-            new Dellencoin() { Amount = tier * 10 },
-            new PartyCoin() { Amount = tier * 3 }
+            new Vorpex() { Amount = tier + 3 },
+            new Dellencoin() { Amount = 20 },
+            new PartyCoin() { Amount = 5 }
         };
 
         _rewards = new List<Currency>() { rewards[_rand.Next(0, rewards.Count)] };

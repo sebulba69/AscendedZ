@@ -20,6 +20,8 @@ public partial class EmbarkScreen : CenterContainer
     private PartyEditScreen _partyEditScreen;
     private Button _labrybuceBtn;
 
+    public PartyEditScreen PartyEditScreen { get => _partyEditScreen; }
+
     public override void _Ready()
     {
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();

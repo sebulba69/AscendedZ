@@ -166,9 +166,35 @@ public partial class MainScreen : Transitionable2DScene
         instanceOfPackedScene.Connect("EndMenuScene", new Callable(this, "_OnMenuClosed"));
     }
 
-    private void _OnEmbarkButtonPressed()
+    private async void _OnEmbarkButtonPressed()
     {
-        DisplayScene(Scenes.MAIN_EMBARK);
+        _mainUIContainer.Visible = false;
+        _musicSelectContainer.Visible = false;
+        var embark = ResourceLoader.Load<PackedScene>(Scenes.MAIN_EMBARK).Instantiate<EmbarkScreen>();
+        _root.AddChild(embark);
+        bool embarked = false;
+
+        embark.PartyEditScreen.Embark += (sender, args) => 
+        {
+            embarked = true;
+            QueueFree();
+        };
+
+        await ToSignal(embark, "tree_exited");
+
+        if (embarked)
+            return;
+
+        _mainUIContainer.Visible = true;
+        _musicSelectContainer.Visible = true;
+
+        var pFlags = PersistentGameObjects.GameObjectInstance().ProgressFlagObject;
+
+        if (pFlags.CustomPartyMembersViewed)
+            this.GetNode<Button>("%RecruitButton").Text = "Recruit";
+
+        _mainPlayerContainer.UpdateCurrencyDisplay();
+        DoEmbarkButtonCheck(PersistentGameObjects.GameObjectInstance());
     }
 
     private void _OnRecruitButtonPressed()
