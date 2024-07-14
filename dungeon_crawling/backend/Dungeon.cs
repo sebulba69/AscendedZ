@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using AscendedZ.dungeon_crawling.backend.TileEvents;
@@ -57,6 +58,7 @@ namespace AscendedZ.dungeon_crawling.backend
             ITile tile = _currentTile;
             bool generateEvent = false;
             int eventCount = 0;
+            int wait = 0;
 
             while (eventCount < _eventCount)
             {
@@ -65,14 +67,29 @@ namespace AscendedZ.dungeon_crawling.backend
                 if (generateEvent)
                 {
                     next = _pathFactory.MakePath(primaryDirection, GetPathType());
-                    eventCount++;
                 }
                 else
                 {
-                    next = new MainEncounterTile(primaryDirection);
+                    if (wait < 2)
+                    {
+                        next = new MainPathTile(primaryDirection);
+                    }
+                    else
+                    {
+                        next = new MainEncounterTile(primaryDirection);
+                        eventCount++;
+                    }
+
+                    wait++;
                 }
 
-                generateEvent = !generateEvent;
+                if(wait == 3)
+                {
+                    generateEvent = !generateEvent;
+                    wait = 0;
+                }
+                else if(generateEvent)
+                    generateEvent = false;
 
                 tile = AttachTiles(tile, next, primaryDirection);
 
