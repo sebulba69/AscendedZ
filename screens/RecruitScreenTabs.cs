@@ -53,11 +53,12 @@ public partial class RecruitScreenTabs : CenterContainer
 
 	private void _OnShopUpgradePressed()
 	{
+		int cost = 1000;
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 		var wallet = gameObject.MainPlayer.Wallet;
-		if (wallet.Currency[SkillAssets.DELLENCOIN].Amount - 100 >= 0) 
+		if (wallet.Currency[SkillAssets.DELLENCOIN].Amount - cost >= 0) 
 		{
-			wallet.Currency[SkillAssets.DELLENCOIN].Amount -= 100;
+			wallet.Currency[SkillAssets.DELLENCOIN].Amount -= cost;
 			gameObject.ShopLevel++;
 
 			_recruitShop.SetShopVendorWares();

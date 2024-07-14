@@ -44,7 +44,7 @@ public partial class RewardScreen : Control
         {
             new Vorpex() {Amount = tier + 5 },
             new PartyCoin() { Amount = 1 },
-            new Dellencoin() { Amount = 10 },
+            new Dellencoin() { Amount = 2 * tier },
         };
         SetupRewards();
     }
@@ -55,7 +55,7 @@ public partial class RewardScreen : Control
         _rewards = new List<Currency>()
         {
             new Vorpex() { Amount = tier + 3 },
-            new Dellencoin() { Amount = 20 },
+            new Dellencoin() { Amount = 5 * tier },
             new PartyCoin() { Amount = 5 }
         };
         SetupRewards();
@@ -67,7 +67,7 @@ public partial class RewardScreen : Control
         var rewards = new List<Currency>()
         {
             new Vorpex() { Amount = tier + 3 },
-            new Dellencoin() { Amount = 20 },
+            new Dellencoin() { Amount = 5 * tier },
             new PartyCoin() { Amount = 5 }
         };
 

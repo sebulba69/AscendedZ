@@ -393,6 +393,7 @@ public partial class BattleEnemyScene : Node2D
             if(!_dungeonCrawlEncounter)
                 member.HP = member.MaxHP;
 
+            member.IsActiveEntity = false;
             member.StatusHandler.Clear();
         }
 
@@ -439,22 +440,17 @@ public partial class BattleEnemyScene : Node2D
 
 
             // do reward stuff here
-            int currentTier, tierCap, maxTier;
-
             if(_dungeonCrawlEncounter)
             {
-                currentTier = gameObject.TierDC;
-                tierCap = gameObject.TierDCCap;
-                maxTier = gameObject.MaxTierDC;
                 _continueButton.Visible = true;
-                _continueButton.Text = $"Continue exploring.";
+                _continueButton.Text = $"Continue exploring...";
                 _backToHomeButton.Visible = false;
             }
             else
             {
-                currentTier = gameObject.Tier;
-                tierCap = gameObject.TierCap;
-                maxTier = gameObject.MaxTier;
+                int currentTier = gameObject.Tier;
+                int tierCap = gameObject.TierCap;
+                int maxTier = gameObject.MaxTier;
                 _continueButton.Visible = (currentTier + 1 < tierCap);
                 if (currentTier + 1 == maxTier + 1)
                 {

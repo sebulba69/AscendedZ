@@ -172,22 +172,7 @@ namespace AscendedZ
         public static readonly string VORPEX_ICON = "Vorpex";
         public static readonly string PARTY_COIN_ICON = "Party Coins";
         public static readonly string DELLENCOIN = "Dellencoin";
-        public static readonly string MINION_SHARD = "Minion Shards";
 
-        // Dungeon Crawling Icons
-        public static readonly string DAGGER_ICON = "Dagger";
-        public static readonly string SWORD_ICON = "Sword";
-        public static readonly string FLAIL_ICON = "Flail";
-        public static readonly string AXE_ICON = "Axe";
-        public static readonly string WHIP_ICON = "Whip";
-        public static readonly string STAFF_ICON = "Staff";
-        public static readonly string BOW_ICON = "Bow";
-        public static readonly string CROSSBOW_ICON = "Crossbow";
-        public static readonly string FLINTLOCK_ICON = "Flintlock";
-        public static readonly string CLAW_ICON = "Claw";
-        public static readonly string SPEAR_ICON = "Spear";
-        public static readonly string GREATSWORD_ICON = "Greatsword";
-        public static readonly string HAMMER_ICON = "Hammer";
 
         // GB Statuses
 
@@ -213,22 +198,7 @@ namespace AscendedZ
             [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
             [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600),
             [QUEST_ICON] = new KeyValuePair<int, int>(480, 352),
-            [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480),
-            // DUNGEON CRAWLING WEAPONS
-            [DAGGER_ICON] = new KeyValuePair<int, int>(0, 192),
-            [SWORD_ICON] = new KeyValuePair<int, int>(32, 192),
-            [FLAIL_ICON] = new KeyValuePair<int, int>(64, 192),
-            [AXE_ICON] = new KeyValuePair<int, int>(96, 192),
-            [WHIP_ICON] = new KeyValuePair<int, int>(128, 192),
-            [STAFF_ICON] = new KeyValuePair<int, int>(160, 192),
-            [BOW_ICON] = new KeyValuePair<int, int>(192, 192),
-            [CROSSBOW_ICON] = new KeyValuePair<int, int>(224, 192),
-            [FLINTLOCK_ICON] = new KeyValuePair<int, int>(256, 192),
-            [CLAW_ICON] = new KeyValuePair<int, int>(288, 192),
-            [SPEAR_ICON] = new KeyValuePair<int, int>(352, 192),
-            [GREATSWORD_ICON] = new KeyValuePair<int, int>(32, 224),
-            [HAMMER_ICON] = new KeyValuePair<int, int>(62, 224),
-            [MINION_SHARD] = new KeyValuePair<int, int>(320, 1440)
+            [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480)
         };
 
         public static KeyValuePair<int, int> GetIcon(string key)

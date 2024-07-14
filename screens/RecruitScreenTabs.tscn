@@ -69,5 +69,5 @@ custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_k52ob")
-theme_override_font_sizes/font_size = 44
-text = "Upgrade Shop (100 D$)"
+theme_override_font_sizes/font_size = 40
+text = "Upgrade Shop (1000 D$)"

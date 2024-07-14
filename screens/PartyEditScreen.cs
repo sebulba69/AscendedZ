@@ -156,7 +156,7 @@ public partial class PartyEditScreen : HBoxContainer
         }
     }
 
-    private void _OnEmbarkPressed()
+    private async void _OnEmbarkPressed()
     {
         var go = PersistentGameObjects.GameObjectInstance();
 
@@ -191,6 +191,11 @@ public partial class PartyEditScreen : HBoxContainer
 
         if (canEmbark)
         {
+            var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
+            GetTree().Root.AddChild(transition);
+            transition.PlayFadeIn();
+            await ToSignal(transition.Player, "animation_finished");
+
             if (DungeonCrawling)
             {
                 var dungeon = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL).Instantiate<DungeonScreen>();
@@ -202,8 +207,10 @@ public partial class PartyEditScreen : HBoxContainer
                 this.GetTree().Root.AddChild(battleScene);
                 battleScene.SetupForNormalEncounter();
             }
-
             Embark?.Invoke(null, EventArgs.Empty);
+
+            transition.PlayFadeOut();
+            await ToSignal(transition.Player, "animation_finished");
             QueueFree();
         }
         else

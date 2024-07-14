@@ -107,7 +107,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
     private void SetCrawlValues()
     {
-        // change later
+        _crawlUI.SetParty(_battlePlayers);
     }
 
     private void MoveDirection(UITile tile, Direction direction)
@@ -408,9 +408,14 @@ public partial class DungeonScreen : Transitionable2DScene
 
         int tier = _gameObject.TierDC;
         int maxTier = _gameObject.MaxTierDC;
+
         if (tier == maxTier && tier + 1 < _gameObject.TierDCCap) 
         {
             _gameObject.MaxTierDC++;
+            _gameObject.TierDC++;
+        }
+        else
+        {
             _gameObject.TierDC++;
         }
 
@@ -437,8 +442,19 @@ public partial class DungeonScreen : Transitionable2DScene
     {
         if(_floorExitScene.Continue.Visible)
         {
-            _gameObject.MaxTierDC++;
-            _gameObject.TierDC++;
+            int tier = _gameObject.TierDC;
+            int maxTier = _gameObject.MaxTierDC;
+
+            if (tier == maxTier && tier + 1 < _gameObject.TierDCCap)
+            {
+                _gameObject.MaxTierDC++;
+                _gameObject.TierDC++;
+            }
+            else
+            {
+                _gameObject.TierDC++;
+            }
+
             _crawlUI.Visible = false;
             _floorExitScene.Visible = false;
             var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();

@@ -1,13 +1,13 @@
+MarginContainer
 PanelContainer
 HBoxContainer
 VBoxContainer
+TextureRect
 AnimationPlayer
 Sprite2D
 GridContainer
-TextureRect
 ItemList
 CenterContainer
-MarginContainer
 ScrollContainer
 Button
 CanvasLayer

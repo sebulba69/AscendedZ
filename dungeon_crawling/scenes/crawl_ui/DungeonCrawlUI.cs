@@ -1,24 +1,28 @@
+using AscendedZ;
+using AscendedZ.entities.battle_entities;
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class DungeonCrawlUI : PanelContainer
 {
-	private Label _tier, _hp, _dellencoin, _reserves;
-
+	private VBoxContainer _container;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_tier = this.GetNode<Label>("%TierLabel");
-		_hp = this.GetNode<Label>("%HPLabel");
-		_dellencoin = this.GetNode<Label>("%DellencoinLabel");
-		_reserves = this.GetNode<Label>("%ReservesLabel");
+		_container = GetNode<VBoxContainer>("%PartyContainer");
 	}
 
-	public void SetValues(int tier, long hp, long maxHP, int dellencoin, string reserveCount)
+	public void SetParty(List<BattlePlayer> players)
 	{
-		_tier.Text = $"Tier: {tier}";
-		_hp.Text = $"{hp}/{maxHP} HP";
-		_dellencoin.Text = $"D$ {dellencoin}";
-		_reserves.Text = reserveCount;
+		foreach (var child in _container.GetChildren())
+			_container.RemoveChild(child);
+
+		foreach (var p in players)
+		{
+			var scene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL_PARTY_MEMBER).Instantiate<PartyMemberDCDisplay>();
+			_container.AddChild(scene);
+			scene.SetPartyMember(p);
+		}
 	}
 }
