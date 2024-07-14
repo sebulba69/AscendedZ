@@ -13,6 +13,8 @@ public partial class RewardScreen : Control
 	private List<Currency> _rewards;
     private GameObject _gameObject;
 
+    private Random _rand;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
@@ -20,6 +22,8 @@ public partial class RewardScreen : Control
         _claimRewardsButton = this.GetNode<Button>("%ClaimButton");
         _claimRewardsButton.Pressed += _OnClaimRewardsPressed;
         _gameObject = PersistentGameObjects.GameObjectInstance();
+
+        _rand = new Random();
     }
 
     public void InitializeSMTRewards()
@@ -39,6 +43,7 @@ public partial class RewardScreen : Control
         _rewards = new List<Currency>()
         {
             new Vorpex() {Amount = tier * 3 },
+            new PartyCoin() { Amount = tier },
             new Dellencoin() { Amount = tier },
         };
         SetupRewards();
@@ -50,8 +55,23 @@ public partial class RewardScreen : Control
         _rewards = new List<Currency>()
         {
             new Vorpex() { Amount = tier * 5 },
-            new Dellencoin() { Amount = tier * 10 }
+            new Dellencoin() { Amount = tier * 10 },
+            new PartyCoin() { Amount = tier * 3 }
         };
+        SetupRewards();
+    }
+
+    public void RandomizeDungeonCrawlRewards()
+    {
+        int tier = _gameObject.TierDC;
+        var rewards = new List<Currency>()
+        {
+            new Vorpex() { Amount = tier * 5 },
+            new Dellencoin() { Amount = tier * 10 },
+            new PartyCoin() { Amount = tier * 3 }
+        };
+
+        _rewards = new List<Currency>() { rewards[_rand.Next(0, rewards.Count)] };
         SetupRewards();
     }
 

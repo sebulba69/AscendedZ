@@ -82,6 +82,8 @@ namespace AscendedZ.game_object
             }
         }
 
+        public int ShopLevel { get; set; }
+
         public int TierCap { get => TIER_CAP; }
 
         public int TierDCCap { get => TIER_CAP_DC; }
@@ -106,6 +108,8 @@ namespace AscendedZ.game_object
 
             if (Encounters == null)
                 Encounters = new List<List<string>>();
+
+            ShopLevel = 0;
         }
 
         public List<BattlePlayer> MakeBattlePlayerListFromParty()

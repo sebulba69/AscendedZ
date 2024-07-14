@@ -87,7 +87,14 @@ public partial class RecruitCustomScreen : CenterContainer
 		_ownedPartyCoin.Text = $"{gameObject.MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON].Amount} PC";
     }
 
-	private void ChangePotentialPartyMembers()
+    public void SetShopVendorWares()
+    {
+		_recruitCustomObject.Initialize();
+        ChangePotentialPartyMembers();
+        ChangePotentialSkills();
+    }
+
+    private void ChangePotentialPartyMembers()
 	{
 		_potentialPartyMembers.Clear();
 

@@ -33,6 +33,7 @@ public partial class EmbarkScreen : CenterContainer
         _labrybuceBtn.Visible = (gameObject.MaxTier > 10);
 
         gameObject.Tier = gameObject.MaxTier;
+        gameObject.TierDC = gameObject.MaxTierDC;
         string tierText = "Dungeon Floor:";
 
         _tierLabel.Text = $"{tierText} {PersistentGameObjects.GameObjectInstance().MaxTier}";

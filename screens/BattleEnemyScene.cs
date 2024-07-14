@@ -46,9 +46,6 @@ public partial class BattleEnemyScene : Node2D
 
         _actionMenu = this.GetNode<ActionMenu>("%ActionMenu");
 
-        AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
-        PersistentGameObjects.GameObjectInstance().MusicPlayer.SetStreamPlayer(audioPlayer);
-
         _backToHomeButton.Pressed += _OnBackToHomeBtnPressed;
         _retryFloorButton.Pressed += _OnRetryFloorBtnPressed;
         _changePartyButton.Pressed += _OnChangePartyBtnPressed;
@@ -102,6 +99,8 @@ public partial class BattleEnemyScene : Node2D
     public void SetupForNormalEncounter()
     {
         _dungeonCrawlEncounter = false;
+        AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
+        PersistentGameObjects.GameObjectInstance().MusicPlayer.SetStreamPlayer(audioPlayer);
         InitializeBattleScene();
     }
 
@@ -120,19 +119,25 @@ public partial class BattleEnemyScene : Node2D
         ClearChildrenFromNode(_enemyMembers);
 
         TextureRect background = this.GetNode<TextureRect>("%Background");
-        background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatBackground(tier));
+        string backgroundString = (_dungeonCrawlEncounter) ? BackgroundAssets.GetCombatDCBackground(tier) :  BackgroundAssets.GetCombatBackground(tier);
+        background.Texture = ResourceLoader.Load<Texture2D>(backgroundString);
 
         _battleSceneObject = new BattleSceneObject(tier);
         _actionMenu.BattleSceneObject = _battleSceneObject;
         _actionMenu.DungeonCrawling = _dungeonCrawlEncounter;
 
-        _battleSceneObject.InitializeEnemies(tier);
-
         if(!_dungeonCrawlEncounter)
+        {
+            _battleSceneObject.InitializeEnemies(tier, _dungeonCrawlEncounter);
             players = gameObject.MakeBattlePlayerListFromParty();
+        }
+        else
+        {
+            _battleSceneObject.InitializeEnemies(tier + 5, _dungeonCrawlEncounter);
+        }
+            
 
         _battleSceneObject.InitializePartyMembers(players);
-
         _battleSceneObject.UpdateUI += _OnUIUpdate;
 
         // add players to the scene
@@ -149,7 +154,6 @@ public partial class BattleEnemyScene : Node2D
                 _actionMenu.Reparent(hBoxContainer);
         }
 
-        HashSet<Type> enemyTypes = new HashSet<Type>();
         foreach (var enemy in _battleSceneObject.Enemies)
         {
             var enemyBox = (enemy.IsBoss) 
@@ -158,17 +162,7 @@ public partial class BattleEnemyScene : Node2D
             
             _enemyMembers.AddChild(enemyBox);
  
-            enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
-
-            if (!enemy.IsBoss)
-            {
-                // Prevent there from being repeat descriptions of enemy ais.
-                if (!enemyTypes.Contains(enemy.GetType()))
-                {
-                    enemyTypes.Add(enemy.GetType());
-                }
-            }
-                
+            enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });   
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff
@@ -176,9 +170,13 @@ public partial class BattleEnemyScene : Node2D
 
         UpdateTurnsUsingTurnState(TurnState.PLAYER);
 
-        string dungeonTrack = MusicAssets.GetDungeonTrack(tier);
-        bool isBoss = (tier % 10 == 0);
-        gameObject.MusicPlayer.PlayMusic(dungeonTrack);
+        if (!_dungeonCrawlEncounter)
+        {
+            string dungeonTrack = MusicAssets.GetDungeonTrack(tier);
+            bool isBoss = (tier % 10 == 0);
+            gameObject.MusicPlayer.PlayMusic(dungeonTrack);
+        }
+
         _actionMenu.CanInput = true;
         
     }
@@ -413,7 +411,7 @@ public partial class BattleEnemyScene : Node2D
             if (_dungeonCrawlEncounter)
             {
                 ChangeEndScreenVisibilityOnly(false);
-
+                GetNode<AudioStreamPlayer>("%ItemSfxPlayer");
                 var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
                 this.GetTree().Root.AddChild(rewardScene);
                 rewardScene.InitializeDungeonCrawlEncounterRewards();
@@ -427,7 +425,7 @@ public partial class BattleEnemyScene : Node2D
                 {
                     gameObject.MaxTier++;
                     ChangeEndScreenVisibilityOnly(false);
-
+                    GetNode<AudioStreamPlayer>("%ItemSfxPlayer");
                     var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
                     this.GetTree().Root.AddChild(rewardScene);
                     rewardScene.InitializeSMTRewards();
@@ -436,6 +434,8 @@ public partial class BattleEnemyScene : Node2D
                     ChangeEndScreenVisibilityOnly(true);
                 }
             }
+
+           
 
 
             // do reward stuff here

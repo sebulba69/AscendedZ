@@ -5,6 +5,7 @@ res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn
 res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.tscn
 res://screens/EmbarkScreen.tscn
 res://screens/MainScreen.tscn
+res://dungeon_crawling/combat/combat_scenes/DungeonScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/combat/combat_scenes/DungeonEntity.cs
@@ -43,4 +44,6 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://dungeon_crawling/combat/combat_scenes/DungeonScreen.tscn
+res://screens/RecruitScreenTabs.tscn
+res://screens/RewardScreen.tscn
+res://screens/RecruitScreen.tscn

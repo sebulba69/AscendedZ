@@ -66,7 +66,7 @@ namespace AscendedZ.battle
             this.SetPartyMemberTurns();
         }
 
-        public void InitializeEnemies(int tier, bool dungeonCrawlEncounter = false)
+        public void InitializeEnemies(int tier, bool dungeonCrawlEncounter)
         {
             this.Enemies = EntityDatabase.MakeBattleEncounter(tier, dungeonCrawlEncounter);
         }

@@ -102,7 +102,7 @@ namespace AscendedZ
             { Elements.Dark, PartyNames.Fledron }
         };
 
-        public static List<Enemy> MakeBattleEncounter(int tier, bool dungeonCrawlEncounter = false)
+        public static List<Enemy> MakeBattleEncounter(int tier, bool dungeonCrawlEncounter)
         {
             List<Enemy> encounter = new List<Enemy>();
             if ((tier - RANDOM_TIER) < 0)
@@ -123,13 +123,13 @@ namespace AscendedZ
                 List<string> encounterNames = new List<string>();
 
                 // If we have already stored an encounter in this list, we want to re-use it.
-                if (gameObject.Encounters.Count > encounterIndex)
+                if (gameObject.Encounters.Count > encounterIndex && !dungeonCrawlEncounter)
                 {
                     encounterNames = gameObject.Encounters[encounterIndex];
                 }
                 else
                 {
-                    if (tier % 10 == 0)
+                    if (tier % 10 == 0 && !dungeonCrawlEncounter)
                     {
                         int bossIndex = (tier / 10) - 1;
                         encounterNames.Add(BOSS_ENCOUNTERS[bossIndex]);

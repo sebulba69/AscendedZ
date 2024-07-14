@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3mtohsramppe"]
+[gd_scene load_steps=10 format=3 uid="uid://b3mtohsramppe"]
 
 [ext_resource type="Texture2D" uid="uid://c5xd4it2pk7uq" path="res://cg_backgrounds/dungeon/1bg03101.jpg" id="1"]
 [ext_resource type="Script" path="res://screens/BattleEnemyScene.cs" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="4_38pxl"]
 [ext_resource type="Texture2D" uid="uid://car4hgrdysj7x" path="res://turn_icons/turn_backdrop.png" id="5_4jwes"]
 [ext_resource type="PackedScene" uid="uid://b8adwqax888v1" path="res://screens/ActionMenu.tscn" id="8_cr1uv"]
+[ext_resource type="AudioStream" uid="uid://q25xxaiw4e1c" path="res://effects/effect_sounds/Item1.ogg" id="8_halw0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtn52"]
 atlas = ExtResource("4_38pxl")
@@ -225,3 +226,8 @@ text = "Proceed"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -12.5
+
+[node name="ItemSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_halw0")
+volume_db = -10.0

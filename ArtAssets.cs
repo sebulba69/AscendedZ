@@ -27,13 +27,25 @@ namespace AscendedZ
         }
 
         private static List<string> _combatBgs = new List<string>();
+        private static List<string> _combatBgsDC = new List<string>();
 
         public static List<string> CombatBgs
         {
             get
             {
-                AssetUtil.GetFilesFromDir(_combatBgs, "res://cg_backgrounds/dungeon/");
+                if(_combatBgs.Count == 0)
+                    AssetUtil.GetFilesFromDir(_combatBgs, "res://cg_backgrounds/dungeon/");
                 return _combatBgs;
+            }
+        }
+
+        public static List<string> CombatBgsDC
+        {
+            get
+            {
+                if(_combatBgsDC.Count == 0)
+                    AssetUtil.GetFilesFromDir(_combatBgsDC, "res://cg_backgrounds/dungeon_crawling/");
+                return _combatBgsDC;
             }
         }
 
@@ -47,6 +59,16 @@ namespace AscendedZ
         {
             int index = Equations.GetTierIndexBy10(tier);
             return CombatBgs[index];
+        }
+
+        public static string GetCombatDCBackground(int tier)
+        {
+            int index = Equations.GetTierIndexBy10(tier);
+
+            if (index >= CombatBgsDC.Count)
+                index = CombatBgsDC.Count - 1;
+
+            return CombatBgsDC[index];
         }
     }
 

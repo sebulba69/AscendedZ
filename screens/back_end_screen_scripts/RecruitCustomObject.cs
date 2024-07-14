@@ -5,6 +5,7 @@ using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,8 @@ namespace AscendedZ.screens.back_end_screen_scripts
 {
     public class RecruitCustomObject
     {
+        private int _baseCost;
+
         // Preview UI
         public OverworldEntity SelectedEntity { get; set; }
         public ISkill SelectedSkill { get; set; }
@@ -27,13 +30,18 @@ namespace AscendedZ.screens.back_end_screen_scripts
         {
             AvailableMembers = new List<OverworldEntity>();
             AvailableSkills = new List<ISkill>();
+            _baseCost = 1;
         }
 
         public void Initialize()
         {
             _gameObject = PersistentGameObjects.GameObjectInstance();
-
             AvailableMembers = EntityDatabase.MakeShopVendorWares(_gameObject.MaxTier, true);
+
+            for (int i = 0; i < _gameObject.ShopLevel; i++)
+                foreach (var member in AvailableMembers)
+                    member.LevelUp();
+
             SetPreviewPartyMember(0);
         }
 
@@ -59,6 +67,15 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
                 return isValidSkill;
             });
+
+            int shopLevel = _gameObject.ShopLevel;
+            for (int i = 0; i < shopLevel; i++)
+            {
+                foreach (var skill in AvailableSkills)
+                    skill.LevelUp();
+
+                _baseCost = shopLevel + 1;
+            }
         }
 
         public void AddSkill(int index)
@@ -91,7 +108,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
         private void UpdateCost()
         {
-            Cost = SelectedEntity.Skills.Count + 1;
+            Cost = SelectedEntity.Skills.Count + _baseCost;
         }
 
         private bool DoesSelectedHaveSkill(int index)

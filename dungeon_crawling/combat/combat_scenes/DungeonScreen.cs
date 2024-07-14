@@ -133,8 +133,7 @@ public partial class DungeonScreen : Transitionable2DScene
     {
         SetCrawlValues();
 
-        string track = MusicAssets.GetDungeonTrackDC(_gameObject.TierDC);
-        _gameObject.MusicPlayer.PlayMusic(track);
+        _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
         _currentScene = null;
         _dungeon = new Dungeon(_gameObject.TierDC);
         _dungeon.Generate();
@@ -296,18 +295,20 @@ public partial class DungeonScreen : Transitionable2DScene
         switch (id)
         {
             case TileEventId.Item:
-                /*
-                var randomWeapon = ResourceLoader.Load<PackedScene>(Scenes.ITEM_COLLECT).Instantiate<RandomWeapon>();
+                
+                var randomRewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
                 _itemSfxPlayer.Play();
 
                 _crawlUI.Visible = false;
-                _popup.AddChild(randomWeapon);
+                _popup.AddChild(randomRewards);
 
-                await ToSignal(randomWeapon, "tree_exited");
+                randomRewards.RandomizeDungeonCrawlRewards();
+
+                await ToSignal(randomRewards, "tree_exited");
                 SetCrawlValues();
                 _crawlUI.Visible = true;
                 _currentScene.Scene.TurnOffGraphic();
-                PersistentGameObjects.Save();*/
+                PersistentGameObjects.Save();
                 _currentScene.Scene.TurnOffGraphic();
                 break;
 

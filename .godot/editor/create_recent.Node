@@ -1,9 +1,9 @@
 HBoxContainer
+VBoxContainer
 PanelContainer
 AnimationPlayer
 Sprite2D
 GridContainer
-VBoxContainer
 TextureRect
 ItemList
 CenterContainer

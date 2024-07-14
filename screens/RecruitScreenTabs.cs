@@ -6,6 +6,11 @@ using System;
 public partial class RecruitScreenTabs : CenterContainer
 {
 	private const int MEMBER_REQUEST_FORUM = 1;
+	private Button _shopLevelButton;
+	private TextEdit _ownedDellencoin;
+
+	private RecruitScreen _recruitShop;
+	private RecruitCustomScreen _memberRequestForum;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -13,12 +18,17 @@ public partial class RecruitScreenTabs : CenterContainer
 		TabContainer tabContainer = this.GetNode<TabContainer>("%TabContainer");
 		tabContainer.SetTabHidden(MEMBER_REQUEST_FORUM, true);
 
-		GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+		_shopLevelButton = this.GetNode<Button>("%UpgradeButton");
+		_shopLevelButton.Pressed += _OnShopUpgradePressed;
 
-		var recruitShop = tabContainer.GetNode("%Recruit Shop");
-		var memberRequestForum = tabContainer.GetNode("%Member Request Forum");
+		_ownedDellencoin = this.GetNode<TextEdit>("%OwnedDellencoin");
 
-		var backButtonRecruitShop = recruitShop.GetNode<Button>("%BackButton");
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+
+        _recruitShop = tabContainer.GetNode<RecruitScreen>("%Recruit Shop");
+		_memberRequestForum = tabContainer.GetNode<RecruitCustomScreen>("%Member Request Forum");
+
+		var backButtonRecruitShop = _recruitShop.GetNode<Button>("%BackButton");
 		backButtonRecruitShop.Pressed += _OnBackButtonPressed;
 
 		tabContainer.TabChanged += (newTab) => 
@@ -33,10 +43,29 @@ public partial class RecruitScreenTabs : CenterContainer
 		if(gameObject.MaxTier > TierRequirements.TIER2_STRONGER_ENEMIES)
 		{
 			tabContainer.SetTabHidden(MEMBER_REQUEST_FORUM, false);
-            var backButtonForum = memberRequestForum.GetNode<Button>("%BackButton");
+            var backButtonForum = _memberRequestForum.GetNode<Button>("%BackButton");
             backButtonForum.Pressed += _OnBackButtonPressed;
         }
-	}
+
+		_ownedDellencoin.Text = $"{gameObject.MainPlayer.Wallet.Currency[SkillAssets.DELLENCOIN].Amount} D$";
+
+    }
+
+	private void _OnShopUpgradePressed()
+	{
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+		var wallet = gameObject.MainPlayer.Wallet;
+		if (wallet.Currency[SkillAssets.DELLENCOIN].Amount - 100 >= 0) 
+		{
+			wallet.Currency[SkillAssets.DELLENCOIN].Amount -= 100;
+			gameObject.ShopLevel++;
+
+			_recruitShop.SetShopVendorWares();
+			_memberRequestForum.SetShopVendorWares();
+
+            _ownedDellencoin.Text = $"{gameObject.MainPlayer.Wallet.Currency[SkillAssets.DELLENCOIN].Amount} D$";
+        }
+    }
 
     private void _OnBackButtonPressed()
     {

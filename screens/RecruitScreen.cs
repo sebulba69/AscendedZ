@@ -13,7 +13,7 @@ using System.Reflection;
 
 public partial class RecruitScreen : CenterContainer
 {
-    private const int COST = 1;
+    private int _cost = 1;
 
     /// <summary>
     /// Party members available for recruiting.
@@ -62,12 +62,27 @@ public partial class RecruitScreen : CenterContainer
         Button buyButton = this.GetNode<Button>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/BuyButton");
 
         buyButton.Pressed += _OnBuyButtonPressed;
+        _availableRecruits.ItemSelected += _OnItemSelected;
+        _partyCoins = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON];
+        SetShopVendorWares();
+    }
 
+    public void SetShopVendorWares()
+    {
         _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.GameObjectInstance().MaxTier);
         _availablePartyMembers.Reverse();
-        _availableRecruits.ItemSelected += _OnItemSelected;
 
-        _partyCoins = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON];
+        int shopLevel = PersistentGameObjects.GameObjectInstance().ShopLevel;
+        for (int i = 0; i < shopLevel; i++)
+        {
+            foreach (var member in _availablePartyMembers) 
+            {
+                member.LevelUp();
+            }
+
+            _cost = shopLevel + 1;
+        }
+
         RefreshVendorWares(0);
     }
 
@@ -87,12 +102,12 @@ public partial class RecruitScreen : CenterContainer
 
         OverworldEntity partyMember = _availablePartyMembers[_selected];
 
-        if (_partyCoins.Amount >= COST)
+        if (_partyCoins.Amount >= _cost)
         {
             if (mainPlayer.IsPartyMemberOwned(partyMember.Name))
                 return;
 
-            _partyCoins.Amount -= COST;
+            _partyCoins.Amount -= _cost;
 
             mainPlayer.ReserveMembers.Add(partyMember);
 
@@ -116,7 +131,7 @@ public partial class RecruitScreen : CenterContainer
             if (mainPlayer.IsPartyMemberOwned(availablePartyMember.Name))
                 owned = " [OWNED]";
 
-            _availableRecruits.AddItem($"{availablePartyMember.DisplayName} - {COST} PC{owned}", CharacterImageAssets.GetTextureForItemList(availablePartyMember.Image));
+            _availableRecruits.AddItem($"{availablePartyMember.DisplayName} - {_cost} PC{owned}", CharacterImageAssets.GetTextureForItemList(availablePartyMember.Image));
         }
 
         if(_availablePartyMembers.Count == 0)
