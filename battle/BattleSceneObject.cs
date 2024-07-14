@@ -60,15 +60,15 @@ namespace AscendedZ.battle
         /// This function is only called once at the start of the battle.
         /// It kicks off our state machine.
         /// </summary>
-        public void InitializePartyMembers()
+        public void InitializePartyMembers(List<BattlePlayer> players)
         {
-            this.Players = PersistentGameObjects.GameObjectInstance().MakeBattlePlayerListFromParty();
+            this.Players = players;
             this.SetPartyMemberTurns();
         }
 
-        public void InitializeEnemies(int tier)
+        public void InitializeEnemies(int tier, bool dungeonCrawlEncounter = false)
         {
-            this.Enemies = EntityDatabase.MakeBattleEncounter(tier);
+            this.Enemies = EntityDatabase.MakeBattleEncounter(tier, dungeonCrawlEncounter);
         }
 
         /// <summary>

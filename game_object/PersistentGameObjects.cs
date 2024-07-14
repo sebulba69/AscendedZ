@@ -1,5 +1,4 @@
 using AscendedZ.currency.rewards;
-using AscendedZ.dungeon_crawling.combat.player_combat_elements;
 using AscendedZ.entities;
 using Godot;
 using System;
@@ -61,8 +60,7 @@ namespace AscendedZ.game_object
                 MainPlayer = new MainPlayer 
                 {
                     Name = name,
-                    Image = image,
-                    DungeonPlayer = new GBPlayer() { Image = image, Name = name }
+                    Image = image
                 },
                 Tier = 1,
                 TierDC = 1,

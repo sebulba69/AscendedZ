@@ -3,7 +3,6 @@ using AscendedZ.currency;
 using AscendedZ.dungeon_crawling.backend;
 using AscendedZ.dungeon_crawling.backend.TileEvents;
 using AscendedZ.dungeon_crawling.backend.Tiles;
-using AscendedZ.dungeon_crawling.combat.battledc;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.game_object;
 using AscendedZ.screens;
@@ -45,7 +44,7 @@ public partial class DungeonScreen : Transitionable2DScene
     private GameObject _gameObject;
     private TextureRect _background;
     private DungeonCrawlUI _crawlUI;
-    private GBBattlePlayer _battlePlayer;
+    private List<BattlePlayer> _battlePlayers;
     private CanvasLayer _popup;
 
     private FloorExitScene _floorExitScene;
@@ -71,7 +70,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
         _gameObject = PersistentGameObjects.GameObjectInstance();
         _gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);
-        _battlePlayer = _gameObject.MainPlayer.DungeonPlayer.MakeGBBattlePlayer();
+        _battlePlayers = _gameObject.MakeBattlePlayerListFromParty();
         _player.SetGraphic(_gameObject.MainPlayer.Image);
         
         StartDungeon();
@@ -108,12 +107,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
     private void SetCrawlValues()
     {
-        var dp = _gameObject.MainPlayer.DungeonPlayer;
-        _crawlUI.SetValues(_gameObject.TierDC, 
-            _battlePlayer.HP, 
-            _battlePlayer.MaxHP, 
-            _gameObject.MainPlayer.Wallet.Currency[SkillAssets.DELLENCOIN].Amount, 
-            dp.Reserves.GetReserveString());
+        // change later
     }
 
     private void MoveDirection(UITile tile, Direction direction)
@@ -302,6 +296,7 @@ public partial class DungeonScreen : Transitionable2DScene
         switch (id)
         {
             case TileEventId.Item:
+                /*
                 var randomWeapon = ResourceLoader.Load<PackedScene>(Scenes.ITEM_COLLECT).Instantiate<RandomWeapon>();
                 _itemSfxPlayer.Play();
 
@@ -312,7 +307,8 @@ public partial class DungeonScreen : Transitionable2DScene
                 SetCrawlValues();
                 _crawlUI.Visible = true;
                 _currentScene.Scene.TurnOffGraphic();
-                PersistentGameObjects.Save();
+                PersistentGameObjects.Save();*/
+                _currentScene.Scene.TurnOffGraphic();
                 break;
 
             case TileEventId.Encounter:
@@ -321,7 +317,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 MainEncounterTile mainEncounterTile = encounterEvent.Tile;
                 // put up battle scene <-- handle rewards there
 
-                var combatScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_COMBAT).Instantiate<DungeonCombat>();
+                var combatScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
                 var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
 
                 this.AddChild(transition);
@@ -334,7 +330,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 SetEncounterVisibility(false);
 
                 this.AddChild(combatScene);
-                combatScene.Initialize(_battlePlayer, mainEncounterTile.Encounter);
+                combatScene.SetupForDungeonCrawlEncounter(_battlePlayers);
 
                 transition.PlayFadeOut();
                 await ToSignal(transition.Player, "animation_finished");
@@ -348,11 +344,12 @@ public partial class DungeonScreen : Transitionable2DScene
 
             case TileEventId.Heal:
                 // heal some amount of HP/MP
-                double percent = _battlePlayer.MaxHP * 0.15;
-                long hp = (long)(_battlePlayer.HP + percent);
-                _battlePlayer.Heal(hp);
-                foreach(var minion in _battlePlayer.Minions)
-                    minion.Heal(hp);
+                foreach(var player in _battlePlayers)
+                {
+                    double percent = player.MaxHP * 0.15;
+                    int hp = (int)(player.HP + percent);
+                    player.HP += hp;
+                }
 
                 _healSfxPlayer.Play();
                 SetCrawlValues();
@@ -361,6 +358,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 break;
 
             case TileEventId.MinionShop:
+                /*
                 var minionHut = ResourceLoader.Load<PackedScene>(Scenes.MINION_HUT).Instantiate<RandomWeapon>();
                 _itemSfxPlayer.Play();
 
@@ -373,10 +371,11 @@ public partial class DungeonScreen : Transitionable2DScene
 
                 SetCrawlValues();
                 _crawlUI.Visible = true;
-                
+                */
                 break;
 
             case TileEventId.Blacksmith:
+                /*
                 _tiles.Visible = false;
                 _crawlUI.Visible = false;
                 var armory = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL_ARMORY).Instantiate<ArmoryScene>();
@@ -384,12 +383,10 @@ public partial class DungeonScreen : Transitionable2DScene
                 _popup.AddChild(armory);
 
                 await ToSignal(armory, "tree_exited");
-
-                MakeNewBattlePlayer();
                 
                 _tiles.Visible = true;
                 _crawlUI.Visible = true;
-                SetCrawlValues();
+                SetCrawlValues();*/
                 break;
 
             case TileEventId.Exit:
@@ -409,30 +406,12 @@ public partial class DungeonScreen : Transitionable2DScene
         _processingEvent = false;
     }
 
-    private void MakeNewBattlePlayer()
-    {
-        var battlePlayer = _gameObject.MainPlayer.DungeonPlayer.MakeGBBattlePlayer();
-        battlePlayer.HP = _battlePlayer.HP;
-        if (battlePlayer.HP > battlePlayer.MaxHP)
-            battlePlayer.HP = battlePlayer.MaxHP;
-
-        for(int m = 0; m < battlePlayer.Minions.Count; m++)
-        {
-            var minion = _battlePlayer.Minions[m];
-            double percentage = minion.GetHPPercentage() / 100;
-
-            battlePlayer.Minions[m].HP = (int)(battlePlayer.Minions[m].MaxHP * percentage);
-        }
-
-        _battlePlayer = battlePlayer;
-    }
-
     private async void _OnContinueToNextFloor()
     {
         _floorExitScene.Visible = false;
         var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
         _popup.AddChild(rewards);
-        rewards.InitializeGranblueTierRewards();
+        rewards.InitializeDungeonCrawlTierRewards();
         _itemSfxPlayer.Play();
         await ToSignal(rewards, "tree_exited");
 
@@ -443,8 +422,14 @@ public partial class DungeonScreen : Transitionable2DScene
 
         await ToSignal(transition.Player, "animation_finished");
 
-        _gameObject.MaxTierDC++;
-        _gameObject.TierDC++;
+        int tier = _gameObject.TierDC;
+        int maxTier = _gameObject.MaxTierDC;
+        if (tier == maxTier && tier + 1 < _gameObject.TierDCCap) 
+        {
+            _gameObject.MaxTierDC++;
+            _gameObject.TierDC++;
+        }
+
         SetEncounterVisibility(true, true);
         StartDungeon();
 
@@ -474,17 +459,13 @@ public partial class DungeonScreen : Transitionable2DScene
             _floorExitScene.Visible = false;
             var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
             _popup.AddChild(rewards);
-            rewards.InitializeGranblueTierRewards();
+            rewards.InitializeDungeonCrawlTierRewards();
             _itemSfxPlayer.Play();
             await ToSignal(rewards, "tree_exited");
         }
         SetEncounterVisibility(false);
         PersistentGameObjects.Save();
-
-        foreach (var minion in _battlePlayer.Minions)
-            minion.Heal(minion.MaxHP);
-
-        TransitionScenes(Scenes.DUNGEON_MAIN, _audioStreamPlayer);
+        TransitionScenes(Scenes.MAIN, _audioStreamPlayer);
     }
 
     private void SetEncounterVisibility(bool visible, bool keepCamera = false)

@@ -1,6 +1,4 @@
 ﻿using AscendedZ;
-using AscendedZ.currency.rewards;
-using AscendedZ.dungeon_crawling.combat;
 using AscendedZ.entities;
 using AscendedZ.game_object;
 using AscendedZ.screens;
@@ -134,7 +132,6 @@ public partial class MainScreen : Transitionable2DScene
         Button recruitButton = this.GetNode<Button>("%RecruitButton");
         Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
         Button fuseButton = this.GetNode<Button>("%FuseButton");
-        Button dungeonCrawlButton = this.GetNode<Button>("%DungeonCrawlButton");
 
         if(tier > TierRequirements.TIER2_STRONGER_ENEMIES
             && !gameObject.ProgressFlagObject.CustomPartyMembersViewed)
@@ -145,21 +142,18 @@ public partial class MainScreen : Transitionable2DScene
         var progressFlagObject = gameObject.ProgressFlagObject;
 
         fuseButton.Visible = (tier > TierRequirements.FUSE);
-        dungeonCrawlButton.Visible = (tier >= 5);
 
         menuButton.Pressed += _OnMenuButtonPressed;
         embarkButton.Pressed += _OnEmbarkButtonPressed;
         recruitButton.Pressed += _OnRecruitButtonPressed;
         upgradeButton.Pressed += _OnUpgradeButtonPressed;
         fuseButton.Pressed += _OnFuseButtonPressed;
-        dungeonCrawlButton.Pressed += _OnDungeonCrawButtonPressed;
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
         upgradeButton.MouseEntered += () => { _tooltip.Text = "Upgrade Party Members with Vorpex."; };
         fuseButton.MouseEntered += () => { _tooltip.Text = "Combine Party Members to create new ones and transfer skills."; };
-        dungeonCrawlButton.MouseEntered += () => { _tooltip.Text = "Buce-onix power essence foretells of a new dungeon to be conquered."; };
     }
     #endregion
     
@@ -204,11 +198,6 @@ public partial class MainScreen : Transitionable2DScene
         {
             _mainUIContainer.Visible = true;
         }
-    }
-
-    private void _OnDungeonCrawButtonPressed()
-    {
-        TransitionScenes(Scenes.DUNGEON_MAIN, _audioPlayer);
     }
 
     private async void DisplayScene(string packedScenePath)

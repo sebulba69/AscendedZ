@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bkeaa6q4ebbmj" path="res://dungeon_crawling/art_assets/general/right.png" id="9_uyghw"]
 [ext_resource type="PackedScene" uid="uid://djlhy6ga7e5t2" path="res://dungeon_crawling/combat/combat_scenes/DungeonEntity.tscn" id="10_g6sag"]
 
-
 [node name="TileScene" type="Node2D"]
 script = ExtResource("1_q0og1")
 

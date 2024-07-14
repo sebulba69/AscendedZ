@@ -43,6 +43,8 @@ public partial class ActionMenu : PanelContainer
         set => _battleSceneObject = value;
     }
 
+    public bool DungeonCrawling { get; set; }
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -120,8 +122,11 @@ public partial class ActionMenu : PanelContainer
         _actionList.Clear();
         _actionList.AddItem("Magic", SkillAssets.GenerateIcon(SkillAssets.MAGIC_ICON));
 
-        var retreat = SkillDatabase.Retreat;
-        _actionList.AddItem(retreat.GetBattleDisplayString(), SkillAssets.GenerateIcon(retreat.Icon));
+        if(!DungeonCrawling)
+        {
+            var retreat = SkillDatabase.Retreat;
+            _actionList.AddItem(retreat.GetBattleDisplayString(), SkillAssets.GenerateIcon(retreat.Icon));
+        }
 
         _menu.Text = SKILL_STR;
         _state = ActionMenuState.Menu;

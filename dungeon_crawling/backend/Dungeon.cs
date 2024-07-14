@@ -6,11 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using AscendedZ.dungeon_crawling.backend.TileEvents;
 using AscendedZ.dungeon_crawling.backend.Tiles;
-using AscendedZ.dungeon_crawling.databases;
-using Godot;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Net.WebRequestMethods;
-using static Godot.TextServer;
 
 public enum Direction
 {
@@ -35,7 +30,6 @@ namespace AscendedZ.dungeon_crawling.backend
         private int _eventCount;
 
         private ITile _currentTile;
-        private EnemyDCFactory _enemyDCFactory;
         private PathFactory _pathFactory;
         private List<WeightedItem<PathType>> _pathTypes;
 
@@ -47,7 +41,6 @@ namespace AscendedZ.dungeon_crawling.backend
             _tier = tier;
             _eventCount = Equations.GetDungeonCrawlEncounters(tier);
             _pathFactory = new PathFactory(_rng);
-            _enemyDCFactory = new EnemyDCFactory(_tier, _rng);
         }
 
         public void Generate()
@@ -76,7 +69,7 @@ namespace AscendedZ.dungeon_crawling.backend
                 }
                 else
                 {
-                    next = new MainEncounterTile(primaryDirection, _enemyDCFactory.MakeEnemy());
+                    next = new MainEncounterTile(primaryDirection);
                 }
 
                 generateEvent = !generateEvent;

@@ -102,7 +102,7 @@ namespace AscendedZ
             { Elements.Dark, PartyNames.Fledron }
         };
 
-        public static List<Enemy> MakeBattleEncounter(int tier)
+        public static List<Enemy> MakeBattleEncounter(int tier, bool dungeonCrawlEncounter = false)
         {
             List<Enemy> encounter = new List<Enemy>();
             if ((tier - RANDOM_TIER) < 0)

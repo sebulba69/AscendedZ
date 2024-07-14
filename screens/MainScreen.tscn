@@ -150,22 +150,6 @@ theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 40
 text = "Fuse"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/MainContainer/Buttons/VBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-alignment = 1
-
-[node name="DungeonCrawlButton" type="Button" parent="CenterContainer/MainContainer/Buttons/VBoxContainer/HBoxContainer3"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 40
-text = "The Labyribuce"
-
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MainContainer"]
 texture_filter = 2
 layout_mode = 2

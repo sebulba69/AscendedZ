@@ -1,6 +1,4 @@
 using AscendedZ.currency;
-using AscendedZ.dungeon_crawling.combat;
-using AscendedZ.dungeon_crawling.combat.player_combat_elements;
 using AscendedZ.entities.partymember_objects;
 using System;
 using System.Collections.Generic;
@@ -20,7 +18,6 @@ namespace AscendedZ.entities
     {
         public Wallet Wallet { get; set; }
         public PlayerParty Party { get; set; }
-        public GBPlayer DungeonPlayer { get; set; }
 
         /// <summary>
         /// Reserve party members not in battle.

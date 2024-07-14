@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://86hlflgnxjcc"]
+[gd_scene load_steps=9 format=3 uid="uid://86hlflgnxjcc"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/DungeonScreen.cs" id="1_7745h"]
 [ext_resource type="PackedScene" uid="uid://djlhy6ga7e5t2" path="res://dungeon_crawling/combat/combat_scenes/DungeonEntity.tscn" id="2_p1r2d"]
-[ext_resource type="Texture2D" uid="uid://dww5loey3m4kp" path="res://cg_backgrounds/bg00701.jpg" id="3_qvvl2"]
+[ext_resource type="Texture2D" uid="uid://dww5loey3m4kp" path="res://cg_backgrounds/dungeon_crawling/bg00701.jpg" id="3_qvvl2"]
 [ext_resource type="AudioStream" uid="uid://b3unft7ukkxtf" path="res://effects/effect_sounds/Battle1.ogg" id="4_fit8f"]
-[ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/ShakeCamera.cs" id="4_uj2ev"]
 [ext_resource type="PackedScene" uid="uid://cm0ln1sy56au3" path="res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn" id="5_837pb"]
 [ext_resource type="AudioStream" uid="uid://bd6ue8iwjaduk" path="res://effects/effect_sounds/Heal3.ogg" id="5_xyr8c"]
 [ext_resource type="AudioStream" uid="uid://q25xxaiw4e1c" path="res://effects/effect_sounds/Item1.ogg" id="6_mi2s1"]
@@ -41,7 +40,6 @@ texture_filter = 2
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 unique_name_in_owner = true
-script = ExtResource("4_uj2ev")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

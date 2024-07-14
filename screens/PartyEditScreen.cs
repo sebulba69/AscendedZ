@@ -18,6 +18,8 @@ public partial class PartyEditScreen : HBoxContainer
     private PlayerParty _party;
     private Button _embarkButton;
     private int _selectedIndex;
+
+    public bool DungeonCrawling { get; set; }
     
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -156,7 +158,21 @@ public partial class PartyEditScreen : HBoxContainer
     {
         var go = PersistentGameObjects.GameObjectInstance();
 
-        if (go.Tier == go.TierCap)
+        int tier, tierCap;
+        string scene;
+
+        if (DungeonCrawling)
+        {
+            tier = go.TierDC;
+            tierCap = go.TierDCCap;
+        }
+        else
+        {
+            tier = go.Tier;
+            tierCap = go.TierCap;
+        }
+
+        if (tier == tierCap)
             return;
 
         bool canEmbark = false;
@@ -173,10 +189,19 @@ public partial class PartyEditScreen : HBoxContainer
 
         if (canEmbark)
         {
-            this.GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate());
+            if (DungeonCrawling)
+            {
+                var dungeon = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL).Instantiate<DungeonScreen>();
+                GetTree().Root.AddChild(dungeon);
+            }
+            else
+            {
+                var battleScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
+                this.GetTree().Root.AddChild(battleScene);
+                battleScene.SetupForNormalEncounter();
+            }
 
-            // notify parent too
-            this.QueueFree();
+            QueueFree();
         }
         else
         {

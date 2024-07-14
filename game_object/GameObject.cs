@@ -12,7 +12,7 @@ namespace AscendedZ.game_object
     public class GameObject
     {
         private const int TIER_CAP = 41;
-        private const int TIER_CAP_DC = 10;
+        private const int TIER_CAP_DC = 50;
 
         private int _tier = 1;
         private int _tierDC = 1;
@@ -84,6 +84,8 @@ namespace AscendedZ.game_object
 
         public int TierCap { get => TIER_CAP; }
 
+        public int TierDCCap { get => TIER_CAP_DC; }
+
         public bool PartyMemberObtained { get => _partyMemberObtained; set => _partyMemberObtained = value; }
 
         public MainPlayer MainPlayer { get; set; }
@@ -118,7 +120,5 @@ namespace AscendedZ.game_object
             }
             return players;
         }
-
-
     }
 }

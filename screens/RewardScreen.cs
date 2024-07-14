@@ -33,25 +33,24 @@ public partial class RewardScreen : Control
         SetupRewards();
     }
 
-    public void InitializeGranblueEncounterRewards()
+    public void InitializeDungeonCrawlEncounterRewards()
     {
         int tier = _gameObject.TierDC;
         _rewards = new List<Currency>()
         {
+            new Vorpex() {Amount = tier * 3 },
             new Dellencoin() { Amount = tier },
-            new MinionShard() { Amount = 2 }
         };
         SetupRewards();
     }
 
-    public void InitializeGranblueTierRewards()
+    public void InitializeDungeonCrawlTierRewards()
     {
         int tier = _gameObject.TierDC;
         _rewards = new List<Currency>()
         {
-            new Vorpex() { Amount = tier * 3 },
-            new Dellencoin() { Amount = tier * 10 },
-            new MinionShard() { Amount = 4 }
+            new Vorpex() { Amount = tier * 5 },
+            new Dellencoin() { Amount = tier * 10 }
         };
         SetupRewards();
     }
