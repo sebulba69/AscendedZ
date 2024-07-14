@@ -116,8 +116,8 @@ namespace AscendedZ.dungeon_crawling.backend
 
             _pathTypes = new List<WeightedItem<PathType>>()
             {
-                new WeightedItem<PathType>(PathType.Item, 55),
-                new WeightedItem<PathType>(PathType.Heal, 20),
+                new WeightedItem<PathType>(PathType.Item, 65),
+                new WeightedItem<PathType>(PathType.Heal, 15),
                 // new WeightedItem<PathType>(PathType.Blacksmith, 15)
             };
 
