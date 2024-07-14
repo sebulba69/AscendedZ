@@ -22,16 +22,5 @@ namespace AscendedZ.dungeon_crawling.combat.battledc.gbskills
         public GBStatusId Status { get; set; }
         public Elements Element { get; set; }
         public GBTargetType TargetType { get; set; }
-
-        public void ApplySinglePlayer(GBBattlePlayer user, BEnemyDC target)
-        {
-            if(Status == GBStatusId.None)
-            {
-                if (TargetType == GBTargetType.Self)
-                {
-                    user.ApplyStatus(Status);
-                }
-            }
-        }
     }
 }

@@ -480,6 +480,10 @@ public partial class DungeonScreen : Transitionable2DScene
         }
         SetEncounterVisibility(false);
         PersistentGameObjects.Save();
+
+        foreach (var minion in _battlePlayer.Minions)
+            minion.Heal(minion.MaxHP);
+
         TransitionScenes(Scenes.DUNGEON_MAIN, _audioStreamPlayer);
     }
 

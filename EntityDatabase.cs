@@ -166,6 +166,8 @@ namespace AscendedZ
 
                         if (tier > TierRequirements.TIER4_STRONGER_ENEMIES)
                         {
+                            minEnemies = 4;
+                            maxEnemies = 5;
                             possibleEncounters.RemoveRange(0, 2);
                             possibleEncounters.AddRange(new string[] 
                             {
@@ -191,7 +193,7 @@ namespace AscendedZ
                             });
                         }
 
-                        int numEnemies = RANDOM.Next(minEnemies, maxEnemies);
+                        int numEnemies = RANDOM.Next(minEnemies, maxEnemies + 1);
                         for (int i = 0; i < numEnemies; i++)
                         {
                             int randomEnemyIndex = RANDOM.Next(possibleEncounters.Count);

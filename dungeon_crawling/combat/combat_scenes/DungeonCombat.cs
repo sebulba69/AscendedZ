@@ -97,7 +97,7 @@ public partial class DungeonCombat : Node2D
             rewardScene.InitializeGranblueEncounterRewards();
             await ToSignal(rewardScene, "tree_exited");
 
-			for(int p = 0; p < _playerScenes.Count; p++)
+			for(int p = 0; p < _bdcSystem.Players.Count; p++)
 			{
 				var player = _playerScenes[p];
 				var entity = _bdcSystem.Players[p];

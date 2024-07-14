@@ -11,7 +11,9 @@ namespace AscendedZ.dungeon_crawling.combat.battledc.gbstatus
         public GBStatusId Id { get; set; }
         public GBEntity Owner { get; set; }
         public string Icon { get; set; }
-        public int TurnCount { get; set; }
-        public int MaxTurnCount { get; set; } = 1;
+
+        public virtual void NotifyStatusOfGameplayConditions(BDCSystem system) 
+        { 
+        }
     }
 }

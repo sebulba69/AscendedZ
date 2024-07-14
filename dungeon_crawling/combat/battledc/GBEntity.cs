@@ -30,11 +30,6 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
             StatusHandler = new GBStatusHandler();
         }
 
-        public void ApplyStatus(GBStatusId id)
-        {
-            StatusHandler.HandleSelfStatus(id, this);
-        }
-
         public void Heal(long amount)
         {
             HP += amount;

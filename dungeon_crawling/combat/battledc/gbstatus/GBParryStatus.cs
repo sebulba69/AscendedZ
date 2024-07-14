@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.dungeon_crawling.combat.battledc.gbstatus
 {
-    public class GBStatusHandler
+    public class GBParryStatus : GBStatus
     {
-        public List<GBStatus> Statuses { get; set; }
-
-        public GBStatusHandler()
+        public GBParryStatus()
         {
+            Id = GBStatusId.ReactiveStatus;
         }
 
+        public override void NotifyStatusOfGameplayConditions(BDCSystem system)
+        {
 
+        }
     }
 }

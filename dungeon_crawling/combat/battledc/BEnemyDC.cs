@@ -14,13 +14,13 @@ namespace AscendedZ.dungeon_crawling.combat.battledc
     /// </summary>
     public class BEnemyDC : GBEntity
     {
-        private const long BASEHP = 1000;
+        private const long BASEHP = 10;
         public int Turns { get; set; }
         public List<GBSkill> Skills { get; set; }
 
         public BEnemyDC(int tier)
         {
-            MaxHP = BASEHP * tier;
+            MaxHP = BASEHP * (long)(Math.Pow(tier, 2));
             HP = MaxHP;
             Skills=new List<GBSkill>();
         }

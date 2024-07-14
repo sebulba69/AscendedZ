@@ -75,10 +75,12 @@ namespace AscendedZ.game_object
             var vorpex = new Vorpex() { Amount = 0 };
             var partyCoin = new PartyCoin() { Amount = 1 };
             var dellencoin = new Dellencoin() { Amount = 10 };
+            var minionShard = new MinionShard() { Amount = 1 };
 
             mainPlayer.Wallet.AddCurrency(vorpex);
             mainPlayer.Wallet.AddCurrency(partyCoin);
             mainPlayer.Wallet.AddCurrency(dellencoin);
+            mainPlayer.Wallet.AddCurrency(minionShard);
 
             StringBuilder id = new StringBuilder();
             Random random = new Random();

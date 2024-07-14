@@ -61,7 +61,6 @@ public partial class DungeonCrawlMainScreen : Transitionable2DScene
         _root.AddChild(instanceOfPackedScene);
 
         await ToSignal(instanceOfPackedScene, "tree_exited");
-        _root.RemoveChild(instanceOfPackedScene);
 
         _mainContainer.Visible = true;
         _mainPlayerContainer.UpdateCurrencyDisplay();
