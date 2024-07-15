@@ -17,7 +17,6 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
         // Preview UI
         public OverworldEntity SelectedEntity { get; set; }
-        public ISkill SelectedSkill { get; set; }
         public int Cost { get; set; }
 
         // Left/Right List Boxes
