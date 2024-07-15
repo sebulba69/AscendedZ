@@ -34,6 +34,11 @@ namespace AscendedZ.skills
             };
         }
 
+        public BattleResult ProcessSkill(List<BattleEntity> targets)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetBattleDisplayString()
         {
             return this.BaseName;

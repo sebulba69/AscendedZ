@@ -102,6 +102,25 @@ namespace AscendedZ.skills
             return target.ApplyHealingSkill(this);
         }
 
+        public BattleResult ProcessSkill(List<BattleEntity> targets)
+        {
+            BattleResult all = targets[0].ApplyHealingSkill(this);
+            all.Target = null;
+            all.Results.Add(all.ResultType);
+            all.AllHPChanged.Add(all.HPChanged);
+            all.Targets.Add(targets[0]);
+
+            for(int i = 1; i < targets.Count; i++)
+            {
+                BattleResult result = targets[i].ApplyHealingSkill(this);
+                all.AllHPChanged.Add(result.HPChanged);
+                all.Targets.Add(targets[i]);
+                all.Results.Add(result.ResultType);
+            }
+
+            return all;
+        }
+
         public override string ToString()
         {
             return this.GetBattleDisplayString();

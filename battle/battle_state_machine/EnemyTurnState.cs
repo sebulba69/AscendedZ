@@ -43,21 +43,22 @@ namespace AscendedZ.battle.battle_state_machine
             var active = _enemies[_activeEnemy];
 
             BattleResult result = default(BattleResult);
-
             EnemyAction action = active.GetNextAction(battleSceneObject);
-
             ISkill skill = action.Skill;
-            BattleEntity target = action.Target;
-
-            StringBuilder logEntry = new StringBuilder();
-
-            logEntry.Append($"{active.GetLogName()} used [color=burlywood]{skill.Name}[/color] on {target.GetLogName()}. ");
 
             switch (skill.TargetType)
             {
                 case TargetTypes.SINGLE_OPP:
                 case TargetTypes.SINGLE_TEAM:
-                    result = skill.ProcessSkill(target);
+                    result = skill.ProcessSkill(action.Target);
+                    break;
+                case TargetTypes.TEAM_ALL:
+                    var targetEnemies = battleSceneObject.AliveEnemies;
+                    result = skill.ProcessSkill(new List<BattleEntity>(targetEnemies));
+                    break;
+                case TargetTypes.OPP_ALL:
+                    var targetPlayers = battleSceneObject.AlivePlayers;
+                    result = skill.ProcessSkill(new List<BattleEntity>(targetPlayers));
                     break;
             }
 

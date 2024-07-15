@@ -23,6 +23,7 @@ namespace AscendedZ.entities.enemy_objects
 
         public Enemy() 
         {
+            Type = EntityType.Enemy;
             _rng = new Random();
         }
 

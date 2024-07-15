@@ -159,35 +159,15 @@ namespace AscendedZ
         {
             if(targetType == TargetTypes.SINGLE_TEAM_DEAD)
             {
-                switch (skillTier)
-                {
-                    case 1:
-                        return Revive2;
-                    case 2:
-                        return Revive3;
-                    case 3:
-                        return Revive4;
-                    case 4:
-                        return Revive5;
-                    default:
-                        return Revive5;
-                }
+                return new HealSkill[] { Revive1, Revive2, Revive3, Revive4, Revive5 }[skillTier];
+            }
+            else if(targetType == TargetTypes.TEAM_ALL)
+            {
+                return new HealSkill[] { Heal1All, Heal2All, Heal3All, Heal4All, Heal5All }[skillTier];
             }
             else
             {
-                switch (skillTier)
-                {
-                    case 1:
-                        return Heal2;
-                    case 2:
-                        return Heal3;
-                    case 3:
-                        return Heal4;
-                    case 4:
-                        return Heal5;
-                    default:
-                        return Heal5;
-                }
+                return new HealSkill[] { Heal1, Heal2, Heal3, Heal4, Heal5 }[skillTier];
             }
 
         }
@@ -410,6 +390,19 @@ namespace AscendedZ
         public static HealSkill Revive4 { get => MakeHealSkill("Revive Z", 30, 4, true); }
         public static HealSkill Revive5 { get => MakeHealSkill("Revive ASC", 40, 5, true); }
 
+        public static HealSkill Heal1All { get => MakeAllHeal("Allgen", 2, 1); }
+        public static HealSkill Heal2All { get => MakeAllHeal("Allgen+", 4, 1); }
+        public static HealSkill Heal3All { get => MakeAllHeal("Allgen X", 8, 1); }
+        public static HealSkill Heal4All { get => MakeAllHeal("Allgen Z", 12, 1); }
+        public static HealSkill Heal5All { get => MakeAllHeal("Allgen ASC", 15, 1); }
+
+        private static HealSkill MakeAllHeal(string name, int amount, int tier, bool isRevive = false)
+        {
+            var hs = MakeHealSkill(name, amount, tier, isRevive);
+            hs.TargetType = TargetTypes.TEAM_ALL;
+            return hs;
+        }
+
         private static HealSkill MakeHealSkill(string name, int amount, int tier, bool isRevive = false)
         {
             return new HealSkill()
@@ -463,6 +456,9 @@ namespace AscendedZ
 
             if (tier > TierRequirements.QUESTS_ALL_FUSION_MEMBERS)
                 skills.AddRange(new ISkill[] { RemoveWeakElec, RemoveWeakFire });
+
+            if (tier > TierRequirements.ALL_HIT_SKILLS)
+                skills.AddRange(new ISkill[] { Heal1All });
 
             return skills;
         }

@@ -253,7 +253,17 @@ public partial class ActionMenu : PanelContainer
                     {
                         SkillIndex = _selectedIndex
                     };
-                    LoadTargetList();
+
+                    var tType = _battleSceneObject.ActivePlayer.Skills[_playerTargetSelectedEventArgs.SkillIndex].TargetType;
+                    if (tType == TargetTypes.TEAM_ALL || tType == TargetTypes.OPP_ALL)
+                    {
+                        _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, _playerTargetSelectedEventArgs);
+                        _canInput = false;
+                    }
+                    else
+                    {
+                        LoadTargetList();
+                    }
                     break;
                 case ActionMenuState.TargetSelect:
                     if (_selectedIndex == _actionList.ItemCount - 1)

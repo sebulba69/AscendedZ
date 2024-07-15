@@ -39,6 +39,7 @@ namespace AscendedZ
         /// 30
         /// </summary>
         public static int QUESTS_ALL_FUSION_MEMBERS = 30;
+        public static int ALL_HIT_SKILLS = 40;
 
         
         /// <summary>

@@ -215,24 +215,51 @@ public partial class BattleEnemyScene : Node2D
 
             if (result.User != null)
             {
-                Node userNode = FindBattleEntityNode(result.User);
+                EntityDisplayBox userNode = (EntityDisplayBox)FindBattleEntityNode(result.User);
                 BattleEffectWrapper userEffects = new BattleEffectWrapper()
                 {
                     IsEntitySkillUser = true,
                     Result = result
                 };
 
-                userNode.Call("UpdateBattleEffects", userEffects);
-                await ToSignal(userNode, "EffectPlayed");
+                await userNode.UpdateBattleEffects(userEffects);
             }
 
-            if (result.Target != null)
+            if (result.Targets.Count > 0) 
             {
-                Node targetNode = FindBattleEntityNode(result.Target);
+                Task[] tasks = new Task[result.Targets.Count];
+                List<Node> targetNodes = new List<Node>();
+                foreach(var target in result.Targets)
+                    targetNodes.Add(FindBattleEntityNode(target));
+
+                for(int t = 0; t < result.Targets.Count; t++)
+                {
+                    int index = t;
+                    tasks[t] = Task.Run(async () => 
+                    {
+                        GodotThread.SetThreadSafetyChecksEnabled(false);
+
+                        EntityDisplayBox targetNode = (EntityDisplayBox)targetNodes[index];
+                        BattleResult subResult = new BattleResult();
+
+                        subResult.ResultType = result.Results[index];
+                        subResult.HPChanged = result.AllHPChanged[index];
+                        subResult.SkillUsed = result.SkillUsed;
+
+                        BattleEffectWrapper targetNodeEffects = new BattleEffectWrapper() { Result = subResult };
+
+                        await targetNode.UpdateBattleEffects(targetNodeEffects);
+                    });
+                }
+
+                await Task.WhenAll(tasks);
+            }
+            else if (result.Target != null)
+            {
+                EntityDisplayBox targetNode = (EntityDisplayBox)FindBattleEntityNode(result.Target);
                 BattleEffectWrapper targetNodeEffects = new BattleEffectWrapper() { Result = result };
 
-                targetNode.Call("UpdateBattleEffects", targetNodeEffects);
-                await ToSignal(targetNode, "EffectPlayed");
+                await targetNode.UpdateBattleEffects(targetNodeEffects);
             }
 
             // slight delay so the skill icon doesn't auto vanish
@@ -335,10 +362,11 @@ public partial class BattleEnemyScene : Node2D
     {
         Node nodeToFind;
 
-        if (entity.GetType() == typeof(BattlePlayer))
+        if (entity.Type == EntityType.Player)
         {
             int pIndex = _battleSceneObject.Players.IndexOf((BattlePlayer)entity);
-            nodeToFind = _partyMembers.GetChild(pIndex).GetChild(0);
+            var child = _partyMembers.GetChild(pIndex);
+            nodeToFind = child.GetChild(0);
         }
         else
         {

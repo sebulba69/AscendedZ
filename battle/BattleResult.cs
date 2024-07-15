@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace AscendedZ.battle
 {
@@ -18,17 +19,23 @@ namespace AscendedZ.battle
     public class BattleResult
     {
         public BattleResultType ResultType { get; set; }
-
+        public List<BattleResultType> Results { get; set; }
         /// <summary>
         /// Can represent Damage taken or HP gained
         /// </summary>
         public int HPChanged { get; set; }
+        public List<int> AllHPChanged { get; set; }
         public BattleEntity User { get; set; }
         public BattleEntity Target { get; set; }
+        public List<BattleEntity> Targets { get; set; }
+        
         public ISkill SkillUsed { get; set; }
         
         public BattleResult() 
         {
+            AllHPChanged = new List<int>();
+            Targets = new List<BattleEntity>();
+            Results = new List<BattleResultType>();
         }
 
         public string GetResultString()

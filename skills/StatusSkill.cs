@@ -52,6 +52,23 @@ namespace AscendedZ.skills
             return result;
         }
 
+        public BattleResult ProcessSkill(List<BattleEntity> targets)
+        {
+            BattleResult all = ProcessSkill(targets[0]);
+            
+            all.Target = null;
+            all.Results.Add(all.ResultType);
+
+            for(int i = 1; i < targets.Count; i++)
+            {
+                BattleResult r = ProcessSkill(targets[i]);
+                all.Results.Add(r.ResultType);
+            }
+
+            all.Targets.AddRange(targets);
+            return all;
+        }
+
         public string GetBattleDisplayString()
         {
             return $"{this.BaseName}";

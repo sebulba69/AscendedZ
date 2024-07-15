@@ -11,6 +11,11 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace AscendedZ.entities.battle_entities
 {
+    public enum EntityType
+    {
+        Player, Enemy
+    }
+
     /// <summary>
     /// This class exists exclusively in the Battle Scene and will get disposed of
     /// when the battle ends.
@@ -21,6 +26,8 @@ namespace AscendedZ.entities.battle_entities
         private int _hp;
         private bool _isActiveEntity = false;
         public int Turns { get; protected set; }
+
+        public EntityType Type { get; protected set; }
 
         public int HP
         {

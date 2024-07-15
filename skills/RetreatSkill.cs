@@ -30,6 +30,11 @@ namespace AscendedZ.skills
             return new BattleResult() { ResultType = BattleResultType.Retreat, SkillUsed = this };
         }
 
+        public BattleResult ProcessSkill(List<BattleEntity> targets)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetBattleDisplayString()
         {
             return this.BaseName;
