@@ -11,7 +11,7 @@ namespace AscendedZ.game_object
 {
     public class GameObject
     {
-        private const int TIER_CAP = 41;
+        private const int TIER_CAP = 101;
         private const int TIER_CAP_DC = 50;
 
         private int _tier = 1;

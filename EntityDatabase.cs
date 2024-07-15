@@ -51,7 +51,12 @@ namespace AscendedZ
             EnemyNames.Elliot_Onyx,
             EnemyNames.Sable_Vonner,
             EnemyNames.Cloven_Umbra,
-            EnemyNames.Ashen_Ash
+            EnemyNames.Ashen_Ash,
+            EnemyNames.Ethel_Aura,
+            EnemyNames.Kellam_Von_Stein,
+            EnemyNames.Drace_Skinner,
+            EnemyNames.Jude_Stone,
+            EnemyNames.Drace_Razor
         };
 
         /// <summary>

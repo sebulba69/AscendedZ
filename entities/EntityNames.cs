@@ -93,12 +93,26 @@ namespace AscendedZ.entities
         public static readonly string David = "Da-vid"; // boost wind
         public static readonly string Ferza = "Ferza"; // boost elec
 
+        // enemies with all-hits
+        public static readonly string Aldmas = "Aldmas"; // all-hit fire (AE)
+        public static readonly string Fridan = "Fridan"; // all-hit force (AE)
+
+        // enemies that just provide turns
+        public static readonly string Bue = "Bue"; // (AE) turns = 2, ice
+        public static readonly string Bued = "Bued"; // (AE) turns = 2, fire
+        public static readonly string Bureen = "Bureen"; // (AE) turns = 2, wind
+
         // Bosses (Normal)
         public static readonly string Harbinger = "Harbinger, Mangler of Legs";
         public static readonly string Elliot_Onyx = "Elliot Onyx";
         public static readonly string Sable_Vonner = "Sable Vonner";
         public static readonly string Cloven_Umbra = "Cloven Umbra";
         public static readonly string Ashen_Ash = "Ashen Ash";
+        public static readonly string Ethel_Aura = "Ethel Aura";
+        public static readonly string Kellam_Von_Stein = "Kellam Von Stein";
+        public static readonly string Drace_Skinner = "Drace Skinner";
+        public static readonly string Jude_Stone = "Jude Stone";
+        public static readonly string Drace_Razor = "Drace Razor";
 
         
     }
