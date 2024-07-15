@@ -22,7 +22,7 @@ namespace AscendedZ.dungeon_crawling
 
         public ITile MakePath(Direction direction, PathType path)
         {
-            ITile startOfTile = new MainPathTile(direction);
+            ITile startOfTile = new TileOLD(direction);
             ITile specialTile;
 
             switch (path)

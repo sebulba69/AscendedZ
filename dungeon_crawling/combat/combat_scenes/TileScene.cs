@@ -9,7 +9,6 @@ public partial class TileScene : Node2D
 {
     private Dictionary<Direction, Sprite2D> _doors;
     private Dictionary<Direction, Marker2D> _roomCoord;
-    private Dictionary<Direction, Direction> _oppositeDirections;
     private DungeonEntity _graphic;
 
 	public override void _Ready()
@@ -31,14 +30,6 @@ public partial class TileScene : Node2D
             { Direction.Right, this.GetNode<Marker2D>("%RoomRight") },
             { Direction.Down, this.GetNode<Marker2D>("%RoomDown") }
         };
-
-        _oppositeDirections = new Dictionary<Direction, Direction>() 
-        {
-            { Direction.Up, Direction.Down },
-            { Direction.Down, Direction.Up },
-            { Direction.Left, Direction.Right },
-            { Direction.Right, Direction.Left },
-        };
     }
 
     public void SetGraphic(string graphic)
@@ -55,21 +46,11 @@ public partial class TileScene : Node2D
         _graphic.Visible = false;
     }
 
-    public void AddLine(Direction direction)
+    public void AddDoor(Direction direction)
     {
         if (!_doors[direction].Visible)
         {
             _doors[direction].Visible = true;
-        }
-    }
-
-    public void AddOppositeLine(Direction direction)
-    {
-        Direction opposite = _oppositeDirections[direction];
-
-        if (!_doors[opposite].Visible)
-        {
-            _doors[opposite].Visible = true;
         }
     }
 

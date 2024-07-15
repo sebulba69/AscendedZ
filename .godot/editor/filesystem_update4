@@ -50,3 +50,4 @@ res://screens/RecruitScreen.tscn
 res://dungeon_crawling/scenes/crawl_ui/PartyMemberDCDisplay.tscn
 res://screens/PartyBattleDisplayBox.tscn
 res://dungeon_crawling/scenes/crawl_ui/PartyMemberDCDisplay.cs
+res://dungeon_crawling/combat/combat_scenes/TileScene.tscn

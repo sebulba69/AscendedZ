@@ -10,7 +10,7 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
     /// <summary>
     /// A tile that is not part of any side event path.
     /// </summary>
-    public class MainPathTile : ITile
+    public class TileOLD : ITile
     {
         public bool EventTriggered { get; set; } = true;
         public string Graphic { get => ""; }
@@ -22,7 +22,7 @@ namespace AscendedZ.dungeon_crawling.backend.Tiles
 
         private Direction _direction;
 
-        public MainPathTile(Direction direction)
+        public TileOLD(Direction direction)
         {
             _direction = direction;
         }

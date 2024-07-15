@@ -18,36 +18,29 @@ using static System.Net.Mime.MediaTypeNames;
 public class UITile
 {
     public TileScene Scene { get; set; }
-    public UITile Up { get; set; }
-    public UITile Down { get; set; }
-    public UITile Left { get; set; }
-    public UITile Right { get; set; }
 }
 
 public partial class DungeonScreen : Transitionable2DScene
 {
     private Marker2D _tiles;
+    private CanvasLayer _popup;
+    private TextureRect _background;
+    private DungeonCrawlUI _crawlUI;
+    private FloorExitScene _floorExitScene;
+    private Camera2D _camera;
+    private AudioStreamPlayer _audioStreamPlayer, _encounterSfxPlayer, _healSfxPlayer, _itemSfxPlayer;
     private DungeonEntity _player;
-
     private UITile _currentScene;
+
     private bool _onMainPath;
     private bool _processingEvent;
     private bool _endingScene;
-
-    private TileScene _currentSceneOLD;
-
     private Dungeon _dungeon;
-    private HashSet<int> _addedScenes;
     private int _currentIndex;
-    private Camera2D _camera;
-    private AudioStreamPlayer _audioStreamPlayer, _encounterSfxPlayer, _healSfxPlayer, _itemSfxPlayer;
     private GameObject _gameObject;
-    private TextureRect _background;
-    private DungeonCrawlUI _crawlUI;
     private List<BattlePlayer> _battlePlayers;
-    private CanvasLayer _popup;
 
-    private FloorExitScene _floorExitScene;
+    private UITile[,] _uiTiles;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -86,47 +79,24 @@ public partial class DungeonScreen : Transitionable2DScene
 
         if (@event.IsActionPressed(Controls.RIGHT))
         {
-            MoveDirection(_currentScene.Right, Direction.Right);
         }
 
         if (@event.IsActionPressed(Controls.LEFT))
         {
-            MoveDirection(_currentScene.Left, Direction.Left);
         }
 
         if (@event.IsActionPressed(Controls.DOWN))
         {
-            MoveDirection(_currentScene.Down, Direction.Down);
         }
 
         if (@event.IsActionPressed(Controls.UP))
         {
-            MoveDirection(_currentScene.Up, Direction.Up);
         }
     }
 
     private void SetCrawlValues()
     {
         _crawlUI.SetParty(_battlePlayers);
-    }
-
-    private void MoveDirection(UITile tile, Direction direction)
-    {
-        if(tile != null)
-        {
-            _currentScene = tile;
-            _processingEvent = true;
-
-            var tween = CreateTween();
-            tween.TweenProperty(_player, "position", _currentScene.Scene.Position, 0.25);
-            tween.Finished += () => 
-            {
-                _processingEvent = false;
-                _dungeon.MoveDirection(direction);
-                _onMainPath = _dungeon.CurrentTile.IsMainTile;
-            };
-
-        }
     }
 
     private void StartDungeon()
@@ -140,141 +110,67 @@ public partial class DungeonScreen : Transitionable2DScene
         _dungeon.TileEventTriggered += OnTileEventTriggeredAsync;
 
         foreach(var child in _tiles.GetChildren())
-        {
             _tiles.RemoveChild(child);
-        }
 
-        _currentScene = MakeNewUITile();
-        _onMainPath = true;
-        _player.Position = _currentScene.Scene.Position;
-        DrawNextTile(_dungeon.CurrentTile.GetDirection());
-    }
+        var tiles = _dungeon.Tiles;
+        int rows = tiles.GetLength(0);
+        int columns = rows;
 
-    private void DrawNextTile(Direction direction)
-    {
-        if (_onMainPath)
+        _uiTiles = new UITile[rows, columns];
+        var position = new Vector2(0, 0);
+        for (int r = 0; r < rows; r++)
         {
-            HashSet<ITile> visited = new HashSet<ITile>();
-
-            switch (direction)
+            for(int c = 0; c < columns; c++)
             {
-                case Direction.Right:
-                    if(_dungeon.CurrentTile.Right != null && _currentScene.Right == null)
-                    {
-                        UITile next = MakeNewUITile();
+                _uiTiles[r, c] = MakeNewUITile();
+                _uiTiles[r, c].Scene.Position = position;
+                if (tiles[r, c].IsPartOfMaze)
+                {
+                    DrawDoors(_uiTiles[r, c], tiles[r, c], tiles);
+                    _uiTiles[r, c].Scene.SetGraphic(tiles[r,c].Graphic);
+                }
+                else
+                {
+                    _uiTiles[r, c].Scene.Visible = false;
+                }
 
-                        _currentScene.Right = next;
-                        next.Left = _currentScene;
-
-                        AddDoors(_currentScene, next, direction);
-                        // draw any paths that branch off from the main path
-                        DrawBranchingTiles(next, _dungeon.CurrentTile.Right, visited);
-                    }
-                    break;
-
-                case Direction.Left:
-                    if (_dungeon.CurrentTile.Left != null && _currentScene.Left == null)
-                    {
-                        UITile next = MakeNewUITile();
-
-                        _currentScene.Left = next;
-                        next.Right = _currentScene;
-
-                        AddDoors(_currentScene, next, direction);
-                        DrawBranchingTiles(next, _dungeon.CurrentTile.Left, visited);
-                    }
-                    break;
-
-                case Direction.Up:
-                    if (_dungeon.CurrentTile.Up != null && _currentScene.Up == null)
-                    {
-                        UITile next = MakeNewUITile();
-
-                        _currentScene.Up = next;
-                        next.Down = _currentScene;
-
-                        AddDoors(_currentScene, next, direction);
-
-                        DrawBranchingTiles(next, _dungeon.CurrentTile.Up, visited);
-                    }
-                    break;
-
-
-                case Direction.Down:
-                    if (_dungeon.CurrentTile.Down != null && _currentScene.Down == null)
-                    {
-                        UITile next = MakeNewUITile();
-
-                        _currentScene.Down = next;
-                        next.Up = _currentScene;
-
-                        AddDoors(_currentScene, next, direction);
-
-                        DrawBranchingTiles(next, _dungeon.CurrentTile.Down, visited);
-                    }
-                    break;
+                if(c < columns - 1)
+                    position = _uiTiles[r, c].Scene.GetGlobalPosition(Direction.Right);
             }
+
+            if (r < rows - 1)
+                position = _uiTiles[r, 0].Scene.GetGlobalPosition(Direction.Down);
         }
+
+        var start =_dungeon.Current;
+        _player.Position = _uiTiles[start.X, start.Y].Scene.Position;
     }
 
-    private void AddDoors(UITile current, UITile destination, Direction direction)
+    private void DrawDoors(UITile uiTile, Tile tile, Tile[,] tiles)
     {
-        current.Scene.AddLine(direction);
-        destination.Scene.AddOppositeLine(direction);
-        destination.Scene.Position = current.Scene.GetGlobalPosition(direction);
-    }
+        int x = tile.X;
+        int y = tile.Y;
+        int length = tiles.GetLength(0);
 
-    private void DrawBranchingTiles(UITile uiTile, ITile tile, HashSet<ITile> visited)
-    {
-        if (visited.Contains(tile))
-            return;
+        // look left
+        if (y - 1 >= 0)
+            if (tiles[x, y - 1].IsPartOfMaze)
+                uiTile.Scene.AddDoor(Direction.Left);
 
-        uiTile.Scene.SetGraphic(tile.Graphic);
+        // look right
+        if (y + 1 < length)
+            if (tiles[x, y+1].IsPartOfMaze)
+                uiTile.Scene.AddDoor(Direction.Right);
 
-        visited.Add(tile);
-        if(tile.Up != null && uiTile.Up == null)
-        {
-            UITile up = MakeNewUITile();
-
-            uiTile.Up = up;
-            up.Down = uiTile;
-
-            AddDoors(uiTile, up, Direction.Up);
-            DrawBranchingTiles(up, tile.Up, visited);
-        }
-
-        if (tile.Down != null && uiTile.Down == null)
-        {
-            UITile down = MakeNewUITile();
-
-            uiTile.Down = down;
-            down.Up = uiTile;
-
-            AddDoors(uiTile, down, Direction.Down);
-            DrawBranchingTiles(down, tile.Down, visited);
-        }
-
-        if (tile.Left != null && uiTile.Left == null)
-        {
-            UITile left = MakeNewUITile();
-
-            uiTile.Left = left;
-            left.Right = uiTile;
-
-            AddDoors(uiTile, left, Direction.Left);
-            DrawBranchingTiles(left, tile.Left, visited);
-        }
-
-        if (tile.Right != null && uiTile.Right == null)
-        {
-            UITile right = MakeNewUITile();
-
-            uiTile.Right = right;
-            right.Left = uiTile;
-
-            AddDoors(uiTile, right, Direction.Right);
-            DrawBranchingTiles(right, tile.Right, visited);
-        }
+        // look up
+        if (x - 1 >= 0)
+            if (tiles[x - 1, y].IsPartOfMaze)
+                uiTile.Scene.AddDoor(Direction.Up);
+            
+        // look down
+        if (x + 1 < length)
+            if (tiles[x + 1, y].IsPartOfMaze)
+                uiTile.Scene.AddDoor(Direction.Down);
     }
 
     private UITile MakeNewUITile() 
@@ -285,13 +181,11 @@ public partial class DungeonScreen : Transitionable2DScene
         return uiTile;
     }
 
-    private async void OnTileEventTriggeredAsync(object sender, ITileEvent tileEvent)
+    private async void OnTileEventTriggeredAsync(object sender, TileEventId id)
     {
         // start of the event, prevent further inputs
         _processingEvent = true;
 
-        TileEventId id = tileEvent.Id;
-        
         switch (id)
         {
             case TileEventId.Item:
@@ -313,11 +207,6 @@ public partial class DungeonScreen : Transitionable2DScene
                 break;
 
             case TileEventId.Encounter:
-                
-                EncounterEvent encounterEvent = (EncounterEvent)tileEvent;
-                MainEncounterTile mainEncounterTile = encounterEvent.Tile;
-                // put up battle scene <-- handle rewards there
-
                 var combatScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
                 var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
 
@@ -381,7 +270,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 _floorExitScene.EndOfBattleLabel.Text = "Ascend?";
                 _floorExitScene.Stay.Visible = true;
                 _floorExitScene.Retry.Visible = false;
-                _dungeon.CurrentTile.EventTriggered = false;
+                _dungeon.Current.EventTriggered = false;
                 break;
         }
 
