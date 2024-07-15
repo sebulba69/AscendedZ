@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AscendedZ.dungeon_crawling.backend.TileEvents
+namespace AscendedZ.dungeon_crawling.backend
 {
     public enum TileEventId
     {
-        Encounter, Item, MinionShop, Heal, Exit, Blacksmith
+        None, Encounter, Item, Heal, Exit
     }
 }

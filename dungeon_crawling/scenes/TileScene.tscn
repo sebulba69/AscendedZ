@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bqrhisukorc1o"]
 
-[ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/TileScene.cs" id="1_q0og1"]
+[ext_resource type="Script" path="res://dungeon_crawling/scenes/TileScene.cs" id="1_q0og1"]
 [ext_resource type="Texture2D" uid="uid://p2lm6a6lgn7g" path="res://dungeon_crawling/art_assets/general/shadow.png" id="2_fntij"]
 [ext_resource type="Texture2D" uid="uid://lcmlb3tl5am4" path="res://dungeon_crawling/art_assets/general/bg.png" id="2_gux6g"]
 [ext_resource type="Texture2D" uid="uid://fu3igr300nxf" path="res://dungeon_crawling/art_assets/general/ground.png" id="3_5jj2q"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c6xy28b3dqkai" path="res://dungeon_crawling/art_assets/general/down.png" id="7_48rhv"]
 [ext_resource type="Texture2D" uid="uid://btsejbvti508d" path="res://dungeon_crawling/art_assets/general/left.png" id="8_8lnbc"]
 [ext_resource type="Texture2D" uid="uid://bkeaa6q4ebbmj" path="res://dungeon_crawling/art_assets/general/right.png" id="9_uyghw"]
-[ext_resource type="PackedScene" uid="uid://djlhy6ga7e5t2" path="res://dungeon_crawling/combat/combat_scenes/DungeonEntity.tscn" id="10_g6sag"]
+[ext_resource type="PackedScene" uid="uid://djlhy6ga7e5t2" path="res://dungeon_crawling/scenes/DungeonEntity.tscn" id="10_g6sag"]
 
 [node name="TileScene" type="Node2D"]
 script = ExtResource("1_q0og1")

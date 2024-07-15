@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AscendedZ.dungeon_crawling.backend.TileEvents
+namespace AscendedZ.dungeon_crawling
 {
-    public interface ITileEvent
+    public enum PathType
     {
-        public TileEventId Id { get; }
+        Heal, Item
     }
 }

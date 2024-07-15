@@ -1,13 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
-using AscendedZ.dungeon_crawling.backend.TileEvents;
-using AscendedZ.dungeon_crawling.backend.Tiles;
+
 
 public enum Direction
 {
@@ -45,53 +38,10 @@ namespace AscendedZ.dungeon_crawling.backend
             _currentTile = _genenerator.Start;
         }
 
-        public void MoveUp()
+        public void MoveDirection(int x, int y)
         {
-            if(_currentTile.X - 1 >= 0)
-            {
-                if (Tiles[_currentTile.X - 1, _currentTile.Y].IsPartOfMaze)
-                {
-                    _currentTile = Tiles[_currentTile.X - 1, _currentTile.Y];
-                    CheckTileEvent();
-                }
-            }
-        }
-
-        public void MoveDown()
-        {
-            if (_currentTile.X + 1 < Tiles.GetLength(0))
-            {
-                if (Tiles[_currentTile.X + 1, _currentTile.Y].IsPartOfMaze)
-                {
-                    _currentTile = Tiles[_currentTile.X + 1, _currentTile.Y];
-                    CheckTileEvent();
-                }
-            }
-        }
-
-
-        public void MoveLeft()
-        {
-            if (_currentTile.Y - 1 >= 0)
-            {
-                if (Tiles[_currentTile.X, _currentTile.Y - 1].IsPartOfMaze)
-                {
-                    _currentTile = Tiles[_currentTile.X, _currentTile.Y - 1];
-                    CheckTileEvent();
-                }
-            }
-        }
-
-        public void MoveRight()
-        {
-            if (_currentTile.Y + 1 < Tiles.GetLength(1))
-            {
-                if (Tiles[_currentTile.X, _currentTile.Y + 1].IsPartOfMaze)
-                {
-                    _currentTile = Tiles[_currentTile.X, _currentTile.Y + 1];
-                    CheckTileEvent();
-                }
-            }
+            _currentTile = _dungeon[x, y];
+            CheckTileEvent();
         }
 
         private void CheckTileEvent()

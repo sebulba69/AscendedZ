@@ -1,8 +1,6 @@
 using AscendedZ;
 using AscendedZ.currency;
 using AscendedZ.dungeon_crawling.backend;
-using AscendedZ.dungeon_crawling.backend.TileEvents;
-using AscendedZ.dungeon_crawling.backend.Tiles;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.game_object;
 using AscendedZ.screens;
@@ -13,10 +11,13 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Transactions;
+using static Godot.TextServer;
 using static System.Net.Mime.MediaTypeNames;
 
 public class UITile
 {
+    public int X { get; set; }
+    public int Y { get; set; }
     public TileScene Scene { get; set; }
 }
 
@@ -32,11 +33,9 @@ public partial class DungeonScreen : Transitionable2DScene
     private DungeonEntity _player;
     private UITile _currentScene;
 
-    private bool _onMainPath;
     private bool _processingEvent;
     private bool _endingScene;
     private Dungeon _dungeon;
-    private int _currentIndex;
     private GameObject _gameObject;
     private List<BattlePlayer> _battlePlayers;
 
@@ -77,20 +76,47 @@ public partial class DungeonScreen : Transitionable2DScene
         if (_processingEvent)
             return;
 
+        int x = _currentScene.X;
+        int y = _currentScene.Y;
+
         if (@event.IsActionPressed(Controls.RIGHT))
         {
+            MoveDirection(x, y + 1);
         }
 
         if (@event.IsActionPressed(Controls.LEFT))
         {
+            MoveDirection(x, y - 1);
         }
 
         if (@event.IsActionPressed(Controls.DOWN))
         {
+            MoveDirection(x + 1, y);
         }
 
         if (@event.IsActionPressed(Controls.UP))
         {
+            MoveDirection(x - 1, y);
+        }
+    }
+
+    private void MoveDirection(int x, int y)
+    {
+        if (x >= 0 && x < _uiTiles.GetLength(0) && y >= 0 && y < _uiTiles.GetLength(1))
+        {
+            var tile = _uiTiles[x, y];
+            if (tile.Scene.Visible)
+            {
+                _currentScene = tile;
+                _processingEvent = true;
+                var tween = CreateTween();
+                tween.TweenProperty(_player, "position", _currentScene.Scene.Position, 0.25);
+                tween.Finished += () =>
+                {
+                    _processingEvent = false;
+                    _dungeon.MoveDirection(x, y);
+                };
+            }
         }
     }
 
@@ -122,7 +148,7 @@ public partial class DungeonScreen : Transitionable2DScene
         {
             for(int c = 0; c < columns; c++)
             {
-                _uiTiles[r, c] = MakeNewUITile();
+                _uiTiles[r, c] = MakeNewUITile(r, c);
                 _uiTiles[r, c].Scene.Position = position;
                 if (tiles[r, c].IsPartOfMaze)
                 {
@@ -143,7 +169,8 @@ public partial class DungeonScreen : Transitionable2DScene
         }
 
         var start =_dungeon.Current;
-        _player.Position = _uiTiles[start.X, start.Y].Scene.Position;
+        _currentScene = _uiTiles[start.X, start.Y];
+        _player.Position = _currentScene.Scene.Position;
     }
 
     private void DrawDoors(UITile uiTile, Tile tile, Tile[,] tiles)
@@ -173,10 +200,10 @@ public partial class DungeonScreen : Transitionable2DScene
                 uiTile.Scene.AddDoor(Direction.Down);
     }
 
-    private UITile MakeNewUITile() 
+    private UITile MakeNewUITile(int x, int y) 
     {
         TileScene tileScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_TILE_SCENE).Instantiate<TileScene>();
-        UITile uiTile = new UITile() { Scene = tileScene };
+        UITile uiTile = new UITile() { Scene = tileScene, X = x, Y = y };
         _tiles.AddChild(uiTile.Scene);
         return uiTile;
     }
@@ -245,21 +272,6 @@ public partial class DungeonScreen : Transitionable2DScene
                 SetCrawlValues();
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
                 PersistentGameObjects.Save();
-                break;
-
-            case TileEventId.Blacksmith:
-                /*
-                _tiles.Visible = false;
-                _crawlUI.Visible = false;
-                var armory = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL_ARMORY).Instantiate<ArmoryScene>();
-
-                _popup.AddChild(armory);
-
-                await ToSignal(armory, "tree_exited");
-                
-                _tiles.Visible = true;
-                _crawlUI.Visible = true;
-                SetCrawlValues();*/
                 break;
 
             case TileEventId.Exit:

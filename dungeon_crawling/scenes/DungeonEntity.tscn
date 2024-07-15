@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://djlhy6ga7e5t2"]
 
 [ext_resource type="Texture2D" uid="uid://blyjwoyvgk0ep" path="res://entity_pics/conlen.png" id="1_2m2wl"]
-[ext_resource type="Script" path="res://dungeon_crawling/combat/combat_scenes/DungeonEntity.cs" id="1_htjy7"]
+[ext_resource type="Script" path="res://dungeon_crawling/scenes/DungeonEntity.cs" id="1_htjy7"]
 [ext_resource type="Texture2D" uid="uid://bccubabd2bgpu" path="res://dungeon_crawling/art_assets/general/character_border.png" id="2_apf4b"]
 
 [node name="DungeonEntity" type="Node2D"]

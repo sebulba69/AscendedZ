@@ -53,8 +53,8 @@ namespace AscendedZ
         public static readonly string TURN_ICONS = "res://turn_icons/TurnIcon.tscn";
 
         // dungeon crawling
-        public static readonly string DUNGEON_CRAWL = "res://dungeon_crawling/combat/combat_scenes/DungeonScreen.tscn";
-        public static readonly string DUNGEON_TILE_SCENE = "res://dungeon_crawling/combat/combat_scenes/TileScene.tscn";
+        public static readonly string DUNGEON_CRAWL = "res://dungeon_crawling/scenes/DungeonScreen.tscn";
+        public static readonly string DUNGEON_TILE_SCENE = "res://dungeon_crawling/scenes/TileScene.tscn";
         public static readonly string DUNGEON_CRAWL_PARTY_MEMBER = "res://dungeon_crawling/scenes/crawl_ui/PartyMemberDCDisplay.tscn";
     }
 }
