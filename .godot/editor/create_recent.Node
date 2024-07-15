@@ -1,8 +1,9 @@
+Label
+VBoxContainer
 TileMap
 MarginContainer
 PanelContainer
 HBoxContainer
-VBoxContainer
 TextureRect
 AnimationPlayer
 Sprite2D
@@ -12,4 +13,3 @@ CenterContainer
 ScrollContainer
 Button
 CanvasLayer
-Camera2D

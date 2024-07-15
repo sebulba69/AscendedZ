@@ -122,7 +122,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
     private void SetCrawlValues()
     {
-        _crawlUI.SetParty(_battlePlayers);
+        _crawlUI.SetParty(PersistentGameObjects.GameObjectInstance().TierDC, _battlePlayers);
     }
 
     private void StartDungeon()
