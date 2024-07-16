@@ -27,7 +27,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Name = EnemyNames.Ashen_Ash;
             Image = CharacterImageAssets.GetImagePath(Name);
             MaxHP = EntityDatabase.GetBossHP(Name);
-            Turns = 3;
+            Turns = 2;
             _isBoss = true;
             _randomAttack = true;
 

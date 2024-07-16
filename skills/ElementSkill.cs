@@ -63,32 +63,29 @@ namespace AscendedZ.skills
         public BattleResult ProcessSkill(List<BattleEntity> targets)
         {
             BattleResult all = targets[0].ApplyElementSkill(this);
-            BattleResultType rType = all.ResultType;
 
             all.Target = null;
             all.AllHPChanged.Add(all.HPChanged);
             all.Results.Add(all.ResultType);
+            all.Targets.Add(targets[0]);
 
+            int[] bResultRanking = { 2, 1, 3, 4, 0 };
+
+            int compare = bResultRanking[(int)all.ResultType];
             for (int i = 1; i < targets.Count; i++)
             {
                 BattleResult result = targets[i].ApplyElementSkill(this);
 
                 all.Results.Add(result.ResultType);
 
-                if(result.ResultType == BattleResultType.Wk)
+                int integerResult = bResultRanking[(int)result.ResultType];
+
+                if(compare < integerResult)
                 {
-                    if(rType != BattleResultType.Nu && rType != BattleResultType.Dr)
-                    {
-                        rType = result.ResultType;
-                    }
+                    compare = integerResult;
+                    all.ResultType = result.ResultType;
                 }
-                else
-                {
-                    if((int)result.ResultType > (int)rType)
-                    {
-                        rType = result.ResultType;
-                    }
-                }
+                    
 
                 all.AllHPChanged.Add(result.HPChanged);
                 all.Targets.Add(targets[i]);
