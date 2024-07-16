@@ -1,9 +1,10 @@
+HBoxContainer
+PanelContainer
+MarginContainer
+Button
 Label
 VBoxContainer
 TileMap
-MarginContainer
-PanelContainer
-HBoxContainer
 TextureRect
 AnimationPlayer
 Sprite2D
@@ -11,5 +12,3 @@ GridContainer
 ItemList
 CenterContainer
 ScrollContainer
-Button
-CanvasLayer

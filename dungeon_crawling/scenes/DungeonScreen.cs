@@ -23,6 +23,7 @@ public class UITile
 
 public partial class DungeonScreen : Transitionable2DScene
 {
+    private bool _prematurelyLeave;
     private Marker2D _tiles;
     private CanvasLayer _popup;
     private TextureRect _background;
@@ -30,6 +31,7 @@ public partial class DungeonScreen : Transitionable2DScene
     private FloorExitScene _floorExitScene;
     private Camera2D _camera;
     private AudioStreamPlayer _audioStreamPlayer, _encounterSfxPlayer, _healSfxPlayer, _itemSfxPlayer;
+    private Button _retreat;
     private DungeonEntity _player;
     private UITile _currentScene;
 
@@ -60,6 +62,13 @@ public partial class DungeonScreen : Transitionable2DScene
         _floorExitScene.Continue.Pressed += _OnContinueToNextFloor;
         _floorExitScene.Back.Pressed += _OnRetreatButtonPressed;
 
+        _retreat = this.GetNode<Button>("%RetreatBtn");
+        _retreat.Pressed += () =>
+        {
+            _prematurelyLeave = true;
+            _OnRetreatButtonPressed();
+        };
+
         _gameObject = PersistentGameObjects.GameObjectInstance();
         _gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);
         _battlePlayers = _gameObject.MakeBattlePlayerListFromParty();
@@ -70,15 +79,13 @@ public partial class DungeonScreen : Transitionable2DScene
 
     public override void _Input(InputEvent @event)
     {
-        if (_endingScene)
-            return;
-
-        if (_processingEvent)
-            return;
+        if (_endingScene) return;
+        if (_processingEvent) return;
+        if (_currentScene == null) return;
 
         int x = _currentScene.X;
         int y = _currentScene.Y;
-
+        
         if (@event.IsActionPressed(Controls.RIGHT))
         {
             MoveDirection(x, y + 1);
@@ -115,6 +122,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 {
                     _processingEvent = false;
                     _dungeon.MoveDirection(x, y);
+                    _crawlUI.SetCoordinates(x, y);
                 };
             }
         }
@@ -122,7 +130,8 @@ public partial class DungeonScreen : Transitionable2DScene
 
     private void SetCrawlValues()
     {
-        _crawlUI.SetParty(PersistentGameObjects.GameObjectInstance().TierDC, _battlePlayers);
+        var tier = PersistentGameObjects.GameObjectInstance().TierDC;
+        _crawlUI.SetParty(tier, _battlePlayers);
     }
 
     private void StartDungeon()
@@ -171,6 +180,7 @@ public partial class DungeonScreen : Transitionable2DScene
         var start =_dungeon.Current;
         _currentScene = _uiTiles[start.X, start.Y];
         _player.Position = _currentScene.Scene.Position;
+        _crawlUI.SetCoordinates(_currentScene.X, _currentScene.Y);
     }
 
     private void DrawDoors(UITile uiTile, Tile tile, Tile[,] tiles)
@@ -341,7 +351,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
     private async void _OnRetreatButtonPressed()
     {
-        if(_floorExitScene.Continue.Visible)
+        if(_floorExitScene.Continue.Visible && !_prematurelyLeave)
         {
             int tier = _gameObject.TierDC;
             int maxTier = _gameObject.MaxTierDC;
@@ -364,6 +374,7 @@ public partial class DungeonScreen : Transitionable2DScene
             _itemSfxPlayer.Play();
             await ToSignal(rewards, "tree_exited");
         }
+
         SetEncounterVisibility(false);
         PersistentGameObjects.Save();
         TransitionScenes(Scenes.MAIN, _audioStreamPlayer);
@@ -374,7 +385,8 @@ public partial class DungeonScreen : Transitionable2DScene
         _tiles.Visible = visible;
         _camera.Enabled = visible;
         _player.Visible = visible;
-        if(!keepCamera)
+        _retreat.Visible = visible;
+        if (!keepCamera)
         {
             _crawlUI.Visible = visible;
             _popup.Visible = visible;

@@ -107,7 +107,7 @@ namespace AscendedZ
         {
             int index = ((tier - (tier % 10)) / 10) - 1;
 
-            if (index > DungeonTracksDCReal.Count || index < 0)
+            if (index >= DungeonTracksDCReal.Count || index < 0)
                 index = 0;
 
             return DungeonTracksDCReal[index];

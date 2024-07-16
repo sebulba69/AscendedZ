@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://csuaki25owryn"
+path="res://.godot/imported/01. [DDS1] River of Samsara.ogg-4f4c6c6bb3b285eea69fcb27df6f2124.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/overworld/01. [DDS1] River of Samsara.ogg"
+dest_files=["res://.godot/imported/01. [DDS1] River of Samsara.ogg-4f4c6c6bb3b285eea69fcb27df6f2124.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

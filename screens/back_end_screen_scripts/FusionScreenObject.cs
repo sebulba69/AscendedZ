@@ -33,6 +33,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
             if (DisplayFusion.Fusion.Skills.Count > 0)
             {
                 MainPlayer mainPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer;
+
                 RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material1);
                 RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material2);
 
@@ -84,11 +85,18 @@ namespace AscendedZ.screens.back_end_screen_scripts
                         if (!IsFusionRecipeGenerated(reserves[m1], reserves[m2]))
                         {
                             var fusions = EntityDatabase.MakeFusionEntities(reserves[m1], reserves[m2]);
-                            _fusions.AddRange(fusions);
+                            if(fusions.Count > 0 && reserves.Find(r => r.Name == fusions[0].Fusion.Name) == null)
+                                _fusions.AddRange(fusions);
                         }
                     }
                 }
             }
+
+            if (_fusionIndex == _fusions.Count)
+                _fusionIndex = _fusions.Count - 1;
+
+            if (_fusionIndex < 0)
+                _fusionIndex = 0;
 
             _fusions = _fusions.OrderBy(fusion => fusion.Fusion.Name).ToList();
         }

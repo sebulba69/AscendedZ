@@ -122,7 +122,7 @@ namespace AscendedZ
             else
             {
                 GameObject gameObject = PersistentGameObjects.GameObjectInstance();
-
+                
                 int encounterIndex = tier - RANDOM_TIER;
 
                 List<string> encounterNames = new List<string>();
@@ -207,7 +207,9 @@ namespace AscendedZ
                         }
                     }
 
-                    gameObject.Encounters.Add(encounterNames);
+                    if(!dungeonCrawlEncounter)
+                        gameObject.Encounters.Add(encounterNames);
+
                     PersistentGameObjects.Save();
                 }
 

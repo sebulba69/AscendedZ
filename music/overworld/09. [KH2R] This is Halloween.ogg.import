@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://6x0wgatmwgf0"
+path="res://.godot/imported/09. [KH2R] This is Halloween.ogg-c1834c8b09df842df18faa290ac3c380.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/overworld/09. [KH2R] This is Halloween.ogg"
+dest_files=["res://.godot/imported/09. [KH2R] This is Halloween.ogg-c1834c8b09df842df18faa290ac3c380.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

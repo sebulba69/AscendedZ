@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d8wngdgopn13"
+path="res://.godot/imported/08. [LoG] Spring Watch.ogg-763738e24cf85f9098fee4b85d79df7b.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/overworld/08. [LoG] Spring Watch.ogg"
+dest_files=["res://.godot/imported/08. [LoG] Spring Watch.ogg-763738e24cf85f9098fee4b85d79df7b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

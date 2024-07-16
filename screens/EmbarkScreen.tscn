@@ -32,6 +32,28 @@ text = "Create a party and ascend the Dungeon Tiers."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer3"]
+layout_mode = 2
+alignment = 1
+
+[node name="EndlessDungeonBtn" type="Button" parent="VBoxContainer/PanelContainer3/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 30
+disabled = true
+text = "The Endless Dungeon"
+
+[node name="LabribuceBtn" type="Button" parent="VBoxContainer/PanelContainer3/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 30
+text = "The Labrybuce"
+
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 texture_filter = 2
 layout_mode = 2
@@ -63,13 +85,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 30
 text = ">"
-
-[node name="DungeonCrawlBtn" type="Button" parent="VBoxContainer/PanelContainer/CenterContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 30
-text = "The Labrybuce"
 
 [node name="PartyEditScreen" parent="VBoxContainer" instance=ExtResource("3_n6ybj")]
 unique_name_in_owner = true

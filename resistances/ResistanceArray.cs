@@ -151,7 +151,8 @@ namespace AscendedZ.resistances
             }
 
             // output = "R1: E1, E2 - R2: E1, ..."
-            return resString.ToString().Substring(0, resString.Length - resDivider.Length);
+            string rString = resString.ToString();
+            return (rString.Length == 0) ? "[None]" : rString.Substring(0, resString.Length - resDivider.Length);
         }
 
         #region Resistance Checks

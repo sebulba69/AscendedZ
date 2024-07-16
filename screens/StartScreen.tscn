@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2"]
 [ext_resource type="Script" path="res://screens/StartScreen.cs" id="3"]
 [ext_resource type="Script" path="res://screens/AscendedDialogBox.cs" id="4"]
-[ext_resource type="Texture2D" uid="uid://c30uvsnxii3bd" path="res://cg_backgrounds/overworld/4bg00307.jpg" id="5"]
+[ext_resource type="Texture2D" uid="uid://cq8pbliuivvh0" path="res://cg_backgrounds/overworld/04bg00307.jpg" id="5"]
 [ext_resource type="AudioStream" uid="uid://cgb6kermfdhu" path="res://music/theme.ogg" id="5_gxppa"]
 
 [node name="StartScreen" type="Node2D"]

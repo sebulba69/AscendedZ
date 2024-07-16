@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://86hlflgnxjcc"]
+[gd_scene load_steps=10 format=3 uid="uid://86hlflgnxjcc"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/scenes/DungeonScreen.cs" id="1_7745h"]
 [ext_resource type="PackedScene" uid="uid://djlhy6ga7e5t2" path="res://dungeon_crawling/scenes/DungeonEntity.tscn" id="2_p1r2d"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cm0ln1sy56au3" path="res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn" id="5_837pb"]
 [ext_resource type="AudioStream" uid="uid://bd6ue8iwjaduk" path="res://effects/effect_sounds/Heal3.ogg" id="5_xyr8c"]
 [ext_resource type="AudioStream" uid="uid://q25xxaiw4e1c" path="res://effects/effect_sounds/Item1.ogg" id="6_mi2s1"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="8_7q63i"]
 [ext_resource type="PackedScene" uid="uid://5jt6rgufn81k" path="res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.tscn" id="8_m0cb0"]
 
 [node name="DungeonScreen" type="Node2D"]
@@ -71,6 +72,21 @@ offset_right = 105.0
 offset_bottom = 84.0
 scale = Vector2(1.5, 1.5)
 metadata/_edit_use_anchors_ = true
+
+[node name="RetreatBtn" type="Button" parent="CrawlUI"]
+unique_name_in_owner = true
+texture_filter = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 8.0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("8_7q63i")
+theme_override_font_sizes/font_size = 50
+text = "Retreat"
 
 [node name="Popups" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

@@ -16,9 +16,8 @@ using static Godot.WebSocketPeer;
 public partial class EmbarkScreen : CenterContainer
 {
     private Label _tierLabel;
-    private bool _dungeonCrawling;
     private PartyEditScreen _partyEditScreen;
-    private Button _labrybuceBtn;
+    private Button _endlessDungeonBtn, _labrybuceBtn;
 
     public PartyEditScreen PartyEditScreen { get => _partyEditScreen; }
 
@@ -30,7 +29,8 @@ public partial class EmbarkScreen : CenterContainer
 
         Button leftTier = this.GetNode<Button>("%LeftTierBtn");
         Button rightBtn = this.GetNode<Button>("%RightTierBtn");
-        _labrybuceBtn = this.GetNode<Button>("%DungeonCrawlBtn");
+        _endlessDungeonBtn = this.GetNode<Button>("%EndlessDungeonBtn");
+        _labrybuceBtn = this.GetNode<Button>("%LabribuceBtn");
 
         _labrybuceBtn.Visible = (gameObject.MaxTier > 10);
 
@@ -44,6 +44,7 @@ public partial class EmbarkScreen : CenterContainer
         leftTier.Pressed += _OnLeftBtnPressed;
         rightBtn.Pressed += _OnRightBtnPressed;
         _labrybuceBtn.Pressed += _OnLabrybuceButtonPressed;
+        _endlessDungeonBtn.Pressed += _OnEndlessDungeonButtonPressed;
 
         _partyEditScreen = this.GetNode<PartyEditScreen>("%PartyEditScreen");
         _partyEditScreen.TreeExited += () => 
@@ -56,25 +57,27 @@ public partial class EmbarkScreen : CenterContainer
 
     private void _OnLabrybuceButtonPressed()
     {
-        _dungeonCrawling = !_dungeonCrawling;
         var gameObject = PersistentGameObjects.GameObjectInstance();
-        if (_dungeonCrawling)
-        {
-            _labrybuceBtn.Text = "Endless Dungeon";
-            SetTierText(gameObject.TierDC);
-        }
-        else
-        {
-            _labrybuceBtn.Text = "The Labrybuce";
-            SetTierText(gameObject.Tier);
-        }
-        _partyEditScreen.DungeonCrawling = _dungeonCrawling;
+        _endlessDungeonBtn.Disabled = false;
+        _labrybuceBtn.Disabled = true;
+
+        SetTierText(gameObject.TierDC);
+        _partyEditScreen.DungeonCrawling = true;
+    }
+
+    private void _OnEndlessDungeonButtonPressed()
+    {
+        var gameObject = PersistentGameObjects.GameObjectInstance();
+        _endlessDungeonBtn.Disabled = true;
+        _labrybuceBtn.Disabled = false;
+        SetTierText(gameObject.Tier);
+        _partyEditScreen.DungeonCrawling = false;
     }
 
     private void _OnLeftBtnPressed()
     {
         var gameObject = PersistentGameObjects.GameObjectInstance();
-        if (_dungeonCrawling) 
+        if (_labrybuceBtn.Disabled) 
         {
             gameObject.TierDC--;
             SetTierText(gameObject.TierDC);
@@ -89,7 +92,7 @@ public partial class EmbarkScreen : CenterContainer
     private void _OnRightBtnPressed() 
     {
         var gameObject = PersistentGameObjects.GameObjectInstance();
-        if (_dungeonCrawling)
+        if (_labrybuceBtn.Disabled)
         {
             gameObject.TierDC++;
             SetTierText(gameObject.TierDC);
@@ -103,7 +106,7 @@ public partial class EmbarkScreen : CenterContainer
 
     private void SetTierText(int tier)
     {
-        string tierText = (!_dungeonCrawling) ? "Dungeon Floor:" : "Labrybuce Sector:";
+        string tierText = (!_labrybuceBtn.Disabled) ? "Dungeon Floor:" : "Labrybuce Sector:";
         _tierLabel.Text = $"{tierText} {tier}";
     }
 
