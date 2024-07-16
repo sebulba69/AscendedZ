@@ -48,7 +48,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             sylla.Resistances.SetResistance(ResistanceType.Nu, Elements.Ice);
 
-            sylla.Skills.Add(SkillDatabase.Ice2.Clone());
+            sylla.Skills.Add(SkillDatabase.IceAll.Clone());
 
             return sylla;
         }
@@ -59,7 +59,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             venforth.Resistances.SetResistance(ResistanceType.Nu, Elements.Elec);
 
-            venforth.Skills.Add(SkillDatabase.Elec2.Clone());
+            venforth.Skills.Add(SkillDatabase.ElecAll.Clone());
 
             return venforth;
         }

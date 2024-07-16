@@ -33,9 +33,9 @@ namespace AscendedZ.entities.enemy_objects.bosses
 
             _phase = 0;
 
-            Skills.Add(SkillDatabase.Wind2.Clone());
+            Skills.Add(SkillDatabase.WindAll.Clone());
             Skills.Add(SkillDatabase.Ice1.Clone());
-            Skills.Add(SkillDatabase.Light2.Clone());
+            Skills.Add(SkillDatabase.LightAll.Clone());
             Skills.Add(SkillDatabase.Fire1.Clone());
         }
 

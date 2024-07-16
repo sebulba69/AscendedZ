@@ -63,7 +63,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             pebrand.Resistances.SetResistance(ResistanceType.Nu, Elements.Ice);
 
-            pebrand.Skills.Add(SkillDatabase.Ice2);
+            pebrand.Skills.Add(SkillDatabase.IceAll);
 
             return pebrand;
         }
@@ -74,7 +74,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             leofuwil.Resistances.SetResistance(ResistanceType.Nu, Elements.Elec);
 
-            leofuwil.Skills.Add(SkillDatabase.Elec2);
+            leofuwil.Skills.Add(SkillDatabase.ElecAll);
 
             return leofuwil;
         }

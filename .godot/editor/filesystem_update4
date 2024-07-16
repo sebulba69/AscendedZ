@@ -57,3 +57,4 @@ res://screens/MenuScene.tscn
 res://screens/MainPlayerContainer.tscn
 res://misc_icons/Icon.tscn
 res://dungeon_crawling/scenes/crawl_ui/FountainOfBuce.tscn
+res://dungeon_crawling/scenes/crawl_ui/FountainOfBuce.cs

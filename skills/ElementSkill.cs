@@ -110,10 +110,7 @@ namespace AscendedZ.skills
 
         public void LevelUp()
         {
-            int boost = (Level/2) + 1;
-            if (boost == 0)
-                boost = 1;
-
+            int boost = GetBoostValue(Level);
             try
             {
                 _level++;
@@ -135,7 +132,16 @@ namespace AscendedZ.skills
 
         public string GetUpgradeString()
         {
-            return $"{ToString()} → {this.Damage + (Level + 1)}";
+            return $"{ToString()} → {this.Damage + GetBoostValue(Level)}";
+        }
+
+        private int GetBoostValue(int level)
+        {
+            int boost = (level + 1 / 2) + 1;
+            if (boost == 0)
+                boost = 1;
+
+            return boost;
         }
 
         public ISkill Clone()

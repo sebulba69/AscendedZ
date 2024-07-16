@@ -69,22 +69,7 @@ namespace AscendedZ.skills
 
         public string GetUpgradeString()
         {
-            return $"{GetBattleDisplayString()} → {this.HealAmount + GetBoostValue()}";
-        }
-
-        private int GetBoostValue()
-        {
-            try
-            {
-                double m = 0.01 * Math.Pow((_level - 10), 2) + 1;
-                int boost = (int)(Math.Pow(_level, m)) + 1;
-                boost = (boost / 4) + 1;
-                return boost;
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
+            return $"{GetBattleDisplayString()} → {this.HealAmount + (Level + 1) * 2}";
         }
 
         public BattleResult ProcessSkill(BattleEntity target)

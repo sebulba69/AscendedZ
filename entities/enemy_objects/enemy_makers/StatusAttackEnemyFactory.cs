@@ -60,7 +60,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             gormacwen.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
 
-            gormacwen.Skills.Add(SkillDatabase.Fire2.Clone());
+            gormacwen.Skills.Add(SkillDatabase.FireAll.Clone());
 
             return gormacwen;
         }
@@ -71,7 +71,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             vidwerd.Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
 
-            vidwerd.Skills.Add(SkillDatabase.Dark2.Clone());
+            vidwerd.Skills.Add(SkillDatabase.DarkAll.Clone());
 
             return vidwerd;
         }

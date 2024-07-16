@@ -97,34 +97,6 @@ namespace AscendedZ.entities.partymember_objects
                 Level = 0;
                 Grade++;
 
-                for(int s = 0; s < Skills.Count; s++)
-                {
-                    ISkill skill = Skills[s];
-                    if(skill.Id == SkillId.Elemental)
-                    {
-                        ElementSkill elementSkill = skill as ElementSkill;
-                        int eTier = elementSkill.Tier;
-                        if (eTier < 5)
-                        {
-                            ElementSkill nextTierElement = SkillDatabase.GetNextTierOfElementSkill(eTier, elementSkill);
-                            VorpexValue /= 4;
-                            Skills[s] = nextTierElement;
-                        }
-                    }
-                    else if(skill.Id == SkillId.Healing)
-                    {
-                        HealSkill healSkill = skill as HealSkill;
-                        int hTier = healSkill.Tier;
-                        if(hTier < 5)
-                        {
-                            HealSkill nextTierHeal = SkillDatabase.GetNextTierOfHealSkill(hTier, healSkill.TargetType);
-                            VorpexValue /= 4;
-                            Skills[s] = nextTierHeal;
-                        }
-                    }
-                    
-                }
-
                 if (Grade == grades.Length - 1)
                 {
                     _maxLevelCap *= 2;
