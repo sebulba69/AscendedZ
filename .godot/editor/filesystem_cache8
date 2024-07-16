@@ -1,12 +1,12 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1721097622
+::res://::1721106388
 ArtAssets.cs::CSharpScript::-1::1720978532::0::1::::<><>::
 ascended_icon.png::CompressedTexture2D::5218734614891675472::1708994907::1708994916::1::::<><>::
 AssetUtil.cs::CSharpScript::-1::1720300319::0::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1720658316::0::1::::<><>::
 BackBoxBossHPDC.tres::StyleBoxFlat::7192250026047991769::1720658135::0::1::::<><>::
 Controls.cs::CSharpScript::-1::1720300319::0::1::::<><>::
-default_env.tres::Environment::5723441312748911875::1721097622::0::1::::<><>::
+default_env.tres::Environment::5723441312748911875::1721106388::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1720300319::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1721089246::0::1::::<><>::
 Equations.cs::CSharpScript::-1::1720649639::0::1::::<><>::
@@ -304,19 +304,19 @@ SaveEntry.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 SaveObject.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 ::res://json_interface_converters/::1720504079
 SkillConverter.cs::CSharpScript::-1::1720504079::0::1::::<><>::
-::res://misc_icons/::1721097622
+::res://misc_icons/::1721106388
 CurrencyDisplay.cs::CSharpScript::-1::1720300320::0::1::::<>GridContainer<>::
 CurrencyDisplay.tscn::PackedScene::8562439097474497904::1720373693::0::1::::<><>::res://misc_icons/CurrencyDisplay.cs<>uid://bqmfi0ome6yn4::::res://misc_icons/Icon.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 Icon.cs::CSharpScript::-1::1720300320::0::1::::<>TextureRect<>::
 Icon.tscn::PackedScene::3534533921528240495::1721092825::0::1::::<><>::uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>res://misc_icons/Icon.cs
-IconOutline.gdshader::Shader::-1::1721097622::0::1::::<><>::
+IconOutline.gdshader::Shader::-1::1721106388::0::1::::<><>::
 IconSet.png::CompressedTexture2D::550291359472638980::1720300251::1720300251::1::::<><>::
-::res://music/::1721019221
+::res://music/::1721105847
 boss_victory.ogg::AudioStreamOggVorbis::5818420752927080643::1706678954::1706678954::1::::<><>::
-cutscene.ogg::AudioStreamOggVorbis::4869671922208139214::1706678954::1706678955::1::::<><>::
+cutscene.ogg::AudioStreamOggVorbis::4869671922208139214::1706678954::1721105847::1::::<><>::
 theme.ogg::AudioStreamOggVorbis::152880562605599254::1706678960::1706678960::1::::<><>::
 ::res://music/dungeons/::1721019221
-::res://music/dungeons_tiers/::1721097608
+::res://music/dungeons_tiers/::1721106700
 dungeon11-19.ogg::AudioStreamOggVorbis::6884753647374301581::1707031591::1709267374::1::::<><>::
 dungeon21-29.ogg::AudioStreamOggVorbis::3760210408069985480::1708913042::1709267374::1::::<><>::
 dungeon31-39.ogg::AudioStreamOggVorbis::4038606328670673550::1708914132::1709267374::1::::<><>::
@@ -325,28 +325,32 @@ dungeon51-59.ogg::AudioStreamOggVorbis::1242703379541583911::1721019239::1721019
 dungeon61-69.ogg::AudioStreamOggVorbis::9111970527022167647::1721019684::1721019711::1::::<><>::
 dungeon71-79.ogg::AudioStreamOggVorbis::2564987751545029313::1721019919::1721019977::1::::<><>::
 dungeon81-89.ogg::AudioStreamOggVorbis::7991967524167812757::1721097555::1721097608::1::::<><>::
+dungeon91-99.ogg::AudioStreamOggVorbis::6055855471342298066::1721106704::1721106715::1::::<><>::
 ::res://music/dungeons_tutorial/::1720652101
 dungeon1-4.ogg::AudioStreamOggVorbis::3989610818403036540::1706678955::1709267345::1::::<><>::
 dungeon6-9.ogg::AudioStreamOggVorbis::4481717828721931113::1706678958::1709267345::1::::<><>::
-::res://music/dungeon_bosses/::1721097902
+::res://music/dungeon_bosses/::1721106609
 dungeon10.ogg::AudioStreamOggVorbis::7785499597464266134::1706678957::1720652106::1::::<><>::
 dungeon20.ogg::AudioStreamOggVorbis::3509506727226137615::1706678957::1720652090::1::::<><>::
 dungeon30.ogg::AudioStreamOggVorbis::4988415112418322989::1707195920::1720652086::1::::<><>::
 dungeon40.ogg::AudioStreamOggVorbis::5225372910572164798::1708915137::1720652081::1::::<><>::
 dungeon50.ogg::AudioStreamOggVorbis::4800212523448997402::1708915330::1720652076::1::::<><>::
-dungeon80.ogg::AudioStreamOggVorbis::3495938336323035852::1721097904::1721097909::1::::<><>::
-::res://music/dungoen_crawl/::1720367813
+dungeon60.ogg::AudioStreamOggVorbis::2257913607072694978::1610225619::1721106350::1::::<><>::
+dungeon70.ogg::AudioStreamOggVorbis::7631961702027261000::1721106611::1721106715::1::::<><>::
+dungeon80.ogg::AudioStreamOggVorbis::3495938336323035852::1721097904::1721098089::1::::<><>::
+::res://music/dungoen_crawl/::1721106386
 dungeon_crawl_01.ogg::AudioStreamOggVorbis::7146374783145671517::1720300418::1720367813::1::::<><>::
-::res://music/overworld/::1721090796
-01. [DDS1] River of Samsara.ogg::AudioStreamOggVorbis::6077546429170206481::1706678959::1721088790::1::::<><>::
-02. [KH2] Hollow Bastion.ogg::AudioStreamOggVorbis::8754096332658386353::1706678959::1721088790::1::::<><>::
-03. [KH2] Underworld.ogg::AudioStreamOggVorbis::7656895798103870023::1706678960::1721088790::1::::<><>::
-04. [Lunacid] Rain of Saint Ishii.ogg::AudioStreamOggVorbis::8587653149922582280::1708913678::1721088790::1::::<><>::
+dungeon_crawl_boss.ogg::AudioStreamOggVorbis::2757952806992207788::1641697665::1721106386::1::::<><>::
+::res://music/overworld/::1721105816
+01. [DDS1] River of Samsara.ogg::AudioStreamOggVorbis::6077546429170206481::1706678959::1721105317::1::::<><>::
+02. [KH2] Hollow Bastion.ogg::AudioStreamOggVorbis::8754096332658386353::1706678959::1721105391::1::::<><>::
+03. [KH2] Underworld.ogg::AudioStreamOggVorbis::7656895798103870023::1706678960::1721105430::1::::<><>::
+04. [Lunacid] Rain of Saint Ishii.ogg::AudioStreamOggVorbis::8587653149922582280::1708913678::1721105465::1::::<><>::
 05. [SMT3] Sound Test.ogg::AudioStreamOggVorbis::4901181733627753363::1706678960::1721090796::1::::<><>::
-06. [LoR] Caravan.ogg::AudioStreamOggVorbis::5816794978289388649::1714869006::1721088790::1::::<><>::
-07. [LoR] Wasteland.ogg::AudioStreamOggVorbis::8539185732844141667::1716075238::1721088790::1::::<><>::
-08. [LoG] Spring Watch.ogg::AudioStreamOggVorbis::280050306026136476::1716068700::1721088790::1::::<><>::
-09. [KH2R] This is Halloween.ogg::AudioStreamOggVorbis::2224892369427729835::1721017987::1721088790::1::::<><>::
+06. [LoR] Caravan.ogg::AudioStreamOggVorbis::5816794978289388649::1714869006::1721105568::1::::<><>::
+07. [LoR] Wasteland.ogg::AudioStreamOggVorbis::8539185732844141667::1716075238::1721105616::1::::<><>::
+08. [LoG] Spring Watch.ogg::AudioStreamOggVorbis::280050306026136476::1716068700::1721105635::1::::<><>::
+09. [KH2R] This is Halloween.ogg::AudioStreamOggVorbis::2224892369427729835::1721017987::1721105816::1::::<><>::
 10. [SMTIV] Tokyo.ogg::AudioStreamOggVorbis::5969117531868340422::1721018323::1721018479::1::::<><>::
 ::res://player_pics/::1706678960
 newpicture6.png::CompressedTexture2D::6339402348666751527::1676533764::1682923971::1::::<><>::
@@ -369,7 +373,7 @@ BarV5_ProgressBarBorder.png::CompressedTexture2D::6286064946586930276::167809411
 ::res://resistances/::1721089929
 ResistanceArray.cs::CSharpScript::-1::1721089929::0::1::::<><>::
 ResistanceType.cs::CSharpScript::-1::1720300251::0::1::::<><>::
-::res://screens/::1721097622
+::res://screens/::1721106388
 ActionMenu.cs::CSharpScript::-1::1721008981::0::1::::<>PanelContainer<>::
 ActionMenu.tscn::PackedScene::4702874803656428896::1720414443::0::1::::<><>::res://screens/ActionMenu.cs<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 APBarStyleBox.tres::StyleBoxFlat::184845878767122209::1720913096::0::1::::<><>::
@@ -409,7 +413,7 @@ RecruitScreen.cs::CSharpScript::-1::1720970315::0::1::::<>CenterContainer<>::
 RecruitScreen.tres::StyleBoxFlat::-1::1720300321::0::1::::<><>::
 RecruitScreen.tscn::PackedScene::2189660189515570734::1721091524::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/RecruitScreen.cs<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
 RecruitScreenTabs.cs::CSharpScript::-1::1720978349::0::1::::<>CenterContainer<>::
-RecruitScreenTabs.tscn::PackedScene::7974684508538372717::1721097622::0::1::::<><>::res://screens/RecruitScreenTabs.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://6gxnbhp4n8rq::::res://screens/RecruitScreen.tscn<>uid://cu5quwy1w03eh::::res://screens/RecruitCustomScreen.tscn<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
+RecruitScreenTabs.tscn::PackedScene::7974684508538372717::1721106388::0::1::::<><>::res://screens/RecruitScreenTabs.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://6gxnbhp4n8rq::::res://screens/RecruitScreen.tscn<>uid://cu5quwy1w03eh::::res://screens/RecruitCustomScreen.tscn<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
 RewardScreen.cs::CSharpScript::-1::1721094947::0::1::::<>Control<>::
 RewardScreen.tscn::PackedScene::2919674233379551489::1721091524::0::1::::<><>::res://screens/RewardScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 SceneTransition.cs::CSharpScript::-1::1720573525::0::1::::<>CanvasLayer<>::
