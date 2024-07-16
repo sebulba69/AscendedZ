@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/07. [LoR] Wasteland.ogg-fcdcb4169540114c0ec33
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=104.94
+bpm=0.0
 beat_count=0
 bar_beats=4
