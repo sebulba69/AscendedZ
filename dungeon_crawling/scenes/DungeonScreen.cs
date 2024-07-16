@@ -131,7 +131,7 @@ public partial class DungeonScreen : Transitionable2DScene
     private void SetCrawlValues()
     {
         var tier = PersistentGameObjects.GameObjectInstance().TierDC;
-        _crawlUI.SetParty(tier, _battlePlayers);
+        _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs);
     }
 
     private void StartDungeon()
@@ -282,6 +282,69 @@ public partial class DungeonScreen : Transitionable2DScene
                 SetCrawlValues();
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
                 PersistentGameObjects.Save();
+                break;
+
+            case TileEventId.PotOfGreed:
+                var potOfGreedRewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
+                _itemSfxPlayer.Play();
+
+                _crawlUI.Visible = false;
+                _popup.AddChild(potOfGreedRewards);
+
+                potOfGreedRewards.InitializePotOfGreedRewards();
+
+                await ToSignal(potOfGreedRewards, "tree_exited");
+                SetCrawlValues();
+                _crawlUI.Visible = true;
+                PersistentGameObjects.Save();
+                _currentScene.Scene.TurnOffGraphic();
+                break;
+
+            case TileEventId.Orb:
+                _gameObject.Orbs++;
+                _itemSfxPlayer.Play();
+                _currentScene.Scene.TurnOffGraphic();
+                SetCrawlValues();
+                break;
+
+            case TileEventId.Portal:
+                _dungeon.Current.EventTriggered = false;
+
+                var popupWindow = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP).Instantiate<AscendedYesNoWindow>();
+                this.GetTree().Root.AddChild(popupWindow);
+                popupWindow.SetDialogMessage("Teleport?");
+                popupWindow.AnswerSelected += (sender, args) => 
+                {
+                    if (args)
+                    {
+                        // spawn yes/no box
+                        var tile = _dungeon.Current;
+                        int x = tile.TPLocation[0];
+                        int y = tile.TPLocation[1];
+
+                        _currentScene = _uiTiles[x, y];
+
+                        var tween = CreateTween();
+                        tween.TweenProperty(_player, "position", _currentScene.Scene.Position, 0.25);
+                        tween.Finished += () =>
+                        {
+                            _processingEvent = false;
+                            _dungeon.MoveDirection(x, y, true);
+                            _crawlUI.SetCoordinates(x, y);
+                        };
+
+                        _dungeon.Current.EventTriggered = false;
+                    }
+                };
+
+                SetCrawlValues();
+                break;
+
+            case TileEventId.Fountain:
+                var fountain = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_FOUNTAIN).Instantiate<FountainOfBuce>();
+                this.GetTree().Root.AddChild(fountain);
+                await ToSignal(fountain, "tree_exited");
+                _dungeon.Current.EventTriggered = false;
                 break;
 
             case TileEventId.Exit:

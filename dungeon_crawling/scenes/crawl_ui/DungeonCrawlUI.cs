@@ -16,9 +16,9 @@ public partial class DungeonCrawlUI : PanelContainer
 		_container = GetNode<VBoxContainer>("%PartyContainer");
 	}
 
-	public void SetParty(int tier, List<BattlePlayer> players)
+	public void SetParty(int tier, List<BattlePlayer> players, int orbs)
 	{
-		_tier.Text = $"TIER: {tier}";
+		_tier.Text = $"TIER: {tier}, Orbs: {orbs}";
 
         foreach (var child in _container.GetChildren())
 			_container.RemoveChild(child);

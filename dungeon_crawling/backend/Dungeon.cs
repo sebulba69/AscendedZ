@@ -38,10 +38,11 @@ namespace AscendedZ.dungeon_crawling.backend
             _currentTile = _genenerator.Start;
         }
 
-        public void MoveDirection(int x, int y)
+        public void MoveDirection(int x, int y, bool isTeleport = false)
         {
             _currentTile = _dungeon[x, y];
-            CheckTileEvent();
+            if(!isTeleport)
+                CheckTileEvent();
         }
 
         private void CheckTileEvent()

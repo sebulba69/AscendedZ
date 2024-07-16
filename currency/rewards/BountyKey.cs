@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.currency.rewards
 {
-    public class Dellencoin : Currency
+    public class BountyKey : Currency
     {
-        public Dellencoin()
+        public BountyKey() 
         {
-            this.Name = SkillAssets.DELLENCOIN;
-            this.Icon = Name;
+            Name = SkillAssets.BOUNTY_KEY;
+            Icon = Name;
         }
     }
 }

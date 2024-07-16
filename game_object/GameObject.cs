@@ -91,7 +91,7 @@ namespace AscendedZ.game_object
         public bool PartyMemberObtained { get => _partyMemberObtained; set => _partyMemberObtained = value; }
 
         public MainPlayer MainPlayer { get; set; }
-
+        public int Orbs { get; set; }
         public MusicObject MusicPlayer { get; set; }
         public ProgressFlagObject ProgressFlagObject { get; set; }
         /// <summary>

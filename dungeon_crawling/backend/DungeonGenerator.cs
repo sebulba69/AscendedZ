@@ -30,9 +30,26 @@ namespace AscendedZ.dungeon_crawling.backend
             _totalWeight = 0;
             _pathTypes = new List<WeightedItem<PathType>>()
             {
-                new WeightedItem<PathType>(PathType.Item, 65),
-                new WeightedItem<PathType>(PathType.Heal, 15)
+                new WeightedItem<PathType>(PathType.Item, 55),
+                new WeightedItem<PathType>(PathType.Heal, 20)
             };
+
+            if (dimensions > 4)
+            {
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.PotOfGreed, 15));
+            }
+
+            if(dimensions > 6)
+            {
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.BuceOrb, 15));
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.Teleporter, 15));
+            }
+
+            if(dimensions > 8)
+            {
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.Fountain, 10));
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.Teleporter, 10));
+            }
 
             _pathTypes.ForEach(item => _totalWeight += item.Weight);
         }
@@ -47,6 +64,7 @@ namespace AscendedZ.dungeon_crawling.backend
             Start.Visited = true;
 
             List<Tile> maze = new List<Tile>();
+            List<Tile> openTiles = new List<Tile>();
             List<Tile> walls = new List<Tile>();
             walls.AddRange(GetAdjacentWalls(Start, length));
 
@@ -69,31 +87,65 @@ namespace AscendedZ.dungeon_crawling.backend
                     wall.Visited = true;
                     walls.AddRange(adjacent);
                     maze.Add(wall);
+                    openTiles.Add(wall);
                 }
 
                 walls.Remove(wall);
             }
 
             List<TileEventId> generatedPathTypes = new List<TileEventId>();
+
             for (int e = 0; e < _eventCount; e++) 
             {
-                var mazeTile = maze[_rng.Next(1, maze.Count - 1)];
+                var mazeTile = openTiles[_rng.Next(1, openTiles.Count)];
                 PathType path = GetPathType();
 
-                if(path == PathType.Item)
+                switch (path)
                 {
-                    SetTileToItemTile(mazeTile);
-                    generatedPathTypes.Add(mazeTile.TileEventId);
-                }
+                    case PathType.Item:
+                        SetTileToItemTile(mazeTile);
+                        generatedPathTypes.Add(mazeTile.TileEventId);
+                        openTiles.Remove(mazeTile);
+                        break;
 
-                if (path == PathType.Heal)
-                {
-                    SetTileToHealing(mazeTile);
-                    generatedPathTypes.Add(mazeTile.TileEventId);
-                }   
+                    case PathType.Heal:
+                        SetTileToHealing(mazeTile);
+                        generatedPathTypes.Add(mazeTile.TileEventId);
+                        openTiles.Remove(mazeTile);
+                        break;
+
+                    case PathType.BuceOrb:
+                        SetTileToBuceOrb(mazeTile);
+                        generatedPathTypes.Add(mazeTile.TileEventId);
+                        openTiles.Remove(mazeTile);
+                        break;
+
+                    case PathType.PotOfGreed:
+                        SetTileToPotOfGreed(mazeTile);
+                        generatedPathTypes.Add(mazeTile.TileEventId);
+                        openTiles.Remove(mazeTile);
+                        break;
+
+                    case PathType.Fountain:
+                        SetTileToFountain(mazeTile);
+                        generatedPathTypes.Add(mazeTile.TileEventId);
+                        openTiles.Remove(mazeTile);
+                        break;
+
+                    case PathType.Teleporter:
+                        var tile1 = mazeTile;
+                        openTiles.Remove(tile1);
+                        var tile2 = openTiles[_rng.Next(1, openTiles.Count)];
+                        openTiles.Remove(tile2);
+
+                        SetTilesToTeleporters(tile1, tile2);
+                        generatedPathTypes.Add(tile1.TileEventId);
+                        break;
+
+                }
             }
 
-            SetTileToExit(maze[maze.Count - 1]);
+            SetTileToExit(openTiles[_rng.Next(1, openTiles.Count)]);
             generatedPathTypes.Add(TileEventId.Exit);
 
             var nonEventTiles = maze.FindAll(tiles => !generatedPathTypes.Contains(tiles.TileEventId));
@@ -182,6 +234,48 @@ namespace AscendedZ.dungeon_crawling.backend
 
             tile.Graphic = graphic;
             tile.TileEventId = id;
+        }
+
+        private void SetTileToPotOfGreed(Tile tile)
+        {
+            string graphic = "res://dungeon_crawling/art_assets/entity_icons/pot_of_greed.png";
+            TileEventId id = TileEventId.PotOfGreed;
+
+            tile.Graphic = graphic;
+            tile.TileEventId = id;
+        }
+
+        private void SetTileToBuceOrb(Tile tile) 
+        {
+            string graphic = "res://dungeon_crawling/art_assets/entity_icons/buceorb.png";
+            TileEventId id = TileEventId.Orb;
+
+            tile.Graphic = graphic;
+            tile.TileEventId = id;
+        }
+
+        private void SetTileToFountain(Tile tile)
+        {
+            string graphic = "res://dungeon_crawling/art_assets/entity_icons/bucetain.png";
+            TileEventId id = TileEventId.Fountain;
+
+            tile.Graphic = graphic;
+            tile.TileEventId = id;
+        }
+
+        private void SetTilesToTeleporters(Tile tile1, Tile tile2)
+        {
+            string graphic = "res://dungeon_crawling/art_assets/entity_icons/portal.png";
+            TileEventId id = TileEventId.Portal;
+
+            tile1.TPLocation = new int[] { tile2.X, tile2.Y };
+            tile2.TPLocation = new int[] { tile1.X, tile1.Y };
+
+            tile1.Graphic = graphic;
+            tile1.TileEventId = id;
+
+            tile2.Graphic = graphic;
+            tile2.TileEventId = id;
         }
 
         private PathType GetPathType()

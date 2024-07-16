@@ -13,6 +13,7 @@ namespace AscendedZ.dungeon_crawling.backend
         public int Y { get => _y; }
         public TileEventId TileEventId { get; set; }
         public string Graphic { get; set; }
+        public int[] TPLocation { get; set; }
 
         public Tile(int x, int y)
         {

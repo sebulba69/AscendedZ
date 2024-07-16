@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp16aujljpb5g"
-path="res://.godot/imported/blacksmith.png-c0f78977c4a6e00f68ea0930ef8c9670.ctex"
+uid="uid://bmidng4dtx0vi"
+path="res://.godot/imported/portal.png-0592bb9469cae42c96106c5ec79b99cf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dungeon_crawling/art_assets/entity_icons/blacksmith.png"
-dest_files=["res://.godot/imported/blacksmith.png-c0f78977c4a6e00f68ea0930ef8c9670.ctex"]
+source_file="res://dungeon_crawling/art_assets/entity_icons/portal.png"
+dest_files=["res://.godot/imported/portal.png-0592bb9469cae42c96106c5ec79b99cf.ctex"]
 
 [params]
 

@@ -172,6 +172,9 @@ namespace AscendedZ
         public static readonly string VORPEX_ICON = "Vorpex";
         public static readonly string PARTY_COIN_ICON = "Party Coins";
         public static readonly string DELLENCOIN = "Dellencoin";
+        public static readonly string KEY_SHARD = "Key Shard";
+        public static readonly string BOUNTY_KEY = "Bounty Key";
+        public static readonly string MORBIS = "Morbis";
 
 
         // GB Statuses
@@ -195,6 +198,9 @@ namespace AscendedZ
             [VORPEX_ICON] = new KeyValuePair<int, int>(448, 1376),
             [PARTY_COIN_ICON] = new KeyValuePair<int, int>(32, 288),
             [DELLENCOIN] = new KeyValuePair<int, int>(320, 608),
+            [KEY_SHARD] = new KeyValuePair<int, int>(160, 576),
+            [BOUNTY_KEY] = new KeyValuePair<int, int>(96, 384),
+            [MORBIS] = new KeyValuePair<int, int>(416, 1632),
             [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
             [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600),
             [QUEST_ICON] = new KeyValuePair<int, int>(480, 352),

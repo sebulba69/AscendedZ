@@ -75,6 +75,31 @@ public partial class RewardScreen : Control
         SetupRewards();
     }
 
+    public void InitializePotOfGreedRewards()
+    {
+        var currency = _gameObject.MainPlayer.Wallet.Currency;
+        var keyShard = new KeyShard() { Amount = 1 };
+
+        if (!currency.ContainsKey(keyShard.Name))
+            currency.Add(keyShard.Name, new KeyShard() { Amount = 0 });
+
+        if (currency[keyShard.Name].Amount + 1 >= 4)
+        {
+            var bountyKey = new BountyKey() { Amount = 1 };
+
+            if (!currency.ContainsKey(bountyKey.Name))
+                currency.Add(bountyKey.Name, new BountyKey() { Amount = 0 });
+
+            currency[keyShard.Name].Amount -= 3;
+
+            _rewards = new List<Currency>() { bountyKey };
+        }
+        else
+        {
+            _rewards = new List<Currency>() { keyShard };
+        }
+    }
+
     private void SetupRewards()
     {
         foreach (Currency reward in _rewards)
