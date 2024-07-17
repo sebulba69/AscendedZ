@@ -36,7 +36,7 @@ namespace AscendedZ.entities
             return _statuses.FindAll(status => status.Id == id).Count > 0;
         }
 
-        private Status GetStatus(StatusId id)
+        public Status GetStatus(StatusId id)
         {
             return _statuses.Find(status => status.Id == id);
         }

@@ -250,6 +250,7 @@ public partial class BattleEnemyScene : Node2D
 
                         await targetNode.UpdateBattleEffects(targetNodeEffects);
                     });
+                    await Task.Delay(200);
                 }
 
                 await Task.WhenAll(tasks);
@@ -273,10 +274,10 @@ public partial class BattleEnemyScene : Node2D
         // update HP values on everyone
         for (int i = 0; i < enemies.Count; i++)
         {
-            var enemyDisplay = _enemyMembers.GetChild(i);
+            var enemyDisplay = (EntityDisplayBox)_enemyMembers.GetChild(i);
             var enemy = enemies[i];
             var enemyWrapper = new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss };
-            enemyDisplay.Call("UpdateEntityDisplay", enemyWrapper);
+            enemyDisplay.UpdateEntityDisplay(enemyWrapper);
         }
 
         UpdatePlayerDisplay(_battleSceneObject.Players);
@@ -347,10 +348,10 @@ public partial class BattleEnemyScene : Node2D
         for (int j = 0; j < players.Count; j++)
         {
             var vBoxContainer = _partyMembers.GetChild(j);
-            var partyDisplay = vBoxContainer.GetChild(0);
+            var partyDisplay = (EntityDisplayBox)vBoxContainer.GetChild(0);
 
             var playerWrapper = new EntityWrapper() { BattleEntity = players[j] };
-            partyDisplay.Call("UpdateEntityDisplay", playerWrapper);
+            partyDisplay.UpdateEntityDisplay(playerWrapper);
 
             if (players[j].IsActiveEntity)
                 _actionMenu.Reparent(vBoxContainer);

@@ -23,7 +23,6 @@ namespace AscendedZ.statuses
 
         public override void ActivateStatus(BattleEntity owner)
         {
-            _activeTurns++;
             base.ActivateStatus(owner);
         }
 
@@ -34,11 +33,12 @@ namespace AscendedZ.statuses
         /// </summary>
         public override void UpdateStatusTurns(BattleEntity entity)
         {
+            _activeTurns++;
             _statusOwner.HP -= (int)(_statusOwner.HP * 0.15);
             if (_statusOwner.HP < 0) 
                 _statusOwner.HP = 0;
             
-            if (_activeTurns == 2)
+            if (_activeTurns == 3)
                 RemoveStatus = true;
         }
 
@@ -52,9 +52,9 @@ namespace AscendedZ.statuses
             StatusIconWrapper wrapper = new StatusIconWrapper();
 
             wrapper.Icon = this.Icon;
-            wrapper.Counter = _activeTurns;
+            wrapper.Counter = _activeTurns + 1;
             wrapper.CounterColor = Colors.White;
-            wrapper.Description = $"Reduce HP by 15% for 2 turns.";
+            wrapper.Description = $"Reduce HP by 15% for 3 turns.";
 
             return wrapper;
         }

@@ -37,7 +37,7 @@ namespace AscendedZ.statuses
         public override void ApplyStatus()
         {
             _stacks++;
-
+            _turnCount = 0;
             Amount = _baseAmount * _stacks;
 
             ApplyBuff();
@@ -81,7 +81,7 @@ namespace AscendedZ.statuses
             wrapper.Icon = this.Icon;
             wrapper.Counter = _stacks;
             wrapper.CounterColor = Colors.Green;
-            if (_turnCount == 2)
+            if (_turnCount + 1 >= 2)
                 wrapper.CounterColor = Colors.Red;
 
             wrapper.Description = $"Increase damage for {BuffElement} by {Math.Round(Amount*100,1)}%.";

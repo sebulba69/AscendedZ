@@ -108,7 +108,7 @@ namespace AscendedZ.entities.battle_entities
                 result.ResultType = BattleResultType.Normal;
             }
 
-            if (skill.Name == SkillDatabase.DracoTherium.Name) 
+            if (skill.BaseName == SkillDatabase.DracoTherium.BaseName) 
             {
                 StatusHandler.RemoveStatus(this, StatusId.PoisonStatus);
             }

@@ -116,7 +116,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeAldmas()
         {
-            var aldmas = MakeAlternatingEnemy(EnemyNames.Aldmas, 20);
+            var aldmas = MakeAlternatingEnemy(EnemyNames.Aldmas, 13);
 
             aldmas.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
@@ -127,7 +127,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeFridan()
         {
-            var fridan = MakeAlternatingEnemy(EnemyNames.Fridan, 20);
+            var fridan = MakeAlternatingEnemy(EnemyNames.Fridan, 13);
 
             fridan.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
 
@@ -142,6 +142,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             bu.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
             bu.Resistances.SetResistance(ResistanceType.Rs, element);
             bu.Skills.Add(SkillDatabase.GetSkillFromElement(element));
+            bu.Turns = 2;
             return bu;
         }
 

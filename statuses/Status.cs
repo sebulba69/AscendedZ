@@ -41,7 +41,7 @@ namespace AscendedZ.statuses
         public StatusId Id { get => _id; }
         public string Icon { get; set; }
         public bool Active { get => _active; protected set => _active = value; }
-        public bool RemoveStatus { get => _removeStatus; protected set => _removeStatus = value; }
+        public bool RemoveStatus { get => _removeStatus; set => _removeStatus = value; }
         /// <summary>
         /// Update during owner's turn or opponent's turn.
         /// </summary>
@@ -138,6 +138,8 @@ namespace AscendedZ.statuses
                     return new VoidIceStatus();
                 case StatusId.VoidWindStatus:
                     return new VoidWindStatus();
+                case StatusId.PoisonStatus:
+                    return new PoisonStatus();
                 default:
                     throw new NotImplementedException();
             }

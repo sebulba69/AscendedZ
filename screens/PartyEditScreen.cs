@@ -136,7 +136,7 @@ public partial class PartyEditScreen : HBoxContainer
     {
         _selectedIndex = (int)index;
 
-        if (mouse_button_index == (long)MouseButton.Left)
+        if (mouse_button_index == (long)MouseButton.Right)
         {
             PlayerParty party = PersistentGameObjects.GameObjectInstance().MainPlayer.Party;
 

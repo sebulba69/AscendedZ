@@ -122,7 +122,6 @@ namespace AscendedZ
             else
             {
                 GameObject gameObject = PersistentGameObjects.GameObjectInstance();
-                
                 int encounterIndex = tier - RANDOM_TIER;
 
                 List<string> encounterNames = new List<string>();
@@ -217,10 +216,10 @@ namespace AscendedZ
                             string enemyName = possibleEncounters[randomEnemyIndex];
                             encounterNames.Add(enemyName);
                         }
-                    }
 
-                    if(!dungeonCrawlEncounter)
-                        gameObject.Encounters.Add(encounterNames);
+                        if (!dungeonCrawlEncounter)
+                            gameObject.Encounters.Add(encounterNames);
+                    }
 
                     PersistentGameObjects.Save();
                 }
@@ -464,9 +463,8 @@ namespace AscendedZ
             // get the boss number
             index++;
 
-            int baseHP = 10;
-            int startingHP = 10 * index;
-            return (baseHP * ((index*5)/2)) + startingHP;
+            int startingHP = 30 * index;
+            return startingHP;
         }
     }
 }

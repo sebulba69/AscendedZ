@@ -55,6 +55,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
                     else
                     {
                         action.Target = GetRandomAlivePlayer(battleSceneObject);
+                        _poisonDistributed = true;
                     }
                     break;
                 case 1:
