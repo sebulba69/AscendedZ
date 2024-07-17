@@ -12,7 +12,7 @@ namespace AscendedZ.entities.enemy_objects
         /// <summary>
         /// Max limit of HP per bar
         /// </summary>
-        private const int MAX_HP_PER_BAR = 1000;
+        private const int MAX_HP_PER_BAR = 5000;
         private readonly string BGCOLOR = "000000";
         private readonly string[] HPFGColors = 
         {

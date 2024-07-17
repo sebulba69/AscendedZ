@@ -11,11 +11,11 @@ using static Godot.WebSocketPeer;
 
 namespace AscendedZ.entities.enemy_objects.bosses
 {
-    public class DraceRazor : WeaknessHunterEnemy
+    public class DraceRazor : AlternatingEnemy
     {
         private const int BASE_TURNS = 2;
         private int _additionalTurns = 0;
-
+        
         public DraceRazor() : base()
         {
             _isBoss = true;
@@ -29,10 +29,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
             Resistances.SetResistance(ResistanceType.Dr, Elements.Light);
 
-            Skills.Add(SkillDatabase.Fire1.Clone());
-            Skills.Add(SkillDatabase.Wind1.Clone());
-            Skills.Add(SkillDatabase.Elec1.Clone());
-            Skills.Add(SkillDatabase.Ice1.Clone());
+            AddWexSkills();
 
             Turns = BASE_TURNS;
         }
@@ -45,15 +42,35 @@ namespace AscendedZ.entities.enemy_objects.bosses
             {
                 _additionalTurns++;
                 Turns = BASE_TURNS + _additionalTurns;
+                AddWexSkills();
             }
 
             return result;
+        }
+
+        private void AddWexSkills()
+        {
+            Skills.Clear();
+            Skills.Add(SkillDatabase.Fire1.Clone());
+            Skills.Add(SkillDatabase.Wind1.Clone());
+            Skills.Add(SkillDatabase.Elec1.Clone());
+            Skills.Add(SkillDatabase.Ice1.Clone());
+        }
+
+        private void AddNoWexSkills()
+        {
+            Skills.Clear();
+            Skills.Add(SkillDatabase.FireAll.Clone());
+            Skills.Add(SkillDatabase.WindAll.Clone());
+            Skills.Add(SkillDatabase.ElecAll.Clone());
+            Skills.Add(SkillDatabase.IceAll.Clone());
         }
 
         public override void ResetEnemyState()
         {
             _additionalTurns = 0;
             Turns = BASE_TURNS;
+            AddNoWexSkills();
         }
     }
 }
