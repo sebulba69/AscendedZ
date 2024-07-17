@@ -40,6 +40,7 @@ namespace AscendedZ
         public static ElementSkill WindAll { get => CreateMultiHitElementSkill("Gust", Elements.Wind); }
         public static ElementSkill DarkAll { get => CreateMultiHitElementSkill("Darkness", Elements.Dark); }
 
+        public static ElementSkill DracoTherium { get => CreateMultiHitElementSkill("Draco Therium", Elements.Dark); } // unique skill for Kellam
 
         private static readonly Dictionary<Elements, ElementSkill> SingleHitElementSkills = new Dictionary<Elements, ElementSkill>()
         {
@@ -239,6 +240,17 @@ namespace AscendedZ
                 s.IsRemoveStatusSkill = true;
                 s.TargetType = TargetTypes.SINGLE_OPP;
                 return s;
+            }
+        }
+
+        public static StatusSkill Poison
+        {
+            get
+            {
+                var poison = MakeStatusSkill("Poison", new PoisonStatus());
+                poison.Icon = SkillAssets.POISON_ICON;
+                poison.EndupAnimation = SkillAssets.AGRO;
+                return poison;
             }
         }
 

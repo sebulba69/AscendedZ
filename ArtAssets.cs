@@ -136,6 +136,7 @@ namespace AscendedZ
         public static readonly string STUN_T1 = "stun1";
         public static readonly string AGRO = "agro";
         public static readonly string VOID_SHIELD = "void_shield";
+        public static readonly string POISON_ICON = "poison";
 
         // ICONS + ICON_STRINGS
         public static readonly string ICON_ATLAS = "res://misc_icons/IconSet.png";
@@ -186,6 +187,7 @@ namespace AscendedZ
             [VOID_FIRE_ICON] = new KeyValuePair<int, int>(32, 2144),
             [VOID_ICE_ICON] = new KeyValuePair<int, int>(224, 2144),
             [VOID_WIND_ICON] = new KeyValuePair<int, int>(128, 2144),
+            [POISON_ICON] = new KeyValuePair<int, int>(64, 0),
             [ICE_ICON] = new KeyValuePair<int, int>(32, 128),
             [ELEC_ICON] = new KeyValuePair<int, int>(64, 128),
             [WIND_ICON] = new KeyValuePair<int, int>(160, 128),

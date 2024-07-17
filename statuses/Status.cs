@@ -26,7 +26,8 @@ namespace AscendedZ.statuses
         VoidWindStatus,
         WexElecStatus,
         WexIceStatus,
-        WexFireStatus
+        WexFireStatus,
+        PoisonStatus
     }
 
     public class Status

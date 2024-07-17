@@ -60,9 +60,9 @@ namespace AscendedZ.entities
             }
         }
 
-        public void RemoveStatus(BattleEntity entity, Status status)
+        public void RemoveStatus(BattleEntity entity, StatusId id)
         {
-            var s = GetStatus(status.Id);
+            var s = GetStatus(id);
             if (s != null)
             {
                 s.ClearStatus();

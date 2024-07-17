@@ -1,6 +1,7 @@
 ﻿using AscendedZ.battle;
 using AscendedZ.resistances;
 using AscendedZ.skills;
+using AscendedZ.statuses;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -105,6 +106,11 @@ namespace AscendedZ.entities.battle_entities
             {
                 this.HP -= skill.Damage;
                 result.ResultType = BattleResultType.Normal;
+            }
+
+            if (skill.Name == SkillDatabase.DracoTherium.Name) 
+            {
+                StatusHandler.RemoveStatus(this, StatusId.PoisonStatus);
             }
 
             return result;

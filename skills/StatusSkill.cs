@@ -46,7 +46,7 @@ namespace AscendedZ.skills
             }
             else 
             {
-                target.StatusHandler.RemoveStatus(target, this.Status);
+                target.StatusHandler.RemoveStatus(target, this.Status.Id);
             }
                 
             return result;
