@@ -21,7 +21,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Liamlas] = MakeLiamlas;
             _functionDictionary[EnemyNames.Fledan] = MakeFledan;
             _functionDictionary[EnemyNames.Walds] = MakeWalds;
-            _functionDictionary[EnemyNames.CattuTDroni] = CattuTDroni;
+            _functionDictionary[EnemyNames.CattuTDroni] = MakeCattuTDroni;
+            _functionDictionary[EnemyNames.Aldmas] = MakeAldmas;
+            _functionDictionary[EnemyNames.Fridan] = MakeFridan;
+            _functionDictionary[EnemyNames.Bue] = () => MakeBu(EnemyNames.Bue, 15, Elements.Ice);
+            _functionDictionary[EnemyNames.Bued] = () => MakeBu(EnemyNames.Bued, 15, Elements.Fire);
+            _functionDictionary[EnemyNames.Bureen] = () => MakeBu(EnemyNames.Bureen, 15, Elements.Wind);
         }
 
         public Enemy MakeConlen()
@@ -37,7 +42,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return conlen;
         }
 
-        public Enemy CattuTDroni()
+        public Enemy MakeCattuTDroni()
         {
             var droni = MakeAlternatingEnemy(EnemyNames.CattuTDroni, 8);
 
@@ -107,6 +112,37 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             walds.Skills.Add(SkillDatabase.Wind1.Clone());
 
             return walds;
+        }
+
+        public Enemy MakeAldmas()
+        {
+            var aldmas = MakeAlternatingEnemy(EnemyNames.Aldmas, 20);
+
+            aldmas.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
+
+            aldmas.Skills.Add(SkillDatabase.FireAll.Clone());
+
+            return aldmas;
+        }
+
+        public Enemy MakeFridan()
+        {
+            var fridan = MakeAlternatingEnemy(EnemyNames.Fridan, 20);
+
+            fridan.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
+
+            fridan.Skills.Add(SkillDatabase.WindAll.Clone());
+
+            return fridan;
+        }
+
+        public Enemy MakeBu(string name, int hp, Elements element)
+        {
+            var bu = MakeAlternatingEnemy(name, hp);
+            bu.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
+            bu.Resistances.SetResistance(ResistanceType.Rs, element);
+            bu.Skills.Add(SkillDatabase.GetSkillFromElement(element));
+            return bu;
         }
 
         protected Enemy MakeAlternatingEnemy(string name, int hp)

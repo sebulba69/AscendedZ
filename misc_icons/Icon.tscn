@@ -7,7 +7,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rmds6"]
 atlas = ExtResource("1_j6xfy")
-region = Rect2(160, 576, 32, 32)
+region = Rect2(64, 0, 32, 32)
 
 [node name="Icon" type="TextureRect"]
 texture_filter = 2

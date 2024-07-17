@@ -74,6 +74,12 @@ namespace AscendedZ
             return s;
         }
 
+        public static ISkill GetSkillFromElement(Elements element)
+        {
+            var skills = new ElementSkill[]{ Fire1, Ice1, Elec1, Wind1, Dark1, Light1 };
+            return skills[(int)element].Clone();
+        }
+
         private static ElementSkill MakeNewSingleHitElement(string name, Elements element, int damage, int tier)
         {
             return new ElementSkill

@@ -46,6 +46,7 @@ namespace AscendedZ
         /// 40
         /// </summary>
         public static int TIER5_STRONGER_ENEMIES = 40;
+        public static int TIER6_STRONGER_ENEMIES = 50;
 
         public static int TIER2_ELEMENTALSPELLS = 50;
         public static int TIER3_ELEMENTALSPELLS = 100;
