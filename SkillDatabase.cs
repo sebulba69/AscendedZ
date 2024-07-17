@@ -166,6 +166,17 @@ namespace AscendedZ
                 return s;
             }
         }
+
+        public static StatusSkill WeakIce
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Ice-", new WeakIceStatus());
+                s.TargetType = TargetTypes.SINGLE_OPP;
+                return s;
+            }
+        }
+
         public static StatusSkill WeakElec
         {
             get

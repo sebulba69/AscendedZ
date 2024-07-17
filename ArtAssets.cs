@@ -156,6 +156,7 @@ namespace AscendedZ
         // Skill Icons - Weaks
         public static readonly string WEAK_FIRE_ICON = "WeakFire";
         public static readonly string WEAK_ELEC_ICON = "WeakElec";
+        public static readonly string WEAK_ICE_ICON = "WeakIce";
 
         // Skill Icons - Other
         public static readonly string HEAL_ICON = "Heal";
@@ -203,6 +204,7 @@ namespace AscendedZ
             [MORBIS] = new KeyValuePair<int, int>(416, 1632),
             [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
             [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600),
+            [WEAK_ICE_ICON] = new KeyValuePair<int, int>(192, 1600),
             [QUEST_ICON] = new KeyValuePair<int, int>(480, 352),
             [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480)
         };

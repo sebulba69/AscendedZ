@@ -25,6 +25,7 @@ namespace AscendedZ.statuses
         VoidIceStatus,
         VoidWindStatus,
         WexElecStatus,
+        WexIceStatus,
         WexFireStatus
     }
 

@@ -25,7 +25,7 @@ namespace AscendedZ.entities.battle_entities
         private int _maxHP;
         private int _hp;
         private bool _isActiveEntity = false;
-        public int Turns { get; protected set; }
+        public int Turns { get; set; }
 
         public EntityType Type { get; protected set; }
 

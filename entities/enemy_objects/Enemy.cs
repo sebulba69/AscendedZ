@@ -60,6 +60,12 @@ namespace AscendedZ.entities.enemy_objects
             throw new NotImplementedException();
         }
 
+        protected BattleEntity GetRandomAlivePlayer(BattleSceneObject battleSceneObject)
+        {
+            var player = battleSceneObject.AlivePlayers[_rng.Next(battleSceneObject.AlivePlayers.Count)];
+            return player;
+        }
+
         protected BattleEntity GetTargetAffectedByAgro(BattleSceneObject battleSceneObject)
         {
             var agro = battleSceneObject.AlivePlayers.Find(p => p.StatusHandler.HasStatus(statuses.StatusId.AgroStatus));
