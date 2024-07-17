@@ -63,7 +63,7 @@ namespace AscendedZ
 
         public static string GetCombatDCBackground(int tier)
         {
-            int index = Equations.GetTierIndexBy10(tier);
+            int index = Equations.GetTierIndexBy50(tier);
 
             if (index >= CombatBgsDC.Count)
                 index = CombatBgsDC.Count - 1;

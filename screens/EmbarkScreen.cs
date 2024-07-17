@@ -29,6 +29,8 @@ public partial class EmbarkScreen : CenterContainer
 
         Button leftTier = this.GetNode<Button>("%LeftTierBtn");
         Button rightBtn = this.GetNode<Button>("%RightTierBtn");
+        Button left10Btn = this.GetNode<Button>("%LeftTier10Btn");
+        Button right10Btn = this.GetNode<Button>("%RightTier10Btn");
         _endlessDungeonBtn = this.GetNode<Button>("%EndlessDungeonBtn");
         _labrybuceBtn = this.GetNode<Button>("%LabribuceBtn");
 
@@ -41,8 +43,21 @@ public partial class EmbarkScreen : CenterContainer
         _tierLabel.Text = $"{tierText} {PersistentGameObjects.GameObjectInstance().MaxTier}";
 
         // on click events
+        left10Btn.Pressed += () => 
+        {
+            for (int i = 0; i < 10; i++)
+                _OnLeftBtnPressed();
+        };
+
+        right10Btn.Pressed += () =>
+        {
+            for (int i = 0; i < 10; i++)
+                _OnRightBtnPressed();
+        };
+
         leftTier.Pressed += _OnLeftBtnPressed;
         rightBtn.Pressed += _OnRightBtnPressed;
+        
         _labrybuceBtn.Pressed += _OnLabrybuceButtonPressed;
         _endlessDungeonBtn.Pressed += _OnEndlessDungeonButtonPressed;
 

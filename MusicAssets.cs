@@ -105,7 +105,7 @@ namespace AscendedZ
 
         public static string GetDungeonTrackDC(int tier)
         {
-            int index = ((tier - (tier % 10)) / 10) - 1;
+            int index = Equations.GetTierIndexBy50(tier);
 
             if (index >= DungeonTracksDCReal.Count || index < 0)
                 index = 0;

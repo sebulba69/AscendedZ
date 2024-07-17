@@ -51,6 +51,17 @@ namespace AscendedZ
             return index;
         }
 
+        public static int GetTierIndexBy50(int tier)
+        {
+            int index = 0;
+            if (tier >= 51)
+            {
+                tier--;
+                index = (tier - (tier % 50)) / 50;
+            }
+            return index;
+        }
+
         public static int GetDungeonCrawlEncounters(int tier)
         {
             return (tier / 10) + 2;

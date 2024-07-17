@@ -138,6 +138,8 @@ public partial class DungeonScreen : Transitionable2DScene
     {
         SetCrawlValues();
 
+        _background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatDCBackground(_gameObject.TierDC));
+
         _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
         _currentScene = null;
         _dungeon = new Dungeon(_gameObject.TierDC);
