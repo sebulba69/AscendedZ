@@ -1,11 +1,6 @@
 res://default_env.tres
-res://screens/MainScreen.tscn
-res://BackBoxBossHPDC.tres
-res://FrontBoxBossHPDC.tres
+res://screens/StartScreen.tscn
 res://misc_icons/IconOutline.gdshader
-res://statuses/StatusIcon.tscn
-res://screens/EnemyBattleDisplayBox.tscn
-res://screens/BossBattleDisplayBox.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs
@@ -47,3 +42,4 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
+res://screens/upgrade_screen/UpgradeScreen.tscn
