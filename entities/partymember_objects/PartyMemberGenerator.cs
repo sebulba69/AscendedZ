@@ -46,6 +46,36 @@ namespace AscendedZ.entities.partymember_objects
             { PartyNames.Fledron, Elements.Dark }
         };
 
+        private static readonly Dictionary<string, Elements> _fusion3PartyMembers = new Dictionary<string, Elements>
+        {
+            { PartyNames.Ride, Elements.Fire },
+            { PartyNames.Shacy , Elements.Ice},
+            { PartyNames.Lesdan , Elements.Wind},
+            { PartyNames.Tinedo , Elements.Elec},
+            { PartyNames.Earic , Elements.Light},
+            { PartyNames.Baring , Elements.Dark }
+        };
+
+        private static readonly Dictionary<string, Elements> _fusion4PartyMembers = new Dictionary<string, Elements>
+        {
+            { PartyNames.Muelwise , Elements.Fire},
+            { PartyNames.Swithwil , Elements.Ice},
+            { PartyNames.Ronboard , Elements.Wind},
+            { PartyNames.Xtrasu , Elements.Elec },
+            { PartyNames.LatauVHurquij , Elements.Light},
+            { PartyNames.Tami , Elements.Dark }
+        };
+
+        private static readonly Dictionary<string, Elements> _fusion5PartyMembers = new Dictionary<string, Elements>
+        {
+            { PartyNames.Pher , Elements.Fire },
+            { PartyNames.Isenann , Elements.Ice},
+            { PartyNames.Dusam , Elements.Wind },
+            { PartyNames.Laanard , Elements.Elec },
+            { PartyNames.Hallou , Elements.Light },
+            { PartyNames.Dinowaru , Elements.Dark }
+        };
+
 
         /// <summary>
         /// KVPs of enemy party members and the elements they're strong to
@@ -75,6 +105,18 @@ namespace AscendedZ.entities.partymember_objects
             else if (_fusion2PartyMembers.ContainsKey(name))
             {
                 member = MakeFusion2Entity(name);
+            }
+            else if (_fusion3PartyMembers.ContainsKey(name))
+            {
+                member = MakeFusion3Entity(name);
+            }
+            else if (_fusion4PartyMembers.ContainsKey(name))
+            {
+                member = MakeFusion4Entity(name);
+            }
+            else if (_fusion5PartyMembers.ContainsKey(name))
+            {
+                member = MakeFusion5Entity(name);
             }
             else if (_customPartyMembers.ContainsKey(name))
             {
@@ -184,6 +226,36 @@ namespace AscendedZ.entities.partymember_objects
             Elements element = _fusion2PartyMembers[name];
 
             member.Resistances.SetResistance(ResistanceType.Rs, element);
+            member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
+            return member;
+        }
+
+        private static OverworldEntity MakeFusion3Entity(string name)
+        {
+            OverworldEntity member = MakeFusionEntity(name, 3);
+            Elements element = _fusion3PartyMembers[name];
+
+            member.Resistances.SetResistance(ResistanceType.Rs, element);
+            member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
+            return member;
+        }
+
+        private static OverworldEntity MakeFusion4Entity(string name)
+        {
+            OverworldEntity member = MakeFusionEntity(name, 4);
+            Elements element = _fusion4PartyMembers[name];
+
+            member.Resistances.SetResistance(ResistanceType.Rs, element);
+            member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
+            return member;
+        }
+
+        private static OverworldEntity MakeFusion5Entity(string name)
+        {
+            OverworldEntity member = MakeFusionEntity(name, 5);
+            Elements element = _fusion5PartyMembers[name];
+
+            member.Resistances.SetResistance(ResistanceType.Nu, element);
             member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
             return member;
         }

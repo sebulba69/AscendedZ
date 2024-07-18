@@ -39,6 +39,31 @@ namespace AscendedZ.entities
         public static readonly string Winegeful = "Winegiful"; // Light
         public static readonly string Cermas = "Cermas"; // Dark
         public static readonly string Fledron = "Fledron"; // Dark
+
+        public static readonly string Ride = "Ride"; // Fire
+        public static readonly string Muelwise = "Muel-wise"; // Fire
+        public static readonly string Pher = "Pher"; // Fire
+
+        public static readonly string Shacy = "Shacy"; // Ice
+        public static readonly string Swithwil = "Swithwil"; // Ice
+        public static readonly string Isenann = "Isenann"; // Ice
+
+        public static readonly string Lesdan = "Lesdan"; // Wind
+        public static readonly string Ronboard = "Ronboard"; // Wind
+        public static readonly string Dusam = "Dusam"; // Wind
+
+        public static readonly string Tinedo = "Tinedo"; // Elec
+        public static readonly string Xtrasu = "X'Trasu"; // Elec
+        public static readonly string Laanard = "Laanard"; // Elec
+
+        public static readonly string Earic = "Earic"; // Light
+        public static readonly string LatauVHurquij = "Latau V'Hurquij"; // Light
+        public static readonly string Hallou = "Hallou"; // Light
+
+        public static readonly string Baring = "Baring"; // Dark
+        public static readonly string Tami = "Tami"; // Dark
+        public static readonly string Dinowaru = "Dinowaru"; // Dark
+
     }
 
     public class EnemyNames

@@ -113,6 +113,36 @@ namespace AscendedZ
             { Elements.Dark, PartyNames.Fledron }
         };
 
+        private static readonly Dictionary<Elements, string> FUSION3_RESULTS = new Dictionary<Elements, string>()
+        {
+            { Elements.Fire, PartyNames.Ride},
+            { Elements.Ice,  PartyNames.Shacy},
+            { Elements.Wind, PartyNames.Lesdan},
+            { Elements.Elec,  PartyNames.Tinedo},
+            { Elements.Light,  PartyNames.Earic},
+            { Elements.Dark,  PartyNames.Baring }
+        };
+
+        private static readonly Dictionary<Elements, string> FUSION4_RESULTS = new Dictionary<Elements, string>()
+        {
+            { Elements.Fire, PartyNames.Muelwise},
+            { Elements.Ice, PartyNames.Swithwil},
+            { Elements.Wind,  PartyNames.Ronboard},
+            { Elements.Elec, PartyNames.Xtrasu },
+            { Elements.Light, PartyNames.LatauVHurquij},
+            { Elements.Dark, PartyNames.Tami }
+        };
+
+        private static readonly Dictionary<Elements, string> FUSION5_RESULTS = new Dictionary<Elements, string>()
+        {
+            { Elements.Fire, PartyNames.Pher },
+            { Elements.Ice,  PartyNames.Isenann},
+            { Elements.Wind, PartyNames.Dusam },
+            { Elements.Elec, PartyNames.Laanard },
+            { Elements.Light, PartyNames.Hallou },
+            { Elements.Dark, PartyNames.Dinowaru }
+        };
+
         public static List<Enemy> MakeBattleEncounter(int tier, bool dungeonCrawlEncounter)
         {
             List<Enemy> encounter = new List<Enemy>();
@@ -284,15 +314,18 @@ namespace AscendedZ
 
             List<FusionObject> possibleFusions = new List<FusionObject>();
             Dictionary<Elements, string> fusionResults = new Dictionary<Elements, string>();
-
-            switch (fusionGrade)
+            List<Dictionary<Elements, string>> results = new List<Dictionary<Elements, string>>() 
             {
-                case 1:
-                    fusionResults = FUSION1_RESULTS;
-                    break;
-                case 2:
-                    fusionResults = FUSION2_RESULTS;
-                    break;
+                FUSION1_RESULTS, FUSION2_RESULTS, FUSION3_RESULTS, FUSION4_RESULTS, FUSION5_RESULTS
+            };
+            
+            if(fusionGrade - 1 < results.Count)
+            {
+                fusionResults = results[fusionGrade - 1];
+            }
+            else
+            {
+                fusionResults = results[results.Count - 1];
             }
 
             List<Elements> primaryElements = GetPrimaryElements(material1, material2);
