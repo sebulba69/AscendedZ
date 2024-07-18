@@ -1,11 +1,11 @@
-Label
+MarginContainer
 PanelContainer
-Button
+TextureRect
 HBoxContainer
+Label
+Button
 VBoxContainer
 CenterContainer
-MarginContainer
-TextureRect
 TileMap
 AnimationPlayer
 Sprite2D

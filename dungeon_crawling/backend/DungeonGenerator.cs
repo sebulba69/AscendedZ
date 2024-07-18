@@ -1,4 +1,6 @@
 ﻿
+using AscendedZ.entities;
+using AscendedZ.game_object;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,14 +78,21 @@ namespace AscendedZ.dungeon_crawling.backend
                     _tiles[r, column].IsPartOfMaze = true;
                 }
 
+                var encounter = EntityDatabase.MakeBattleEncounter(_tier + 5, true);
                 Start = _tiles[_tiles.GetLength(0) - 1, column];
                 var end = _tiles[0, column];
                 var boss = _tiles[1, column];
+                var dialog = _tiles[2, column];
 
                 SetTileToExit(end);
                 SetTileToEncounter(boss);
-  
-                var encounter = EntityDatabase.MakeBattleEncounter(_tier + 5, true);
+
+                var dcCutscenes = PersistentGameObjects.GameObjectInstance().ProgressFlagObject.DCCutsceneSeen;
+                if((_tier/50) - 1 >= dcCutscenes.Count)
+                {
+                    SetTileToDialog(dialog, encounter[0].Name, encounter[0].Image);
+                }
+
                 boss.Graphic = encounter[0].Image;
 
                 return _tiles;
@@ -234,6 +243,16 @@ namespace AscendedZ.dungeon_crawling.backend
             }
 
             return walls;
+        }
+
+        private void SetTileToDialog(Tile tile, string name, string image)
+        {
+            string graphic = "res://dungeon_crawling/art_assets/entity_icons/dialog.png";
+            TileEventId id = TileEventId.BossDialog;
+            tile.Entity = name;
+            tile.EntityImage = image;
+            tile.Graphic = graphic;
+            tile.TileEventId = id;
         }
 
         private void SetTileToItemTile(Tile tile)

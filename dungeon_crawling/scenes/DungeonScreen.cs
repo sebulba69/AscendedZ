@@ -140,7 +140,16 @@ public partial class DungeonScreen : Transitionable2DScene
 
         _background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatDCBackground(_gameObject.TierDC));
 
-        _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
+        int tier = _gameObject.TierDC;
+        if (tier % 50 != 0)
+        {
+            _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
+        }
+        else
+        {
+            _gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS_PRE);
+        }
+
         _currentScene = null;
         _dungeon = new Dungeon(_gameObject.TierDC);
         _dungeon.Generate();
@@ -224,7 +233,7 @@ public partial class DungeonScreen : Transitionable2DScene
     {
         // start of the event, prevent further inputs
         _processingEvent = true;
-
+        
         switch (id)
         {
             case TileEventId.Item:
@@ -245,6 +254,20 @@ public partial class DungeonScreen : Transitionable2DScene
                 _currentScene.Scene.TurnOffGraphic();
                 break;
 
+            case TileEventId.BossDialog:
+                string dialogScene = "res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.tscn";
+
+                var dScene = ResourceLoader.Load<PackedScene>(dialogScene).Instantiate<DC_BOSS_CUTSCENE>();
+                _popup.AddChild(dScene);
+                dScene.Start(_dungeon.Current.Entity, _dungeon.Current.EntityImage);
+
+                await ToSignal(dScene, "tree_exited");
+
+                var pFlags = _gameObject.ProgressFlagObject;
+                pFlags.DCCutsceneSeen.Add(true);
+                _currentScene.Scene.TurnOffGraphic();
+                PersistentGameObjects.Save();
+                break;
             case TileEventId.Encounter:
 
                 var combatScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
@@ -279,7 +302,16 @@ public partial class DungeonScreen : Transitionable2DScene
                 }
                 else
                 {
-                    _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
+                    int tier = _gameObject.TierDC;
+                    if(tier % 50 == 0)
+                    {
+                        _gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS_PRE);
+                    }
+                    else
+                    {
+                        _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
+                    }
+                    
                     SetEncounterVisibility(true);
                     SetCrawlValues();
                     _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished

@@ -14,6 +14,8 @@ namespace AscendedZ
     {
         public static readonly string OW_MUSIC_FOLDER = "res://music/overworld/";
         public static readonly string OW_DC = "res://music/overworldDC.ogg";
+        public static readonly string DC_BOSS_PRE = "res://music/dungeon_crawl_pre/dungeon_crawl_boss_pre.ogg";
+
         /// <summary>
         /// List of tracks in order the game plays them.
         /// </summary>

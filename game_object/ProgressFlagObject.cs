@@ -10,5 +10,11 @@ namespace AscendedZ.game_object
     {
         public bool CustomPartyMembersViewed { get; set; }
         public bool PrimaryWeaponEquippedForFirstTime { get; set; }
+        public List<bool> DCCutsceneSeen { get; set; }
+
+        public ProgressFlagObject()
+        {
+            DCCutsceneSeen = new List<bool>();
+        }
     }
 }
