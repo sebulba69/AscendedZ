@@ -10,3 +10,4 @@ C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportDebug\win-x64\Asce
 C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportDebug\win-x64\refint\Ascended Z.dll
 C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportDebug\win-x64\Ascended Z.pdb
 C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportDebug\win-x64\ref\Ascended Z.dll
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportDebug\win-x64\Ascended Z.sourcelink.json
