@@ -19,11 +19,12 @@ public partial class BattleEnemyScene : Node2D
     private CenterContainer _endBox;
     private bool _uiUpdating = false;
     private bool _dungeonCrawlEncounter = false;
-
     private Label _skillName;
     private TextureRect _skillIcon;
     private HBoxContainer _turnIconContainer;
     private ActionMenu _actionMenu;
+
+    public EventHandler BackToHome;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -54,8 +55,16 @@ public partial class BattleEnemyScene : Node2D
 
     private void _OnBackToHomeBtnPressed()
     {
-        PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
-        this.GetTree().Root.AddChild(mainScreenScene.Instantiate());
+        if (!_dungeonCrawlEncounter) 
+        {
+            PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
+            this.GetTree().Root.AddChild(mainScreenScene.Instantiate());
+        }
+        else
+        {
+            BackToHome?.Invoke(this, null);
+        }
+
         this.QueueFree();
     }
 
@@ -124,7 +133,6 @@ public partial class BattleEnemyScene : Node2D
 
         _battleSceneObject = new BattleSceneObject(tier);
         _actionMenu.BattleSceneObject = _battleSceneObject;
-        _actionMenu.DungeonCrawling = _dungeonCrawlEncounter;
 
         if(!_dungeonCrawlEncounter)
         {
@@ -472,9 +480,6 @@ public partial class BattleEnemyScene : Node2D
                     ChangeEndScreenVisibilityOnly(true);
                 }
             }
-
-           
-
 
             // do reward stuff here
             if(_dungeonCrawlEncounter)

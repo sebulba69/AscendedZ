@@ -260,6 +260,11 @@ public partial class DungeonScreen : Transitionable2DScene
                 SetEncounterVisibility(false);
 
                 this.AddChild(combatScene);
+                bool retreat = false;
+                combatScene.BackToHome += (sender, args) => 
+                {
+                    retreat = true;
+                };
 
                 combatScene.SetupForDungeonCrawlEncounter(_battlePlayers);
 
@@ -267,11 +272,19 @@ public partial class DungeonScreen : Transitionable2DScene
                 await ToSignal(transition.Player, "animation_finished");
                 await ToSignal(combatScene, "tree_exited");
 
-                _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
-                SetEncounterVisibility(true);
-                SetCrawlValues();
-                _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
-                PersistentGameObjects.Save();
+                if (retreat)
+                {
+                    _prematurelyLeave = true;
+                    _OnRetreatButtonPressed();
+                }
+                else
+                {
+                    _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
+                    SetEncounterVisibility(true);
+                    SetCrawlValues();
+                    _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
+                    PersistentGameObjects.Save();
+                }
                 break;
 
             case TileEventId.Heal:
