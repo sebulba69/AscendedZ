@@ -164,13 +164,21 @@ public partial class BattleEnemyScene : Node2D
 
         foreach (var enemy in _battleSceneObject.Enemies)
         {
-            var enemyBox = (enemy.IsBoss) 
-                ? ResourceLoader.Load<PackedScene>(Scenes.BOSS_BOX).Instantiate()
-                : ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate();
-            
-            _enemyMembers.AddChild(enemyBox);
- 
-            enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });   
+            EntityDisplayBox enemyBox;
+
+            if (enemy.IsBoss)
+            {
+                enemyBox = ResourceLoader.Load<PackedScene>(Scenes.BOSS_BOX).Instantiate<EntityDisplayBox>();
+                _enemyMembers.AddChild(enemyBox);
+                enemyBox.InstanceEntity(new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
+            }
+            else
+            {
+                enemyBox = ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate<EntityDisplayBox>();
+                _enemyMembers.AddChild(enemyBox);
+                enemyBox.InstanceEntity(new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
+                enemyBox.SetDescription(enemy.Description);
+            }
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff

@@ -150,6 +150,11 @@ public partial class EntityDisplayBox : PanelContainer
         }
     }
 
+    public void SetDescription(string description)
+    {
+        GetNode<TextureRect>("%Picture").TooltipText = description;
+    }
+
     public async Task UpdateBattleEffects(BattleEffectWrapper effectWrapper)
     {
         BattleResult result = effectWrapper.Result;

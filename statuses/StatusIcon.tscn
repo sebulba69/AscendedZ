@@ -21,6 +21,7 @@ grow_vertical = 2
 script = ExtResource("1_rxuhd")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 offset_right = 40.0

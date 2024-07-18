@@ -50,3 +50,8 @@ res://screens/AscendedTextbox.tscn
 res://screens/CGCutsceneScreen.tscn
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs
 res://screens/MainScreen.tscn
+res://statuses/StatusIcon.tscn
+res://BackBoxBossHPDC.tres
+res://FrontBoxBossHPDC.tres
+res://screens/EnemyBattleDisplayBox.tscn
+res://screens/BossBattleDisplayBox.tscn
