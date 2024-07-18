@@ -28,6 +28,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Drace_Skinner] = MakeDraceSkinner;
             _functionDictionary[EnemyNames.Jude_Stone] = MakeJudeStone;
             _functionDictionary[EnemyNames.Drace_Razor] = MakeDraceRazor;
+            _functionDictionary[EnemyNames.Ocura] = MakeOcura;
+            _functionDictionary[EnemyNames.Emush] = MakeEmush;
         }
 
         public Enemy MakeHarbinger()
@@ -121,21 +123,84 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             return judeStone;
         }
+
+
+        public Enemy MakeOcura()
+        {
+            var ocura = MakeBossHellAI(EnemyNames.Ocura, 3, true);
+
+            ocura.Resistances.SetResistance(ResistanceType.Nu, skills.Elements.Dark);
+            ocura.Resistances.SetResistance(ResistanceType.Nu, skills.Elements.Light);
+
+            ocura.MainAttackElements.Add(skills.Elements.Elec);
+            ocura.MainAttackElements.Add(skills.Elements.Fire);
+            ocura.MainAttackElements.Add(skills.Elements.Ice);
+
+            ocura.Skills.Add(SkillDatabase.Elec1.Clone());
+            ocura.Skills.Add(SkillDatabase.Fire1.Clone());
+            ocura.Skills.Add(SkillDatabase.Ice1.Clone());
+
+            ocura.Skills.Add(SkillDatabase.VoidIce.Clone());
+            ocura.Skills.Add(SkillDatabase.VoidFire.Clone());
+            ocura.Skills.Add(SkillDatabase.VoidWind.Clone());
+
+            ocura.Skills.Add(SkillDatabase.FireBuff1.Clone());
+
+            ocura.VoidElementsIndexes.Add(3);
+            ocura.VoidElementsIndexes.Add(4);
+            ocura.VoidElementsIndexes.Add(5);
+            ocura.BuffIndexes.Add(6);
+
+            return ocura;
+        }
+
+
+        public Enemy MakeEmush()
+        {
+            var emush = MakeBossHellAI(EnemyNames.Emush, 4, true);
+
+            emush.Resistances.SetResistance(ResistanceType.Wk, skills.Elements.Fire);
+            emush.Resistances.SetResistance(ResistanceType.Dr, skills.Elements.Ice);
+            emush.Resistances.SetResistance(ResistanceType.Dr, skills.Elements.Wind);
+
+            emush.MainAttackElements.Add(skills.Elements.Wind);
+            emush.MainAttackElements.Add(skills.Elements.Ice);
+
+            emush.Skills.Add(SkillDatabase.Wind1.Clone());
+            emush.Skills.Add(SkillDatabase.Ice1.Clone());
+            emush.Skills.Add(SkillDatabase.IceAll.Clone());
+            emush.Skills.Add(SkillDatabase.WindAll.Clone());
+
+            emush.Skills.Add(SkillDatabase.IceBuff1.Clone());
+            emush.Skills.Add(SkillDatabase.WindBuff1.Clone());
+
+            emush.BuffIndexes.Add(4);
+            emush.BuffIndexes.Add(5);
+
+            return emush;
+        }
+
         public Enemy MakeDraceRazor()
         {
             return new DraceRazor();
         }
 
-        private BossHellAI MakeBossHellAI(string name, int turns)
+        private BossHellAI MakeBossHellAI(string name, int turns, bool dCrawl = false)
         {
-            return new BossHellAI()
+            var bhai = new BossHellAI()
             {
                 Name = name,
                 Image = CharacterImageAssets.GetImagePath(name),
-                MaxHP = EntityDatabase.GetBossHP(name),
                 Resistances = new ResistanceArray(),
                 Turns = turns
             };
+
+            if (dCrawl)
+                bhai.MaxHP = EntityDatabase.GetBossHPDC(name);
+            else
+                bhai.MaxHP = EntityDatabase.GetBossHP(name);
+
+            return bhai;
         }
     }
 }

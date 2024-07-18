@@ -7,4 +7,7 @@
     <Compile Remove="screens\Dungeons\**" />
     <EmbeddedResource Remove="screens\Dungeons\**" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="entities\enemy_objects\dungeon_crawl_bosses\" />
+  </ItemGroup>
 </Project>

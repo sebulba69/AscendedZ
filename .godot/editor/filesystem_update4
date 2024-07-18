@@ -1,8 +1,10 @@
 res://default_env.tres
-res://misc_icons/Icon.tscn
-res://misc_icons/IconOutline.gdshader
 res://screens/RecruitScreenTabs.tscn
+res://misc_icons/IconOutline.gdshader
 res://screens/RecruitScreen.tscn
+res://screens/PartyEditScreen.tscn
+res://screens/EmbarkScreen.tscn
+res://screens/BattleEnemyScene.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.cs
@@ -43,6 +45,3 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://screens/EmbarkScreen.tscn
-res://screens/PartyEditScreen.tscn
-res://screens/BattleEnemyScene.tscn

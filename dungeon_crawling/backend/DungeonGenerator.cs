@@ -9,7 +9,8 @@ namespace AscendedZ.dungeon_crawling.backend
 {
     public class DungeonGenerator
     {
-        private int _eventCount, _totalWeight;
+        private bool _bossEncounter;
+        private int _eventCount, _totalWeight, _tier;
         private List<WeightedItem<PathType>> _pathTypes;
         private Tile[,] _tiles;
         private Random _rng;
@@ -17,9 +18,16 @@ namespace AscendedZ.dungeon_crawling.backend
         public Tile Start { get; set; }
 
         public DungeonGenerator(int tier) 
-        { 
+        {
+            _tier = tier;
             _eventCount = Equations.GetDungeonCrawlEncounters(tier);
             int dimensions = (_eventCount * 2);
+            if (tier % 50 == 0)
+            {
+                _bossEncounter = true;
+                dimensions = 5;
+            }
+            
             _tiles = new Tile[dimensions, dimensions];
 
             for (int row = 0; row < dimensions; row++) 
@@ -56,6 +64,34 @@ namespace AscendedZ.dungeon_crawling.backend
 
         public Tile[,] Generate()
         {
+            if (!_bossEncounter)
+            {
+                return GenerateDungeonNormal();
+            }
+            else
+            {
+                int column = 2;
+                for(int r = 0; r < _tiles.GetLength(0); r++)
+                {
+                    _tiles[r, column].IsPartOfMaze = true;
+                }
+
+                Start = _tiles[_tiles.GetLength(0) - 1, column];
+                var end = _tiles[0, column];
+                var boss = _tiles[1, column];
+
+                SetTileToExit(end);
+                SetTileToEncounter(boss);
+  
+                var encounter = EntityDatabase.MakeBattleEncounter(_tier + 5, true);
+                boss.Graphic = encounter[0].Image;
+
+                return _tiles;
+            }
+        }
+
+        private Tile[,] GenerateDungeonNormal()
+        {
             int length = _tiles.GetLength(0);
             int x = _rng.Next(length);
             int y = _rng.Next(length);
@@ -68,10 +104,10 @@ namespace AscendedZ.dungeon_crawling.backend
             List<Tile> walls = new List<Tile>();
             walls.AddRange(GetAdjacentWalls(Start, length));
 
-            while (walls.Count > 0) 
+            while (walls.Count > 0)
             {
                 Tile wall = walls[_rng.Next(walls.Count)];
-                
+
                 List<Tile> adjacent = GetAdjacentWalls(wall, length);
                 int visitedCount = 0;
 
@@ -81,7 +117,7 @@ namespace AscendedZ.dungeon_crawling.backend
                         visitedCount++;
                 }
 
-                if(visitedCount == 1)
+                if (visitedCount == 1)
                 {
                     wall.IsPartOfMaze = true;
                     wall.Visited = true;
@@ -95,7 +131,7 @@ namespace AscendedZ.dungeon_crawling.backend
 
             List<TileEventId> generatedPathTypes = new List<TileEventId>();
 
-            for (int e = 0; e < _eventCount; e++) 
+            for (int e = 0; e < _eventCount; e++)
             {
                 var mazeTile = openTiles[_rng.Next(1, openTiles.Count)];
                 PathType path = GetPathType();

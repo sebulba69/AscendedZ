@@ -246,6 +246,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 break;
 
             case TileEventId.Encounter:
+
                 var combatScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
                 var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
 
@@ -259,12 +260,14 @@ public partial class DungeonScreen : Transitionable2DScene
                 SetEncounterVisibility(false);
 
                 this.AddChild(combatScene);
+
                 combatScene.SetupForDungeonCrawlEncounter(_battlePlayers);
 
                 transition.PlayFadeOut();
                 await ToSignal(transition.Player, "animation_finished");
                 await ToSignal(combatScene, "tree_exited");
 
+                _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
                 SetEncounterVisibility(true);
                 SetCrawlValues();
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
@@ -354,6 +357,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 _endingScene = true;
                 _floorExitScene.Visible = true;
                 SetEncounterVisibility(false, true);
+                _floorExitScene.Continue.Visible = (_gameObject.MaxTierDC + 1 < _gameObject.TierDCCap);
                 _floorExitScene.EndOfBattleLabel.Text = "Ascend?";
                 _floorExitScene.Stay.Visible = true;
                 _floorExitScene.Retry.Visible = false;

@@ -21,6 +21,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         public List<Elements> MainAttackElements { get; set; }
         public List<int> VoidElementsIndexes { get; set; }
         public List<int> WeaknessStatusIndexes { get; set; }
+        public List<int> BuffIndexes { get; set; }
         public int HealIndex { get; set; }
 
         public BossHellAI() : base()
@@ -28,12 +29,13 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             MainAttackElements = new List<Elements>();
             VoidElementsIndexes = new List<int>();
             WeaknessStatusIndexes = new List<int>();
+            BuffIndexes = new List<int>();
 
             _phase = 0;
             _mainElement = 0;
             _move = 0;
             _isBoss = true;
-            _script = new List<Func<EnemyAction, ISkill>>() { GetAttackSkill, GetAttackSkill, GetAttackSkill, GetVoidSkill, GetAttackSkill, GetAttackSkill, GetWeaknessSkill };
+            _script = new List<Func<EnemyAction, ISkill>>() { GetAttackSkill, GetBuff, GetAttackSkill, GetVoidSkill, GetAttackSkill, GetAttackSkill, GetWeaknessSkill };
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
@@ -91,6 +93,19 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             if(_move < WeaknessStatusIndexes.Count)
             {
                 return Skills[WeaknessStatusIndexes[_move]];
+            }
+            else
+            {
+                return GetAttackSkill(action);
+            }
+        }
+
+        private ISkill GetBuff(EnemyAction action)
+        {
+            if(_move < BuffIndexes.Count)
+            {
+                action.Target = this;
+                return Skills[BuffIndexes[_move]];
             }
             else
             {

@@ -59,6 +59,12 @@ namespace AscendedZ
             EnemyNames.Drace_Razor
         };
 
+        private static readonly List<string> DUNGEON_BOSS_ENCOUNTERS = new List<string>() 
+        {
+            EnemyNames.Ocura,
+            EnemyNames.Emush
+        };
+
         /// <summary>
         /// Based on tier. Each one is cumulative based on the tier.
         /// Entry [1] would be included with entry [0] and so on.
@@ -137,6 +143,11 @@ namespace AscendedZ
                     {
                         int bossIndex = (tier / 10) - 1;
                         encounterNames.Add(BOSS_ENCOUNTERS[bossIndex]);
+                    }
+                    else if ((tier - 5) % 50 == 0 && dungeonCrawlEncounter)
+                    {
+                        int bossIndex = (tier/50) - 1;
+                        encounterNames.Add(DUNGEON_BOSS_ENCOUNTERS[bossIndex]);
                     }
                     else
                     {
@@ -458,12 +469,29 @@ namespace AscendedZ
         {
             int index = BOSS_ENCOUNTERS.IndexOf(bossName);
             if (index == -1)
+            {
                 throw new Exception("Boss not defined in encounter list");
+            }
 
             // get the boss number
             index++;
 
             int startingHP = 30 * index;
+            return startingHP;
+        }
+
+        public static int GetBossHPDC(string bossName)
+        {
+            int index = DUNGEON_BOSS_ENCOUNTERS.IndexOf(bossName);
+            if (index == -1)
+            {
+                throw new Exception("Boss not defined in encounter list");
+            }
+
+            // get the boss number
+            index++;
+
+            int startingHP = 30 * (index * 5);
             return startingHP;
         }
     }

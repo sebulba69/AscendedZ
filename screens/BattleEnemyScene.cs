@@ -176,6 +176,14 @@ public partial class BattleEnemyScene : Node2D
             bool isBoss = (tier % 10 == 0);
             gameObject.MusicPlayer.PlayMusic(dungeonTrack);
         }
+        else
+        {
+            if(tier % 50 == 0)
+            {
+                string track = "res://music/dungeon_crawl_boss/dungeon_crawl_boss.ogg";
+                gameObject.MusicPlayer.PlayMusic(track);
+            }
+        }
 
         _actionMenu.CanInput = true;
         
@@ -432,7 +440,7 @@ public partial class BattleEnemyScene : Node2D
 
             var gameObject = PersistentGameObjects.GameObjectInstance();
 
-            if(gameObject.Tier % 10 == 0)
+            if(gameObject.Tier % 10 == 0 && !_dungeonCrawlEncounter || gameObject.TierDC % 50 == 0 && _dungeonCrawlEncounter)
             {
                 gameObject.MusicPlayer.PlayMusic(MusicAssets.BOSS_VICTORY);
                 gameObject.MusicPlayer.ResetAllTracksAfterBoss();

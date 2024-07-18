@@ -29,7 +29,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
             Resistances.SetResistance(ResistanceType.Dr, Elements.Light);
 
-            AddWexSkills();
+            AddNoWexSkills();
 
             Turns = BASE_TURNS;
         }
@@ -55,6 +55,8 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Skills.Add(SkillDatabase.Wind1.Clone());
             Skills.Add(SkillDatabase.Elec1.Clone());
             Skills.Add(SkillDatabase.Ice1.Clone());
+
+            Boost(100, true);
         }
 
         private void AddNoWexSkills()
@@ -64,6 +66,8 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Skills.Add(SkillDatabase.WindAll.Clone());
             Skills.Add(SkillDatabase.ElecAll.Clone());
             Skills.Add(SkillDatabase.IceAll.Clone());
+
+            Boost(100, true);
         }
 
         public override void ResetEnemyState()

@@ -27,13 +27,14 @@ namespace AscendedZ.entities.enemy_objects
             _rng = new Random();
         }
 
-        public void Boost(int tier)
+        public void Boost(int tier, bool quickBoost = false)
         {
             int boost = (tier+1);
             if(boost == 0)
                 boost = 1;
 
-            MaxHP *= (int)(boost * 0.75);
+            if(!quickBoost)
+                MaxHP *= (int)(boost * 0.75);
 
             for (int i = 0; i < (boost/2)+1; i++)
             {
