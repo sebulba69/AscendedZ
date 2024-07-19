@@ -41,7 +41,7 @@ public partial class FountainOfBuce : CenterContainer
 			int orbs = _gameObject.Orbs;
 			if(orbs - 3 >= 0)
 			{
-				_gameObject.Orbs--;
+				_gameObject.Orbs-=3;
 				var morbis = new Morbis() { Amount = 1 };
 				if (!currency.ContainsKey(morbis.Name))
 					currency.Add(morbis.Name, morbis);

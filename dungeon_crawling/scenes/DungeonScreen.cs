@@ -394,6 +394,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 var fountain = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_FOUNTAIN).Instantiate<FountainOfBuce>();
                 _popup.AddChild(fountain);
                 await ToSignal(fountain, "tree_exited");
+                SetCrawlValues();
                 _dungeon.Current.EventTriggered = false;
                 break;
 

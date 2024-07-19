@@ -526,6 +526,8 @@ public partial class BattleEnemyScene : Node2D
         else
         {
             endLabel.Text = "You died.";
+            if(_dungeonCrawlEncounter)
+                _backToHomeButton.Visible = true;
         }
 
         PersistentGameObjects.Save();
