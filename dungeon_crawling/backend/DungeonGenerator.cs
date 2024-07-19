@@ -107,6 +107,7 @@ namespace AscendedZ.dungeon_crawling.backend
             Start = _tiles[x, y];
             Start.IsPartOfMaze = true;
             Start.Visited = true;
+            Start.TileEventId = TileEventId.Start;
 
             List<Tile> maze = new List<Tile>();
             List<Tile> openTiles = new List<Tile>();
@@ -132,17 +133,18 @@ namespace AscendedZ.dungeon_crawling.backend
                     wall.Visited = true;
                     walls.AddRange(adjacent);
                     maze.Add(wall);
-                    openTiles.Add(wall);
+                    if(wall.TileEventId == TileEventId.None)
+                        openTiles.Add(wall);
                 }
 
                 walls.Remove(wall);
             }
 
             List<TileEventId> generatedPathTypes = new List<TileEventId>();
-
+            
             for (int e = 0; e < _eventCount; e++)
             {
-                var mazeTile = openTiles[_rng.Next(1, openTiles.Count)];
+                var mazeTile = openTiles[_rng.Next(openTiles.Count)];
                 PathType path = GetPathType();
 
                 switch (path)
@@ -180,7 +182,7 @@ namespace AscendedZ.dungeon_crawling.backend
                     case PathType.Teleporter:
                         var tile1 = mazeTile;
                         openTiles.Remove(tile1);
-                        var tile2 = openTiles[_rng.Next(1, openTiles.Count)];
+                        var tile2 = openTiles[_rng.Next(openTiles.Count)];
                         openTiles.Remove(tile2);
 
                         SetTilesToTeleporters(tile1, tile2);
@@ -190,7 +192,7 @@ namespace AscendedZ.dungeon_crawling.backend
                 }
             }
 
-            SetTileToExit(openTiles[_rng.Next(1, openTiles.Count)]);
+            SetTileToExit(openTiles[_rng.Next(openTiles.Count)]);
             generatedPathTypes.Add(TileEventId.Exit);
 
             var nonEventTiles = maze.FindAll(tiles => !generatedPathTypes.Contains(tiles.TileEventId));

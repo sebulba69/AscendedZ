@@ -105,18 +105,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 2
 
-[node name="UpgradeButtonOLD" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-custom_minimum_size = Vector2(342, 40)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("2_krmoi")
-theme_override_font_sizes/font_size = 25
-text = "Upgrade
-"
-
 [node name="UpgradeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 texture_filter = 2
@@ -125,7 +113,7 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("2_krmoi")
 theme_override_font_sizes/font_size = 25
-text = "Back"
+text = "Upgrade"
 
 [node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true

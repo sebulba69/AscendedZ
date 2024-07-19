@@ -98,6 +98,7 @@ public partial class RewardScreen : Control
         {
             _rewards = new List<Currency>() { keyShard };
         }
+        SetupRewards();
     }
 
     private void SetupRewards()

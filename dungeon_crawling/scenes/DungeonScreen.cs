@@ -361,7 +361,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 _dungeon.Current.EventTriggered = false;
 
                 var popupWindow = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP).Instantiate<AscendedYesNoWindow>();
-                this.GetTree().Root.AddChild(popupWindow);
+                _popup.AddChild(popupWindow);
                 popupWindow.SetDialogMessage("Teleport?");
                 popupWindow.AnswerSelected += (sender, args) => 
                 {
@@ -386,13 +386,13 @@ public partial class DungeonScreen : Transitionable2DScene
                         _dungeon.Current.EventTriggered = false;
                     }
                 };
-
+                await ToSignal(popupWindow, "tree_exited");
                 SetCrawlValues();
                 break;
 
             case TileEventId.Fountain:
                 var fountain = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_FOUNTAIN).Instantiate<FountainOfBuce>();
-                this.GetTree().Root.AddChild(fountain);
+                _popup.AddChild(fountain);
                 await ToSignal(fountain, "tree_exited");
                 _dungeon.Current.EventTriggered = false;
                 break;
