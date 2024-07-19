@@ -259,21 +259,16 @@ public partial class BattleEnemyScene : Node2D
                 for(int t = 0; t < result.Targets.Count; t++)
                 {
                     int index = t;
-                    tasks[t] = Task.Run(async () => 
-                    {
-                        GodotThread.SetThreadSafetyChecksEnabled(false);
+                    EntityDisplayBox targetNode = (EntityDisplayBox)targetNodes[index];
+                    BattleResult subResult = new BattleResult();
 
-                        EntityDisplayBox targetNode = (EntityDisplayBox)targetNodes[index];
-                        BattleResult subResult = new BattleResult();
+                    subResult.ResultType = result.Results[index];
+                    subResult.HPChanged = result.AllHPChanged[index];
+                    subResult.SkillUsed = result.SkillUsed;
 
-                        subResult.ResultType = result.Results[index];
-                        subResult.HPChanged = result.AllHPChanged[index];
-                        subResult.SkillUsed = result.SkillUsed;
+                    BattleEffectWrapper targetNodeEffects = new BattleEffectWrapper() { Result = subResult };
 
-                        BattleEffectWrapper targetNodeEffects = new BattleEffectWrapper() { Result = subResult };
-
-                        await targetNode.UpdateBattleEffects(targetNodeEffects);
-                    });
+                   tasks[t] = targetNode.UpdateBattleEffects(targetNodeEffects);
                     await Task.Delay(200);
                 }
 
