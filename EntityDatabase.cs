@@ -311,7 +311,11 @@ namespace AscendedZ
     
         public static List<FusionObject> MakeFusionEntities(OverworldEntity material1, OverworldEntity material2)
         {
-            int fusionGrade = GetFusionResultLevel(material1, material2);
+            int gradeDifference = Math.Abs(material2.FusionGrade - material1.FusionGrade);
+            if(gradeDifference > 1)
+                return new List<FusionObject>();
+
+            int fusionGrade = material1.FusionGrade + 1;
 
             List<FusionObject> possibleFusions = new List<FusionObject>();
             Dictionary<Elements, string> fusionResults = new Dictionary<Elements, string>();
@@ -342,38 +346,6 @@ namespace AscendedZ
 
             return possibleFusions;
         }
-
-        private static int GetFusionResultLevel(OverworldEntity material1, OverworldEntity material2)
-        {
-            // default to mat1 grade (if ==, it'll just be this + 1)
-            int grade = material1.FusionGrade;
-            
-            // handle greater than/less than grades differently
-            if(material1.FusionGrade != material2.FusionGrade)
-            {
-                int gradeDifference = Math.Abs(material1.FusionGrade - material2.FusionGrade);
-
-                // with a difference of 1, default to the highest rank
-                if(gradeDifference == 1)
-                {
-                    // go with the bigger grade
-                    if (material1.FusionGrade > material2.FusionGrade)
-                        grade = material1.FusionGrade;
-                    else
-                        grade = material2.FusionGrade;
-                }
-                else
-                {
-                    // go with the smaller grade
-                    if (material1.FusionGrade < material2.FusionGrade)
-                        grade = material1.FusionGrade;
-                    else
-                        grade = material2.FusionGrade;
-                }
-            }
-
-            return grade + 1;
-        }
         
         private static void PopulatePossibleFusions(Dictionary<Elements, string> fusionResults, List<Elements> elements, 
                                                     List<FusionObject> possibleFusions, OverworldEntity material1, 
@@ -390,8 +362,8 @@ namespace AscendedZ
                     };
 
                     var fusion = PartyMemberGenerator.MakePartyMember(fusionResults[element]);
-                    fusion.MaxHP = (material1.MaxHP + material2.MaxHP) / 3;
-                    fusion.MaxHP += fusion.FusionGrade * 10;
+                    fusion.MaxHP = (int)((material1.MaxHP + material2.MaxHP) / 1.5);
+                    fusion.MaxHP += (int)(fusion.MaxHP * (fusion.FusionGrade * 0.1));
 
                     double percentageOff = fusion.FusionGrade * 0.1;
                     int discount = (int)(fusion.VorpexValue * percentageOff);
