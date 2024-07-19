@@ -98,17 +98,14 @@ namespace AscendedZ.game_object
         /// Randomly generated encounters saved for re-use. Starts at Tier 6.
         /// </summary>
         public List<List<string>> Encounters { get; set; }
+        public List<int> EncountersIndex { get; set; } 
+
         public GameObject()
         {
-            if (MusicPlayer == null)
-                MusicPlayer = new MusicObject();
-
-            if (ProgressFlagObject == null)
-                ProgressFlagObject = new ProgressFlagObject();
-
-            if (Encounters == null)
-                Encounters = new List<List<string>>();
-
+            MusicPlayer = new MusicObject();
+            ProgressFlagObject = new ProgressFlagObject();
+            Encounters = new List<List<string>>();
+            EncountersIndex = new List<int>();
             ShopLevel = 0;
         }
 
