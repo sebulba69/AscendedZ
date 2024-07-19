@@ -257,10 +257,11 @@ namespace AscendedZ
                             string enemyName = possibleEncounters[randomEnemyIndex];
                             encounterNames.Add(enemyName);
                         }
-
-                        if (!dungeonCrawlEncounter)
-                            gameObject.Encounters.Add(encounterNames);
                     }
+
+
+                    if (!dungeonCrawlEncounter)
+                        gameObject.Encounters.Add(encounterNames);
 
                     PersistentGameObjects.Save();
                 }
