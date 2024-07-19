@@ -10,9 +10,16 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
     {
         protected Dictionary<string, Func<Enemy>> _functionDictionary;
 
+        protected int _tierBoost;
+
         public EnemyFactory()
         {
             _functionDictionary = new Dictionary<string, Func<Enemy>>();
+        }
+
+        public void SetTier(int tier)
+        {
+            _tierBoost = (tier/10) * 3;
         }
 
         public Enemy GetEnemyByName(string name)

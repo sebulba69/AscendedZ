@@ -69,7 +69,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return new CopyCatEnemy
             {
                 Name = $"[CC] {name}",
-                MaxHP = hp,
+                MaxHP = hp + _tierBoost,
                 Image = CharacterImageAssets.GetImagePath(name),
                 Resistances = new ResistanceArray()
             };

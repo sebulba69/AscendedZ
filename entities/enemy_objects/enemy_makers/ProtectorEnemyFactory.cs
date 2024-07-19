@@ -65,7 +65,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var protector = new ProtectorEnemy()
             {
                 Name = $"[PRCT] {name}",
-                MaxHP = hp,
+                MaxHP = hp + _tierBoost,
                 Image = CharacterImageAssets.GetImagePath(name),
                 Resistances = new ResistanceArray(),
                 ElementToVoid = elementToVoid

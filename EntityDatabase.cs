@@ -150,7 +150,7 @@ namespace AscendedZ
             {
                 foreach (string enemyName in TUTORIAL_ENCOUNTERS[tier - 1])
                 {
-                    var enemy = _enemyMaker.MakeEnemy(enemyName);
+                    var enemy = _enemyMaker.MakeEnemy(enemyName, tier);
                     enemy.Boost(tier);
                     encounter.Add(enemy);
                 }
@@ -259,7 +259,6 @@ namespace AscendedZ
                         }
                     }
 
-
                     if (!dungeonCrawlEncounter)
                         gameObject.Encounters.Add(encounterNames);
 
@@ -268,7 +267,7 @@ namespace AscendedZ
 
                 foreach (string name in encounterNames)
                 {
-                    Enemy enemy = _enemyMaker.MakeEnemy(name);
+                    Enemy enemy = _enemyMaker.MakeEnemy(name, tier);
                     enemy.Boost(tier);
                     encounter.Add(enemy);
                 }

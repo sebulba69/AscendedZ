@@ -31,7 +31,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeConlen()
         {
-            var conlen = MakeAlternatingEnemy(EnemyNames.Conlen, 6);
+            var conlen = MakeAlternatingEnemy(EnemyNames.Conlen, 6 + _tierBoost);
 
             conlen.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
             conlen.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
@@ -116,7 +116,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeAldmas()
         {
-            var aldmas = MakeAlternatingEnemy(EnemyNames.Aldmas, 13);
+            var aldmas = MakeAlternatingEnemy(EnemyNames.Aldmas, 7);
 
             aldmas.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
@@ -127,7 +127,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeFridan()
         {
-            var fridan = MakeAlternatingEnemy(EnemyNames.Fridan, 13);
+            var fridan = MakeAlternatingEnemy(EnemyNames.Fridan, 8);
 
             fridan.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
 
@@ -151,7 +151,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return new AlternatingEnemy
             {
                 Name = $"[AE] {name}",
-                MaxHP = hp,
+                MaxHP = hp + _tierBoost,
                 Image = CharacterImageAssets.GetImagePath(name),
                 Resistances = new ResistanceArray()
             };

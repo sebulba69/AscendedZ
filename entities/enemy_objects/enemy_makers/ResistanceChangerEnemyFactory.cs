@@ -52,7 +52,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var resistChangerEnemy = new ResistanceChangerEnemy
             {
                 Name = $"[RCE] {name}",
-                MaxHP = hp,
+                MaxHP = hp + _tierBoost,
                 Image = CharacterImageAssets.GetImagePath(name),
                 Resistances = new ResistanceArray(),
                 Resist1 = resist1,
