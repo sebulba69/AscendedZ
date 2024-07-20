@@ -7,16 +7,17 @@ using System.Collections.Generic;
 public partial class DungeonCrawlUI : PanelContainer
 {
 	private VBoxContainer _container;
-	private Label _tier, _coordinates;
+	private Label _tier, _coordinates, _encounters;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_tier = GetNode<Label>("%Tier");
         _coordinates = GetNode<Label>("%Coordinates");
 		_container = GetNode<VBoxContainer>("%PartyContainer");
+		_encounters = GetNode<Label>("%EncountersRemaining");
 	}
 
-	public void SetParty(int tier, List<BattlePlayer> players, int orbs)
+	public void SetParty(int tier, List<BattlePlayer> players, int orbs, int encounters)
 	{
 		_tier.Text = $"TIER: {tier}, Orbs: {orbs}";
 
@@ -29,7 +30,9 @@ public partial class DungeonCrawlUI : PanelContainer
 			_container.AddChild(scene);
 			scene.SetPartyMember(p);
 		}
-	}
+
+		_encounters.Text = $"Encounters Remaining: {encounters}";
+    }
 
 	public void SetCoordinates(int x, int y)
 	{

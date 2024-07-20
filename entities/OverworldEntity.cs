@@ -29,6 +29,19 @@ namespace AscendedZ.entities.partymember_objects
         public int Level { get => _level; set => _level = value; }
         public int Grade { get => _grade; set => _grade = value; }
         public int VorpexValue { get => _vorpexCost; set => _vorpexCost = value; }
+
+        public int RefundCost 
+        { 
+            get 
+            {
+                int refund = (int)(VorpexValue * 0.1) + 1;
+                if (FusionGrade > 0)
+                    refund *= FusionGrade;
+
+                return refund;
+            } 
+        }
+
         public int MaxHP { get; set; }
         public string GradeString { get; set; }
         public int SkillCap { get => _skillCap; set => _skillCap = value; }

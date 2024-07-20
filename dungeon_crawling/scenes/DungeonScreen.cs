@@ -131,13 +131,11 @@ public partial class DungeonScreen : Transitionable2DScene
     private void SetCrawlValues()
     {
         var tier = PersistentGameObjects.GameObjectInstance().TierDC;
-        _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs);
+        _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, _dungeon.EncounterCount);
     }
 
     private void StartDungeon()
     {
-        SetCrawlValues();
-
         _background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatDCBackground(_gameObject.TierDC));
 
         int tier = _gameObject.TierDC;
@@ -192,6 +190,8 @@ public partial class DungeonScreen : Transitionable2DScene
         _currentScene = _uiTiles[start.X, start.Y];
         _player.Position = _currentScene.Scene.Position;
         _crawlUI.SetCoordinates(_currentScene.X, _currentScene.Y);
+
+        SetCrawlValues();
     }
 
     private void DrawDoors(UITile uiTile, Tile tile, Tile[,] tiles)
@@ -311,7 +311,7 @@ public partial class DungeonScreen : Transitionable2DScene
                     {
                         _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
                     }
-                    
+                    _dungeon.ProcessEncounter();
                     SetEncounterVisibility(true);
                     SetCrawlValues();
                     _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
@@ -323,9 +323,9 @@ public partial class DungeonScreen : Transitionable2DScene
                 // heal some amount of HP/MP
                 foreach(var player in _battlePlayers)
                 {
-                    double percent = player.MaxHP * 0.15;
+                    double percent = player.MaxHP * 0.45;
                     int hp = (int)(player.HP + percent);
-                    player.HP += hp;
+                    player.HP = player.MaxHP;
                 }
 
                 _healSfxPlayer.Play();
@@ -400,14 +400,17 @@ public partial class DungeonScreen : Transitionable2DScene
 
             case TileEventId.Exit:
                 // handle dungeon end stuff (do yes/no box)
-                _endingScene = true;
-                _floorExitScene.Visible = true;
-                SetEncounterVisibility(false, true);
-                _floorExitScene.Continue.Visible = (_gameObject.MaxTierDC + 1 < _gameObject.TierDCCap);
-                _floorExitScene.EndOfBattleLabel.Text = "Ascend?";
-                _floorExitScene.Stay.Visible = true;
-                _floorExitScene.Retry.Visible = false;
-                _dungeon.Current.EventTriggered = false;
+                if(_dungeon.CanLeave)
+                {
+                    _endingScene = true;
+                    _floorExitScene.Visible = true;
+                    SetEncounterVisibility(false, true);
+                    _floorExitScene.Continue.Visible = (_gameObject.MaxTierDC + 1 < _gameObject.TierDCCap);
+                    _floorExitScene.EndOfBattleLabel.Text = "Ascend?";
+                    _floorExitScene.Stay.Visible = true;
+                    _floorExitScene.Retry.Visible = false;
+                    _dungeon.Current.EventTriggered = false;
+                }
                 break;
         }
 
@@ -446,6 +449,10 @@ public partial class DungeonScreen : Transitionable2DScene
         }
 
         SetEncounterVisibility(true, true);
+
+        foreach(var member in _battlePlayers)
+            member.HP = member.MaxHP;
+
         StartDungeon();
 
         transition.PlayFadeOut();

@@ -12,5 +12,6 @@ namespace AscendedZ.screens.upgrade_screen
         public string Image { get; set; }
         public string SelectedUpgradeString {  get; set; }
         public string VorpexAmount { get; set; }
+        public string PartyCoinAmount { get; set; }
     }
 }

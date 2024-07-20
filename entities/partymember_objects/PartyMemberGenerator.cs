@@ -83,11 +83,11 @@ namespace AscendedZ.entities.partymember_objects
         private static readonly Dictionary<string, Elements> _customPartyMembers = new Dictionary<string, Elements>
         {
             { EnemyNames.Conlen, Elements.Elec },
-            { EnemyNames.Orachar, Elements.Ice },
             { PartyNames.Andmond, Elements.Dark },
             { PartyNames.Joan, Elements.Wind },
             { PartyNames.Tyhere, Elements.Fire },
-            { PartyNames.Paria, Elements.Ice }
+            { PartyNames.Paria, Elements.Ice },
+            { EnemyNames.Isenald, Elements.Light }
         };
 
         public static OverworldEntity MakePartyMember(string name)

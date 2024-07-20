@@ -88,7 +88,7 @@ public partial class EntityDisplayBox : PanelContainer
         name.Text = entity.Name;
         _hp.Text = $"{entity.HP}/{entity.MaxHP} HP";
         _resistances.Text = entity.Resistances.GetResistanceString();
-        //_resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
+
         picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
     }
 
@@ -107,6 +107,14 @@ public partial class EntityDisplayBox : PanelContainer
         {
             var hp = this.GetNode<TextureProgressBar>("%HP");
             hp.Value = entity.HP;
+
+            if(entity.HP == 0)
+            {
+                string dead = "res://entity_pics/dead_entity.png";
+                TextureRect picture = this.GetNode<TextureRect>("%Picture");
+                picture.Texture = ResourceLoader.Load<Texture2D>(dead);
+            }
+
         }
         _resistances.Text = entity.Resistances.GetResistanceString();
         //_resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";

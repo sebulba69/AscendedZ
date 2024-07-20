@@ -13,5 +13,10 @@ namespace AscendedZ.currency.rewards
             this.Name = SkillAssets.DELLENCOIN;
             this.Icon = Name;
         }
+
+        public override string ToString()
+        {
+            return Amount.ToString();
+        }
     }
 }

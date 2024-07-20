@@ -7,7 +7,7 @@ public partial class RecruitScreenTabs : CenterContainer
 {
 	private const int MEMBER_REQUEST_FORUM = 1;
 	private Button _shopLevelButton;
-	private TextEdit _ownedDellencoin;
+	private Label _ownedDellencoin;
 
 	private RecruitScreen _recruitShop;
 	private RecruitCustomScreen _memberRequestForum;
@@ -21,7 +21,7 @@ public partial class RecruitScreenTabs : CenterContainer
 		_shopLevelButton = this.GetNode<Button>("%UpgradeButton");
 		_shopLevelButton.Pressed += _OnShopUpgradePressed;
 
-		_ownedDellencoin = this.GetNode<TextEdit>("%OwnedDellencoin");
+		_ownedDellencoin = this.GetNode<Label>("%OwnedDellencoin");
 
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 

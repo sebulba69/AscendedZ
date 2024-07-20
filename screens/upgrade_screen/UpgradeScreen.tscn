@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://0r3q62ummh0p"]
+[gd_scene load_steps=7 format=3 uid="uid://0r3q62ummh0p"]
 
 [ext_resource type="Script" path="res://screens/upgrade_screen/UpgradeScreen.cs" id="1_6bmuu"]
 [ext_resource type="Texture2D" uid="uid://dlog1wys3kq6a" path="res://entity_pics/andmond.png" id="1_8uklk"]
@@ -10,6 +10,10 @@ atlas = ExtResource("3_u3tap")
 region = Rect2(448, 1372, 32, 32)
 margin = Rect2(0, -5, 0, 0)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkhyw"]
+atlas = ExtResource("3_u3tap")
+region = Rect2(32, 288, 32, 32)
+
 [node name="UpgradeScreen" type="CenterContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(1920, 1080)
@@ -20,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6bmuu")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="VBoxContainer" parent="."]
 texture_filter = 2
 layout_mode = 2
 
@@ -34,12 +38,15 @@ theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 texture_filter = 2
+custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 size_flags_vertical = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 texture_filter = 2
+custom_minimum_size = Vector2(538, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 texture_filter = 2
@@ -58,6 +65,8 @@ horizontal_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 texture_filter = 2
 layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
 
 [node name="MemberImage" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
@@ -101,7 +110,6 @@ theme_override_font_sizes/font_size = 25
 texture_filter = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 2
 
@@ -110,17 +118,25 @@ unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_krmoi")
 theme_override_font_sizes/font_size = 25
 text = "Upgrade"
+
+[node name="RefundButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_krmoi")
+theme_override_font_sizes/font_size = 25
+text = "Refund"
 
 [node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("2_krmoi")
 theme_override_font_sizes/font_size = 25
 text = "Back"
@@ -138,7 +154,11 @@ size_flags_vertical = 4
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="UpgradeCurrencyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+
+[node name="UpgradeCurrencyIcon" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer/PanelContainer3"]
 texture_filter = 2
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -146,12 +166,41 @@ size_flags_vertical = 4
 texture = SubResource("AtlasTexture_ffy3i")
 stretch_mode = 4
 
-[node name="VorpexCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="VorpexCount" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer/PanelContainer4"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_krmoi")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 28
+text = "12"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer/PanelContainer"]
+texture_filter = 2
+layout_mode = 2
+texture = SubResource("AtlasTexture_lkhyw")
+expand_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="OwnedTalismans" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/HBoxContainer/PanelContainer2"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_krmoi")
+theme_override_font_sizes/font_size = 28
 text = "12"
 horizontal_alignment = 1

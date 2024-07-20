@@ -10,7 +10,7 @@ public partial class RecruitCustomScreen : CenterContainer
 	private Node _partyMemberDisplay;
 	private ItemList _potentialSkills;
 	private ItemList _potentialPartyMembers;
-	private TextEdit _ownedPartyCoin;
+	private Label _ownedPartyCoin;
 	private Label _costLabel;
 
 	private int _selectedIndexMembers = 0;
@@ -24,7 +24,7 @@ public partial class RecruitCustomScreen : CenterContainer
 		_partyMemberDisplay = this.GetNode("%PartyMemberDisplay");
 		_potentialSkills = this.GetNode<ItemList>("%PotentialSkills");
 		_potentialPartyMembers = this.GetNode<ItemList>("%PotentialMembers");
-		_ownedPartyCoin = this.GetNode<TextEdit>("%OwnedPartyCoin");
+		_ownedPartyCoin = this.GetNode<Label>("%OwnedPartyCoin");
         _costLabel = this.GetNode<Label>("%CostLabel");
 
         _potentialPartyMembers.Connect("item_selected",new Callable(this, "_OnRecruitSelected"));

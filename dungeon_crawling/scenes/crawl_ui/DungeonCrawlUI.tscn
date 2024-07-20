@@ -12,6 +12,7 @@ script = ExtResource("1_hx8fa")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+alignment = 1
 
 [node name="Tier" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
@@ -30,8 +31,20 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 0
+alignment = 1
 
 [node name="Coordinates" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_w6717")
+theme_override_font_sizes/font_size = 25
+text = "[X,Y]"
+horizontal_alignment = 1
+
+[node name="EncountersRemaining" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2

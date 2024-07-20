@@ -9,6 +9,7 @@
 
 [node name="PartyMemberDcDisplay" type="PanelContainer"]
 texture_filter = 2
+custom_minimum_size = Vector2(240, 55)
 script = ExtResource("1_vd0bu")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

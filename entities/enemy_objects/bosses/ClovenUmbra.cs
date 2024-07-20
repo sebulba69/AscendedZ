@@ -35,7 +35,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Skills.Add(SkillDatabase.Dark1.Clone());
             Skills.Add(SkillDatabase.Ice1.Clone());
             Skills.Add(SkillDatabase.Light1.Clone());
-            Skills.Add(SkillDatabase.Heal1.Clone());
+            Skills.Add(SkillDatabase.Spindlewarium.Clone());
 
             _scriptPlacement = 0;
             _script = new List<int>() { 0, 1 };

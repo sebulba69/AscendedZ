@@ -17,6 +17,7 @@ namespace AscendedZ.dungeon_crawling.backend
         private Tile[,] _tiles;
         private Random _rng;
 
+        public int Encounters { get; set; }
         public Tile Start { get; set; }
 
         public DungeonGenerator(int tier) 
@@ -197,7 +198,14 @@ namespace AscendedZ.dungeon_crawling.backend
 
             var nonEventTiles = maze.FindAll(tiles => !generatedPathTypes.Contains(tiles.TileEventId));
             for (int e = 0; e < _eventCount; e++)
+            {
                 SetTileToEncounter(nonEventTiles[_rng.Next(nonEventTiles.Count)]);
+                Encounters++;
+            }
+
+            Encounters /= 2;
+            if (Encounters == 0)
+                Encounters = 1;
 
             return _tiles;
         }

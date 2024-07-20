@@ -43,6 +43,37 @@ namespace AscendedZ.screens.upgrade_screen
             }
         }
 
+        public void Refund()
+        {
+            int cost = _selected.RefundCost;
+            Currency partyCoin = _wallet.Currency[SkillAssets.PARTY_COIN_ICON];
+            Currency vorpex = _wallet.Currency[SkillAssets.VORPEX_ICON];
+
+            if (partyCoin.Amount >= cost)
+            {
+                partyCoin.Amount -= cost;
+                int boost = _selected.FusionGrade;
+                int vorpexGain = _selected.VorpexValue;
+
+                if(boost > 0)
+                {
+                    vorpexGain *= boost;
+                }
+
+                vorpex.Amount += vorpexGain;
+
+                if(_selected.IsInParty)
+                {
+                    var party = PersistentGameObjects.GameObjectInstance().MainPlayer.Party;
+                    party.RemovePartyMember(_selected);
+                }
+
+                _reserves.Remove(_selected);
+
+                PersistentGameObjects.Save();
+            }
+        }
+
         public List<UpgradeItemListDisplay> GetUpgradeItemListDisplays() 
         {
             List<UpgradeItemListDisplay> displays = new List<UpgradeItemListDisplay>();
@@ -51,7 +82,7 @@ namespace AscendedZ.screens.upgrade_screen
             {
                 UpgradeItemListDisplay display = new UpgradeItemListDisplay()
                 {
-                    PartyMemberEntry = $"{member.DisplayName} [{member.VorpexValue} VC]",
+                    PartyMemberEntry = $"{member.DisplayName} [{member.VorpexValue} VC] [{member.RefundCost} PC]",
                     PartyMemberImage = member.Image
                 };
 
@@ -68,7 +99,8 @@ namespace AscendedZ.screens.upgrade_screen
                 DisplayName = _selected.DisplayName,
                 Image = _selected.Image,
                 SelectedUpgradeString = _selected.GetUpgradeString(),
-                VorpexAmount = _wallet.Currency[SkillAssets.VORPEX_ICON].Amount.ToString()
+                VorpexAmount = _wallet.Currency[SkillAssets.VORPEX_ICON].Amount.ToString(),
+                PartyCoinAmount = _wallet.Currency[SkillAssets.PARTY_COIN_ICON].Amount.ToString()
             };
         }
     }

@@ -13,5 +13,10 @@ namespace AscendedZ.currency.rewards
             Name = SkillAssets.BOUNTY_KEY;
             Icon = Name;
         }
+
+        public override string ToString()
+        {
+            return Amount.ToString();
+        }
     }
 }

@@ -282,23 +282,11 @@ namespace AscendedZ
             };
         }
 
-        public static HealSkill Heal1 { get => MakeHealSkill("Regen", 5, 1); } 
-        public static HealSkill Heal2 { get => MakeHealSkill("Regen+", 10, 2);    }
-        public static HealSkill Heal3 { get => MakeHealSkill("Regen X", 20, 3);   }
-        public static HealSkill Heal4 { get => MakeHealSkill("Regen Z", 30, 4);   }
-        public static HealSkill Heal5 { get => MakeHealSkill("Regen ASC", 40, 5); }
+        public static HealSkill Spindlewarium { get => MakeHealSkill("Spindlewarium", 5, 1); } 
 
+        public static HealSkill Heal1 { get => MakeHealSkill("Regen", 10, 1); } 
         public static HealSkill Revive1 { get => MakeHealSkill("Revive", 5, 1, true); }
-        public static HealSkill Revive2 { get => MakeHealSkill("Revive+", 10, 2, true); }
-        public static HealSkill Revive3 { get => MakeHealSkill("Revive X", 20, 3, true); }
-        public static HealSkill Revive4 { get => MakeHealSkill("Revive Z", 30, 4, true); }
-        public static HealSkill Revive5 { get => MakeHealSkill("Revive ASC", 40, 5, true); }
-
-        public static HealSkill Heal1All { get => MakeAllHeal("Allgen", 2, 1); }
-        public static HealSkill Heal2All { get => MakeAllHeal("Allgen+", 4, 1); }
-        public static HealSkill Heal3All { get => MakeAllHeal("Allgen X", 8, 1); }
-        public static HealSkill Heal4All { get => MakeAllHeal("Allgen Z", 12, 1); }
-        public static HealSkill Heal5All { get => MakeAllHeal("Allgen ASC", 15, 1); }
+        public static HealSkill Heal1All { get => MakeAllHeal("Allgen", 7, 1); }
 
         private static HealSkill MakeAllHeal(string name, int amount, int tier, bool isRevive = false)
         {

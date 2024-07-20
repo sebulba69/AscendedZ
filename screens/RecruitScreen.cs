@@ -39,7 +39,7 @@ public partial class RecruitScreen : CenterContainer
     /// Displays the Talisman the player owns that are relevant to
     /// the selected party member in the vendor list.
     /// </summary>
-    private TextEdit _partyCoinCost;
+    private Label _partyCoinCost;
 
     /// <summary>
     /// Available party members the vendor has to offer.
@@ -57,7 +57,7 @@ public partial class RecruitScreen : CenterContainer
         _displayImage = this.GetNode<TextureRect>("VBoxContainer/HBoxContainer/VBoxContainer/CharContainer/CharImageBox");
         _displayName = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/CenterContainer/CharNameLabel");
         _displayDescription = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/CharDescription/MarginContainer/CharDescriptionBox");
-        _partyCoinCost = this.GetNode<TextEdit>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/OwnedTalismans");
+        _partyCoinCost = this.GetNode<Label>("%OwnedTalismans");
 
         Button buyButton = this.GetNode<Button>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/BuyButton");
 

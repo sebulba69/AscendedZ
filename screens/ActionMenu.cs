@@ -25,10 +25,10 @@ public partial class ActionMenu : PanelContainer
     private TextureRect _icon;
     private Label _toolTip;
 
-    private readonly string MENU_STR = "(D/←) Menu";
-    private readonly string SKILL_STR = "(A/→) Skills";
+    private readonly string MENU_STR = "(←) Menu";
+    private readonly string SKILL_STR = "(→) Skills";
     private readonly string SKILL_TOOLTIP = "Choose a skill!";
-    private readonly string TARGET_STR = "(D/←) Skills";
+    private readonly string TARGET_STR = "(←) Skills";
     private readonly string BACK_STR = "← Back";
 
     public bool CanInput { get => _canInput; set => _canInput = value; }
@@ -165,7 +165,6 @@ public partial class ActionMenu : PanelContainer
         {
             foreach (var enemy in _battleSceneObject.Enemies.FindAll(enemy => enemy.HP > 0))
                 _actionList.AddItem($"{enemy.HP}/{enemy.MaxHP} HP", CharacterImageAssets.GetTextureForItemList(enemy.Image));
-                //_actionList.AddItem($"{enemy.HP}/{enemy.MaxHP} HP ● {enemy.Resistances.GetResistanceString()}", CharacterImageAssets.GetTextureForItemList(enemy.Image));
         }
         else
         {

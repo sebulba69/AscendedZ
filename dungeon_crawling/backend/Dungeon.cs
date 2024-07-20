@@ -23,9 +23,13 @@ namespace AscendedZ.dungeon_crawling.backend
 
         private Tile[,] _dungeon;
         private Tile _currentTile;
+        private bool _canLeave;
 
         public Tile[,] Tiles { get => _dungeon; }
         public Tile Current { get => _currentTile; }
+        public bool CanLeave { get => _canLeave; }
+
+        public int EncounterCount { get=> _genenerator.Encounters; }
 
         public Dungeon(int tier)
         {
@@ -43,6 +47,16 @@ namespace AscendedZ.dungeon_crawling.backend
             _currentTile = _dungeon[x, y];
             if(!isTeleport)
                 CheckTileEvent();
+        }
+
+        public void ProcessEncounter()
+        {
+            _genenerator.Encounters--;
+            if(_genenerator.Encounters <= 0)
+            {
+                _genenerator.Encounters = 0;
+                _canLeave = true;
+            }
         }
 
         private void CheckTileEvent()

@@ -1,10 +1,10 @@
+VBoxContainer
+PanelContainer
+Label
 HBoxContainer
 MarginContainer
-PanelContainer
 TextureRect
-Label
 Button
-VBoxContainer
 CenterContainer
 TileMap
 AnimationPlayer

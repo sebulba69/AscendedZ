@@ -81,7 +81,7 @@ namespace AscendedZ
 
         private static readonly List<string> CUSTOM_WARES = new List<string>
         {
-            EnemyNames.Conlen, EnemyNames.Orachar, PartyNames.Andmond, PartyNames.Joan, PartyNames.Tyhere, PartyNames.Paria
+            EnemyNames.Conlen, PartyNames.Andmond, PartyNames.Joan, PartyNames.Tyhere, PartyNames.Paria, EnemyNames.Isenald
         };
 
         /// <summary>

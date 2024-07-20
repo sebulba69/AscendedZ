@@ -128,7 +128,10 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_5jbgh")
 expand_mode = 2
 
-[node name="OwnedPartyCoin" type="TextEdit" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="OwnedPartyCoin" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer/PanelContainer3"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
@@ -136,9 +139,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1_yjiyg")
 theme_override_font_sizes/font_size = 28
-editable = false
-selecting_enabled = false
-drag_and_drop_selection_enabled = false
 
 [node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 texture_filter = 2

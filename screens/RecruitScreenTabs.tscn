@@ -50,7 +50,7 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_57kx8")
 expand_mode = 2
 
-[node name="OwnedDellencoin" type="TextEdit" parent="VBoxContainer/PanelContainer/HBoxContainer"]
+[node name="OwnedDellencoin" type="Label" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 50)
@@ -58,9 +58,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1_k52ob")
 theme_override_font_sizes/font_size = 45
-editable = false
-selecting_enabled = false
-drag_and_drop_selection_enabled = false
 
 [node name="UpgradeButton" type="Button" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 unique_name_in_owner = true
