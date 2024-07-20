@@ -31,7 +31,7 @@ public partial class DungeonCrawlUI : PanelContainer
 			scene.SetPartyMember(p);
 		}
 
-		_encounters.Text = $"Encounters Remaining: {encounters}";
+		_encounters.Text = $"Required Encounters: {encounters}";
     }
 
 	public void SetCoordinates(int x, int y)
