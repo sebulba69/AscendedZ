@@ -18,6 +18,26 @@ public partial class PartyMemberDisplay : HBoxContainer
         _description = this.GetNode<TextEdit>("DescriptionBox");
     }
 
+    /// <summary>
+    /// Sets up all the values and the descriptions of the party member associated with this UI.
+    /// </summary>
+    /// <param name="partyMember"></param>
+    public void DisplayPartyMember(int index, bool isReserve)
+    {
+        OverworldEntity partyMember;
+        var main = PersistentGameObjects.GameObjectInstance().MainPlayer;
+
+        if (isReserve)
+            partyMember = main.ReserveMembers[index];
+        else
+            partyMember = main.Party.Party[index];
+
+        if (partyMember != null)
+        {
+            ShowRandomEntity(new EntityUIWrapper { Entity = partyMember });
+        }
+    }
+
     public void ShowRandomEntity(EntityUIWrapper wrapper)
     {
         var partyMember = wrapper.Entity;
@@ -25,7 +45,7 @@ public partial class PartyMemberDisplay : HBoxContainer
 
         StringBuilder description = new StringBuilder();
         description.AppendLine(partyMember.DisplayName);
-        description.Append(partyMember.ToString());
+        description.Append(partyMember.ToString().TrimEnd('r', '\n'));
 
         _description.Text = description.ToString();
     }
@@ -37,7 +57,7 @@ public partial class PartyMemberDisplay : HBoxContainer
 
         StringBuilder description = new StringBuilder();
         description.AppendLine(partyMember.DisplayName);
-        description.Append(partyMember.GetFusionString());
+        description.Append(partyMember.GetFusionString().TrimEnd('r', '\n'));
 
         _description.Text = description.ToString();
     }

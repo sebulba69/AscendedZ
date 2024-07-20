@@ -66,8 +66,6 @@ public partial class EmbarkScreen : CenterContainer
         {
             this.QueueFree();
         };
-
-        this.GetNode<Label>("%Tooltip").Text = "Create a party and ascend the Dungeon Tiers.";
     }
 
     private void _OnLabrybuceButtonPressed()
