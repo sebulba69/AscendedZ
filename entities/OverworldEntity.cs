@@ -132,7 +132,12 @@ namespace AscendedZ.entities.partymember_objects
             foreach (ISkill skill in Skills)
                 skills.Append(skill.GetUpgradeString() + "\n");
 
-            return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
+            int refundYield = VorpexValue;
+
+            if (FusionGrade > 0)
+                refundYield *= FusionGrade;
+
+            return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}\nRefund Yield: {refundYield} VC";
         }
 
         public override string ToString()

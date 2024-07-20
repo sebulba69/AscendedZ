@@ -1,6 +1,7 @@
 using AscendedZ;
 using AscendedZ.currency;
 using AscendedZ.currency.rewards;
+using AscendedZ.entities.enemy_objects;
 using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object;
 using AscendedZ.screens.upgrade_screen;
@@ -13,95 +14,65 @@ using System.Linq;
 public partial class UpgradeScreen : CenterContainer
 {
 	private Label _vorpexCount, _partyCoinCount;
-	private Label _nameLabel;
-	private RichTextLabel _description;
 	private ItemList _partyList;
-	private TextureRect _partyImage;
-	private Button _upgradeButton, _refundButton;
 	private Button _backButton;
-
-    private int _selected;
-    private UpgradeScreenObject _upgradeScreenObject;
+	private int _selected;
+	private UpgradeItem _item;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_vorpexCount = this.GetNode<Label>("%VorpexCount");
 		_partyCoinCount = GetNode<Label>("%OwnedTalismans");
-        _nameLabel = this.GetNode<Label>("%NameLabel");
-        _description = this.GetNode<RichTextLabel>("%MemberDescription");
-        _partyList = this.GetNode<ItemList>("%PartyList");
-		_partyImage = this.GetNode<TextureRect>("%MemberImage");
-		_upgradeButton = this.GetNode<Button>("%UpgradeButton");
-		_refundButton = this.GetNode<Button>("%RefundButton");
+        _partyList = this.GetNode<ItemList>("%ItemList");
         _backButton = this.GetNode<Button>("%BackButton");
+		_backButton.Pressed += _OnBackButtonPressed;
+		_item = GetNode<UpgradeItem>("%UpgradeItem");
+		_selected = 0;
 
-        _selected = 0;
-        _upgradeScreenObject = new UpgradeScreenObject();
+		_item.UpdatePartyDisplay += _OnUpdatePartyDisplay;
 
 		_partyList.ItemSelected += _OnItemSelected;
-        _upgradeButton.Pressed += _OnUpgradeButtonPressed;
-        _refundButton.Pressed += _OnRefundButtonPressed;
-		_backButton.Pressed += _OnBackButtonPressed;
 
-        RefreshItemList();
+		RefreshReserveList();
     }
 
-	private void _OnItemSelected(long selectedIndex)
+	private void RefreshReserveList()
 	{
-		_selected = (int)selectedIndex;
-		_upgradeScreenObject.ChangeSelected(_selected);
-		DisplaySelectedItem();
+		_partyList.Clear();
+
+        var mainPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer;
+        var reserves = mainPlayer.ReserveMembers;
+        var currency = mainPlayer.Wallet.Currency;
+
+        foreach (var reserve in reserves)
+        {
+            _partyList.AddItem(reserve.DisplayName, CharacterImageAssets.GetTextureForItemList(reserve.Image)); ;
+        }
+
+		if (_selected >= reserves.Count)
+			_selected = reserves.Count - 1;
+
+		_partyList.Select(_selected);
+		_item.Initialize(reserves[_selected]);
+        _vorpexCount.Text = currency[SkillAssets.VORPEX_ICON].Amount.ToString();
+        _partyCoinCount.Text = currency[SkillAssets.PARTY_COIN_ICON].Amount.ToString();
     }
 
-	private void _OnUpgradeButtonPressed()
+	private void _OnItemSelected(long index)
 	{
-        _upgradeScreenObject.Upgrade();
-        RefreshItemList();
-    }
-
-	private void _OnRefundButtonPressed()
-	{
-		_upgradeScreenObject.Refund();
-		RefreshItemList();
+		_selected = (int)index;
+        var reserves = PersistentGameObjects.GameObjectInstance().MainPlayer.ReserveMembers;
+		_item.Initialize(reserves[(int)index]);
 	}
+
+    private void _OnUpdatePartyDisplay(object sender, EventArgs e)
+    {
+		RefreshReserveList();
+    }
 
 	private void _OnBackButtonPressed()
 	{
 		this.QueueFree();
 	}
-
-    private void RefreshItemList()
-    {
-        _partyList.Clear();
-
-		var displays = _upgradeScreenObject.GetUpgradeItemListDisplays();
-
-		foreach (var display in displays)
-		{
-            _partyList.AddItem(display.PartyMemberEntry, CharacterImageAssets.GetTextureForItemList(display.PartyMemberImage));
-        }
-
-		if (_selected >= _partyList.ItemCount)
-			_selected = _partyList.ItemCount - 1;
-
-        _partyList.Select(_selected);
-		_upgradeScreenObject.ChangeSelected(_selected);
-        DisplaySelectedItem();
-
-		_refundButton.Visible = (displays.Count > 3);
-    }
-
-    private void DisplaySelectedItem()
-	{
-		var upgradeDisplay = _upgradeScreenObject.GetUpgradeScreenDisplay();
-
-		_nameLabel.Text = upgradeDisplay.DisplayName;
-		_partyImage.Texture = ResourceLoader.Load<Texture2D>(upgradeDisplay.Image);
-		_description.Text = upgradeDisplay.SelectedUpgradeString;
-		_vorpexCount.Text = upgradeDisplay.VorpexAmount;
-        _partyCoinCount.Text = upgradeDisplay.PartyCoinAmount;
-
-
-    }
 }

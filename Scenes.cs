@@ -27,6 +27,8 @@ namespace AscendedZ
 
         public static readonly string TRANSITION = "res://screens/SceneTransition.tscn";
 
+        public static readonly string UPGRADE_ITEM = "res://screens/upgrade_screen/UpgradeItem.tscn";
+
         // icons
         public static readonly string ICON = "res://misc_icons/Icon.tscn";
 
