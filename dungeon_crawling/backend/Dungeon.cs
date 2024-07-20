@@ -23,11 +23,10 @@ namespace AscendedZ.dungeon_crawling.backend
 
         private Tile[,] _dungeon;
         private Tile _currentTile;
-        private bool _canLeave;
 
         public Tile[,] Tiles { get => _dungeon; }
         public Tile Current { get => _currentTile; }
-        public bool CanLeave { get => _canLeave; }
+        public bool CanLeave { get => EncounterCount <= 0; }
 
         public int EncounterCount { get=> _genenerator.Encounters; }
 
@@ -55,7 +54,6 @@ namespace AscendedZ.dungeon_crawling.backend
             if(_genenerator.Encounters <= 0)
             {
                 _genenerator.Encounters = 0;
-                _canLeave = true;
             }
         }
 
