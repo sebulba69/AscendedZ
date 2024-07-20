@@ -18,7 +18,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         public ResistanceChangerEnemy() : base()
         {
             _alternateResistance = true;
-            Description = $"[RCE]: Resistance Changer Enemy. Will alternate its elemental resistances between {Resist1} and {SkillDatabase.ElementalOpposites[Resist2]}.";
+            Description = $"[RCE]: Resistance Changer Enemy. Will alternate its resistances + skills every turn.";
         }
 
         public override void ResetEnemyState()
