@@ -18,35 +18,26 @@ public partial class PartyMemberDisplay : HBoxContainer
         _description = this.GetNode<TextEdit>("DescriptionBox");
     }
 
-    /// <summary>
-    /// Sets up all the values and the descriptions of the party member associated with this UI.
-    /// </summary>
-    /// <param name="partyMember"></param>
-    public void DisplayPartyMember(int index, bool isReserve)
-    {
-        OverworldEntity partyMember;
-        var mainPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer;
-
-        partyMember = (isReserve) ? mainPlayer.ReserveMembers[index] : mainPlayer.Party.Party[index];
-
-        if (partyMember != null)
-        {
-            ShowMember(partyMember);
-        }
-    }
-
     public void ShowRandomEntity(EntityUIWrapper wrapper)
     {
-        ShowMember(wrapper.Entity);
-    }
-
-    private void ShowMember(OverworldEntity partyMember)
-    {
+        var partyMember = wrapper.Entity;
         _playerPicture.Texture = ResourceLoader.Load<Texture2D>(partyMember.Image);
 
         StringBuilder description = new StringBuilder();
         description.AppendLine(partyMember.DisplayName);
         description.Append(partyMember.ToString());
+
+        _description.Text = description.ToString();
+    }
+
+    public void ShowFusionEntity(EntityUIWrapper wrapper) 
+    {
+        var partyMember = wrapper.Entity;
+        _playerPicture.Texture = ResourceLoader.Load<Texture2D>(partyMember.Image);
+
+        StringBuilder description = new StringBuilder();
+        description.AppendLine(partyMember.DisplayName);
+        description.Append(partyMember.GetFusionString());
 
         _description.Text = description.ToString();
     }

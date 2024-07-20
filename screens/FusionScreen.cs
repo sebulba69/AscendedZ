@@ -120,7 +120,7 @@ public partial class FusionScreen : CenterContainer
 		var mat1Holder   = new EntityUIWrapper { Entity = fusion.Material1 };
 		var mat2Holder   = new EntityUIWrapper { Entity = fusion.Material2 };
 
-		_displayFusion.ShowRandomEntity(fusionHolder);
+		_displayFusion.ShowFusionEntity(fusionHolder);
         _material1.ShowRandomEntity(mat1Holder);
 		_material2.ShowRandomEntity(mat2Holder);
     }

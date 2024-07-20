@@ -39,7 +39,7 @@ namespace AscendedZ
                     "In my flummers and wiggums as the\nruler of this bucetal sector...",
                     "Yet have I to experience a contestant\nwho has managed to make it thus far.",
                     "Strong as you are, and flippital as\nyou might be...",
-                    "You will not reach the bottom of the\nLabrybuce.",
+                    "You will not reach the top of the\nLabrybuce.",
                     "For I, Ocura, will stand opposed\nto all those who wish to ASCEND!!!",
                 } 
             },

@@ -2,6 +2,7 @@
 using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object;
 using AscendedZ.skills;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,14 @@ namespace AscendedZ.screens.back_end_screen_scripts
                 {
                     if (reserve.Name.Equals(DisplayFusion.Fusion.Name))
                         return false;
+                }
+
+                foreach (var skill in DisplayFusion.Fusion.Skills) 
+                {
+                    for (int f = 0; f < DisplayFusion.Fusion.FusionGrade; f++)
+                    {
+                        skill.LevelUp();
+                    }
                 }
 
                 mainPlayer.ReserveMembers.Add(DisplayFusion.Fusion);
@@ -132,7 +141,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
             List<ISkill> skills = new List<ISkill>();
             foreach (var skill in displayFusion.Skills)
             {
-                skills.Add(skill.Clone());
+                skills.Add(skill);
             }
             return skills;
         }
@@ -148,16 +157,16 @@ namespace AscendedZ.screens.back_end_screen_scripts
             {
                 if(fusionSkills.Count < DisplayFusion.Fusion.SkillCap)
                 {
-                    for (int f = 0; f < DisplayFusion.Fusion.FusionGrade; f++)
-                        skill.LevelUp();
-
                     fusionSkills.Add(skill);
                 }
-                    
             }
             else
             {
-                fusionSkills.Remove(searchSkill);
+                if(fusionSkills.Contains(skill)) 
+                {
+                    fusionSkills.Remove(searchSkill);
+                }
+                
             }
         }
     }

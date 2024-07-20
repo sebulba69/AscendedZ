@@ -140,24 +140,67 @@ namespace AscendedZ.entities.partymember_objects
             return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}\nRefund Yield: {refundYield} VC";
         }
 
+        public string GetFusionString()
+        {
+            StringBuilder skills = new StringBuilder();
+
+            skills.AppendLine(GetSkills(true));
+
+            string maxHP = GetHPString();
+
+            return $"{maxHP}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
+        }
+
         public override string ToString()
         {
             StringBuilder skills = new StringBuilder();
-            if(Skills.Count > 0)
+
+            skills.AppendLine(GetSkills(false));
+
+            string maxHP = GetHPString();
+
+            return $"{maxHP}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
+        }
+
+        private string GetHPString()
+        {
+            string maxHP = $"{MaxHP} HP";
+            if (FusionGrade > 0)
+                maxHP = $"{maxHP} ● Fusion {FusionGrade}";
+
+            return maxHP;
+        }
+
+        private string GetSkills(bool fusion)
+        {
+            StringBuilder skills = new StringBuilder();
+
+            if (Skills.Count > 0)
             {
                 foreach (ISkill skill in Skills)
-                    skills.AppendLine(skill.ToString());
+                {
+                    if (fusion)
+                    {
+                        var clone = skill.Clone();
+                        for(int i = 0; i < FusionGrade; i++)
+                            clone.LevelUp();
+
+                        skills.AppendLine(clone.ToString());
+                    }
+                    else
+                    {
+                        skills.AppendLine(skill.ToString());
+                    }
+                    
+                }
+                    
             }
             else
             {
                 skills.AppendLine("[NONE]");
             }
 
-            string maxHP = $"{MaxHP} HP";
-            if (FusionGrade > 0)
-                maxHP = $"{maxHP} ● Fusion {FusionGrade}";
-
-            return $"{maxHP}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
+            return skills.ToString();
         }
     }
 }

@@ -41,7 +41,7 @@ namespace AscendedZ.skills
 
         public string GetBattleDisplayString()
         {
-            return $"{this.BaseName} ({this.HealAmount}HP)";
+            return $"{this.Name} ({this.HealAmount}HP)";
         }
 
         public void LevelUp()

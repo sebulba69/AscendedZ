@@ -409,8 +409,8 @@ public partial class DungeonScreen : Transitionable2DScene
                     _floorExitScene.EndOfBattleLabel.Text = "Ascend?";
                     _floorExitScene.Stay.Visible = true;
                     _floorExitScene.Retry.Visible = false;
-                    _dungeon.Current.EventTriggered = false;
                 }
+                _dungeon.Current.EventTriggered = false;
                 break;
         }
 

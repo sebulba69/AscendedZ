@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 public partial class StartScreen : Transitionable2DScene
 {
-	private readonly string VERSION = "Pre-Alpha v0.04.4";
+	private readonly string VERSION = "Pre-Alpha v0.04.5";
 
 	/// <summary>
 	/// Node that appears on the starting screen.
