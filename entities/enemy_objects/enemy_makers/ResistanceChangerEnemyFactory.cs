@@ -15,6 +15,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             _functionDictionary[EnemyNames.Thony] = MakeThony;
             _functionDictionary[EnemyNames.Conson] = MakeConson;
+            _functionDictionary[EnemyNames.Bernasbeorth] = MakeBernasbeorth;
         }
 
         public Enemy MakeThony()
@@ -46,6 +47,22 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             return conson;
         }
+
+        public Enemy MakeBernasbeorth()
+        {
+            string name = EnemyNames.Bernasbeorth;
+            int hp = 14;
+            Elements resist1 = Elements.Wind;
+            Elements resist2 = Elements.Elec;
+
+            var bernasbeorth = MakeResistanceChangerEnemy(name, hp, resist1, resist2);
+
+            bernasbeorth.Skills.Add(SkillDatabase.Wind1.Clone());
+            bernasbeorth.Skills.Add(SkillDatabase.Elec1.Clone());
+
+            return bernasbeorth;
+        }
+
 
         protected Enemy MakeResistanceChangerEnemy(string name, int hp, Elements resist1, Elements resist2)
         {

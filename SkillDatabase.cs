@@ -99,6 +99,8 @@ namespace AscendedZ
         public static StatusSkill FireBuff1 { get => MakeBuffSkill("Fire+", new BuffFireStatus { Amount = 0.25 }); }
         public static StatusSkill WindBuff1 { get => MakeBuffSkill("Wind+", new BuffWindStatus { Amount = 0.25 }); }
         public static StatusSkill IceBuff1 { get => MakeBuffSkill("Ice+", new BuffIceStatus { Amount = 0.25 }); }
+        public static StatusSkill LightBuff1 { get => MakeBuffSkill("Light+", new BuffLightStatus { Amount = 0.25 }); }
+        public static StatusSkill DarkBuff1 { get => MakeBuffSkill("Dark+", new BuffDarkStatus { Amount = 0.25 }); }
         
         private static StatusSkill MakeBuffSkill(string name, ElementBuffStatus status)
         {
@@ -164,6 +166,23 @@ namespace AscendedZ
                 return MakeChangeElementSkill("Void Wind", new VoidWindStatus());
             }
         }
+
+        public static StatusSkill VoidDark
+        {
+            get
+            {
+                return MakeChangeElementSkill("Void Dark", new VoidDarkStatus());
+            }
+        }
+
+        public static StatusSkill VoidLight
+        {
+            get
+            {
+                return MakeChangeElementSkill("Void Light", new VoidLightStatus());
+            }
+        }
+
         public static StatusSkill WeakFire
         {
             get
@@ -190,6 +209,27 @@ namespace AscendedZ
             {
                 var s = MakeChangeElementSkill("Elec-", new WeakElecStatus());
                 s.TargetType = TargetTypes.SINGLE_OPP;
+                return s;
+            }
+        }
+
+        public static StatusSkill WeakAllElec
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("All Elec-", new WeakElecStatus());
+                s.TargetType = TargetTypes.OPP_ALL;
+                return s;
+            }
+        }
+
+        
+        public static StatusSkill WeakAllDark
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("All Dark-", new WeakDarkStatus());
+                s.TargetType = TargetTypes.OPP_ALL;
                 return s;
             }
         }

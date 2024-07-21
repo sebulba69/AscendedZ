@@ -17,6 +17,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.David] = MakeDavid;
             _functionDictionary[EnemyNames.Nanfrea] = MakeNanfrea;
             _functionDictionary[EnemyNames.Ferza] = MakeFerza;
+            _functionDictionary[EnemyNames.Wennald] = MakeWennald;
+            _functionDictionary[EnemyNames.Garcar] = MakeGarcar;
         }
 
         public Enemy MakeAnrol()
@@ -65,6 +67,30 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             nanfrea.Skills.Add(SkillDatabase.Fire1.Clone());
 
             return nanfrea;
+        }
+
+        public Enemy MakeWennald()
+        {
+            var wennald = MakeBuffEnemy(EnemyNames.Wennald, 15);
+
+            wennald.Resistances.SetResistance(ResistanceType.Dr, Elements.Light);
+
+            wennald.Skills.Add(SkillDatabase.LightBuff1.Clone());
+            wennald.Skills.Add(SkillDatabase.LightAll.Clone());
+
+            return wennald;
+        }
+
+        public Enemy MakeGarcar()
+        {
+            var garcar = MakeBuffEnemy(EnemyNames.Garcar, 15);
+
+            garcar.Resistances.SetResistance(ResistanceType.Dr, Elements.Dark);
+
+            garcar.Skills.Add(SkillDatabase.DarkBuff1.Clone());
+            garcar.Skills.Add(SkillDatabase.DarkAll.Clone());
+
+            return garcar;
         }
 
         private Enemy MakeBuffEnemy(string name, int hp)

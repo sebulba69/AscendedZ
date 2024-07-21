@@ -2,6 +2,7 @@
 using AscendedZ.resistances;
 using AscendedZ.skills;
 using AscendedZ.statuses;
+using AscendedZ.statuses.weak_element;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Riccman] = MakeRiccman;
             _functionDictionary[EnemyNames.Gormacwen] = MakeGormacwen;
             _functionDictionary[EnemyNames.Vidwerd] = MakeVidwerd;
+            _functionDictionary[EnemyNames.Rahfortin] = MakeRahfortin;
+            _functionDictionary[EnemyNames.Leswith] = MakeLeswith;
         }
 
         public Enemy MakeThylaf()
@@ -74,6 +77,36 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             vidwerd.Skills.Add(SkillDatabase.DarkAll.Clone());
 
             return vidwerd;
+        }
+
+        public Enemy MakeRahfortin()
+        {
+            var rahfortin = MakeStatusAttackEnemy(EnemyNames.Rahfortin, 10);
+
+            rahfortin.Name = $"[WES] {rahfortin.Name}";
+            rahfortin.Status = new WeakDarkStatus();
+            rahfortin.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
+            rahfortin.Description = $"[WES]: {rahfortin.Description}";
+
+            rahfortin.Skills.Add(SkillDatabase.WeakAllDark.Clone());
+            rahfortin.Skills.Add(SkillDatabase.DarkAll.Clone());
+
+            return rahfortin;
+        }
+
+        public Enemy MakeLeswith()
+        {
+            var leswith = MakeStatusAttackEnemy(EnemyNames.Leswith, 10);
+            
+            leswith.Name = $"[WES] {leswith.Name}";
+            leswith.Status = new WeakElecStatus();
+            leswith.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
+            leswith.Description = $"[WES]: {leswith.Description}";
+
+            leswith.Skills.Add(SkillDatabase.WeakAllElec.Clone());
+            leswith.Skills.Add(SkillDatabase.ElecAll.Clone());
+
+            return leswith;
         }
 
         private Enemy MakeAgroStatusEnemy(string name, int hp)

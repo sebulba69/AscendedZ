@@ -240,13 +240,14 @@ namespace AscendedZ
 
                         if (tier > TierRequirements.TIER6_STRONGER_ENEMIES)
                         {
+                            possibleEncounters.RemoveRange(0, 3);
                             possibleEncounters.AddRange(new string[]
                             {
-                                EnemyNames.Aldmas,
-                                EnemyNames.Fridan,
-                                EnemyNames.Bue,
-                                EnemyNames.Bued,
-                                EnemyNames.Bureen
+                                EnemyNames.Aldmas, EnemyNames.Fridan,
+                                EnemyNames.Bue, EnemyNames.Bued, EnemyNames.Bureen,
+                                EnemyNames.Wennald, EnemyNames.Garcar, EnemyNames.LaChris,
+                                EnemyNames.Isumforth, EnemyNames.Ingesc, EnemyNames.Rahfortin,
+                                EnemyNames.Leswith
                             });
                         }
 

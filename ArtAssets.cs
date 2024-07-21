@@ -155,11 +155,17 @@ namespace AscendedZ
         public static readonly string VOID_FIRE_ICON = "VoidFire";
         public static readonly string VOID_ICE_ICON = "VoidIce";
         public static readonly string VOID_WIND_ICON = "VoidWind";
+        public static readonly string VOID_DARK_ICON = "VoidDark";
+        public static readonly string VOID_LIGHT_ICON = "VoidLight";
+
+        public static readonly string BEAST_EYE = "BeastEye";
 
         // Skill Icons - Weaks
         public static readonly string WEAK_FIRE_ICON = "WeakFire";
         public static readonly string WEAK_ELEC_ICON = "WeakElec";
         public static readonly string WEAK_ICE_ICON = "WeakIce";
+        public static readonly string WEAK_DARK_ICON = "WeakDark";
+        public static readonly string WEAK_WIND_ICON = "WeakWind";
 
         // Skill Icons - Other
         public static readonly string HEAL_ICON = "Heal";
@@ -189,6 +195,8 @@ namespace AscendedZ
             [VOID_FIRE_ICON] = new KeyValuePair<int, int>(32, 2144),
             [VOID_ICE_ICON] = new KeyValuePair<int, int>(224, 2144),
             [VOID_WIND_ICON] = new KeyValuePair<int, int>(128, 2144),
+            [VOID_LIGHT_ICON] = new KeyValuePair<int, int>(416, 2144),
+            [VOID_DARK_ICON] = new KeyValuePair<int, int>(448, 2144),
             [POISON_ICON] = new KeyValuePair<int, int>(64, 0),
             [ICE_ICON] = new KeyValuePair<int, int>(32, 128),
             [ELEC_ICON] = new KeyValuePair<int, int>(64, 128),
@@ -209,6 +217,9 @@ namespace AscendedZ
             [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
             [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600),
             [WEAK_ICE_ICON] = new KeyValuePair<int, int>(192, 1600),
+            [WEAK_DARK_ICON] = new KeyValuePair<int, int>(448, 1600),
+            [WEAK_WIND_ICON] = new KeyValuePair<int, int>(128, 1600),
+            [BEAST_EYE] = new KeyValuePair<int, int>(192, 224),
             [QUEST_ICON] = new KeyValuePair<int, int>(480, 352),
             [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480)
         };

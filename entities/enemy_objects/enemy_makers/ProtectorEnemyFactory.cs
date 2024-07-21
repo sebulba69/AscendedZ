@@ -16,6 +16,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Ed] = MakeEd;
             _functionDictionary[EnemyNames.Otem] = MakeOtem;
             _functionDictionary[EnemyNames.Hesret] = MakeHesret;
+            _functionDictionary[EnemyNames.Isumforth] = MakeIsumforth;
+            _functionDictionary[EnemyNames.LaChris] = MakeLachris;
         }
 
         public Enemy MakeEd()
@@ -24,10 +26,10 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             var ed = MakeProtectorEnemy(EnemyNames.Ed, 8, elementToVoid);
 
-            ed.Skills.Add(SkillDatabase.VoidFire);
-            ed.Skills.Add(SkillDatabase.Fire1);
-            ed.Skills.Add(SkillDatabase.Light1);
-            ed.Skills.Add(SkillDatabase.Elec1);
+            ed.Skills.Add(SkillDatabase.VoidFire.Clone());
+            ed.Skills.Add(SkillDatabase.Fire1.Clone());
+            ed.Skills.Add(SkillDatabase.Light1.Clone());
+            ed.Skills.Add(SkillDatabase.Elec1.Clone());
 
             return ed;
         }
@@ -38,10 +40,10 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             var otem = MakeProtectorEnemy(EnemyNames.Otem, 8, elementToVoid);
 
-            otem.Skills.Add(SkillDatabase.VoidIce);
-            otem.Skills.Add(SkillDatabase.Ice1);
-            otem.Skills.Add(SkillDatabase.Dark1);
-            otem.Skills.Add(SkillDatabase.Wind1);
+            otem.Skills.Add(SkillDatabase.VoidIce.Clone());
+            otem.Skills.Add(SkillDatabase.Ice1.Clone());
+            otem.Skills.Add(SkillDatabase.Dark1.Clone());
+            otem.Skills.Add(SkillDatabase.Wind1.Clone());
 
             return otem;
         }
@@ -52,12 +54,40 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             var hesret = MakeProtectorEnemy(EnemyNames.Hesret, 8, elementToVoid);
 
-            hesret.Skills.Add(SkillDatabase.VoidWind);
-            hesret.Skills.Add(SkillDatabase.Wind1);
-            hesret.Skills.Add(SkillDatabase.Ice1);
-            hesret.Skills.Add(SkillDatabase.Fire1);
+            hesret.Skills.Add(SkillDatabase.VoidWind.Clone());
+            hesret.Skills.Add(SkillDatabase.Wind1.Clone());
+            hesret.Skills.Add(SkillDatabase.Ice1.Clone());
+            hesret.Skills.Add(SkillDatabase.Fire1.Clone());
 
             return hesret;
+        }
+
+        public Enemy MakeIsumforth()
+        {
+            Elements elementToVoid = Elements.Dark;
+
+            var isumforth = MakeProtectorEnemy(EnemyNames.Isumforth, 10, elementToVoid);
+
+            isumforth.Skills.Add(SkillDatabase.VoidDark.Clone());
+            isumforth.Skills.Add(SkillDatabase.Elec1.Clone());
+            isumforth.Skills.Add(SkillDatabase.IceAll.Clone());
+            isumforth.Skills.Add(SkillDatabase.Fire1.Clone());
+
+            return isumforth;
+        }
+
+        public Enemy MakeLachris()
+        {
+            Elements elementToVoid = Elements.Light;
+
+            var isumforth = MakeProtectorEnemy(EnemyNames.LaChris, 11, elementToVoid);
+
+            isumforth.Skills.Add(SkillDatabase.VoidLight.Clone());
+            isumforth.Skills.Add(SkillDatabase.WindAll.Clone());
+            isumforth.Skills.Add(SkillDatabase.ElecAll.Clone());
+            isumforth.Skills.Add(SkillDatabase.IceAll.Clone());
+
+            return isumforth;
         }
 
         private Enemy MakeProtectorEnemy(string name, int hp, Elements elementToVoid)

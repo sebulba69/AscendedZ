@@ -20,13 +20,19 @@ namespace AscendedZ.statuses
         ElementBuffStatus_Fire,
         ElementBuffStatus_Elec,
         ElementBuffStatus_Ice, 
+        ElementBuffStatus_Dark, 
+        ElementBuffStatus_Light, 
         AgroStatus,
         VoidFireStatus,
         VoidIceStatus,
         VoidWindStatus,
+        VoidElecStatus,
+        VoidDarkStatus,
+        VoidLightStatus,
         WexElecStatus,
         WexIceStatus,
         WexFireStatus,
+        WexDarkStatus,
         PoisonStatus
     }
 
@@ -99,27 +105,6 @@ namespace AscendedZ.statuses
         {
             switch (Id)
             {
-                case StatusId.Default:
-                    // hack for backwards compatibility with v0.02 Pre-Alpha
-                    if (Icon.Contains(SkillAssets.VOID_FIRE_ICON))
-                    {
-                        _id = StatusId.VoidFireStatus;
-                        return this.Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_ICE_ICON))
-                    {
-                        _id = StatusId.VoidIceStatus;
-                        return this.Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_WIND_ICON))
-                    {
-                        _id = StatusId.VoidWindStatus;
-                        return this.Clone();
-                    }
-                    else
-                    {
-                        throw new NotImplementedException();
-                    }
                 case StatusId.StunStatus:
                     return new StunStatus();
                 case StatusId.AgroStatus:
@@ -132,12 +117,22 @@ namespace AscendedZ.statuses
                     return new BuffWindStatus();
                 case StatusId.ElementBuffStatus_Ice:
                     return new BuffIceStatus();
+                case StatusId.ElementBuffStatus_Dark:
+                    return new BuffDarkStatus();
+                case StatusId.ElementBuffStatus_Light:
+                    return new BuffLightStatus();
                 case StatusId.VoidFireStatus:
                     return new VoidFireStatus();
                 case StatusId.VoidIceStatus:
                     return new VoidIceStatus();
                 case StatusId.VoidWindStatus:
                     return new VoidWindStatus();
+                case StatusId.VoidElecStatus:
+                    return null;
+                case StatusId.VoidDarkStatus:
+                    return new VoidDarkStatus();
+                case StatusId.VoidLightStatus:
+                    return new VoidLightStatus();
                 case StatusId.PoisonStatus:
                     return new PoisonStatus();
                 default:

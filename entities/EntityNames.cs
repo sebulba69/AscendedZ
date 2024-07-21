@@ -49,7 +49,7 @@ namespace AscendedZ.entities
         public static readonly string Isenann = "Isenann"; // Ice
 
         public static readonly string Lesdan = "Lesdan"; // Wind
-        public static readonly string Ronboard = "Ronboard"; // Wind
+        public static readonly string Ronboard = "Ronbaord"; // Wind
         public static readonly string Dusam = "Dusam"; // Wind
 
         public static readonly string Tinedo = "Tinedo"; // Elec
@@ -99,28 +99,35 @@ namespace AscendedZ.entities
         // copy cats
         public static readonly string Naldbear = "Naldbear"; // elec
         public static readonly string Stroma_Hele = "Stroma Hele"; // fire
-
+        public static readonly string Ingesc = "Ingesc"; // dark
         public static readonly string Sylla = "Sylla"; // wind
         public static readonly string Venforth = "Venforth"; // ice
 
         // resistance changers
         public static readonly string Thony = "Thony"; // Ice --> Fire
         public static readonly string Conson = "Conson"; // Light --> Dark
+        public static readonly string Bernasbeorth = "Bernasbeorth"; // Elec --> Wind
 
         // protector enemies
         public static readonly string Ed = "Ed"; // protects fire
         public static readonly string Otem = "Otem"; // protects ice
         public static readonly string Hesret = "Hesret"; // protects wind
+        public static readonly string Isumforth = "Isumforth"; // protects dark
+        public static readonly string LaChris = "La-chris"; // protects wind
 
         // more alt enemies w/ buffs
         public static readonly string Nanfrea = "Nanfrea"; // boost fire
         public static readonly string Anrol = "Anrol"; // boost ice
         public static readonly string David = "Da-vid"; // boost wind
         public static readonly string Ferza = "Ferza"; // boost elec
+        public static readonly string Garcar = "Garcar"; // boost dark
+        public static readonly string Wennald = "Wennald"; // boost light
 
         // enemies with all-hits
         public static readonly string Aldmas = "Aldmas"; // all-hit fire (AE)
         public static readonly string Fridan = "Fridan"; // all-hit force (AE)
+        public static readonly string Rahfortin = "Rahfortin"; // all-hit WEX + dark (AE)
+        public static readonly string Leswith = "Leswith"; // all-hit WEX + elec (AE)
 
         // enemies that just provide turns
         public static readonly string Bue = "Bue"; // (AE) turns = 2, ice
