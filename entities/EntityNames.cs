@@ -149,7 +149,7 @@ namespace AscendedZ.entities
         public static readonly string Tily = "Tily";
         public static readonly string ReeshiDeeme = "Reeshi Deeme";
         public static readonly string Nanles = "Nanles";
-        public static readonly string Lyleof = "Lylelof";
+        public static readonly string Lyelof = "Lyelof";
         public static readonly string Keri = "Keri";
         public static readonly string FoameShorti = "Foame Shorti";
         public static readonly string Ethel = "Ethel";

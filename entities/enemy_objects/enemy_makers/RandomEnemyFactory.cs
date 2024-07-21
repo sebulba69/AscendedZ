@@ -43,7 +43,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _names = new List<string>() 
             {
                 EnemyNames.Ansung, EnemyNames.Ardeb, EnemyNames.ChAffar, EnemyNames.Charcas, EnemyNames.DrigaBoli,
-                EnemyNames.Ethel, EnemyNames.FoameShorti, EnemyNames.Keri, EnemyNames.Lyleof, EnemyNames.Nanles,
+                EnemyNames.Ethel, EnemyNames.FoameShorti, EnemyNames.Keri, EnemyNames.Lyelof, EnemyNames.Nanles,
                 EnemyNames.ReeshiDeeme, EnemyNames.Samjaris, EnemyNames.Tily
             };
 
