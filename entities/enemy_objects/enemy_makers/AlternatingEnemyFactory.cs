@@ -233,13 +233,17 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         protected Enemy MakeSupportEnemy(string name, int hp)
         {
-            return new SupportEnemy
+            var support = new SupportEnemy
             {
                 Name = $"[SPRT] {name}",
                 MaxHP = hp + _tierBoost,
                 Image = CharacterImageAssets.GetImagePath(name),
                 Resistances = new ResistanceArray()
             };
+
+            support.LevelUpCompensation((_tierBoost/3) * 10);
+
+            return support;
         }
 
         protected Enemy MakeAlternatingEnemy(string name, int hp)

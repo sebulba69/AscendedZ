@@ -21,6 +21,14 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             Description = $"[SPRT]: Will always heal any enemy whose health is 50% or below. Will do normal attacks otherwise.";
         }
 
+        public void LevelUpCompensation(int tier)
+        {
+            for (int t = 0; t < tier; t++) 
+            {
+                _heal.LevelUp();
+            }
+        }
+
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
         {
             var action = base.GetNextAction(battleSceneObject);
