@@ -68,11 +68,14 @@ namespace AscendedZ.battle
 
         private void DoEyeTurn(int halfTurns)
         {
-            FullTurn();
+            _turnIcons.RemoveAt(0);
 
             for (int t = 0; t < halfTurns; t++)
             {
-                _turnIcons.Insert(0, 1);
+                if(_turnIcons.Count == 0)
+                    _turnIcons.Add(1);
+                else
+                    _turnIcons.Insert(0, 1);
             }
         }
         /// <summary>
