@@ -54,6 +54,8 @@ namespace AscendedZ
         public static string GetBackground(int tier)
         {
             int index = Equations.GetTierIndexBy10(tier);
+            if (index >= OverworldBgs.Count)
+                index = OverworldBgs.Count - 1;
             return OverworldBgs[index];
         }
 

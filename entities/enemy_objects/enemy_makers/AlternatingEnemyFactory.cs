@@ -241,7 +241,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 Resistances = new ResistanceArray()
             };
 
-            support.LevelUpCompensation((_tierBoost/3) * 10);
+            support.LevelUpCompensation(((_tierBoost/3) * 10)/2);
 
             return support;
         }

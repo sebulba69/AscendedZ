@@ -48,6 +48,8 @@ namespace AscendedZ
         {
             int tier = PersistentGameObjects.GameObjectInstance().MaxTier;
             int index = Equations.GetTierIndexBy10(tier);
+            if (index >= OverworldTracks.Count)
+                index = OverworldTracks.Count - 1;
             return OverworldTracks[index];
         }
 
