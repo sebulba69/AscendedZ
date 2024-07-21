@@ -3,140 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\Cole\\Documents\\Ascended Z\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_ais\\eyeenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_ais\\eyeenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\startscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\startscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\battle\\pressturn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:battle\\pressturn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\battle\\battle_state_machine\\enemyturnstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:battle\\battle_state_machine\\enemyturnstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entitydatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entitydatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\overworldentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\overworldentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\scenes\\dungeonscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\scenes\\dungeonscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\upgrade_screen\\upgradeitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\upgrade_screen\\upgradeitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\backend\\dungeongenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\backend\\dungeongenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_makers\\alternatingenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_makers\\alternatingenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_makers\\buffenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_makers\\buffenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\bosses\\elliotonyx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\bosses\\elliotonyx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\bosses\\ashenash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\bosses\\ashenash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_ais\\alternatingenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_ais\\alternatingenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_ais\\supportenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_ais\\supportenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\skilldatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:skilldatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\skills\\eyeskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:skills\\eyeskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\artassets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:artassets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\battle\\battleresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:battle\\battleresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\skills\\skillid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:skills\\skillid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\skills\\statusskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:skills\\statusskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\skills\\elementskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:skills\\elementskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\battle\\battlesceneobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:battle\\battlesceneobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\entitynames.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\entitynames.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_makers\\resistancechangerenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_makers\\resistancechangerenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_makers\\buffenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_makers\\buffenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_makers\\statusattackenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_makers\\statusattackenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_makers\\copycatenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_makers\\copycatenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\rewardscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\rewardscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_makers\\protectorenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_makers\\protectorenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\statuses\\void_elements\\voidlightstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:statuses\\void_elements\\voidlightstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\statuses\\weak_element\\weakelecstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:statuses\\weak_element\\weakelecstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\statuses\\weak_element\\weakdarkstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:statuses\\weak_element\\weakdarkstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\statuses\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:statuses\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\upgrade_screen\\upgradescreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\upgrade_screen\\upgradescreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\statuses\\void_elements\\voidwindstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:statuses\\void_elements\\voidwindstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\statuses\\void_elements\\voiddarkstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:statuses\\void_elements\\voiddarkstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_makers\\weaknesshunterenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_makers\\weaknesshunterenemyfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\battleenemyscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\battleenemyscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -146,474 +42,110 @@
       "DocumentGroups": [
         {
           "DockedWidth": 312,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "UpgradeScreen.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\upgrade_screen\\UpgradeScreen.cs",
-              "RelativeDocumentMoniker": "screens\\upgrade_screen\\UpgradeScreen.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\upgrade_screen\\UpgradeScreen.cs",
-              "RelativeToolTip": "screens\\upgrade_screen\\UpgradeScreen.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAEwCoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-20T19:13:57.423Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UpgradeItem.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\upgrade_screen\\UpgradeItem.cs",
-              "RelativeDocumentMoniker": "screens\\upgrade_screen\\UpgradeItem.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\upgrade_screen\\UpgradeItem.cs",
-              "RelativeToolTip": "screens\\upgrade_screen\\UpgradeItem.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAgwDMAAAAqAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-20T19:04:29.42Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BuffEnemyFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T14:10:29.912Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EntityDatabase.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\EntityDatabase.cs",
-              "RelativeDocumentMoniker": "EntityDatabase.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\EntityDatabase.cs",
-              "RelativeToolTip": "EntityDatabase.cs",
-              "ViewState": "AQIAAOEAAAAAAAAAAAAgwPoAAABXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T14:24:01.595Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AlternatingEnemyFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\AlternatingEnemyFactory.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\AlternatingEnemyFactory.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\AlternatingEnemyFactory.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_makers\\AlternatingEnemyFactory.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB8AAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T15:56:22.4Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "OverworldEntity.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\OverworldEntity.cs",
-              "RelativeDocumentMoniker": "entities\\OverworldEntity.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\OverworldEntity.cs",
-              "RelativeToolTip": "entities\\OverworldEntity.cs",
-              "ViewState": "AQIAAHoAAAAAAAAAAAAAAI4AAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:54:17.48Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AshenAsh.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\bosses\\AshenAsh.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\bosses\\AshenAsh.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\bosses\\AshenAsh.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\bosses\\AshenAsh.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAgwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:42:05.772Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "ElliotOnyx.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\bosses\\ElliotOnyx.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\bosses\\ElliotOnyx.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\bosses\\ElliotOnyx.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\bosses\\ElliotOnyx.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAwwCwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:41:03.157Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EyeEnemy.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\EyeEnemy.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_ais\\EyeEnemy.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\EyeEnemy.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_ais\\EyeEnemy.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACIAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:36:43.928Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PressTurn.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\PressTurn.cs",
-              "RelativeDocumentMoniker": "battle\\PressTurn.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\PressTurn.cs",
-              "RelativeToolTip": "battle\\PressTurn.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAqwEYAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:34:45.658Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EnemyTurnState.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\battle_state_machine\\EnemyTurnState.cs",
-              "RelativeDocumentMoniker": "battle\\battle_state_machine\\EnemyTurnState.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\battle_state_machine\\EnemyTurnState.cs",
-              "RelativeToolTip": "battle\\battle_state_machine\\EnemyTurnState.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAASwEIAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:34:34.417Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "BattleResult.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\BattleResult.cs",
-              "RelativeDocumentMoniker": "battle\\BattleResult.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\BattleResult.cs",
-              "RelativeToolTip": "battle\\BattleResult.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAB/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:32:18.918Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "SkillId.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\SkillId.cs",
-              "RelativeDocumentMoniker": "skills\\SkillId.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\SkillId.cs",
-              "RelativeToolTip": "skills\\SkillId.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:31:16.676Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "StatusSkill.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\StatusSkill.cs",
-              "RelativeDocumentMoniker": "skills\\StatusSkill.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\StatusSkill.cs",
-              "RelativeToolTip": "skills\\StatusSkill.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:30:45.402Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "EyeSkill.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\EyeSkill.cs",
-              "RelativeDocumentMoniker": "skills\\EyeSkill.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\EyeSkill.cs",
-              "RelativeToolTip": "skills\\EyeSkill.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAmwA0AAAAeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:30:26.042Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "StartScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\StartScreen.cs",
               "RelativeDocumentMoniker": "screens\\StartScreen.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\StartScreen.cs",
               "RelativeToolTip": "screens\\StartScreen.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:09:25.66Z",
+              "WhenOpened": "2024-07-21T22:22:39.338Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AlternatingEnemy.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\AlternatingEnemy.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_ais\\AlternatingEnemy.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\AlternatingEnemy.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_ais\\AlternatingEnemy.cs",
-              "ViewState": "AQIAADUAAAAAAAAAAAAiwEIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:09:55.098Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "SkillDatabase.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\SkillDatabase.cs",
-              "RelativeDocumentMoniker": "SkillDatabase.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\SkillDatabase.cs",
-              "RelativeToolTip": "SkillDatabase.cs",
-              "ViewState": "AQIAAGcAAAAAAAAAAAAYwH0AAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T14:35:48.881Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ArtAssets.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\ArtAssets.cs",
-              "RelativeDocumentMoniker": "ArtAssets.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\ArtAssets.cs",
-              "RelativeToolTip": "ArtAssets.cs",
-              "ViewState": "AQIAAL8AAAAAAAAAAAAUwOoAAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T14:36:55.418Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "SupportEnemy.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\SupportEnemy.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_ais\\SupportEnemy.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\SupportEnemy.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_ais\\SupportEnemy.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAA1wBcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:09:46.335Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "ElementSkill.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\ElementSkill.cs",
-              "RelativeDocumentMoniker": "skills\\ElementSkill.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\ElementSkill.cs",
-              "RelativeToolTip": "skills\\ElementSkill.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAowAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:30:35.05Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ResistanceChangerEnemyFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\ResistanceChangerEnemyFactory.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\ResistanceChangerEnemyFactory.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\ResistanceChangerEnemyFactory.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_makers\\ResistanceChangerEnemyFactory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAA3AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T16:04:51.773Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "StatusAttackEnemyFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\StatusAttackEnemyFactory.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\StatusAttackEnemyFactory.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\StatusAttackEnemyFactory.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_makers\\StatusAttackEnemyFactory.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAiwFsAAABAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T15:58:48.955Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "CopyCatEnemyFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\CopyCatEnemyFactory.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\CopyCatEnemyFactory.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\CopyCatEnemyFactory.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_makers\\CopyCatEnemyFactory.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABUAAABAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T15:54:14.939Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "RewardScreen.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RewardScreen.cs",
-              "RelativeDocumentMoniker": "screens\\RewardScreen.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RewardScreen.cs",
-              "RelativeToolTip": "screens\\RewardScreen.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwEYAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T15:51:48.019Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "ProtectorEnemyFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\ProtectorEnemyFactory.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\ProtectorEnemyFactory.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\ProtectorEnemyFactory.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_makers\\ProtectorEnemyFactory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABBAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T15:48:00.736Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Status.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\Status.cs",
-              "RelativeDocumentMoniker": "statuses\\Status.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\Status.cs",
-              "RelativeToolTip": "statuses\\Status.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T15:11:17.456Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "WeakDarkStatus.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\weak_element\\WeakDarkStatus.cs",
-              "RelativeDocumentMoniker": "statuses\\weak_element\\WeakDarkStatus.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\weak_element\\WeakDarkStatus.cs",
-              "RelativeToolTip": "statuses\\weak_element\\WeakDarkStatus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T15:10:44.704Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "WeakElecStatus.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\weak_element\\WeakElecStatus.cs",
-              "RelativeDocumentMoniker": "statuses\\weak_element\\WeakElecStatus.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\weak_element\\WeakElecStatus.cs",
-              "RelativeToolTip": "statuses\\weak_element\\WeakElecStatus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T15:10:34.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "VoidLightStatus.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\void_elements\\VoidLightStatus.cs",
-              "RelativeDocumentMoniker": "statuses\\void_elements\\VoidLightStatus.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\void_elements\\VoidLightStatus.cs",
-              "RelativeToolTip": "statuses\\void_elements\\VoidLightStatus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T14:59:57.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "VoidDarkStatus.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\void_elements\\VoidDarkStatus.cs",
-              "RelativeDocumentMoniker": "statuses\\void_elements\\VoidDarkStatus.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\void_elements\\VoidDarkStatus.cs",
-              "RelativeToolTip": "statuses\\void_elements\\VoidDarkStatus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T14:58:15.675Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "VoidWindStatus.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\void_elements\\VoidWindStatus.cs",
-              "RelativeDocumentMoniker": "statuses\\void_elements\\VoidWindStatus.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\void_elements\\VoidWindStatus.cs",
-              "RelativeToolTip": "statuses\\void_elements\\VoidWindStatus.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABIAAAAzAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T14:58:01.284Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "WeaknessHunterEnemyFactory.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\WeaknessHunterEnemyFactory.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\WeaknessHunterEnemyFactory.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\WeaknessHunterEnemyFactory.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_makers\\WeaknessHunterEnemyFactory.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAowAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T14:32:20.358Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "82a50cc4-00a5-47e8-b4ae-f40f9bb52abb",
-        "Display": 0,
-        "X": -788,
-        "Y": 1030,
-        "Width": 2204,
-        "Height": 998,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 5,
               "Title": "EntityNames.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\EntityNames.cs",
               "RelativeDocumentMoniker": "entities\\EntityNames.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\EntityNames.cs",
               "RelativeToolTip": "entities\\EntityNames.cs",
-              "ViewState": "AQIAAHwAAAAAAAAAAAAuwJIAAAAoAAAA",
+              "ViewState": "AQIAAH8AAAAAAAAAAAAuwJcAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T14:08:26.9Z",
+              "WhenOpened": "2024-07-21T22:16:50.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DungeonGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\backend\\DungeonGenerator.cs",
+              "RelativeDocumentMoniker": "dungeon_crawling\\backend\\DungeonGenerator.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\backend\\DungeonGenerator.cs",
+              "RelativeToolTip": "dungeon_crawling\\backend\\DungeonGenerator.cs",
+              "ViewState": "AQIAAH8AAAAAAAAAAAAcwFAAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T22:15:14.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DungeonScreen.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\DungeonScreen.cs",
+              "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\DungeonScreen.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\DungeonScreen.cs",
+              "RelativeToolTip": "dungeon_crawling\\scenes\\DungeonScreen.cs",
+              "ViewState": "AQIAAPcAAAAAAAAAAAAEwBQBAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T22:08:04.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BattleEnemyScene.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\BattleEnemyScene.cs",
+              "RelativeDocumentMoniker": "screens\\BattleEnemyScene.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\BattleEnemyScene.cs",
+              "RelativeToolTip": "screens\\BattleEnemyScene.cs",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAewI8AAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T22:07:18.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BattleSceneObject.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\BattleSceneObject.cs",
+              "RelativeDocumentMoniker": "battle\\BattleSceneObject.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\BattleSceneObject.cs",
+              "RelativeToolTip": "battle\\BattleSceneObject.cs",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAlwEkAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T22:06:44.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EntityDatabase.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\EntityDatabase.cs",
+              "RelativeDocumentMoniker": "EntityDatabase.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\EntityDatabase.cs",
+              "RelativeToolTip": "EntityDatabase.cs",
+              "ViewState": "AQIAAA8BAAAAAAAAAAAcwCMBAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T22:04:44.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BuffEnemyFactory.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
+              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
+              "RelativeToolTip": "entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAwwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T21:51:14.378Z",
               "EditorCaption": ""
             }
           ]
