@@ -80,6 +80,10 @@ namespace AscendedZ.entities
         public static readonly string Fledan = "Fledan";
         public static readonly string Walds = "Walds";
 
+        public static readonly string Paca = "Paca";
+        public static readonly string Wigfred = "Wigfred";
+        public static readonly string Lyley = "Lyley";
+
         // agro - status
         public static readonly string Thylaf = "Thylaf"; // elec
         public static readonly string Arwig = "Arwig"; // ice
@@ -133,6 +137,11 @@ namespace AscendedZ.entities
         public static readonly string Bue = "Bue"; // (AE) turns = 2, ice
         public static readonly string Bued = "Bued"; // (AE) turns = 2, fire
         public static readonly string Bureen = "Bureen"; // (AE) turns = 2, wind
+
+        // eye enemies
+        public static readonly string Acardeb = "Acardeb";
+        public static readonly string Darol = "Darol";
+        public static readonly string Hesbet = "Hesbet";
 
         // Bosses (Normal)
         public static readonly string Harbinger = "Harbinger, Mangler of Legs";

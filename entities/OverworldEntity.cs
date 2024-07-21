@@ -137,7 +137,12 @@ namespace AscendedZ.entities.partymember_objects
             if (FusionGrade > 0)
                 refundYield *= FusionGrade;
 
-            return $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}\nRefund Yield: {refundYield} VC";
+            string final = $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}\nRefund Yield: {refundYield} VC";
+
+            if (FusionGrade > 0)
+                final = $"Fusion Grade {FusionGrade}\n{final}";
+
+            return final;
         }
 
         public string GetFusionString()

@@ -247,7 +247,8 @@ namespace AscendedZ
                                 EnemyNames.Bue, EnemyNames.Bued, EnemyNames.Bureen,
                                 EnemyNames.Wennald, EnemyNames.Garcar, EnemyNames.LaChris,
                                 EnemyNames.Isumforth, EnemyNames.Ingesc, EnemyNames.Rahfortin,
-                                EnemyNames.Leswith
+                                EnemyNames.Leswith, EnemyNames.Paca, EnemyNames.Wigfred, EnemyNames.Lyley,
+                                EnemyNames.Acardeb, EnemyNames.Darol, EnemyNames.Hesbet
                             });
                         }
 

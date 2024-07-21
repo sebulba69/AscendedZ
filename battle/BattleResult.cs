@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace AscendedZ.battle
 {
-    public enum BattleResultType { Wk, Rs, Nu, Dr, Normal, HPGain, StatusApplied, StatusRemoved, Pass, Retreat }
+    public enum BattleResultType { Wk, Rs, Nu, Dr, Normal, HPGain, StatusApplied, StatusRemoved, Pass, Retreat, BeastEye, DragonEye }
 
     /// <summary>
     /// This is the class the UI is going to use to know what information needs to be shown on the screen

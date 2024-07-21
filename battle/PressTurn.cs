@@ -54,12 +54,27 @@ namespace AscendedZ.battle
                     break;
                 case BattleResultType.Retreat:
                     break;
+                case BattleResultType.BeastEye:
+                    DoEyeTurn(2);
+                    break;
+                case BattleResultType.DragonEye:
+                    DoEyeTurn(4);
+                    break;
                 default:
                     this.FullTurn();
                     break;
             }
         }
 
+        private void DoEyeTurn(int halfTurns)
+        {
+            FullTurn();
+
+            for (int t = 0; t < halfTurns; t++)
+            {
+                _turnIcons.Insert(0, 1);
+            }
+        }
         /// <summary>
         /// Find the first 2 and turn it into a 1. If no 2 exists, then do a full turn.
         /// </summary>

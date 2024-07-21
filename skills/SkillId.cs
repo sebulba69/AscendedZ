@@ -8,6 +8,6 @@ namespace AscendedZ.skills
 {
     public enum SkillId
     {
-        Elemental, Healing, Status, RemoveStatus, Pass, Retreat, Passive
+        Elemental, Healing, Status, RemoveStatus, Pass, Retreat, Eye
     }
 }

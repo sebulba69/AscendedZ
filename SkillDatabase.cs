@@ -111,6 +111,24 @@ namespace AscendedZ
             return statusSkill;
         }
         #endregion
+
+        public static EyeSkill BeastEye
+        {
+            get
+            {
+                EyeSkill eyeSkill = new EyeSkill() 
+                {
+                    BaseName = "Beast's Eye",
+                    TargetType = TargetTypes.SINGLE_TEAM,
+                    StartupAnimation = SkillAssets.STARTUP1_MG,
+                    EyeType = battle.BattleResultType.BeastEye,
+                    Icon = SkillAssets.BEAST_EYE
+                };
+
+                return eyeSkill;
+            }
+        }
+
         public static StatusSkill Stun
         {
             get

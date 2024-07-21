@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1721577238
+::res://::1721579087
 ArtAssets.cs::CSharpScript::-1::1721280108::0::1::::<><>::
 ascended_icon.png::CompressedTexture2D::5218734614891675472::1721275369::1721275369::1::::<><>::
 AssetUtil.cs::CSharpScript::-1::1721275369::0::1::::<><>::
@@ -184,7 +184,7 @@ Up1.ogg::AudioStreamOggVorbis::4801578401146985132::1720300251::1720300251::1:::
 Wind2.ogg::AudioStreamOggVorbis::6368581655505901195::1721275370::1721275370::1::::<><>::
 Wind5.ogg::AudioStreamOggVorbis::8804042799302199501::1721275370::1721275370::1::::<><>::
 wind_1.ogg::AudioStreamOggVorbis::6154348787821489821::1720300251::1720300251::1::::<><>::
-::res://entities/::1721576857
+::res://entities/::1721579237
 BattleEntity.cs::CSharpScript::-1::1721275370::0::1::::<><>::
 BattleEntityStatuses.cs::CSharpScript::-1::1721275370::0::1::::<><>::
 BossHPStatus.cs::CSharpScript::-1::1720300320::0::1::::<><>::
@@ -206,7 +206,7 @@ Harbinger.cs::CSharpScript::-1::1721275371::0::1::::<><>::
 KellamVonStein.cs::CSharpScript::-1::1721275371::0::1::::<><>::
 SableVonner.cs::CSharpScript::-1::1721275371::0::1::::<><>::
 ::res://entities/enemy_objects/dungeon_crawl_bosses/::1721186721
-::res://entities/enemy_objects/enemy_ais/::1721519739
+::res://entities/enemy_objects/enemy_ais/::1721578458
 AlternatingEnemy.cs::CSharpScript::-1::1721275371::0::1::::<><>::
 BossHellAI.cs::CSharpScript::-1::1721275371::0::1::::<><>::
 BuffEnemy.cs::CSharpScript::-1::1721275371::0::1::::<><>::
@@ -214,8 +214,9 @@ CopyCatEnemy.cs::CSharpScript::-1::1721275371::0::1::::<><>::
 ProtectorEnemy.cs::CSharpScript::-1::1721275371::0::1::::<><>::
 ResistanceChangerEnemy.cs::CSharpScript::-1::1721519739::0::1::::<><>::
 StatusAttackEnemy.cs::CSharpScript::-1::1721275371::0::1::::<><>::
+SupportEnemy.cs::CSharpScript::-1::1721578458::0::1::::<><>::
 WeaknessHunterEnemy.cs::CSharpScript::-1::1721275371::0::1::::<><>::
-::res://entities/enemy_objects/enemy_makers/::1721577289
+::res://entities/enemy_objects/enemy_makers/::1721579066
 AlternatingEnemyFactory.cs::CSharpScript::-1::1721361769::0::1::::<><>::
 BuffEnemyFactory.cs::CSharpScript::-1::1721361739::0::1::::<><>::
 CopyCatEnemyFactory.cs::CSharpScript::-1::1721361775::0::1::::<><>::
@@ -229,7 +230,7 @@ WeaknessHunterEnemyFactory.cs::CSharpScript::-1::1721361798::0::1::::<><>::
 ::res://entities/partymember_objects/::1721498813
 PartyMemberGenerator.cs::CSharpScript::-1::1721498813::0::1::::<><>::
 PlayerParty.cs::CSharpScript::-1::1721275371::0::1::::<><>::
-::res://entity_pics/::1721577369
+::res://entity_pics/::1721579286
 acardeb.png::CompressedTexture2D::3553278162881376196::1486858038::1721575498::1::::<><>::
 aldmas.png::CompressedTexture2D::3396274833879512829::1721275371::1721275371::1::::<><>::
 ancrow.png::CompressedTexture2D::7722478497495348412::1721275371::1721275371::1::::<><>::
@@ -238,6 +239,7 @@ anrol.png::CompressedTexture2D::6555894014342134010::1485183677::1707189965::1::
 arwig.png::CompressedTexture2D::12551720728401520::1706678954::1706678954::1::::<><>::
 ashen ash.png::CompressedTexture2D::1632686070276497766::1721275371::1721275371::1::::<><>::
 baring.png::CompressedTexture2D::7124798224414738420::1721275371::1721275371::1::::<><>::
+bernasbeorth.png::CompressedTexture2D::7842308615650300054::1487639137::1721578682::1::::<><>::
 bue.png::CompressedTexture2D::8118895098811742639::1721275371::1721275371::1::::<><>::
 bued.png::CompressedTexture2D::4861238160944375484::1721275371::1721275371::1::::<><>::
 bureen.png::CompressedTexture2D::333666445585847589::1721275371::1721275371::1::::<><>::
@@ -275,6 +277,7 @@ hahere.png::CompressedTexture2D::2703083589555681601::1721275371::1721275371::1:
 hallou.png::CompressedTexture2D::4350750970455711540::1721275371::1721275371::1::::<><>::
 halvia.png::CompressedTexture2D::5503613083761775667::1706678954::1706678954::1::::<><>::
 harbinger, mangler of legs.png::CompressedTexture2D::7241829994291890089::1706678954::1706678954::1::::<><>::
+hesbet.png::CompressedTexture2D::6893437937220636812::1486255139::1721579301::1::::<><>::
 hesret.png::CompressedTexture2D::7893583642759821634::1570647804::1707083269::1::::<><>::
 ingesc.png::CompressedTexture2D::1026443824171072151::1486850531::1721575498::1::::<><>::
 isenald.png::CompressedTexture2D::6070562470440178457::1706678954::1706678954::1::::<><>::
@@ -291,6 +294,7 @@ lesdan.png::CompressedTexture2D::958773235034534447::1721275371::1721275371::1::
 leswith.png::CompressedTexture2D::681949290464926617::1487165271::1721575498::1::::<><>::
 liamlas.png::CompressedTexture2D::4683094375901055914::1706678954::1706678954::1::::<><>::
 locphiedon.png::CompressedTexture2D::7172990150909537536::1706678954::1706678954::1::::<><>::
+lyley.png::CompressedTexture2D::8155476890869071702::1570898590::1721579135::1::::<><>::
 marchris.png::CompressedTexture2D::9189376015871177880::1721275371::1721275371::1::::<><>::
 maxwald.png::CompressedTexture2D::4374247954209951318::1706678954::1706678954::1::::<><>::
 muel-wise.png::CompressedTexture2D::5822728629260445228::1721275371::1721275371::1::::<><>::
@@ -299,6 +303,7 @@ nanfrea.png::CompressedTexture2D::8574490269982003724::1570646366::1707190918::1
 ocura.png::CompressedTexture2D::3871645143417479631::1721275371::1721275371::1::::<><>::
 orahcar.png::CompressedTexture2D::7319526180349330092::1706678954::1706678954::1::::<><>::
 otem.png::CompressedTexture2D::8781407872161088052::1571029750::1707083269::1::::<><>::
+paca.png::CompressedTexture2D::6577973818199827815::1486783736::1721579135::1::::<><>::
 paria.png::CompressedTexture2D::613938855093364404::1706678954::1706678954::1::::<><>::
 pebrand.png::CompressedTexture2D::8940257314516532764::1721275371::1721275371::1::::<><>::
 pecheal.png::CompressedTexture2D::5749582034064639010::1706678954::1706678954::1::::<><>::
@@ -326,6 +331,7 @@ venforth.png::CompressedTexture2D::6433634653171767318::1721275371::1721275371::
 vidwerd.png::CompressedTexture2D::8476096984994604953::1721275371::1721275371::1::::<><>::
 walds.png::CompressedTexture2D::6924910645951167955::1721275371::1721275371::1::::<><>::
 wennald.png::CompressedTexture2D::2869410905732452255::1721275371::1721275371::1::::<><>::
+wigfred.png::CompressedTexture2D::6911253086053593913::1486861024::1721579135::1::::<><>::
 winegiful.png::CompressedTexture2D::8876467144239864490::1721275371::1721275371::1::::<><>::
 x'trasu.png::CompressedTexture2D::6129512919757828677::1721275371::1721275371::1::::<><>::
 yuudam.png::CompressedTexture2D::7364819835394886078::1706678954::1706678954::1::::<><>::
@@ -414,7 +420,7 @@ BarV5_ProgressBarBorder.png::CompressedTexture2D::6286064946586930276::167809411
 ::res://resistances/::1721275393
 ResistanceArray.cs::CSharpScript::-1::1721275393::0::1::::<><>::
 ResistanceType.cs::CSharpScript::-1::1720300251::0::1::::<><>::
-::res://screens/::1721577148
+::res://screens/::1721578169
 ActionMenu.cs::CSharpScript::-1::1721493983::0::1::::<>PanelContainer<>::
 ActionMenu.tscn::PackedScene::4702874803656428896::1721275393::0::1::::<><>::res://screens/ActionMenu.cs<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 APBarStyleBox.tres::StyleBoxFlat::184845878767122209::1720913096::0::1::::<><>::

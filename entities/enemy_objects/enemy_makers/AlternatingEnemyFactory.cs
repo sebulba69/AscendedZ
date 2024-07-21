@@ -24,6 +24,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.CattuTDroni] = MakeCattuTDroni;
             _functionDictionary[EnemyNames.Aldmas] = MakeAldmas;
             _functionDictionary[EnemyNames.Fridan] = MakeFridan;
+            _functionDictionary[EnemyNames.Paca] = MakePaca;
+            _functionDictionary[EnemyNames.Wigfred] = MakeWigfred;
+            _functionDictionary[EnemyNames.Lyley] = MakeLyley;
+            _functionDictionary[EnemyNames.Acardeb] = MakeAcardeb;
+            _functionDictionary[EnemyNames.Darol] = MakeDarol;
+            _functionDictionary[EnemyNames.Hesbet] = MakeHesbet;
             _functionDictionary[EnemyNames.Bue] = () => MakeBu(EnemyNames.Bue, 15, Elements.Ice);
             _functionDictionary[EnemyNames.Bued] = () => MakeBu(EnemyNames.Bued, 15, Elements.Fire);
             _functionDictionary[EnemyNames.Bureen] = () => MakeBu(EnemyNames.Bureen, 15, Elements.Wind);
@@ -136,6 +142,73 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return fridan;
         }
 
+        public Enemy MakePaca() 
+        { 
+            var paca = MakeSupportEnemy(EnemyNames.Paca, 9);
+
+            paca.Skills.Add(SkillDatabase.Dark1.Clone());
+            paca.Skills.Add(SkillDatabase.Light1.Clone());
+            paca.Skills.Add(SkillDatabase.Wind1.Clone());
+
+            return paca;
+        }
+
+        public Enemy MakeWigfred() 
+        { 
+            var wigfred = MakeSupportEnemy(EnemyNames.Wigfred, 9);
+
+            wigfred.Skills.Add(SkillDatabase.Elec1.Clone());
+            wigfred.Skills.Add(SkillDatabase.Ice1.Clone());
+            wigfred.Skills.Add(SkillDatabase.ElecAll.Clone());
+
+            return wigfred;
+        }
+
+        public Enemy MakeLyley() 
+        { 
+            var lyley = MakeSupportEnemy(EnemyNames.Lyley, 9);
+
+            lyley.Skills.Add(SkillDatabase.Fire1.Clone());
+            lyley.Skills.Add(SkillDatabase.Wind1.Clone());
+            lyley.Skills.Add(SkillDatabase.FireAll.Clone());
+
+            return lyley;
+        }
+
+        public Enemy MakeAcardeb()
+        {
+            var acardeb = MakeEyeEnemy(EnemyNames.Acardeb, 11, SkillDatabase.BeastEye);
+
+            acardeb.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
+
+            acardeb.Skills.Add(SkillDatabase.Fire1.Clone());
+
+            return acardeb;
+        }
+
+        public Enemy MakeDarol()
+        {
+            var darol = MakeEyeEnemy(EnemyNames.Darol, 11, SkillDatabase.BeastEye);
+
+            darol.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
+
+            darol.Skills.Add(SkillDatabase.Dark1.Clone());
+
+            return darol;
+        }
+
+        public Enemy MakeHesbet()
+        {
+            var darol = MakeEyeEnemy(EnemyNames.Hesbet, 11, SkillDatabase.BeastEye);
+
+            darol.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
+
+            darol.Skills.Add(SkillDatabase.Elec1.Clone());
+
+            return darol;
+        }
+
+
         public Enemy MakeBu(string name, int hp, Elements element)
         {
             var bu = MakeAlternatingEnemy(name, hp);
@@ -144,6 +217,29 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             bu.Skills.Add(SkillDatabase.GetSkillFromElement(element));
             bu.Turns = 2;
             return bu;
+        }
+
+        protected Enemy MakeEyeEnemy(string name, int hp, EyeSkill eyeSkill)
+        {
+            return new EyeEnemy
+            {
+                Name = $"[EYE] {name}",
+                MaxHP = hp + _tierBoost,
+                Image = CharacterImageAssets.GetImagePath(name),
+                Resistances = new ResistanceArray(),
+                EyeSkill = eyeSkill
+            };
+        }
+
+        protected Enemy MakeSupportEnemy(string name, int hp)
+        {
+            return new SupportEnemy
+            {
+                Name = $"[SPRT] {name}",
+                MaxHP = hp + _tierBoost,
+                Image = CharacterImageAssets.GetImagePath(name),
+                Resistances = new ResistanceArray()
+            };
         }
 
         protected Enemy MakeAlternatingEnemy(string name, int hp)
