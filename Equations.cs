@@ -62,7 +62,7 @@ namespace AscendedZ
             return index;
         }
 
-        public static int GetDungeonCrawlEncounters(int tier)
+        public static int GetDungeonCrawlEvents(int tier)
         {
             return (tier / 10) + 2;
         }

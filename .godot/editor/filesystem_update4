@@ -6,6 +6,8 @@ res://dungeon_crawling/scenes/crawl_ui/PartyMemberDCDisplay.tscn
 res://screens/EmbarkScreen.tscn
 res://screens/RecruitCustomScreen.tscn
 res://screens/RecruitScreen.tscn
+res://misc_icons/Icon.tscn
+res://screens/StartScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs
@@ -48,4 +50,3 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://misc_icons/Icon.tscn

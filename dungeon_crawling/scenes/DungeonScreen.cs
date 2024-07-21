@@ -237,21 +237,10 @@ public partial class DungeonScreen : Transitionable2DScene
         switch (id)
         {
             case TileEventId.Item:
-                
-                var randomRewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
-                _itemSfxPlayer.Play();
-
-                _crawlUI.Visible = false;
-                _popup.AddChild(randomRewards);
-
-                randomRewards.RandomizeDungeonCrawlRewards();
-
-                await ToSignal(randomRewards, "tree_exited");
-                SetCrawlValues();
-                _crawlUI.Visible = true;
-                _currentScene.Scene.TurnOffGraphic();
-                PersistentGameObjects.Save();
-                _currentScene.Scene.TurnOffGraphic();
+            case TileEventId.SpecialItem:
+            case TileEventId.PotOfGreed:
+                await ShowRewardScreen(id);
+                ResetUIAfterItem();
                 break;
 
             case TileEventId.BossDialog:
@@ -268,8 +257,8 @@ public partial class DungeonScreen : Transitionable2DScene
                 _currentScene.Scene.TurnOffGraphic();
                 PersistentGameObjects.Save();
                 break;
+            case TileEventId.SpecialEncounter:
             case TileEventId.Encounter:
-
                 var combatScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
                 var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
 
@@ -289,7 +278,7 @@ public partial class DungeonScreen : Transitionable2DScene
                     retreat = true;
                 };
 
-                combatScene.SetupForDungeonCrawlEncounter(_battlePlayers);
+                combatScene.SetupForDungeonCrawlEncounter(_battlePlayers, (id == TileEventId.SpecialEncounter));
 
                 transition.PlayFadeOut();
                 await ToSignal(transition.Player, "animation_finished");
@@ -332,22 +321,6 @@ public partial class DungeonScreen : Transitionable2DScene
                 SetCrawlValues();
                 _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
                 PersistentGameObjects.Save();
-                break;
-
-            case TileEventId.PotOfGreed:
-                var potOfGreedRewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
-                _itemSfxPlayer.Play();
-
-                _crawlUI.Visible = false;
-                _popup.AddChild(potOfGreedRewards);
-
-                potOfGreedRewards.InitializePotOfGreedRewards();
-
-                await ToSignal(potOfGreedRewards, "tree_exited");
-                SetCrawlValues();
-                _crawlUI.Visible = true;
-                PersistentGameObjects.Save();
-                _currentScene.Scene.TurnOffGraphic();
                 break;
 
             case TileEventId.Orb:
@@ -419,14 +392,37 @@ public partial class DungeonScreen : Transitionable2DScene
         _processingEvent = false;
     }
 
+    private async Task ShowRewardScreen(TileEventId id)
+    {
+        var reward = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
+        _itemSfxPlayer.Play();
+        _crawlUI.Visible = false;
+        _popup.AddChild(reward);
+
+        if (id == TileEventId.PotOfGreed)
+            reward.InitializePotOfGreedRewards();
+        else if (id == TileEventId.SpecialItem)
+            reward.InitializeDungeonCrawlSpecialItems();
+        else if (id == TileEventId.Item)
+            reward.RandomizeDungeonCrawlRewards();
+        else
+            reward.InitializeDungeonCrawlTierRewards();
+
+        await ToSignal(reward, "tree_exited");
+    }
+
+    private void ResetUIAfterItem()
+    {
+        SetCrawlValues();
+        _crawlUI.Visible = true;
+        PersistentGameObjects.Save();
+        _currentScene.Scene.TurnOffGraphic();
+    }
+
     private async void _OnContinueToNextFloor()
     {
         _floorExitScene.Visible = false;
-        var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
-        _popup.AddChild(rewards);
-        rewards.InitializeDungeonCrawlTierRewards();
-        _itemSfxPlayer.Play();
-        await ToSignal(rewards, "tree_exited");
+        await ShowRewardScreen(TileEventId.Exit);
 
         var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
 

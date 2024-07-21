@@ -23,8 +23,19 @@ namespace AscendedZ.dungeon_crawling.backend
         public DungeonGenerator(int tier) 
         {
             _tier = tier;
-            _eventCount = Equations.GetDungeonCrawlEncounters(tier);
-            int dimensions = (_eventCount * 2);
+            _eventCount = Equations.GetDungeonCrawlEvents(tier) * 2;
+            int dimensions = _eventCount;
+
+            if (_tier < 10)
+            {
+                _eventCount /= 2;
+                Encounters = (_eventCount / 2) + 1;
+            }
+            else
+            {
+                Encounters = (_eventCount / 4) + 1;
+            }
+            
             if (tier % 50 == 0)
             {
                 _bossEncounter = true;
@@ -41,25 +52,20 @@ namespace AscendedZ.dungeon_crawling.backend
             _totalWeight = 0;
             _pathTypes = new List<WeightedItem<PathType>>()
             {
-                new WeightedItem<PathType>(PathType.Item, 55),
-                new WeightedItem<PathType>(PathType.Heal, 20)
+                new WeightedItem<PathType>(PathType.Item, 45),
+                new WeightedItem<PathType>(PathType.Heal, 25)
             };
 
             if (dimensions > 4)
             {
-                _pathTypes.Add(new WeightedItem<PathType>(PathType.PotOfGreed, 15));
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.PotOfGreed, 20));
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.SpecialItem, 20));
             }
 
             if(dimensions > 6)
             {
-                _pathTypes.Add(new WeightedItem<PathType>(PathType.BuceOrb, 15));
-                _pathTypes.Add(new WeightedItem<PathType>(PathType.Teleporter, 15));
-            }
-
-            if(dimensions > 8)
-            {
-                _pathTypes.Add(new WeightedItem<PathType>(PathType.Fountain, 10));
-                _pathTypes.Add(new WeightedItem<PathType>(PathType.Teleporter, 10));
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.BuceOrb, 20));
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.SpecialEncounter, 50));
             }
 
             _pathTypes.ForEach(item => _totalWeight += item.Weight);
@@ -142,7 +148,9 @@ namespace AscendedZ.dungeon_crawling.backend
             }
 
             List<TileEventId> generatedPathTypes = new List<TileEventId>();
-            
+
+            generatedPathTypes.Add(TileEventId.Start);
+
             for (int e = 0; e < _eventCount; e++)
             {
                 var mazeTile = openTiles[_rng.Next(openTiles.Count)];
@@ -152,62 +160,80 @@ namespace AscendedZ.dungeon_crawling.backend
                 {
                     case PathType.Item:
                         SetTileToItemTile(mazeTile);
-                        generatedPathTypes.Add(mazeTile.TileEventId);
-                        openTiles.Remove(mazeTile);
+                        RemoveGeneratedTileFromOpen(openTiles, generatedPathTypes, mazeTile);
+                        break;
+
+                    case PathType.SpecialItem:
+                        SetTileToSpecialItemTile(mazeTile);
+                        RemoveGeneratedTileFromOpen(openTiles, generatedPathTypes, mazeTile);
+                        break;
+
+                    case PathType.SpecialEncounter:
+                        SetTileToSpecialEncounter(mazeTile);
+                        RemoveGeneratedTileFromOpen(openTiles, generatedPathTypes, mazeTile);
                         break;
 
                     case PathType.Heal:
                         SetTileToHealing(mazeTile);
-                        generatedPathTypes.Add(mazeTile.TileEventId);
-                        openTiles.Remove(mazeTile);
+                        RemoveGeneratedTileFromOpen(openTiles, generatedPathTypes, mazeTile);
                         break;
 
                     case PathType.BuceOrb:
                         SetTileToBuceOrb(mazeTile);
-                        generatedPathTypes.Add(mazeTile.TileEventId);
-                        openTiles.Remove(mazeTile);
+                        RemoveGeneratedTileFromOpen(openTiles, generatedPathTypes, mazeTile);
                         break;
 
                     case PathType.PotOfGreed:
                         SetTileToPotOfGreed(mazeTile);
-                        generatedPathTypes.Add(mazeTile.TileEventId);
-                        openTiles.Remove(mazeTile);
-                        break;
-
-                    case PathType.Fountain:
-                        SetTileToFountain(mazeTile);
-                        generatedPathTypes.Add(mazeTile.TileEventId);
-                        openTiles.Remove(mazeTile);
-                        break;
-
-                    case PathType.Teleporter:
-                        var tile1 = mazeTile;
-                        openTiles.Remove(tile1);
-                        var tile2 = openTiles[_rng.Next(openTiles.Count)];
-                        openTiles.Remove(tile2);
-
-                        SetTilesToTeleporters(tile1, tile2);
-                        generatedPathTypes.Add(tile1.TileEventId);
+                        RemoveGeneratedTileFromOpen(openTiles, generatedPathTypes, mazeTile);
                         break;
 
                 }
+            }
+
+            int dimensions = _tiles.GetLength(0);
+
+            if(dimensions > 4)
+            {
+                int tpNumber = _tier/10;
+
+                for(int t = 0; t < tpNumber; t++)
+                {
+                    var tile1 = openTiles[_rng.Next(openTiles.Count)];
+                    openTiles.Remove(tile1);
+                    var tile2 = openTiles[_rng.Next(openTiles.Count)];
+                    openTiles.Remove(tile2);
+
+                    SetTilesToTeleporters(tile1, tile2);
+                    generatedPathTypes.Add(tile1.TileEventId);
+                }
+            }
+
+            if(dimensions > 8)
+            {
+                var fountain = openTiles[_rng.Next(openTiles.Count)];
+                SetTileToFountain(fountain);
+                generatedPathTypes.Add(fountain.TileEventId);
+                openTiles.Remove(fountain);
             }
 
             SetTileToExit(openTiles[_rng.Next(openTiles.Count)]);
             generatedPathTypes.Add(TileEventId.Exit);
 
             var nonEventTiles = maze.FindAll(tiles => !generatedPathTypes.Contains(tiles.TileEventId));
-            for (int e = 0; e < _eventCount; e++)
+            int encounterCount = Encounters * 2;
+            for (int e = 0; e < encounterCount; e++)
             {
                 SetTileToEncounter(nonEventTiles[_rng.Next(nonEventTiles.Count)]);
-                Encounters++;
             }
 
-            Encounters /= 2;
-            if (Encounters == 0)
-                Encounters = 1;
-
             return _tiles;
+        }
+
+        private void RemoveGeneratedTileFromOpen(List<Tile> openTiles, List<TileEventId> generatedPathTypes, Tile mazeTile)
+        {
+            generatedPathTypes.Add(mazeTile.TileEventId);
+            openTiles.Remove(mazeTile);
         }
 
         /// <summary>
@@ -274,6 +300,15 @@ namespace AscendedZ.dungeon_crawling.backend
             tile.TileEventId = id;
         }
 
+        private void SetTileToSpecialItemTile(Tile tile)
+        {
+            string graphic = "res://dungeon_crawling/art_assets/entity_icons/special_item.png";
+            TileEventId id = TileEventId.SpecialItem;
+
+            tile.Graphic = graphic;
+            tile.TileEventId = id;
+        }
+
         private void SetTileToHealing(Tile tile)
         {
             string graphic = "res://dungeon_crawling/art_assets/entity_icons/health.png";
@@ -287,6 +322,15 @@ namespace AscendedZ.dungeon_crawling.backend
         {
             string graphic = "res://dungeon_crawling/art_assets/entity_icons/encounter.png";
             TileEventId id = TileEventId.Encounter;
+
+            tile.Graphic = graphic;
+            tile.TileEventId = id;
+        }
+
+        private void SetTileToSpecialEncounter(Tile tile)
+        {
+            string graphic = "res://dungeon_crawling/art_assets/entity_icons/special_encounter.png";
+            TileEventId id = TileEventId.SpecialEncounter;
 
             tile.Graphic = graphic;
             tile.TileEventId = id;

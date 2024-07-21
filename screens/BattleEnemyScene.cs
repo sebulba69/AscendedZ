@@ -113,13 +113,13 @@ public partial class BattleEnemyScene : Node2D
         InitializeBattleScene();
     }
 
-    public void SetupForDungeonCrawlEncounter(List<BattlePlayer> players)
+    public void SetupForDungeonCrawlEncounter(List<BattlePlayer> players, bool random)
     {
         _dungeonCrawlEncounter = true;
-        InitializeBattleScene(players);
+        InitializeBattleScene(players, random);
     }
 
-    private void InitializeBattleScene(List<BattlePlayer> players = null)
+    private void InitializeBattleScene(List<BattlePlayer> players = null, bool random = false)
     {
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
         int tier = (_dungeonCrawlEncounter) ? gameObject.TierDC : gameObject.Tier;
@@ -141,7 +141,8 @@ public partial class BattleEnemyScene : Node2D
         }
         else
         {
-            _battleSceneObject.InitializeEnemies(tier + 5, _dungeonCrawlEncounter);
+            int dcTier = tier + 5;
+            _battleSceneObject.InitializeEnemies(dcTier, _dungeonCrawlEncounter, random);
         }
             
 

@@ -143,6 +143,22 @@ namespace AscendedZ.entities
         public static readonly string Darol = "Darol";
         public static readonly string Hesbet = "Hesbet";
 
+        // random enemies
+        public static readonly string Charcas = "Charcas";
+        public static readonly string Samjaris = "Samjaris";
+        public static readonly string Tily = "Tily";
+        public static readonly string ReeshiDeeme = "Reeshi Deeme";
+        public static readonly string Nanles = "Nanles";
+        public static readonly string Lyleof = "Lylelof";
+        public static readonly string Keri = "Keri";
+        public static readonly string FoameShorti = "Foame Shorti";
+        public static readonly string Ethel = "Ethel";
+        public static readonly string DrigaBoli = "Driga Boli";
+        public static readonly string ChAffar = "Ch'Affar";
+        public static readonly string Ardeb = "Ardeb";
+        public static readonly string Ansung = "Ansung";
+        public static readonly string Hahere = "Hahere";
+
         // Bosses (Normal)
         public static readonly string Harbinger = "Harbinger, Mangler of Legs";
         public static readonly string Elliot_Onyx = "Elliot Onyx";

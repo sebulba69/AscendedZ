@@ -281,6 +281,26 @@ namespace AscendedZ
             return encounter;
         }
 
+        public static List<Enemy> MakeRandomEnemyEncounter(int tier)
+        {
+            List<Enemy> encounter = new List<Enemy>();
+
+            int min = 3;
+            int max = 6;
+
+            int encounterNumber = RANDOM.Next(min, max);
+            var random = new RandomEnemyFactory();
+            random.SetTier(tier);
+            for (int e = 0; e < encounterNumber; e++) 
+            {
+                var enemy = random.GenerateEnemy(RANDOM);
+                enemy.Boost(tier);
+                encounter.Add(enemy);
+            }
+
+            return encounter;
+        }
+
         public static List<OverworldEntity> MakeShopVendorWares(int tier, bool isCustom = false)
         {
             List<OverworldEntity> partyMembers = new List<OverworldEntity>();

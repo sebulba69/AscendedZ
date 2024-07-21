@@ -75,6 +75,20 @@ public partial class RewardScreen : Control
         SetupRewards();
     }
 
+    public void InitializeDungeonCrawlSpecialItems()
+    {
+        int tier = _gameObject.TierDC;
+
+        _rewards = new List<Currency>()
+        {
+            new Vorpex() { Amount = tier * 3 },
+            new Dellencoin() { Amount = 2 * tier },
+            new PartyCoin() { Amount = tier + 10 }
+        };
+
+        SetupRewards();
+    }
+
     public void InitializePotOfGreedRewards()
     {
         var currency = _gameObject.MainPlayer.Wallet.Currency;

@@ -8,6 +8,7 @@ namespace AscendedZ.dungeon_crawling
 {
     public enum PathType
     {
-        Heal, Item, Teleporter, Fountain, PotOfGreed, BuceOrb
+        Heal, Item, Teleporter, Fountain, PotOfGreed, BuceOrb,
+        SpecialItem, SpecialEncounter, Terraforming
     }
 }

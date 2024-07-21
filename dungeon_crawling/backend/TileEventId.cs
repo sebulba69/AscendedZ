@@ -8,6 +8,7 @@ namespace AscendedZ.dungeon_crawling.backend
 {
     public enum TileEventId
     {
-        None, Start, Encounter, Item, Heal, Exit, PotOfGreed, Orb, Fountain, Portal, BossDialog
+        None, Start, Encounter, Item, Heal, Exit, PotOfGreed, Orb, Fountain, Portal, BossDialog,
+        SpecialItem, SpecialEncounter
     }
 }
