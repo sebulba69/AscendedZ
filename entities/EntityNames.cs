@@ -50,7 +50,7 @@ namespace AscendedZ.entities
 
         public static readonly string Lesdan = "Lesdan"; // Wind
         public static readonly string Ronboard = "Ronbaord"; // Wind
-        public static readonly string Dusam = "Dusam"; // Wind
+        public static readonly string Dosam = "Dosam"; // Wind
 
         public static readonly string Tinedo = "Tinedo"; // Elec
         public static readonly string Xtrasu = "X'Trasu"; // Elec

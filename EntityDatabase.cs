@@ -137,7 +137,7 @@ namespace AscendedZ
         {
             { Elements.Fire, PartyNames.Pher },
             { Elements.Ice,  PartyNames.Isenann},
-            { Elements.Wind, PartyNames.Dusam },
+            { Elements.Wind, PartyNames.Dosam },
             { Elements.Elec, PartyNames.Laanard },
             { Elements.Light, PartyNames.Hallou },
             { Elements.Dark, PartyNames.Dinowaru }

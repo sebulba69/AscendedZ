@@ -70,7 +70,7 @@ namespace AscendedZ.entities.partymember_objects
         {
             { PartyNames.Pher , Elements.Fire },
             { PartyNames.Isenann , Elements.Ice},
-            { PartyNames.Dusam , Elements.Wind },
+            { PartyNames.Dosam , Elements.Wind },
             { PartyNames.Laanard , Elements.Elec },
             { PartyNames.Hallou , Elements.Light },
             { PartyNames.Dinowaru , Elements.Dark }
