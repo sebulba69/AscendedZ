@@ -264,7 +264,10 @@ public partial class BattleEnemyScene : Node2D
                     BattleResult subResult = new BattleResult();
 
                     subResult.ResultType = result.Results[index];
-                    subResult.HPChanged = result.AllHPChanged[index];
+                    if(result.AllHPChanged.Count > 0)
+                    {
+                        subResult.HPChanged = result.AllHPChanged[index];
+                    }
                     subResult.SkillUsed = result.SkillUsed;
 
                     BattleEffectWrapper targetNodeEffects = new BattleEffectWrapper() { Result = subResult };
