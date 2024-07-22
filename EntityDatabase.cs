@@ -506,7 +506,7 @@ namespace AscendedZ
             // get the boss number
             index++;
 
-            int startingHP = 30 * index;
+            int startingHP = 15 * (index*5);
             return startingHP;
         }
 

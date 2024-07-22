@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1721616104
+::res://::1721620491
 ArtAssets.cs::CSharpScript::-1::1721603415::0::1::::<><>::
 ascended_icon.png::CompressedTexture2D::5218734614891675472::1721275369::1721275369::1::::<><>::
 AssetUtil.cs::CSharpScript::-1::1721275369::0::1::::<><>::
@@ -10,7 +10,7 @@ default_env.tres::Environment::5723441312748911875::1721612801::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1721512510::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1721601706::0::1::::<><>::
 Equations.cs::CSharpScript::-1::1721588627::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1721612865::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1721616241::0::1::::<><>::
 FrontBoxBossHP.tres::StyleBoxFlat::1760076622593413787::1721275369::0::1::::<><>::
 FrontBoxBossHPDC.tres::StyleBoxFlat::307405468150003703::1721276185::0::1::::<><>::
 icon.png::CompressedTexture2D::8476979344923658186::1676533345::1678056509::1::::<><>::
@@ -363,12 +363,12 @@ SaveEntry.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 SaveObject.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 ::res://json_interface_converters/::1721275371
 SkillConverter.cs::CSharpScript::-1::1721275371::0::1::::<><>::
-::res://misc_icons/::1721612895
+::res://misc_icons/::1721616271
 CurrencyDisplay.cs::CSharpScript::-1::1720300320::0::1::::<>GridContainer<>::
 CurrencyDisplay.tscn::PackedScene::8562439097474497904::1720373693::0::1::::<><>::res://misc_icons/CurrencyDisplay.cs<>uid://bqmfi0ome6yn4::::res://misc_icons/Icon.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 Icon.cs::CSharpScript::-1::1720300320::0::1::::<>TextureRect<>::
 Icon.tscn::PackedScene::3534533921528240495::1721612800::0::1::::<><>::uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>res://misc_icons/Icon.cs
-IconOutline.gdshader::Shader::-1::1721612895::0::1::::<><>::
+IconOutline.gdshader::Shader::-1::1721616271::0::1::::<><>::
 IconSet.png::CompressedTexture2D::550291359472638980::1720300251::1720300251::1::::<><>::
 ::res://music/::1721275389
 boss_victory.ogg::AudioStreamOggVorbis::5818420752927080643::1706678954::1706678954::1::::<><>::
@@ -437,7 +437,7 @@ BarV5_ProgressBarBorder.png::CompressedTexture2D::6286064946586930276::167809411
 ::res://resistances/::1721275393
 ResistanceArray.cs::CSharpScript::-1::1721275393::0::1::::<><>::
 ResistanceType.cs::CSharpScript::-1::1720300251::0::1::::<><>::
-::res://screens/::1721612801
+::res://screens/::1721616212
 ActionMenu.cs::CSharpScript::-1::1721493983::0::1::::<>PanelContainer<>::
 ActionMenu.tscn::PackedScene::4702874803656428896::1721612801::0::1::::<><>::res://screens/ActionMenu.cs<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 APBarStyleBox.tres::StyleBoxFlat::184845878767122209::1720913096::0::1::::<><>::
@@ -479,11 +479,11 @@ RecruitScreen.tres::StyleBoxFlat::-1::1720300321::0::1::::<><>::
 RecruitScreen.tscn::PackedScene::2189660189515570734::1721612800::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/RecruitScreen.cs<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
 RecruitScreenTabs.cs::CSharpScript::-1::1721494042::0::1::::<>CenterContainer<>::
 RecruitScreenTabs.tscn::PackedScene::7974684508538372717::1721500777::0::1::::<><>::res://screens/RecruitScreenTabs.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://6gxnbhp4n8rq::::res://screens/RecruitScreen.tscn<>uid://cu5quwy1w03eh::::res://screens/RecruitCustomScreen.tscn<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
-RewardScreen.cs::CSharpScript::-1::1721612755::0::1::::<>Control<>::
+RewardScreen.cs::CSharpScript::-1::1721616180::0::1::::<>Control<>::
 RewardScreen.tscn::PackedScene::2919674233379551489::1721275393::0::1::::<><>::res://screens/RewardScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 SceneTransition.cs::CSharpScript::-1::1721275393::0::1::::<>CanvasLayer<>::
 SceneTransition.tscn::PackedScene::2992404124348779741::1721275393::0::1::::<><>::res://screens/SceneTransition.cs<>uid://buwuurpybkt52::::res://transitions/circle-xxl.png
-StartScreen.cs::CSharpScript::-1::1721611499::0::1::::<>Node2D<>::
+StartScreen.cs::CSharpScript::-1::1721616212::0::1::::<>Node2D<>::
 StartScreen.tscn::PackedScene::6381371156909420524::1721612800::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/StartScreen.cs<>res://screens/AscendedDialogBox.cs<>uid://cq8pbliuivvh0::::res://cg_backgrounds/overworld/04bg00307.jpg<>uid://cgb6kermfdhu::::res://music/theme.ogg
 Transitionable2DScene.cs::CSharpScript::-1::1721275393::0::1::::<>Node2D<>::
 ::res://screens/arrows/::1721275393

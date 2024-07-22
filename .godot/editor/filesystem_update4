@@ -1,7 +1,6 @@
 res://default_env.tres
-res://screens/ActionMenu.tscn
-res://misc_icons/IconOutline.gdshader
 res://screens/upgrade_screen/UpgradeItem.tscn
+res://misc_icons/IconOutline.gdshader
 res://screens/upgrade_screen/UpgradeScreen.tscn
 res://dungeon_crawling/scenes/crawl_ui/PartyMemberDCDisplay.tscn
 res://screens/EmbarkScreen.tscn
@@ -9,6 +8,7 @@ res://screens/RecruitCustomScreen.tscn
 res://screens/RecruitScreen.tscn
 res://misc_icons/Icon.tscn
 res://screens/StartScreen.tscn
+res://screens/ActionMenu.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs
