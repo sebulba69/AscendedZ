@@ -520,8 +520,10 @@ namespace AscendedZ
 
             // get the boss number
             index++;
+            index *= 50; // get the actual tier
+            index /= 10;
 
-            int startingHP = 30 * (index * 5);
+            int startingHP = 15 * (index * 5);
             return startingHP;
         }
     }

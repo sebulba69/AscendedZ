@@ -96,9 +96,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Cole\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
+      "projectUniqueName": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
       "projectName": "Ascended Z",
-      "projectPath": "C:\\Users\\Cole\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
+      "projectPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
       "packagesPath": "C:\\Users\\Cole\\.nuget\\packages\\",
       "outputPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\.godot\\mono\\temp\\obj\\",
       "projectStyle": "PackageReference",

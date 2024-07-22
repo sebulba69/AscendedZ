@@ -116,10 +116,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             judeStone.Skills.Add(SkillDatabase.DarkAll.Clone());
             judeStone.Skills.Add(SkillDatabase.Dark1.Clone());
             judeStone.Skills.Add(SkillDatabase.VoidFire.Clone());
+            judeStone.Skills.Add(SkillDatabase.VoidLight.Clone());
             judeStone.Skills.Add(SkillDatabase.WeakIce.Clone());
 
             judeStone.VoidElementsIndexes.Add(3);
             judeStone.VoidElementsIndexes.Add(4);
+            judeStone.WeaknessStatusIndexes.Add(5);
 
             return judeStone;
         }

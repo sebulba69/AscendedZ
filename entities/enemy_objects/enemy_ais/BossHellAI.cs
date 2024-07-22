@@ -35,7 +35,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             _mainElement = 0;
             _move = 0;
             _isBoss = true;
-            _script = new List<Func<EnemyAction, ISkill>>() { GetAttackSkill, GetBuff, GetAttackSkill, GetVoidSkill, GetAttackSkill, GetAttackSkill, GetWeaknessSkill };
+            _script = new List<Func<EnemyAction, ISkill>>() { GetWeaknessSkill, GetAttackSkill, GetBuff, GetVoidSkill  };
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
