@@ -105,6 +105,37 @@ namespace AscendedZ.statuses
         {
             switch (Id)
             {
+                case StatusId.Default:
+                    // hack for backwards compatibility with v0.02 Pre-Alpha
+                    if (Icon.Contains(SkillAssets.VOID_FIRE_ICON))
+                    {
+                        _id = StatusId.VoidFireStatus;
+                        return this.Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_ICE_ICON))
+                    {
+                        _id = StatusId.VoidIceStatus;
+                        return this.Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_WIND_ICON))
+                    {
+                        _id = StatusId.VoidWindStatus;
+                        return this.Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_DARK_ICON))
+                    {
+                        _id = StatusId.VoidDarkStatus;
+                        return this.Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_LIGHT_ICON))
+                    {
+                        _id = StatusId.VoidLightStatus;
+                        return this.Clone();
+                    }
+                    else
+                    {
+                        throw new NotImplementedException();
+                    }
                 case StatusId.StunStatus:
                     return new StunStatus();
                 case StatusId.AgroStatus:
