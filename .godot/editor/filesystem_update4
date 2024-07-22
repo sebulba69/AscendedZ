@@ -1,6 +1,7 @@
 res://default_env.tres
-res://screens/upgrade_screen/UpgradeItem.tscn
+res://screens/ActionMenu.tscn
 res://misc_icons/IconOutline.gdshader
+res://screens/upgrade_screen/UpgradeItem.tscn
 res://screens/upgrade_screen/UpgradeScreen.tscn
 res://dungeon_crawling/scenes/crawl_ui/PartyMemberDCDisplay.tscn
 res://screens/EmbarkScreen.tscn

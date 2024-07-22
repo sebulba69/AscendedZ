@@ -23,6 +23,7 @@ public partial class BattleEnemyScene : Node2D
     private TextureRect _skillIcon;
     private HBoxContainer _turnIconContainer;
     private ActionMenu _actionMenu;
+    private bool _random;
 
     public EventHandler BackToHome;
 
@@ -115,6 +116,7 @@ public partial class BattleEnemyScene : Node2D
 
     public void SetupForDungeonCrawlEncounter(List<BattlePlayer> players, bool random)
     {
+        _random = random;
         _dungeonCrawlEncounter = true;
         InitializeBattleScene(players, random);
     }
@@ -467,7 +469,12 @@ public partial class BattleEnemyScene : Node2D
                 GetNode<AudioStreamPlayer>("%ItemSfxPlayer");
                 var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
                 this.GetTree().Root.AddChild(rewardScene);
-                rewardScene.InitializeDungeonCrawlEncounterRewards();
+
+                if(_random)
+                    rewardScene.InitializeDungeonCrawlEncounterSpecialRewards();
+                else
+                    rewardScene.InitializeDungeonCrawlEncounterRewards();
+
                 await ToSignal(rewardScene, "tree_exited");
 
                 ChangeEndScreenVisibilityOnly(true);

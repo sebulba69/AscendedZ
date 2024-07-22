@@ -150,7 +150,7 @@ namespace AscendedZ.dungeon_crawling.backend
             List<TileEventId> generatedPathTypes = new List<TileEventId>();
 
             generatedPathTypes.Add(TileEventId.Start);
-
+            openTiles.Remove(Start);
             for (int e = 0; e < _eventCount; e++)
             {
                 var mazeTile = openTiles[_rng.Next(openTiles.Count)];
