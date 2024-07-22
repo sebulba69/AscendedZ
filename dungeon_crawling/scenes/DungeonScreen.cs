@@ -450,7 +450,7 @@ public partial class DungeonScreen : Transitionable2DScene
             member.HP = member.MaxHP;
 
         StartDungeon();
-
+        _crawlUI.Visible = true;
         transition.PlayFadeOut();
         await ToSignal(transition.Player, "animation_finished");
 

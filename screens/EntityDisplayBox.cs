@@ -107,12 +107,15 @@ public partial class EntityDisplayBox : PanelContainer
         {
             var hp = this.GetNode<TextureProgressBar>("%HP");
             hp.Value = entity.HP;
-
-            if(entity.HP == 0)
+            TextureRect picture = this.GetNode<TextureRect>("%Picture");
+            if (entity.HP == 0)
             {
                 string dead = "res://entity_pics/dead_entity.png";
-                TextureRect picture = this.GetNode<TextureRect>("%Picture");
                 picture.Texture = ResourceLoader.Load<Texture2D>(dead);
+            }
+            else
+            {
+                picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
             }
 
         }
