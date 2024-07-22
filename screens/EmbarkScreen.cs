@@ -34,7 +34,7 @@ public partial class EmbarkScreen : CenterContainer
         _endlessDungeonBtn = this.GetNode<Button>("%EndlessDungeonBtn");
         _labrybuceBtn = this.GetNode<Button>("%LabribuceBtn");
 
-        _labrybuceBtn.Visible = (gameObject.MaxTier > 10);
+        _labrybuceBtn.Visible = (gameObject.MaxTier >= 10);
 
         gameObject.Tier = gameObject.MaxTier;
         gameObject.TierDC = gameObject.MaxTierDC;

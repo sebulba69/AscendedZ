@@ -116,28 +116,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             }
             else
             {
-                // cm is 1 off on this one
-                if(_currentMove <= 2 && _stunnedPlayer != null)
-                {
-                    return _stunnedPlayer;
-                }
-                else
-                {
-                    var possibleTargets = new List<BattlePlayer>();
-                    if(_stunnedPlayer != null)
-                    {
-                        foreach(var alive in alivePlayers)
-                        {
-                            if (!alive.Equals(_stunnedPlayer))
-                                possibleTargets.Add(alive);
-                        }
-                    }
-
-                    if(possibleTargets.Count > 0)
-                        return GetWeaknessPlayerOrLowestHPPlayer(possibleTargets);
-                    else
-                        return GetWeaknessPlayerOrLowestHPPlayer(alivePlayers);
-                }
+                return GetWeaknessPlayerOrLowestHPPlayer(alivePlayers);
             }
         }
 
@@ -183,14 +162,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
         public override void ResetEnemyState()
         {
             _currentMove = 0;
-            if(_currentScript == 0)
-            {
-                _currentScript = 1;
-            }
-            else
-            {
-                _currentScript = 0;
-            }
+            _currentScript = 0;
             _pickedSkill = null;
             _stunnedPlayer = null;
         }
