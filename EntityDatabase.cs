@@ -387,18 +387,9 @@ namespace AscendedZ
 
                     var fusion = PartyMemberGenerator.MakePartyMember(fusionResults[element]);
                     fusion.MaxHP = (int)((material1.MaxHP + material2.MaxHP) / 1.5);
-                    fusion.MaxHP += (int)(fusion.MaxHP * (fusion.FusionGrade * 0.1));
-
-                    double percentageOff = fusion.FusionGrade * 0.1;
-                    int discount = (int)(fusion.VorpexValue * percentageOff);
                     fusion.VorpexValue = (material1.VorpexValue + material2.VorpexValue)/ 2;
-                    fusion.VorpexValue -= discount;
 
-                    int level = (material1.Level + material2.Level)/ 2;
-
-                    for (int l = 0; l < level; l++)
-                        fusion.LevelUp();
-
+                    fusion.Level = (material1.Level + material2.Level)/ 2;
                     fusionObject.Fusion = fusion;
 
                     possibleFusions.Add(fusionObject);
