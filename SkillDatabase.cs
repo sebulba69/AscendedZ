@@ -404,9 +404,6 @@ namespace AscendedZ
             if (tier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE)
                 skills.AddRange(new ISkill[] { Revive1, RemoveVoidWind, RemoveVoidIce });
 
-            if (tier > TierRequirements.QUESTS_ALL_FUSION_MEMBERS)
-                skills.AddRange(new ISkill[] { RemoveWeakElec, RemoveWeakFire });
-
             if (tier > TierRequirements.ALL_HIT_SKILLS)
                 skills.AddRange(new ISkill[] { Heal1All });
 

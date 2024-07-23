@@ -11,6 +11,7 @@ using System.Diagnostics.Metrics;
 public partial class FusionScreen : CenterContainer
 {
 	private PartyMemberDisplay _displayFusion, _material1, _material2;
+	private Label _owned, _cost;
 	private ItemList _fusionSkillList;
 	private Button _fuseButton;
 	private FusionScreenObject _fSO;
@@ -28,7 +29,9 @@ public partial class FusionScreen : CenterContainer
         _material2 = this.GetNode<PartyMemberDisplay>("%Material2");
 		_fusionSkillList = this.GetNode<ItemList>("%FusionAndSkillList");
         _fuseButton = this.GetNode<Button>("%FuseButton");
-
+        _owned = GetNode<Label>("%PartyCoinsOwned");
+        _cost = GetNode<Label>("%PartyCoinCost");
+        
 		Button backButton = this.GetNode<Button>("%BackButton");
 		backButton.Pressed += () => 
 		{
@@ -57,6 +60,16 @@ public partial class FusionScreen : CenterContainer
 	private void PopulatePossibleFusionList()
 	{
         _fSO.PopulateMaterialFusionList();
+
+		int cost = _fSO.GetCost();
+		string costStr = "Cost: ";
+		if (cost == -1)
+			costStr += "???";
+		else
+			costStr += cost;
+		
+		_owned.Text = _fSO.OwnedPartyCoins.ToString();
+		_cost.Text = costStr;
 
         _fusionSkillList.Clear();
 

@@ -1,4 +1,5 @@
-﻿using AscendedZ.entities;
+﻿using AscendedZ.currency;
+using AscendedZ.entities;
 using AscendedZ.entities.partymember_objects;
 using AscendedZ.game_object;
 using AscendedZ.skills;
@@ -21,10 +22,16 @@ namespace AscendedZ.screens.back_end_screen_scripts
         public List<FusionObject> Fusions { get => _fusions; }
         public FusionObject DisplayFusion { get => _fusions[FusionIndex]; }
 
+        private Currency _partyCoins;
+
+        public int OwnedPartyCoins { get => _partyCoins.Amount; }
+
         public FusionScreenObject()
         {
             _fusions = new List<FusionObject>();
             _fusionIndex = 0;
+            var mp = PersistentGameObjects.GameObjectInstance().MainPlayer;
+            _partyCoins = mp.Wallet.Currency[SkillAssets.PARTY_COIN_ICON];
         }
 
         public bool TryFuse()
@@ -43,6 +50,11 @@ namespace AscendedZ.screens.back_end_screen_scripts
                     if (reserve.Name.Equals(DisplayFusion.Fusion.Name))
                         return false;
                 }
+
+                if (GetCost() > OwnedPartyCoins)
+                    return false;
+
+                _partyCoins.Amount -= GetCost();
 
                 foreach (var skill in DisplayFusion.Fusion.Skills) 
                 {
@@ -108,6 +120,17 @@ namespace AscendedZ.screens.back_end_screen_scripts
                 _fusionIndex = 0;
 
             _fusions = _fusions.OrderBy(fusion => fusion.Fusion.Name).ToList();
+        }
+
+        public int GetCost()
+        {
+            if (_fusions.Count == 0)
+                return -1;
+            else
+            {
+                int grade = DisplayFusion.Fusion.FusionGrade - 1;
+                return grade * 25;
+            }
         }
 
         private bool IsFusionRecipeGenerated(OverworldEntity m1, OverworldEntity m2)
