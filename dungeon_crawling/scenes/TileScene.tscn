@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://djlhy6ga7e5t2" path="res://dungeon_crawling/scenes/DungeonEntity.tscn" id="10_g6sag"]
 
 [node name="TileScene" type="Node2D"]
+texture_filter = 2
 script = ExtResource("1_q0og1")
 
 [node name="Tile" type="Node2D" parent="."]
@@ -20,12 +21,14 @@ script = ExtResource("1_q0og1")
 texture = ExtResource("2_fntij")
 
 [node name="Background" type="Sprite2D" parent="Tile"]
+unique_name_in_owner = true
 texture = ExtResource("2_gux6g")
 
 [node name="Ground" type="Sprite2D" parent="Tile"]
 texture = ExtResource("3_5jj2q")
 
 [node name="InteriorLines" type="Sprite2D" parent="Tile"]
+unique_name_in_owner = true
 texture = ExtResource("4_jca27")
 
 [node name="Doors" type="Node2D" parent="Tile"]

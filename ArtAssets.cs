@@ -1,4 +1,5 @@
 
+using AscendedZ.dungeon_crawling.backend;
 using AscendedZ.entities;
 using AscendedZ.skills;
 using Godot;
@@ -29,8 +30,6 @@ namespace AscendedZ
             "res://cg_backgrounds/overworld/10bg01002.jpg"
         };
 
-        private static List<string> _combatBgsDC = new List<string>();
-
         public static List<string> CombatBgs = new List<string>() 
         {
             "res://cg_backgrounds/dungeon/01bg03101.jpg",
@@ -49,6 +48,14 @@ namespace AscendedZ
         {
             "res://cg_backgrounds/dungeon_crawling/bg00701.jpg",
             "res://cg_backgrounds/dungeon_crawling/bg00701_02.png"
+        };
+
+        private static List<DungeonColorTemplate> _templates = new List<DungeonColorTemplate>() 
+        {
+            new DungeonColorTemplate() { BackgroundString = "", DoorColor = "", LineColor = "" },
+            new DungeonColorTemplate() { BackgroundString = "008b9e", DoorColor = "6b7bff", LineColor = "000000" },
+            new DungeonColorTemplate() { BackgroundString = "ff91fc", DoorColor = "ffffff", LineColor = "000000" },
+            new DungeonColorTemplate() { BackgroundString = "1cb5a9", DoorColor = "7e88b2", LineColor = "000000" },
         };
 
         public static string GetBackground(int tier)
@@ -73,6 +80,16 @@ namespace AscendedZ
                 index = CombatBgsDC.Count - 1;
 
             return CombatBgsDC[index];
+        }
+
+        public static DungeonColorTemplate GetCombatDCTileTemplate(int tier)
+        {
+            int index = Equations.GetTierIndexBy25(tier);
+
+            if (index >= _templates.Count)
+                index = _templates.Count - 1;
+
+            return _templates[index];
         }
     }
 

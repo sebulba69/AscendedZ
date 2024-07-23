@@ -226,6 +226,8 @@ public partial class DungeonScreen : Transitionable2DScene
         TileScene tileScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_TILE_SCENE).Instantiate<TileScene>();
         UITile uiTile = new UITile() { Scene = tileScene, X = x, Y = y };
         _tiles.AddChild(uiTile.Scene);
+        var template = BackgroundAssets.GetCombatDCTileTemplate(_gameObject.TierDC);
+        uiTile.Scene.ChangeBackgroundColor(template.BackgroundString, template.DoorColor, template.LineColor );
         return uiTile;
     }
 

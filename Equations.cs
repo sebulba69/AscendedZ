@@ -62,6 +62,17 @@ namespace AscendedZ
             return index;
         }
 
+        public static int GetTierIndexBy25(int tier)
+        {
+            int index = 0;
+            if (tier >= 26)
+            {
+                tier--;
+                index = (tier - (tier % 25)) / 25;
+            }
+            return index;
+        }
+
         public static int GetDungeonCrawlEvents(int tier)
         {
             return (tier / 10) + 2;

@@ -9,10 +9,14 @@ public partial class TileScene : Node2D
     private Dictionary<Direction, Sprite2D> _doors;
     private Dictionary<Direction, Marker2D> _roomCoord;
     private DungeonEntity _graphic;
+    private Sprite2D _background, _interiorLines;
 
 	public override void _Ready()
 	{
         _graphic = this.GetNode<DungeonEntity>("%Graphic");
+
+        _background = GetNode<Sprite2D>("%Background");
+        _interiorLines = GetNode<Sprite2D>("%InteriorLines");
 
         _doors = new Dictionary<Direction, Sprite2D>()
         {
@@ -29,6 +33,23 @@ public partial class TileScene : Node2D
             { Direction.Right, this.GetNode<Marker2D>("%RoomRight") },
             { Direction.Down, this.GetNode<Marker2D>("%RoomDown") }
         };
+    }
+
+    public void ChangeBackgroundColor(string bg, string door, string lines)
+    {
+        if(bg != "")
+            _background.Modulate = Color.FromString(bg, Colors.SkyBlue);
+
+        if(lines != "")
+            _interiorLines.Modulate = Color.FromString(lines, Colors.White);
+
+        if(door != "")
+        {
+            _doors[Direction.Up].Modulate = Color.FromString(door, Colors.SkyBlue);
+            _doors[Direction.Down].Modulate = Color.FromString(door, Colors.SkyBlue);
+            _doors[Direction.Left].Modulate = Color.FromString(door, Colors.SkyBlue);
+            _doors[Direction.Right].Modulate = Color.FromString(door, Colors.SkyBlue);
+        }
     }
 
     public void SetGraphic(string graphic)

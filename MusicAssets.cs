@@ -86,7 +86,7 @@ namespace AscendedZ
 
         public static string GetDungeonTrackDC(int tier)
         {
-            int index = Equations.GetTierIndexBy50(tier);
+            int index = Equations.GetTierIndexBy25(tier);
             return $"res://music/dungoen_crawl/dungeon_crawl_0{index + 1}.ogg";
         }
     }
