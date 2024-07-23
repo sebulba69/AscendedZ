@@ -14,7 +14,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
     public class RandomEnemyFactory : EnemyFactory
     {
         private List<ElementSkill> _elementalSkills;
-        private List<ISkill> _buffSkills;
+        private List<StatusSkill> _buffSkills;
         private List<ISkill> _voidSkills;
         private List<string> _names;
         private List<Elements> _elements;
@@ -28,7 +28,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 SkillDatabase.FireAll, SkillDatabase.IceAll, SkillDatabase.WindAll, SkillDatabase.ElecAll, SkillDatabase.DarkAll, SkillDatabase.LightAll
             };
 
-            _buffSkills = new List<ISkill>() 
+            _buffSkills = new List<StatusSkill>() 
             {
                 SkillDatabase.DarkBuff1, SkillDatabase.LightBuff1, SkillDatabase.FireBuff1,
                 SkillDatabase.IceBuff1, SkillDatabase.WindBuff1, SkillDatabase.ElecBuff1
@@ -65,51 +65,86 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             Enemy enemy;
 
+            var skills = new List<ISkill>();
+
             if (ai == 0)
             {
                 var swapElement = GetRandomElement(rng);
+                var opposite = SkillDatabase.ElementalOpposites[swapElement];
 
-                enemy = MakeResistanceChangerEnemy(name, hp, swapElement, SkillDatabase.ElementalOpposites[swapElement]);
+                enemy = MakeResistanceChangerEnemy(name, hp, swapElement, opposite);
+
+                skills.AddRange(_elementalSkills.FindAll(e => e.Element == swapElement));
+                skills.AddRange(_elementalSkills.FindAll(e => e.Element == opposite));
             }
             else if (ai == 1)
             {
                 enemy = MakeWeaknessHunterEnemy(name, hp);
+                PopulateEnemyResistanceRandom(rng, enemy);
+                PopulateEnemySkillsRandom(rng, enemy);
             }
             else if (ai == 2) 
             {
                 enemy = MakeSupportEnemy(name, hp);
+               
+                PopulateEnemyResistanceRandom(rng, enemy);
+                PopulateEnemySkillsRandom(rng, enemy);
             }
             else if (ai == 3)
             {
+                var wexElement = GetRandomElement(rng);
                 enemy = MakeBeastEye(name, hp);
+                PopulateEnemyResistanceRandom(rng, enemy);
+
+                enemy.Resistances.SetResistance(ResistanceType.Wk, wexElement);
+
+                PopulateEnemySkillsRandom(rng, enemy);
             }
             else if (ai == 4)
             {
                 enemy = MakeCopyCatEnemy(name, hp);
-
+                PopulateEnemyResistanceRandom(rng, enemy);
+                PopulateEnemySkillsRandom(rng, enemy);
             }
             else if (ai == 5)
             {
+                var buffElement = GetRandomElement(rng);
                 enemy = MakeBuffEnemy(name, hp);
-                enemy.Skills.Add(_buffSkills[rng.Next(_buffSkills.Count)].Clone());
+
+                skills.Add(_buffSkills.Find(b => b.BaseName.Contains(buffElement.ToString())));
+                skills.AddRange(_elementalSkills.FindAll(e => e.Element == buffElement));
+                
+                PopulateEnemyResistanceRandom(rng, enemy);
+                enemy.Resistances.SetResistance(ResistanceType.Rs, buffElement);
             }
             else if(ai == 6)
             {
                 var voidElement = GetRandomElement(rng);
                 enemy = MakeProtectorEnemy(name, hp, voidElement);
-                enemy.Skills.Add(_voidSkills[rng.Next(_voidSkills.Count)].Clone());
+                enemy.Skills.Add(_voidSkills.Find(v => v.BaseName.Contains(voidElement.ToString())).Clone());
+                PopulateEnemyResistanceRandom(rng, enemy);
+                enemy.Resistances.SetResistance(ResistanceType.Wk, voidElement);
+                PopulateEnemySkillsRandom(rng, enemy);
             }
             else if (ai == 7)
             {
                 enemy = MakeAgroStatusEnemy(name, hp);
+                PopulateEnemyResistanceRandom(rng, enemy);
+                PopulateEnemySkillsRandom(rng, enemy);
             }
             else
             {
                 enemy = MakeAlternatingEnemy(name, hp);
+                PopulateEnemyResistanceRandom(rng, enemy);
+                PopulateEnemySkillsRandom(rng, enemy);
             }
 
-            PopulateEnemyResistanceRandom(rng, enemy);
-            PopulateEnemySkillsRandom(rng, enemy);
+            if (skills.Count > 0)
+                foreach (var skill in skills)
+                    enemy.Skills.Add(skill.Clone());
+
+            enemy.MaxHP += 2;
+
             return enemy;
         }
 
@@ -184,13 +219,17 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         private Enemy MakeSupportEnemy(string name, int hp)
         {
-            return new SupportEnemy
+            var support = new SupportEnemy
             {
                 Name = $"[SPRT] {name}",
                 MaxHP = hp + _tierBoost,
                 Image = CharacterImageAssets.GetImagePath(name),
                 Resistances = new ResistanceArray()
             };
+
+            support.LevelUpCompensation(((_tierBoost / 3) * 10) / 2);
+
+            return support;
         }
 
         private Enemy MakeCopyCatEnemy(string name, int hp)

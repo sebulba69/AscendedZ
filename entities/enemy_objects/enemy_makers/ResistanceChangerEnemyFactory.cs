@@ -41,9 +41,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             Elements resist2 = Elements.Dark;
 
             var conson = MakeResistanceChangerEnemy(name, hp, resist1, resist2);
-
-            conson.Skills.Add(SkillDatabase.Dark1.Clone());
+            
             conson.Skills.Add(SkillDatabase.Light1.Clone());
+            conson.Skills.Add(SkillDatabase.Dark1.Clone());
 
             return conson;
         }
