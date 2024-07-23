@@ -13,10 +13,5 @@ namespace AscendedZ.currency.rewards
             Name = SkillAssets.KEY_SHARD;
             Icon = Name;
         }
-
-        public override string ToString()
-        {
-            return $"{Amount}/4";
-        }
     }
 }

@@ -13,10 +13,5 @@ namespace AscendedZ.currency.rewards
             Name = SkillAssets.MORBIS;
             Icon = Name;
         }
-
-        public override string ToString()
-        {
-            return Amount.ToString();
-        }
     }
 }

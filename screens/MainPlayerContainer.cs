@@ -37,7 +37,7 @@ public partial class MainPlayerContainer : CenterContainer
             var display = ResourceLoader.Load<PackedScene>(Scenes.CURRENCY_DISPLAY).Instantiate<CurrencyDisplay>();
             currencyDisplay.AddChild(display);
             var currency = wallet.Currency[key];
-            display.SetCurrencyToDisplay(currency.Icon, currency.Amount);
+            display.SetCurrencyToDisplay(currency.Icon, currency);
         }
     }
 }

@@ -13,10 +13,5 @@ namespace AscendedZ.currency.rewards
             Name = SkillAssets.PARTY_COIN_ICON;
             Icon = Name;
         }
-
-        public override string ToString()
-        {
-            return Amount.ToString();
-        }
     }
 }

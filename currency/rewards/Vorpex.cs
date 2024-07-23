@@ -13,10 +13,5 @@ namespace AscendedZ.currency.rewards
             Name = SkillAssets.VORPEX_ICON;
             Icon = Name;
         }
-
-        public override string ToString()
-        {
-            return Amount.ToString();
-        }
     }
 }

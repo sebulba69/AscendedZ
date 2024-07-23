@@ -1,3 +1,4 @@
+GridContainer
 HBoxContainer
 MarginContainer
 PanelContainer
@@ -5,7 +6,6 @@ VBoxContainer
 ItemList
 RichTextLabel
 Label
-GridContainer
 ScrollContainer
 CenterContainer
 TextureRect

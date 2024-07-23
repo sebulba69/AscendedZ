@@ -15,9 +15,15 @@ public partial class CurrencyDisplay : GridContainer
 		_currentyAmount = this.GetNode<Label>("CurrencyAmount");
 	}
 
-	public void SetCurrencyToDisplay(string icon, int amount)
+	public void SetCurrencyToDisplay(string icon, Currency currency)
 	{
         _icon.Call("SetIcon", icon);
-		_currentyAmount.Text = amount.ToString();
+
+		string display = currency.Amount.ToString();
+
+		if (currency.Name == SkillAssets.KEY_SHARD)
+			display += "/4";
+
+		_currentyAmount.Text = display;
     }
 }

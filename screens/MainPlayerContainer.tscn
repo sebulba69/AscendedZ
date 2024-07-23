@@ -20,13 +20,13 @@ layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="Currency" type="HBoxContainer" parent="VBoxContainer/CurrencyPanelContainer/MarginContainer"]
+[node name="Currency" type="GridContainer" parent="VBoxContainer/CurrencyPanelContainer/MarginContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
+theme_override_constants/h_separation = 10
+columns = 3
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
 texture_filter = 2
