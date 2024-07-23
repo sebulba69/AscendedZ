@@ -389,7 +389,7 @@ namespace AscendedZ
                     fusion.MaxHP = (int)((material1.MaxHP + material2.MaxHP) / 1.5);
                     fusion.VorpexValue = (material1.VorpexValue + material2.VorpexValue)/ 2;
 
-                    fusion.Level = (material1.Level + material2.Level)/ 2;
+                    fusion.SetLevel((material1.Level + material2.Level)/ 2);
                     fusionObject.Fusion = fusion;
 
                     possibleFusions.Add(fusionObject);

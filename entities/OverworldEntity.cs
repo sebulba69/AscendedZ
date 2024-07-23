@@ -84,6 +84,12 @@ namespace AscendedZ.entities.partymember_objects
 
         private const int TIER_CAP = 5;
 
+        public void SetLevel(int level)
+        {
+            Level = level;
+            GradeString = GetLevelString();
+        }
+
         public void LevelUp()
         {
             Level++;
