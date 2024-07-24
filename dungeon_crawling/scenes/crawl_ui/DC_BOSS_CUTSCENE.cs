@@ -18,14 +18,20 @@ public partial class DC_BOSS_CUTSCENE : Control
 	public async void Start(string bossName, string bossImage)
 	{
 		_bossPic.Texture = ResourceLoader.Load<Texture2D>(bossImage);
-		GD.Print(bossName + ", " + bossImage);
 		string[] dialog = DialogScenes.DCBossDialog[bossName];
-        foreach(var text in dialog)
+
+		_bossTextBox.Connect("SkipDialogEventHandler", new Callable(this, "_OnSkipDialogRequested"));
+        foreach (var text in dialog)
 		{
             _bossTextBox.DisplayText(text);
             await ToSignal(_bossTextBox, "ReadyForMoreDialogEventHandler");
         }
 
+		QueueFree();
+	}
+
+	private void _OnSkipDialogRequested()
+	{
 		QueueFree();
 	}
 }

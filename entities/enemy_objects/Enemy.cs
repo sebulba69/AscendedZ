@@ -2,6 +2,7 @@
 using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.skills;
+using AscendedZ.statuses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,6 +88,13 @@ namespace AscendedZ.entities.enemy_objects
             List<BattlePlayer> players = battleSceneObject.AlivePlayers;
 
             return players.FindAll(player => player.Resistances.IsWeakToElement(element));
+        }
+
+        protected List<BattlePlayer> FindPlayersUnaffectedByStatus(BattleSceneObject battleSceneObject, Status status)
+        {
+            List<BattlePlayer> players = battleSceneObject.AlivePlayers;
+
+            return players.FindAll(player => player.StatusHandler.HasStatus(status.Id));
         }
 
         public override string GetLogName()

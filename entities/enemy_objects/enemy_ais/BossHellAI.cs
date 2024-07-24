@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AscendedZ.entities.battle_entities;
+using AscendedZ.statuses;
 
 namespace AscendedZ.entities.enemy_objects.enemy_ais
 {
@@ -14,111 +16,130 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
     /// </summary>
     public class BossHellAI : Enemy
     {
-        private int _phase, _mainElement, _move;
-
-        private List<Func<EnemyAction, ISkill>> _script;
-
-        public List<Elements> MainAttackElements { get; set; }
-        public List<int> VoidElementsIndexes { get; set; }
-        public List<int> WeaknessStatusIndexes { get; set; }
-        public List<int> BuffIndexes { get; set; }
-        public int HealIndex { get; set; }
+        private int _move;
+        private int _wexHitCount;
 
         public BossHellAI() : base()
         {
-            MainAttackElements = new List<Elements>();
-            VoidElementsIndexes = new List<int>();
-            WeaknessStatusIndexes = new List<int>();
-            BuffIndexes = new List<int>();
-
-            _phase = 0;
-            _mainElement = 0;
             _move = 0;
+            _wexHitCount = 0;
             _isBoss = true;
-            _script = new List<Func<EnemyAction, ISkill>>() { GetWeaknessSkill, GetAttackSkill, GetBuff, GetVoidSkill  };
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
         {
-            EnemyAction action = new EnemyAction() { Target = GetRandomAlivePlayer(battleSceneObject) };
+            ISkill skill = Skills[_move];
 
-            action.Skill = _script[_phase](action);
+            EnemyAction action = new EnemyAction() { Skill = skill };
 
-            _phase++;
-            if(_phase >= _script.Count)
-                _phase = 0;
+            if (skill.Id == SkillId.Elemental)
+            {
+                action.Target = FindElementSkillTarget((ElementSkill)skill, battleSceneObject);
+            }
+            else if (skill.Id == SkillId.Status) 
+            {
+                if (!skill.BaseName.Contains("Void"))
+                    action.Target = FindTargetForStatus((StatusSkill)skill, battleSceneObject);
+                else
+                    action.Target = FindVoidStatus((StatusSkill)skill, battleSceneObject);
+            }
+            else if (skill.Id == SkillId.Eye)
+            {
+                if(_wexHitCount == 0)
+                {
+                    action.Target = null;
+                }
+                else
+                {
+                    action.Target = this;
+                }
+            }
+
+            if(action.Target == null)
+            {
+                // find the nearest elemental skill
+                while (Skills[_move].Id != SkillId.Elemental)
+                    IncrementMove();
+
+                action = GetNextAction(battleSceneObject);
+            }
+
+            IncrementMove();
+
+            if(skill.Id == SkillId.Eye && _wexHitCount > 0)
+            {
+                _wexHitCount--;
+
+                if (_move == 0)
+                    _move = Skills.Count - 1;
+                else
+                    _move--;
+            }
 
             return action;
         }
 
-        private ISkill GetAttackSkill(EnemyAction action)
+        private BattleEntity FindElementSkillTarget(ElementSkill skill, BattleSceneObject battleSceneObject) 
         {
-            Elements element = MainAttackElements[_mainElement];
-            
-            _mainElement++;
-            if (_mainElement >= MainAttackElements.Count)
-                _mainElement = 0;
+            var wex = FindPlayersWithWeaknessToElement(battleSceneObject, skill.Element);
 
-            List<ISkill> matches = Skills.FindAll(skill => 
+            if(wex.Count > 0)
+                return wex[_rng.Next(wex.Count)];
+
+            var targets = battleSceneObject.AlivePlayers.FindAll(
+                p => !p.Resistances.IsNullElement(skill.Element) && !p.Resistances.IsDrainElement(skill.Element));
+
+            if(targets.Count == 0)
             {
-                if(skill.Id == SkillId.Elemental)
-                {
-                    ElementSkill e = (ElementSkill)skill;
-                    return e.Element == element;
-                }
+                return GetRandomAlivePlayer(battleSceneObject);
+            }
+            else
+            {
+                return targets[_rng.Next(targets.Count)];
+            }
+        }
+
+        private BattleEntity FindTargetForStatus(StatusSkill status, BattleSceneObject battleSceneObject)
+        {
+            if(status.TargetType == TargetTypes.OPP_ALL || status.TargetType == TargetTypes.SINGLE_OPP)
+            {
+                var players = FindPlayersUnaffectedByStatus(battleSceneObject, status.Status);
+
+                if (players.Count == 0)
+                    return null;
                 else
-                {
-                    return false;
-                }
-            });
-
-            return matches[_rng.Next(matches.Count)];
-        }
-
-        private ISkill GetVoidSkill(EnemyAction action)
-        {
-            if(_move < VoidElementsIndexes.Count)
-            {
-                action.Target = this;
-                return Skills[VoidElementsIndexes[_move]];
+                    return players[_rng.Next(_rng.Next(players.Count))];
             }
             else
             {
-                return GetAttackSkill(action);
+                return this;
             }
         }
 
-        private ISkill GetWeaknessSkill(EnemyAction action)
+        private BattleEntity FindVoidStatus(StatusSkill skill, BattleSceneObject battleSceneObject)
         {
-            if(_move < WeaknessStatusIndexes.Count)
+            var status = skill.Status;
+
+            if(StatusHandler.HasStatus(status.Id) || _wexHitCount < 3)
             {
-                return Skills[WeaknessStatusIndexes[_move]];
+                return null;
             }
             else
             {
-                return GetAttackSkill(action);
+                return this;
             }
         }
 
-        private ISkill GetBuff(EnemyAction action)
+        private void IncrementMove()
         {
-            if(_move < BuffIndexes.Count)
-            {
-                action.Target = this;
-                return Skills[BuffIndexes[_move]];
-            }
-            else
-            {
-                return GetAttackSkill(action);
-            }
+            _move++;
+            if (_move >= Skills.Count)
+                _move = 0;
         }
 
         public override void ResetEnemyState()
         {
-            _move++;
-            int max = Math.Max(WeaknessStatusIndexes.Count, VoidElementsIndexes.Count);
-            if (_move >= max)
-                _move = 0;
+            _wexHitCount = 0;
         }
     }
 }

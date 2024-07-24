@@ -34,7 +34,7 @@ namespace AscendedZ.statuses
         public override void UpdateStatusTurns(BattleEntity entity)
         {
             _activeTurns++;
-            _statusOwner.HP -= (int)(_statusOwner.HP * 0.15);
+            _statusOwner.HP -= (int)(_statusOwner.HP * 0.25);
             if (_statusOwner.HP < 0) 
                 _statusOwner.HP = 0;
             
@@ -54,7 +54,7 @@ namespace AscendedZ.statuses
             wrapper.Icon = this.Icon;
             wrapper.Counter = _activeTurns + 1;
             wrapper.CounterColor = Colors.White;
-            wrapper.Description = $"Reduce HP by 15% for 3 turns.";
+            wrapper.Description = $"Reduce HP by 25% for 3 turns.";
 
             return wrapper;
         }

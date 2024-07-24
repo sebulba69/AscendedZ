@@ -39,9 +39,9 @@ public partial class AscendedTextbox : VBoxContainer
         Button ffButton = GetNode<Button>("MarginContainer/TextControlButtons/FastForwardButton");
         Button skipButton = GetNode<Button>("MarginContainer/TextControlButtons/SkipButton");
 
-        nextButton.Connect("pressed",new Callable(this,"_OnNextButtonPressed"));
-        ffButton.Connect("pressed",new Callable(this,"_OnFFButtonPressed"));
-        skipButton.Connect("pressed",new Callable(this,"_OnSkipButtonPressed"));
+        nextButton.Pressed += _OnNextButtonPressed;
+        ffButton.Pressed += _OnFFButtonPressed;
+        skipButton.Pressed += _OnSkipButtonPressed;
     }
 
     /// <summary>

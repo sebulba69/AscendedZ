@@ -64,34 +64,23 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeEthelAura()
         {
-            var ethel = MakeBossHellAI(EnemyNames.Ethel_Aura, 3);
+            var ethel = MakeBossHellAI(EnemyNames.Ethel_Aura, 2);
 
             ethel.Resistances.SetResistance(ResistanceType.Wk, skills.Elements.Wind);
-
-            ethel.MainAttackElements.Add(skills.Elements.Elec);
-            ethel.MainAttackElements.Add(skills.Elements.Dark);
 
             ethel.Skills.Add(SkillDatabase.Elec1.Clone());
             ethel.Skills.Add(SkillDatabase.ElecAll.Clone());
             ethel.Skills.Add(SkillDatabase.Dark1.Clone());
             ethel.Skills.Add(SkillDatabase.VoidWind.Clone());
 
-            ethel.VoidElementsIndexes.Add(3);
-
             return ethel;
         }
 
         public Enemy MakeDraceSkinner()
         {
-            var draceSkinner = MakeBossHellAI(EnemyNames.Drace_Skinner, 4);
+            var draceSkinner = MakeBossHellAI(EnemyNames.Drace_Skinner, 3);
 
             draceSkinner.Resistances.SetResistance(ResistanceType.Wk, skills.Elements.Dark);
-
-            draceSkinner.MainAttackElements.Add(skills.Elements.Light);
-            draceSkinner.MainAttackElements.Add(skills.Elements.Elec);
-            draceSkinner.MainAttackElements.Add(skills.Elements.Fire);
-            draceSkinner.MainAttackElements.Add(skills.Elements.Wind);
-            draceSkinner.MainAttackElements.Add(skills.Elements.Ice);
 
             draceSkinner.Skills.Add(SkillDatabase.Light1.Clone());
             draceSkinner.Skills.Add(SkillDatabase.Elec1.Clone());
@@ -109,23 +98,16 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             judeStone.Resistances.SetResistance(ResistanceType.Wk, skills.Elements.Light);
             judeStone.Resistances.SetResistance(ResistanceType.Wk, skills.Elements.Fire);
 
-            judeStone.MainAttackElements.Add(skills.Elements.Dark);
-            judeStone.MainAttackElements.Add(skills.Elements.Ice);
-
             judeStone.Skills.Add(SkillDatabase.IceAll.Clone());
             judeStone.Skills.Add(SkillDatabase.DarkAll.Clone());
             judeStone.Skills.Add(SkillDatabase.Dark1.Clone());
             judeStone.Skills.Add(SkillDatabase.VoidFire.Clone());
             judeStone.Skills.Add(SkillDatabase.VoidLight.Clone());
             judeStone.Skills.Add(SkillDatabase.WeakIce.Clone());
-
-            judeStone.VoidElementsIndexes.Add(3);
-            judeStone.VoidElementsIndexes.Add(4);
-            judeStone.WeaknessStatusIndexes.Add(5);
+            judeStone.Skills.Add(SkillDatabase.Ice1.Clone());
 
             return judeStone;
         }
-
 
         public Enemy MakeOcura()
         {
@@ -134,24 +116,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             ocura.Resistances.SetResistance(ResistanceType.Nu, skills.Elements.Dark);
             ocura.Resistances.SetResistance(ResistanceType.Nu, skills.Elements.Light);
 
-            ocura.MainAttackElements.Add(skills.Elements.Elec);
-            ocura.MainAttackElements.Add(skills.Elements.Fire);
-            ocura.MainAttackElements.Add(skills.Elements.Ice);
-
             ocura.Skills.Add(SkillDatabase.Elec1.Clone());
             ocura.Skills.Add(SkillDatabase.Fire1.Clone());
             ocura.Skills.Add(SkillDatabase.Ice1.Clone());
-
-            ocura.Skills.Add(SkillDatabase.VoidIce.Clone());
-            ocura.Skills.Add(SkillDatabase.VoidFire.Clone());
-            ocura.Skills.Add(SkillDatabase.VoidWind.Clone());
-
-            ocura.Skills.Add(SkillDatabase.FireBuff1.Clone());
-
-            ocura.VoidElementsIndexes.Add(3);
-            ocura.VoidElementsIndexes.Add(4);
-            ocura.VoidElementsIndexes.Add(5);
-            ocura.BuffIndexes.Add(6);
+            ocura.Skills.Add(SkillDatabase.Wind1.Clone());
+            ocura.Skills.Add(SkillDatabase.Dark1.Clone());
+            ocura.Skills.Add(SkillDatabase.Light1.Clone());
 
             return ocura;
         }
@@ -164,21 +134,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             emush.Resistances.SetResistance(ResistanceType.Wk, skills.Elements.Fire);
             emush.Resistances.SetResistance(ResistanceType.Dr, skills.Elements.Ice);
             emush.Resistances.SetResistance(ResistanceType.Dr, skills.Elements.Wind);
-
-            emush.MainAttackElements.Add(skills.Elements.Wind);
-            emush.MainAttackElements.Add(skills.Elements.Ice);
-
             emush.Skills.Add(SkillDatabase.Wind1.Clone());
             emush.Skills.Add(SkillDatabase.Ice1.Clone());
+            emush.Skills.Add(SkillDatabase.Poison.Clone());
             emush.Skills.Add(SkillDatabase.IceAll.Clone());
             emush.Skills.Add(SkillDatabase.WindAll.Clone());
-
-            emush.Skills.Add(SkillDatabase.IceBuff1.Clone());
-            emush.Skills.Add(SkillDatabase.WindBuff1.Clone());
-
-            emush.BuffIndexes.Add(4);
-            emush.BuffIndexes.Add(5);
-
+            
             return emush;
         }
 
