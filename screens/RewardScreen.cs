@@ -61,6 +61,18 @@ public partial class RewardScreen : Control
         SetupRewards();
     }
 
+    public void InitializeDungeonCrawlEncounterSpecialBossRewards()
+    {
+        int tier = _gameObject.TierDC;
+        _rewards = new List<Currency>()
+        {
+            new Vorpex() { Amount = tier * 10 },
+            new PartyCoin() { Amount = 6 },
+            new Dellencoin() { Amount = 8 * tier },
+        };
+        SetupRewards();
+    }
+
     public void InitializeDungeonCrawlTierRewards()
     {
         int tier = _gameObject.TierDC;

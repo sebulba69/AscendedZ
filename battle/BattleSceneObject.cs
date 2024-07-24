@@ -66,10 +66,10 @@ namespace AscendedZ.battle
             this.SetPartyMemberTurns();
         }
 
-        public void InitializeEnemies(int tier, bool dungeonCrawlEncounter, bool random = false)
+        public void InitializeEnemies(int tier, bool dungeonCrawlEncounter, bool random = false, bool isRandomBoss = false)
         {
             if(random)
-                Enemies = EntityDatabase.MakeRandomEnemyEncounter(tier);
+                Enemies = EntityDatabase.MakeRandomEnemyEncounter(tier, isRandomBoss);
             else
                 Enemies = EntityDatabase.MakeBattleEncounter(tier, dungeonCrawlEncounter);
         }

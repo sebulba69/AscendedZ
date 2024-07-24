@@ -281,7 +281,7 @@ namespace AscendedZ
             return encounter;
         }
 
-        public static List<Enemy> MakeRandomEnemyEncounter(int tier)
+        public static List<Enemy> MakeRandomEnemyEncounter(int tier, bool isBoss)
         {
             List<Enemy> encounter = new List<Enemy>();
 
@@ -291,12 +291,23 @@ namespace AscendedZ
             int encounterNumber = RANDOM.Next(min, max);
             var random = new RandomEnemyFactory();
             random.SetTier(tier);
-            for (int e = 0; e < encounterNumber; e++) 
+
+            if (!isBoss)
             {
-                var enemy = random.GenerateEnemy(RANDOM);
-                enemy.Boost(tier);
-                encounter.Add(enemy);
+                for (int e = 0; e < encounterNumber; e++)
+                {
+                    var enemy = random.GenerateEnemy(RANDOM);
+                    enemy.Boost(tier);
+                    encounter.Add(enemy);
+                }
             }
+            else
+            {
+                var boss = random.GenerateBoss(RANDOM, tier);
+                boss.Boost(tier);
+                encounter.Add(boss);
+            }
+
 
             return encounter;
         }
@@ -516,6 +527,12 @@ namespace AscendedZ
 
             int startingHP = 15 * (index * 5);
             return startingHP;
+        }
+
+        public static int GetBossHPRandom(int tier)
+        {
+            // get random image
+            return 15 * ((tier/10) * 5);
         }
     }
 }

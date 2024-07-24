@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -175,6 +176,16 @@ namespace AscendedZ.entities
         public static readonly string Ocura = "Ocura";
         public static readonly string Emush = "Emush";
 
-        
+        // Bosses (Random Dungeon)
+        public static readonly string Algrools = "Algrools";
+        public static readonly string Gos = "Gos";
+        public static readonly string Laltujass = "Laltujass";
+        public static readonly string Pool = "Pool";
+        public static readonly string Qibrel = "Qibrel";
+        public static readonly string Sirgopes = "Sirgopes";
+        public static readonly string Suamgu = "Suamgu";
+        public static readonly string Vrasrohd = "Vrasrohd";
+        public static readonly string Vrosh = "Vrosh";
+
     }
 }

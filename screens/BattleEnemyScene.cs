@@ -23,7 +23,7 @@ public partial class BattleEnemyScene : Node2D
     private TextureRect _skillIcon;
     private HBoxContainer _turnIconContainer;
     private ActionMenu _actionMenu;
-    private bool _random;
+    private bool _random, _randomBoss;
 
     public EventHandler BackToHome;
 
@@ -114,14 +114,15 @@ public partial class BattleEnemyScene : Node2D
         InitializeBattleScene();
     }
 
-    public void SetupForDungeonCrawlEncounter(List<BattlePlayer> players, bool random)
+    public void SetupForDungeonCrawlEncounter(List<BattlePlayer> players, bool random, bool isRandomBoss)
     {
         _random = random;
+        _randomBoss = isRandomBoss;
         _dungeonCrawlEncounter = true;
-        InitializeBattleScene(players, random);
+        InitializeBattleScene(players, random, isRandomBoss);
     }
 
-    private void InitializeBattleScene(List<BattlePlayer> players = null, bool random = false)
+    private void InitializeBattleScene(List<BattlePlayer> players = null, bool random = false, bool isRandomBoss = false)
     {
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
         int tier = (_dungeonCrawlEncounter) ? gameObject.TierDC : gameObject.Tier;
@@ -144,7 +145,7 @@ public partial class BattleEnemyScene : Node2D
         else
         {
             int dcTier = tier + 5;
-            _battleSceneObject.InitializeEnemies(dcTier, _dungeonCrawlEncounter, random);
+            _battleSceneObject.InitializeEnemies(dcTier, _dungeonCrawlEncounter, random, isRandomBoss);
         }
             
 
@@ -199,8 +200,12 @@ public partial class BattleEnemyScene : Node2D
         {
             if(tier % 50 == 0)
             {
-                string track = "res://music/dungeon_crawl_boss/dungeon_crawl_boss.ogg";
-                gameObject.MusicPlayer.PlayMusic(track);
+                gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS);
+            }
+
+            if (isRandomBoss)
+            {
+                gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS_RANDOM);
             }
         }
 
@@ -457,7 +462,7 @@ public partial class BattleEnemyScene : Node2D
 
             var gameObject = PersistentGameObjects.GameObjectInstance();
 
-            if(gameObject.Tier % 10 == 0 && !_dungeonCrawlEncounter || gameObject.TierDC % 50 == 0 && _dungeonCrawlEncounter)
+            if(gameObject.Tier % 10 == 0 && !_dungeonCrawlEncounter || gameObject.TierDC % 50 == 0 && _dungeonCrawlEncounter || _randomBoss)
             {
                 gameObject.MusicPlayer.PlayMusic(MusicAssets.BOSS_VICTORY);
                 gameObject.MusicPlayer.ResetAllTracksAfterBoss();
@@ -470,8 +475,11 @@ public partial class BattleEnemyScene : Node2D
                 var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
                 this.GetTree().Root.AddChild(rewardScene);
 
-                if(_random)
-                    rewardScene.InitializeDungeonCrawlEncounterSpecialRewards();
+                if (_random)
+                    if (_randomBoss)
+                        rewardScene.InitializeDungeonCrawlEncounterSpecialBossRewards();
+                    else
+                        rewardScene.InitializeDungeonCrawlEncounterSpecialRewards();
                 else
                     rewardScene.InitializeDungeonCrawlEncounterRewards();
 

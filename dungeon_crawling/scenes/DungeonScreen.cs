@@ -259,8 +259,29 @@ public partial class DungeonScreen : Transitionable2DScene
                 _currentScene.Scene.TurnOffGraphic();
                 PersistentGameObjects.Save();
                 break;
+            case TileEventId.SpecialBossEncounter:
             case TileEventId.SpecialEncounter:
             case TileEventId.Encounter:
+                bool doNotDoEncounter = false;
+
+                if (id == TileEventId.SpecialBossEncounter)
+                {
+                    _dungeon.Current.EventTriggered = false;
+
+                    var bossPrompt = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP).Instantiate<AscendedYesNoWindow>();
+                    _popup.AddChild(bossPrompt);
+                    bossPrompt.SetDialogMessage("You sense a dangerous presence beyond the door. Do you proceed?");
+                    bossPrompt.AnswerSelected += (sender, args) =>
+                    {
+                        doNotDoEncounter = !args;
+                    };
+
+                    await ToSignal(bossPrompt, "tree_exited");
+                }
+
+                if (doNotDoEncounter)
+                    break;
+
                 var combatScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
                 var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
 
@@ -280,7 +301,7 @@ public partial class DungeonScreen : Transitionable2DScene
                     retreat = true;
                 };
 
-                combatScene.SetupForDungeonCrawlEncounter(_battlePlayers, (id == TileEventId.SpecialEncounter));
+                combatScene.SetupForDungeonCrawlEncounter(_battlePlayers, (id == TileEventId.SpecialEncounter) || (id == TileEventId.SpecialBossEncounter), (id == TileEventId.SpecialBossEncounter));
 
                 transition.PlayFadeOut();
                 await ToSignal(transition.Player, "animation_finished");
@@ -308,6 +329,7 @@ public partial class DungeonScreen : Transitionable2DScene
                     _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished
                     PersistentGameObjects.Save();
                 }
+                _dungeon.Current.EventTriggered = true;
                 break;
 
             case TileEventId.Heal:

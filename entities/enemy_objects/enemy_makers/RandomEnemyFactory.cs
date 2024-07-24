@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AscendedZ.entities.enemy_objects.enemy_makers
 {
@@ -19,6 +20,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         private List<string> _names;
         private List<Elements> _elements;
         private List<ResistanceType> _resistances;
+        private List<string> _bossNames;
 
         public RandomEnemyFactory() : base()
         {
@@ -45,6 +47,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 EnemyNames.Ansung, EnemyNames.Ardeb, EnemyNames.ChAffar, EnemyNames.Charcas, EnemyNames.DrigaBoli,
                 EnemyNames.Ethel, EnemyNames.FoameShorti, EnemyNames.Keri, EnemyNames.Lyelof, EnemyNames.Nanles,
                 EnemyNames.ReeshiDeeme, EnemyNames.Samjaris, EnemyNames.Tily
+            };
+
+            _bossNames = new List<string>() 
+            {
+                EnemyNames.Algrools, EnemyNames.Gos, EnemyNames.Laltujass, EnemyNames.Pool, EnemyNames.Pool, EnemyNames.Qibrel,
+                EnemyNames.Sirgopes, EnemyNames.Suamgu, EnemyNames.Vrasrohd, EnemyNames.Vrosh
             };
 
             _elements = new List<Elements>() 
@@ -146,6 +154,44 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             enemy.MaxHP += 2;
 
             return enemy;
+        }
+
+        public Enemy GenerateBoss(Random rng, int tier)
+        {
+            string name = _bossNames[rng.Next(_bossNames.Count)];
+            int turns = rng.Next(2, 5);
+
+            var bhai = MakeBossHellAI(name, turns);
+            bhai.MaxHP = EntityDatabase.GetBossHPRandom(tier);
+
+            int res = rng.Next(2) + 1;
+            List<Elements> wex = new List<Elements>();
+            for (int r = 0; r < res; r++)
+            {
+                Elements element = GetRandomElement(rng);
+                ResistanceType type = GetRandomResistanceType(rng);
+                bhai.Resistances.SetResistance(type, element);
+
+                if(type == ResistanceType.Wk)
+                    wex.Add(element);
+            }
+
+            if(wex.Count > 0)
+            {
+                int addBeastEye = rng.Next(1, 101);
+                if (addBeastEye <= 35)
+                    bhai.Skills.Add(SkillDatabase.BeastEye);
+
+                foreach (var voidElement in wex)
+                {
+                    int voidWex = rng.Next(1, 101);
+                    if(voidWex <= 45)
+                        bhai.Skills.Add(_voidSkills.Find(v => v.BaseName.Contains(voidElement.ToString())).Clone());
+                }
+            }
+
+            PopulateEnemySkillsRandom(rng, bhai);
+            return bhai;
         }
 
         private void PopulateEnemyResistanceRandom(Random rng, Enemy enemy)
@@ -307,6 +353,19 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 Image = CharacterImageAssets.GetImagePath(name),
                 Resistances = new ResistanceArray()
             };
+        }
+
+        private BossHellAI MakeBossHellAI(string name, int turns)
+        {
+            var bhai = new BossHellAI()
+            {
+                Name = name,
+                Image = CharacterImageAssets.GetImagePath(name),
+                Resistances = new ResistanceArray(),
+                Turns = turns
+            };
+
+            return bhai;
         }
     }
 }

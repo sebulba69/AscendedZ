@@ -215,6 +215,15 @@ namespace AscendedZ.dungeon_crawling.backend
                 SetTileToFountain(fountain);
                 generatedPathTypes.Add(fountain.TileEventId);
                 openTiles.Remove(fountain);
+
+                if(_tier % 3 == 0)
+                {
+                    var boss = openTiles[_rng.Next(openTiles.Count)];
+                    SetTileToSpecialBossEncounter(boss);
+                    generatedPathTypes.Add(boss.TileEventId);
+                    openTiles.Remove(boss);
+                }
+                   
             }
 
             SetTileToExit(openTiles[_rng.Next(openTiles.Count)]);
@@ -331,6 +340,15 @@ namespace AscendedZ.dungeon_crawling.backend
         {
             string graphic = "res://dungeon_crawling/art_assets/entity_icons/special_encounter.png";
             TileEventId id = TileEventId.SpecialEncounter;
+
+            tile.Graphic = graphic;
+            tile.TileEventId = id;
+        }
+
+        private void SetTileToSpecialBossEncounter(Tile tile)
+        {
+            string graphic = "res://dungeon_crawling/art_assets/entity_icons/bossdoor.png";
+            TileEventId id = TileEventId.SpecialBossEncounter;
 
             tile.Graphic = graphic;
             tile.TileEventId = id;

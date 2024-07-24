@@ -39,9 +39,22 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             else if (skill.Id == SkillId.Status) 
             {
                 if (!skill.BaseName.Contains("Void"))
+                {
                     action.Target = FindTargetForStatus((StatusSkill)skill, battleSceneObject);
+                }
                 else
-                    action.Target = FindVoidStatus((StatusSkill)skill, battleSceneObject);
+                {
+                    int voidChance = _rng.Next(1, 101);
+                    if (voidChance < 45)
+                    {
+                        action.Target = FindVoidStatus((StatusSkill)skill, battleSceneObject);
+                    }
+                    else
+                    {
+                        action.Target = null;
+                    }
+                }
+                    
             }
             else if (skill.Id == SkillId.Eye)
             {
