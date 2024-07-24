@@ -26,7 +26,6 @@ public partial class MainScreen : Transitionable2DScene
         _musicSelectContainer = this.GetNode<PanelContainer>("%MusicSelectContainer");
 
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
-
         TextureRect background = this.GetNode<TextureRect>("%Background");
         background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetBackground(gameObject.MaxTier));
 

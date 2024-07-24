@@ -47,11 +47,11 @@ public partial class UpgradeItem : VBoxContainer
 		_name.Text = entity.DisplayName;
 		_upgradeCost.Text = $"{entity.VorpexValue}";
 		_refundCost.Text = $"{entity.RefundCost}";
-
-
         _description.Text = entity.GetUpgradeString();
 
-		_refundBtn.Disabled = !_upgradeItemObject.CanRefund();
+		_upgradeBtn.Disabled = entity.IsLevelCapHit;
+
+        _refundBtn.Disabled = !_upgradeItemObject.CanRefund();
     }
 
 	private void _OnUpgradeButtonPressed()

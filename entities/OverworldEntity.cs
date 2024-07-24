@@ -24,10 +24,9 @@ namespace AscendedZ.entities.partymember_objects
         private int _fusionGrade = 0;
         private int _upgradeShardYield = 10;
         private int _skillCap = 2;
-
+        public bool IsLevelCapHit => Level == _maxLevelCap;
         public bool IsInParty { get => _isInParty; set => _isInParty = value; }
         public int Level { get => _level; set => _level = value; }
-        public int Grade { get => _grade; set => _grade = value; }
         public int VorpexValue { get => _vorpexCost; set => _vorpexCost = value; }
 
         public int RefundCost 
@@ -43,18 +42,18 @@ namespace AscendedZ.entities.partymember_objects
         }
 
         public int MaxHP { get; set; }
-        public string GradeString { get; set; }
         public int SkillCap { get => _skillCap; set => _skillCap = value; }
         public string DisplayName 
         { 
             get
             {
                 string retString;
-
-                if (string.IsNullOrEmpty(GradeString))
-                    retString = Name;
-                else
-                    retString = $"[{GradeString}] {Name}";
+                string prefix = $"L.{Level}";
+                if(Level == _maxLevelCap)
+                {
+                    prefix = "MAX";
+                }
+                retString = $"[{prefix}] {Name}";
 
                 return retString;
             } 
@@ -87,13 +86,14 @@ namespace AscendedZ.entities.partymember_objects
         public void SetLevel(int level)
         {
             Level = level;
-            GradeString = GetLevelString();
         }
 
         public void LevelUp()
         {
+            if (Level + 1 > _maxLevelCap)
+                return;
+
             Level++;
-            GradeString = GetLevelString();
 
             VorpexValue = Equations.GetVorpexLevelValue(VorpexValue, Level);
             MaxHP = Equations.GetOWMaxHPUpgrade(MaxHP, Level);
@@ -105,30 +105,6 @@ namespace AscendedZ.entities.partymember_objects
         public string GetHPLevelUpPreview()
         {
             return $"{Equations.GetOWMaxHPUpgrade(MaxHP, Level)} HP";
-        }
-
-        private string GetLevelString()
-        {
-            string[] grades = { "F", "E", "D", "C", "B", "A", "S", "SS", "SSS", "SX4", "SX5", "SX6", "SX7", "SX8", "SX9", "SX10", "XG", "XXG", "X3G", "X4G", "X5G", "ASC" };
-            string gradeString = string.Empty;
-            if (Level == _maxLevelCap)
-            {
-                Level = 0;
-                Grade++;
-
-                if (Grade == grades.Length - 1)
-                {
-                    _maxLevelCap *= 2;
-                }
-
-                gradeString = $"{grades[Grade]}";
-            }
-            else
-            {
-                gradeString = $"{grades[Grade]}.{Level}";
-            }
-
-            return gradeString;
         }
 
         public string GetUpgradeString()
