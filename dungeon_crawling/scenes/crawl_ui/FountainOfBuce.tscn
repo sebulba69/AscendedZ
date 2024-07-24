@@ -75,7 +75,11 @@ layout_mode = 2
 texture = SubResource("AtlasTexture_v2x3l")
 expand_mode = 2
 
-[node name="Morbis" type="TextEdit" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Morbis" type="Label" parent="HBoxContainer/VBoxContainer/HBoxContainer2/PanelContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
@@ -83,9 +87,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_kfois")
 theme_override_font_sizes/font_size = 28
-editable = false
-selecting_enabled = false
-drag_and_drop_selection_enabled = false
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
 texture_filter = 2

@@ -92,6 +92,7 @@ namespace AscendedZ.game_object
 
         public MainPlayer MainPlayer { get; set; }
         public int Orbs { get; set; }
+        public int Pickaxes { get; set; }
         public MusicObject MusicPlayer { get; set; }
         public ProgressFlagObject ProgressFlagObject { get; set; }
         /// <summary>

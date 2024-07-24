@@ -69,12 +69,74 @@ public partial class DungeonScreen : Transitionable2DScene
             _OnRetreatButtonPressed();
         };
 
+        _player.Up.Pressed += () => 
+        {
+            MineDirection(_currentScene.X - 1, _currentScene.Y);
+            SetPlayerDirections(_currentScene.X, _currentScene.Y);
+        };
+
+        _player.Down.Pressed += () => 
+        {
+            MineDirection(_currentScene.X + 1, _currentScene.Y);
+            SetPlayerDirections(_currentScene.X, _currentScene.Y);
+        };
+
+        _player.Left.Pressed += () => 
+        {
+            MineDirection(_currentScene.X, _currentScene.Y - 1);
+            SetPlayerDirections(_currentScene.X, _currentScene.Y);
+        };
+
+        _player.Right.Pressed += () => 
+        {
+            MineDirection(_currentScene.X, _currentScene.Y + 1);
+            SetPlayerDirections(_currentScene.X, _currentScene.Y);
+        };
+
         _gameObject = PersistentGameObjects.GameObjectInstance();
         _gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);
         _battlePlayers = _gameObject.MakeBattlePlayerListFromParty();
         _player.SetGraphic(_gameObject.MainPlayer.Image);
         
         StartDungeon();
+    }
+
+    private void MineDirection(int x, int y)
+    {
+        GetNode<AudioStreamPlayer>("%MinePlayer").Play();
+        _dungeon.Mine(x, y);
+        var tiles = _dungeon.Tiles;
+        DrawDoors(_uiTiles[x, y], tiles[x, y], tiles);
+        _uiTiles[x, y].Scene.Visible = true;
+        FillInDoors(x, y);
+        _gameObject.Pickaxes--;
+
+        SetCrawlValues();
+        PersistentGameObjects.Save();
+    }
+
+    private void FillInDoors(int x, int y)
+    {
+        var tiles = _dungeon.Tiles;
+        if (y - 1 >= 0 && _uiTiles[x, y - 1].Scene.Visible)
+        {
+            DrawDoors(_uiTiles[x, y - 1], tiles[x, y - 1], tiles);
+        }
+
+        if (x - 1 >= 0 && _uiTiles[x - 1, y].Scene.Visible)
+        {
+            DrawDoors(_uiTiles[x - 1, y], tiles[x - 1, y], tiles);
+        }
+
+        if (x + 1 < tiles.GetLength(0) && _uiTiles[x + 1, y].Scene.Visible)
+        {
+            DrawDoors(_uiTiles[x + 1, y], tiles[x + 1, y], tiles);
+        }
+
+        if (y + 1 < tiles.GetLength(0) && _uiTiles[x, y + 1].Scene.Visible)
+        {
+            DrawDoors(_uiTiles[x, y + 1], tiles[x, y + 1], tiles);
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -114,6 +176,7 @@ public partial class DungeonScreen : Transitionable2DScene
             var tile = _uiTiles[x, y];
             if (tile.Scene.Visible)
             {
+                _player.SetArrows(false, false, false, false);
                 _currentScene = tile;
                 _processingEvent = true;
                 var tween = CreateTween();
@@ -124,21 +187,37 @@ public partial class DungeonScreen : Transitionable2DScene
                     _dungeon.MoveDirection(x, y);
                     _crawlUI.SetCoordinates(x, y);
                 };
+
+                SetPlayerDirections(x, y);
             }
+        }
+    }
+
+    private void SetPlayerDirections(int x, int y)
+    {
+        if (_gameObject.Pickaxes > 0)
+        {
+            bool up = (x - 1 >= 0 && !_uiTiles[x - 1, y].Scene.Visible);
+            bool right = (y + 1 < _uiTiles.GetLength(0) && !_uiTiles[x, y + 1].Scene.Visible);
+            bool down = (x + 1 < _uiTiles.GetLength(0) && !_uiTiles[x + 1, y].Scene.Visible);
+            bool left = (y - 1 >= 0 && !_uiTiles[x, y - 1].Scene.Visible);
+
+            _player.SetArrows(up, down, left, right);
         }
     }
 
     private void SetCrawlValues()
     {
         var tier = PersistentGameObjects.GameObjectInstance().TierDC;
-        _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, _dungeon.EncounterCount);
+        _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, _gameObject.Pickaxes, _dungeon.EncounterCount);
     }
 
     private void StartDungeon()
     {
         _background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatDCBackground(_gameObject.TierDC));
-
+        _player.SetArrows(false, false, false, false);
         int tier = _gameObject.TierDC;
+
         if (tier % 50 != 0)
         {
             _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
@@ -191,6 +270,11 @@ public partial class DungeonScreen : Transitionable2DScene
         _player.Position = _currentScene.Scene.Position;
         _crawlUI.SetCoordinates(_currentScene.X, _currentScene.Y);
 
+        if(tier % 50 != 0)
+        {
+            SetPlayerDirections(start.X, start.Y);
+        }
+
         SetCrawlValues();
     }
 
@@ -238,6 +322,15 @@ public partial class DungeonScreen : Transitionable2DScene
         
         switch (id)
         {
+            case TileEventId.Miner:
+                var miner = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_MINER).Instantiate<MinerUI>();
+                _popup.AddChild(miner);
+                miner.SetUIValues();
+                await ToSignal(miner, "tree_exited");
+                SetCrawlValues();
+                _dungeon.Current.EventTriggered = false;
+                break;
+
             case TileEventId.Item:
             case TileEventId.SpecialItem:
             case TileEventId.PotOfGreed:

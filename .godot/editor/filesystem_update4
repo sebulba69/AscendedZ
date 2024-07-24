@@ -2,6 +2,8 @@ res://default_env.tres
 res://dungeon_crawling/scenes/TileScene.tscn
 res://misc_icons/IconOutline.gdshader
 res://screens/MainPlayerContainer.tscn
+res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn
+res://screens/upgrade_screen/UpgradeItem.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs
@@ -44,3 +46,11 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
+res://dungeon_crawling/scenes/DungeonScreen.tscn
+res://dungeon_crawling/scenes/crawl_ui/MinerUI.tscn
+res://dungeon_crawling/scenes/crawl_ui/FountainOfBuce.tscn
+res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.tscn
+res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.tscn
+res://dungeon_crawling/scenes/crawl_ui/MinerUI.cs
+res://dungeon_crawling/scenes/crawl_ui/PartyMemberDCDisplay.tscn
+res://dungeon_crawling/scenes/DungeonEntity.tscn

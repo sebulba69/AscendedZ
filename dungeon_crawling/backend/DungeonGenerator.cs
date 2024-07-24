@@ -216,7 +216,12 @@ namespace AscendedZ.dungeon_crawling.backend
                 generatedPathTypes.Add(fountain.TileEventId);
                 openTiles.Remove(fountain);
 
-                if(_tier % 3 == 0)
+                var miner = openTiles[_rng.Next(openTiles.Count)];
+                SetMinerTile(miner);
+                generatedPathTypes.Add(miner.TileEventId);
+                openTiles.Remove(miner);
+
+                if (_tier % 3 == 0)
                 {
                     var boss = openTiles[_rng.Next(openTiles.Count)];
                     SetTileToSpecialBossEncounter(boss);
@@ -296,6 +301,15 @@ namespace AscendedZ.dungeon_crawling.backend
             TileEventId id = TileEventId.BossDialog;
             tile.Entity = name;
             tile.EntityImage = image;
+            tile.Graphic = graphic;
+            tile.TileEventId = id;
+        }
+
+        private void SetMinerTile(Tile tile)
+        {
+            string graphic = "res://dungeon_crawling/art_assets/entity_icons/miner.png";
+            TileEventId id = TileEventId.Miner;
+
             tile.Graphic = graphic;
             tile.TileEventId = id;
         }

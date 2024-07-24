@@ -4,22 +4,27 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class DungeonCrawlUI : PanelContainer
+public partial class DungeonCrawlUI : Control
 {
-	private VBoxContainer _container;
-	private Label _tier, _coordinates, _encounters;
+	private GridContainer _container;
+	private Label _tier, _coordinates, _encounters, _orbs, _pickaxes;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_tier = GetNode<Label>("%Tier");
         _coordinates = GetNode<Label>("%Coordinates");
-		_container = GetNode<VBoxContainer>("%PartyContainer");
+		_container = GetNode<GridContainer>("%PartyContainer");
 		_encounters = GetNode<Label>("%EncountersRemaining");
+		_orbs = GetNode<Label>("%OrbAmount");
+        _pickaxes = GetNode<Label>("%PickAxeAmount");
 	}
 
-	public void SetParty(int tier, List<BattlePlayer> players, int orbs, int encounters)
+	public void SetParty(int tier, List<BattlePlayer> players, int orbs, int pickaxes, int encounters)
 	{
-		_tier.Text = $"TIER: {tier}, Orbs: {orbs}";
+		_tier.Text = $"TIER: {tier}";
+
+		_orbs.Text = orbs.ToString();
+		_pickaxes.Text = pickaxes.ToString();
 
         foreach (var child in _container.GetChildren())
 			_container.RemoveChild(child);
@@ -36,6 +41,6 @@ public partial class DungeonCrawlUI : PanelContainer
 
 	public void SetCoordinates(int x, int y)
 	{
-        _coordinates.Text = $"[{x},{y}]";
+        _coordinates.Text = $"[{y},{x}]";
     }
 }

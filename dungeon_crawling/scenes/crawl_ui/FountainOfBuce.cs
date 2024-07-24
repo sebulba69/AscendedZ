@@ -8,7 +8,7 @@ public partial class FountainOfBuce : CenterContainer
 {
 	private Button _offerBuceOrbsBtn, _backBtn;
 	private Label _orbCount;
-	private TextEdit _morbis;
+	private Label _morbis;
 	private GameObject _gameObject;
 
 	// Called when the node enters the scene tree for the first time.
@@ -17,7 +17,7 @@ public partial class FountainOfBuce : CenterContainer
 		_offerBuceOrbsBtn = GetNode<Button>("%OfferBuceOrbsBtn");
         _backBtn = GetNode<Button>("%BackBtn");
 		_orbCount = GetNode<Label>("%OrbCountLabel");
-		_morbis = GetNode<TextEdit>("%Morbis");
+		_morbis = GetNode<Label>("%Morbis");
 
 		_backBtn.Pressed += QueueFree;
 

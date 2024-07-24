@@ -9,42 +9,34 @@
 
 [node name="PartyMemberDcDisplay" type="PanelContainer"]
 texture_filter = 2
-custom_minimum_size = Vector2(240, 55)
 script = ExtResource("1_vd0bu")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
 texture_filter = 2
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_bottom = -2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
 
 [node name="Picture" type="TextureRect" parent="HBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 texture_filter = 2
-custom_minimum_size = Vector2(21, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("1_pb7bc")
-expand_mode = 2
 stretch_mode = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
-texture_filter = 2
-layout_mode = 2
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 alignment = 1
 
-[node name="HP" type="TextureProgressBar" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HP" type="TextureProgressBar" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(174, 21)
@@ -58,13 +50,13 @@ texture_over = ExtResource("3_yl3cs")
 texture_progress = ExtResource("4_scbfl")
 texture_progress_offset = Vector2(1, 0)
 
-[node name="NameLabel" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="NameLabel" type="Label" parent="HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("5_sxm27")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 25
 text = "Name"
 horizontal_alignment = 1

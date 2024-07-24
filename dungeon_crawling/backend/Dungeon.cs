@@ -48,6 +48,11 @@ namespace AscendedZ.dungeon_crawling.backend
                 CheckTileEvent();
         }
 
+        public void Mine(int x, int y)
+        {
+            _dungeon[x, y].IsPartOfMaze = true;
+        }
+
         public void ProcessEncounter()
         {
             _genenerator.Encounters--;
