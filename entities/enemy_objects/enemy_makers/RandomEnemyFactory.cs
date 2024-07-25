@@ -208,7 +208,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         private void PopulateEnemySkillsRandom(Random rng, Enemy enemy)
         {
-            int smax = rng.Next(4);
+            int smax = rng.Next(2, 4);
             for (int s = 0; s < smax + 1; s++)
             {
                 enemy.Skills.Add(_elementalSkills[rng.Next(_elementalSkills.Count)].Clone());

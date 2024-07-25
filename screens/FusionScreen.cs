@@ -60,17 +60,7 @@ public partial class FusionScreen : CenterContainer
 	private void PopulatePossibleFusionList()
 	{
         _fSO.PopulateMaterialFusionList();
-
-		int cost = _fSO.GetCost();
-		string costStr = "Cost: ";
-		if (cost == -1)
-			costStr += "???";
-		else
-			costStr += cost;
 		
-		_owned.Text = _fSO.OwnedPartyCoins.ToString();
-		_cost.Text = costStr;
-
         _fusionSkillList.Clear();
 
         foreach (FusionObject fusion in _fSO.Fusions)
@@ -136,6 +126,21 @@ public partial class FusionScreen : CenterContainer
 		_displayFusion.ShowFusionEntity(fusionHolder);
         _material1.ShowRandomEntity(mat1Holder);
 		_material2.ShowRandomEntity(mat2Holder);
+
+		UpdateCost();
+    }
+
+	private void UpdateCost()
+    {
+        int cost = _fSO.GetCost();
+        string costStr = "Cost: ";
+        if (cost == -1)
+            costStr += "???";
+        else
+            costStr += cost;
+
+        _cost.Text = costStr;
+        _owned.Text = _fSO.OwnedPartyCoins.ToString();
     }
 
 	private void SetFusionSkillListSelectedIndex()
@@ -180,8 +185,12 @@ public partial class FusionScreen : CenterContainer
 		{
 			bool successfulFusion = _fSO.TryFuse();
 
-			if(successfulFusion)
-				ReturnToMainFusionScreen();
+			if (successfulFusion)
+			{
+                ReturnToMainFusionScreen();
+                UpdateCost();
+            }
+				
         }
     }
 

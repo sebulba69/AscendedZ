@@ -28,7 +28,6 @@ public partial class MainScreen : Transitionable2DScene
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
         TextureRect background = this.GetNode<TextureRect>("%Background");
         background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetBackground(gameObject.MaxTier));
-
         _mainPlayerContainer = this.GetNode<MainPlayerContainer>("%MainPlayerContainer");
 
         InitializeMusicButton(gameObject);

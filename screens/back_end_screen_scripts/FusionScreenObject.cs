@@ -128,7 +128,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
                 return -1;
             else
             {
-                int grade = DisplayFusion.Fusion.FusionGrade;
+                int grade = DisplayFusion.Fusion.FusionGrade - 1;
                 return grade * 25;
             }
         }
