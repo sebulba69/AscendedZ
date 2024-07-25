@@ -201,6 +201,15 @@ namespace AscendedZ
             }
         }
 
+
+        public static StatusSkill VoidElec
+        {
+            get
+            {
+                return MakeChangeElementSkill("Void Elec", new VoidElecStatus());
+            }
+        }
+
         public static StatusSkill WeakFire
         {
             get

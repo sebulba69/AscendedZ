@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Godot;
 
 namespace AscendedZ.entities.enemy_objects.enemy_makers
 {
@@ -39,14 +40,14 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _voidSkills = new List<ISkill>() 
             {
                 SkillDatabase.VoidDark, SkillDatabase.VoidLight, SkillDatabase.VoidFire,
-                SkillDatabase.VoidIce, SkillDatabase.VoidWind
+                SkillDatabase.VoidIce, SkillDatabase.VoidWind, SkillDatabase.VoidElec
             };
 
             _names = new List<string>() 
             {
                 EnemyNames.Ansung, EnemyNames.Ardeb, EnemyNames.ChAffar, EnemyNames.Charcas, EnemyNames.DrigaBoli,
                 EnemyNames.Ethel, EnemyNames.FoameShorti, EnemyNames.Keri, EnemyNames.Lyelof, EnemyNames.Nanles,
-                EnemyNames.ReeshiDeeme, EnemyNames.Samjaris, EnemyNames.Tily
+                EnemyNames.ReeshiDeeme, EnemyNames.Samjaris, EnemyNames.Tily, EnemyNames.Hahere
             };
 
             _bossNames = new List<string>() 
@@ -70,7 +71,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             int hp = rng.Next(10, 20);
 
             int ai = rng.Next(aiMax);
-
             Enemy enemy;
 
             var skills = new List<ISkill>();
@@ -129,7 +129,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             {
                 var voidElement = GetRandomElement(rng);
                 enemy = MakeProtectorEnemy(name, hp, voidElement);
-                enemy.Skills.Add(_voidSkills.Find(v => v.BaseName.Contains(voidElement.ToString())).Clone());
+                var voidSkill = _voidSkills.Find(v => v.BaseName.Contains(voidElement.ToString())).Clone();
+                enemy.Skills.Add(voidSkill);
                 PopulateEnemyResistanceRandom(rng, enemy);
                 enemy.Resistances.SetResistance(ResistanceType.Wk, voidElement);
                 PopulateEnemySkillsRandom(rng, enemy);

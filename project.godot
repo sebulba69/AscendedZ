@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="Ascended Z"
+config/version="0.0.4.15"
 run/main_scene="res://screens/StartScreen.tscn"
 config/features=PackedStringArray("4.2", "C#")
 boot_splash/show_image=false
-config/icon="res://icon.png"
+config/icon="res://ascended_icon.png"
 
 [display]
 

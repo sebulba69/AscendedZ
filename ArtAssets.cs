@@ -176,6 +176,7 @@ namespace AscendedZ
         public static readonly string VOID_WIND_ICON = "VoidWind";
         public static readonly string VOID_DARK_ICON = "VoidDark";
         public static readonly string VOID_LIGHT_ICON = "VoidLight";
+        public static readonly string VOID_ELEC_ICON = "VoidElec";
 
         public static readonly string BEAST_EYE = "BeastEye";
 
@@ -216,6 +217,7 @@ namespace AscendedZ
             [VOID_WIND_ICON] = new KeyValuePair<int, int>(128, 2144),
             [VOID_LIGHT_ICON] = new KeyValuePair<int, int>(416, 2144),
             [VOID_DARK_ICON] = new KeyValuePair<int, int>(448, 2144),
+            [VOID_ELEC_ICON] = new KeyValuePair<int, int>(96, 2144),
             [POISON_ICON] = new KeyValuePair<int, int>(64, 0),
             [ICE_ICON] = new KeyValuePair<int, int>(32, 128),
             [ELEC_ICON] = new KeyValuePair<int, int>(64, 128),

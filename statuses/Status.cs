@@ -110,27 +110,32 @@ namespace AscendedZ.statuses
                     if (Icon.Contains(SkillAssets.VOID_FIRE_ICON))
                     {
                         _id = StatusId.VoidFireStatus;
-                        return this.Clone();
+                        return Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_ELEC_ICON))
+                    {
+                        _id = StatusId.VoidElecStatus;
+                        return Clone();
                     }
                     else if (Icon.Contains(SkillAssets.VOID_ICE_ICON))
                     {
                         _id = StatusId.VoidIceStatus;
-                        return this.Clone();
+                        return Clone();
                     }
                     else if (Icon.Contains(SkillAssets.VOID_WIND_ICON))
                     {
                         _id = StatusId.VoidWindStatus;
-                        return this.Clone();
+                        return Clone();
                     }
                     else if (Icon.Contains(SkillAssets.VOID_DARK_ICON))
                     {
                         _id = StatusId.VoidDarkStatus;
-                        return this.Clone();
+                        return Clone();
                     }
                     else if (Icon.Contains(SkillAssets.VOID_LIGHT_ICON))
                     {
                         _id = StatusId.VoidLightStatus;
-                        return this.Clone();
+                        return Clone();
                     }
                     else
                     {
@@ -159,7 +164,7 @@ namespace AscendedZ.statuses
                 case StatusId.VoidWindStatus:
                     return new VoidWindStatus();
                 case StatusId.VoidElecStatus:
-                    return null;
+                    return new VoidElecStatus();
                 case StatusId.VoidDarkStatus:
                     return new VoidDarkStatus();
                 case StatusId.VoidLightStatus:
