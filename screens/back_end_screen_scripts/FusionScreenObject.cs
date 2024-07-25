@@ -40,6 +40,9 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
             if (DisplayFusion.Fusion.Skills.Count > 0)
             {
+                if (GetCost() > OwnedPartyCoins)
+                    return false;
+
                 MainPlayer mainPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer;
 
                 RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material1);
@@ -50,9 +53,6 @@ namespace AscendedZ.screens.back_end_screen_scripts
                     if (reserve.Name.Equals(DisplayFusion.Fusion.Name))
                         return false;
                 }
-
-                if (GetCost() > OwnedPartyCoins)
-                    return false;
 
                 _partyCoins.Amount -= GetCost();
 
