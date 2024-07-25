@@ -48,11 +48,16 @@ namespace AscendedZ.entities.partymember_objects
             get
             {
                 string retString;
-                string prefix = $"L.{Level}";
-                if(Level == _maxLevelCap)
+                string prefix = "";
+                if(Level > 0)
                 {
-                    prefix = "MAX";
+                    prefix = $"L.{Level}";
+                    if (Level == _maxLevelCap)
+                    {
+                        prefix = "MAX";
+                    }
                 }
+
                 retString = $"[{prefix}] {Name}";
 
                 return retString;

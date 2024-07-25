@@ -3,6 +3,7 @@ res://dungeon_crawling/scenes/DungeonScreen.tscn
 res://misc_icons/IconOutline.gdshader
 res://dungeon_crawling/scenes/DungeonEntity.tscn
 res://dungeon_crawling/scenes/crawl_ui/MinerUI.tscn
+res://misc_icons/Icon.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs
@@ -46,4 +47,3 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://misc_icons/Icon.tscn

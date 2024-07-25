@@ -38,7 +38,7 @@ namespace AscendedZ.statuses
             if (_statusOwner.HP < 0) 
                 _statusOwner.HP = 0;
             
-            if (_activeTurns == 3)
+            if (_activeTurns == 3 || _statusOwner.HP == 0)
                 RemoveStatus = true;
         }
 

@@ -113,6 +113,11 @@ namespace AscendedZ.entities.battle_entities
                 StatusHandler.RemoveStatus(this, StatusId.PoisonStatus);
             }
 
+            if(HP == 0)
+            {
+                StatusHandler.Clear();
+            }
+
             return result;
         }
 
