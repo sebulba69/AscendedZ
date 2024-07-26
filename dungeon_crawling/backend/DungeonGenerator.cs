@@ -101,7 +101,7 @@ namespace AscendedZ.dungeon_crawling.backend
                 }
 
                 boss.Graphic = encounter[0].Image;
-
+                Encounters = 1;
                 return _tiles;
             }
         }

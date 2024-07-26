@@ -495,7 +495,7 @@ public partial class DungeonScreen : Transitionable2DScene
                     _endingScene = true;
                     _floorExitScene.Visible = true;
                     SetEncounterVisibility(false, true);
-                    _floorExitScene.Continue.Visible = (_gameObject.MaxTierDC + 1 < _gameObject.TierDCCap);
+                    _floorExitScene.Continue.Visible = (_gameObject.TierDC + 1 < _gameObject.TierDCCap);
                     _floorExitScene.EndOfBattleLabel.Text = "Ascend?";
                     _floorExitScene.Stay.Visible = true;
                     _floorExitScene.Retry.Visible = false;
