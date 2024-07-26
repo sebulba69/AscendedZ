@@ -67,6 +67,11 @@ public partial class RecruitScreen : CenterContainer
         SetShopVendorWares();
     }
 
+    public void SetOwnedPartyCoin()
+    {
+        _partyCoinCost.Text = $"{_partyCoins.Amount} PC";
+    }
+
     public void SetShopVendorWares()
     {
         _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.GameObjectInstance().MaxTier);

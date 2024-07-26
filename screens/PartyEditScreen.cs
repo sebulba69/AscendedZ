@@ -4,6 +4,7 @@ using AscendedZ.game_object;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using static Godot.WebSocketPeer;
 
 public partial class PartyEditScreen : HBoxContainer
@@ -205,6 +206,7 @@ public partial class PartyEditScreen : HBoxContainer
             {
                 var battleScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
                 this.GetTree().Root.AddChild(battleScene);
+                await Task.Delay(150);
                 battleScene.SetupForNormalEncounter();
             }
             Embark?.Invoke(null, EventArgs.Empty);

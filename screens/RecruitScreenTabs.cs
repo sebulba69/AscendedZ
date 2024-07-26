@@ -38,7 +38,10 @@ public partial class RecruitScreenTabs : CenterContainer
 				gameObject.ProgressFlagObject.CustomPartyMembersViewed = true;
 				PersistentGameObjects.Save();
             }
-		};
+
+			_recruitShop.SetOwnedPartyCoin();
+			_memberRequestForum.SetOwnedPartyCoin();
+        };
 
 		if(gameObject.MaxTier > TierRequirements.TIER2_STRONGER_ENEMIES)
 		{
@@ -49,6 +52,7 @@ public partial class RecruitScreenTabs : CenterContainer
 
 		_ownedDellencoin.Text = $"{gameObject.MainPlayer.Wallet.Currency[SkillAssets.DELLENCOIN].Amount} D$";
 
+		
     }
 
 	private void _OnShopUpgradePressed()

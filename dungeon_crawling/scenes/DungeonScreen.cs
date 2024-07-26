@@ -343,6 +343,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
                 var dScene = ResourceLoader.Load<PackedScene>(dialogScene).Instantiate<DC_BOSS_CUTSCENE>();
                 _popup.AddChild(dScene);
+                await Task.Delay(150);
                 dScene.Start(_dungeon.Current.Entity, _dungeon.Current.EntityImage);
 
                 await ToSignal(dScene, "tree_exited");
@@ -363,6 +364,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
                     var bossPrompt = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP).Instantiate<AscendedYesNoWindow>();
                     _popup.AddChild(bossPrompt);
+                    await Task.Delay(150);
                     bossPrompt.SetDialogMessage("You sense a dangerous presence beyond the door. Do you proceed?");
                     bossPrompt.AnswerSelected += (sender, args) =>
                     {
@@ -393,7 +395,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 {
                     retreat = true;
                 };
-
+                await Task.Delay(150);
                 combatScene.SetupForDungeonCrawlEncounter(_battlePlayers, (id == TileEventId.SpecialEncounter) || (id == TileEventId.SpecialBossEncounter), (id == TileEventId.SpecialBossEncounter));
 
                 transition.PlayFadeOut();
@@ -452,6 +454,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
                 var popupWindow = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP).Instantiate<AscendedYesNoWindow>();
                 _popup.AddChild(popupWindow);
+                await Task.Delay(150);
                 popupWindow.SetDialogMessage("Teleport?");
                 popupWindow.AnswerSelected += (sender, args) => 
                 {
@@ -515,7 +518,7 @@ public partial class DungeonScreen : Transitionable2DScene
         _itemSfxPlayer.Play();
         _crawlUI.Visible = false;
         _popup.AddChild(reward);
-
+        await Task.Delay(150);
         if (id == TileEventId.PotOfGreed)
             reward.InitializePotOfGreedRewards();
         else if (id == TileEventId.SpecialItem)

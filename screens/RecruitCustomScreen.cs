@@ -17,6 +17,7 @@ public partial class RecruitCustomScreen : CenterContainer
 	private int _selectedIndexSkills = 0;
 
 	private RecruitCustomObject _recruitCustomObject;
+	private GameObject _gameObject;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,7 +31,7 @@ public partial class RecruitCustomScreen : CenterContainer
         _potentialPartyMembers.Connect("item_selected",new Callable(this, "_OnRecruitSelected"));
         _potentialSkills.Connect("item_selected",new Callable(this, "_OnSkillSelected"));
 
-        var gameObject = PersistentGameObjects.GameObjectInstance();
+        _gameObject = PersistentGameObjects.GameObjectInstance();
 
         _recruitCustomObject = new RecruitCustomObject();
 		_recruitCustomObject.Initialize();
@@ -44,7 +45,7 @@ public partial class RecruitCustomScreen : CenterContainer
 
 		buyButton.Pressed += () => 
 		{
-			var mainPlayer = gameObject.MainPlayer;
+			var mainPlayer = _gameObject.MainPlayer;
             var partyCoin = mainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON];
 			var selected = _recruitCustomObject.SelectedEntity;
 
@@ -59,7 +60,7 @@ public partial class RecruitCustomScreen : CenterContainer
 				// prevent any references in memory back to this screen
 				var partyMember = PartyMemberGenerator.MakePartyMember(selected.Name);
 
-				for (int i = 0; i < gameObject.ShopLevel; i++)
+				for (int i = 0; i < _gameObject.ShopLevel; i++)
 					partyMember.LevelUp();
 
 				foreach(var skill in selected.Skills)
@@ -88,7 +89,7 @@ public partial class RecruitCustomScreen : CenterContainer
 			UpdateCost();
         };
 
-		_ownedPartyCoin.Text = $"{gameObject.MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON].Amount} PC";
+		_ownedPartyCoin.Text = $"{_gameObject.MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON].Amount} PC";
     }
 
     public void SetShopVendorWares()
@@ -96,6 +97,11 @@ public partial class RecruitCustomScreen : CenterContainer
 		_recruitCustomObject.Initialize();
         ChangePotentialPartyMembers();
         ChangePotentialSkills();
+    }
+
+	public void SetOwnedPartyCoin()
+	{
+        _ownedPartyCoin.Text = $"{_gameObject.MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON].Amount} PC";
     }
 
     private void ChangePotentialPartyMembers()
