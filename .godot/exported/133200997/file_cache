@@ -7,7 +7,7 @@ res://screens/BossBattleDisplayBox.tscn::001598d51eacb95aab2f2607bf6693a9::17219
 res://screens/BossHPBar.tscn::5cc3417035ee1447682aa62cff56bef9::1721275393::res://.godot/exported/133200997/export-e3e396e885123b8e3ddd3a16b95b0c03-BossHPBar.scn
 res://screens/CGCutsceneScreen.tscn::fd9e82ad668b769b95075d05fc1c77a4::1721275393::res://.godot/exported/133200997/export-82f73b83a49dd188ae69f4de01a8add3-CGCutsceneScreen.scn
 res://screens/EmbarkScreen.tscn::96ce304cbd001333427df7dc7c192699::1721696019::res://.godot/exported/133200997/export-2d9e3e8928f2bed14585ca71a3db1296-EmbarkScreen.scn
-res://screens/EnemyBattleDisplayBox.tscn::f499050471bdaf6464f3deb3c7fefd41::1721958689::res://.godot/exported/133200997/export-ecdc6a6eb1152f6e4224356906ea540e-EnemyBattleDisplayBox.scn
+res://screens/EnemyBattleDisplayBox.tscn::8f61170eb924a24803d7496c81ed3767::1721963943::res://.godot/exported/133200997/export-ecdc6a6eb1152f6e4224356906ea540e-EnemyBattleDisplayBox.scn
 res://screens/MainScreen.tscn::0004409cd3dc80742478a25518d5fedd::1721276888::res://.godot/exported/133200997/export-d0f9623a0b410b50d92728b581bcca8b-MainScreen.scn
 res://screens/MenuScene.tscn::55e3b5cbb9f57fcc4bb68785547fad20::1721275393::res://.godot/exported/133200997/export-dc133e2a4f2edf5c0503648cec14a35f-MenuScene.scn
 res://screens/PartyBattleDisplayBox.tscn::bfbcf52759ff910d080d996b21cb1c79::1721956469::res://.godot/exported/133200997/export-f4e43dffa6d76e984c8c2018fc1d3a4d-PartyBattleDisplayBox.scn
@@ -19,7 +19,7 @@ res://screens/RewardScreen.tscn::806a3a484c271fd50d35df432e57013e::1721275393::r
 res://screens/StartScreen.tscn::239ac248db195ac6120151988c0da40e::1721696019::res://.godot/exported/133200997/export-92344be412ae1ea7dc2cbb6ce4382455-StartScreen.scn
 res://statuses/StatusIcon.tscn::33e92cdc2fad74ad6cd28997a5cebac2::1721276888::res://.godot/exported/133200997/export-940bc69573b161ebb470e037aee5ea7b-StatusIcon.scn
 res://BackBoxBossHP.tres::0079ee06f649971d4a8410d4a3815303::1721275369::res://.godot/exported/133200997/export-1c416cb4e5005ec586277d2cbe4cfd8a-BackBoxBossHP.res
-res://default_env.tres::a8e4d62c7ca925131dda0375103d10a6::1721958689::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://default_env.tres::a8e4d62c7ca925131dda0375103d10a6::1721963943::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
 res://FrontBoxBossHP.tres::45b5be16a5e98a6cae36948aeb164a23::1721275369::res://.godot/exported/133200997/export-fa9021ea33574f7d5ea04e41431784f5-FrontBoxBossHP.res
 res://TextboxEditTheme.tres::d307f692fd98b06611969e7ae78050ee::1678056484::res://.godot/exported/133200997/export-ff1fc327bf1ae0734f186d18e0209d43-TextboxEditTheme.res
 res://misc_icons/CurrencyDisplay.tscn::40be66e8f1660c37aaee3bad3d0a0985::1720373693::res://.godot/exported/133200997/export-99f240c20895a90c7373ece8eae7d2a4-CurrencyDisplay.scn
