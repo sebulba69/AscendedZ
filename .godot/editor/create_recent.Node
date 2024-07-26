@@ -1,3 +1,4 @@
+HBoxContainer
 Button
 TextureButton
 GridContainer
@@ -5,7 +6,6 @@ VBoxContainer
 MarginContainer
 PanelContainer
 Label
-HBoxContainer
 CenterContainer
 Control
 ItemList

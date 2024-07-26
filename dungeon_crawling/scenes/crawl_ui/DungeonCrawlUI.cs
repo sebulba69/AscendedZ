@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public partial class DungeonCrawlUI : Control
 {
 	private GridContainer _container;
-	private Label _tier, _coordinates, _encounters, _orbs, _pickaxes;
+	private Label _tier, _coordinates, _encounters, _orbs, _pickaxes, _endCoords;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -15,6 +15,7 @@ public partial class DungeonCrawlUI : Control
         _coordinates = GetNode<Label>("%Coordinates");
 		_container = GetNode<GridContainer>("%PartyContainer");
 		_encounters = GetNode<Label>("%EncountersRemaining");
+		_endCoords = GetNode<Label>("%EndCoords");
 		_orbs = GetNode<Label>("%OrbAmount");
         _pickaxes = GetNode<Label>("%PickAxeAmount");
 	}
@@ -39,8 +40,13 @@ public partial class DungeonCrawlUI : Control
 		_encounters.Text = $"Required Encounters: {encounters}";
     }
 
+	public void SetExit(int x, int y)
+	{
+        _endCoords.Text = $"EXIT: [{y},{x}]";
+    }
+
 	public void SetCoordinates(int x, int y)
 	{
-        _coordinates.Text = $"[{y},{x}]";
+        _coordinates.Text = $"COORDS: [{y},{x}]";
     }
 }

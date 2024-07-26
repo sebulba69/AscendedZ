@@ -112,6 +112,7 @@ public partial class DungeonScreen : Transitionable2DScene
         _gameObject.Pickaxes--;
 
         SetCrawlValues();
+        
         PersistentGameObjects.Save();
     }
 
@@ -275,6 +276,7 @@ public partial class DungeonScreen : Transitionable2DScene
             SetPlayerDirections(start.X, start.Y);
         }
 
+        _crawlUI.SetExit(_dungeon.Exit.X, _dungeon.Exit.Y);
         SetCrawlValues();
     }
 

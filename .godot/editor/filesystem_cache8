@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1721964224
+::res://::1721965895
 ArtAssets.cs::CSharpScript::-1::1721874004::0::1::::<><>::
 ascended_icon.png::CompressedTexture2D::5218734614891675472::1721275369::1721275369::1::::<><>::
 AssetUtil.cs::CSharpScript::-1::1721275369::0::1::::<><>::
@@ -10,7 +10,7 @@ default_env.tres::Environment::5723441312748911875::1721963943::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1721512510::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1721788010::0::1::::<><>::
 Equations.cs::CSharpScript::-1::1721715491::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1721964017::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1721964320::0::1::::<><>::
 FrontBoxBossHP.tres::StyleBoxFlat::1760076622593413787::1721275369::0::1::::<><>::
 FrontBoxBossHPDC.tres::StyleBoxFlat::307405468150003703::1721956200::0::1::::<><>::
 icon.png::CompressedTexture2D::8476979344923658186::1676533345::1678056509::1::::<><>::
@@ -110,10 +110,10 @@ PathType.cs::CSharpScript::-1::1721588935::0::1::::<><>::
 Tile.cs::CSharpScript::-1::1721275370::0::1::::<><>::
 TileEventId.cs::CSharpScript::-1::1721791036::0::1::::<><>::
 WeightedItem.cs::CSharpScript::-1::1721275370::0::1::::<><>::
-::res://dungeon_crawling/scenes/::1721963986
+::res://dungeon_crawling/scenes/::1721964307
 DungeonEntity.cs::CSharpScript::-1::1721796826::0::1::::<>Node2D<>::
 DungeonEntity.tscn::PackedScene::7814139314654971193::1721958688::0::1::::<><>::uid://blyjwoyvgk0ep::::res://entity_pics/conlen.png<>res://dungeon_crawling/scenes/DungeonEntity.cs<>uid://bccubabd2bgpu::::res://dungeon_crawling/art_assets/general/character_border.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png
-DungeonScreen.cs::CSharpScript::-1::1721963986::0::1::::<>Node2D<>::
+DungeonScreen.cs::CSharpScript::-1::1721964307::0::1::::<>Node2D<>::
 DungeonScreen.tscn::PackedScene::2380672493013739506::1721958688::0::1::::<><>::res://dungeon_crawling/scenes/DungeonScreen.cs<>uid://djlhy6ga7e5t2::::res://dungeon_crawling/scenes/DungeonEntity.tscn<>uid://dww5loey3m4kp::::res://cg_backgrounds/dungeon_crawling/bg00701.jpg<>uid://b3unft7ukkxtf::::res://effects/effect_sounds/Battle1.ogg<>uid://cm0ln1sy56au3::::res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn<>uid://bd6ue8iwjaduk::::res://effects/effect_sounds/Heal3.ogg<>uid://q25xxaiw4e1c::::res://effects/effect_sounds/Item1.ogg<>uid://d2yakq4delsob::::res://effects/effect_sounds/Blow1.ogg<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>uid://5jt6rgufn81k::::res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.tscn
 TileScene.cs::CSharpScript::-1::1721717997::0::1::::<>Node2D<>::
 TileScene.tscn::PackedScene::3544976885811365042::1721796030::0::1::::<><>::res://dungeon_crawling/scenes/TileScene.cs<>uid://p2lm6a6lgn7g::::res://dungeon_crawling/art_assets/general/shadow.png<>uid://lcmlb3tl5am4::::res://dungeon_crawling/art_assets/general/bg.png<>uid://fu3igr300nxf::::res://dungeon_crawling/art_assets/general/ground.png<>uid://cehb84va41u6::::res://dungeon_crawling/art_assets/general/interior_lines.png<>uid://it8nvcl7m621::::res://dungeon_crawling/art_assets/general/up.png<>uid://c6xy28b3dqkai::::res://dungeon_crawling/art_assets/general/down.png<>uid://btsejbvti508d::::res://dungeon_crawling/art_assets/general/left.png<>uid://bkeaa6q4ebbmj::::res://dungeon_crawling/art_assets/general/right.png<>uid://djlhy6ga7e5t2::::res://dungeon_crawling/scenes/DungeonEntity.tscn
@@ -379,12 +379,12 @@ SaveEntry.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 SaveObject.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 ::res://json_interface_converters/::1721275371
 SkillConverter.cs::CSharpScript::-1::1721275371::0::1::::<><>::
-::res://misc_icons/::1721964037
+::res://misc_icons/::1721964404
 CurrencyDisplay.cs::CSharpScript::-1::1721718698::0::1::::<>GridContainer<>::
 CurrencyDisplay.tscn::PackedScene::8562439097474497904::1720373693::0::1::::<><>::res://misc_icons/CurrencyDisplay.cs<>uid://bqmfi0ome6yn4::::res://misc_icons/Icon.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 Icon.cs::CSharpScript::-1::1720300320::0::1::::<>TextureRect<>::
 Icon.tscn::PackedScene::3534533921528240495::1721958688::0::1::::<><>::uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>res://misc_icons/Icon.cs
-IconOutline.gdshader::Shader::-1::1721964036::0::1::::<><>::
+IconOutline.gdshader::Shader::-1::1721964404::0::1::::<><>::
 IconSet.png::CompressedTexture2D::550291359472638980::1720300251::1720300251::1::::<><>::
 ::res://music/::1721275389
 boss_victory.ogg::AudioStreamOggVorbis::5818420752927080643::1706678954::1706678954::1::::<><>::

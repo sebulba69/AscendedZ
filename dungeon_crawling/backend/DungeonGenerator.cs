@@ -19,7 +19,7 @@ namespace AscendedZ.dungeon_crawling.backend
 
         public int Encounters { get; set; }
         public Tile Start { get; set; }
-
+        public Tile Exit { get; set; }
         public DungeonGenerator(int tier) 
         {
             _tier = tier;
@@ -375,6 +375,8 @@ namespace AscendedZ.dungeon_crawling.backend
 
             tile.Graphic = graphic;
             tile.TileEventId = id;
+
+            Exit = tile;
         }
 
         private void SetTileToPotOfGreed(Tile tile)
