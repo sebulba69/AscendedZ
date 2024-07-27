@@ -209,8 +209,10 @@ public partial class DungeonScreen : Transitionable2DScene
 
     private void SetCrawlValues()
     {
-        var tier = PersistentGameObjects.GameObjectInstance().TierDC;
-        _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, _gameObject.Pickaxes, _dungeon.EncounterCount);
+        var gameObject = PersistentGameObjects.GameObjectInstance();
+        var tier = gameObject.TierDC;
+        int morbis = gameObject.MainPlayer.Wallet.Currency[SkillAssets.MORBIS].Amount;
+        _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, morbis, _gameObject.Pickaxes, _dungeon.EncounterCount);
     }
 
     public void StartDungeon()

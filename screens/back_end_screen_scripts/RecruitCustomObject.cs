@@ -29,14 +29,13 @@ namespace AscendedZ.screens.back_end_screen_scripts
         {
             AvailableMembers = new List<OverworldEntity>();
             AvailableSkills = new List<ISkill>();
-            _baseCost = 5;
         }
 
         public void Initialize()
         {
             _gameObject = PersistentGameObjects.GameObjectInstance();
             AvailableMembers = EntityDatabase.MakeShopVendorWares(_gameObject.MaxTier, true);
-
+            _baseCost = _gameObject.ShopLevel;
             for (int i = 0; i < _gameObject.ShopLevel; i++)
                 foreach (var member in AvailableMembers)
                     member.LevelUp();
@@ -51,7 +50,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
                 SelectedEntity.Skills.Clear();
 
             SelectedEntity = AvailableMembers[index];
-            Cost = SelectedEntity.Skills.Count + 1;
+            Cost = SelectedEntity.Skills.Count + _baseCost;
 
             List<ISkill> skills = SkillDatabase.GetAllGeneratableSkills(_gameObject.MaxTier);
             AvailableSkills = skills.FindAll(skill => 

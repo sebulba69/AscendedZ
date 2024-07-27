@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm0ln1sy56au3"]
+[gd_scene load_steps=7 format=3 uid="uid://cm0ln1sy56au3"]
 
 [ext_resource type="Script" path="res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.cs" id="1_hx8fa"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2_w6717"]
@@ -7,6 +7,10 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_gaviu"]
 atlas = ExtResource("3_5sfto")
 region = Rect2(0, 1632, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8wbv"]
+atlas = ExtResource("3_5sfto")
+region = Rect2(416, 1632, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jrfte"]
 atlas = ExtResource("3_5sfto")
@@ -112,6 +116,34 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
 [node name="OrbAmount" type="Label" parent="HBoxContainer/PanelContainer2"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_w6717")
+theme_override_font_sizes/font_size = 35
+text = "0"
+horizontal_alignment = 1
+
+[node name="PanelContainer7" type="PanelContainer" parent="HBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer7"]
+texture_filter = 2
+layout_mode = 2
+texture = SubResource("AtlasTexture_o8wbv")
+expand_mode = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="HBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="MorbisAmount" type="Label" parent="HBoxContainer/PanelContainer4"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
