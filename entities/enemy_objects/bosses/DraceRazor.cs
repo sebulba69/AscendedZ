@@ -56,7 +56,8 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Skills.Add(SkillDatabase.Elec1.Clone());
             Skills.Add(SkillDatabase.Ice1.Clone());
 
-            Boost(100, true);
+            int tierBoost = EntityDatabase.GetTierBoost(100);
+            Boost(100 + tierBoost, true);
         }
 
         private void AddNoWexSkills()
@@ -67,7 +68,8 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Skills.Add(SkillDatabase.ElecAll.Clone());
             Skills.Add(SkillDatabase.IceAll.Clone());
 
-            Boost(100, true);
+            int tierBoost = EntityDatabase.GetTierBoost(100);
+            Boost(100 + tierBoost, true);
         }
 
         public override void ResetEnemyState()

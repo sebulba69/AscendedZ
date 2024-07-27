@@ -184,15 +184,18 @@ namespace AscendedZ
                         // use RANDOM_ENEMIES as a base
                         List<string> possibleEncounters = new List<string>();
 
-                        string[] randomEncounters = new string[] 
-                        {
-                            EnemyNames.Liamlas, EnemyNames.Fastrobren,
-                            EnemyNames.Thylaf, EnemyNames.Arwig, EnemyNames.Riccman,
-                            EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald, 
-                            EnemyNames.CattuTDroni
-                        };
+                        string[] tier1RandomEncounters = new string[] { EnemyNames.Liamlas, EnemyNames.Fastrobren, EnemyNames.Thylaf, EnemyNames.Arwig, EnemyNames.Riccman, EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald, EnemyNames.CattuTDroni };
+                        string[] tier2RandomEncounters = new string[] { EnemyNames.Ed, EnemyNames.Otem, EnemyNames.Hesret };
+                        string[] tier3RandomEncounters = new string[] { EnemyNames.Nanfrea, EnemyNames.Ferza, EnemyNames.Anrol, EnemyNames.David };
+                        string[] tier4RandomEncounters = new string[] { EnemyNames.Fledan, EnemyNames.Walds, EnemyNames.Naldbear, EnemyNames.Stroma_Hele,EnemyNames.Thony, EnemyNames.Conson };
+                        string[] tier5RandomEncounters = new string[] { EnemyNames.Pebrand, EnemyNames.Leofuwil, EnemyNames.Gormacwen, EnemyNames.Vidwerd, EnemyNames.Sylla, EnemyNames.Venforth };
+                        string[] tier6RandomEncounters = new string[] { EnemyNames.Aldmas, EnemyNames.Fridan, EnemyNames.Bue, EnemyNames.Bued, EnemyNames.Bureen, EnemyNames.Wennald, EnemyNames.Garcar, EnemyNames.LaChris,
+                                                                        EnemyNames.Isumforth, EnemyNames.Ingesc, EnemyNames.Rahfortin, EnemyNames.Leswith, EnemyNames.Paca, EnemyNames.Wigfred, EnemyNames.Lyley, EnemyNames.Acardeb,
+                                                                        EnemyNames.Darol, EnemyNames.Hesbet, EnemyNames.Olu, EnemyNames.Iaviol, EnemyNames.Zalth, EnemyNames.Bernasbeorth };
+                        string[] randomEnemies = new string[] { EnemyNames.Ardeb,  EnemyNames.DrigaBoli, EnemyNames.FoameShorti,
+                                                                EnemyNames.ReeshiDeeme, EnemyNames.Tily, EnemyNames.Hahere };
                         
-                        possibleEncounters.AddRange(randomEncounters);
+                        possibleEncounters.AddRange(tier1RandomEncounters);
 
                         int minEnemies = 2;
                         int maxEnemies = 4;
@@ -200,12 +203,12 @@ namespace AscendedZ
                         // new encounters available past certain tiers
                         if(tier > TierRequirements.TIER2_STRONGER_ENEMIES)
                         {
-                            possibleEncounters.AddRange(new string[] { EnemyNames.Ed, EnemyNames.Otem, EnemyNames.Hesret });
+                            possibleEncounters.AddRange(tier2RandomEncounters);
                         }
 
                         if(tier > TierRequirements.TIER3_STRONGER_ENEMIES)
                         {
-                            possibleEncounters.AddRange(new string[] { EnemyNames.Nanfrea, EnemyNames.Ferza, EnemyNames.Anrol, EnemyNames.David });
+                            possibleEncounters.AddRange(tier3RandomEncounters);
                             minEnemies = 3;
                         }
 
@@ -213,43 +216,22 @@ namespace AscendedZ
                         {
                             minEnemies = 4;
                             maxEnemies = 5;
-                            possibleEncounters.RemoveRange(0, 2);
-                            possibleEncounters.AddRange(new string[] 
-                            {
-                                EnemyNames.Fledan,
-                                EnemyNames.Walds,
-                                EnemyNames.Naldbear,
-                                EnemyNames.Stroma_Hele,
-                                EnemyNames.Thony,
-                                EnemyNames.Conson
-                            });
+                            possibleEncounters.RemoveRange(0, tier1RandomEncounters.Length);
+                            possibleEncounters.AddRange(tier4RandomEncounters);
                         }
 
                         if(tier > TierRequirements.TIER5_STRONGER_ENEMIES)
                         {
-                            possibleEncounters.AddRange(new string[]
-                            {
-                                EnemyNames.Pebrand,
-                                EnemyNames.Leofuwil,
-                                EnemyNames.Gormacwen,
-                                EnemyNames.Vidwerd,
-                                EnemyNames.Sylla,
-                                EnemyNames.Venforth
-                            });
+                            possibleEncounters.RemoveRange(0, tier2RandomEncounters.Length);
+                            possibleEncounters.AddRange(tier5RandomEncounters);
                         }
 
                         if (tier > TierRequirements.TIER6_STRONGER_ENEMIES)
                         {
-                            possibleEncounters.RemoveRange(0, 3);
-                            possibleEncounters.AddRange(new string[]
-                            {
-                                EnemyNames.Aldmas, EnemyNames.Fridan,
-                                EnemyNames.Bue, EnemyNames.Bued, EnemyNames.Bureen,
-                                EnemyNames.Wennald, EnemyNames.Garcar, EnemyNames.LaChris,
-                                EnemyNames.Isumforth, EnemyNames.Ingesc, EnemyNames.Rahfortin,
-                                EnemyNames.Leswith, EnemyNames.Paca, EnemyNames.Wigfred, EnemyNames.Lyley,
-                                EnemyNames.Acardeb, EnemyNames.Darol, EnemyNames.Hesbet
-                            });
+                            possibleEncounters.RemoveRange(0, tier3RandomEncounters.Length);
+                            possibleEncounters.RemoveRange(0, tier4RandomEncounters.Length);
+                            possibleEncounters.AddRange(tier6RandomEncounters);
+                            possibleEncounters.AddRange(randomEnemies);
                         }
 
                         int numEnemies = RANDOM.Next(minEnemies, maxEnemies + 1);
@@ -266,9 +248,11 @@ namespace AscendedZ
                         gameObject.EncountersIndex.Add(encounterIndex);
                         gameObject.Encounters.Add(encounterNames);
                     }
-
                     PersistentGameObjects.Save();
                 }
+
+                int boost = GetTierBoost(tier);
+                tier += boost;
 
                 foreach (string name in encounterNames)
                 {
@@ -290,26 +274,41 @@ namespace AscendedZ
 
             int encounterNumber = RANDOM.Next(min, max);
             var random = new RandomEnemyFactory();
+
+            int boost = GetTierBoost(tier);
+            tier += boost;
             random.SetTier(tier);
 
             if (!isBoss)
             {
                 for (int e = 0; e < encounterNumber; e++)
                 {
-                    var enemy = random.GenerateEnemy(RANDOM);
+                    var enemy = random.GenerateEnemy();
                     enemy.Boost(tier);
                     encounter.Add(enemy);
                 }
             }
             else
             {
-                var boss = random.GenerateBoss(RANDOM, tier);
+                var boss = random.GenerateBoss(tier);
                 boss.Boost(tier);
                 encounter.Add(boss);
             }
 
 
             return encounter;
+        }
+
+        public static int GetTierBoost(int tier)
+        {
+            double boostBase = 0.2;
+
+            int numBoosts = tier / 5;
+
+            for (int i = 0; i < numBoosts; i++)
+                boostBase += 0.05;
+
+            return (int)(tier * boostBase);
         }
 
         public static List<OverworldEntity> MakeShopVendorWares(int tier, bool isCustom = false)

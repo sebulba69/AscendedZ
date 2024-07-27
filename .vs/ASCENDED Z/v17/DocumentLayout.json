@@ -11,6 +11,22 @@
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\scenes\\dungeonscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\scenes\\crawl_ui\\dungeoncrawlui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\scenes\\crawl_ui\\dungeoncrawlui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\back_end_screen_scripts\\recruitcustomobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\back_end_screen_scripts\\recruitcustomobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\recruitcustomscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\recruitcustomscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\scenetransition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\scenetransition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\partyeditscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\partyeditscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -29,18 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entitydatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entitydatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\scenes\\crawl_ui\\dungeoncrawlui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\scenes\\crawl_ui\\dungeoncrawlui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\back_end_screen_scripts\\recruitcustomobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\back_end_screen_scripts\\recruitcustomobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\recruitcustomscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\recruitcustomscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\recruitscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,10 +85,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\bosses\\kellamvonstein.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\bosses\\kellamvonstein.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\scenetransition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\scenetransition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\statuses\\weak_element\\weakicestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -210,7 +210,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 312,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
@@ -220,7 +220,7 @@
               "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\DungeonScreen.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\DungeonScreen.cs",
               "RelativeToolTip": "dungeon_crawling\\scenes\\DungeonScreen.cs",
-              "ViewState": "AQIAACABAAAAAAAAAAAQwDsBAAAAAAAA",
+              "ViewState": "AQIAAH4AAAAAAAAAAIAwwNYAAABKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-21T22:08:04.738Z",
               "IsPinned": true,
@@ -228,33 +228,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TileScene.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\TileScene.cs",
-              "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\TileScene.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\TileScene.cs",
-              "RelativeToolTip": "dungeon_crawling\\scenes\\TileScene.cs",
-              "ViewState": "AQIAAC4AAAAAAAAAAAAqwEwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T15:30:29.098Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "DungeonCrawlUI.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\crawl_ui\\DungeonCrawlUI.cs",
               "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\crawl_ui\\DungeonCrawlUI.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\crawl_ui\\DungeonCrawlUI.cs",
               "RelativeToolTip": "dungeon_crawling\\scenes\\crawl_ui\\DungeonCrawlUI.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAABSAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-26T03:52:42.263Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "EntityDatabase.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\EntityDatabase.cs",
               "RelativeDocumentMoniker": "EntityDatabase.cs",
@@ -262,8 +249,7 @@
               "RelativeToolTip": "EntityDatabase.cs",
               "ViewState": "AQIAAJsAAAAAAAAAAAAgwKcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-25T02:59:30.019Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-25T02:59:30.019Z"
             },
             {
               "$type": "Document",
@@ -279,7 +265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "FusionScreenObject.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\back_end_screen_scripts\\FusionScreenObject.cs",
               "RelativeDocumentMoniker": "screens\\back_end_screen_scripts\\FusionScreenObject.cs",
@@ -304,7 +290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "RecruitScreenTabs.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RecruitScreenTabs.cs",
               "RelativeDocumentMoniker": "screens\\RecruitScreenTabs.cs",
@@ -312,12 +298,11 @@
               "RelativeToolTip": "screens\\RecruitScreenTabs.cs",
               "ViewState": "AQIAACUAAAAAAAAAAAAgwEMAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T01:39:47.7Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T01:39:47.7Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "MinerUI.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\crawl_ui\\MinerUI.cs",
               "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\crawl_ui\\MinerUI.cs",
@@ -329,7 +314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "RecruitScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RecruitScreen.cs",
               "RelativeDocumentMoniker": "screens\\RecruitScreen.cs",
@@ -337,38 +322,37 @@
               "RelativeToolTip": "screens\\RecruitScreen.cs",
               "ViewState": "AQIAADIAAAAAAAAAAAAgwFcAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T01:38:24.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T01:38:24.834Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "RecruitCustomScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RecruitCustomScreen.cs",
               "RelativeDocumentMoniker": "screens\\RecruitCustomScreen.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RecruitCustomScreen.cs",
               "RelativeToolTip": "screens\\RecruitCustomScreen.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAAgwGAAAAAaAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAIAwwFYAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-26T01:33:27.531Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "RecruitCustomObject.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\back_end_screen_scripts\\RecruitCustomObject.cs",
               "RelativeDocumentMoniker": "screens\\back_end_screen_scripts\\RecruitCustomObject.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\back_end_screen_scripts\\RecruitCustomObject.cs",
               "RelativeToolTip": "screens\\back_end_screen_scripts\\RecruitCustomObject.cs",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAuwB8AAAAZAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAADwvyUAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T14:23:37.37Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Dungeon.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\backend\\Dungeon.cs",
               "RelativeDocumentMoniker": "dungeon_crawling\\backend\\Dungeon.cs",
@@ -376,12 +360,11 @@
               "RelativeToolTip": "dungeon_crawling\\backend\\Dungeon.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAswCgAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T03:55:40.751Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T03:55:40.751Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "PartyEditScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\PartyEditScreen.cs",
               "RelativeDocumentMoniker": "screens\\PartyEditScreen.cs",
@@ -389,12 +372,11 @@
               "RelativeToolTip": "screens\\PartyEditScreen.cs",
               "ViewState": "AQIAALMAAAAAAAAAAIAwwMwAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T01:19:02.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T01:19:02.034Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "DungeonGenerator.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\backend\\DungeonGenerator.cs",
               "RelativeDocumentMoniker": "dungeon_crawling\\backend\\DungeonGenerator.cs",
@@ -402,12 +384,36 @@
               "RelativeToolTip": "dungeon_crawling\\backend\\DungeonGenerator.cs",
               "ViewState": "AQIAADEAAAAAAAAAAAAgwEkAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-24T04:46:18.161Z",
+              "WhenOpened": "2024-07-24T04:46:18.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SceneTransition.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\SceneTransition.cs",
+              "RelativeDocumentMoniker": "screens\\SceneTransition.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\SceneTransition.cs",
+              "RelativeToolTip": "screens\\SceneTransition.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-27T00:43:56.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 9,
+              "Title": "TileScene.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\TileScene.cs",
+              "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\TileScene.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\TileScene.cs",
+              "RelativeToolTip": "dungeon_crawling\\scenes\\TileScene.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAqwEwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-27T15:30:29.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "RewardScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RewardScreen.cs",
               "RelativeDocumentMoniker": "screens\\RewardScreen.cs",
@@ -443,7 +449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "UpgradeItem.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\upgrade_screen\\UpgradeItem.cs",
               "RelativeDocumentMoniker": "screens\\upgrade_screen\\UpgradeItem.cs",
@@ -467,7 +473,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "ChangeElementStatus.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\ChangeElementStatus.cs",
               "RelativeDocumentMoniker": "statuses\\ChangeElementStatus.cs",
@@ -491,7 +497,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "WeakFireStatus.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\weak_element\\WeakFireStatus.cs",
               "RelativeDocumentMoniker": "statuses\\weak_element\\WeakFireStatus.cs",
@@ -503,7 +509,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "FusionObject.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\back_end_screen_scripts\\FusionObject.cs",
               "RelativeDocumentMoniker": "screens\\back_end_screen_scripts\\FusionObject.cs",
@@ -527,7 +533,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "KellamVonStein.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\bosses\\KellamVonStein.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\bosses\\KellamVonStein.cs",
@@ -536,18 +542,6 @@
               "ViewState": "AQIAACUAAAAAAAAAAAAgwEYAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-27T01:02:01.99Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "SceneTransition.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\SceneTransition.cs",
-              "RelativeDocumentMoniker": "screens\\SceneTransition.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\SceneTransition.cs",
-              "RelativeToolTip": "screens\\SceneTransition.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-27T00:43:56.949Z"
             },
             {
               "$type": "Document",

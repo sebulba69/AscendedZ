@@ -15,7 +15,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         {
             _functionDictionary[EnemyNames.Thony] = MakeThony;
             _functionDictionary[EnemyNames.Conson] = MakeConson;
-            _functionDictionary[EnemyNames.Bernasbeorth] = MakeBernasbeorth;
         }
 
         public Enemy MakeThony()

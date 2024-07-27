@@ -19,7 +19,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Stroma_Hele] = MakeStromaHele;
             _functionDictionary[EnemyNames.Sylla] = MakeSylla;
             _functionDictionary[EnemyNames.Venforth] = MakeVenforth;
-            _functionDictionary[EnemyNames.Ingesc] = MakeIngesc;
         }
         public Enemy MakeNaldbear()
         {
@@ -63,17 +62,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             venforth.Skills.Add(SkillDatabase.ElecAll.Clone());
 
             return venforth;
-        }
-
-        public Enemy MakeIngesc()
-        {
-            var ingesc = MakeCopyCatEnemy(EnemyNames.Ingesc, 12);
-
-            ingesc.Resistances.SetResistance(ResistanceType.Nu, Elements.Dark);
-
-            ingesc.Skills.Add(SkillDatabase.DarkAll.Clone());
-
-            return ingesc;
         }
 
         protected Enemy MakeCopyCatEnemy(string name, int hp)

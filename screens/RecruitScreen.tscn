@@ -121,7 +121,7 @@ layout_mode = 2
 texture_filter = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 30
 
 [node name="CharDescription" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
 texture_filter = 2
@@ -138,4 +138,4 @@ texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20

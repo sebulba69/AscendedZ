@@ -22,7 +22,6 @@ namespace AscendedZ.entities.partymember_objects
         private int _shopCost = 1;
         private bool _isInParty = false;
         private int _fusionGrade = 0;
-        private int _upgradeShardYield = 10;
         private int _skillCap = 2;
         public bool IsLevelCapHit => Level == _maxLevelCap;
         public bool IsInParty { get => _isInParty; set => _isInParty = value; }
@@ -46,9 +45,8 @@ namespace AscendedZ.entities.partymember_objects
         { 
             get 
             {
-                int refund = (int)(VorpexValue * 0.1) + 1;
-                if (FusionGrade > 0)
-                    refund *= FusionGrade;
+                int refund = (int)(VorpexValue * 0.05) + 1;
+                refund += (FusionGrade * 2);
 
                 return refund;
             } 
@@ -147,6 +145,8 @@ namespace AscendedZ.entities.partymember_objects
             skills.AppendLine(GetSkills(true));
 
             string maxHP = GetHPString();
+
+            maxHP += $" ● (Skills: {SkillCap})";
 
             return $"{maxHP}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
         }

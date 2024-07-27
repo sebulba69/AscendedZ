@@ -247,6 +247,8 @@ namespace AscendedZ.entities.partymember_objects
 
             member.Resistances.SetResistance(ResistanceType.Rs, element);
             member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
+
+            member.SkillCap = 3;
             return member;
         }
 
@@ -257,6 +259,7 @@ namespace AscendedZ.entities.partymember_objects
 
             member.Resistances.SetResistance(ResistanceType.Nu, element);
             member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
+            member.SkillCap = 3;
             return member;
         }
 

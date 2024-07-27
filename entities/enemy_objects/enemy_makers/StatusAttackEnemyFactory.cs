@@ -5,6 +5,7 @@ using AscendedZ.statuses;
 using AscendedZ.statuses.weak_element;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Vidwerd] = MakeVidwerd;
             _functionDictionary[EnemyNames.Rahfortin] = MakeRahfortin;
             _functionDictionary[EnemyNames.Leswith] = MakeLeswith;
+            _functionDictionary[EnemyNames.Isumforth] = MakeIsumforth;
+            _functionDictionary[EnemyNames.Ingesc] = MakeIngesc;
+            _functionDictionary[EnemyNames.Zalth] = MakeZalth;
+            _functionDictionary[EnemyNames.Bernasbeorth] = MakeBernasbeorth;
+            _functionDictionary[EnemyNames.Iaviol] = MakeIaviol;
+            _functionDictionary[EnemyNames.Olu] = MakeOlu;
         }
 
         public Enemy MakeThylaf()
@@ -109,6 +116,77 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return leswith;
         }
 
+
+        public Enemy MakeIsumforth()
+        {
+            var isumforth = MakeStunStatusEnemy(EnemyNames.Isumforth, 10);
+
+            isumforth.Resistances.SetResistance(ResistanceType.Nu, Elements.Dark);
+            isumforth.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
+
+            isumforth.Skills.Add(SkillDatabase.Dark1.Clone());
+            isumforth.Skills.Add(SkillDatabase.Fire1.Clone());
+
+            return isumforth;
+        }
+
+        public Enemy MakeIngesc()
+        {
+            var ingesc = MakeStunStatusEnemy(EnemyNames.Ingesc, 12);
+
+            ingesc.Resistances.SetResistance(ResistanceType.Nu, Elements.Elec);
+            ingesc.Resistances.SetResistance(ResistanceType.Nu, Elements.Fire);
+
+            ingesc.Skills.Add(SkillDatabase.FireAll.Clone());
+            ingesc.Skills.Add(SkillDatabase.ElecAll.Clone());
+
+            return ingesc;
+        }
+
+
+        public Enemy MakeZalth()
+        {
+            var zalth = MakeStunStatusEnemy(EnemyNames.Zalth, 12);
+
+            zalth.Resistances.SetResistance(ResistanceType.Rs, Elements.Light);
+            zalth.Resistances.SetResistance(ResistanceType.Dr, Elements.Ice);
+
+            zalth.Skills.Add(SkillDatabase.Light1.Clone());
+            zalth.Skills.Add(SkillDatabase.Ice1.Clone());
+
+            return zalth;
+        }
+
+        public Enemy MakeBernasbeorth() 
+        { 
+            var bernasbeorth = MakePoisonEnemy(EnemyNames.Bernasbeorth, 14);
+
+            bernasbeorth.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
+            bernasbeorth.Skills.Add(SkillDatabase.Light1.Clone());
+
+            return bernasbeorth;
+        }
+
+        public Enemy MakeIaviol() 
+        { 
+            var iaviol = MakePoisonEnemy(EnemyNames.Iaviol, 14);
+
+            iaviol.Resistances.SetResistance(ResistanceType.Nu, Elements.Ice);
+            iaviol.Skills.Add(SkillDatabase.Ice1.Clone());
+
+            return iaviol;
+        }
+
+        public Enemy MakeOlu() 
+        { 
+            var olu = MakePoisonEnemy(EnemyNames.Olu, 14);
+
+            olu.Resistances.SetResistance(ResistanceType.Nu, Elements.Elec);
+            olu.Skills.Add(SkillDatabase.Elec1.Clone());
+
+            return olu;
+        }
+
         private Enemy MakeAgroStatusEnemy(string name, int hp)
         {
             var statusAttackEnemy = MakeStatusAttackEnemy(name, hp);
@@ -117,6 +195,30 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             statusAttackEnemy.Status = new AgroStatus();
             statusAttackEnemy.Skills.Add(SkillDatabase.AgroEnemy.Clone());
             statusAttackEnemy.Description = $"[AGRO]: {statusAttackEnemy.Description}";
+
+            return statusAttackEnemy;
+        }
+
+        private Enemy MakeStunStatusEnemy(string name, int hp)
+        {
+            var statusAttackEnemy = MakeStatusAttackEnemy(name, hp);
+
+            statusAttackEnemy.Name = $"[STN] {statusAttackEnemy.Name}";
+            statusAttackEnemy.Status = new StunStatus();
+            statusAttackEnemy.Skills.Add(SkillDatabase.Stun.Clone());
+            statusAttackEnemy.Description = $"[STN]: {statusAttackEnemy.Description}";
+
+            return statusAttackEnemy;
+        }
+
+        private Enemy MakePoisonEnemy(string name, int hp)
+        {
+            var statusAttackEnemy = MakeStatusAttackEnemy(name, hp);
+
+            statusAttackEnemy.Name = $"[PSN] {statusAttackEnemy.Name}";
+            statusAttackEnemy.Status = new PoisonStatus();
+            statusAttackEnemy.Skills.Add(SkillDatabase.Poison.Clone());
+            statusAttackEnemy.Description = $"[PSN]: {statusAttackEnemy.Description}";
 
             return statusAttackEnemy;
         }

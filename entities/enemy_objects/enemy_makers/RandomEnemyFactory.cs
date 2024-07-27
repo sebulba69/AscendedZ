@@ -15,8 +15,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 {
     public class RandomEnemyFactory : EnemyFactory
     {
+        private Random _rng;
         private List<ElementSkill> _elementalSkills;
-        private List<StatusSkill> _buffSkills;
+        private List<StatusSkill> _miscStatuses;
         private List<ISkill> _voidSkills;
         private List<string> _names;
         private List<Elements> _elements;
@@ -31,10 +32,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 SkillDatabase.FireAll, SkillDatabase.IceAll, SkillDatabase.WindAll, SkillDatabase.ElecAll, SkillDatabase.DarkAll, SkillDatabase.LightAll
             };
 
-            _buffSkills = new List<StatusSkill>() 
+            _miscStatuses = new List<StatusSkill>() 
             {
-                SkillDatabase.DarkBuff1, SkillDatabase.LightBuff1, SkillDatabase.FireBuff1,
-                SkillDatabase.IceBuff1, SkillDatabase.WindBuff1, SkillDatabase.ElecBuff1
+                SkillDatabase.Poison, SkillDatabase.Stun
             };
 
             _voidSkills = new List<ISkill>() 
@@ -62,22 +62,29 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             };
 
             _resistances = new List<ResistanceType>() { ResistanceType.Wk, ResistanceType.Rs, ResistanceType.Dr };
+
+            _rng = new Random();
+
+            foreach(string name in _names)
+            {
+                _functionDictionary.Add(name, GenerateEnemy);
+            }
         }
 
-        public Enemy GenerateEnemy(Random rng)
+        public Enemy GenerateEnemy()
         {
             int aiMax = 10;
-            string name = _names[rng.Next(_names.Count)];
-            int hp = rng.Next(10, 20);
+            string name = _names[_rng.Next(_names.Count)];
+            int hp = _rng.Next(10, 20);
 
-            int ai = rng.Next(aiMax);
+            int ai = _rng.Next(aiMax);
             Enemy enemy;
 
             var skills = new List<ISkill>();
 
             if (ai == 0)
             {
-                var swapElement = GetRandomElement(rng);
+                var swapElement = GetRandomElement(_rng);
                 var opposite = SkillDatabase.ElementalOpposites[swapElement];
 
                 enemy = MakeResistanceChangerEnemy(name, hp, swapElement, opposite);
@@ -88,64 +95,64 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             else if (ai == 1)
             {
                 enemy = MakeWeaknessHunterEnemy(name, hp);
-                PopulateEnemyResistanceRandom(rng, enemy);
-                PopulateEnemySkillsRandom(rng, enemy);
+                PopulateEnemyResistanceRandom(_rng, enemy);
+                PopulateEnemySkillsRandom(_rng, enemy);
             }
             else if (ai == 2) 
             {
                 enemy = MakeSupportEnemy(name, hp);
                
-                PopulateEnemyResistanceRandom(rng, enemy);
-                PopulateEnemySkillsRandom(rng, enemy);
+                PopulateEnemyResistanceRandom(_rng, enemy);
+                PopulateEnemySkillsRandom(_rng, enemy);
             }
             else if (ai == 3)
             {
-                var wexElement = GetRandomElement(rng);
+                var wexElement = GetRandomElement(_rng);
                 enemy = MakeBeastEye(name, hp);
-                PopulateEnemyResistanceRandom(rng, enemy);
+                PopulateEnemyResistanceRandom(_rng, enemy);
 
                 enemy.Resistances.SetResistance(ResistanceType.Wk, wexElement);
 
-                PopulateEnemySkillsRandom(rng, enemy);
+                PopulateEnemySkillsRandom(_rng, enemy);
             }
             else if (ai == 4)
             {
                 enemy = MakeCopyCatEnemy(name, hp);
-                PopulateEnemyResistanceRandom(rng, enemy);
-                PopulateEnemySkillsRandom(rng, enemy);
+                PopulateEnemyResistanceRandom(_rng, enemy);
+                PopulateEnemySkillsRandom(_rng, enemy);
             }
             else if (ai == 5)
             {
-                var buffElement = GetRandomElement(rng);
+                var buffElement = GetRandomElement(_rng);
                 enemy = MakeBuffEnemy(name, hp);
 
-                skills.Add(_buffSkills.Find(b => b.BaseName.Contains(buffElement.ToString())));
+                skills.Add(_miscStatuses.Find(b => b.BaseName.Contains(buffElement.ToString())));
                 skills.AddRange(_elementalSkills.FindAll(e => e.Element == buffElement));
                 
-                PopulateEnemyResistanceRandom(rng, enemy);
+                PopulateEnemyResistanceRandom(_rng, enemy);
                 enemy.Resistances.SetResistance(ResistanceType.Rs, buffElement);
             }
             else if(ai == 6)
             {
-                var voidElement = GetRandomElement(rng);
+                var voidElement = GetRandomElement(_rng);
                 enemy = MakeProtectorEnemy(name, hp, voidElement);
                 var voidSkill = _voidSkills.Find(v => v.BaseName.Contains(voidElement.ToString())).Clone();
                 enemy.Skills.Add(voidSkill);
-                PopulateEnemyResistanceRandom(rng, enemy);
+                PopulateEnemyResistanceRandom(_rng, enemy);
                 enemy.Resistances.SetResistance(ResistanceType.Wk, voidElement);
-                PopulateEnemySkillsRandom(rng, enemy);
+                PopulateEnemySkillsRandom(_rng, enemy);
             }
             else if (ai == 7)
             {
                 enemy = MakeAgroStatusEnemy(name, hp);
-                PopulateEnemyResistanceRandom(rng, enemy);
-                PopulateEnemySkillsRandom(rng, enemy);
+                PopulateEnemyResistanceRandom(_rng, enemy);
+                PopulateEnemySkillsRandom(_rng, enemy);
             }
             else
             {
                 enemy = MakeAlternatingEnemy(name, hp);
-                PopulateEnemyResistanceRandom(rng, enemy);
-                PopulateEnemySkillsRandom(rng, enemy);
+                PopulateEnemyResistanceRandom(_rng, enemy);
+                PopulateEnemySkillsRandom(_rng, enemy);
             }
 
             if (skills.Count > 0)
@@ -157,20 +164,20 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return enemy;
         }
 
-        public Enemy GenerateBoss(Random rng, int tier)
+        public Enemy GenerateBoss(int tier)
         {
-            string name = _bossNames[rng.Next(_bossNames.Count)];
-            int turns = rng.Next(2, 5);
+            string name = _bossNames[_rng.Next(_bossNames.Count)];
+            int turns = _rng.Next(2, 5);
 
             var bhai = MakeBossHellAI(name, turns);
             bhai.MaxHP = EntityDatabase.GetBossHPRandom(tier);
 
-            int res = rng.Next(2) + 1;
+            int res = _rng.Next(2) + 1;
             List<Elements> wex = new List<Elements>();
             for (int r = 0; r < res; r++)
             {
-                Elements element = GetRandomElement(rng);
-                ResistanceType type = GetRandomResistanceType(rng);
+                Elements element = GetRandomElement(_rng);
+                ResistanceType type = GetRandomResistanceType(_rng);
                 bhai.Resistances.SetResistance(type, element);
 
                 if(type == ResistanceType.Wk)
@@ -179,19 +186,19 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             if(wex.Count > 0)
             {
-                int addBeastEye = rng.Next(1, 101);
+                int addBeastEye = _rng.Next(1, 101);
                 if (addBeastEye <= 35)
                     bhai.Skills.Add(SkillDatabase.BeastEye);
 
                 foreach (var voidElement in wex)
                 {
-                    int voidWex = rng.Next(1, 101);
+                    int voidWex = _rng.Next(1, 101);
                     if(voidWex <= 45)
                         bhai.Skills.Add(_voidSkills.Find(v => v.BaseName.Contains(voidElement.ToString())).Clone());
                 }
             }
 
-            PopulateEnemySkillsRandom(rng, bhai);
+            PopulateEnemySkillsRandom(_rng, bhai);
             return bhai;
         }
 
@@ -209,10 +216,14 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         private void PopulateEnemySkillsRandom(Random rng, Enemy enemy)
         {
             int smax = rng.Next(2, 4);
+
             for (int s = 0; s < smax + 1; s++)
             {
                 enemy.Skills.Add(_elementalSkills[rng.Next(_elementalSkills.Count)].Clone());
             }
+
+            if(rng.Next(100) < 25)
+                enemy.Skills.Add(_miscStatuses[rng.Next(_miscStatuses.Count)]);
         }
 
         private ResistanceType GetRandomResistanceType(Random rng)

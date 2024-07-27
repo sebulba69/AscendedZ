@@ -45,6 +45,12 @@ namespace AscendedZ.statuses
         {
         }
 
+        public override void ClearStatus()
+        {
+            this.RemoveStatus = true;
+            _statusOwner.CanAttack = true;
+        }
+
         /// <summary>
         /// Update the status after it's been applied.
         /// </summary>

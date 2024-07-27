@@ -106,42 +106,6 @@ namespace AscendedZ.statuses
         {
             switch (Id)
             {
-                case StatusId.Default:
-                    // hack for backwards compatibility with v0.02 Pre-Alpha
-                    if (Icon.Contains(SkillAssets.VOID_FIRE_ICON))
-                    {
-                        _id = StatusId.VoidFireStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_ELEC_ICON))
-                    {
-                        _id = StatusId.VoidElecStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_ICE_ICON))
-                    {
-                        _id = StatusId.VoidIceStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_WIND_ICON))
-                    {
-                        _id = StatusId.VoidWindStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_DARK_ICON))
-                    {
-                        _id = StatusId.VoidDarkStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_LIGHT_ICON))
-                    {
-                        _id = StatusId.VoidLightStatus;
-                        return Clone();
-                    }
-                    else
-                    {
-                        throw new NotImplementedException();
-                    }
                 case StatusId.StunStatus:
                     return new StunStatus();
                 case StatusId.AgroStatus:
@@ -180,6 +144,52 @@ namespace AscendedZ.statuses
                     return new WeakFireStatus();
                 case StatusId.WexElecStatus:
                     return new WeakElecStatus();
+                case StatusId.Default:
+                    // hack for backwards compatibility with v0.02 Pre-Alpha
+                    if (Icon.Contains(SkillAssets.VOID_FIRE_ICON))
+                    {
+                        _id = StatusId.VoidFireStatus;
+                        return Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_ELEC_ICON))
+                    {
+                        _id = StatusId.VoidElecStatus;
+                        return Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_ICE_ICON))
+                    {
+                        _id = StatusId.VoidIceStatus;
+                        return Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_WIND_ICON))
+                    {
+                        _id = StatusId.VoidWindStatus;
+                        return Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_DARK_ICON))
+                    {
+                        _id = StatusId.VoidDarkStatus;
+                        return Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.VOID_LIGHT_ICON))
+                    {
+                        _id = StatusId.VoidLightStatus;
+                        return Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.POISON_ICON))
+                    {
+                        _id = StatusId.PoisonStatus;
+                        return Clone();
+                    }
+                    else if (Icon.Contains(SkillAssets.STUN_ICON))
+                    {
+                        _id = StatusId.StunStatus;
+                        return Clone();
+                    }
+                    else
+                    {
+                        throw new NotImplementedException();
+                    }
                 default:
                     throw new NotImplementedException();
             }

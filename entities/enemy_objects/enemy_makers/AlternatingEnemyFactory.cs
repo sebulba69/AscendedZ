@@ -146,6 +146,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         { 
             var paca = MakeSupportEnemy(EnemyNames.Paca, 9);
 
+            paca.Resistances.SetResistance(ResistanceType.Dr, Elements.Dark);
+
             paca.Skills.Add(SkillDatabase.Dark1.Clone());
             paca.Skills.Add(SkillDatabase.Light1.Clone());
             paca.Skills.Add(SkillDatabase.Wind1.Clone());
@@ -157,6 +159,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         { 
             var wigfred = MakeSupportEnemy(EnemyNames.Wigfred, 9);
 
+            wigfred.Resistances.SetResistance(ResistanceType.Dr, Elements.Elec);
+
             wigfred.Skills.Add(SkillDatabase.Elec1.Clone());
             wigfred.Skills.Add(SkillDatabase.Ice1.Clone());
             wigfred.Skills.Add(SkillDatabase.ElecAll.Clone());
@@ -167,6 +171,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         public Enemy MakeLyley() 
         { 
             var lyley = MakeSupportEnemy(EnemyNames.Lyley, 9);
+            
+            lyley.Resistances.SetResistance(ResistanceType.Dr, Elements.Fire);
 
             lyley.Skills.Add(SkillDatabase.Fire1.Clone());
             lyley.Skills.Add(SkillDatabase.Wind1.Clone());
@@ -177,7 +183,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeAcardeb()
         {
-            var acardeb = MakeEyeEnemy(EnemyNames.Acardeb, 11, SkillDatabase.BeastEye);
+            var acardeb = MakeEyeEnemy(EnemyNames.Acardeb, 15, SkillDatabase.BeastEye);
 
             acardeb.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
@@ -188,7 +194,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeDarol()
         {
-            var darol = MakeEyeEnemy(EnemyNames.Darol, 11, SkillDatabase.BeastEye);
+            var darol = MakeEyeEnemy(EnemyNames.Darol, 15, SkillDatabase.BeastEye);
 
             darol.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
 
@@ -199,7 +205,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
         public Enemy MakeHesbet()
         {
-            var darol = MakeEyeEnemy(EnemyNames.Hesbet, 11, SkillDatabase.BeastEye);
+            var darol = MakeEyeEnemy(EnemyNames.Hesbet, 15, SkillDatabase.BeastEye);
 
             darol.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
@@ -212,7 +218,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         public Enemy MakeBu(string name, int hp, Elements element)
         {
             var bu = MakeAlternatingEnemy(name, hp);
-            bu.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
             bu.Resistances.SetResistance(ResistanceType.Rs, element);
             bu.Skills.Add(SkillDatabase.GetSkillFromElement(element));
             bu.Turns = 2;

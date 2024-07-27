@@ -16,7 +16,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Ed] = MakeEd;
             _functionDictionary[EnemyNames.Otem] = MakeOtem;
             _functionDictionary[EnemyNames.Hesret] = MakeHesret;
-            _functionDictionary[EnemyNames.Isumforth] = MakeIsumforth;
             _functionDictionary[EnemyNames.LaChris] = MakeLachris;
         }
 
@@ -60,20 +59,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             hesret.Skills.Add(SkillDatabase.Fire1.Clone());
 
             return hesret;
-        }
-
-        public Enemy MakeIsumforth()
-        {
-            Elements elementToVoid = Elements.Dark;
-
-            var isumforth = MakeProtectorEnemy(EnemyNames.Isumforth, 10, elementToVoid);
-
-            isumforth.Skills.Add(SkillDatabase.VoidDark.Clone());
-            isumforth.Skills.Add(SkillDatabase.Elec1.Clone());
-            isumforth.Skills.Add(SkillDatabase.IceAll.Clone());
-            isumforth.Skills.Add(SkillDatabase.Fire1.Clone());
-
-            return isumforth;
         }
 
         public Enemy MakeLachris()

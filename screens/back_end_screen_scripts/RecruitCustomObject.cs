@@ -35,7 +35,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
         {
             _gameObject = PersistentGameObjects.GameObjectInstance();
             AvailableMembers = EntityDatabase.MakeShopVendorWares(_gameObject.MaxTier, true);
-            _baseCost = _gameObject.ShopLevel;
+            _baseCost = (int)(_gameObject.ShopLevel * 1.5) + 1;
             for (int i = 0; i < _gameObject.ShopLevel; i++)
                 foreach (var member in AvailableMembers)
                     member.LevelUp();
@@ -46,8 +46,12 @@ namespace AscendedZ.screens.back_end_screen_scripts
         public void SetPreviewPartyMember(int index)
         {
             // clear skills from the new entity since we want to customize them
+            int costBoost = 0;
             if (SelectedEntity != null)
+            {
                 SelectedEntity.Skills.Clear();
+                costBoost = SelectedEntity.Skills.Count();
+            }
 
             SelectedEntity = AvailableMembers[index];
             Cost = SelectedEntity.Skills.Count + _baseCost;
@@ -71,9 +75,10 @@ namespace AscendedZ.screens.back_end_screen_scripts
             {
                 foreach (var skill in AvailableSkills)
                     skill.LevelUp();
-
-                _baseCost = shopLevel + 1;
             }
+
+            _baseCost = (int)(_gameObject.ShopLevel * 1.5) + 1;
+            _baseCost += costBoost;
         }
 
         public void AddSkill(int index)

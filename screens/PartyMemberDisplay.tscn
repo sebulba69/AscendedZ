@@ -22,9 +22,9 @@ expand_mode = 1
 
 [node name="DescriptionBox" type="TextEdit" parent="."]
 texture_filter = 2
-custom_minimum_size = Vector2(350, 0)
+custom_minimum_size = Vector2(350, 200)
 layout_mode = 2
 theme_override_constants/line_spacing = -2
 theme_override_fonts/font = ExtResource("1")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 18
 editable = false

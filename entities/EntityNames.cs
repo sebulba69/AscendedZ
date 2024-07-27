@@ -80,7 +80,6 @@ namespace AscendedZ.entities
         // alternate enemies (no weakness)
         public static readonly string Fledan = "Fledan";
         public static readonly string Walds = "Walds";
-
         public static readonly string Paca = "Paca";
         public static readonly string Wigfred = "Wigfred";
         public static readonly string Lyley = "Lyley";
@@ -89,7 +88,6 @@ namespace AscendedZ.entities
         public static readonly string Thylaf = "Thylaf"; // elec
         public static readonly string Arwig = "Arwig"; // ice
         public static readonly string Riccman = "Riccman"; // wind
-
         public static readonly string Gormacwen = "Gormacwen"; // fire
         public static readonly string Vidwerd = "Vidwerd"; // dark
 
@@ -104,20 +102,17 @@ namespace AscendedZ.entities
         // copy cats
         public static readonly string Naldbear = "Naldbear"; // elec
         public static readonly string Stroma_Hele = "Stroma Hele"; // fire
-        public static readonly string Ingesc = "Ingesc"; // dark
         public static readonly string Sylla = "Sylla"; // wind
         public static readonly string Venforth = "Venforth"; // ice
 
         // resistance changers
         public static readonly string Thony = "Thony"; // Ice --> Fire
         public static readonly string Conson = "Conson"; // Light --> Dark
-        public static readonly string Bernasbeorth = "Bernasbeorth"; // Elec --> Wind
 
         // protector enemies
         public static readonly string Ed = "Ed"; // protects fire
         public static readonly string Otem = "Otem"; // protects ice
         public static readonly string Hesret = "Hesret"; // protects wind
-        public static readonly string Isumforth = "Isumforth"; // protects dark
         public static readonly string LaChris = "La-chris"; // protects wind
 
         // more alt enemies w/ buffs
@@ -159,6 +154,16 @@ namespace AscendedZ.entities
         public static readonly string Ardeb = "Ardeb";
         public static readonly string Ansung = "Ansung";
         public static readonly string Hahere = "Hahere";
+
+        // STUN
+        public static readonly string Zalth = "Zalth";
+        public static readonly string Ingesc = "Ingesc"; // dark
+        public static readonly string Isumforth = "Isumforth"; // protects dark
+
+        // POISON
+        public static readonly string Bernasbeorth = "Bernasbeorth"; // Elec --> Wind
+        public static readonly string Iaviol = "Iaviol";
+        public static readonly string Olu = "Olu"; 
 
         // Bosses (Normal)
         public static readonly string Harbinger = "Harbinger, Mangler of Legs";

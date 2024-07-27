@@ -1,5 +1,6 @@
 using AscendedZ;
 using AscendedZ.currency;
+using AscendedZ.currency.rewards;
 using AscendedZ.dungeon_crawling.backend;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.game_object;
@@ -211,7 +212,10 @@ public partial class DungeonScreen : Transitionable2DScene
     {
         var gameObject = PersistentGameObjects.GameObjectInstance();
         var tier = gameObject.TierDC;
-        int morbis = gameObject.MainPlayer.Wallet.Currency[SkillAssets.MORBIS].Amount;
+        int morbis = 0;
+        if (gameObject.MainPlayer.Wallet.Currency.ContainsKey(SkillAssets.MORBIS))
+            morbis = gameObject.MainPlayer.Wallet.Currency[SkillAssets.MORBIS].Amount;
+
         _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, morbis, _gameObject.Pickaxes, _dungeon.EncounterCount);
     }
 

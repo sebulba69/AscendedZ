@@ -27,6 +27,7 @@ public partial class DungeonCrawlUI : Control
 
 		_orbs.Text = orbs.ToString();
 		_pickaxes.Text = pickaxes.ToString();
+        _morbis.Text = morbis.ToString();
 
         foreach (var child in _container.GetChildren())
 			_container.RemoveChild(child);

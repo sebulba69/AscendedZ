@@ -261,28 +261,6 @@ namespace AscendedZ
             }
         }
 
-        public static StatusSkill RemoveWeakElec
-        {
-            get
-            {
-                var s = MakeChangeElementSkill("Remove Elec-", new WeakElecStatus());
-                s.IsRemoveStatusSkill = true;
-                s.TargetType = TargetTypes.SINGLE_TEAM;
-                return s;
-            }
-        }
-
-        public static StatusSkill RemoveWeakFire
-        {
-            get
-            {
-                var s = MakeChangeElementSkill("Remove Fire-", new WeakFireStatus());
-                s.IsRemoveStatusSkill = true;
-                s.TargetType = TargetTypes.SINGLE_TEAM;
-                return s;
-            }
-        }
-
         public static StatusSkill RemoveVoidWind
         {
             get
@@ -312,6 +290,28 @@ namespace AscendedZ
                 var s = MakeChangeElementSkill("Remove Void Ice", new VoidIceStatus());
                 s.IsRemoveStatusSkill = true;
                 s.TargetType = TargetTypes.SINGLE_OPP;
+                return s;
+            }
+        }
+
+        public static StatusSkill RemovePoison
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Remove Poison", new PoisonStatus());
+                s.IsRemoveStatusSkill = true;
+                s.TargetType = TargetTypes.SINGLE_TEAM;
+                return s;
+            }
+        }
+
+        public static StatusSkill RemoveStun
+        {
+            get
+            {
+                var s = MakeChangeElementSkill("Remove Stun", new StunStatus());
+                s.IsRemoveStatusSkill = true;
+                s.TargetType = TargetTypes.SINGLE_TEAM;
                 return s;
             }
         }
@@ -415,6 +415,9 @@ namespace AscendedZ
 
             if (tier > TierRequirements.ALL_HIT_SKILLS)
                 skills.AddRange(new ISkill[] { Heal1All });
+
+            if (tier > TierRequirements.TIER6_STRONGER_ENEMIES)
+                skills.AddRange(new ISkill[] { RemovePoison, RemoveStun });
 
             return skills;
         }

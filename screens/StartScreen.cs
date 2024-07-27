@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 public partial class StartScreen : Transitionable2DScene
 {
-	private readonly string VERSION = "Pre-Alpha v0.04.29";
+	private readonly string VERSION = "Pre-Alpha v0.04.30";
 
 	/// <summary>
 	/// Node that appears on the starting screen.
@@ -54,9 +54,9 @@ public partial class StartScreen : Transitionable2DScene
 		Label versionLabel = this.GetNode<Label>("%VersionLabel");
 
 		// set nodes we'll cycle between based on button clicks
-		_startingButtons = this.GetNode<HBoxContainer>("CenterContainer/VBoxContainer/StartingButtons");
-		_newGameControls = this.GetNode<HBoxContainer>("CenterContainer/VBoxContainer/NewGameButtons");
-		_loadGameControls = this.GetNode<HBoxContainer>("CenterContainer/VBoxContainer/LoadingButtons");
+		_startingButtons = this.GetNode<HBoxContainer>("%StartingButtons");
+		_newGameControls = this.GetNode<HBoxContainer>("%NewGameButtons");
+		_loadGameControls = this.GetNode<HBoxContainer>("%LoadingButtons");
 
 		// buttons from start screen
 		Button newGameButton = this.GetNode<Button>("%NewGameButton");
@@ -71,13 +71,13 @@ public partial class StartScreen : Transitionable2DScene
 
 		// assets from newGameScreen
 		_pictureIndex = 0;
-		_playerPicture = this.GetNode<TextureRect>("CenterContainer/VBoxContainer/NewGameButtons/NewPlayerPicture");
+		_playerPicture = this.GetNode<TextureRect>("%NewPlayerPicture");
 		_playerPicture.Texture = ResourceLoader.Load<Texture2D>(CharacterImageAssets.PlayerPics[_pictureIndex]);
 
-		Button newGameBackButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/VBoxContainer/GoBackButton");
-		Button ascendButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/VBoxContainer/StartNGButton");
-		Button leftButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/LeftButton");
-		Button rightButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/RightButton");
+		Button newGameBackButton = this.GetNode<Button>("%GoBackButton");
+		Button ascendButton = this.GetNode<Button>("%StartNGButton");
+		Button leftButton = this.GetNode<Button>("%LeftButton");
+		Button rightButton = this.GetNode<Button>("%RightButton");
 
 		newGameBackButton.Pressed += _OnNewGameBackButtonPressed;
 		ascendButton.Pressed += _OnAscendButtonPressed;
@@ -87,10 +87,10 @@ public partial class StartScreen : Transitionable2DScene
         // assets from loadGameScreen
         var saveObject = PersistentGameObjects.SaveObjectInstance();
 
-		_loadItems = this.GetNode<ItemList>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/ItemList");
-		Button loadContinueButton = this.GetNode<Button>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/GridContainer/LoadContButton");
-		Button loadBackButton = this.GetNode<Button>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/GridContainer/LoadBackButton");
-		Button loadDeleteButton = this.GetNode<Button>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/GridContainer/LoadDeleteButton");
+		_loadItems = this.GetNode<ItemList>("%ItemList");
+		Button loadContinueButton = this.GetNode<Button>("%LoadContButton");
+		Button loadBackButton = this.GetNode<Button>("%LoadBackButton");
+		Button loadDeleteButton = this.GetNode<Button>("%LoadDeleteButton");
 
 		foreach (var item in saveObject.SaveCache)
 			_loadItems.AddItem(item.ToString());
