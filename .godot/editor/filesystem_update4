@@ -3,6 +3,7 @@ res://screens/upgrade_screen/UpgradeScreen.tscn
 res://misc_icons/IconOutline.gdshader
 res://screens/upgrade_screen/UpgradeItem.tscn
 res://screens/RecruitScreenTabs.tscn
+res://screens/SceneTransition.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs
@@ -46,4 +47,3 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://screens/SceneTransition.tscn

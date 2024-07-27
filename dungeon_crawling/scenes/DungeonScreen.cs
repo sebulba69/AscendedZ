@@ -213,7 +213,7 @@ public partial class DungeonScreen : Transitionable2DScene
         _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, _gameObject.Pickaxes, _dungeon.EncounterCount);
     }
 
-    public async Task StartDungeon()
+    public void StartDungeon()
     {
         _processingEvent = true;
         _background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatDCBackground(_gameObject.TierDC));
@@ -238,7 +238,7 @@ public partial class DungeonScreen : Transitionable2DScene
         {
             for(int c = 0; c < columns; c++)
             {
-                _uiTiles[r, c] = await MakeNewUITile(r, c);
+                _uiTiles[r, c] = MakeNewUITile(r, c);
                 _uiTiles[r, c].Scene.Position = position;
                 if (tiles[r, c].IsPartOfMaze)
                 {
@@ -309,15 +309,25 @@ public partial class DungeonScreen : Transitionable2DScene
                 uiTile.Scene.AddDoor(Direction.Down);
     }
 
-    private async Task<UITile> MakeNewUITile(int x, int y) 
+    private UITile MakeNewUITile(int x, int y, int attemptCount = 0) 
     {
-        TileScene tileScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_TILE_SCENE).Instantiate<TileScene>();
-        UITile uiTile = new UITile() { Scene = tileScene, X = x, Y = y };
-        _tiles.AddChild(uiTile.Scene);
-        await Task.Delay(10);
-        var template = BackgroundAssets.GetCombatDCTileTemplate(_gameObject.TierDC);
-        uiTile.Scene.ChangeBackgroundColor(template.BackgroundString, template.DoorColor, template.LineColor );
-        return uiTile;
+        if (attemptCount > 5)
+            throw new Exception("MakeNewUITile failed due to unloaded assets.");
+
+        try
+        {
+            TileScene tileScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_TILE_SCENE).Instantiate<TileScene>();
+            UITile uiTile = new UITile() { Scene = tileScene, X = x, Y = y };
+            _tiles.AddChild(uiTile.Scene);
+            var template = BackgroundAssets.GetCombatDCTileTemplate(_gameObject.TierDC);
+            uiTile.Scene.ChangeBackgroundColor(template.BackgroundString, template.DoorColor, template.LineColor);
+            return uiTile;
+        }
+        catch (NullReferenceException)
+        {
+            return MakeNewUITile(x, y, attemptCount + 1);
+        }
+
     }
 
     private async void OnTileEventTriggeredAsync(object sender, TileEventId id)
@@ -570,7 +580,7 @@ public partial class DungeonScreen : Transitionable2DScene
         foreach(var member in _battlePlayers)
             member.HP = member.MaxHP;
 
-        await StartDungeon();
+        StartDungeon();
         _crawlUI.Visible = true;
         transition.PlayFadeOut();
         await ToSignal(transition.Player, "animation_finished");
