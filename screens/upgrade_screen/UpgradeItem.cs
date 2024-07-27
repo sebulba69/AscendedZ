@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 public partial class UpgradeItem : VBoxContainer
 {
 	private TextureRect _image;
-	private Label _name, _upgradeCost, _refundCost;
+	private Label _name, _upgradeCost, _refundRewardPC, _refundRewardVC;
 	private RichTextLabel _description;
 	private Button _upgradeBtn, _refundBtn;
 	private bool _mouseOver;
@@ -26,7 +26,8 @@ public partial class UpgradeItem : VBoxContainer
 		_upgradeBtn = GetNode<Button>("%UpgradeButton");
 		_refundBtn = GetNode<Button>("%RefundButton");
 		_upgradeCost = GetNode<Label>("%VCCost");
-		_refundCost = GetNode<Label>("%PCCost");
+		_refundRewardPC = GetNode<Label>("%PCCost");
+        _refundRewardVC = GetNode<Label>("%VPGain");
 		_description = GetNode<RichTextLabel>("%Description");
         _upgradeItemObject = new UpgradeItemObject(PersistentGameObjects.GameObjectInstance());
         _upgradeBtn.Pressed += _OnUpgradeButtonPressed;
@@ -46,7 +47,8 @@ public partial class UpgradeItem : VBoxContainer
 
 		_name.Text = entity.DisplayName;
 		_upgradeCost.Text = $"{entity.VorpexValue}";
-		_refundCost.Text = $"{entity.RefundCost}";
+		_refundRewardPC.Text = $"{entity.RefundReward}";
+		_refundRewardVC.Text = $"{entity.RefundRewardVC}";
         _description.Text = entity.GetUpgradeString();
 
 		_upgradeBtn.Disabled = entity.IsLevelCapHit;

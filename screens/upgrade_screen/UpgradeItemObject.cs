@@ -49,31 +49,28 @@ namespace AscendedZ.screens.upgrade_screen
 
         public void Refund()
         {
-            int cost = _entity.RefundCost;
+            int cost = _entity.RefundReward;
+            _partyCoins.Amount += cost;
 
-            if (_partyCoins.Amount >= cost)
+            int boost = _entity.FusionGrade;
+            int vorpexGain = _entity.VorpexValue;
+
+            if (boost > 0)
             {
-                _partyCoins.Amount -= cost;
-                int boost = _entity.FusionGrade;
-                int vorpexGain = _entity.VorpexValue;
-
-                if (boost > 0)
-                {
-                    vorpexGain *= boost;
-                }
-
-                _vorpex.Amount += vorpexGain;
-
-                if (_entity.IsInParty)
-                {
-                    var party = PersistentGameObjects.GameObjectInstance().MainPlayer.Party;
-                    party.RemovePartyMember(_entity);
-                }
-
-                _gameObject.MainPlayer.ReserveMembers.Remove(_entity);
-
-                PersistentGameObjects.Save();
+                vorpexGain *= boost;
             }
+
+            _vorpex.Amount += vorpexGain;
+
+            if (_entity.IsInParty)
+            {
+                var party = PersistentGameObjects.GameObjectInstance().MainPlayer.Party;
+                party.RemovePartyMember(_entity);
+            }
+
+            _gameObject.MainPlayer.ReserveMembers.Remove(_entity);
+
+            PersistentGameObjects.Save();
         }
     }
 }

@@ -3,6 +3,7 @@ using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.statuses.buff_elements;
 using AscendedZ.statuses.void_elements;
+using AscendedZ.statuses.weak_element;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -171,6 +172,14 @@ namespace AscendedZ.statuses
                     return new VoidLightStatus();
                 case StatusId.PoisonStatus:
                     return new PoisonStatus();
+                case StatusId.WexDarkStatus:
+                    return new WeakDarkStatus();
+                case StatusId.WexIceStatus:
+                    return new WeakIceStatus();
+                case StatusId.WexFireStatus:
+                    return new WeakFireStatus();
+                case StatusId.WexElecStatus:
+                    return new WeakElecStatus();
                 default:
                     throw new NotImplementedException();
             }

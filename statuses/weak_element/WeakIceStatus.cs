@@ -17,6 +17,8 @@ namespace AscendedZ.statuses.weak_element
             _newResType = resistances.ResistanceType.Wk;
             this.Icon = SkillAssets.WEAK_ICE_ICON;
 
+            _turnCount = 2;
+
             Name = "Weak Ice";
         }
 

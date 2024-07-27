@@ -29,7 +29,20 @@ namespace AscendedZ.entities.partymember_objects
         public int Level { get => _level; set => _level = value; }
         public int VorpexValue { get => _vorpexCost; set => _vorpexCost = value; }
 
-        public int RefundCost 
+        public int RefundRewardVC
+        {
+            get
+            {
+                int refundYield = VorpexValue;
+
+                if (FusionGrade > 0)
+                    refundYield *= FusionGrade;
+                
+                return refundYield;
+            }
+        }
+
+        public int RefundReward 
         { 
             get 
             {
@@ -119,12 +132,7 @@ namespace AscendedZ.entities.partymember_objects
             foreach (ISkill skill in Skills)
                 skills.Append(skill.GetUpgradeString() + "\n");
 
-            int refundYield = VorpexValue;
-
-            if (FusionGrade > 0)
-                refundYield *= FusionGrade;
-
-            string final = $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}\nRefund Yield: {refundYield} VC";
+            string final = $"{MaxHP} HP → {GetHPLevelUpPreview()}\n{Resistances.GetResistanceString()}\n{skills.ToString()}";
 
             if (FusionGrade > 0)
                 final = $"Fusion Grade {FusionGrade}\n{final}";

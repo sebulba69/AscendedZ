@@ -16,6 +16,8 @@ namespace AscendedZ.statuses.weak_element
             _newResType = resistances.ResistanceType.Wk;
             this.Icon = SkillAssets.WEAK_DARK_ICON;
 
+            _turnCount = 2;
+
             Name = "Weak Dark";
         }
 

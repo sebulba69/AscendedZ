@@ -1,13 +1,7 @@
 res://default_env.tres
-res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn
+res://screens/upgrade_screen/UpgradeItem.tscn
 res://misc_icons/IconOutline.gdshader
-res://dungeon_crawling/scenes/DungeonScreen.tscn
-res://dungeon_crawling/scenes/DungeonEntity.tscn
-res://dungeon_crawling/scenes/crawl_ui/MinerUI.tscn
-res://misc_icons/Icon.tscn
-res://screens/RecruitScreen.tscn
-res://screens/RecruitScreenTabs.tscn
-res://screens/EnemyBattleDisplayBox.tscn
+res://screens/upgrade_screen/UpgradeScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs

@@ -16,6 +16,8 @@ namespace AscendedZ.statuses.weak_element
             _newResType = resistances.ResistanceType.Wk;
             this.Icon = SkillAssets.WEAK_ELEC_ICON;
 
+            _turnCount = 2;
+
             Name = "Weak Elec";
         }
 
