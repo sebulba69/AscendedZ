@@ -32,7 +32,7 @@ public partial class RewardScreen : Control
         _rewards = new List<Currency>()
         {
             new Vorpex() { Amount = tier * 5 },
-            new PartyCoin() { Amount = 5 }
+            new PartyCoin() { Amount = tier }
         };
         SetupRewards();
     }
@@ -43,7 +43,7 @@ public partial class RewardScreen : Control
         _rewards = new List<Currency>()
         {
             new Vorpex() { Amount = tier * 4 },
-            new PartyCoin() { Amount = 2 },
+            new PartyCoin() { Amount = (tier/2) + 1 },
             new Dellencoin() { Amount = 2 * tier },
         };
         SetupRewards();
@@ -55,7 +55,7 @@ public partial class RewardScreen : Control
         _rewards = new List<Currency>()
         {
             new Vorpex() { Amount = tier * 6 },
-            new PartyCoin() { Amount = 6 },
+            new PartyCoin() { Amount = tier * 2 },
             new Dellencoin() { Amount = 4 * tier },
         };
         SetupRewards();
@@ -67,7 +67,7 @@ public partial class RewardScreen : Control
         _rewards = new List<Currency>()
         {
             new Vorpex() { Amount = tier * 10 },
-            new PartyCoin() { Amount = 10 },
+            new PartyCoin() { Amount = tier * 3 },
             new Dellencoin() { Amount = 8 * tier },
         };
         SetupRewards();
@@ -80,7 +80,7 @@ public partial class RewardScreen : Control
         {
             new Vorpex() { Amount = tier * 3 },
             new Dellencoin() { Amount = tier * 5 },
-            new PartyCoin() { Amount = 5 }
+            new PartyCoin() { Amount = tier }
         };
         SetupRewards();
     }
@@ -92,7 +92,7 @@ public partial class RewardScreen : Control
         {
             new Vorpex() { Amount = tier * 3 },
             new Dellencoin() { Amount = 5 * tier },
-            new PartyCoin() { Amount = 4 }
+            new PartyCoin() { Amount = (tier/4) + 1 }
         };
 
         _rewards = new List<Currency>() { rewards[_rand.Next(0, rewards.Count)] };
