@@ -29,7 +29,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
         {
             AvailableMembers = new List<OverworldEntity>();
             AvailableSkills = new List<ISkill>();
-            _baseCost = 1;
+            _baseCost = 5;
         }
 
         public void Initialize()

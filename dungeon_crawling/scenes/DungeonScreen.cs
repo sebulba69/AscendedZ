@@ -97,8 +97,8 @@ public partial class DungeonScreen : Transitionable2DScene
         _gameObject.MusicPlayer.SetStreamPlayer(_audioStreamPlayer);
         _battlePlayers = _gameObject.MakeBattlePlayerListFromParty();
         _player.SetGraphic(_gameObject.MainPlayer.Image);
-        
-        StartDungeon();
+
+        SetEncounterVisibility(false);
     }
 
     private void MineDirection(int x, int y)
@@ -213,20 +213,12 @@ public partial class DungeonScreen : Transitionable2DScene
         _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, _gameObject.Pickaxes, _dungeon.EncounterCount);
     }
 
-    private async Task StartDungeon()
+    public async Task StartDungeon()
     {
+        _processingEvent = true;
         _background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatDCBackground(_gameObject.TierDC));
         _player.SetArrows(false, false, false, false);
         int tier = _gameObject.TierDC;
-
-        if (tier % 50 != 0)
-        {
-            _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
-        }
-        else
-        {
-            _gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS_PRE);
-        }
 
         _currentScene = null;
         _dungeon = new Dungeon(_gameObject.TierDC);
@@ -276,8 +268,18 @@ public partial class DungeonScreen : Transitionable2DScene
             SetPlayerDirections(start.X, start.Y);
         }
 
+        if (tier % 50 != 0)
+        {
+            _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
+        }
+        else
+        {
+            _gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS_PRE);
+        }
         _crawlUI.SetExit(_dungeon.Exit.X, _dungeon.Exit.Y);
         SetCrawlValues();
+        SetEncounterVisibility(true);
+        _processingEvent = false;
     }
 
     private void DrawDoors(UITile uiTile, Tile tile, Tile[,] tiles)

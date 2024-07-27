@@ -1,3 +1,5 @@
+Label
+CenterContainer
 HBoxContainer
 Button
 TextureButton
@@ -5,8 +7,6 @@ GridContainer
 VBoxContainer
 MarginContainer
 PanelContainer
-Label
-CenterContainer
 Control
 ItemList
 RichTextLabel

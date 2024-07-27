@@ -201,6 +201,8 @@ public partial class PartyEditScreen : HBoxContainer
             {
                 var dungeon = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL).Instantiate<DungeonScreen>();
                 GetTree().Root.AddChild(dungeon);
+                await Task.Delay(10);
+                await dungeon.StartDungeon();
             }
             else
             {
