@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bivspukara00x"]
+[gd_scene load_steps=7 format=3 uid="uid://bivspukara00x"]
 
 [ext_resource type="Script" path="res://screens/SceneTransition.cs" id="1_g1c1i"]
 [ext_resource type="Texture2D" uid="uid://buwuurpybkt52" path="res://transitions/circle-xxl.png" id="1_lxuoi"]
-[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="3_8fewj"]
 
 [sub_resource type="Animation" id="Animation_ww7i6"]
 length = 0.001
@@ -30,18 +29,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(-0.00390625, -0.00390625)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_b1swp"]
 resource_name = "fade_in"
@@ -68,18 +55,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-0.00390625, -0.00390625), Vector2(10, 10)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_sdyvw"]
@@ -109,18 +84,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(960, 540)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CenterContainer:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5d7hx"]
 _data = {
@@ -143,16 +106,3 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_5d7hx")
 }
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="CenterContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_8fewj")
-theme_override_font_sizes/font_size = 150
-text = "LOADING..."
