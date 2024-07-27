@@ -213,7 +213,7 @@ public partial class DungeonScreen : Transitionable2DScene
         _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, _gameObject.Pickaxes, _dungeon.EncounterCount);
     }
 
-    private void StartDungeon()
+    private async Task StartDungeon()
     {
         _background.Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetCombatDCBackground(_gameObject.TierDC));
         _player.SetArrows(false, false, false, false);
@@ -246,7 +246,7 @@ public partial class DungeonScreen : Transitionable2DScene
         {
             for(int c = 0; c < columns; c++)
             {
-                _uiTiles[r, c] = MakeNewUITile(r, c);
+                _uiTiles[r, c] = await MakeNewUITile(r, c);
                 _uiTiles[r, c].Scene.Position = position;
                 if (tiles[r, c].IsPartOfMaze)
                 {
@@ -307,11 +307,12 @@ public partial class DungeonScreen : Transitionable2DScene
                 uiTile.Scene.AddDoor(Direction.Down);
     }
 
-    private UITile MakeNewUITile(int x, int y) 
+    private async Task<UITile> MakeNewUITile(int x, int y) 
     {
         TileScene tileScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_TILE_SCENE).Instantiate<TileScene>();
         UITile uiTile = new UITile() { Scene = tileScene, X = x, Y = y };
         _tiles.AddChild(uiTile.Scene);
+        await Task.Delay(10);
         var template = BackgroundAssets.GetCombatDCTileTemplate(_gameObject.TierDC);
         uiTile.Scene.ChangeBackgroundColor(template.BackgroundString, template.DoorColor, template.LineColor );
         return uiTile;
@@ -567,7 +568,7 @@ public partial class DungeonScreen : Transitionable2DScene
         foreach(var member in _battlePlayers)
             member.HP = member.MaxHP;
 
-        StartDungeon();
+        await StartDungeon();
         _crawlUI.Visible = true;
         transition.PlayFadeOut();
         await ToSignal(transition.Player, "animation_finished");

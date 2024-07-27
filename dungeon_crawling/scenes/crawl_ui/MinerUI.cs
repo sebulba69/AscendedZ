@@ -51,7 +51,7 @@ public partial class MinerUI : CenterContainer
 			if(morbis.Amount - 1 >= 0)
 			{
 				morbis.Amount--;
-				go.Pickaxes += 2;
+				go.Pickaxes += 3;
 				PersistentGameObjects.Save();
 			}
         }

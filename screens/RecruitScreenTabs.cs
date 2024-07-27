@@ -57,7 +57,7 @@ public partial class RecruitScreenTabs : CenterContainer
 
 	private void _OnShopUpgradePressed()
 	{
-		int cost = 1000;
+		int cost = 5000;
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 		var wallet = gameObject.MainPlayer.Wallet;
 		if (wallet.Currency[SkillAssets.DELLENCOIN].Amount - cost >= 0) 
