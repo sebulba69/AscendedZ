@@ -61,7 +61,14 @@ namespace AscendedZ.entities.enemy_objects.bosses
                 case 1:
                     action.Skill = Skills[1];
                     var unpoisonedP2 = battleSceneObject.AlivePlayers.FindAll(p => !p.StatusHandler.HasStatus(statuses.StatusId.PoisonStatus));
-                    action.Target = unpoisonedP2[_rng.Next(unpoisonedP2.Count)];
+                    if(unpoisonedP2.Count > 0)
+                    {
+                        action.Target = unpoisonedP2[_rng.Next(unpoisonedP2.Count)];
+                    }
+                    else
+                    {
+                        action.Target = GetRandomAlivePlayer(battleSceneObject);
+                    }
                     break;
                 case 2:
                     if(_phase3 == 0)
