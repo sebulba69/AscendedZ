@@ -5,6 +5,7 @@ This is a pre-alpha build of Ascended Z whose goal is to nail down the game's co
 Goal: Reach the top floor. The current top floor of this build is Floor 100 of the main game and Floor 100 of the Labrybuce (total: 200 floors).
 
 
+
 ~ How to Play: Combat ~
 
 Ascended Z is a combat focused RPG using Press Turn as it's main battle system. Press Turn is a combat system that focuses on changing the number of turns players and enemies have based on their actions in combat.
@@ -26,6 +27,7 @@ Important notes:
 In battle, all enemies have specific AI that determines their actions. Hover over an enemy's picture to read what their AI can do. This does not apply to bosses however, as they all follow their own individual scripts.
 
 
+
 ~ How to Play: Currency ~
 
 There are 6 main currencies in Ascended Z:
@@ -37,6 +39,7 @@ There are 6 main currencies in Ascended Z:
 * Morbis - Used during dungeon crawling to purchase pickaxes
 
 
+
 ~ How to Play: Recruiting/Fusing ~
 
 Based on your stage in the game, you can recruit 2 different types of party members: Normal, and Custom. Custom party members let you customize their skills. The only limit they have is that you can't give them a skill that they'd be weak to.
@@ -46,6 +49,7 @@ You can fuse party members that have the same "primary resistance" as one anothe
 Fusions also have what's called a "Fusion Grade." By default, all Fusion Grades are 0. You can only fuse party members together who either have the same Fusion Grade or a difference in Fusion Grades of 1.
 
 The last rule with Fusions is that you cannot have duplicates.
+
 
 
 ~ How to Play: Upgrading ~
