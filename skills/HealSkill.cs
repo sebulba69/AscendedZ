@@ -72,12 +72,12 @@ namespace AscendedZ.skills
             return $"{GetBattleDisplayString()} → {this.HealAmount + (Level + 1) * 2}";
         }
 
-        public BattleResult ProcessSkill(BattleEntity target)
+        public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
             return target.ApplyHealingSkill(this);
         }
 
-        public BattleResult ProcessSkill(List<BattleEntity> targets)
+        public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
         {
             BattleResult all = targets[0].ApplyHealingSkill(this);
             all.Target = null;

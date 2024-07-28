@@ -55,12 +55,16 @@ namespace AscendedZ.skills
         public string EndupAnimation { get; set; }
         public string Icon { get; set; }
 
-        public BattleResult ProcessSkill(BattleEntity target)
+        public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
+            double damageModifier = user.ElementDamageModifiers[(int)Element];
+
+            DamageModifier = (int)(_damage * damageModifier) + 1;
+
             return target.ApplyElementSkill(this);
         }
 
-        public BattleResult ProcessSkill(List<BattleEntity> targets)
+        public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
         {
             BattleResult all = targets[0].ApplyElementSkill(this);
 
@@ -74,7 +78,7 @@ namespace AscendedZ.skills
             int compare = bResultRanking[(int)all.ResultType];
             for (int i = 1; i < targets.Count; i++)
             {
-                BattleResult result = targets[i].ApplyElementSkill(this);
+                BattleResult result = ProcessSkill(user, targets[i]);
 
                 all.Results.Add(result.ResultType);
 

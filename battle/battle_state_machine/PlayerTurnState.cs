@@ -49,23 +49,23 @@ namespace AscendedZ.battle.battle_state_machine
                     // our only available targets are alive enemies
                     var possibleTargets = battleSceneObject.Enemies.FindAll(e => e.HP > 0);
                     var enemy = possibleTargets[eventArgs.TargetIndex];
-                    result = skill.ProcessSkill(enemy);
+                    result = skill.ProcessSkill(active, enemy);
                     break;
                 case TargetTypes.SINGLE_TEAM:
                     var player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
-                    result = skill.ProcessSkill(player);
+                    result = skill.ProcessSkill(active, player);
                     break;
                 case TargetTypes.SINGLE_TEAM_DEAD:
                     var deadPlayer = battleSceneObject.DeadPlayers[eventArgs.TargetIndex];
-                    result = skill.ProcessSkill(deadPlayer);
+                    result = skill.ProcessSkill(active, deadPlayer);
                     break;
                 case TargetTypes.TEAM_ALL:
                     var targetPlayers = battleSceneObject.AlivePlayers;
-                    result = skill.ProcessSkill(new List<BattleEntity>(targetPlayers));
+                    result = skill.ProcessSkill(active, new List<BattleEntity>(targetPlayers));
                     break;
                 case TargetTypes.OPP_ALL:
                     var targetEnemies = battleSceneObject.AliveEnemies;
-                    result = skill.ProcessSkill(new List<BattleEntity>(targetEnemies));
+                    result = skill.ProcessSkill(active, new List<BattleEntity>(targetEnemies));
                     break;
             }
 

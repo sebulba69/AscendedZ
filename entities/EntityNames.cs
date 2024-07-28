@@ -154,6 +154,7 @@ namespace AscendedZ.entities
         public static readonly string Ardeb = "Ardeb";
         public static readonly string Ansung = "Ansung";
         public static readonly string Hahere = "Hahere";
+        public static readonly string Brast = "Brast";
 
         // STUN
         public static readonly string Zalth = "Zalth";

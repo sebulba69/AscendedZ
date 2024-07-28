@@ -25,7 +25,7 @@ namespace AscendedZ.skills
             Level = 1;
         }
 
-        public BattleResult ProcessSkill(BattleEntity target)
+        public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
             BattleResult result = new BattleResult()
             {
@@ -37,7 +37,7 @@ namespace AscendedZ.skills
             return result;
         }
 
-        public BattleResult ProcessSkill(List<BattleEntity> targets)
+        public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
         {
             throw new NotImplementedException("This should not be used as an all hit skill ever.");
         }

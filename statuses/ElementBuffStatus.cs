@@ -15,7 +15,7 @@ namespace AscendedZ.statuses
     {
         protected int _stacks = 1;
         private int _turnCount;
-        private double _baseAmount;
+        protected double _baseAmount;
         public Elements BuffElement { get; set; }
         public double Amount { get; set; }
         public int Stacks { get => _stacks; set => _stacks = value; }
@@ -29,9 +29,9 @@ namespace AscendedZ.statuses
 
         public override void ActivateStatus(BattleEntity owner)
         {
-            ApplyBuff();
-
             base.ActivateStatus(owner);
+
+            ApplyBuff();
         }
 
         public override void ApplyStatus()
@@ -48,19 +48,17 @@ namespace AscendedZ.statuses
             if (_statusOwner == null)
                 return;
 
-            foreach (var skill in _statusOwner.Skills)
-            {
-                if (skill.Id == SkillId.Elemental)
-                {
-                    var element = (ElementSkill)skill;
-                    if (element.Element == BuffElement)
-                        element.DamageModifier = (int)(element.Damage * Amount);
-                }
-            }
+            _statusOwner.ElementDamageModifiers[(int)BuffElement] = Amount;
         }
 
         public override void UpdateStatus(BattleResult result)
         {
+        }
+
+        public override void ClearStatus()
+        {
+            _statusOwner.ElementDamageModifiers[(int)BuffElement] = 0;
+            base.ClearStatus();
         }
 
         /// <summary>

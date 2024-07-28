@@ -405,13 +405,16 @@ namespace AscendedZ
         {
             List<ISkill> skills = new List<ISkill>();
             
-            skills.AddRange(new ISkill[] { Fire1, Ice1, Wind1, Elec1, Light1, Dark1, Heal1 });
+            skills.AddRange(new ISkill[] { Fire1, Ice1, Wind1, Elec1, Light1, Dark1 });
+
+            if (tier < TierRequirements.ALL_HIT_SKILLS)
+                skills.Add(Heal1);
 
             if (tier > TierRequirements.TIER2_STRONGER_ENEMIES)
-                skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind });
+                skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind, Revive1 });
 
-            if (tier > TierRequirements.QUESTS_PARTY_MEMBERS_UPGRADE)
-                skills.AddRange(new ISkill[] { Revive1, RemoveVoidWind, RemoveVoidIce });
+            if (tier < TierRequirements.ALL_HIT_SKILLS)
+                skills.AddRange(new ISkill[] { RemoveVoidWind, RemoveVoidIce });
 
             if (tier > TierRequirements.ALL_HIT_SKILLS)
                 skills.AddRange(new ISkill[] { Heal1All });

@@ -31,7 +31,7 @@ namespace AscendedZ.skills
             Level = 1;
         }
 
-        public BattleResult ProcessSkill(BattleEntity target)
+        public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
             BattleResult result = new BattleResult() 
             {
@@ -52,16 +52,16 @@ namespace AscendedZ.skills
             return result;
         }
 
-        public BattleResult ProcessSkill(List<BattleEntity> targets)
+        public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
         {
-            BattleResult all = ProcessSkill(targets[0]);
+            BattleResult all = ProcessSkill(user, targets[0]);
             
             all.Target = null;
             all.Results.Add(all.ResultType);
 
             for(int i = 1; i < targets.Count; i++)
             {
-                BattleResult r = ProcessSkill(targets[i]);
+                BattleResult r = ProcessSkill(user, targets[i]);
                 all.Results.Add(r.ResultType);
             }
 

@@ -50,15 +50,15 @@ namespace AscendedZ.battle.battle_state_machine
             {
                 case TargetTypes.SINGLE_OPP:
                 case TargetTypes.SINGLE_TEAM:
-                    result = skill.ProcessSkill(action.Target);
+                    result = skill.ProcessSkill(active, action.Target);
                     break;
                 case TargetTypes.TEAM_ALL:
                     var targetEnemies = battleSceneObject.AliveEnemies;
-                    result = skill.ProcessSkill(new List<BattleEntity>(targetEnemies));
+                    result = skill.ProcessSkill(active, new List<BattleEntity>(targetEnemies));
                     break;
                 case TargetTypes.OPP_ALL:
                     var targetPlayers = battleSceneObject.AlivePlayers;
-                    result = skill.ProcessSkill(new List<BattleEntity>(targetPlayers));
+                    result = skill.ProcessSkill(active, new List<BattleEntity>(targetPlayers));
                     break;
             }
 

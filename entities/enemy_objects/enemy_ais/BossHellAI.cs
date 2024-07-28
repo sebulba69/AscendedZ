@@ -119,9 +119,20 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
                 var players = FindPlayersUnaffectedByStatus(battleSceneObject, status.Status);
 
                 if (players.Count == 0)
+                {
                     return null;
+                }
                 else
-                    return players[_rng.Next(_rng.Next(players.Count))];
+                {
+                    if (status.Status.Id == StatusId.StunStatus && players.Count == 1)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return players[_rng.Next(_rng.Next(players.Count))];
+                    }   
+                }
             }
             else
             {

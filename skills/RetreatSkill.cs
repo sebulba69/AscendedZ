@@ -25,12 +25,12 @@ namespace AscendedZ.skills
             Level = 1;
         }
 
-        public BattleResult ProcessSkill(BattleEntity target)
+        public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
             return new BattleResult() { ResultType = BattleResultType.Retreat, SkillUsed = this };
         }
 
-        public BattleResult ProcessSkill(List<BattleEntity> targets)
+        public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
         {
             throw new NotImplementedException();
         }

@@ -47,7 +47,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             {
                 EnemyNames.Ansung, EnemyNames.Ardeb, EnemyNames.ChAffar, EnemyNames.Charcas, EnemyNames.DrigaBoli,
                 EnemyNames.Ethel, EnemyNames.FoameShorti, EnemyNames.Keri, EnemyNames.Lyelof, EnemyNames.Nanles,
-                EnemyNames.ReeshiDeeme, EnemyNames.Samjaris, EnemyNames.Tily, EnemyNames.Hahere
+                EnemyNames.ReeshiDeeme, EnemyNames.Samjaris, EnemyNames.Tily, EnemyNames.Hahere, EnemyNames.Brast
             };
 
             _bossNames = new List<string>() 
@@ -187,16 +187,20 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             if(wex.Count > 0)
             {
                 int addBeastEye = _rng.Next(1, 101);
-                if (addBeastEye <= 35)
+                if (addBeastEye <= 45)
                     bhai.Skills.Add(SkillDatabase.BeastEye);
 
                 foreach (var voidElement in wex)
                 {
                     int voidWex = _rng.Next(1, 101);
-                    if(voidWex <= 45)
+                    if(voidWex <= 65)
                         bhai.Skills.Add(_voidSkills.Find(v => v.BaseName.Contains(voidElement.ToString())).Clone());
                 }
             }
+
+            int addOtherAilments = _rng.Next(1, 101);
+            if (addOtherAilments <= 45)
+                bhai.Skills.Add(_miscStatuses[_rng.Next(_miscStatuses.Count)].Clone());
 
             PopulateEnemySkillsRandom(_rng, bhai);
             return bhai;

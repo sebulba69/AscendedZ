@@ -193,7 +193,7 @@ namespace AscendedZ
                                                                         EnemyNames.Isumforth, EnemyNames.Ingesc, EnemyNames.Rahfortin, EnemyNames.Leswith, EnemyNames.Paca, EnemyNames.Wigfred, EnemyNames.Lyley, EnemyNames.Acardeb,
                                                                         EnemyNames.Darol, EnemyNames.Hesbet, EnemyNames.Olu, EnemyNames.Iaviol, EnemyNames.Zalth, EnemyNames.Bernasbeorth };
                         string[] randomEnemies = new string[] { EnemyNames.Ardeb,  EnemyNames.DrigaBoli, EnemyNames.FoameShorti,
-                                                                EnemyNames.ReeshiDeeme, EnemyNames.Tily, EnemyNames.Hahere };
+                                                                EnemyNames.ReeshiDeeme, EnemyNames.Tily, EnemyNames.Hahere, EnemyNames.Brast };
                         
                         possibleEncounters.AddRange(tier1RandomEncounters);
 
