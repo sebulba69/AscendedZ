@@ -70,3 +70,4 @@ Dungeons consist of the following events:
 * Orbs (Red Orb) - Currency for the Buce Fountain
 * Buce Fountain (Fountain) - Spend 3 orbs to get 1 Morbis
 * Miner - Spend 1 Morbis to get 3 Pickaxes. Pickaxes can be used to create tiles in the dungeon where tiles are missing. This can be useful for making your own shortcuts when the maze doesn't allow you to. Just click on one of the 4 available buttons surrounding your player character to use 1 pickaxe to dig out new path.
+* Pot of Greed: Collect 1 Key Shard or, if that 1 Key Shard makes 4, remove your other key shards and replace them with 1 Bounty Key instead
