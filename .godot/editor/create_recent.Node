@@ -1,14 +1,14 @@
+VBoxContainer
 MarginContainer
-ProgressBar
 PanelContainer
+TextureRect
 HBoxContainer
+ProgressBar
 CenterContainer
 TabContainer
-VBoxContainer
 Label
 Button
 TextureButton
 GridContainer
 Control
 ItemList
-RichTextLabel

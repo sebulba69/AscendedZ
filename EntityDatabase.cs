@@ -274,7 +274,7 @@ namespace AscendedZ
 
             int encounterNumber = RANDOM.Next(min, max);
             var random = new RandomEnemyFactory();
-
+            
             int boost = GetTierBoost(tier);
             tier += boost;
             random.SetTier(tier);
@@ -290,8 +290,25 @@ namespace AscendedZ
             }
             else
             {
-                var boss = random.GenerateBoss(tier);
-                boss.Boost(tier);
+                var gameObject = PersistentGameObjects.GameObjectInstance();
+                var dictionary = gameObject.RandomizedBossEncounters;
+                int realTier = gameObject.TierDC;
+
+                Enemy boss;
+
+                bool successFullyFoundBoss = dictionary.TryGetValue(realTier, out boss);
+                if (!successFullyFoundBoss)
+                {
+                    boss = random.GenerateBoss(tier);
+                    boss.Boost(tier);
+                    dictionary.Add(realTier, boss);
+                    PersistentGameObjects.Save();
+                }
+                else
+                {
+                    boss.HP = boss.MaxHP;
+                }
+
                 encounter.Add(boss);
             }
 

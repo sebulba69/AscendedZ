@@ -1,5 +1,6 @@
 ﻿using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
+using AscendedZ.entities.enemy_objects;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -95,6 +96,9 @@ namespace AscendedZ.game_object
         public int Pickaxes { get; set; }
         public MusicObject MusicPlayer { get; set; }
         public ProgressFlagObject ProgressFlagObject { get; set; }
+
+        public Dictionary<int, Enemy> RandomizedBossEncounters { get; set; }
+
         /// <summary>
         /// Randomly generated encounters saved for re-use. Starts at Tier 6.
         /// </summary>
@@ -107,6 +111,7 @@ namespace AscendedZ.game_object
             ProgressFlagObject = new ProgressFlagObject();
             Encounters = new List<List<string>>();
             EncountersIndex = new List<int>();
+            RandomizedBossEncounters = new Dictionary<int, Enemy>();
             ShopLevel = 0;
         }
 

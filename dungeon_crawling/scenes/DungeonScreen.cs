@@ -217,6 +217,9 @@ public partial class DungeonScreen : Transitionable2DScene
             morbis = gameObject.MainPlayer.Wallet.Currency[SkillAssets.MORBIS].Amount;
 
         _crawlUI.SetParty(tier, _battlePlayers, _gameObject.Orbs, morbis, _gameObject.Pickaxes, _dungeon.EncounterCount);
+        var spTiles = _dungeon.SpecialTiles;
+
+        _crawlUI.SetSpecialTileContainer(spTiles);
     }
 
     public void StartDungeon()
@@ -282,7 +285,7 @@ public partial class DungeonScreen : Transitionable2DScene
         {
             _gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS_PRE);
         }
-        _crawlUI.SetExit(_dungeon.Exit.X, _dungeon.Exit.Y);
+
         SetCrawlValues();
         SetEncounterVisibility(true);
         _processingEvent = false;
@@ -415,7 +418,8 @@ public partial class DungeonScreen : Transitionable2DScene
                     retreat = true;
                 };
                 await Task.Delay(100);
-                combatScene.SetupForDungeonCrawlEncounter(_battlePlayers, (id == TileEventId.SpecialEncounter) || (id == TileEventId.SpecialBossEncounter), (id == TileEventId.SpecialBossEncounter));
+                bool isSPBossEncounter = (id == TileEventId.SpecialBossEncounter);
+                combatScene.SetupForDungeonCrawlEncounter(_battlePlayers, (id == TileEventId.SpecialEncounter) || isSPBossEncounter, isSPBossEncounter);
 
                 transition.PlayFadeOut();
                 await ToSignal(transition.Player, "animation_finished");
@@ -434,10 +438,16 @@ public partial class DungeonScreen : Transitionable2DScene
                         _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
                     }
 
-                    if (id == TileEventId.SpecialBossEncounter)
+                    if (isSPBossEncounter)
+                    {
                         _dungeon.EndEncounters();
+                        _gameObject.RandomizedBossEncounters.Remove(tier);
+                    }
                     else
+                    {
                         _dungeon.ProcessEncounter();
+                    }
+                       
 
                     SetEncounterVisibility(true);
                     SetCrawlValues();
@@ -526,6 +536,14 @@ public partial class DungeonScreen : Transitionable2DScene
                 break;
         }
 
+
+        if (_dungeon.Current.EventTriggered)
+        {
+            var spTiles = _dungeon.SpecialTiles;
+            int removed = spTiles.RemoveAll(sp => sp.Id == id);
+            if(removed > 0)
+                _crawlUI.SetSpecialTileContainer(spTiles);
+        }
 
         // on completion of the event
         _processingEvent = false;

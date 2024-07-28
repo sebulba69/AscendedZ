@@ -16,7 +16,7 @@ namespace AscendedZ.entities.enemy_objects
     {
         protected bool _isBoss = false;
         protected bool _isAgroOverride = false;
-        public bool IsBoss { get => _isBoss; }
+        public bool IsBoss { get => _isBoss; set => _isBoss = value; }
         
         protected Random _rng;
 
@@ -94,7 +94,7 @@ namespace AscendedZ.entities.enemy_objects
         {
             List<BattlePlayer> players = battleSceneObject.AlivePlayers;
 
-            return players.FindAll(player => player.StatusHandler.HasStatus(status.Id));
+            return players.FindAll(player => !player.StatusHandler.HasStatus(status.Id));
         }
 
     }

@@ -1,4 +1,5 @@
 using AscendedZ;
+using AscendedZ.dungeon_crawling.backend;
 using AscendedZ.entities.battle_entities;
 using Godot;
 using System;
@@ -7,7 +8,9 @@ using System.Collections.Generic;
 public partial class DungeonCrawlUI : Control
 {
 	private GridContainer _container;
-	private Label _tier, _coordinates, _encounters, _orbs, _morbis, _pickaxes, _endCoords;
+	private Label _tier, _coordinates, _encounters, _orbs, _morbis, _pickaxes;
+	private HBoxContainer _specialTileContainer;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -15,10 +18,10 @@ public partial class DungeonCrawlUI : Control
         _coordinates = GetNode<Label>("%Coordinates");
 		_container = GetNode<GridContainer>("%PartyContainer");
 		_encounters = GetNode<Label>("%EncountersRemaining");
-		_endCoords = GetNode<Label>("%EndCoords");
 		_orbs = GetNode<Label>("%OrbAmount");
         _morbis = GetNode<Label>("%MorbisAmount");
         _pickaxes = GetNode<Label>("%PickAxeAmount");
+		_specialTileContainer = GetNode<HBoxContainer>("%SpecialTileContainer");
 	}
 
 	public void SetParty(int tier, List<BattlePlayer> players, int orbs, int morbis, int pickaxes, int encounters)
@@ -32,9 +35,11 @@ public partial class DungeonCrawlUI : Control
         foreach (var child in _container.GetChildren())
 			_container.RemoveChild(child);
 
-		foreach (var p in players)
+		var pScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL_PARTY_MEMBER);
+
+        foreach (var p in players)
 		{
-			var scene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL_PARTY_MEMBER).Instantiate<PartyMemberDCDisplay>();
+			var scene = pScene.Instantiate<PartyMemberDCDisplay>();
 			_container.AddChild(scene);
 			scene.SetPartyMember(p);
 		}
@@ -42,10 +47,20 @@ public partial class DungeonCrawlUI : Control
 		_encounters.Text = $"Required Encounters: {encounters}";
     }
 
-	public void SetExit(int x, int y)
+	public void SetSpecialTileContainer(List<SpecialTile> tiles)
 	{
-        _endCoords.Text = $"EXIT: [{y},{x}]";
-    }
+		foreach(var child in _specialTileContainer.GetChildren())
+			_specialTileContainer.RemoveChild(child);
+
+		var scene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_SP_TILE);
+
+		foreach(var tile in tiles)
+		{
+			var sp = scene.Instantiate<DCSpecialTileIcon>();
+			_specialTileContainer.AddChild(sp);
+			sp.SetSpecialTile(tile);
+		}
+	}
 
 	public void SetCoordinates(int x, int y)
 	{

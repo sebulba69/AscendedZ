@@ -20,6 +20,9 @@ namespace AscendedZ.dungeon_crawling.backend
         public int Encounters { get; set; }
         public Tile Start { get; set; }
         public Tile Exit { get; set; }
+
+        public List<SpecialTile> SpecialTiles { get; set; }
+
         public DungeonGenerator(int tier) 
         {
             _tier = tier;
@@ -47,6 +50,8 @@ namespace AscendedZ.dungeon_crawling.backend
             for (int row = 0; row < dimensions; row++) 
                 for (int col = 0; col < dimensions; col++) 
                     _tiles[row, col] = new Tile(row, col);
+
+            SpecialTiles = new List<SpecialTile>();
 
             _rng = new Random();
             _totalWeight = 0;
@@ -312,6 +317,8 @@ namespace AscendedZ.dungeon_crawling.backend
 
             tile.Graphic = graphic;
             tile.TileEventId = id;
+
+            SpecialTiles.Add(new SpecialTile() { Graphic = tile.Graphic, Coordinates = new int[2] { tile.X, tile.Y }, Id = tile.TileEventId });
         }
 
         private void SetTileToItemTile(Tile tile)
@@ -366,6 +373,8 @@ namespace AscendedZ.dungeon_crawling.backend
 
             tile.Graphic = graphic;
             tile.TileEventId = id;
+
+            SpecialTiles.Add(new SpecialTile() { Graphic = tile.Graphic, Coordinates = new int[2] { tile.X, tile.Y }, Id = tile.TileEventId });
         }
 
         private void SetTileToExit(Tile tile)
@@ -377,6 +386,8 @@ namespace AscendedZ.dungeon_crawling.backend
             tile.TileEventId = id;
 
             Exit = tile;
+
+            SpecialTiles.Add(new SpecialTile() { Graphic = tile.Graphic, Coordinates = new int[2] { tile.X, tile.Y }, Id = tile.TileEventId });
         }
 
         private void SetTileToPotOfGreed(Tile tile)
@@ -404,6 +415,8 @@ namespace AscendedZ.dungeon_crawling.backend
 
             tile.Graphic = graphic;
             tile.TileEventId = id;
+
+            SpecialTiles.Add(new SpecialTile() { Graphic = tile.Graphic, Coordinates = new int[2] { tile.X, tile.Y }, Id = tile.TileEventId });
         }
 
         private void SetTilesToTeleporters(Tile tile1, Tile tile2)

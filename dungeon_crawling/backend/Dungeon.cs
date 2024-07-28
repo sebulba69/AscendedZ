@@ -31,6 +31,8 @@ namespace AscendedZ.dungeon_crawling.backend
 
         public int EncounterCount { get=> _genenerator.Encounters; }
 
+        public List<SpecialTile> SpecialTiles { get => _genenerator.SpecialTiles; }
+
         public Dungeon(int tier)
         {
             _genenerator = new DungeonGenerator(tier);

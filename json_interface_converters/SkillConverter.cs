@@ -21,7 +21,9 @@ namespace AscendedZ.json_interface_converters
         {
             { SkillId.Elemental, typeof(ElementSkill) },
             { SkillId.Status, typeof(StatusSkill) },
-            { SkillId.Healing, typeof(HealSkill) }
+            { SkillId.Healing, typeof(HealSkill) },
+            { SkillId.Eye, typeof(EyeSkill) },
+            { SkillId.RemoveStatus, typeof(StatusSkill) }
         };
 
         public override ISkill Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

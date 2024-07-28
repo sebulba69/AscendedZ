@@ -67,17 +67,6 @@ theme_override_font_sizes/font_size = 35
 text = "[X,Y]"
 horizontal_alignment = 1
 
-[node name="EndCoords" type="Label" parent="PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-texture_filter = 2
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("2_w6717")
-theme_override_font_sizes/font_size = 35
-text = "[X,Y]"
-horizontal_alignment = 1
-
 [node name="EncountersRemaining" type="Label" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
@@ -86,36 +75,39 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("2_w6717")
 theme_override_font_sizes/font_size = 35
-text = "[X,Y]"
+text = "Encounters"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-texture_filter = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
+offset_left = -755.0
+offset_bottom = 49.0
 grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
 alignment = 2
 
-[node name="PanelContainer5" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainer5" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer5"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer5"]
 texture_filter = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_gaviu")
 expand_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="OrbAmount" type="Label" parent="HBoxContainer/PanelContainer2"]
+[node name="OrbAmount" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer2"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
@@ -128,22 +120,22 @@ theme_override_font_sizes/font_size = 35
 text = "0"
 horizontal_alignment = 1
 
-[node name="PanelContainer7" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainer7" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer7"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer7"]
 texture_filter = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_o8wbv")
 expand_mode = 2
 
-[node name="PanelContainer4" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="MorbisAmount" type="Label" parent="HBoxContainer/PanelContainer4"]
+[node name="MorbisAmount" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer4"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
@@ -156,22 +148,22 @@ theme_override_font_sizes/font_size = 35
 text = "0"
 horizontal_alignment = 1
 
-[node name="PanelContainer6" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainer6" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/PanelContainer6"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer6"]
 texture_filter = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_jrfte")
 expand_mode = 2
 
-[node name="PanelContainer3" type="PanelContainer" parent="HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="PickAxeAmount" type="Label" parent="HBoxContainer/PanelContainer3"]
+[node name="PickAxeAmount" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer3"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
@@ -183,3 +175,10 @@ theme_override_fonts/font = ExtResource("2_w6717")
 theme_override_font_sizes/font_size = 35
 text = "0"
 horizontal_alignment = 1
+
+[node name="SpecialTileContainer" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 2
