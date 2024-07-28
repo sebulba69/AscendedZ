@@ -43,6 +43,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 SkillDatabase.VoidIce, SkillDatabase.VoidWind, SkillDatabase.VoidElec
             };
 
+            
             _names = new List<string>() 
             {
                 EnemyNames.Ansung, EnemyNames.Ardeb, EnemyNames.ChAffar, EnemyNames.Charcas, EnemyNames.DrigaBoli,
