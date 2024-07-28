@@ -4,7 +4,9 @@ This is a pre-alpha build of Ascended Z whose goal is to nail down the game's co
 
 Goal: Reach the top floor. The current top floor of this build is Floor 100 of the main game and Floor 100 of the Labrybuce (total: 200 floors).
 
+
 ~ How to Play: Combat ~
+
 Ascended Z is a combat focused RPG using Press Turn as it's main battle system. Press Turn is a combat system that focuses on changing the number of turns players and enemies have based on their actions in combat.
 
 Here are all actions in battle and how they affect the active battler's turn:
@@ -23,7 +25,9 @@ Important notes:
 
 In battle, all enemies have specific AI that determines their actions. Hover over an enemy's picture to read what their AI can do. This does not apply to bosses however, as they all follow their own individual scripts.
 
+
 ~ How to Play: Currency ~
+
 There are 6 main currencies in Ascended Z:
 * Vorpex - Used for levelling up characters
 * Party Coin - Used for buying/fusing characters
@@ -34,6 +38,7 @@ There are 6 main currencies in Ascended Z:
 
 
 ~ How to Play: Recruiting/Fusing ~
+
 Based on your stage in the game, you can recruit 2 different types of party members: Normal, and Custom. Custom party members let you customize their skills. The only limit they have is that you can't give them a skill that they'd be weak to.
 
 You can fuse party members that have the same "primary resistance" as one another. A "primary resistance" is the resistance with the highest value. For example, if I have a character with the resistances [Rs: Fire, Wk: Ice] I can fuse with any other party member whose resistances are [Dr/Nu/Rs] Fire.
@@ -44,10 +49,12 @@ The last rule with Fusions is that you cannot have duplicates.
 
 
 ~ How to Play: Upgrading ~
+
 The Upgrade Screen allows you to level up party member skills or refund party members for upgrade items. Upgrading is self explanatory.
 To refund, click the Refund button above the party member's portrait. When done, you will get back the Vorpex and Party Coin pictured to the right of the button.
 
 ~ How to Play: Labrybuce ~
+
 The Labrybuce is the Dungeon Crawling portion of the game. You can access it at Tier 10 of the main game by clicking the "Labrybuce" button in the Embark Screen. Like the main game, you also have a tier that goes up as you complete floors. To complete a floor, you need to find the exit stairs and defeat the number of "Required Encounters" displayed on the left hand side of the screen.
 
 Dungeons consist of the following events:
