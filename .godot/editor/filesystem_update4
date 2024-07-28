@@ -6,8 +6,11 @@ res://misc_icons/IconOutline.gdshader
 res://screens/EnemyBattleDisplayBox.tscn
 res://screens/PartyBattleDisplayBox.tscn
 res://screens/BossBattleDisplayBox.tscn
+res://dungeon_crawling/scenes/crawl_ui/DCSpecialTileIcon.tscn
+res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
+res://dungeon_crawling/scenes/crawl_ui/DCSpecialTileIcon.cs
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs
 res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.cs
 res://dungeon_crawling/scenes/crawl_ui/FloorExitScene.cs
@@ -49,6 +52,4 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
-res://dungeon_crawling/scenes/crawl_ui/DCSpecialTileIcon.tscn
-res://dungeon_crawling/scenes/crawl_ui/DungeonCrawlUI.tscn
-res://dungeon_crawling/scenes/crawl_ui/DCSpecialTileIcon.cs
+res://misc_icons/Icon.tscn

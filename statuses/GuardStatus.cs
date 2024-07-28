@@ -1,8 +1,8 @@
 ﻿using AscendedZ.battle;
-using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
 using Godot;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,33 +10,22 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.statuses
 {
-    /// <summary>
-    /// If you hit 3 stacks of this status, the player with the status cannot attack for 1 turn.
-    /// Then, the status is removed.
-    /// </summary>
-    public class StunStatus : Status
+    public class GuardStatus : Status
     {
-        /// <summary>
-        /// The total amount of turns the Status is active for.
-        /// </summary>
-        private const int ACTIVE_TURNS = 1;
-        private const int REQUIRED_STACKS_TO_BE_ACTIVE = 0;
+        private int _activeTurns = 0;
 
-        private int _stacks;
-        private int _activeTurns;
-
-        public StunStatus() : base()
+        public GuardStatus() : base()
         {
-            _id = StatusId.StunStatus;
-            this.Icon = SkillAssets.STUN_ICON;
-            Name = "Stun";
+            _id = StatusId.GuardStatus;
+            this.Icon = SkillAssets.GUARD_ICON;
+            Name = "Guard";
+
+            UpdateDuringOwnersTurn = true;
         }
 
         public override void ActivateStatus(BattleEntity owner)
         {
             base.ActivateStatus(owner);
-            _stacks = 1;
-            _statusOwner.CanAttack = false;
             _activeTurns = 0;
             Active = true;
         }
@@ -48,7 +37,6 @@ namespace AscendedZ.statuses
         public override void ClearStatus()
         {
             this.RemoveStatus = true;
-            _statusOwner.CanAttack = true;
         }
 
         /// <summary>
@@ -57,10 +45,9 @@ namespace AscendedZ.statuses
         public override void UpdateStatusTurns(BattleEntity entity)
         {
             _activeTurns++;
-            if (_activeTurns == ACTIVE_TURNS)
+            if (_activeTurns == 1)
             {
-                this.RemoveStatus = true;
-                entity.CanAttack = true;
+                RemoveStatus = true;
             }
         }
 
@@ -71,7 +58,7 @@ namespace AscendedZ.statuses
             wrapper.Icon = this.Icon;
             wrapper.Counter = 1;
             wrapper.CounterColor = Colors.Green;
-            wrapper.Description = $"Prevents attacks for 1 turn.";
+            wrapper.Description = $"Covers weaknesses for 1 turn. Status is removed if the guarding entity attacks.";
 
             return wrapper;
         }

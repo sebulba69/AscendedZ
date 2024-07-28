@@ -47,7 +47,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
                 // find a player who does not have the status
                 List<BattlePlayer> playersUnaffectedByStatus = players.FindAll((player) => { return !player.StatusHandler.HasStatus(_status.Id); });
 
-                if (playersUnaffectedByStatus.Count > 0 && _applyStatus)
+                if (playersUnaffectedByStatus.Count > 1 && _applyStatus && players.Count > 1)
                 {
                     skill = Skills[STATUS_SKILL];
                     target = playersUnaffectedByStatus[_rng.Next(playersUnaffectedByStatus.Count)];

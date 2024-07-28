@@ -34,7 +34,8 @@ namespace AscendedZ.statuses
         WexIceStatus,
         WexFireStatus,
         WexDarkStatus,
-        PoisonStatus
+        PoisonStatus,
+        GuardStatus
     }
 
     public class Status
@@ -106,6 +107,8 @@ namespace AscendedZ.statuses
         {
             switch (Id)
             {
+                case StatusId.GuardStatus:
+                    return new GuardStatus();
                 case StatusId.StunStatus:
                     return new StunStatus();
                 case StatusId.AgroStatus:

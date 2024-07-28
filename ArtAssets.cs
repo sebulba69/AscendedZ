@@ -192,6 +192,7 @@ namespace AscendedZ
         public static readonly string STUN_ICON = "Stun";
         public static readonly string AGRO_ICON = "Agro";
         public static readonly string PASS_ICON = "Pass";
+        public static readonly string GUARD_ICON = "Guard";
         public static readonly string RETREAT_ICON = "Retreat";
 
         public static readonly string MAGIC_ICON = "Magic";
@@ -228,6 +229,7 @@ namespace AscendedZ
             [STUN_ICON] = new KeyValuePair<int, int>(288, 0),
             [AGRO_ICON] = new KeyValuePair<int, int>(480, 0),
             [PASS_ICON] = new KeyValuePair<int, int>(352, 128),
+            [GUARD_ICON] = new KeyValuePair<int, int>(32, 160),
             [RETREAT_ICON] = new KeyValuePair<int, int>(288, 576),
             [VORPEX_ICON] = new KeyValuePair<int, int>(448, 1376),
             [PARTY_COIN_ICON] = new KeyValuePair<int, int>(32, 288),

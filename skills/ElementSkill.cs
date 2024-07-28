@@ -73,7 +73,8 @@ namespace AscendedZ.skills
             all.Results.Add(all.ResultType);
             all.Targets.Add(targets[0]);
 
-            int[] bResultRanking = { 2, 1, 3, 4, 0 };
+            // Wk, Rs, Nu, Dr, Norm, Guard
+            int[] bResultRanking = { 2, 1, 3, 4, 0, 1 };
 
             int compare = bResultRanking[(int)all.ResultType];
             for (int i = 1; i < targets.Count; i++)

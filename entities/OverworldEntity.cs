@@ -93,7 +93,10 @@ namespace AscendedZ.entities.partymember_objects
             foreach (var skill in Skills)
                 player.Skills.Add(skill.Clone());
 
+            
             player.Skills.Add(SkillDatabase.Pass);
+            player.Skills.Add(SkillDatabase.Guard);
+
             return player;
         }
 

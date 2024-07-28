@@ -381,11 +381,23 @@ namespace AscendedZ
         public static PassSkill Pass = new PassSkill()
         {
             BaseName = "Pass",
-            TargetType = TargetTypes.SINGLE_OPP,
+            TargetType = TargetTypes.SINGLE_TEAM,
             StartupAnimation = string.Empty,
             EndupAnimation = string.Empty,
             Icon = SkillAssets.PASS_ICON
         };
+
+        public static StatusSkill Guard
+        {
+            get
+            {
+                var guard = MakeStatusSkill("Guard", new GuardStatus());
+                guard.Icon = SkillAssets.GUARD_ICON;
+                guard.EndupAnimation = SkillAssets.VOID_SHIELD;
+                guard.TargetType = TargetTypes.SINGLE_TEAM;
+                return guard;
+            }
+        }
 
         public static RetreatSkill Retreat = new RetreatSkill()
         {

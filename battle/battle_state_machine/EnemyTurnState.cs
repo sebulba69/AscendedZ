@@ -33,6 +33,9 @@ namespace AscendedZ.battle.battle_state_machine
         {
             BattleSceneObject battleSceneObject = sender as BattleSceneObject;
 
+            if (battleSceneObject.DidEnemiesWin())
+                return;
+
             if (_firstAction)
             {
                 _firstAction = false;

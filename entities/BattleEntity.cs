@@ -91,6 +91,14 @@ namespace AscendedZ.entities.battle_entities
                 result.HPChanged = 0;
                 result.ResultType = BattleResultType.Nu;
             }
+            else if (StatusHandler.HasStatus(StatusId.GuardStatus))
+            {
+                int damage = (int)(skill.Damage * 0.75);
+                this.HP -= damage;
+
+                result.HPChanged = damage;
+                result.ResultType = BattleResultType.Guarded;
+            }
             else if (this.Resistances.IsResistantToElement(skill.Element))
             {
                 int damage = (int)(skill.Damage * 0.75);

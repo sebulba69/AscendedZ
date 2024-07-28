@@ -587,19 +587,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
         await ToSignal(transition.Player, "animation_finished");
 
-        int tier = _gameObject.TierDC;
-        int maxTier = _gameObject.MaxTierDC;
-
-        if (tier == maxTier && tier + 1 < _gameObject.TierDCCap) 
-        {
-            _gameObject.MaxTierDC++;
-            _gameObject.TierDC++;
-        }
-        else
-        {
-            _gameObject.TierDC++;
-        }
-
+        IncrementMaxTier();
         SetEncounterVisibility(true, true);
 
         foreach(var member in _battlePlayers)
@@ -625,21 +613,9 @@ public partial class DungeonScreen : Transitionable2DScene
 
     private async void _OnRetreatButtonPressed()
     {
-        if(_floorExitScene.Continue.Visible && !_prematurelyLeave)
+        if(!_prematurelyLeave)
         {
-            int tier = _gameObject.TierDC;
-            int maxTier = _gameObject.MaxTierDC;
-
-            if (tier == maxTier && tier + 1 < _gameObject.TierDCCap)
-            {
-                _gameObject.MaxTierDC++;
-                _gameObject.TierDC++;
-            }
-            else
-            {
-                _gameObject.TierDC++;
-            }
-
+            IncrementMaxTier();
             _crawlUI.Visible = false;
             _floorExitScene.Visible = false;
             var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
@@ -652,6 +628,22 @@ public partial class DungeonScreen : Transitionable2DScene
         SetEncounterVisibility(false);
         PersistentGameObjects.Save();
         TransitionScenes(Scenes.MAIN, _audioStreamPlayer);
+    }
+
+    private void IncrementMaxTier()
+    {
+        int tier = _gameObject.TierDC;
+        int maxTier = _gameObject.MaxTierDC;
+
+        if (tier == maxTier && tier + 1 <= _gameObject.TierDCCap)
+        {
+            _gameObject.MaxTierDC++;
+            _gameObject.TierDC++;
+        }
+        else
+        {
+            _gameObject.TierDC++;
+        }
     }
 
     private void SetEncounterVisibility(bool visible, bool keepCamera = false)

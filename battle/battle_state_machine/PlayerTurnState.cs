@@ -36,11 +36,15 @@ namespace AscendedZ.battle.battle_state_machine
             var players = battleSceneObject.Players;
             var active = players[_activePlayer];
 
-            BattleResult result = default(BattleResult);
+            BattleResult result = null;
 
             ISkill skill = active.Skills[eventArgs.SkillIndex];
 
-            StringBuilder logEntry = new StringBuilder();
+            if(active.StatusHandler.HasStatus(statuses.StatusId.GuardStatus) && skill.Id != SkillId.Pass)
+                active.StatusHandler.RemoveStatus(active, statuses.StatusId.GuardStatus);
+
+            if (eventArgs.DoActivePlayer)
+                eventArgs.TargetIndex = _activePlayer;
 
             // result cannot be null at the end of this function
             switch (skill.TargetType)
