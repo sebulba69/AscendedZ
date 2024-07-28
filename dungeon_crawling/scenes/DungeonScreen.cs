@@ -429,15 +429,16 @@ public partial class DungeonScreen : Transitionable2DScene
                 else
                 {
                     int tier = _gameObject.TierDC;
-                    if(tier % 50 == 0)
-                    {
-                        _gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS_PRE);
-                    }
-                    else
+                    if(tier % 50 != 0)
                     {
                         _gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackDC(_gameObject.TierDC));
                     }
-                    _dungeon.ProcessEncounter();
+
+                    if (id == TileEventId.SpecialBossEncounter)
+                        _dungeon.EndEncounters();
+                    else
+                        _dungeon.ProcessEncounter();
+
                     SetEncounterVisibility(true);
                     SetCrawlValues();
                     _currentScene.Scene.TurnOffGraphic(); // <-- turnoff when finished

@@ -63,6 +63,11 @@ namespace AscendedZ.dungeon_crawling.backend
             }
         }
 
+        public void EndEncounters()
+        {
+            _genenerator.Encounters = 0;
+        }
+
         private void CheckTileEvent()
         {
             if (!_currentTile.EventTriggered)
