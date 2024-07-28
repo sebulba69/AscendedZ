@@ -18,16 +18,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ps4ux")
 
-[node name="FusionScreen" type="PanelContainer" parent="."]
-texture_filter = 2
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="FusionScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 texture_filter = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Tooltip" type="Label" parent="FusionScreen/VBoxContainer"]
+[node name="Tooltip" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
@@ -39,26 +35,26 @@ text = "Combine two Party Members to make a stronger one!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="FusionScreen/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="PanelContainer5" type="PanelContainer" parent="FusionScreen/VBoxContainer/HBoxContainer2"]
+[node name="PanelContainer5" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="FusionScreen/VBoxContainer/HBoxContainer2/PanelContainer5"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer2/PanelContainer5"]
 texture_filter = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_ind63")
 expand_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="FusionScreen/VBoxContainer/HBoxContainer2"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
 texture_filter = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="PartyCoinsOwned" type="Label" parent="FusionScreen/VBoxContainer/HBoxContainer2/PanelContainer2"]
+[node name="PartyCoinsOwned" type="Label" parent="VBoxContainer/HBoxContainer2/PanelContainer2"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
@@ -71,21 +67,21 @@ theme_override_font_sizes/font_size = 35
 text = "12"
 horizontal_alignment = 1
 
-[node name="FusionResult" parent="FusionScreen/VBoxContainer" instance=ExtResource("1_1pkjw")]
+[node name="FusionResult" parent="VBoxContainer" instance=ExtResource("1_1pkjw")]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="FusionMaterials" type="HBoxContainer" parent="FusionScreen/VBoxContainer"]
+[node name="FusionMaterials" type="HBoxContainer" parent="VBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Material1" parent="FusionScreen/VBoxContainer/FusionMaterials" instance=ExtResource("1_1pkjw")]
+[node name="Material1" parent="VBoxContainer/FusionMaterials" instance=ExtResource("1_1pkjw")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label" type="Label" parent="FusionScreen/VBoxContainer/FusionMaterials"]
+[node name="Label" type="Label" parent="VBoxContainer/FusionMaterials"]
 texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -94,11 +90,11 @@ theme_override_fonts/font = ExtResource("2_01pv5")
 theme_override_font_sizes/font_size = 75
 text = "+"
 
-[node name="Material2" parent="FusionScreen/VBoxContainer/FusionMaterials" instance=ExtResource("1_1pkjw")]
+[node name="Material2" parent="VBoxContainer/FusionMaterials" instance=ExtResource("1_1pkjw")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="FusionAndSkillList" type="ItemList" parent="FusionScreen/VBoxContainer"]
+[node name="FusionAndSkillList" type="ItemList" parent="VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(500, 300)
@@ -108,12 +104,12 @@ size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_01pv5")
 theme_override_font_sizes/font_size = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="FusionScreen/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 alignment = 1
 
-[node name="FuseButton" type="Button" parent="FusionScreen/VBoxContainer/HBoxContainer"]
+[node name="FuseButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(150, 0)
@@ -124,7 +120,7 @@ theme_override_fonts/font = ExtResource("2_01pv5")
 theme_override_font_sizes/font_size = 40
 text = "Fuse"
 
-[node name="BackButton" type="Button" parent="FusionScreen/VBoxContainer/HBoxContainer"]
+[node name="BackButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(150, 0)
@@ -135,22 +131,22 @@ theme_override_fonts/font = ExtResource("2_01pv5")
 theme_override_font_sizes/font_size = 40
 text = "Back"
 
-[node name="PanelContainer5" type="PanelContainer" parent="FusionScreen/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer5" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="FusionScreen/VBoxContainer/HBoxContainer/PanelContainer5"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer5"]
 texture_filter = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_ind63")
 expand_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="FusionScreen/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="PartyCoinCost" type="Label" parent="FusionScreen/VBoxContainer/HBoxContainer/PanelContainer2"]
+[node name="PartyCoinCost" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer2"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)

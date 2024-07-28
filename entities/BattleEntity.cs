@@ -134,10 +134,5 @@ namespace AscendedZ.entities.battle_entities
 
             return result;
         }
-
-        public virtual string GetLogName()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

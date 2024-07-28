@@ -52,3 +52,8 @@ res://screens/StartScreen.tscn
 res://screens/RecruitScreen.tscn
 res://screens/PartyMemberDisplay.tscn
 res://screens/FusionScreen.tscn
+res://screens/RecruitCustomScreen.tscn
+res://screens/FusionCompendium.tscn
+res://screens/FusionTabs.tscn
+res://screens/FusionCompendium.cs
+res://screens/FusionTabs.cs

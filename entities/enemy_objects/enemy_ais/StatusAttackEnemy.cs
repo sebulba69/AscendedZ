@@ -23,12 +23,13 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
 
         private const int STATUS_SKILL = 0;
         private const int ATTACK_SKILL = 1;
-
+        private bool _applyStatus;
         public Status Status { set => _status = value; }
 
         public StatusAttackEnemy()
         {
             Turns = 1;
+            _applyStatus = true;
             Description = $"Randomly applies a status to all players who don't have one, then it focuses on random attacks.";
         }
 
@@ -46,15 +47,17 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
                 // find a player who does not have the status
                 List<BattlePlayer> playersUnaffectedByStatus = players.FindAll((player) => { return !player.StatusHandler.HasStatus(_status.Id); });
 
-                if (playersUnaffectedByStatus.Count > 0)
+                if (playersUnaffectedByStatus.Count > 0 && _applyStatus)
                 {
                     skill = Skills[STATUS_SKILL];
                     target = playersUnaffectedByStatus[_rng.Next(playersUnaffectedByStatus.Count)];
+                    _applyStatus = false;
                 }
                 else
                 {
                     skill = Skills[ATTACK_SKILL];
                     target = players[_rng.Next(players.Count)];
+                    _applyStatus = true;
                 }
             }
             else

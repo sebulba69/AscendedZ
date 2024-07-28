@@ -35,7 +35,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
         {
             _gameObject = PersistentGameObjects.GameObjectInstance();
             AvailableMembers = EntityDatabase.MakeShopVendorWares(_gameObject.MaxTier, true);
-            _baseCost = (int)(_gameObject.ShopLevel * 1.5) + 1;
+
             for (int i = 0; i < _gameObject.ShopLevel; i++)
                 foreach (var member in AvailableMembers)
                     member.LevelUp();

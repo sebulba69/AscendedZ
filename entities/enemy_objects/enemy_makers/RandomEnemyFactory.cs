@@ -121,18 +121,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 PopulateEnemyResistanceRandom(_rng, enemy);
                 PopulateEnemySkillsRandom(_rng, enemy);
             }
-            else if (ai == 5)
-            {
-                var buffElement = GetRandomElement(_rng);
-                enemy = MakeBuffEnemy(name, hp);
-
-                skills.Add(_miscStatuses.Find(b => b.BaseName.Contains(buffElement.ToString())));
-                skills.AddRange(_elementalSkills.FindAll(e => e.Element == buffElement));
-                
-                PopulateEnemyResistanceRandom(_rng, enemy);
-                enemy.Resistances.SetResistance(ResistanceType.Rs, buffElement);
-            }
-            else if(ai == 6)
+            else if(ai == 5)
             {
                 var voidElement = GetRandomElement(_rng);
                 enemy = MakeProtectorEnemy(name, hp, voidElement);
@@ -142,9 +131,21 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 enemy.Resistances.SetResistance(ResistanceType.Wk, voidElement);
                 PopulateEnemySkillsRandom(_rng, enemy);
             }
-            else if (ai == 7)
+            else if (ai == 6)
             {
                 enemy = MakeAgroStatusEnemy(name, hp);
+                PopulateEnemyResistanceRandom(_rng, enemy);
+                PopulateEnemySkillsRandom(_rng, enemy);
+            }
+            else if (ai == 7)
+            {
+                enemy = MakeStunStatusEnemy(name, hp);
+                PopulateEnemyResistanceRandom(_rng, enemy);
+                PopulateEnemySkillsRandom(_rng, enemy);
+            }
+            else if (ai == 8)
+            {
+                enemy = MakePoisonEnemy(name, hp);
                 PopulateEnemyResistanceRandom(_rng, enemy);
                 PopulateEnemySkillsRandom(_rng, enemy);
             }
@@ -155,11 +156,10 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 PopulateEnemySkillsRandom(_rng, enemy);
             }
 
-            if (skills.Count > 0)
-                foreach (var skill in skills)
-                    enemy.Skills.Add(skill.Clone());
+            enemy.MaxHP += 3;
 
-            enemy.MaxHP += 2;
+            foreach (var skill in skills)
+                enemy.Skills.Add(skill.Clone());
 
             return enemy;
         }
@@ -221,9 +221,6 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             {
                 enemy.Skills.Add(_elementalSkills[rng.Next(_elementalSkills.Count)].Clone());
             }
-
-            if(rng.Next(100) < 25)
-                enemy.Skills.Add(_miscStatuses[rng.Next(_miscStatuses.Count)]);
         }
 
         private ResistanceType GetRandomResistanceType(Random rng)
@@ -247,15 +244,29 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             };
         }
 
-        private Enemy MakeBuffEnemy(string name, int hp)
+
+        private Enemy MakeStunStatusEnemy(string name, int hp)
         {
-            return new BuffEnemy
-            {
-                Name = $"[BUFF] {name}",
-                MaxHP = hp + _tierBoost,
-                Image = CharacterImageAssets.GetImagePath(name),
-                Resistances = new ResistanceArray()
-            };
+            var statusAttackEnemy = MakeStatusAttackEnemy(name, hp);
+
+            statusAttackEnemy.Name = $"[STN] {statusAttackEnemy.Name}";
+            statusAttackEnemy.Status = new StunStatus();
+            statusAttackEnemy.Skills.Add(SkillDatabase.Stun.Clone());
+            statusAttackEnemy.Description = $"[STN]: {statusAttackEnemy.Description}";
+
+            return statusAttackEnemy;
+        }
+
+        private Enemy MakePoisonEnemy(string name, int hp)
+        {
+            var statusAttackEnemy = MakeStatusAttackEnemy(name, hp);
+
+            statusAttackEnemy.Name = $"[PSN] {statusAttackEnemy.Name}";
+            statusAttackEnemy.Status = new PoisonStatus();
+            statusAttackEnemy.Skills.Add(SkillDatabase.Poison.Clone());
+            statusAttackEnemy.Description = $"[PSN]: {statusAttackEnemy.Description}";
+
+            return statusAttackEnemy;
         }
 
         private Enemy MakeBeastEye(string name, int hp)
