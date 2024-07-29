@@ -17,12 +17,25 @@ public partial class MenuScene : CenterContainer
 			}
 		});
 
+		Button settingsButton = this.GetNode<Button>("%SettingsButton");
 		Button saveButton = this.GetNode<Button>("%SaveButton");
 		Button quitToTitleButton = this.GetNode<Button>("%QuitToTitleButton");
 		Button quitGameButton = this.GetNode<Button>("%QuitGameButton");
 		Button backButton = this.GetNode<Button>("%BackButton");
 
 		Label tooltip = this.GetNode<Label>("%Tooltip");
+
+		settingsButton.Pressed += async () => 
+		{
+			var menu = GetNode<VBoxContainer>("%VBoxContainer");
+			menu.Visible = false;
+			var settings = ResourceLoader.Load<PackedScene>(Scenes.SETTINGS).Instantiate<SettingsScreen>();
+
+			AddChild(settings);
+
+			await ToSignal(settings, "tree_exited");
+			menu.Visible = true;
+		};
 
 		saveButton.Pressed += () => 
 		{

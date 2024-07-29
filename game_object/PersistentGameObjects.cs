@@ -1,9 +1,11 @@
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
+using AscendedZ.screens.settings_screen;
 using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -20,8 +22,10 @@ namespace AscendedZ.game_object
         /// Path for saving and loading.
         /// </summary>
         private readonly static string SAVE_CACHE_PATH = "user://save_cache.json";
+        private readonly static string SETTINGS = "res://settings.json";
 
         private static SaveObject _saveObject;
+        private static SettingsObject _settings;
 
         private static GameObject _instance;
 
@@ -35,6 +39,16 @@ namespace AscendedZ.game_object
             }
 
             return _instance;
+        }
+
+        public static SettingsObject Settings()
+        {
+            if(_settings == null)
+            {
+                _settings = JsonUtil.LoadObject<SettingsObject>(SETTINGS);
+            }
+
+            return _settings;
         }
 
         public static SaveObject SaveObjectInstance()
@@ -134,6 +148,14 @@ namespace AscendedZ.game_object
             var saveObject = SaveObjectInstance();
 
             JsonUtil.SaveObject<GameObject>(instance, saveObject.SavePathForCurrentGame);
+        }
+
+        public static void SaveSettings()
+        {
+            if (_settings == null)
+                _settings = new SettingsObject();
+
+            JsonUtil.SaveObject(_settings, SETTINGS);
         }
     }
 }

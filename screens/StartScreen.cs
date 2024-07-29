@@ -61,10 +61,12 @@ public partial class StartScreen : Transitionable2DScene
 		// buttons from start screen
 		Button newGameButton = this.GetNode<Button>("%NewGameButton");
 		Button loadGameButton = this.GetNode<Button>("%LoadGameButton");
+		Button settingsButton = this.GetNode<Button>("%SettingsButton");
 		Button quitGameButton = this.GetNode<Button>("%QuitGameButton");
 
 		newGameButton.Pressed += _OnNewGameButtonPressed;
         loadGameButton.Pressed += _OnLoadScreenButtonClicked;
+		settingsButton.Pressed += _OnSettingsButtonPressed;
         quitGameButton.Pressed += () => { this.GetTree().Quit(); };
 
         versionLabel.Text = VERSION;
@@ -101,9 +103,22 @@ public partial class StartScreen : Transitionable2DScene
 		loadContinueButton.Pressed += _OnLoadSaveFileClicked;
 		loadBackButton.Pressed += _OnLoadGameBackButtonPressed;
 		loadDeleteButton.Pressed += _OnLoadDeleteButtonPressed;
+
+		SetSettings();
     }
 
-	private void _OnPlayerPicLeftButtonPressed()
+	private void SetSettings()
+	{
+        var settings = PersistentGameObjects.Settings();
+        if (settings == null)
+        {
+			PersistentGameObjects.SaveSettings();
+        }
+        settings = PersistentGameObjects.Settings();
+        settings.SetSettings();
+    }
+
+    private void _OnPlayerPicLeftButtonPressed()
 	{
 		List<string> pictures = CharacterImageAssets.PlayerPics;
 
@@ -114,6 +129,19 @@ public partial class StartScreen : Transitionable2DScene
 		// set player pic here
 		_playerPicture.Texture = ResourceLoader.Load<Texture2D>(pictures[_pictureIndex]);
 	}
+
+	private async void _OnSettingsButtonPressed()
+	{
+        _startingButtons.Visible = false;
+
+		var settings = ResourceLoader.Load<PackedScene>(Scenes.SETTINGS).Instantiate<SettingsScreen>();
+
+		GetNode<VBoxContainer>("%VBoxContainer").AddChild(settings);
+
+		await ToSignal(settings, "tree_exited");
+
+        _startingButtons.Visible = true;
+    }
 
 	private void _OnPlayerPicRightButtonPressed()
 	{

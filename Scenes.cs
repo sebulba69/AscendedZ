@@ -14,6 +14,7 @@ namespace AscendedZ
     {
         // new UI screens
         public static readonly string CUTSCENE = "res://screens/CGCutsceneScreen.tscn";
+        public static readonly string SETTINGS = "res://screens/settings_screen/SettingsScreen.tscn";
         public static readonly string START = "res://screens/StartScreen.tscn";
         public static readonly string MAIN = "res://screens/MainScreen.tscn";
         public static readonly string MAIN_RECRUIT = "res://screens/RecruitScreenTabs.tscn";

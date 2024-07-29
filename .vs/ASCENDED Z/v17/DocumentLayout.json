@@ -7,32 +7,72 @@
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\startscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\fusionscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\fusionscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy_ais\\bosshellai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy_ais\\bosshellai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entitydatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entitydatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\scenes\\dungeonscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\scenes\\dungeonscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\partyeditscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\partyeditscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\partymemberdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\partymemberdisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\skilldatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:skilldatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\skills\\passskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:skills\\passskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\battle\\battle_state_machine\\playerturnstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:battle\\battle_state_machine\\playerturnstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\actionmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\actionmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\overworldentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\overworldentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\battleenemyscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\battleenemyscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\battle\\battle_state_machine\\playertargetselectedeventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:battle\\battle_state_machine\\playertargetselectedeventargs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\skills\\elementskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:skills\\elementskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\battle\\battlesceneobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:battle\\battlesceneobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\battleenemyscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\battleenemyscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\statuses\\guardstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:statuses\\guardstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\entitydisplaybox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\entitydisplaybox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\battleentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\battleentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\battle_entities\\battleplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\battle_entities\\battleplayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\statuses\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:statuses\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,45 +82,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 312,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DungeonScreen.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\DungeonScreen.cs",
-              "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\DungeonScreen.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\DungeonScreen.cs",
-              "RelativeToolTip": "dungeon_crawling\\scenes\\DungeonScreen.cs",
-              "ViewState": "AQIAAJgBAAAAAAAAAAAYwLwBAAAVAAAA",
+              "DocumentIndex": 17,
+              "Title": "Status.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\Status.cs",
+              "RelativeDocumentMoniker": "statuses\\Status.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\Status.cs",
+              "RelativeToolTip": "statuses\\Status.cs",
+              "ViewState": "AQIAAGgAAAAAAAAAAAAQwG4AAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T10:26:26.549Z",
-              "IsPinned": true
+              "WhenOpened": "2024-07-28T21:28:22.513Z",
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EntityDatabase.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\EntityDatabase.cs",
-              "RelativeDocumentMoniker": "EntityDatabase.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\EntityDatabase.cs",
-              "RelativeToolTip": "EntityDatabase.cs",
-              "ViewState": "AQIAAAoBAAAAAAAAAAAcwDQBAAApAAAA",
+              "DocumentIndex": 13,
+              "Title": "GuardStatus.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\GuardStatus.cs",
+              "RelativeDocumentMoniker": "statuses\\GuardStatus.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\GuardStatus.cs",
+              "RelativeToolTip": "statuses\\GuardStatus.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABYAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T12:29:13.175Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FusionScreen.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\FusionScreen.cs",
-              "RelativeDocumentMoniker": "screens\\FusionScreen.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\FusionScreen.cs",
-              "RelativeToolTip": "screens\\FusionScreen.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAxwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T19:53:35.73Z",
+              "WhenOpened": "2024-07-28T21:28:01.744Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
@@ -93,56 +122,203 @@
               "RelativeToolTip": "screens\\StartScreen.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T19:21:12.209Z",
+              "WhenOpened": "2024-07-28T22:16:35.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DungeonScreen.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\DungeonScreen.cs",
+              "RelativeDocumentMoniker": "dungeon_crawling\\scenes\\DungeonScreen.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\scenes\\DungeonScreen.cs",
+              "RelativeToolTip": "dungeon_crawling\\scenes\\DungeonScreen.cs",
+              "ViewState": "AQIAAJ8BAAAAAAAAAAAwwKYBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T22:08:32.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PartyEditScreen.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\PartyEditScreen.cs",
+              "RelativeDocumentMoniker": "screens\\PartyEditScreen.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\PartyEditScreen.cs",
+              "RelativeToolTip": "screens\\PartyEditScreen.cs",
+              "ViewState": "AQIAAKMAAAAAAAAAAAAwwKkAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T22:07:31.8Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Enemy.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\Enemy.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\Enemy.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\Enemy.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\Enemy.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAAA4wGAAAAAuAAAA",
+              "Title": "PartyMemberDisplay.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\PartyMemberDisplay.cs",
+              "RelativeDocumentMoniker": "screens\\PartyMemberDisplay.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\PartyMemberDisplay.cs",
+              "RelativeToolTip": "screens\\PartyMemberDisplay.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAowAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T19:19:21.752Z"
+              "WhenOpened": "2024-07-28T22:07:22.12Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BossHellAI.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\BossHellAI.cs",
-              "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_ais\\BossHellAI.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\BossHellAI.cs",
-              "RelativeToolTip": "entities\\enemy_objects\\enemy_ais\\BossHellAI.cs",
-              "ViewState": "AQIAAFsAAAAAAAAAAAAnwHgAAAAnAAAA",
+              "DocumentIndex": 10,
+              "Title": "PlayerTargetSelectedEventArgs.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\battle_state_machine\\PlayerTargetSelectedEventArgs.cs",
+              "RelativeDocumentMoniker": "battle\\battle_state_machine\\PlayerTargetSelectedEventArgs.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\battle_state_machine\\PlayerTargetSelectedEventArgs.cs",
+              "RelativeToolTip": "battle\\battle_state_machine\\PlayerTargetSelectedEventArgs.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA0AAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T19:18:31.155Z"
+              "WhenOpened": "2024-07-28T21:50:57.553Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BattleEnemyScene.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\BattleEnemyScene.cs",
-              "RelativeDocumentMoniker": "screens\\BattleEnemyScene.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\BattleEnemyScene.cs",
-              "RelativeToolTip": "screens\\BattleEnemyScene.cs",
-              "ViewState": "AQIAAHcAAAAAAAAAAAAEwJMAAAAfAAAA",
+              "DocumentIndex": 11,
+              "Title": "ElementSkill.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\ElementSkill.cs",
+              "RelativeDocumentMoniker": "skills\\ElementSkill.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\ElementSkill.cs",
+              "RelativeToolTip": "skills\\ElementSkill.cs",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAwwEwAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T19:04:09.294Z"
+              "WhenOpened": "2024-07-28T21:55:28.852Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "BattleSceneObject.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\BattleSceneObject.cs",
               "RelativeDocumentMoniker": "battle\\BattleSceneObject.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\BattleSceneObject.cs",
               "RelativeToolTip": "battle\\BattleSceneObject.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAvwEQAAAAKAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAowBcAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T19:04:01.36Z"
+              "WhenOpened": "2024-07-28T21:50:29.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ActionMenu.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\ActionMenu.cs",
+              "RelativeDocumentMoniker": "screens\\ActionMenu.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\ActionMenu.cs",
+              "RelativeToolTip": "screens\\ActionMenu.cs",
+              "ViewState": "AQIAAN8AAAAAAAAAAAAwwO0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T21:46:32.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BattleEnemyScene.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\BattleEnemyScene.cs",
+              "RelativeDocumentMoniker": "screens\\BattleEnemyScene.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\BattleEnemyScene.cs",
+              "RelativeToolTip": "screens\\BattleEnemyScene.cs",
+              "ViewState": "AQIAAOEAAAAAAAAAAAAkwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T21:43:48.827Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerTurnState.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\battle_state_machine\\PlayerTurnState.cs",
+              "RelativeDocumentMoniker": "battle\\battle_state_machine\\PlayerTurnState.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\battle_state_machine\\PlayerTurnState.cs",
+              "RelativeToolTip": "battle\\battle_state_machine\\PlayerTurnState.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAewDYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T21:37:38.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "OverworldEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\OverworldEntity.cs",
+              "RelativeDocumentMoniker": "entities\\OverworldEntity.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\OverworldEntity.cs",
+              "RelativeToolTip": "entities\\OverworldEntity.cs",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAwwGAAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T21:36:31.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PassSkill.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\PassSkill.cs",
+              "RelativeDocumentMoniker": "skills\\PassSkill.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\PassSkill.cs",
+              "RelativeToolTip": "skills\\PassSkill.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAIwAoAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T21:34:47.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SkillDatabase.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\SkillDatabase.cs",
+              "RelativeDocumentMoniker": "SkillDatabase.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\SkillDatabase.cs",
+              "RelativeToolTip": "SkillDatabase.cs",
+              "ViewState": "AQIAAH0BAAAAAAAAAAAwwH8BAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T21:32:46.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "EntityDisplayBox.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\EntityDisplayBox.cs",
+              "RelativeDocumentMoniker": "screens\\EntityDisplayBox.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\EntityDisplayBox.cs",
+              "RelativeToolTip": "screens\\EntityDisplayBox.cs",
+              "ViewState": "AQIAAJ4AAAAAAAAAAAAgwKoAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T21:43:56.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "BattleEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\BattleEntity.cs",
+              "RelativeDocumentMoniker": "entities\\BattleEntity.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\BattleEntity.cs",
+              "RelativeToolTip": "entities\\BattleEntity.cs",
+              "ViewState": "AQIAAHwAAAAAAAAAAAAwwGMAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T21:41:54.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BattlePlayer.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\battle_entities\\BattlePlayer.cs",
+              "RelativeDocumentMoniker": "entities\\battle_entities\\BattlePlayer.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\battle_entities\\BattlePlayer.cs",
+              "RelativeToolTip": "entities\\battle_entities\\BattlePlayer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T21:41:27.307Z",
+              "EditorCaption": ""
             }
           ]
         }
