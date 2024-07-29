@@ -17,6 +17,7 @@ Here are all actions in battle and how they affect the active battler's turn:
 4. Void (Nu) - 2 turn icons are used and no damage is dealt. If only 1 turn icon remains, then the active battler's turn ends
 5. Drain (Dr) - All turn icons are consumed and the target of the skill gains the damage they would have taken as HP
 6. Passing - Turn the current full icon into a half icon and pass the current action onto the next battler in the turn order
+7. Guard - Turns any non-Void/Drain attack into a Resist. Consumes 1 full icon to use. Your guard is removed if you choose to do any other action (except Passing) after using it.
 
 Important notes:
 * Basic Actions will always use up the first available half icon before using up a full icon
