@@ -334,12 +334,14 @@ namespace AscendedZ
             return animation;
         }
 
+        private static readonly Texture2D _atlas = ResourceLoader.Load<Texture2D>("res://misc_icons/IconSet.png");
+
         public static AtlasTexture GenerateIcon(string iconKey)
         {
             KeyValuePair<int, int> coords = GetIcon(iconKey);
 
             AtlasTexture icon = new AtlasTexture();
-            icon.Atlas = ResourceLoader.Load<Texture2D>("res://misc_icons/IconSet.png");
+            icon.Atlas = _atlas;
             icon.Region = new Rect2(coords.Key, coords.Value, 32, 32);
             return icon;
         }

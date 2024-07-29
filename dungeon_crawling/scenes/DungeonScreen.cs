@@ -24,6 +24,15 @@ public class UITile
 
 public partial class DungeonScreen : Transitionable2DScene
 {
+    private readonly PackedScene _uiTileScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_TILE_SCENE);
+    private readonly PackedScene _minerScene  = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_MINER);
+    private readonly PackedScene _dungeonDialogScene  = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_DIALOG_SCENE);
+    private readonly PackedScene _yesNoPopup  = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP);
+    private readonly PackedScene _battleScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE);
+    private readonly PackedScene _transitionScene = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION);
+    private readonly PackedScene _fountainScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_FOUNTAIN);
+    private readonly PackedScene _rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS);
+
     private bool _prematurelyLeave;
     private Marker2D _tiles;
     private CanvasLayer _popup;
@@ -43,6 +52,7 @@ public partial class DungeonScreen : Transitionable2DScene
     private List<BattlePlayer> _battlePlayers;
 
     private UITile[,] _uiTiles;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -325,7 +335,7 @@ public partial class DungeonScreen : Transitionable2DScene
 
         try
         {
-            TileScene tileScene = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_TILE_SCENE).Instantiate<TileScene>();
+            TileScene tileScene = _uiTileScene.Instantiate<TileScene>();
             UITile uiTile = new UITile() { Scene = tileScene, X = x, Y = y };
             _tiles.AddChild(uiTile.Scene);
             var template = BackgroundAssets.GetCombatDCTileTemplate(_gameObject.TierDC);
@@ -343,11 +353,12 @@ public partial class DungeonScreen : Transitionable2DScene
     {
         // start of the event, prevent further inputs
         _processingEvent = true;
-        
+        _player.SetArrows(false, false, false, false);
+
         switch (id)
         {
             case TileEventId.Miner:
-                var miner = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_MINER).Instantiate<MinerUI>();
+                var miner = _minerScene.Instantiate<MinerUI>();
                 _popup.AddChild(miner);
                 miner.SetUIValues();
                 await ToSignal(miner, "tree_exited");
@@ -363,9 +374,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 break;
 
             case TileEventId.BossDialog:
-                string dialogScene = "res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.tscn";
-
-                var dScene = ResourceLoader.Load<PackedScene>(dialogScene).Instantiate<DC_BOSS_CUTSCENE>();
+                var dScene = _dungeonDialogScene.Instantiate<DC_BOSS_CUTSCENE>();
                 _popup.AddChild(dScene);
                 dScene.Start(_dungeon.Current.Entity, _dungeon.Current.EntityImage);
 
@@ -385,7 +394,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 {
                     _dungeon.Current.EventTriggered = false;
 
-                    var bossPrompt = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP).Instantiate<AscendedYesNoWindow>();
+                    var bossPrompt = _yesNoPopup.Instantiate<AscendedYesNoWindow>();
                     _popup.AddChild(bossPrompt);
                     bossPrompt.SetDialogMessage("You sense a dangerous presence beyond the door. Do you proceed?");
                     bossPrompt.AnswerSelected += (sender, args) =>
@@ -399,8 +408,8 @@ public partial class DungeonScreen : Transitionable2DScene
                 if (doNotDoEncounter)
                     break;
 
-                var combatScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
-                var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
+                var combatScene = _battleScene.Instantiate<BattleEnemyScene>();
+                var transition = _transitionScene.Instantiate<SceneTransition>();
 
                 this.AddChild(transition);
 
@@ -482,7 +491,7 @@ public partial class DungeonScreen : Transitionable2DScene
             case TileEventId.Portal:
                 _dungeon.Current.EventTriggered = false;
 
-                var popupWindow = ResourceLoader.Load<PackedScene>(Scenes.YES_NO_POPUP).Instantiate<AscendedYesNoWindow>();
+                var popupWindow = _yesNoPopup.Instantiate<AscendedYesNoWindow>();
                 _popup.AddChild(popupWindow);
                 popupWindow.SetDialogMessage("Teleport?");
                 popupWindow.AnswerSelected += (sender, args) => 
@@ -513,7 +522,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 break;
 
             case TileEventId.Fountain:
-                var fountain = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_FOUNTAIN).Instantiate<FountainOfBuce>();
+                var fountain = _fountainScene.Instantiate<FountainOfBuce>();
                 _popup.AddChild(fountain);
                 await ToSignal(fountain, "tree_exited");
                 SetCrawlValues();
@@ -546,12 +555,13 @@ public partial class DungeonScreen : Transitionable2DScene
         }
 
         // on completion of the event
+        SetPlayerDirections(_currentScene.X, _currentScene.Y);
         _processingEvent = false;
     }
 
     private async Task ShowRewardScreen(TileEventId id)
     {
-        var reward = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
+        var reward = _rewardScene.Instantiate<RewardScreen>();
         _itemSfxPlayer.Play();
         _crawlUI.Visible = false;
         _popup.AddChild(reward);
@@ -580,7 +590,7 @@ public partial class DungeonScreen : Transitionable2DScene
         _floorExitScene.Visible = false;
         await ShowRewardScreen(TileEventId.Exit);
 
-        var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
+        var transition = _transitionScene.Instantiate<SceneTransition>();
 
         AddChild(transition);
         transition.PlayFadeIn();
@@ -618,7 +628,7 @@ public partial class DungeonScreen : Transitionable2DScene
             IncrementMaxTier();
             _crawlUI.Visible = false;
             _floorExitScene.Visible = false;
-            var rewards = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
+            var rewards = _rewardScene.Instantiate<RewardScreen>();
             _popup.AddChild(rewards);
             rewards.InitializeDungeonCrawlTierRewards();
             _itemSfxPlayer.Play();

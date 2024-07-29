@@ -1,21 +1,17 @@
 ﻿using AscendedZ;
 using AscendedZ.battle;
 using AscendedZ.effects;
-using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
-using AscendedZ.entities.enemy_objects;
 using AscendedZ.statuses;
 using Godot;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
-using static Godot.HttpRequest;
+
 
 public partial class EntityDisplayBox : PanelContainer
 {
+    private readonly PackedScene _damageNumScene = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM);
+    private readonly PackedScene _statusScene = ResourceLoader.Load<PackedScene>(Scenes.STATUS);
+
     private Sprite2D _effect;
     private AudioStreamPlayer _shakeSfx;
     private Vector2 _originalPosition;
@@ -23,6 +19,9 @@ public partial class EntityDisplayBox : PanelContainer
     private Label _resistances;
     private Label _hp;
     private float _x;
+
+    private Texture2D _entityImage;
+    private Texture2D _deadImage;
 
     // screen shake
     private ShakeParameters _shakeParameters;
@@ -44,6 +43,8 @@ public partial class EntityDisplayBox : PanelContainer
         _hp = this.GetNode<Label>("%HPLabel");
         _x = -1;
         _originalPosition = new Vector2(this.Position.X, 0);
+
+        _deadImage = ResourceLoader.Load<Texture2D>("res://entity_pics/dead_entity.png");
     }
 
     /// <summary>
@@ -89,7 +90,9 @@ public partial class EntityDisplayBox : PanelContainer
         _hp.Text = $"{entity.HP}/{entity.MaxHP} HP";
         _resistances.Text = entity.Resistances.GetResistanceString();
 
-        picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
+        _entityImage = ResourceLoader.Load<Texture2D>(entity.Image);
+
+        picture.Texture = _entityImage;
     }
 
     public void UpdateEntityDisplay(EntityWrapper wrapper)
@@ -110,17 +113,16 @@ public partial class EntityDisplayBox : PanelContainer
             TextureRect picture = this.GetNode<TextureRect>("%Picture");
             if (entity.HP == 0)
             {
-                string dead = "res://entity_pics/dead_entity.png";
-                picture.Texture = ResourceLoader.Load<Texture2D>(dead);
+                picture.Texture = _deadImage;
             }
             else
             {
-                picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
+                if(picture.Texture != _entityImage)
+                    picture.Texture = _entityImage;
             }
 
         }
         _resistances.Text = entity.Resistances.GetResistanceString();
-        //_resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
 
         // ... change active status ... //
         // change active status if it's a player (players have the graphic, enemies don't)
@@ -154,7 +156,7 @@ public partial class EntityDisplayBox : PanelContainer
         foreach (var status in entityStatuses)
         {
             StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();
-            var statusIcon = ResourceLoader.Load<PackedScene>(Scenes.STATUS).Instantiate();
+            var statusIcon = _statusScene.Instantiate();
             _statuses.AddChild(statusIcon);
 
             statusIcon.Call("SetIcon", statusIconWrapper);
@@ -202,7 +204,7 @@ public partial class EntityDisplayBox : PanelContainer
                     }
    
                     // play damage number
-                    var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate<DamageNumber>();
+                    var dmgNumber = _damageNumScene.Instantiate<DamageNumber>();
                     dmgNumber.SetDisplayInfo(result.HPChanged, isHPGainedFromMove, result.GetResultString());
 
                     CenterContainer effectContainer = this.GetNode<CenterContainer>("%EffectContainer");
@@ -210,10 +212,6 @@ public partial class EntityDisplayBox : PanelContainer
                 }
             }
         }
-
-        // for some reason, we can't seem to emit the signal if we don't await at least once in this thread
-        // this seems to be a Godot quirk, not sure why this is the case
-        await Task.Delay(100);
     }
 
     private async Task PlayEffect(string effectName)

@@ -11,6 +11,12 @@ using System.Threading.Tasks;
 
 public partial class BattleEnemyScene : Node2D
 {
+    private readonly PackedScene _partyScreen = ResourceLoader.Load<PackedScene>(Scenes.PARTY_CHANGE);
+    private readonly PackedScene _partyBox = ResourceLoader.Load<PackedScene>(Scenes.PARTY_BOX);
+    private readonly PackedScene _enemyBox = ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX);
+    private readonly PackedScene _turnIcons = ResourceLoader.Load<PackedScene>(Scenes.TURN_ICONS);
+    private readonly PackedScene _rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS);
+
     private HBoxContainer _partyMembers;
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
@@ -95,7 +101,7 @@ public partial class BattleEnemyScene : Node2D
         var vbox = this.GetNode<VBoxContainer>("%EndVBox");
         vbox.Visible = false;
 
-        var partyChangeScene = ResourceLoader.Load<PackedScene>(Scenes.PARTY_CHANGE).Instantiate<PartyEditScreen>();
+        var partyChangeScene = _partyScreen.Instantiate<PartyEditScreen>();
 
         _endBox.AddChild(partyChangeScene);
 
@@ -156,7 +162,7 @@ public partial class BattleEnemyScene : Node2D
         foreach (var member in _battleSceneObject.Players)
         {
             HBoxContainer hBoxContainer = new HBoxContainer() { Alignment = BoxContainer.AlignmentMode.Center };
-            var partyBox = ResourceLoader.Load<PackedScene>(Scenes.PARTY_BOX).Instantiate<EntityDisplayBox>();
+            var partyBox = _partyBox.Instantiate<EntityDisplayBox>();
 
             _partyMembers.AddChild(hBoxContainer);
             hBoxContainer.AddChild(partyBox);
@@ -178,7 +184,7 @@ public partial class BattleEnemyScene : Node2D
             }
             else
             {
-                enemyBox = ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate<EntityDisplayBox>();
+                enemyBox = _enemyBox.Instantiate<EntityDisplayBox>();
                 _enemyMembers.AddChild(enemyBox);
                 enemyBox.InstanceEntity(new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
                 enemyBox.SetDescription(enemy.Description);
@@ -433,7 +439,7 @@ public partial class BattleEnemyScene : Node2D
         List<int> turns = _battleSceneObject.PressTurn.TurnIcons;
         foreach (int turn in turns)
         {
-            var turnIconScene = ResourceLoader.Load<PackedScene>(Scenes.TURN_ICONS).Instantiate();
+            var turnIconScene = _turnIcons.Instantiate();
             _turnIconContainer.AddChild(turnIconScene);
             turnIconScene.Call("SetIconState", isPlayer, turn == 1);
         }
@@ -472,7 +478,7 @@ public partial class BattleEnemyScene : Node2D
             {
                 ChangeEndScreenVisibilityOnly(false);
                 GetNode<AudioStreamPlayer>("%ItemSfxPlayer");
-                var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
+                var rewardScene = _rewardScene.Instantiate<RewardScreen>();
                 this.GetTree().Root.AddChild(rewardScene);
 
                 if (_random)

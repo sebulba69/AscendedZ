@@ -63,5 +63,6 @@ namespace AscendedZ
         public static readonly string DUNGEON_FOUNTAIN = "res://dungeon_crawling/scenes/crawl_ui/FountainOfBuce.tscn";
         public static readonly string DUNGEON_MINER = "res://dungeon_crawling/scenes/crawl_ui/MinerUI.tscn";
         public static readonly string DUNGEON_SP_TILE = "res://dungeon_crawling/scenes/crawl_ui/DCSpecialTileIcon.tscn";
+        public static readonly string DUNGEON_DIALOG_SCENE = "res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.tscn";
     }
 }

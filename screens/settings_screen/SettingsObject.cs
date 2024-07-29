@@ -35,6 +35,7 @@ namespace AscendedZ.screens.settings_screen
             {
                 DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
                 DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+
                 FullScreenEnabled = true;
             }
             else
