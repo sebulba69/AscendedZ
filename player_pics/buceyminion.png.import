@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://elsgboyfsr0j"
-path="res://.godot/imported/olu.png-4e1983c86a3773eb6852db290197a866.ctex"
+uid="uid://b16yt5dlinmfb"
+path="res://.godot/imported/buceyminion.png-952a3c4e1ed64c7c51a7c5f64526221e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_pics/olu.png"
-dest_files=["res://.godot/imported/olu.png-4e1983c86a3773eb6852db290197a866.ctex"]
+source_file="res://player_pics/buceyminion.png"
+dest_files=["res://.godot/imported/buceyminion.png-952a3c4e1ed64c7c51a7c5f64526221e.ctex"]
 
 [params]
 

@@ -130,6 +130,7 @@ public partial class MainScreen : Transitionable2DScene
         Button recruitButton = this.GetNode<Button>("%RecruitButton");
         Button upgradeButton = this.GetNode<Button>("%UpgradePartyButton");
         Button fuseButton = this.GetNode<Button>("%FuseButton");
+        Button changeRoomButton = this.GetNode<Button>("%ChangeRoomButton");
 
         if(tier > TierRequirements.TIER2_STRONGER_ENEMIES
             && !gameObject.ProgressFlagObject.CustomPartyMembersViewed)
@@ -146,15 +147,22 @@ public partial class MainScreen : Transitionable2DScene
         recruitButton.Pressed += _OnRecruitButtonPressed;
         upgradeButton.Pressed += _OnUpgradeButtonPressed;
         fuseButton.Pressed += _OnFuseButtonPressed;
+        changeRoomButton.Pressed += _OnChangeRoomPressed;
 
         menuButton.MouseEntered += () => { _tooltip.Text = "Save your game or quit to Title."; };
         embarkButton.MouseEntered += () => { _tooltip.Text = "Enter the Endless Dungeon with your party."; };
         recruitButton.MouseEntered += () => { _tooltip.Text = "Recruit Party Members to be used in battle."; };
         upgradeButton.MouseEntered += () => { _tooltip.Text = "Upgrade Party Members with Vorpex."; };
         fuseButton.MouseEntered += () => { _tooltip.Text = "Combine Party Members to create new ones and transfer skills."; };
+        changeRoomButton.MouseEntered += () => { _tooltip.Text = "Change your Ascended's look!"; };
     }
     #endregion
     
+    private void _OnChangeRoomPressed()
+    {
+        DisplayScene(Scenes.MAIN_CHANGE_ROOM);
+    }
+
     private void _OnMenuButtonPressed()
     {
         _mainUIContainer.Visible = false;
@@ -237,11 +245,13 @@ public partial class MainScreen : Transitionable2DScene
         _mainUIContainer.Visible = true;
         _musicSelectContainer.Visible = true;
 
-        var pFlags = PersistentGameObjects.GameObjectInstance().ProgressFlagObject;
+        var go = PersistentGameObjects.GameObjectInstance();
+        var pFlags = go.ProgressFlagObject;
 
         if (pFlags.CustomPartyMembersViewed)
             this.GetNode<Button>("%RecruitButton").Text = "Recruit";
 
+        _mainPlayerContainer.UpdatePlayerPic(go.MainPlayer.Image);
         _mainPlayerContainer.UpdateCurrencyDisplay();
         DoEmbarkButtonCheck(PersistentGameObjects.GameObjectInstance());
     }

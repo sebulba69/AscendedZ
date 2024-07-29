@@ -43,9 +43,6 @@ namespace AscendedZ.battle.battle_state_machine
             if(active.StatusHandler.HasStatus(statuses.StatusId.GuardStatus) && skill.Id != SkillId.Pass)
                 active.StatusHandler.RemoveStatus(active, statuses.StatusId.GuardStatus);
 
-            if (eventArgs.DoActivePlayer)
-                eventArgs.TargetIndex = _activePlayer;
-
             // result cannot be null at the end of this function
             switch (skill.TargetType)
             {
@@ -56,7 +53,13 @@ namespace AscendedZ.battle.battle_state_machine
                     result = skill.ProcessSkill(active, enemy);
                     break;
                 case TargetTypes.SINGLE_TEAM:
-                    var player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
+                    BattleEntity player;
+
+                    if (eventArgs.DoActivePlayer)
+                        player = active;
+                    else
+                        player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
+
                     result = skill.ProcessSkill(active, player);
                     break;
                 case TargetTypes.SINGLE_TEAM_DEAD:

@@ -98,16 +98,24 @@ namespace AscendedZ
     /// </summary>
     public class CharacterImageAssets
     {
-        private static List<string> _playerPics = new List<string>();
 
-        public static List<string> PlayerPics
+        public static List<string> PlayerPics = new()
         {
-            get
-            {
-                AssetUtil.GetFilesFromDir(_playerPics, "res://player_pics/");
-                return _playerPics;
-            }
-        }
+            "res://player_pics/2.png",
+            "res://player_pics/akagi.png",
+            "res://player_pics/buceyminion.png",
+            "res://player_pics/conker.png",
+            "res://player_pics/skog.png",
+            "res://player_pics/newpicture29.png",
+            "res://player_pics/newpicture37.png",
+            "res://player_pics/newpicture39.png",
+            "res://player_pics/newpicture20.png",
+            "res://player_pics/newpicture19.png",
+            "res://player_pics/newpicture15.png",
+            "res://player_pics/newpicture14.png",
+            "res://player_pics/newpicture8.png",
+            "res://player_pics/newpicture6.png"
+        };
 
         public static string GetImagePath(string name)
         {

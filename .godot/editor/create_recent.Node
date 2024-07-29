@@ -1,12 +1,12 @@
+MarginContainer
+PanelContainer
+HBoxContainer
+VBoxContainer
 CenterContainer
 HSlider
 OptionButton
-MarginContainer
 GridContainer
-VBoxContainer
 Button
-HBoxContainer
-PanelContainer
 TextureRect
 ProgressBar
 TabContainer

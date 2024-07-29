@@ -20,6 +20,11 @@ public partial class MainPlayerContainer : CenterContainer
         UpdateCurrencyDisplay();
     }
 
+    public void UpdatePlayerPic(string pic)
+    {
+        GetNode<TextureRect>("%PlayerPicture").Texture = ResourceLoader.Load<Texture2D>(pic);
+    }
+
     public void UpdateCurrencyDisplay()
     {
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b16yt5dlinmfb"
-path="res://.godot/imported/bued.png-99cb4b912bbe1d1771e302ca650dfc97.ctex"
+uid="uid://elsgboyfsr0j"
+path="res://.godot/imported/akagi.png-b3dce08ed58f01d646d7ec4f813ba2ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player_pics/bued.png"
-dest_files=["res://.godot/imported/bued.png-99cb4b912bbe1d1771e302ca650dfc97.ctex"]
+source_file="res://player_pics/akagi.png"
+dest_files=["res://.godot/imported/akagi.png-b3dce08ed58f01d646d7ec4f813ba2ab.ctex"]
 
 [params]
 
