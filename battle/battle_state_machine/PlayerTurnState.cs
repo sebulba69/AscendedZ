@@ -55,10 +55,17 @@ namespace AscendedZ.battle.battle_state_machine
                 case TargetTypes.SINGLE_TEAM:
                     BattleEntity player;
 
-                    if (eventArgs.DoActivePlayer)
+                    try
+                    {
+                        if (eventArgs.DoActivePlayer)
+                            player = active;
+                        else
+                            player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
+                    }
+                    catch (Exception)
+                    {
                         player = active;
-                    else
-                        player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
+                    }
 
                     result = skill.ProcessSkill(active, player);
                     break;
