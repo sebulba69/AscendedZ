@@ -22,8 +22,9 @@ public partial class SettingsScreen : CenterContainer
         _screenSizeType.Select((int)_settings.WindowModeIndex);
         _windowedMode.Select((int)_settings.WindowSizeIndex);
         _volumeSlider.Value = (_settings.Volume * 5);
+        _windowedMode.Disabled = _settings.FullScreenEnabled;
 
-		if (_settings.WindowModeIndex != 0)
+        if (_settings.WindowModeIndex != 0)
 			_windowedMode.Disabled = false;
 
         back.Pressed += QueueFree;
@@ -35,6 +36,7 @@ public partial class SettingsScreen : CenterContainer
 	private void _OnScreenSelectedChanged(long index)
 	{
         _settings.SetWindowMode(index);
+		_windowedMode.Disabled = _settings.FullScreenEnabled;
 		PersistentGameObjects.SaveSettings();
     }
 

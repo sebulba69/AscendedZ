@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1722216187
+::res://::1722216884
 ArtAssets.cs::CSharpScript::-1::1722213934::0::1::::<><>::
 ascended_icon.png::CompressedTexture2D::5218734614891675472::1721275369::1721275369::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1721275369::0::1::::<><>::
@@ -9,7 +9,7 @@ default_env.tres::Environment::5723441312748911875::1722215645::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1721512510::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1722193967::0::1::::<><>::
 Equations.cs::CSharpScript::-1::1721715491::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1722213988::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1722216264::0::1::::<><>::
 FrontBoxBossHP.tres::StyleBoxFlat::1760076622593413787::1722138977::0::1::::<><>::
 FrontBoxBossHPDC.tres::StyleBoxFlat::307405468150003703::1722215483::0::1::::<><>::
 icon.png::CompressedTexture2D::8476979344923658186::1676533345::1678056509::1::::<><>::
@@ -31,12 +31,12 @@ BattleSceneObject.cs::CSharpScript::-1::1722203624::0::1::::<><>::
 BattleUIUpdate.cs::CSharpScript::-1::1721275369::0::1::::<><>::
 EntityWrapper.cs::CSharpScript::-1::1720300249::0::1::::<>Object<>::
 PressTurn.cs::CSharpScript::-1::1721581068::0::1::::<><>::
-::res://battle/battle_state_machine/::1722215632
+::res://battle/battle_state_machine/::1722216219
 BattleState.cs::CSharpScript::-1::1720308403::0::1::::<><>::
 EnemyAction.cs::CSharpScript::-1::1720300249::0::1::::<><>::
 EnemyTurnState.cs::CSharpScript::-1::1722201511::0::1::::<><>::
 PlayerTargetSelectedEventArgs.cs::CSharpScript::-1::1722204063::0::1::::<><>::
-PlayerTurnState.cs::CSharpScript::-1::1722215632::0::1::::<><>::
+PlayerTurnState.cs::CSharpScript::-1::1722216219::0::1::::<><>::
 ::res://cg_backgrounds/::1721275370
 bg00101.jpg::CompressedTexture2D::5673669740224643055::1676769283::1721273015::1::::<><>::
 ::res://cg_backgrounds/dungeon/::1721275369
@@ -527,9 +527,9 @@ EntityUIWrapper.cs::CSharpScript::-1::1721275393::0::1::::<>Object<>::
 FusionObject.cs::CSharpScript::-1::1721275393::0::1::::<><>::
 FusionScreenObject.cs::CSharpScript::-1::1722137829::0::1::::<><>::
 RecruitCustomObject.cs::CSharpScript::-1::1722120274::0::1::::<><>::
-::res://screens/settings_screen/::1722215644
+::res://screens/settings_screen/::1722216862
 SettingsObject.cs::CSharpScript::-1::1722210980::0::1::::<><>::
-SettingsScreen.cs::CSharpScript::-1::1722210997::0::1::::<>CenterContainer<>::
+SettingsScreen.cs::CSharpScript::-1::1722216862::0::1::::<>CenterContainer<>::
 SettingsScreen.tscn::PackedScene::1677626860506721349::1722215644::0::1::::<><>::res://screens/settings_screen/SettingsScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 ::res://screens/upgrade_screen/::1722118836
 UpgradeItem.cs::CSharpScript::-1::1722040097::0::1::::<>VBoxContainer<>::
