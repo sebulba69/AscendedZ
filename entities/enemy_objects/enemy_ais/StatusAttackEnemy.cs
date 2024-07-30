@@ -47,17 +47,16 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
                 // find a player who does not have the status
                 List<BattlePlayer> playersUnaffectedByStatus = players.FindAll((player) => { return !player.StatusHandler.HasStatus(_status.Id); });
 
-                if (playersUnaffectedByStatus.Count > 1 && _applyStatus && players.Count > 1)
+                // do not apply a status if there is only one player left
+                if (playersUnaffectedByStatus.Count > 1 && players.Count > 1)
                 {
                     skill = Skills[STATUS_SKILL];
                     target = playersUnaffectedByStatus[_rng.Next(playersUnaffectedByStatus.Count)];
-                    _applyStatus = false;
                 }
                 else
                 {
                     skill = Skills[ATTACK_SKILL];
                     target = players[_rng.Next(players.Count)];
-                    _applyStatus = true;
                 }
             }
             else

@@ -11,11 +11,12 @@ using System.Diagnostics.Metrics;
 
 public partial class FusionScreen : CenterContainer
 {
-	private readonly string DEFAULT_TT = "Combine two party members with the same resistances to get a BUCE-T!";
+    private readonly string DEFAULT_SKILL_TRANSFER = "Skills Transfered: ???/???";
+    private readonly string DEFAULT_TT = "Combine two party members with the same resistances to get a BUCE-T!";
 	private readonly string WARNING_TT = "Both party members must be level";
 	
 	private PartyMemberDisplay _displayFusion, _material1, _material2;
-	private Label _owned, _cost, _tooltip;
+	private Label _owned, _cost, _tooltip, _skillsTransfered;
 	private ItemList _fusionSkillList;
 	private Button _fuseButton;
 	private FusionScreenObject _fSO;
@@ -35,6 +36,7 @@ public partial class FusionScreen : CenterContainer
         _fuseButton = this.GetNode<Button>("%FuseButton");
         _owned = GetNode<Label>("%PartyCoinsOwned");
         _cost = GetNode<Label>("%PartyCoinCost");
+        _skillsTransfered = GetNode<Label>("%SkillsTransferedLabel");
 		_tooltip = GetNode<Label>("%Tooltip");
 
         Button backButton = this.GetNode<Button>("%BackButton");
@@ -43,6 +45,7 @@ public partial class FusionScreen : CenterContainer
 			if (_isTransferState)
 			{
                 ReturnToMainFusionScreen();
+                _skillsTransfered.Text = DEFAULT_SKILL_TRANSFER;
             }
 			else
 			{
@@ -89,7 +92,10 @@ public partial class FusionScreen : CenterContainer
 	{
 		// fusion is already displayed
 		if (_fSO.Fusions.Count == 0)
+        {
+            _skillsTransfered.Text = DEFAULT_SKILL_TRANSFER;
             return;
+        }
 
         FusionObject fusion = _fSO.DisplayFusion;
 
@@ -106,6 +112,9 @@ public partial class FusionScreen : CenterContainer
 
             _fusionSkillList.AddItem(skillDisplayString, SkillAssets.GenerateIcon(skill.Icon));
         }
+
+        
+        _skillsTransfered.Text = $"Skills Transfered: {fusion.Fusion.Skills.Count}/{fusion.Fusion.SkillCap}";
     }
 
 	/// <summary>
@@ -213,6 +222,7 @@ public partial class FusionScreen : CenterContainer
 			{
                 ReturnToMainFusionScreen();
                 UpdateCost();
+                _skillsTransfered.Text = DEFAULT_SKILL_TRANSFER;
             }
 				
         }

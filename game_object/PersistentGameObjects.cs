@@ -22,7 +22,7 @@ namespace AscendedZ.game_object
         /// Path for saving and loading.
         /// </summary>
         private readonly static string SAVE_CACHE_PATH = "user://save_cache.json";
-        private readonly static string SETTINGS = "res://settings.json";
+        private readonly static string SETTINGS = "user://settings.json";
 
         private static SaveObject _saveObject;
         private static SettingsObject _settings;

@@ -214,7 +214,7 @@ public partial class PartyEditScreen : HBoxContainer
             Embark?.Invoke(null, EventArgs.Empty);
 
             transition.PlayFadeOut();
-            await ToSignal(transition.Player, "animation_finished");
+            await ToSignal(transition, "tree_exited");
             QueueFree();
         }
         else

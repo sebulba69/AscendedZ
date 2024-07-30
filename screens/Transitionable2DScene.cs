@@ -27,12 +27,9 @@ namespace AscendedZ.screens
             this.Visible = false;
 
             root.AddChild(destination);
-            transition.TreeExited += () => 
-            { 
-                QueueFree();
-            };
             transition.PlayFadeOut();
-
+            await ToSignal(transition, "tree_exited");
+            QueueFree();
         }
     }
 }

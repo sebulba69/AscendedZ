@@ -431,7 +431,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 combatScene.SetupForDungeonCrawlEncounter(_battlePlayers, (id == TileEventId.SpecialEncounter) || isSPBossEncounter, isSPBossEncounter);
 
                 transition.PlayFadeOut();
-                await ToSignal(transition.Player, "animation_finished");
+                await ToSignal(transition, "tree_exited");
                 await ToSignal(combatScene, "tree_exited");
 
                 if (retreat)
@@ -606,7 +606,7 @@ public partial class DungeonScreen : Transitionable2DScene
         StartDungeon();
         _crawlUI.Visible = true;
         transition.PlayFadeOut();
-        await ToSignal(transition.Player, "animation_finished");
+        await ToSignal(transition, "tree_exited");
 
         _endingScene = false;
 
