@@ -8,6 +8,9 @@ namespace AscendedZ
 {
     public class TierRequirements
     {
+        // tiers 10, 20, 30, 40, 50 = the point at which the grade of fusion is allowed
+        private static readonly int[] FUSION_TIERS = { 10, 20, 30, 40, 50 };
+
         /// <summary>
         /// 5
         /// </summary>
@@ -57,5 +60,18 @@ namespace AscendedZ
         /// 100 - Tier I can reasonably expect players to have ascended characters
         /// </summary>
         public static int ASCENSION = 100;
+
+        public static int GetFusionTierRequirement(int fusionGrade)
+        {
+            int index = fusionGrade - 1;
+            if(index >= FUSION_TIERS.Length)
+            {
+                return -1;
+            }
+            else
+            {
+                return FUSION_TIERS[index];
+            }
+        }
     }
 }

@@ -82,6 +82,28 @@ namespace AscendedZ.screens.back_end_screen_scripts
             return isSuccessful;
         }
 
+        public bool IsCorrectTier()
+        {
+            int grade = DisplayFusion.Fusion.FusionGrade;
+            int tier = PersistentGameObjects.GameObjectInstance().MaxTier;
+
+            int fusionTierReq = TierRequirements.GetFusionTierRequirement(grade);
+
+            if (fusionTierReq < 0)
+                return false;
+            else
+                return tier > fusionTierReq;
+        }
+
+        public bool IsCorrectFusionLevel()
+        {
+            int level = DisplayFusion.Fusion.FusionGrade * 10;
+            var m1 = DisplayFusion.Material1;
+            var m2 = DisplayFusion.Material2;
+
+            return m1.Level >= level && m2.Level >= level;
+        }
+
         private void RemoveMaterialFromMainPlayer(MainPlayer mainPlayer, OverworldEntity material)
         {
             if (material.IsInParty)

@@ -23,7 +23,10 @@ texture_filter = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Tooltip" type="Label" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Tooltip" type="Label" parent="VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
@@ -31,7 +34,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_01pv5")
 theme_override_font_sizes/font_size = 25
-text = "Combine two Party Members to make a stronger one!!!"
+text = "Combine two party members with the same resistances to get a BUCE-T!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

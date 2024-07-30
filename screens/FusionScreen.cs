@@ -6,12 +6,16 @@ using AscendedZ.skills;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
 public partial class FusionScreen : CenterContainer
 {
+	private readonly string DEFAULT_TT = "Combine two party members with the same resistances to get a BUCE-T!";
+	private readonly string WARNING_TT = "Both party members must be level";
+	
 	private PartyMemberDisplay _displayFusion, _material1, _material2;
-	private Label _owned, _cost;
+	private Label _owned, _cost, _tooltip;
 	private ItemList _fusionSkillList;
 	private Button _fuseButton;
 	private FusionScreenObject _fSO;
@@ -31,8 +35,9 @@ public partial class FusionScreen : CenterContainer
         _fuseButton = this.GetNode<Button>("%FuseButton");
         _owned = GetNode<Label>("%PartyCoinsOwned");
         _cost = GetNode<Label>("%PartyCoinCost");
-        
-		Button backButton = this.GetNode<Button>("%BackButton");
+		_tooltip = GetNode<Label>("%Tooltip");
+
+        Button backButton = this.GetNode<Button>("%BackButton");
 		backButton.Pressed += () => 
 		{
 			if (_isTransferState)
@@ -117,7 +122,7 @@ public partial class FusionScreen : CenterContainer
             return;
         }
 
-        FusionObject fusion = _fSO.Fusions[_fSO.FusionIndex];
+        FusionObject fusion = _fSO.DisplayFusion;
 
 		var fusionHolder = new EntityUIWrapper { Entity = fusion.Fusion };
 		var mat1Holder   = new EntityUIWrapper { Entity = fusion.Material1 };
@@ -126,8 +131,27 @@ public partial class FusionScreen : CenterContainer
 		_displayFusion.ShowFusionEntity(fusionHolder);
         _material1.ShowRandomEntity(mat1Holder);
 		_material2.ShowRandomEntity(mat2Holder);
+		if(_fSO.IsCorrectTier())
+		{
+            if (_fSO.IsCorrectFusionLevel())
+            {
+                _tooltip.Text = DEFAULT_TT;
+                _fuseButton.Disabled = false;
+            }
+            else
+            {
+                _tooltip.Text = $"{WARNING_TT} {fusion.Fusion.FusionGrade * 10}!";
+                _fuseButton.Disabled = true;
+            }
+        }
+        else
+        {
+			_tooltip.Text = $"Your Endless Dungeon Tier must be greater than {TierRequirements.GetFusionTierRequirement(fusion.Fusion.FusionGrade)} to fuse!";
+            _fuseButton.Disabled = true;
+        }
 
-		UpdateCost();
+
+        UpdateCost();
     }
 
 	private void UpdateCost()
