@@ -6,6 +6,7 @@ using AscendedZ.skills;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,7 +98,11 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
         public bool IsCorrectFusionLevel()
         {
-            int level = DisplayFusion.Fusion.FusionGrade * 10;
+            int level = TierRequirements.GetFusionTierRequirement(DisplayFusion.Fusion.FusionGrade);
+
+            if (level < 0)
+                return false;
+
             var m1 = DisplayFusion.Material1;
             var m2 = DisplayFusion.Material2;
 

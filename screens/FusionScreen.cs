@@ -140,7 +140,7 @@ public partial class FusionScreen : CenterContainer
             }
             else
             {
-                _tooltip.Text = $"{WARNING_TT} {fusion.Fusion.FusionGrade * 10}!";
+                _tooltip.Text = $"{WARNING_TT} {TierRequirements.GetFusionTierRequirement(fusion.Fusion.FusionGrade)}!";
                 _fuseButton.Disabled = true;
             }
         }
