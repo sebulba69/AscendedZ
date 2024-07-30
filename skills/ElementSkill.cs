@@ -59,7 +59,9 @@ namespace AscendedZ.skills
         {
             double damageModifier = user.ElementDamageModifiers[(int)Element];
 
-            DamageModifier = (int)(_damage * damageModifier) + 1;
+            DamageModifier = (int)(_damage * damageModifier);
+            if (damageModifier > 0 && DamageModifier <= 0)
+                DamageModifier = 1;
 
             return target.ApplyElementSkill(this);
         }
