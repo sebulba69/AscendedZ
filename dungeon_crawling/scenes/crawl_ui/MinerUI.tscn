@@ -45,7 +45,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_vd0n8")
 theme_override_font_sizes/font_size = 25
-text = "Spend 1 Morbis for 2 Pickaxes"
+text = "Spend 1 Morbis for 3 Pickaxes"
 horizontal_alignment = 1
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]

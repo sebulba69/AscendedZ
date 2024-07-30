@@ -60,12 +60,20 @@ public partial class BattleEnemyScene : Node2D
         _continueButton.Pressed += _OnContinueBtnPressed;
     }
 
-    private void _OnBackToHomeBtnPressed()
+    private async void _OnBackToHomeBtnPressed()
     {
         if (!_dungeonCrawlEncounter) 
         {
             PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
+            var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
+            AddChild(transition);
+            transition.PlayFadeIn();
+            await ToSignal(transition.Player, "animation_finished");
             this.GetTree().Root.AddChild(mainScreenScene.Instantiate());
+            transition.PlayFadeOut();
+            await ToSignal(transition, "tree_exited");
+            QueueFree();
+            
         }
         else
         {
