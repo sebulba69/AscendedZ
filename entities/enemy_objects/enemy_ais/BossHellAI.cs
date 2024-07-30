@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.statuses;
+using static Godot.WebSocketPeer;
 
 namespace AscendedZ.entities.enemy_objects.enemy_ais
 {
@@ -24,6 +25,17 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             _move = 0;
             _wexHitCount = 0;
             _isBoss = true;
+        }
+
+
+        public override BattleResult ApplyElementSkill(ElementSkill skill)
+        {
+            BattleResult result = base.ApplyElementSkill(skill);
+
+            if (result.ResultType == BattleResultType.Wk)
+                _wexHitCount++;
+
+            return result;
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
@@ -76,8 +88,10 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
 
                 action = GetNextAction(battleSceneObject);
             }
-
-            IncrementMove();
+            else
+            {
+                IncrementMove();
+            }
 
             if(skill.Id == SkillId.Eye && _wexHitCount > 0)
             {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ascended Z")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e466f66438c76e8ca48c62f1780fbaab34efef6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76a53b5653476fbae1721727c4fda10a73bfd5e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ascended Z")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ascended Z")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
