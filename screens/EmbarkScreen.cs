@@ -19,10 +19,12 @@ public partial class EmbarkScreen : CenterContainer
     private PartyEditScreen _partyEditScreen;
     private Button _endlessDungeonBtn, _labrybuceBtn;
 
-    public PartyEditScreen PartyEditScreen { get => _partyEditScreen; }
+    public bool Embark { get; set; }
 
     public override void _Ready()
     {
+        AddUserSignal("CloseEmbarkScreen");
+
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
         _tierLabel = this.GetNode<Label>("%TierLabel");
@@ -62,10 +64,13 @@ public partial class EmbarkScreen : CenterContainer
         _endlessDungeonBtn.Pressed += _OnEndlessDungeonButtonPressed;
 
         _partyEditScreen = this.GetNode<PartyEditScreen>("%PartyEditScreen");
-        _partyEditScreen.TreeExited += () => 
-        {
-            this.QueueFree();
-        };
+        _partyEditScreen.DoEmbark += _OnEmbarkPressed;
+    }
+
+    private void _OnEmbarkPressed(object sender, bool embarkPressed)
+    {
+        Embark = embarkPressed;
+        EmitSignal("CloseEmbarkScreen");
     }
 
     private void _OnLabrybuceButtonPressed()

@@ -136,19 +136,19 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             {
                 enemy = MakeAgroStatusEnemy(name, hp);
                 PopulateEnemyResistanceRandom(_rng, enemy);
-                PopulateEnemySkillsRandom(_rng, enemy);
+                enemy.Skills.Add(_elementalSkills[_rng.Next(_elementalSkills.Count)].Clone());
             }
             else if (ai == 7)
             {
                 enemy = MakeStunStatusEnemy(name, hp);
                 PopulateEnemyResistanceRandom(_rng, enemy);
-                PopulateEnemySkillsRandom(_rng, enemy);
+                enemy.Skills.Add(_elementalSkills[_rng.Next(_elementalSkills.Count)].Clone());
             }
             else if (ai == 8)
             {
                 enemy = MakePoisonEnemy(name, hp);
                 PopulateEnemyResistanceRandom(_rng, enemy);
-                PopulateEnemySkillsRandom(_rng, enemy);
+                enemy.Skills.Add(_elementalSkills[_rng.Next(_elementalSkills.Count)].Clone());
             }
             else
             {

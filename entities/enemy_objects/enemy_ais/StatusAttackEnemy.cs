@@ -23,14 +23,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
 
         private const int STATUS_SKILL = 0;
         private const int ATTACK_SKILL = 1;
-        private bool _applyStatus;
         public Status Status { set => _status = value; }
 
         public StatusAttackEnemy()
         {
             Turns = 1;
-            _applyStatus = true;
-            Description = $"Randomly applies a status to all players who don't have one, then it focuses on random attacks.";
+            Description = $"Randomly applies a status to a players without one unless there is\neither only one player alive or one player without the status, then it uses elemental skills.";
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)

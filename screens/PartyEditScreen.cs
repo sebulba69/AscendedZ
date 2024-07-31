@@ -20,7 +20,7 @@ public partial class PartyEditScreen : HBoxContainer
     private Button _embarkButton;
     private int _selectedIndex;
 
-    public EventHandler Embark;
+    public EventHandler<bool> DoEmbark;
 
     public bool DungeonCrawling { get; set; }
     
@@ -57,7 +57,7 @@ public partial class PartyEditScreen : HBoxContainer
         _reserveItemList.ItemClicked += _OnReserveMemberClicked;
         _reserveItemList.ItemSelected += _OnItemSelected;
 
-        backButton.Pressed += () => { this.QueueFree(); };
+        backButton.Pressed += () => { DoEmbark?.Invoke(null, false); };
         _embarkButton.Pressed += _OnEmbarkPressed;
 
         DisplayPartyMembers();
@@ -211,11 +211,11 @@ public partial class PartyEditScreen : HBoxContainer
                 await Task.Delay(150);
                 battleScene.SetupForNormalEncounter();
             }
-            Embark?.Invoke(null, EventArgs.Empty);
+            
 
             transition.PlayFadeOut();
             await ToSignal(transition, "tree_exited");
-            QueueFree();
+            DoEmbark?.Invoke(null, true);
         }
         else
         {

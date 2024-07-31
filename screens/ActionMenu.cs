@@ -232,19 +232,6 @@ public partial class ActionMenu : PanelContainer
                         break;
                     }
 
-                    // we are passing or guarding
-                    /*
-                    if (_selectedIndex == _actionList.ItemCount - 3 || _selectedIndex == _actionList.ItemCount - 2)
-                    {
-                        _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, new PlayerTargetSelectedEventArgs
-                        {
-                            SkillIndex = _selectedIndex,
-                            DoActivePlayer = true
-                        });
-                        _canInput = false;
-                        break;
-                    }*/
-
                     _playerTargetSelectedEventArgs = new PlayerTargetSelectedEventArgs
                     {
                         SkillIndex = _selectedIndex
