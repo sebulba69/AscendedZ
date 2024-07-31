@@ -294,24 +294,16 @@ namespace AscendedZ
             }
         }
 
-        public static StatusSkill RemovePoison
+        public static StatusSkill RemovePoisonStun
         {
             get
             {
-                var s = MakeChangeElementSkill("Remove Poison", new PoisonStatus());
+                List<Status> remove = new List<Status>() { new PoisonStatus(), new StunStatus() };
+                var s = MakeMultiStatusSkill("Remove PoisStun", remove);
                 s.IsRemoveStatusSkill = true;
                 s.TargetType = TargetTypes.SINGLE_TEAM;
-                return s;
-            }
-        }
-
-        public static StatusSkill RemoveStun
-        {
-            get
-            {
-                var s = MakeChangeElementSkill("Remove Stun", new StunStatus());
-                s.IsRemoveStatusSkill = true;
-                s.TargetType = TargetTypes.SINGLE_TEAM;
+                s.EndupAnimation = SkillAssets.AGRO;
+                s.Icon = SkillAssets.HEAL_ICON;
                 return s;
             }
         }
@@ -349,11 +341,22 @@ namespace AscendedZ
             };
         }
 
+        private static StatusSkill MakeMultiStatusSkill(string name, List<Status> statuses)
+        {
+            return new StatusSkill
+            {
+                BaseName = name,
+                TargetType = TargetTypes.SINGLE_OPP,
+                StartupAnimation = SkillAssets.STARTUP1_MG,
+                Statuses = statuses
+            };
+        }
+
         public static HealSkill Spindlewarium { get => MakeHealSkill("Spindlewarium", 5, 1); } 
 
-        public static HealSkill Heal1 { get => MakeHealSkill("Regen", 10, 1); } 
+        public static HealSkill Heal1 { get => MakeHealSkill("Heal", 10, 1); } 
         public static HealSkill Revive1 { get => MakeHealSkill("Revive", 5, 1, true); }
-        public static HealSkill Heal1All { get => MakeAllHeal("Allgen", 7, 1); }
+        public static HealSkill Heal1All { get => MakeAllHeal("Allheal", 7, 1); }
 
         private static HealSkill MakeAllHeal(string name, int amount, int tier, bool isRevive = false)
         {
@@ -432,7 +435,7 @@ namespace AscendedZ
                 skills.AddRange(new ISkill[] { Heal1All });
 
             if (tier > TierRequirements.TIER6_STRONGER_ENEMIES)
-                skills.AddRange(new ISkill[] { RemovePoison, RemoveStun });
+                skills.AddRange(new ISkill[] { RemovePoisonStun });
 
             return skills;
         }

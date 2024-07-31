@@ -23,12 +23,14 @@ namespace AscendedZ.skills
         public string Icon { get; set; }
         public int Level { get; set; }
         public Status Status { get; set; }
+        public List<Status> Statuses { get; set; }
         public string Name => BaseName;
         public bool IsRemoveStatusSkill { get => _isRemoveStatusSkill; set => _isRemoveStatusSkill = value; }
 
         public StatusSkill()
         {
             Level = 1;
+            Statuses = new List<Status>();
         }
 
         public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
@@ -40,16 +42,25 @@ namespace AscendedZ.skills
                 ResultType = (!IsRemoveStatusSkill) ? BattleResultType.StatusApplied : BattleResultType.StatusRemoved
             };
 
-            if (!IsRemoveStatusSkill)
-            {
-                target.StatusHandler.AddStatus(target, this.Status);
-            }
-            else 
-            {
-                target.StatusHandler.RemoveStatus(target, this.Status.Id);
-            }
+            if (Statuses.Count == 0)
+                ProcessStatus(target, Status);
+            else
+                foreach (var status in Statuses)
+                    ProcessStatus(target, status);
                 
             return result;
+        }
+
+        private void ProcessStatus(BattleEntity target, Status status)
+        {
+            if (!IsRemoveStatusSkill)
+            {
+                target.StatusHandler.AddStatus(target, status);
+            }
+            else
+            {
+                target.StatusHandler.RemoveStatus(target, status.Id);
+            }
         }
 
         public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
@@ -95,16 +106,22 @@ namespace AscendedZ.skills
 
         public ISkill Clone()
         {
-            return new StatusSkill()
+            var statusSkill = new StatusSkill()
             {
                 BaseName = this.BaseName,
                 TargetType = this.TargetType,
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon,
-                Status = this.Status.Clone(),
                 IsRemoveStatusSkill = this.IsRemoveStatusSkill
             };
+
+            if (Status == null)
+                statusSkill.Statuses = new List<Status>(Statuses);
+            else
+                statusSkill.Status = Status.Clone();
+
+            return statusSkill;
         }
     }
 }
