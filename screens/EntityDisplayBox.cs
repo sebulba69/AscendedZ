@@ -187,6 +187,7 @@ public partial class EntityDisplayBox : PanelContainer
             else
             {
                 string endupAnimationString = result.SkillUsed.EndupAnimation;
+               
                 bool isHPGainedFromMove = (result.ResultType == BattleResultType.HPGain || result.ResultType == BattleResultType.Dr);
 
                 if (!string.IsNullOrEmpty(endupAnimationString))
@@ -217,7 +218,6 @@ public partial class EntityDisplayBox : PanelContainer
     private async Task PlayEffect(string effectName)
     {
         _effect.Visible = true;
-
         _effect.Call("PlayAnimation", effectName);
         await ToSignal(_effect, "EffectAnimationCompletedEventHandler");
 

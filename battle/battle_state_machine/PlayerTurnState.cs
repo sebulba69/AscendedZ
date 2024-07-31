@@ -53,21 +53,11 @@ namespace AscendedZ.battle.battle_state_machine
                     result = skill.ProcessSkill(active, enemy);
                     break;
                 case TargetTypes.SINGLE_TEAM:
-                    BattleEntity player;
-
-                    try
-                    {
-                        if (eventArgs.DoActivePlayer)
-                            player = active;
-                        else
-                            player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
-                    }
-                    catch (Exception)
-                    {
-                        player = active;
-                    }
-
+                    BattleEntity player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
                     result = skill.ProcessSkill(active, player);
+                    break;
+                case TargetTypes.SELF:
+                    result = skill.ProcessSkill(active, active);
                     break;
                 case TargetTypes.SINGLE_TEAM_DEAD:
                     var deadPlayer = battleSceneObject.DeadPlayers[eventArgs.TargetIndex];

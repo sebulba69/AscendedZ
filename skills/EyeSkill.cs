@@ -30,7 +30,7 @@ namespace AscendedZ.skills
             BattleResult result = new BattleResult()
             {
                 SkillUsed = this,
-                Target = null,
+                Target = user,
                 ResultType = EyeType
             };
 

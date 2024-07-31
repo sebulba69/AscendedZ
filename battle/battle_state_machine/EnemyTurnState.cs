@@ -53,6 +53,7 @@ namespace AscendedZ.battle.battle_state_machine
             {
                 case TargetTypes.SINGLE_OPP:
                 case TargetTypes.SINGLE_TEAM:
+                case TargetTypes.SELF:
                     result = skill.ProcessSkill(active, action.Target);
                     break;
                 case TargetTypes.TEAM_ALL:

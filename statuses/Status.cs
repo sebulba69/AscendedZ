@@ -1,6 +1,7 @@
 ﻿using AscendedZ.battle;
 using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
+using AscendedZ.skills;
 using AscendedZ.statuses.buff_elements;
 using AscendedZ.statuses.void_elements;
 using AscendedZ.statuses.weak_element;
@@ -105,6 +106,42 @@ namespace AscendedZ.statuses
         /// <exception cref="NotImplementedException"></exception>
         public virtual Status Clone()
         {
+            string[] icons =
+            {
+                SkillAssets.VOID_FIRE_ICON,
+                SkillAssets.VOID_ELEC_ICON,
+                SkillAssets.VOID_ICE_ICON,
+                SkillAssets.VOID_WIND_ICON,
+                SkillAssets.VOID_DARK_ICON,
+                SkillAssets.VOID_LIGHT_ICON,
+                SkillAssets.POISON_ICON,
+                SkillAssets.STUN_ICON,
+                SkillAssets.ELEC_ICON,
+                SkillAssets.FIRE_ICON,
+                SkillAssets.WIND_ICON,
+                SkillAssets.ICE_ICON,
+                SkillAssets.DARK_ICON,
+                SkillAssets.LIGHT_ICON
+            };
+
+            StatusId[] ids =
+            {
+                StatusId.VoidFireStatus,
+                StatusId.VoidElecStatus,
+                StatusId.VoidIceStatus,
+                StatusId.VoidWindStatus,
+                StatusId.VoidDarkStatus,
+                StatusId.VoidLightStatus,
+                StatusId.PoisonStatus,
+                StatusId.StunStatus,
+                StatusId.ElementBuffStatus_Elec,
+                StatusId.ElementBuffStatus_Fire,
+                StatusId.ElementBuffStatus_Wind,
+                StatusId.ElementBuffStatus_Ice,
+                StatusId.ElementBuffStatus_Dark,
+                StatusId.ElementBuffStatus_Light,
+            };
+
             switch (Id)
             {
                 case StatusId.GuardStatus:
@@ -148,53 +185,30 @@ namespace AscendedZ.statuses
                 case StatusId.WexElecStatus:
                     return new WeakElecStatus();
                 case StatusId.Default:
-                    // hack for backwards compatibility with v0.02 Pre-Alpha
-                    if (Icon.Contains(SkillAssets.VOID_FIRE_ICON))
+                    for (int s = 0; s < icons.Length; s++)
                     {
-                        _id = StatusId.VoidFireStatus;
-                        return Clone();
+                        if (Icon.Contains(icons[s]))
+                        {
+                            _id = ids[s];
+                            return Clone();
+                        }
                     }
-                    else if (Icon.Contains(SkillAssets.VOID_ELEC_ICON))
-                    {
-                        _id = StatusId.VoidElecStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_ICE_ICON))
-                    {
-                        _id = StatusId.VoidIceStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_WIND_ICON))
-                    {
-                        _id = StatusId.VoidWindStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_DARK_ICON))
-                    {
-                        _id = StatusId.VoidDarkStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.VOID_LIGHT_ICON))
-                    {
-                        _id = StatusId.VoidLightStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.POISON_ICON))
-                    {
-                        _id = StatusId.PoisonStatus;
-                        return Clone();
-                    }
-                    else if (Icon.Contains(SkillAssets.STUN_ICON))
-                    {
-                        _id = StatusId.StunStatus;
-                        return Clone();
-                    }
-                    else
-                    {
-                        throw new NotImplementedException();
-                    }
+                    throw new NotImplementedException();
                 default:
                     throw new NotImplementedException();
+            }
+        }
+
+        private Status IfIconReturnClone(string icon, StatusId id)
+        {
+            if (Icon.Contains(icon))
+            {
+                _id = id;
+                return Clone();
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
         }
     }

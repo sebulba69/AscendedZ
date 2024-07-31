@@ -233,6 +233,7 @@ public partial class ActionMenu : PanelContainer
                     }
 
                     // we are passing or guarding
+                    /*
                     if (_selectedIndex == _actionList.ItemCount - 3 || _selectedIndex == _actionList.ItemCount - 2)
                     {
                         _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, new PlayerTargetSelectedEventArgs
@@ -242,7 +243,7 @@ public partial class ActionMenu : PanelContainer
                         });
                         _canInput = false;
                         break;
-                    }
+                    }*/
 
                     _playerTargetSelectedEventArgs = new PlayerTargetSelectedEventArgs
                     {
@@ -250,7 +251,7 @@ public partial class ActionMenu : PanelContainer
                     };
 
                     var tType = _battleSceneObject.ActivePlayer.Skills[_playerTargetSelectedEventArgs.SkillIndex].TargetType;
-                    if (tType == TargetTypes.TEAM_ALL || tType == TargetTypes.OPP_ALL)
+                    if (tType == TargetTypes.TEAM_ALL || tType == TargetTypes.OPP_ALL || tType == TargetTypes.SELF)
                     {
                         _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, _playerTargetSelectedEventArgs);
                         _canInput = false;

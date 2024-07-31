@@ -105,7 +105,7 @@ namespace AscendedZ
         private static StatusSkill MakeBuffSkill(string name, ElementBuffStatus status)
         {
             StatusSkill statusSkill = MakeStatusSkill(name, status);
-            statusSkill.EndupAnimation = SkillAssets.GetAnimationByElementAndTier(1, status.BuffElement);
+            statusSkill.EndupAnimation = SkillAssets.GetBuffAnimationByElement(status.BuffElement);
             statusSkill.Icon = SkillAssets.GetElementIconByElementEnum(status.BuffElement);
 
             return statusSkill;
@@ -119,8 +119,9 @@ namespace AscendedZ
                 EyeSkill eyeSkill = new EyeSkill() 
                 {
                     BaseName = "Beast's Eye",
-                    TargetType = TargetTypes.SINGLE_TEAM,
+                    TargetType = TargetTypes.SELF,
                     StartupAnimation = SkillAssets.STARTUP1_MG,
+                    EndupAnimation = SkillAssets.EYESKILLANIM,
                     EyeType = battle.BattleResultType.BeastEye,
                     Icon = SkillAssets.BEAST_EYE
                 };
@@ -302,7 +303,7 @@ namespace AscendedZ
                 var s = MakeMultiStatusSkill("Remove PoisStun", remove);
                 s.IsRemoveStatusSkill = true;
                 s.TargetType = TargetTypes.SINGLE_TEAM;
-                s.EndupAnimation = SkillAssets.AGRO;
+                s.EndupAnimation = SkillAssets.STATUS_RECOVER;
                 s.Icon = SkillAssets.HEAL_ICON;
                 return s;
             }
@@ -314,7 +315,7 @@ namespace AscendedZ
             {
                 var poison = MakeStatusSkill("Poison", new PoisonStatus());
                 poison.Icon = SkillAssets.POISON_ICON;
-                poison.EndupAnimation = SkillAssets.AGRO;
+                poison.EndupAnimation = SkillAssets.POISON;
                 return poison;
             }
         }
@@ -355,7 +356,15 @@ namespace AscendedZ
         public static HealSkill Spindlewarium { get => MakeHealSkill("Spindlewarium", 5, 1); } 
 
         public static HealSkill Heal1 { get => MakeHealSkill("Heal", 10, 1); } 
-        public static HealSkill Revive1 { get => MakeHealSkill("Revive", 5, 1, true); }
+        public static HealSkill Revive1 
+        { 
+            get 
+            { 
+                var hs = MakeHealSkill("Revive", 5, 1, true);
+                hs.EndupAnimation = SkillAssets.REVIVE;
+                return hs;
+            } 
+        }
         public static HealSkill Heal1All { get => MakeAllHeal("Allheal", 7, 1); }
 
         private static HealSkill MakeAllHeal(string name, int amount, int tier, bool isRevive = false)
@@ -384,7 +393,7 @@ namespace AscendedZ
         public static PassSkill Pass = new PassSkill()
         {
             BaseName = "Pass",
-            TargetType = TargetTypes.SINGLE_TEAM,
+            TargetType = TargetTypes.SELF,
             StartupAnimation = string.Empty,
             EndupAnimation = string.Empty,
             Icon = SkillAssets.PASS_ICON
@@ -397,7 +406,7 @@ namespace AscendedZ
                 var guard = MakeStatusSkill("Guard", new GuardStatus());
                 guard.Icon = SkillAssets.GUARD_ICON;
                 guard.EndupAnimation = SkillAssets.VOID_SHIELD;
-                guard.TargetType = TargetTypes.SINGLE_TEAM;
+                guard.TargetType = TargetTypes.SELF;
                 return guard;
             }
         }

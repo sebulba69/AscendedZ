@@ -154,16 +154,20 @@ namespace AscendedZ
         public static readonly string LIGHT_T2 = "light2";
         public static readonly string DARK_T2 = "dark2";
 
-        public static readonly string WIND_T3 = "wind3";
-        public static readonly string FIRE_T3 = "fire3";
-        public static readonly string ELEC_T3 = "elec3";
-        public static readonly string ICE_T3 = "ice3";
-        public static readonly string LIGHT_T3 = "light3";
-        public static readonly string DARK_T3 = "dark3";
+        public static readonly string ICE_BUFF = "ice_buff";
+        public static readonly string ELEC_BUFF = "elec_buff";
+        public static readonly string FIRE_BUFF = "fire_buff";
+        public static readonly string WIND_BUFF = "wind_buff";
+        public static readonly string LIGHT_BUFF = "light_buff";
+        public static readonly string DARK_BUFF = "dark_buff";
 
         public static readonly string HEAL_T1 = "heal1";
+        public static readonly string REVIVE = "revive";
         public static readonly string STUN_T1 = "stun1";
         public static readonly string AGRO = "agro";
+        public static readonly string POISON = "poison";
+        public static readonly string EYESKILLANIM = "eyeskill";
+        public static readonly string STATUS_RECOVER = "status_recovery";
         public static readonly string VOID_SHIELD = "void_shield";
         public static readonly string POISON_ICON = "poison";
 
@@ -306,16 +310,6 @@ namespace AscendedZ
                 { Elements.Light, LIGHT_T2 }
             };
 
-            var tier3Animations = new System.Collections.Generic.Dictionary<Elements, string> 
-            {
-                { Elements.Fire, FIRE_T3 },
-                { Elements.Ice, ICE_T3 },
-                { Elements.Wind, WIND_T3 },
-                { Elements.Elec, ELEC_T3 },
-                { Elements.Dark, DARK_T3 },
-                { Elements.Light, LIGHT_T3 }
-            };
-
             string animation = string.Empty;
 
             switch (tier)
@@ -327,11 +321,26 @@ namespace AscendedZ
                     animation = tier2Animations[element];
                     break;
                 default:
-                    animation = tier3Animations[element];
+                    animation = tier1Animations[element];
                     break;
             }
 
             return animation;
+        }
+
+        public static string GetBuffAnimationByElement(Elements element)
+        {
+            var buffAnimations = new System.Collections.Generic.Dictionary<Elements, string>
+            {
+                { Elements.Fire, FIRE_BUFF },
+                { Elements.Ice, ICE_BUFF },
+                { Elements.Wind, WIND_BUFF },
+                { Elements.Elec, ELEC_BUFF },
+                { Elements.Dark, DARK_BUFF },
+                { Elements.Light, LIGHT_BUFF }
+            };
+
+            return buffAnimations[element];
         }
 
         private static readonly Texture2D _atlas = ResourceLoader.Load<Texture2D>("res://misc_icons/IconSet.png");
