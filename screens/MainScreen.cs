@@ -218,13 +218,25 @@ public partial class MainScreen : Transitionable2DScene
         DisplayScene(Scenes.FUSION);
     }
 
-    private void _OnMenuClosed(bool quitToStart)
+    private async void _OnMenuClosed(bool quitToStart)
     {
         if (quitToStart)
         {
-            var startScene = ResourceLoader.Load<PackedScene>(Scenes.START).Instantiate();
-            _root.AddChild(startScene);
-            this.QueueFree();
+            var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
+
+            this.AddChild(transition);
+
+            transition.PlayFadeIn();
+            await ToSignal(transition.Player, "animation_finished");
+            _audioPlayer.Stop();
+            this.GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(Scenes.START).Instantiate());
+
+            transition.PlayFadeOut();
+            await ToSignal(transition.Player, "animation_finished");
+
+            transition.QueueFree();
+
+            QueueFree();
         }
         else
         {

@@ -78,7 +78,6 @@ public partial class MenuScene : CenterContainer
 		if (isYesButtonPressed)
 		{
             PersistentGameObjects.Save();
-            this.GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(Scenes.START).Instantiate());
             this.EmitSignal("EndMenuScene", true);
         }
 
