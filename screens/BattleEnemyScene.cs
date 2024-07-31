@@ -71,7 +71,8 @@ public partial class BattleEnemyScene : Node2D
             await ToSignal(transition.Player, "animation_finished");
             this.GetTree().Root.AddChild(mainScreenScene.Instantiate());
             transition.PlayFadeOut();
-            await ToSignal(transition, "tree_exited");
+            await ToSignal(transition.Player, "animation_finished");
+            transition.QueueFree();
             QueueFree();
             
         }

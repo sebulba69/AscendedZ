@@ -28,7 +28,8 @@ namespace AscendedZ.screens
 
             root.AddChild(destination);
             transition.PlayFadeOut();
-            await ToSignal(transition, "tree_exited");
+            await ToSignal(transition.Player, "animation_finished");
+            transition.QueueFree();
             QueueFree();
         }
     }

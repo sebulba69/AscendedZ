@@ -1,10 +1,9 @@
 res://default_env.tres
-res://dungeon_crawling/scenes/crawl_ui/MinerUI.tscn
+res://screens/StartScreen.tscn
 res://BackBoxBossHPDC.tres
 res://FrontBoxBossHPDC.tres
 res://misc_icons/IconOutline.gdshader
 res://screens/settings_screen/SettingsScreen.tscn
-res://screens/StartScreen.tscn
 res://screens/AscendedTextbox.tscn
 res://screens/BossHPBar.tscn
 res://screens/EnemyBattleDisplayBox.tscn
@@ -17,6 +16,7 @@ res://screens/MainPlayerContainer.tscn
 res://screens/FusionScreen.tscn
 res://effects/EffectSprite.tscn
 res://screens/BattleEnemyScene.tscn
+res://dungeon_crawling/scenes/crawl_ui/MinerUI.tscn
 res://battle/BattleEffectWrapper.cs
 res://battle/EntityWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DCSpecialTileIcon.cs
@@ -63,3 +63,4 @@ res://screens/upgrade_screen/UpgradeScreen.cs
 res://statuses/StatusIcon.cs
 res://statuses/StatusIconWrapper.cs
 res://turn_icons/TurnIcon.cs
+res://screens/ActionMenu.tscn

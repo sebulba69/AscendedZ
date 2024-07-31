@@ -25,10 +25,10 @@ public partial class ActionMenu : PanelContainer
     private TextureRect _icon;
     private Label _toolTip;
 
-    private readonly string MENU_STR = "(←) Menu";
-    private readonly string SKILL_STR = "(→) Skills";
+    private readonly string MENU_STR = "(←) Menu, (Space) Select";
+    private readonly string SKILL_STR = "(→) Skills, (Space) Select";
     private readonly string SKILL_TOOLTIP = "Choose a skill!";
-    private readonly string TARGET_STR = "(←) Skills";
+    private readonly string TARGET_STR = "(←) Skills, (Space) Select";
     private readonly string BACK_STR = "← Back";
 
     public bool CanInput { get => _canInput; set => _canInput = value; }
