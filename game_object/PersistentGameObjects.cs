@@ -26,6 +26,7 @@ namespace AscendedZ.game_object
 
         private static SaveObject _saveObject;
         private static SettingsObject _settings;
+        private static bool _settingsSet;
 
         private static GameObject _instance;
 
@@ -46,9 +47,15 @@ namespace AscendedZ.game_object
             if(_settings == null)
             {
                 _settings = JsonUtil.LoadObject<SettingsObject>(SETTINGS);
+                _settingsSet = true;
             }
 
             return _settings;
+        }
+
+        public static bool SettingsSet()
+        {
+            return _settingsSet;
         }
 
         public static SaveObject SaveObjectInstance()

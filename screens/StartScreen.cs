@@ -104,7 +104,8 @@ public partial class StartScreen : Transitionable2DScene
 		loadBackButton.Pressed += _OnLoadGameBackButtonPressed;
 		loadDeleteButton.Pressed += _OnLoadDeleteButtonPressed;
 
-		SetSettings();
+		if(!PersistentGameObjects.SettingsSet())
+			SetSettings();
     }
 
 	private void SetSettings()
