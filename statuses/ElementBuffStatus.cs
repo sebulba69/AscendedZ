@@ -78,9 +78,7 @@ namespace AscendedZ.statuses
 
             wrapper.Icon = this.Icon;
             wrapper.Counter = _stacks;
-            wrapper.CounterColor = Colors.Green;
-            if (_turnCount + 1 >= 2)
-                wrapper.CounterColor = Colors.Red;
+            wrapper.CounterColor = Colors.White;
 
             wrapper.Description = $"Increase damage for {BuffElement} by {Math.Round(Amount*100,1)}%.";
 

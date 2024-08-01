@@ -13,13 +13,15 @@ using static Godot.WebSocketPeer;
 /// This class is focused on managing Reserve Party members.
 /// How the UI displays characters *in* the party is handled in InPartyMemberContainer.cs.
 /// </summary>
-public partial class EmbarkScreen : CenterContainer
+public partial class EmbarkScreen : TextureRect
 {
     private Label _tierLabel;
     private PartyEditScreen _partyEditScreen;
     private Button _endlessDungeonBtn, _labrybuceBtn;
 
     public bool Embark { get; set; }
+
+    public bool DungeonCrawling { get => _partyEditScreen.DungeonCrawling; }
 
     public override void _Ready()
     {
@@ -28,6 +30,8 @@ public partial class EmbarkScreen : CenterContainer
         GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
         _tierLabel = this.GetNode<Label>("%TierLabel");
+
+        Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetBackground(gameObject.MaxTier));
 
         Button leftTier = this.GetNode<Button>("%LeftTierBtn");
         Button rightBtn = this.GetNode<Button>("%RightTierBtn");
@@ -70,6 +74,7 @@ public partial class EmbarkScreen : CenterContainer
     private void _OnEmbarkPressed(object sender, bool embarkPressed)
     {
         Embark = embarkPressed;
+        Visible = false;
         EmitSignal("CloseEmbarkScreen");
     }
 

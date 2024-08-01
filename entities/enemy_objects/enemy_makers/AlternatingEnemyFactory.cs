@@ -160,6 +160,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var wigfred = MakeSupportEnemy(EnemyNames.Wigfred, 9);
 
             wigfred.Resistances.SetResistance(ResistanceType.Dr, Elements.Elec);
+            wigfred.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
             wigfred.Skills.Add(SkillDatabase.Elec1.Clone());
             wigfred.Skills.Add(SkillDatabase.Ice1.Clone());

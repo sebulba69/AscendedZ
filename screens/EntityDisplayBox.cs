@@ -67,7 +67,7 @@ public partial class EntityDisplayBox : PanelContainer
         }
     }
 
-    public void InstanceEntity(EntityWrapper wrapper)
+    public void InstanceEntity(EntityWrapper wrapper, bool random=false)
     {
         Label name = this.GetNode<Label>("%NameLabel");
         TextureRect picture = this.GetNode<TextureRect>("%Picture");
@@ -91,8 +91,18 @@ public partial class EntityDisplayBox : PanelContainer
         _resistances.Text = entity.Resistances.GetResistanceString();
 
         _entityImage = ResourceLoader.Load<Texture2D>(entity.Image);
-
         picture.Texture = _entityImage;
+
+        if (random)
+        {
+            var randomized = new RandomNumberGenerator();
+            randomized.Randomize();
+            float hue = randomized.Randf();
+            float saturation = randomized.Randf();
+            float value = picture.SelfModulate.V;
+
+            picture.SelfModulate = Color.FromHsv(hue, saturation, value);
+        }
     }
 
     public void UpdateEntityDisplay(EntityWrapper wrapper)
@@ -118,7 +128,10 @@ public partial class EntityDisplayBox : PanelContainer
             else
             {
                 if(picture.Texture != _entityImage)
+                {
                     picture.Texture = _entityImage;
+                }
+                    
             }
 
         }

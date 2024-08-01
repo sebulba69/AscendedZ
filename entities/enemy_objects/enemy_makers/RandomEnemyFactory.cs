@@ -162,6 +162,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             foreach (var skill in skills)
                 enemy.Skills.Add(skill.Clone());
 
+            enemy.RandomEnemy = true;
+
             return enemy;
         }
 

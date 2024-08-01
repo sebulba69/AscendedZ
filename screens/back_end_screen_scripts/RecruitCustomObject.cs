@@ -38,7 +38,11 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
             for (int i = 0; i < _gameObject.ShopLevel; i++)
                 foreach (var member in AvailableMembers)
+                {
                     member.LevelUp();
+                    member.Skills.Clear();
+                }
+                    
 
             SetPreviewPartyMember(0);
         }

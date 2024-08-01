@@ -17,7 +17,8 @@ namespace AscendedZ.entities.enemy_objects
         protected bool _isBoss = false;
         protected bool _isAgroOverride = false;
         public bool IsBoss { get => _isBoss; set => _isBoss = value; }
-        
+        public bool RandomEnemy { get; set; }
+
         protected Random _rng;
 
         public string Description { get; set; }

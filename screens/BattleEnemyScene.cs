@@ -116,9 +116,11 @@ public partial class BattleEnemyScene : Node2D
 
         partyChangeScene.DisableEmbarkButton();
 
-        await ToSignal(partyChangeScene, "tree_exited");
-
-        vbox.Visible = true;
+        partyChangeScene.DoEmbark += (sender, args) => 
+        {
+            partyChangeScene.QueueFree();
+            vbox.Visible = true;
+        };
     }
 
     public void SetupForNormalEncounter()
@@ -195,7 +197,7 @@ public partial class BattleEnemyScene : Node2D
             {
                 enemyBox = _enemyBox.Instantiate<EntityDisplayBox>();
                 _enemyMembers.AddChild(enemyBox);
-                enemyBox.InstanceEntity(new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
+                enemyBox.InstanceEntity(new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss }, enemy.RandomEnemy);
                 enemyBox.SetDescription(enemy.Description);
             }
         }

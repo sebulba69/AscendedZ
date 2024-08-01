@@ -3,6 +3,7 @@ using AscendedZ.entities.battle_entities;
 using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace AscendedZ.battle
         public BattleEntity User { get; set; }
         public BattleEntity Target { get; set; }
         public List<BattleEntity> Targets { get; set; }
-        
+       
         public ISkill SkillUsed { get; set; }
         
         public BattleResult() 

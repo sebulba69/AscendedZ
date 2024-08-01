@@ -5,6 +5,7 @@ using AscendedZ.screens;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public partial class MainScreen : Transitionable2DScene
 {
@@ -177,18 +178,43 @@ public partial class MainScreen : Transitionable2DScene
         _mainUIContainer.Visible = false;
         _musicSelectContainer.Visible = false;
         var embark = ResourceLoader.Load<PackedScene>(Scenes.MAIN_EMBARK).Instantiate<EmbarkScreen>();
-        _root.AddChild(embark);
-
+        GetTree().Root.AddChild(embark);
         await ToSignal(embark, "CloseEmbarkScreen");
 
         if (embark.Embark)
         {
-            QueueFree();
+            var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
+            GetTree().Root.AddChild(transition);
+            transition.PlayFadeIn();
+            await ToSignal(transition.Player, "animation_finished");
+
+            if (embark.DungeonCrawling)
+            {
+                var dungeon = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL).Instantiate<DungeonScreen>();
+                GetTree().Root.AddChild(dungeon);
+                await Task.Delay(10);
+                dungeon.StartDungeon();
+
+                embark.QueueFree();
+                transition.PlayFadeOut();
+                QueueFree();
+            }
+            else
+            {
+                var battleScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
+                this.GetTree().Root.AddChild(battleScene);
+                await Task.Delay(150);
+                battleScene.SetupForNormalEncounter();
+
+                embark.QueueFree();
+                transition.PlayFadeOut();
+                QueueFree();
+            }
         }
         else
         {
             embark.QueueFree();
-
+            Visible = true;
             _mainUIContainer.Visible = true;
             _musicSelectContainer.Visible = true;
 

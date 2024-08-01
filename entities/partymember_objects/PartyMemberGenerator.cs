@@ -125,6 +125,7 @@ namespace AscendedZ.entities.partymember_objects
 
                 member.Resistances.SetResistance(ResistanceType.Rs, element);
                 member.Resistances.SetResistance(ResistanceType.Wk, SkillDatabase.ElementalOpposites[element]);
+                member.Skills.Add(SkillDatabase.GetSkillFromElement(element));
             }
             else
             {

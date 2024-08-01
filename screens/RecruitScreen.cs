@@ -84,9 +84,9 @@ public partial class RecruitScreen : CenterContainer
             {
                 member.LevelUp();
             }
-
-            _cost = (int)(shopLevel * 1.5) + 1;
         }
+
+        _cost = (int)(shopLevel * 1.5) + 1;
 
         RefreshVendorWares(0);
     }

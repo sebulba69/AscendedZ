@@ -18,7 +18,7 @@ public partial class FusionScreen : CenterContainer
 	private PartyMemberDisplay _displayFusion, _material1, _material2;
 	private Label _owned, _cost, _tooltip, _skillsTransfered;
 	private ItemList _fusionSkillList;
-	private Button _fuseButton;
+	private Button _fuseButton, _fuseReserves, _fuseShop;
 	private FusionScreenObject _fSO;
 	private int _selectedIndex = 0;
 
@@ -34,6 +34,8 @@ public partial class FusionScreen : CenterContainer
         _material2 = this.GetNode<PartyMemberDisplay>("%Material2");
 		_fusionSkillList = this.GetNode<ItemList>("%FusionAndSkillList");
         _fuseButton = this.GetNode<Button>("%FuseButton");
+        _fuseReserves = this.GetNode<Button>("%FuseLocal");
+        _fuseShop = this.GetNode<Button>("%FuseShop");
         _owned = GetNode<Label>("%PartyCoinsOwned");
         _cost = GetNode<Label>("%PartyCoinCost");
         _skillsTransfered = GetNode<Label>("%SkillsTransferedLabel");
@@ -60,6 +62,20 @@ public partial class FusionScreen : CenterContainer
 
         _selectedIndex = 0;
         PopulatePossibleFusionList();
+
+        _fuseReserves.Pressed += () => 
+        {
+            _fuseReserves.Disabled = true;
+            _fuseShop.Disabled = false;
+            PopulatePossibleFusionList();
+        };
+
+        _fuseShop.Pressed += () =>
+        {
+            _fuseReserves.Disabled = false;
+            _fuseShop.Disabled = true;
+            PopulatePossibleFusionList();
+        };
     }
 
 	/// <summary>
@@ -67,7 +83,10 @@ public partial class FusionScreen : CenterContainer
 	/// </summary>
 	private void PopulatePossibleFusionList()
 	{
-        _fSO.PopulateMaterialFusionList();
+        if (_fuseReserves.Disabled)
+            _fSO.PopulateMaterialFusionListReserves();
+        else
+            _fSO.PopulateMaterialFusionListFromStore();
 		
         _fusionSkillList.Clear();
 

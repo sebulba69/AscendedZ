@@ -17,6 +17,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
     {
         private List<FusionObject> _fusions;
 
+        private int _costAddition = 0;
         private int _fusionIndex;
 
         public int FusionIndex { get => _fusionIndex; set => _fusionIndex = value; }
@@ -26,6 +27,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
         private Currency _partyCoins;
 
         public int OwnedPartyCoins { get => _partyCoins.Amount; }
+
 
         public FusionScreenObject()
         {
@@ -46,14 +48,14 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
                 MainPlayer mainPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer;
 
-                RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material1);
-                RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material2);
-
-                foreach(var reserve in mainPlayer.ReserveMembers)
+                foreach (var reserve in mainPlayer.ReserveMembers)
                 {
                     if (reserve.Name.Equals(DisplayFusion.Fusion.Name))
                         return false;
                 }
+
+                RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material1);
+                RemoveMaterialFromMainPlayer(mainPlayer, DisplayFusion.Material2);
 
                 _partyCoins.Amount -= GetCost();
 
@@ -111,29 +113,69 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
         private void RemoveMaterialFromMainPlayer(MainPlayer mainPlayer, OverworldEntity material)
         {
+            if (!mainPlayer.ReserveMembers.Contains(material))
+                return;
+
             if (material.IsInParty)
                 mainPlayer.Party.RemovePartyMember(material);
 
             mainPlayer.ReserveMembers.Remove(material);
         }
 
-        public void PopulateMaterialFusionList()
+        public void PopulateMaterialFusionListReserves()
+        {
+            List<OverworldEntity> reserves = PersistentGameObjects.GameObjectInstance().MainPlayer.ReserveMembers;
+
+            _costAddition = 0;
+
+            PopulateFusionsFromList(reserves);
+        }
+
+        public void PopulateMaterialFusionListFromStore()
+        {
+            var gameObject = PersistentGameObjects.GameObjectInstance();
+            int tier = gameObject.MaxTier;
+            int shopLevel = gameObject.ShopLevel;
+
+            List<OverworldEntity> normalPartyMembers = EntityDatabase.MakeShopVendorWares(tier);
+            List<OverworldEntity> customPartyMembers = EntityDatabase.MakeShopVendorWares(tier, true);
+            List<OverworldEntity> partyMembers = new List<OverworldEntity>();
+
+            partyMembers.AddRange(normalPartyMembers);
+            partyMembers.AddRange(customPartyMembers);
+
+            int costBase = (int)(shopLevel * 1.5);
+            int normalCost = costBase + 1;
+            int customCost = costBase + 3;
+
+            _costAddition = normalCost + customCost;
+
+            foreach(var member in partyMembers)
+            {
+                for (int i = 0; i < shopLevel; i++)
+                    member.LevelUp();
+            }
+
+            partyMembers.AddRange(gameObject.MainPlayer.ReserveMembers);
+
+            PopulateFusionsFromList(partyMembers);
+        }
+
+        private void PopulateFusionsFromList(List<OverworldEntity> reserves)
         {
             _fusions.Clear();
 
-            List<OverworldEntity> reserves = PersistentGameObjects.GameObjectInstance().MainPlayer.ReserveMembers;
-
             // save the materials + fusion results
-            for(int m1 = 0; m1 < reserves.Count; m1++)
+            for (int m1 = 0; m1 < reserves.Count; m1++)
             {
-                for(int m2 = 0; m2 < reserves.Count; m2++)
+                for (int m2 = 0; m2 < reserves.Count; m2++)
                 {
-                    if(m1 != m2)
+                    if (m1 != m2)
                     {
                         if (!IsFusionRecipeGenerated(reserves[m1], reserves[m2]))
                         {
                             var fusions = EntityDatabase.MakeFusionEntities(reserves[m1], reserves[m2]);
-                            if(fusions.Count > 0 && reserves.Find(r => r.Name == fusions[0].Fusion.Name) == null)
+                            if (fusions.Count > 0 && reserves.Find(r => r.Name == fusions[0].Fusion.Name) == null)
                                 _fusions.AddRange(fusions);
                         }
                     }
@@ -146,17 +188,19 @@ namespace AscendedZ.screens.back_end_screen_scripts
             if (_fusionIndex < 0)
                 _fusionIndex = 0;
 
-            _fusions = _fusions.OrderBy(fusion => fusion.Fusion.Name).ToList();
+            _fusions = _fusions.OrderByDescending(fusion => fusion.Fusion.FusionGrade).ToList();
         }
 
         public int GetCost()
         {
             if (_fusions.Count == 0)
+            {
                 return -1;
+            } 
             else
             {
                 int grade = DisplayFusion.Fusion.FusionGrade - 1;
-                return grade * 50;
+                return (grade * 50) + _costAddition;
             }
         }
 

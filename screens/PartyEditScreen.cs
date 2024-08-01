@@ -192,29 +192,6 @@ public partial class PartyEditScreen : HBoxContainer
 
         if (canEmbark)
         {
-            var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
-            GetTree().Root.AddChild(transition);
-            transition.PlayFadeIn();
-            await ToSignal(transition.Player, "animation_finished");
-
-            if (DungeonCrawling)
-            {
-                var dungeon = ResourceLoader.Load<PackedScene>(Scenes.DUNGEON_CRAWL).Instantiate<DungeonScreen>();
-                GetTree().Root.AddChild(dungeon);
-                await Task.Delay(10);
-                dungeon.StartDungeon();
-            }
-            else
-            {
-                var battleScene = ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate<BattleEnemyScene>();
-                this.GetTree().Root.AddChild(battleScene);
-                await Task.Delay(150);
-                battleScene.SetupForNormalEncounter();
-            }
-            
-
-            transition.PlayFadeOut();
-            await ToSignal(transition.Player, "animation_finished");
             DoEmbark?.Invoke(null, true);
         }
         else

@@ -52,7 +52,7 @@ namespace AscendedZ.statuses
             StatusIconWrapper wrapper = new StatusIconWrapper();
 
             wrapper.Icon = this.Icon;
-            wrapper.Counter = _activeTurns + 1;
+            wrapper.Counter = 4 - (_activeTurns + 1);
             wrapper.CounterColor = Colors.White;
             wrapper.Description = $"Reduce HP by 25% for 3 turns.";
 
