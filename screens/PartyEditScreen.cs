@@ -157,12 +157,11 @@ public partial class PartyEditScreen : HBoxContainer
         }
     }
 
-    private async void _OnEmbarkPressed()
+    private void _OnEmbarkPressed()
     {
         var go = PersistentGameObjects.GameObjectInstance();
 
         int tier, tierCap;
-        string scene;
 
         if (DungeonCrawling)
         {
