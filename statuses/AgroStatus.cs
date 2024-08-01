@@ -49,7 +49,7 @@ namespace AscendedZ.statuses
             wrapper.Icon = this.Icon;
             wrapper.Counter = ACTIVE_TURNS - _activeTurns;
             wrapper.CounterColor = Colors.Green;
-            wrapper.Description = $"All enemies target the player with the agro status. Overrides enemy AI to focus on attacking only.";
+            wrapper.Description = $"All enemies target the player with the agro status. Overrides enemies that inflict a status to focus on attacking only.";
 
             return wrapper;
         }

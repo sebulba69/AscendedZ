@@ -24,25 +24,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6bmuu")
 
-[node name="PanelContainer2" type="PanelContainer" parent="."]
-layout_mode = 2
-
-[node name="PanelContainer" type="VBoxContainer" parent="PanelContainer2"]
+[node name="PanelContainer" type="VBoxContainer" parent="."]
 texture_filter = 2
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer2/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer2/PanelContainer/HBoxContainer"]
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="UpgradeCurrencyIcon" type="TextureRect" parent="PanelContainer2/PanelContainer/HBoxContainer/PanelContainer3"]
+[node name="UpgradeCurrencyIcon" type="TextureRect" parent="PanelContainer/HBoxContainer/PanelContainer3"]
 texture_filter = 2
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
@@ -50,12 +47,12 @@ size_flags_vertical = 4
 texture = SubResource("AtlasTexture_ffy3i")
 stretch_mode = 4
 
-[node name="PanelContainer4" type="PanelContainer" parent="PanelContainer2/PanelContainer/HBoxContainer"]
+[node name="PanelContainer4" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="VorpexCount" type="Label" parent="PanelContainer2/PanelContainer/HBoxContainer/PanelContainer4"]
+[node name="VorpexCount" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer4"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(40, 0)
@@ -67,21 +64,21 @@ theme_override_font_sizes/font_size = 28
 text = "12"
 horizontal_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/PanelContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer2/PanelContainer/HBoxContainer/PanelContainer"]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/PanelContainer"]
 texture_filter = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_lkhyw")
 expand_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer2/PanelContainer/HBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/HBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="OwnedTalismans" type="Label" parent="PanelContainer2/PanelContainer/HBoxContainer/PanelContainer2"]
+[node name="OwnedTalismans" type="Label" parent="PanelContainer/HBoxContainer/PanelContainer2"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
@@ -94,7 +91,7 @@ theme_override_font_sizes/font_size = 28
 text = "12"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 texture_filter = 2
 layout_mode = 2
 theme_override_constants/margin_left = 5
@@ -102,27 +99,27 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 texture_filter = 2
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer2/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 texture_filter = 2
 layout_mode = 2
 
-[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
 texture_filter = 2
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ItemList" type="ItemList" parent="PanelContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer/PanelContainer2"]
+[node name="ItemList" type="ItemList" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer/PanelContainer2"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(300, 0)
@@ -132,7 +129,7 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("2_krmoi")
 theme_override_font_sizes/font_size = 25
 
-[node name="BackButton" type="Button" parent="PanelContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
+[node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer"]
 unique_name_in_owner = true
 texture_filter = 2
 custom_minimum_size = Vector2(100, 0)
@@ -144,10 +141,10 @@ theme_override_fonts/font = ExtResource("2_krmoi")
 theme_override_font_sizes/font_size = 25
 text = "Back"
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 
-[node name="UpgradeItem" parent="PanelContainer2/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/PanelContainer" instance=ExtResource("2_e1pad")]
+[node name="UpgradeItem" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer4/PanelContainer" instance=ExtResource("2_e1pad")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4

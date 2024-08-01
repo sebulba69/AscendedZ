@@ -47,6 +47,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var sylla = MakeCopyCatEnemy(EnemyNames.Sylla, 12);
 
             sylla.Resistances.SetResistance(ResistanceType.Nu, Elements.Ice);
+            sylla.Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
 
             sylla.Skills.Add(SkillDatabase.IceAll.Clone());
 
@@ -58,6 +59,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var venforth = MakeCopyCatEnemy(EnemyNames.Venforth, 12);
 
             venforth.Resistances.SetResistance(ResistanceType.Nu, Elements.Elec);
+            venforth.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
             venforth.Skills.Add(SkillDatabase.ElecAll.Clone());
 

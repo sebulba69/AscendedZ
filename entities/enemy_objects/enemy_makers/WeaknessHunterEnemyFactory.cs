@@ -73,6 +73,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var leofuwil = MakeWeaknessHunterEnemy(EnemyNames.Leofuwil, 10);
 
             leofuwil.Resistances.SetResistance(ResistanceType.Nu, Elements.Elec);
+            leofuwil.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
             leofuwil.Skills.Add(SkillDatabase.ElecAll);
 

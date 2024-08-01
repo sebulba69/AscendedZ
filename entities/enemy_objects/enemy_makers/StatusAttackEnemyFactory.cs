@@ -123,6 +123,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             isumforth.Resistances.SetResistance(ResistanceType.Nu, Elements.Dark);
             isumforth.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
+            isumforth.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
 
             isumforth.Skills.Add(SkillDatabase.Dark1.Clone());
             isumforth.Skills.Add(SkillDatabase.Fire1.Clone());

@@ -1,14 +1,14 @@
+VBoxContainer
 HBoxContainer
+TabContainer
 TextureRect
 CenterContainer
 ParallaxBackground
 MarginContainer
 PanelContainer
-VBoxContainer
 HSlider
 OptionButton
 GridContainer
 Button
 ProgressBar
-TabContainer
 Label
