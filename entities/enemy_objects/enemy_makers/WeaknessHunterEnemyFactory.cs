@@ -62,6 +62,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var pebrand = MakeWeaknessHunterEnemy(EnemyNames.Pebrand, 10);
 
             pebrand.Resistances.SetResistance(ResistanceType.Nu, Elements.Ice);
+            pebrand.Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
 
             pebrand.Skills.Add(SkillDatabase.IceAll);
 
