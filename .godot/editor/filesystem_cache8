@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1722480249
+::res://::1722480475
 ArtAssets.cs::CSharpScript::-1::1722396719::0::1::::<><>::
 ascended_icon.png::CompressedTexture2D::5218734614891675472::1721275369::1721275369::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1721275369::0::1::::<><>::
@@ -9,7 +9,7 @@ default_env.tres::Environment::5723441312748911875::1722478876::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1721512510::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1722193967::0::1::::<><>::
 Equations.cs::CSharpScript::-1::1721715491::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1722479037::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1722480288::0::1::::<><>::
 FrontBoxBossHP.tres::StyleBoxFlat::1760076622593413787::1722138977::0::1::::<><>::
 FrontBoxBossHPDC.tres::StyleBoxFlat::307405468150003703::1722468719::0::1::::<><>::
 icon.png::CompressedTexture2D::8476979344923658186::1676533345::1678056509::1::::<><>::
@@ -399,12 +399,12 @@ SaveEntry.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 SaveObject.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 ::res://json_interface_converters/::1722390042
 SkillConverter.cs::CSharpScript::-1::1722390042::0::1::::<><>::
-::res://misc_icons/::1722480210
+::res://misc_icons/::1722480331
 CurrencyDisplay.cs::CSharpScript::-1::1721718698::0::1::::<>GridContainer<>::
 CurrencyDisplay.tscn::PackedScene::8562439097474497904::1720373693::0::1::::<><>::res://misc_icons/CurrencyDisplay.cs<>uid://bqmfi0ome6yn4::::res://misc_icons/Icon.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 Icon.cs::CSharpScript::-1::1720300320::0::1::::<>TextureRect<>::
 Icon.tscn::PackedScene::3534533921528240495::1722478808::0::1::::<><>::uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>res://misc_icons/Icon.cs
-IconOutline.gdshader::Shader::-1::1722480210::0::1::::<><>::
+IconOutline.gdshader::Shader::-1::1722480331::0::1::::<><>::
 IconSet.png::CompressedTexture2D::550291359472638980::1720300251::1720300251::1::::<><>::
 ::res://music/::1721275389
 boss_victory.ogg::AudioStreamOggVorbis::5818420752927080643::1706678954::1706678954::1::::<><>::

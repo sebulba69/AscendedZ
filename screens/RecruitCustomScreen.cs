@@ -60,6 +60,8 @@ public partial class RecruitCustomScreen : CenterContainer
 				// prevent any references in memory back to this screen
 				var partyMember = PartyMemberGenerator.MakePartyMember(selected.Name);
 
+				partyMember.Skills.Clear();
+
 				for (int i = 0; i < _gameObject.ShopLevel; i++)
 					partyMember.LevelUp();
 
