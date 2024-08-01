@@ -36,13 +36,12 @@ namespace AscendedZ.screens.back_end_screen_scripts
             _gameObject = PersistentGameObjects.GameObjectInstance();
             AvailableMembers = EntityDatabase.MakeShopVendorWares(_gameObject.MaxTier, true);
 
-            for (int i = 0; i < _gameObject.ShopLevel; i++)
-                foreach (var member in AvailableMembers)
-                {
+            foreach (var member in AvailableMembers)
+            {
+                member.Skills.Clear();
+                for (int i = 0; i < _gameObject.ShopLevel; i++)
                     member.LevelUp();
-                    member.Skills.Clear();
-                }
-                    
+            }
 
             SetPreviewPartyMember(0);
         }
