@@ -106,6 +106,7 @@ namespace AscendedZ.skills
             return new HealSkill()
             {
                 BaseName = this.BaseName,
+                Level = Level,
                 TargetType = this.TargetType,
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
