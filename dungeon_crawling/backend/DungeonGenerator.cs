@@ -236,14 +236,15 @@ namespace AscendedZ.dungeon_crawling.backend
                    
             }
 
-            SetTileToExit(openTiles[_rng.Next(openTiles.Count)]);
+            var exit = openTiles[_rng.Next(openTiles.Count)];
+            SetTileToExit(exit);
             generatedPathTypes.Add(TileEventId.Exit);
+            openTiles.Remove(exit);
 
-            var nonEventTiles = maze.FindAll(tiles => !generatedPathTypes.Contains(tiles.TileEventId));
             int encounterCount = Encounters * 2;
             for (int e = 0; e < encounterCount; e++)
             {
-                SetTileToEncounter(nonEventTiles[_rng.Next(nonEventTiles.Count)]);
+                SetTileToEncounter(openTiles[_rng.Next(openTiles.Count)]);
             }
 
             return _tiles;
