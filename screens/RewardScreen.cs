@@ -33,7 +33,7 @@ public partial class RewardScreen : Control
         int tier = _gameObject.Tier;
         _rewards = new List<Currency>()
         {
-            new Vorpex() { Amount = tier * 10 },
+            new Vorpex() { Amount = tier * 7 },
             new PartyCoin() { Amount = tier }
         };
         SetupRewards();

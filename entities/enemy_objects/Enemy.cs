@@ -38,7 +38,12 @@ namespace AscendedZ.entities.enemy_objects
             if(!quickBoost)
                 MaxHP *= (int)(boost * 0.75);
 
-            int levelUps = (int)((boost / 2.5) + 1);
+            double scalar = 2.0;
+
+            if (tier > 30)
+                scalar = 2.5;
+
+            int levelUps = (int)((boost / scalar) + 1);
             for (int i = 0; i < levelUps; i++)
             {
                 foreach (ISkill skill in Skills)
