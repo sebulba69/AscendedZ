@@ -19,11 +19,26 @@ public partial class MinerUI : CenterContainer
 		_morbis = GetNode<Label>("%Morbis");
         _pickaxes = GetNode<Label>("%Pickaxes");
 
-		_buyButton.Pressed += _OnBuyButtonPressed;
+		_buyButton.Text = $"[{Controls.GetControlString(Controls.CONFIRM)}] {_buyButton.Text}";
+		_backButton.Text = $"[{Controls.GetControlString(Controls.BACK)}] {_backButton.Text}";
+        _buyButton.Pressed += _OnBuyButtonPressed;
         _backButton.Pressed += () => QueueFree();
 	}
 
-	public void SetUIValues()
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed(Controls.CONFIRM))
+        {
+            _OnBuyButtonPressed();
+        }
+
+        if (@event.IsActionPressed(Controls.BACK))
+        {
+			QueueFree();
+        }
+    }
+
+    public void SetUIValues()
 	{
 		var go = PersistentGameObjects.GameObjectInstance();
 

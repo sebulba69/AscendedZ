@@ -7,6 +7,7 @@ using Godot;
 using Godot.NativeInterop;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 public enum ActionMenuState
 {
@@ -24,7 +25,6 @@ public partial class ActionMenu : PanelContainer
     private ActionMenuState _state;
     private TextureRect _icon;
     private Label _toolTip;
-
     private readonly string MENU_STR = "(←) Menu, (Space) Select";
     private readonly string SKILL_STR = "(→) Skills, (Space) Select";
     private readonly string SKILL_TOOLTIP = "Choose a skill!";
@@ -32,7 +32,7 @@ public partial class ActionMenu : PanelContainer
     private readonly string BACK_STR = "← Back";
 
     public bool CanInput { get => _canInput; set => _canInput = value; }
-
+    public bool EmptyClick { get; set; }
     private BattleSceneObject _battleSceneObject;
 
     private PlayerTargetSelectedEventArgs _playerTargetSelectedEventArgs;
@@ -64,6 +64,8 @@ public partial class ActionMenu : PanelContainer
         // item_clicked
         _actionList.ItemSelected += (long selected) => { _selectedIndex = (int)selected; };
         _actionList.ItemClicked += _OnMenuItemClicked;
+
+        _actionList.EmptyClicked += (vectorPosition, mouseButtonIndex) => { EmptyClick = true; };
     }
 
     public override void _Input(InputEvent @event)
@@ -71,7 +73,7 @@ public partial class ActionMenu : PanelContainer
         if (!_canInput)
             return;
 
-        if (@event.IsActionPressed(Controls.UP))
+        if (@event.IsActionPressed(Controls.UP) && !EmptyClick)
         {
             _selectedIndex--;
             if (_selectedIndex <= 0)
@@ -80,7 +82,7 @@ public partial class ActionMenu : PanelContainer
             _actionList.Select(_selectedIndex);
         }
 
-        if (@event.IsActionPressed(Controls.DOWN))
+        if (@event.IsActionPressed(Controls.DOWN) && !EmptyClick)
         {
             _selectedIndex++;
             if (_selectedIndex >= _actionList.ItemCount)
@@ -111,7 +113,7 @@ public partial class ActionMenu : PanelContainer
 
         if (@event.IsActionPressed(Controls.ENTER))
         {
-            _OnMenuItemClicked((long)_selectedIndex, new Vector2(), (long)MouseButton.Left);
+            DoSelection(_selectedIndex);
         }
     }
 
@@ -203,63 +205,68 @@ public partial class ActionMenu : PanelContainer
     {
         if(_canInput && mouse_button_index == (long)MouseButton.Left)
         {
-            _selectedIndex = (int)index;
-            switch (_state)
-            {
-                case ActionMenuState.Menu:
-                    if (_selectedIndex == 0) 
+            DoSelection(index);
+        }
+    }
+
+    private void DoSelection(long index)
+    {
+        _selectedIndex = (int)index;
+        switch (_state)
+        {
+            case ActionMenuState.Menu:
+                if (_selectedIndex == 0)
+                {
+                    LoadActiveSkillList();
+                }
+                else if (_selectedIndex == 1)
+                {
+                    _battleSceneObject.HandlePostTurnProcessing(new BattleResult
                     {
-                        LoadActiveSkillList();
-                    }
-                    else if (_selectedIndex == 1)
-                    {
-                        _battleSceneObject.HandlePostTurnProcessing(new BattleResult
-                        {
-                            SkillUsed = SkillDatabase.Retreat,
-                            ResultType = BattleResultType.Retreat
-                        });
-                    }
-                    else
-                    {
-                        throw new NotImplementedException();
-                    }
+                        SkillUsed = SkillDatabase.Retreat,
+                        ResultType = BattleResultType.Retreat
+                    });
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+                break;
+            case ActionMenuState.SkillSelect:
+                // back button
+                if (_selectedIndex == _actionList.ItemCount - 1)
+                {
+                    LoadMenu();
                     break;
-                case ActionMenuState.SkillSelect:
-                    // back button
-                    if(_selectedIndex == _actionList.ItemCount - 1)
-                    {
-                        LoadMenu();
-                        break;
-                    }
+                }
 
-                    _playerTargetSelectedEventArgs = new PlayerTargetSelectedEventArgs
-                    {
-                        SkillIndex = _selectedIndex
-                    };
+                _playerTargetSelectedEventArgs = new PlayerTargetSelectedEventArgs
+                {
+                    SkillIndex = _selectedIndex
+                };
 
-                    var tType = _battleSceneObject.ActivePlayer.Skills[_playerTargetSelectedEventArgs.SkillIndex].TargetType;
-                    if (tType == TargetTypes.TEAM_ALL || tType == TargetTypes.OPP_ALL || tType == TargetTypes.SELF)
-                    {
-                        _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, _playerTargetSelectedEventArgs);
-                        _canInput = false;
-                    }
-                    else
-                    {
-                        LoadTargetList();
-                    }
-                    break;
-                case ActionMenuState.TargetSelect:
-                    if (_selectedIndex == _actionList.ItemCount - 1)
-                    {
-                        LoadActiveSkillList();
-                        break;
-                    }
-
-                    _playerTargetSelectedEventArgs.TargetIndex = _selectedIndex;
+                var tType = _battleSceneObject.ActivePlayer.Skills[_playerTargetSelectedEventArgs.SkillIndex].TargetType;
+                if (tType == TargetTypes.TEAM_ALL || tType == TargetTypes.OPP_ALL || tType == TargetTypes.SELF)
+                {
                     _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, _playerTargetSelectedEventArgs);
                     _canInput = false;
+                }
+                else
+                {
+                    LoadTargetList();
+                }
+                break;
+            case ActionMenuState.TargetSelect:
+                if (_selectedIndex == _actionList.ItemCount - 1)
+                {
+                    LoadActiveSkillList();
                     break;
-            }
+                }
+
+                _playerTargetSelectedEventArgs.TargetIndex = _selectedIndex;
+                _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, _playerTargetSelectedEventArgs);
+                _canInput = false;
+                break;
         }
     }
 }

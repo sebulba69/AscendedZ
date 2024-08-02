@@ -26,6 +26,16 @@ public partial class RewardScreen : Control
         _gameObject = PersistentGameObjects.GameObjectInstance();
 
         _rand = new Random();
+
+        _claimRewardsButton.Text = $"[{Controls.GetControlString(Controls.CONFIRM)}] {_claimRewardsButton.Text}";
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed(Controls.CONFIRM))
+        {
+            _OnClaimRewardsPressed();
+        }
     }
 
     public void InitializeSMTRewards()

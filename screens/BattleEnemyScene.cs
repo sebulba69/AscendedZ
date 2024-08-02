@@ -6,6 +6,7 @@ using AscendedZ.game_object;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Threading.Tasks;
 
 
@@ -105,7 +106,7 @@ public partial class BattleEnemyScene : Node2D
         }
     }
 
-    private async void _OnChangePartyBtnPressed()
+    private void _OnChangePartyBtnPressed()
     {
         var vbox = this.GetNode<VBoxContainer>("%EndVBox");
         vbox.Visible = false;
@@ -152,6 +153,7 @@ public partial class BattleEnemyScene : Node2D
         background.Texture = ResourceLoader.Load<Texture2D>(backgroundString);
 
         _battleSceneObject = new BattleSceneObject(tier);
+        _actionMenu.EmptyClick = false;
         _actionMenu.BattleSceneObject = _battleSceneObject;
 
         if(!_dungeonCrawlEncounter)
@@ -180,7 +182,10 @@ public partial class BattleEnemyScene : Node2D
 
             partyBox.InstanceEntity(new EntityWrapper() { BattleEntity = member });
             if (member.IsActiveEntity)
+            {
                 _actionMenu.Reparent(hBoxContainer);
+                _actionMenu.EmptyClick = false;
+            }
         }
 
         foreach (var enemy in _battleSceneObject.Enemies)
@@ -401,7 +406,10 @@ public partial class BattleEnemyScene : Node2D
             partyDisplay.UpdateEntityDisplay(playerWrapper);
 
             if (players[j].IsActiveEntity)
+            {
                 _actionMenu.Reparent(vBoxContainer);
+                _actionMenu.EmptyClick = false;
+            }  
         }
     }
 

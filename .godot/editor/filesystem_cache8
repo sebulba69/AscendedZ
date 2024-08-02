@@ -1,5 +1,5 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1722615719
+::res://::1722617891
 ArtAssets.cs::CSharpScript::-1::1722396719::0::1::::<><>::
 ascended_icon.png::CompressedTexture2D::5218734614891675472::1721275369::1721275369::1::::<><>::
 BackBoxBossHP.tres::StyleBoxFlat::2301404220975749678::1721275369::0::1::::<><>::
@@ -9,7 +9,7 @@ default_env.tres::Environment::5723441312748911875::1722562267::0::1::::<><>::
 DialogScenes.cs::CSharpScript::-1::1721512510::0::1::::<><>::
 EntityDatabase.cs::CSharpScript::-1::1722193967::0::1::::<><>::
 Equations.cs::CSharpScript::-1::1722558200::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1722562286::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1722616193::0::1::::<><>::
 FrontBoxBossHP.tres::StyleBoxFlat::1760076622593413787::1722138977::0::1::::<><>::
 FrontBoxBossHPDC.tres::StyleBoxFlat::307405468150003703::1722562265::0::1::::<><>::
 icon.png::CompressedTexture2D::8476979344923658186::1676533345::1678056509::1::::<><>::
@@ -242,9 +242,9 @@ ResistanceChangerEnemy.cs::CSharpScript::-1::1721519739::0::1::::<><>::
 StatusAttackEnemy.cs::CSharpScript::-1::1722435630::0::1::::<><>::
 SupportEnemy.cs::CSharpScript::-1::1721602424::0::1::::<><>::
 WeaknessHunterEnemy.cs::CSharpScript::-1::1721275371::0::1::::<><>::
-::res://entities/enemy_objects/enemy_makers/::1722545211
-AlternatingEnemyFactory.cs::CSharpScript::-1::1722473665::0::1::::<><>::
-BuffEnemyFactory.cs::CSharpScript::-1::1721571668::0::1::::<><>::
+::res://entities/enemy_objects/enemy_makers/::1722616084
+AlternatingEnemyFactory.cs::CSharpScript::-1::1722616026::0::1::::<><>::
+BuffEnemyFactory.cs::CSharpScript::-1::1722616084::0::1::::<><>::
 CopyCatEnemyFactory.cs::CSharpScript::-1::1722544271::0::1::::<><>::
 EnemyFactory.cs::CSharpScript::-1::1722110788::0::1::::<><>::
 EnemyMaker.cs::CSharpScript::-1::1722113972::0::1::::<><>::
@@ -399,12 +399,12 @@ SaveEntry.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 SaveObject.cs::CSharpScript::-1::1720300320::0::1::::<><>::
 ::res://json_interface_converters/::1722390042
 SkillConverter.cs::CSharpScript::-1::1722390042::0::1::::<><>::
-::res://misc_icons/::1722571099
+::res://misc_icons/::1722616230
 CurrencyDisplay.cs::CSharpScript::-1::1721718698::0::1::::<>GridContainer<>::
 CurrencyDisplay.tscn::PackedScene::8562439097474497904::1720373693::0::1::::<><>::res://misc_icons/CurrencyDisplay.cs<>uid://bqmfi0ome6yn4::::res://misc_icons/Icon.tscn<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 Icon.cs::CSharpScript::-1::1720300320::0::1::::<>TextureRect<>::
 Icon.tscn::PackedScene::3534533921528240495::1722562266::0::1::::<><>::uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>res://misc_icons/Icon.cs
-IconOutline.gdshader::Shader::-1::1722571099::0::1::::<><>::
+IconOutline.gdshader::Shader::-1::1722616230::0::1::::<><>::
 IconSet.png::CompressedTexture2D::550291359472638980::1720300251::1720300251::1::::<><>::
 ::res://music/::1721275389
 boss_victory.ogg::AudioStreamOggVorbis::5818420752927080643::1706678954::1706678954::1::::<><>::
@@ -481,7 +481,7 @@ BarV5_ProgressBarBorder.png::CompressedTexture2D::6286064946586930276::167809411
 ::res://resistances/::1721275393
 ResistanceArray.cs::CSharpScript::-1::1721275393::0::1::::<><>::
 ResistanceType.cs::CSharpScript::-1::1720300251::0::1::::<><>::
-::res://screens/::1722562266
+::res://screens/::1722616137
 ActionMenu.cs::CSharpScript::-1::1722434339::0::1::::<>PanelContainer<>::
 ActionMenu.tscn::PackedScene::4702874803656428896::1722562266::0::1::::<><>::res://screens/ActionMenu.cs<>uid://h3thol0m40p1::::res://misc_icons/IconSet.png<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 APBarStyleBox.tres::StyleBoxFlat::184845878767122209::1720913096::0::1::::<><>::
@@ -529,7 +529,7 @@ RewardScreen.cs::CSharpScript::-1::1722561247::0::1::::<>Control<>::
 RewardScreen.tscn::PackedScene::2919674233379551489::1721275393::0::1::::<><>::res://screens/RewardScreen.cs<>uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf
 SceneTransition.cs::CSharpScript::-1::1722388067::0::1::::<>CanvasLayer<>::
 SceneTransition.tscn::PackedScene::2992404124348779741::1722118836::0::1::::<><>::res://screens/SceneTransition.cs<>uid://buwuurpybkt52::::res://transitions/circle-xxl.png
-StartScreen.cs::CSharpScript::-1::1722559417::0::1::::<>Node2D<>::
+StartScreen.cs::CSharpScript::-1::1722616137::0::1::::<>Node2D<>::
 StartScreen.tscn::PackedScene::6381371156909420524::1722562265::0::1::::<><>::uid://brnrfmgvenlw4::::res://fonts/ufonts.com_compacta-bold-bt.ttf<>res://screens/StartScreen.cs<>res://screens/AscendedDialogBox.cs<>uid://cq8pbliuivvh0::::res://cg_backgrounds/overworld/04bg00307.jpg<>uid://cgb6kermfdhu::::res://music/theme.ogg
 TechEvadeBars.tscn::PackedScene::633375727463855071::1722139351::0::1::::<><>::uid://dap8kpbmm32h6::::res://BackBoxBossHPDC.tres
 Transitionable2DScene.cs::CSharpScript::-1::1722388073::0::1::::<>Node2D<>::

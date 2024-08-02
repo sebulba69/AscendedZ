@@ -1,3 +1,4 @@
+using AscendedZ;
 using Godot;
 using System;
 
@@ -28,14 +29,26 @@ public partial class AscendedYesNoWindow : CenterContainer
 		_yesButton = this.GetNode<Button>("%YesButton");
         _noButton = this.GetNode<Button>("%NoButton");
 
-		_yesButton.Text = "Yes";
-		_noButton.Text = "No";
+		_yesButton.Text = $"[{Controls.GetControlString(Controls.CONFIRM)}] Yes";
+		_noButton.Text = $"[{Controls.GetControlString(Controls.BACK)}] No";
 
 		_yesButton.Pressed += () => ButtonPressed(true);
 		_noButton.Pressed += () => ButtonPressed(false);
 	}
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed(Controls.CONFIRM))
+		{
+            ButtonPressed(true);
+        }
 
-	public void SetDialogMessage(string message)
+        if (@event.IsActionPressed(Controls.BACK))
+        {
+            ButtonPressed(false);
+        }
+    }
+
+    public void SetDialogMessage(string message)
 	{
 		_popupMessage.Text = message;
 	}

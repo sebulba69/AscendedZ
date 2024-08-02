@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ascended Z")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("ExportRelease")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5fdb7050058ca8a7ec9bcbce01a3a9766e7961ef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5cd63278f28fe2880831430e0a9629ebd361679c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ascended Z")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ascended Z")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
