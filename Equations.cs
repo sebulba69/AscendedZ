@@ -27,7 +27,7 @@ namespace AscendedZ
         {
             try
             {
-                int boost = level / 2;
+                int boost = (int)(level / 1.5);
                 if (boost == 0)
                     boost = 1;
                 hp += ((level + 1) + boost);
