@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\Cole\\Documents\\Ascended Z\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\rewardscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\rewardscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\upgrade_screen\\upgradescreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\upgrade_screen\\upgradescreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\dungeon_crawling\\backend\\dungeongenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:dungeon_crawling\\backend\\dungeongenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\skills\\healskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:skills\\healskill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,16 +31,8 @@
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\overworldentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\enemy_objects\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:entities\\enemy_objects\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\startscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\startscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\rewardscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\rewardscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\entities\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\recruitscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\recruitscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\screens\\upgrade_screen\\upgradescreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|solutionrelative:screens\\upgrade_screen\\upgradescreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C6BDDB04-92F6-4186-B9A5-AEA639A62854}|Ascended Z.csproj|c:\\users\\cole\\documents\\ascended z\\game_object\\persistentgameobjects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -250,11 +254,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 312,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "SfxAssets.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\SfxAssets.cs",
               "RelativeDocumentMoniker": "SfxAssets.cs",
@@ -267,7 +271,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "ArtAssets.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\ArtAssets.cs",
               "RelativeDocumentMoniker": "ArtAssets.cs",
@@ -280,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "SkillDatabase.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\SkillDatabase.cs",
               "RelativeDocumentMoniker": "SkillDatabase.cs",
@@ -293,7 +297,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "RandomEnemyFactory.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\RandomEnemyFactory.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\RandomEnemyFactory.cs",
@@ -306,7 +310,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "EntityDisplayBox.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\EntityDisplayBox.cs",
               "RelativeDocumentMoniker": "screens\\EntityDisplayBox.cs",
@@ -319,46 +323,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "DungeonGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\backend\\DungeonGenerator.cs",
+              "RelativeDocumentMoniker": "dungeon_crawling\\backend\\DungeonGenerator.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\dungeon_crawling\\backend\\DungeonGenerator.cs",
+              "RelativeToolTip": "dungeon_crawling\\backend\\DungeonGenerator.cs",
+              "ViewState": "AQIAAOEAAAAAAAAAAAAwwPsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-02T01:28:49.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "HealSkill.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\HealSkill.cs",
               "RelativeDocumentMoniker": "skills\\HealSkill.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\HealSkill.cs",
               "RelativeToolTip": "skills\\HealSkill.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAywDIAAAAPAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAswDIAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-02T01:01:08.598Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Entity.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\Entity.cs",
-              "RelativeDocumentMoniker": "entities\\Entity.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\Entity.cs",
-              "RelativeToolTip": "entities\\Entity.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-02T00:23:56.232Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Equations.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\Equations.cs",
-              "RelativeDocumentMoniker": "Equations.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\Equations.cs",
-              "RelativeToolTip": "Equations.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAewBcAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-01T23:58:09.979Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "StartScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\StartScreen.cs",
               "RelativeDocumentMoniker": "screens\\StartScreen.cs",
@@ -366,12 +357,11 @@
               "RelativeToolTip": "screens\\StartScreen.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAwwA8AAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-31T13:59:13.75Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-31T13:59:13.75Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "BuffEnemyFactory.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\BuffEnemyFactory.cs",
@@ -383,7 +373,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "OverworldEntity.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\OverworldEntity.cs",
               "RelativeDocumentMoniker": "entities\\OverworldEntity.cs",
@@ -391,8 +381,7 @@
               "RelativeToolTip": "entities\\OverworldEntity.cs",
               "ViewState": "AQIAAC4AAAAAAAAAAAAQwEwAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-01T20:13:34.801Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-01T20:13:34.801Z"
             },
             {
               "$type": "Document",
@@ -402,14 +391,14 @@
               "RelativeDocumentMoniker": "entities\\enemy_objects\\Enemy.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\Enemy.cs",
               "RelativeToolTip": "entities\\enemy_objects\\Enemy.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwDMAAAAJAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAA1wC0AAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-01T01:18:29.556Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "RecruitScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RecruitScreen.cs",
               "RelativeDocumentMoniker": "screens\\RecruitScreen.cs",
@@ -417,18 +406,17 @@
               "RelativeToolTip": "screens\\RecruitScreen.cs",
               "ViewState": "AQIAAEcAAAAAAAAAAAArwFUAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-31T23:28:21.06Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-31T23:28:21.06Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "RewardScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RewardScreen.cs",
               "RelativeDocumentMoniker": "screens\\RewardScreen.cs",
               "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RewardScreen.cs",
               "RelativeToolTip": "screens\\RewardScreen.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwCUAAAAKAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACMAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-01T20:29:09.977Z",
               "EditorCaption": ""
@@ -436,6 +424,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "UpgradeScreen.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\upgrade_screen\\UpgradeScreen.cs",
+              "RelativeDocumentMoniker": "screens\\upgrade_screen\\UpgradeScreen.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\upgrade_screen\\UpgradeScreen.cs",
+              "RelativeToolTip": "screens\\upgrade_screen\\UpgradeScreen.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T19:30:20.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Equations.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\Equations.cs",
+              "RelativeDocumentMoniker": "Equations.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\Equations.cs",
+              "RelativeToolTip": "Equations.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAewBcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T23:58:09.979Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "FusionScreenObject.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\back_end_screen_scripts\\FusionScreenObject.cs",
               "RelativeDocumentMoniker": "screens\\back_end_screen_scripts\\FusionScreenObject.cs",
@@ -443,12 +456,23 @@
               "RelativeToolTip": "screens\\back_end_screen_scripts\\FusionScreenObject.cs",
               "ViewState": "AQIAAC0AAAAAAAAAAAAmwPwAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-01T00:26:39.031Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-01T00:26:39.031Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 8,
+              "Title": "Entity.cs",
+              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\Entity.cs",
+              "RelativeDocumentMoniker": "entities\\Entity.cs",
+              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\Entity.cs",
+              "RelativeToolTip": "entities\\Entity.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-02T00:23:56.232Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "ResistanceChangerEnemyFactory.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\ResistanceChangerEnemyFactory.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\ResistanceChangerEnemyFactory.cs",
@@ -460,7 +484,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "CopyCatEnemyFactory.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\CopyCatEnemyFactory.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\CopyCatEnemyFactory.cs",
@@ -472,7 +496,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "AlternatingEnemyFactory.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\AlternatingEnemyFactory.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\AlternatingEnemyFactory.cs",
@@ -484,7 +508,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "WeaknessHunterEnemyFactory.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\WeaknessHunterEnemyFactory.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\WeaknessHunterEnemyFactory.cs",
@@ -496,20 +520,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UpgradeScreen.cs",
-              "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\upgrade_screen\\UpgradeScreen.cs",
-              "RelativeDocumentMoniker": "screens\\upgrade_screen\\UpgradeScreen.cs",
-              "ToolTip": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\upgrade_screen\\UpgradeScreen.cs",
-              "RelativeToolTip": "screens\\upgrade_screen\\UpgradeScreen.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-01T19:30:20.231Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "PersistentGameObjects.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\game_object\\PersistentGameObjects.cs",
               "RelativeDocumentMoniker": "game_object\\PersistentGameObjects.cs",
@@ -521,7 +532,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "StatusAttackEnemyFactory.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\StatusAttackEnemyFactory.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\StatusAttackEnemyFactory.cs",
@@ -533,7 +544,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "EnemyFactory.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\EnemyFactory.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\EnemyFactory.cs",
@@ -545,7 +556,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "RecruitCustomScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\RecruitCustomScreen.cs",
               "RelativeDocumentMoniker": "screens\\RecruitCustomScreen.cs",
@@ -557,7 +568,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "AgroStatus.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\AgroStatus.cs",
               "RelativeDocumentMoniker": "statuses\\AgroStatus.cs",
@@ -569,7 +580,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "PartyMemberGenerator.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\partymember_objects\\PartyMemberGenerator.cs",
               "RelativeDocumentMoniker": "entities\\partymember_objects\\PartyMemberGenerator.cs",
@@ -581,7 +592,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "EntityDatabase.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\EntityDatabase.cs",
               "RelativeDocumentMoniker": "EntityDatabase.cs",
@@ -593,7 +604,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "PartyEditScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\PartyEditScreen.cs",
               "RelativeDocumentMoniker": "screens\\PartyEditScreen.cs",
@@ -605,7 +616,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "RecruitCustomObject.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\back_end_screen_scripts\\RecruitCustomObject.cs",
               "RelativeDocumentMoniker": "screens\\back_end_screen_scripts\\RecruitCustomObject.cs",
@@ -617,7 +628,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "BattleResult.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\BattleResult.cs",
               "RelativeDocumentMoniker": "battle\\BattleResult.cs",
@@ -629,7 +640,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "UniqueEnemyFactory.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_makers\\UniqueEnemyFactory.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_makers\\UniqueEnemyFactory.cs",
@@ -641,7 +652,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "BossHellAI.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\BossHellAI.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_ais\\BossHellAI.cs",
@@ -653,7 +664,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "BuffEnemy.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\BuffEnemy.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_ais\\BuffEnemy.cs",
@@ -665,7 +676,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "BattleEntity.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\BattleEntity.cs",
               "RelativeDocumentMoniker": "entities\\BattleEntity.cs",
@@ -677,7 +688,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "BattleEnemyScene.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\BattleEnemyScene.cs",
               "RelativeDocumentMoniker": "screens\\BattleEnemyScene.cs",
@@ -689,7 +700,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "EntityWrapper.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\EntityWrapper.cs",
               "RelativeDocumentMoniker": "battle\\EntityWrapper.cs",
@@ -701,7 +712,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "AlternatingEnemy.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\AlternatingEnemy.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_ais\\AlternatingEnemy.cs",
@@ -713,7 +724,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "PoisonStatus.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\PoisonStatus.cs",
               "RelativeDocumentMoniker": "statuses\\PoisonStatus.cs",
@@ -725,7 +736,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "ElementBuffStatus.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\ElementBuffStatus.cs",
               "RelativeDocumentMoniker": "statuses\\ElementBuffStatus.cs",
@@ -737,7 +748,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "BuffDarkStatus.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\buff_elements\\BuffDarkStatus.cs",
               "RelativeDocumentMoniker": "statuses\\buff_elements\\BuffDarkStatus.cs",
@@ -749,7 +760,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "FusionScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\FusionScreen.cs",
               "RelativeDocumentMoniker": "screens\\FusionScreen.cs",
@@ -761,7 +772,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "EmbarkScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\EmbarkScreen.cs",
               "RelativeDocumentMoniker": "screens\\EmbarkScreen.cs",
@@ -773,7 +784,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "PartyMemberDisplay.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\PartyMemberDisplay.cs",
               "RelativeDocumentMoniker": "screens\\PartyMemberDisplay.cs",
@@ -785,7 +796,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "ActionMenu.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\ActionMenu.cs",
               "RelativeDocumentMoniker": "screens\\ActionMenu.cs",
@@ -797,7 +808,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "MainScreen.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\MainScreen.cs",
               "RelativeDocumentMoniker": "screens\\MainScreen.cs",
@@ -809,7 +820,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "AscendedTextbox.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\AscendedTextbox.cs",
               "RelativeDocumentMoniker": "screens\\AscendedTextbox.cs",
@@ -821,7 +832,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "BattleSceneObject.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\BattleSceneObject.cs",
               "RelativeDocumentMoniker": "battle\\BattleSceneObject.cs",
@@ -833,7 +844,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "ElementSkill.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\ElementSkill.cs",
               "RelativeDocumentMoniker": "skills\\ElementSkill.cs",
@@ -845,7 +856,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "StatusAttackEnemy.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\enemy_ais\\StatusAttackEnemy.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\enemy_ais\\StatusAttackEnemy.cs",
@@ -857,7 +868,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "AscendedYesNoWindow.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\screens\\AscendedYesNoWindow.cs",
               "RelativeDocumentMoniker": "screens\\AscendedYesNoWindow.cs",
@@ -869,7 +880,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "DraceRazor.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\entities\\enemy_objects\\bosses\\DraceRazor.cs",
               "RelativeDocumentMoniker": "entities\\enemy_objects\\bosses\\DraceRazor.cs",
@@ -881,7 +892,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "EnemyTurnState.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\battle_state_machine\\EnemyTurnState.cs",
               "RelativeDocumentMoniker": "battle\\battle_state_machine\\EnemyTurnState.cs",
@@ -893,7 +904,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "EnemyAction.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\battle_state_machine\\EnemyAction.cs",
               "RelativeDocumentMoniker": "battle\\battle_state_machine\\EnemyAction.cs",
@@ -905,7 +916,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "PlayerTurnState.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\battle_state_machine\\PlayerTurnState.cs",
               "RelativeDocumentMoniker": "battle\\battle_state_machine\\PlayerTurnState.cs",
@@ -917,7 +928,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "SkillEnums.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\SkillEnums.cs",
               "RelativeDocumentMoniker": "skills\\SkillEnums.cs",
@@ -929,7 +940,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "PressTurn.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\battle\\PressTurn.cs",
               "RelativeDocumentMoniker": "battle\\PressTurn.cs",
@@ -941,7 +952,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": "EyeSkill.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\EyeSkill.cs",
               "RelativeDocumentMoniker": "skills\\EyeSkill.cs",
@@ -953,7 +964,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "BuffElecStatus.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\buff_elements\\BuffElecStatus.cs",
               "RelativeDocumentMoniker": "statuses\\buff_elements\\BuffElecStatus.cs",
@@ -965,7 +976,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "Status.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\statuses\\Status.cs",
               "RelativeDocumentMoniker": "statuses\\Status.cs",
@@ -977,7 +988,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "StatusSkill.cs",
               "DocumentMoniker": "C:\\Users\\Cole\\Documents\\Ascended Z\\skills\\StatusSkill.cs",
               "RelativeDocumentMoniker": "skills\\StatusSkill.cs",

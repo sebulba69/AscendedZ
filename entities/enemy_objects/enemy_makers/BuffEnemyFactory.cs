@@ -38,6 +38,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var ferza = MakeBuffEnemy(EnemyNames.Ferza, 10);
 
             ferza.Resistances.SetResistance(ResistanceType.Rs, Elements.Elec);
+            ferza.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
             ferza.Skills.Add(SkillDatabase.ElecBuff1.Clone());
             ferza.Skills.Add(SkillDatabase.Elec1.Clone());
@@ -50,6 +51,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var david = MakeBuffEnemy(EnemyNames.David, 10);
 
             david.Resistances.SetResistance(ResistanceType.Rs, Elements.Wind);
+            david.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
 
             david.Skills.Add(SkillDatabase.WindBuff1.Clone());
             david.Skills.Add(SkillDatabase.Wind1.Clone());
@@ -62,6 +64,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             var nanfrea = MakeBuffEnemy(EnemyNames.Nanfrea, 10);
 
             nanfrea.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
+            nanfrea.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
             nanfrea.Skills.Add(SkillDatabase.FireBuff1.Clone());
             nanfrea.Skills.Add(SkillDatabase.Fire1.Clone());

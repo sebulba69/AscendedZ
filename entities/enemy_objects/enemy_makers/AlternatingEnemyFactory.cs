@@ -100,6 +100,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             fledan.Resistances.SetResistance(ResistanceType.Rs, Elements.Light);
             fledan.Resistances.SetResistance(ResistanceType.Rs, Elements.Ice);
+            fledan.Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
+            fledan.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
 
             fledan.Skills.Add(SkillDatabase.Light1.Clone());
             fledan.Skills.Add(SkillDatabase.Ice1.Clone());
@@ -113,6 +115,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             walds.Resistances.SetResistance(ResistanceType.Rs, Elements.Dark);
             walds.Resistances.SetResistance(ResistanceType.Rs, Elements.Wind);
+            walds.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
+            walds.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
 
             walds.Skills.Add(SkillDatabase.Dark1.Clone());
             walds.Skills.Add(SkillDatabase.Wind1.Clone());

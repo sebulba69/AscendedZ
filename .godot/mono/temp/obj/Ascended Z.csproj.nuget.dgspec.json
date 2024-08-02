@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj": {}
+    "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj": {
+    "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj",
+        "projectUniqueName": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
         "projectName": "Ascended Z",
-        "projectPath": "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj",
+        "projectPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
         "packagesPath": "C:\\Users\\Cole\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cole\\Documents\\Ascended Z\\.godot\\mono\\temp\\obj\\",
+        "outputPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Users\\Cole\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
@@ -60,6 +60,10 @@
             "GodotSharp": {
               "target": "Package",
               "version": "[4.2.1, )"
+            },
+            "GodotSharpEditor": {
+              "target": "Package",
+              "version": "[4.2.1, )"
             }
           },
           "imports": [
@@ -79,23 +83,11 @@
               "version": "[6.0.32, 6.0.32]"
             },
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[6.0.32, 6.0.32]"
-            },
-            {
               "name": "Microsoft.NETCore.App.Ref",
               "version": "[6.0.32, 6.0.32]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[6.0.32, 6.0.32]"
-            },
-            {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.32, 6.0.32]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
               "version": "[6.0.32, 6.0.32]"
             }
           ],
@@ -105,11 +97,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
         }
       }
     }
