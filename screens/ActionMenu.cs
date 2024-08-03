@@ -25,10 +25,10 @@ public partial class ActionMenu : PanelContainer
     private ActionMenuState _state;
     private TextureRect _icon;
     private Label _toolTip;
-    private readonly string MENU_STR = "(←) Menu, (Space) Select";
-    private readonly string SKILL_STR = "(→) Skills, (Space) Select";
+    private readonly string MENU_STR = $"(←) Menu, ({Controls.GetControlString(Controls.CONFIRM)}) Select";
+    private readonly string SKILL_STR = $"(→) Skills, ({Controls.GetControlString(Controls.CONFIRM)}) Select";
     private readonly string SKILL_TOOLTIP = "Choose a skill!";
-    private readonly string TARGET_STR = "(←) Skills, (Space) Select";
+    private readonly string TARGET_STR = $"(←) Skills, ({Controls.GetControlString(Controls.CONFIRM)}) Select";
     private readonly string BACK_STR = "← Back";
 
     public bool CanInput { get => _canInput; set => _canInput = value; }
@@ -46,6 +46,8 @@ public partial class ActionMenu : PanelContainer
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+        base._Ready();
+
         _state = ActionMenuState.SkillSelect;
 
         _icon = this.GetNode<TextureRect>("%ActionMenuIcon");
@@ -79,7 +81,7 @@ public partial class ActionMenu : PanelContainer
             if (_selectedIndex <= 0)
                 _selectedIndex = 0;
 
-            _actionList.Select(_selectedIndex);
+            DoActionIndexSelectionChange(_selectedIndex);
         }
 
         if (@event.IsActionPressed(Controls.DOWN) && !EmptyClick)
@@ -88,7 +90,7 @@ public partial class ActionMenu : PanelContainer
             if (_selectedIndex >= _actionList.ItemCount)
                 _selectedIndex = _actionList.ItemCount - 1;
 
-            _actionList.Select(_selectedIndex);
+            DoActionIndexSelectionChange(_selectedIndex);
         }
 
         if (@event.IsActionPressed(Controls.LEFT))
@@ -111,10 +113,16 @@ public partial class ActionMenu : PanelContainer
             }
         }
 
-        if (@event.IsActionPressed(Controls.ENTER))
+        if (@event.IsActionPressed(Controls.CONFIRM))
         {
             DoSelection(_selectedIndex);
         }
+    }
+
+    private void DoActionIndexSelectionChange(int index)
+    {
+        if(index >= 0 && index < _actionList.ItemCount)
+            _actionList.Select(_selectedIndex);
     }
 
     private void LoadMenu()

@@ -12,7 +12,6 @@ namespace AscendedZ
         public static readonly string DOWN = "down";
         public static readonly string LEFT = "left";
         public static readonly string RIGHT = "right";
-        public static readonly string ENTER = "enter";
 
         public static readonly string CONFIRM = "menuConfirm";
         public static readonly string BACK = "menuBack";

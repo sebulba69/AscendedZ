@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3mtohsramppe"]
+[gd_scene load_steps=11 format=3 uid="uid://b3mtohsramppe"]
 
 [ext_resource type="Texture2D" uid="uid://c5xd4it2pk7uq" path="res://cg_backgrounds/dungeon/01bg03101.jpg" id="1"]
 [ext_resource type="Script" path="res://screens/BattleEnemyScene.cs" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bad6j156d7tuk" path="res://screens/EnemyBattleDisplayBox.tscn" id="4_8lmgp"]
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="4_38pxl"]
 [ext_resource type="Texture2D" uid="uid://car4hgrdysj7x" path="res://turn_icons/turn_backdrop.png" id="5_4jwes"]
+[ext_resource type="PackedScene" uid="uid://cunu4gha5vlbk" path="res://screens/end_screen/EndScreenOptions.tscn" id="8_1nvtd"]
 [ext_resource type="PackedScene" uid="uid://b8adwqax888v1" path="res://screens/ActionMenu.tscn" id="8_cr1uv"]
 [ext_resource type="AudioStream" uid="uid://q25xxaiw4e1c" path="res://effects/effect_sounds/Item1.ogg" id="8_halw0"]
 
@@ -148,6 +149,7 @@ alignment = 1
 [node name="ActionMenu" parent="Background/PlayerVBoxContainer" instance=ExtResource("8_cr1uv")]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 
 [node name="EndBox" type="CenterContainer" parent="Background"]
 unique_name_in_owner = true
@@ -159,11 +161,14 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
+mouse_filter = 2
 
 [node name="EndVBox" type="VBoxContainer" parent="Background/EndBox"]
 unique_name_in_owner = true
 texture_filter = 2
 layout_mode = 2
+mouse_filter = 2
+alignment = 1
 
 [node name="EndOfBattleLabel" type="Label" parent="Background/EndBox/EndVBox"]
 unique_name_in_owner = true
@@ -176,54 +181,9 @@ theme_override_font_sizes/font_size = 120
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BattleEnded" type="CenterContainer" parent="Background/EndBox/EndVBox"]
-texture_filter = 2
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/EndBox/EndVBox/BattleEnded"]
-texture_filter = 2
-layout_mode = 2
-theme_override_constants/separation = 17
-
-[node name="BackToHomeBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
+[node name="EndScreenOptions" parent="Background/EndBox/EndVBox" instance=ExtResource("8_1nvtd")]
 unique_name_in_owner = true
-visible = false
-texture_filter = 2
-custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 80
-text = "Retreat"
-
-[node name="RetryFloorBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-texture_filter = 2
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 80
-text = "Retry"
-
-[node name="ChangePartyBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-texture_filter = 2
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 70
-text = "Party"
-
-[node name="ContinueBtn" type="Button" parent="Background/EndBox/EndVBox/BattleEnded/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-texture_filter = 2
-custom_minimum_size = Vector2(220, 0)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 80
-text = "Proceed"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -12.5

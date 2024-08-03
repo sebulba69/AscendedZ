@@ -5,6 +5,7 @@ using AscendedZ.dungeon_crawling.backend;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.game_object;
 using AscendedZ.screens;
+using AscendedZ.screens.end_screen;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ public partial class DungeonScreen : Transitionable2DScene
     private List<BattlePlayer> _battlePlayers;
 
     private UITile[,] _uiTiles;
-
+    private List<EndScreenItem> _endScreenItems;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -68,16 +69,27 @@ public partial class DungeonScreen : Transitionable2DScene
         _crawlUI = this.GetNode<DungeonCrawlUI>("%DungeonCrawlUi");
         _popup = this.GetNode<CanvasLayer>("%Popups");
         _floorExitScene = this.GetNode<FloorExitScene>("%FloorExitScene");
+        _endScreenItems = new List<EndScreenItem>();
 
-        _floorExitScene.Stay.Pressed += _OnStayButtonPressed;
-        _floorExitScene.Continue.Pressed += _OnContinueToNextFloor;
-        _floorExitScene.Back.Pressed += _OnRetreatButtonPressed;
+        var optionsNode = _floorExitScene.EndScreenOptions;
+
+        var continueOption = new EndScreenItem() { ItemText = "Proceed" };
+        var stayOption = new EndScreenItem() { ItemText = "Stay" };
+        var backOption = new EndScreenItem() { ItemText = "Retreat" };
+
+        continueOption.ItemSelected += _OnContinueToNextFloor;
+        stayOption.ItemSelected += _OnStayButtonPressed;
+        backOption.ItemSelected += _OnRetreatButtonPressed;
+
+        _endScreenItems.Add(continueOption);
+        _endScreenItems.Add(stayOption);
+        _endScreenItems.Add(backOption);
 
         _retreat = this.GetNode<Button>("%RetreatBtn");
         _retreat.Pressed += () =>
         {
             _prematurelyLeave = true;
-            _OnRetreatButtonPressed();
+            _OnRetreatButtonPressed(null, EventArgs.Empty);
         };
 
         _player.Up.Pressed += () => 
@@ -438,7 +450,7 @@ public partial class DungeonScreen : Transitionable2DScene
                 if (retreat)
                 {
                     _prematurelyLeave = true;
-                    _OnRetreatButtonPressed();
+                    _OnRetreatButtonPressed(null, EventArgs.Empty);
                 }
                 else
                 {
@@ -537,10 +549,21 @@ public partial class DungeonScreen : Transitionable2DScene
                     _endingScene = true;
                     _floorExitScene.Visible = true;
                     SetEncounterVisibility(false, true);
-                    _floorExitScene.Continue.Visible = (_gameObject.TierDC + 1 < _gameObject.TierDCCap);
-                    _floorExitScene.EndOfBattleLabel.Text = "Ascend?";
-                    _floorExitScene.Stay.Visible = true;
-                    _floorExitScene.Retry.Visible = false;
+                    List<EndScreenItem> viewable = new List<EndScreenItem>();
+
+                    int startIndex = 0;
+                    if (!(_gameObject.TierDC + 1 < _gameObject.TierDCCap))
+                    {
+                        startIndex = 1;
+                    }
+
+                    for (int i = startIndex; i < _endScreenItems.Count; i++) 
+                    {
+                        viewable.Add(_endScreenItems[i]);
+                    }
+                    
+                    _floorExitScene.EndScreenOptions.SetItems(viewable);
+                    _floorExitScene.EndScreenOptions.CanInput = true;
                 }
                 _dungeon.Current.EventTriggered = false;
                 break;
@@ -586,9 +609,10 @@ public partial class DungeonScreen : Transitionable2DScene
         _currentScene.Scene.TurnOffGraphic();
     }
 
-    private async void _OnContinueToNextFloor()
+    private async void _OnContinueToNextFloor(object sender, EventArgs e)
     {
         _floorExitScene.Visible = false;
+        _floorExitScene.EndScreenOptions.CanInput = false;
         await ShowRewardScreen(TileEventId.Exit);
 
         var transition = _transitionScene.Instantiate<SceneTransition>();
@@ -615,17 +639,18 @@ public partial class DungeonScreen : Transitionable2DScene
         PersistentGameObjects.Save();
     }
 
-    private void _OnStayButtonPressed()
+    private void _OnStayButtonPressed(object sender, EventArgs e)
     {
         _endingScene = false;
-        _floorExitScene.Stay.Visible = false;
         _floorExitScene.Visible = false;
+        _floorExitScene.EndScreenOptions.CanInput = false;
         SetEncounterVisibility(true, true);
     }
 
-    private async void _OnRetreatButtonPressed()
+    private async void _OnRetreatButtonPressed(object sender, EventArgs e)
     {
-        if(!_prematurelyLeave)
+        _floorExitScene.EndScreenOptions.CanInput = false;
+        if (!_prematurelyLeave)
         {
             IncrementMaxTier();
             _crawlUI.Visible = false;

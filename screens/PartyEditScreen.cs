@@ -21,7 +21,7 @@ public partial class PartyEditScreen : HBoxContainer
     private int _selectedIndex;
 
     public EventHandler<bool> DoEmbark;
-
+    public bool EmptyClick { get; set; }
     public bool DungeonCrawling { get; set; }
     
     // Called when the node enters the scene tree for the first time.
@@ -48,7 +48,7 @@ public partial class PartyEditScreen : HBoxContainer
 
         _reservePreviewMember = this.GetNode<PartyMemberDisplay>("%Preview");
         _reserveItemList = this.GetNode<ItemList>("%InReserveMembers");
-
+        _reserveItemList.FocusExited += () => { EmptyClick = false; };
         for (int i = 1; i <= 4; i++)
         {
             _partyMemberDisplayNodes.Add(this.GetNode<PartyMemberDisplay>($"%PM{i}"));
@@ -56,17 +56,25 @@ public partial class PartyEditScreen : HBoxContainer
 
         _reserveItemList.ItemClicked += _OnReserveMemberClicked;
         _reserveItemList.ItemSelected += _OnItemSelected;
-
-        backButton.Pressed += () => { DoEmbark?.Invoke(null, false); };
+        _reserveItemList.EmptyClicked += (arg1, arg2) => EmptyClick = true;
+        backButton.Pressed += _OnBackButtonPressed;
         _embarkButton.Pressed += _OnEmbarkPressed;
+
+        backButton.Text = $"[{Controls.GetControlString(Controls.BACK)}] Back";
 
         DisplayPartyMembers();
         RefreshReserveList();
     }
 
+    private void _OnBackButtonPressed()
+    {
+        EmptyClick = false;
+        DoEmbark?.Invoke(null, false);
+    }
+
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed(Controls.UP))
+        if (@event.IsActionPressed(Controls.UP) && !EmptyClick)
         {
             _selectedIndex--;
             if (_selectedIndex <= 0)
@@ -76,7 +84,7 @@ public partial class PartyEditScreen : HBoxContainer
             DisplayPreviewMember(_selectedIndex);
         }
 
-        if (@event.IsActionPressed(Controls.DOWN))
+        if (@event.IsActionPressed(Controls.DOWN) && !EmptyClick)
         {
             _selectedIndex++;
             if (_selectedIndex >= _reserveItemList.ItemCount)
@@ -85,10 +93,21 @@ public partial class PartyEditScreen : HBoxContainer
             _reserveItemList.Select(_selectedIndex);
             DisplayPreviewMember(_selectedIndex);
         }
+
+        if (@event.IsActionPressed(Controls.CONFIRM))
+        {
+            DoSelection();
+        }
+
+        if (@event.IsActionPressed(Controls.BACK))
+        {
+            _OnBackButtonPressed();
+        }
     }
 
     public void DisableEmbarkButton()
     {
+        EmptyClick = false;
         _embarkButton.Visible = false;
     }
 
@@ -139,21 +158,26 @@ public partial class PartyEditScreen : HBoxContainer
 
         if (mouse_button_index == (long)MouseButton.Right)
         {
-            PlayerParty party = PersistentGameObjects.GameObjectInstance().MainPlayer.Party;
+            DoSelection();
+        }
+    }
 
-            // we have a free space open
-            if (_reserves.Count > 0)
-            {
-                OverworldEntity reserveMember = _reserves[_selectedIndex];
+    private void DoSelection()
+    {
+        PlayerParty party = PersistentGameObjects.GameObjectInstance().MainPlayer.Party;
 
-                if (!reserveMember.IsInParty)
-                    _party.AddPartyMember(reserveMember);
-                else
-                    _party.RemovePartyMember(reserveMember);
+        // we have a free space open
+        if (_reserves.Count > 0)
+        {
+            OverworldEntity reserveMember = _reserves[_selectedIndex];
 
-                DisplayPartyMembers();
-                RefreshReserveList();
-            }
+            if (!reserveMember.IsInParty)
+                _party.AddPartyMember(reserveMember);
+            else
+                _party.RemovePartyMember(reserveMember);
+
+            DisplayPartyMembers();
+            RefreshReserveList();
         }
     }
 
@@ -191,6 +215,7 @@ public partial class PartyEditScreen : HBoxContainer
 
         if (canEmbark)
         {
+            EmptyClick = false;
             DoEmbark?.Invoke(null, true);
         }
         else

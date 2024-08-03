@@ -3,6 +3,7 @@ using AscendedZ.battle;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.entities.enemy_objects;
 using AscendedZ.game_object;
+using AscendedZ.screens.end_screen;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ public partial class BattleEnemyScene : Node2D
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
     private BattleSceneObject _battleSceneObject;
-    private Button _backToHomeButton, _retryFloorButton, _continueButton, _changePartyButton;
     private CenterContainer _endBox;
     private bool _uiUpdating = false;
     private bool _dungeonCrawlEncounter = false;
@@ -30,6 +30,7 @@ public partial class BattleEnemyScene : Node2D
     private TextureRect _skillIcon;
     private HBoxContainer _turnIconContainer;
     private ActionMenu _actionMenu;
+    private EndScreenOptions _endScreenOptions;
     private bool _random, _randomBoss;
 
     public EventHandler BackToHome;
@@ -48,21 +49,13 @@ public partial class BattleEnemyScene : Node2D
         _turnIconContainer = this.GetNode<HBoxContainer>("%TurnIconContainer");
 
         _endBox = this.GetNode<CenterContainer>("%EndBox");
-        _backToHomeButton = this.GetNode<Button>("%BackToHomeBtn");
-        _retryFloorButton = this.GetNode<Button>("%RetryFloorBtn");
-        _continueButton = this.GetNode<Button>("%ContinueBtn");
-        _changePartyButton = this.GetNode<Button>("%ChangePartyBtn");
-
         _actionMenu = this.GetNode<ActionMenu>("%ActionMenu");
-
-        _backToHomeButton.Pressed += _OnBackToHomeBtnPressed;
-        _retryFloorButton.Pressed += _OnRetryFloorBtnPressed;
-        _changePartyButton.Pressed += _OnChangePartyBtnPressed;
-        _continueButton.Pressed += _OnContinueBtnPressed;
+        _endScreenOptions = GetNode<EndScreenOptions>("%EndScreenOptions");
     }
 
-    private async void _OnBackToHomeBtnPressed()
+    private async void _OnBackToHomeBtnPressed(object sender, EventArgs e)
     {
+        _endScreenOptions.CanInput = false;
         if (!_dungeonCrawlEncounter) 
         {
             PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
@@ -86,16 +79,18 @@ public partial class BattleEnemyScene : Node2D
     }
 
 
-    private void _OnRetryFloorBtnPressed()
+    private void _OnRetryFloorBtnPressed(object sender, EventArgs e)
     {
+        _endScreenOptions.CanInput = false;
         SetEndScreenVisibility(false);
         InitializeBattleScene();
     }
 
-    private void _OnContinueBtnPressed()
+    private void _OnContinueBtnPressed(object sender, EventArgs e)
     {
         if (!_dungeonCrawlEncounter) 
         {
+            _endScreenOptions.CanInput = false;
             SetEndScreenVisibility(false);
             PersistentGameObjects.GameObjectInstance().Tier++;
             InitializeBattleScene();
@@ -106,8 +101,10 @@ public partial class BattleEnemyScene : Node2D
         }
     }
 
-    private void _OnChangePartyBtnPressed()
+    private void _OnChangePartyBtnPressed(object sender, EventArgs e)
     {
+        _endScreenOptions.CanInput = false;
+
         var vbox = this.GetNode<VBoxContainer>("%EndVBox");
         vbox.Visible = false;
 
@@ -121,6 +118,7 @@ public partial class BattleEnemyScene : Node2D
         {
             partyChangeScene.QueueFree();
             vbox.Visible = true;
+            _endScreenOptions.CanInput = true;
         };
     }
 
@@ -468,7 +466,8 @@ public partial class BattleEnemyScene : Node2D
     {
         _actionMenu.CanInput = false;
         SetEndScreenVisibility(true);
-
+        _endScreenOptions.Visible = false;
+        _endScreenOptions.CanInput = false;
         Label endLabel = this.GetNode<Label>("%EndOfBattleLabel");
 
         // heal everyone
@@ -481,8 +480,12 @@ public partial class BattleEnemyScene : Node2D
             member.StatusHandler.Clear();
         }
 
+        List<EndScreenItem> options = new List<EndScreenItem>();
+
         if (didPlayerWin)
         {
+            ChangeEndScreenVisibilityOnly(false);
+
             endLabel.Text = "Encounter Complete!";
 
             var gameObject = PersistentGameObjects.GameObjectInstance();
@@ -495,8 +498,7 @@ public partial class BattleEnemyScene : Node2D
 
             if (_dungeonCrawlEncounter)
             {
-                ChangeEndScreenVisibilityOnly(false);
-                GetNode<AudioStreamPlayer>("%ItemSfxPlayer");
+                GetNode<AudioStreamPlayer>("%ItemSfxPlayer").Play();
                 var rewardScene = _rewardScene.Instantiate<RewardScreen>();
                 this.GetTree().Root.AddChild(rewardScene);
 
@@ -509,75 +511,99 @@ public partial class BattleEnemyScene : Node2D
                     rewardScene.InitializeDungeonCrawlEncounterRewards();
 
                 await ToSignal(rewardScene, "tree_exited");
-
-                ChangeEndScreenVisibilityOnly(true);
             }
             else
             {
                 if (gameObject.Tier == gameObject.MaxTier)
                 {
+                    GetNode<AudioStreamPlayer>("%ItemSfxPlayer").Play();
+                    var rewardScene = _rewardScene.Instantiate<RewardScreen>();
+                    this.GetTree().Root.AddChild(rewardScene);
+
                     gameObject.MaxTier++;
                     ChangeEndScreenVisibilityOnly(false);
-                    GetNode<AudioStreamPlayer>("%ItemSfxPlayer");
-                    var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate<RewardScreen>();
-                    this.GetTree().Root.AddChild(rewardScene);
                     rewardScene.InitializeSMTRewards();
                     await ToSignal(rewardScene, "tree_exited");
-
-                    ChangeEndScreenVisibilityOnly(true);
                 }
             }
 
+            ChangeEndScreenVisibilityOnly(true);
+
             // do reward stuff here
-            if(_dungeonCrawlEncounter)
+            if (_dungeonCrawlEncounter)
             {
-                _continueButton.Visible = true;
-                _continueButton.Text = $"Continue exploring...";
-                _backToHomeButton.Visible = false;
+                var continueExploringItem = new EndScreenItem() { ItemText = "Continue exploring..." };
+                continueExploringItem.ItemSelected += _OnContinueBtnPressed;
+                options.Add(continueExploringItem);
             }
             else
             {
                 int currentTier = gameObject.Tier;
                 int tierCap = gameObject.TierCap;
                 int maxTier = gameObject.MaxTier;
-                _continueButton.Visible = (currentTier + 1 < tierCap);
-                if (currentTier + 1 == maxTier + 1)
-                {
-                    _continueButton.Visible = false;
-                }
-                else
-                {
-                    _continueButton.Text = $"Tier {currentTier + 1}";
-                }
 
-                _backToHomeButton.Text = "Leave";
+                var continueToNextTierItem = new EndScreenItem() { ItemText = $"Tier {currentTier + 1}" };
+
+
+                continueToNextTierItem.ItemSelected += _OnContinueBtnPressed;
+
+
+                if (currentTier + 1 < tierCap && currentTier + 1 != maxTier + 1)
+                    options.Add(continueToNextTierItem);
+
+                AddBasicDungeonOptions(options);
             }
         }
         else if (retreated)
         {
             endLabel.Text = "Retreated from battle.";
+            
             if (_dungeonCrawlEncounter)
             {
                 endLabel.Text = "Retreated from dungeon...";
-                _backToHomeButton.Visible = true;
-            } 
+                AddBackToHomeButton(options);
+            }
+            else
+            {
+                AddBasicDungeonOptions(options);
+            }
         }
         else
         {
             endLabel.Text = "You died.";
             if(_dungeonCrawlEncounter)
-                _backToHomeButton.Visible = true;
+                AddBackToHomeButton(options);
         }
 
+        _endScreenOptions.SetItems(options);
+        _endScreenOptions.CanInput = true;
+        _endScreenOptions.Visible = true;
         PersistentGameObjects.Save();
+    }
+
+    private void AddBasicDungeonOptions(List<EndScreenItem> options)
+    {
+        var partyChangeItem = new EndScreenItem() { ItemText = "Party" };
+        var retryItem = new EndScreenItem() { ItemText = "Retry" };
+
+        partyChangeItem.ItemSelected += _OnChangePartyBtnPressed;
+        retryItem.ItemSelected += _OnRetryFloorBtnPressed;
+
+        options.Add(partyChangeItem);
+        options.Add(retryItem);
+        AddBackToHomeButton(options);
+    }
+
+    private void AddBackToHomeButton(List<EndScreenItem> options)
+    {
+        var backToHomeItem = new EndScreenItem() { ItemText = "Leave" };
+        backToHomeItem.ItemSelected += _OnBackToHomeBtnPressed;
+        options.Add(backToHomeItem);
     }
 
     private void SetEndScreenVisibility(bool visible)
     {
         ChangeEndScreenVisibilityOnly(visible);
-
-        if (_continueButton.Visible)
-            _continueButton.Visible = false;
 
         this.GetNode<VBoxContainer>("%PlayerVBoxContainer").Visible = !visible;
         _skillDisplayIcons.Visible = false;
@@ -587,20 +613,7 @@ public partial class BattleEnemyScene : Node2D
     private void ChangeEndScreenVisibilityOnly(bool visible)
     {
         _endBox.Visible = visible;
-
-        if (_dungeonCrawlEncounter)
-        {
-            _retryFloorButton.Visible = false;
-            _backToHomeButton.Visible = false;
-            _changePartyButton.Visible = false;
-        }
-        else
-        {
-            _retryFloorButton.Visible = visible;
-            _backToHomeButton.Visible = visible;
-            _changePartyButton.Visible = visible;
-        }
-
-       
+        _endScreenOptions.Visible = visible;
+        _endScreenOptions.EmptyClick = false;
     }
 }
