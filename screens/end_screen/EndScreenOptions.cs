@@ -14,6 +14,7 @@ public partial class EndScreenOptions : ItemList
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+        FocusExited += () => EmptyClick = false;
         EmptyClicked += (position, mouseButtonIndex) => { EmptyClick = true; };
         ItemClicked += _OnMenuItemClicked;
 	}

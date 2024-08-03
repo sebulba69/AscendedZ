@@ -66,7 +66,7 @@ public partial class ActionMenu : PanelContainer
         // item_clicked
         _actionList.ItemSelected += (long selected) => { _selectedIndex = (int)selected; };
         _actionList.ItemClicked += _OnMenuItemClicked;
-
+        _actionList.FocusExited += () => EmptyClick = false;
         _actionList.EmptyClicked += (vectorPosition, mouseButtonIndex) => { EmptyClick = true; };
     }
 
