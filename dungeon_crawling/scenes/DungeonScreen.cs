@@ -533,11 +533,13 @@ public partial class DungeonScreen : Transitionable2DScene
                 break;
 
             case TileEventId.Fountain:
+                _crawlUI.Visible = false;
                 var fountain = _fountainScene.Instantiate<FountainOfBuce>();
                 _popup.AddChild(fountain);
                 await ToSignal(fountain, "tree_exited");
                 SetCrawlValues();
                 _dungeon.Current.EventTriggered = false;
+                _crawlUI.Visible = true;
                 break;
 
             case TileEventId.Exit:

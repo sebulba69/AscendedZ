@@ -33,7 +33,8 @@ public partial class FountainOfBuce : CenterContainer
 		}
 		else
 		{
-			_morbisLabel.Text = 0.ToString();
+            _morbis = new Morbis() { Amount = 0 };
+            _morbisLabel.Text = 0.ToString();
 		}
 
 		_orbCount.Text = $"Orbs: {_gameObject.Orbs}";
@@ -62,15 +63,22 @@ public partial class FountainOfBuce : CenterContainer
         if (orbs - 3 >= 0)
         {
             _gameObject.Orbs -= 3;
-            var morbis = new Morbis() { Amount = 1 };
+
             if (!currency.ContainsKey(_morbis.Name))
-                currency.Add(_morbis.Name, _morbis);
+            {
+                currency.Add(_morbis.Name, new Morbis() { Amount = 1 });
+                _morbis = currency[_morbis.Name];
+            }
             else
+            {
                 currency[_morbis.Name].Amount++;
+            }
+                
         }
 
         _orbCount.Text = $"Orbs: {_gameObject.Orbs}";
         _morbisLabel.Text = _morbis.Amount.ToString();
+        PersistentGameObjects.Save();
     }
 
 	private void _OnBackButtonPressed()
