@@ -260,7 +260,8 @@ namespace AscendedZ
                     enemy.MaxHP = 1000;
                     enemy.Boost(tier);
                     enemy.Skills.Clear();
-                    enemy.Skills.Add(SkillDatabase.TechDebuff);
+                    enemy.Skills.Add(SkillDatabase.DefDebuff);
+                    enemy.Skills.Add(SkillDatabase.AtkDebuff);
                     encounter.Add(enemy);
                 }
                 else
