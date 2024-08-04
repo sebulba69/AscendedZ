@@ -1,6 +1,7 @@
-using AscendedZ;
 using AscendedZ.battle;
-using AscendedZ.entities;
+using AscendedZ.entities.partymember_objects;
+using AscendedZ.game_object;
+using AscendedZ.screens.back_end_screen_scripts;
 using Godot;
 using System;
 using System.Text;
@@ -24,22 +25,41 @@ public partial class PartyMemberDisplay : HBoxContainer
     public void DisplayPartyMember(int index, bool isReserve)
     {
         OverworldEntity partyMember;
-        
+        var main = PersistentGameObjects.GameObjectInstance().MainPlayer;
+
         if (isReserve)
-            partyMember = PersistentGameObjects.Instance().MainPlayer.ReserveMembers[index];
+            partyMember = main.ReserveMembers[index];
         else
-            partyMember = PersistentGameObjects.Instance().MainPlayer.Party.Party[index];
+            partyMember = main.Party.Party[index];
 
-        if(partyMember != null)
+        if (partyMember != null)
         {
-            _playerPicture.Texture = ResourceLoader.Load<Texture2D>(partyMember.Image);
-
-            StringBuilder description = new StringBuilder();
-            description.AppendLine(partyMember.Name);
-            description.Append(partyMember.ToString());
-
-            _description.Text = description.ToString();
+            ShowRandomEntity(new EntityUIWrapper { Entity = partyMember });
         }
+    }
+
+    public void ShowRandomEntity(EntityUIWrapper wrapper)
+    {
+        var partyMember = wrapper.Entity;
+        _playerPicture.Texture = ResourceLoader.Load<Texture2D>(partyMember.Image);
+
+        StringBuilder description = new StringBuilder();
+        description.AppendLine(partyMember.DisplayName);
+        description.Append(partyMember.ToString().TrimEnd('r', '\n'));
+
+        _description.Text = description.ToString();
+    }
+
+    public void ShowFusionEntity(EntityUIWrapper wrapper) 
+    {
+        var partyMember = wrapper.Entity;
+        _playerPicture.Texture = ResourceLoader.Load<Texture2D>(partyMember.Image);
+
+        StringBuilder description = new StringBuilder();
+        description.AppendLine(partyMember.DisplayName);
+        description.Append(partyMember.GetFusionString().TrimEnd('r', '\n'));
+
+        _description.Text = description.ToString();
     }
 
     public void Clear()

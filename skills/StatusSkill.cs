@@ -6,51 +6,128 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AscendedZ.skills
 {
     public class StatusSkill : ISkill
     {
+        private bool _isRemoveStatusSkill = false;
+
         public SkillId Id => SkillId.Status;
-        public string Name { get; set; }
+        public string BaseName { get; set; }
         public TargetTypes TargetType { get; set; }
         public string StartupAnimation { get; set; }
         public string EndupAnimation { get; set; }
         public string Icon { get; set; }
-
+        public int Level { get; set; }
         public Status Status { get; set; }
+        public List<Status> Statuses { get; set; }
+        public string Name => BaseName;
+        public bool IsCounterDecreaseStatus { get; set; } // for when we just want to decrease the counter on a stat
+        public bool IsRemoveStatusSkill { get => _isRemoveStatusSkill; set => _isRemoveStatusSkill = value; }
 
-        public BattleResult ProcessSkill(BattleEntity target)
+        public StatusSkill()
+        {
+            Level = 1;
+            Statuses = new List<Status>();
+        }
+
+        public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
             BattleResult result = new BattleResult() 
             {
                 SkillUsed = this,
                 Target = target,
-                ResultType = BattleResultType.StatusApplied
+                ResultType = (!IsRemoveStatusSkill) ? BattleResultType.StatusApplied : BattleResultType.StatusRemoved
             };
 
-            target.StatusHandler.AddStatus(target, this.Status);
-
+            if (Statuses.Count == 0)
+                ProcessStatus(target, Status);
+            else
+                foreach (var status in Statuses)
+                    ProcessStatus(target, status);
+                
             return result;
+        }
+
+        private void ProcessStatus(BattleEntity target, Status status)
+        {
+            if (IsRemoveStatusSkill)
+            {
+                target.StatusHandler.RemoveStatus(target, status.Id);
+            }
+            else if (IsCounterDecreaseStatus)
+            {
+                target.StatusHandler.DecreaseStatusCounter(target, status.Id);
+            }
+            else
+            {
+                target.StatusHandler.AddStatus(target, status);
+            }
+        }
+
+        public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
+        {
+            BattleResult all = ProcessSkill(user, targets[0]);
+            
+            all.Target = null;
+            all.Results.Add(all.ResultType);
+
+            for(int i = 1; i < targets.Count; i++)
+            {
+                BattleResult r = ProcessSkill(user, targets[i]);
+                all.Results.Add(r.ResultType);
+            }
+
+            all.Targets.AddRange(targets);
+            return all;
         }
 
         public string GetBattleDisplayString()
         {
-            return $"{this.Name}";
+            return $"{this.BaseName}";
+        }
+
+        public void LevelUp()
+        {
+        }
+
+        public override string ToString()
+        {
+            return GetBattleDisplayString();
+        }
+
+        public string GetUpgradeString()
+        {
+            return $"{GetBattleDisplayString()} [NO UPGRADE]";
+        }
+
+        public string GetAscendedString(int ascendedLevel)
+        {
+            return GetBattleDisplayString();
         }
 
         public ISkill Clone()
         {
-            return new StatusSkill()
+            var statusSkill = new StatusSkill()
             {
-                Name = this.Name,
+                BaseName = this.BaseName,
                 TargetType = this.TargetType,
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon,
-                Status = this.Status
+                IsRemoveStatusSkill = this.IsRemoveStatusSkill,
+                IsCounterDecreaseStatus = IsCounterDecreaseStatus
             };
+
+            if (Status == null)
+                statusSkill.Statuses = new List<Status>(Statuses);
+            else
+                statusSkill.Status = Status.Clone();
+
+            return statusSkill;
         }
     }
 }

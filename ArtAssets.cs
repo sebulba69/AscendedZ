@@ -1,7 +1,12 @@
+
+using AscendedZ.dungeon_crawling.backend;
+using AscendedZ.entities;
 using AscendedZ.skills;
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,15 +14,132 @@ using System.Threading.Tasks;
 
 namespace AscendedZ
 {
+    public class BackgroundAssets
+    {
+        public static List<string> OverworldBgs = new List<string>() 
+        {
+            "res://cg_backgrounds/overworld/01bg00501.jpg",
+            "res://cg_backgrounds/overworld/02bg03401.jpg",
+            "res://cg_backgrounds/overworld/03bg00607.jpg",
+            "res://cg_backgrounds/overworld/04bg00307.jpg",
+            "res://cg_backgrounds/overworld/05bg00404.jpg",
+            "res://cg_backgrounds/overworld/06bg03201.jpg",
+            "res://cg_backgrounds/overworld/07bg00309.jpg",
+            "res://cg_backgrounds/overworld/08bg00502.jpg",
+            "res://cg_backgrounds/overworld/09bg02602.jpg",
+            "res://cg_backgrounds/overworld/10bg01002.jpg"
+        };
+
+        public static List<string> CombatBgs = new List<string>() 
+        {
+            "res://cg_backgrounds/dungeon/01bg03101.jpg",
+            "res://cg_backgrounds/dungeon/02bg02501.jpg",
+            "res://cg_backgrounds/dungeon/03bg02402.jpg",
+            "res://cg_backgrounds/dungeon/04bg02801.jpg",
+            "res://cg_backgrounds/dungeon/05bg00503.jpg",
+            "res://cg_backgrounds/dungeon/06bg01205.jpg",
+            "res://cg_backgrounds/dungeon/07bg02701.jpg",
+            "res://cg_backgrounds/dungeon/08bg03202.jpg",
+            "res://cg_backgrounds/dungeon/09bg03601.jpg",
+            "res://cg_backgrounds/dungeon/10bg00202.jpg"
+        };
+
+        public static List<string> CombatBgsDC = new List<string>() 
+        {
+            "res://cg_backgrounds/dungeon_crawling/bg00701.jpg",
+            "res://cg_backgrounds/dungeon_crawling/bg00701_02.png"
+        };
+
+        private static List<DungeonColorTemplate> _templates = new List<DungeonColorTemplate>() 
+        {
+            new DungeonColorTemplate() { BackgroundString = "", DoorColor = "", LineColor = "" },
+            new DungeonColorTemplate() { BackgroundString = "008b9e", DoorColor = "6b7bff", LineColor = "000000" },
+            new DungeonColorTemplate() { BackgroundString = "ff91fc", DoorColor = "ffffff", LineColor = "000000" },
+            new DungeonColorTemplate() { BackgroundString = "1cb5a9", DoorColor = "7e88b2", LineColor = "000000" },
+        };
+
+        public static string GetBackground(int tier)
+        {
+            int index = Equations.GetTierIndexBy10(tier);
+            if (index >= OverworldBgs.Count)
+                index = OverworldBgs.Count - 1;
+            return OverworldBgs[index];
+        }
+
+        public static string GetCombatBackground(int tier)
+        {
+            int index = Equations.GetTierIndexBy10(tier);
+            return CombatBgs[index];
+        }
+
+        public static string GetCombatDCBackground(int tier)
+        {
+            int index = Equations.GetTierIndexBy50(tier);
+
+            if (index >= CombatBgsDC.Count)
+                index = CombatBgsDC.Count - 1;
+
+            return CombatBgsDC[index];
+        }
+
+        public static DungeonColorTemplate GetCombatDCTileTemplate(int tier)
+        {
+            int index = Equations.GetTierIndexBy25(tier);
+
+            if (index >= _templates.Count)
+                index = _templates.Count - 1;
+
+            return _templates[index];
+        }
+    }
+
     /// <summary>
     /// Quick access to art assets using res paths
     /// </summary>
-    public class ArtAssets
+    public class CharacterImageAssets
+    {
+
+        public static List<string> PlayerPics = new()
+        {
+            "res://player_pics/2.png",
+            "res://player_pics/akagi.png",
+            "res://player_pics/buceyminion.png",
+            "res://player_pics/conker.png",
+            "res://player_pics/skog.png",
+            "res://player_pics/newpicture29.png",
+            "res://player_pics/newpicture37.png",
+            "res://player_pics/newpicture39.png",
+            "res://player_pics/newpicture20.png",
+            "res://player_pics/newpicture19.png",
+            "res://player_pics/newpicture15.png",
+            "res://player_pics/newpicture14.png",
+            "res://player_pics/newpicture8.png",
+            "res://player_pics/newpicture6.png"
+        };
+
+        public static string GetImagePath(string name)
+        {
+            string nameToLower = name.ToLower();
+            return $"res://entity_pics/{nameToLower}.png";
+        }
+
+        public static Texture2D GetTextureForItemList(string imagePath)
+        {
+            Texture2D texture = ResourceLoader.Load<Texture2D>(imagePath);
+
+            Image image = texture.GetImage();
+            image.Resize(32, 32);
+
+            return ImageTexture.CreateFromImage(image);
+        }
+    }
+
+    public class SkillAssets
     {
         // Startups
         public static readonly string STARTUP1_MG = "startup_anim";
 
-        // Effects
+        // Effect Animations
         public static readonly string WIND_T1 = "wind1";
         public static readonly string FIRE_T1 = "fire1";
         public static readonly string ELEC_T1 = "elec1";
@@ -25,13 +147,39 @@ namespace AscendedZ
         public static readonly string LIGHT_T1 = "light1";
         public static readonly string DARK_T1 = "dark1";
 
-        public static readonly string HEAL_T1 = "heal1";
+        public static readonly string WIND_T2 = "wind2";
+        public static readonly string FIRE_T2 = "fire2";
+        public static readonly string ELEC_T2 = "elec2";
+        public static readonly string ICE_T2 = "ice2";
+        public static readonly string LIGHT_T2 = "light2";
+        public static readonly string DARK_T2 = "dark2";
 
+        public static readonly string ICE_BUFF = "ice_buff";
+        public static readonly string ELEC_BUFF = "elec_buff";
+        public static readonly string FIRE_BUFF = "fire_buff";
+        public static readonly string WIND_BUFF = "wind_buff";
+        public static readonly string LIGHT_BUFF = "light_buff";
+        public static readonly string DARK_BUFF = "dark_buff";
+
+        public static readonly string FLAT_BUFF = "flat_buff";
+        public static readonly string FLAT_DEBUFF = "flat_debuff";
+        public static readonly string ATK_BUFF = "atk_buff";
+        public static readonly string TECH_BUFF = "tech_buff";
+
+        public static readonly string HEAL_T1 = "heal1";
+        public static readonly string REVIVE = "revive";
         public static readonly string STUN_T1 = "stun1";
+        public static readonly string AGRO = "agro";
+        public static readonly string POISON = "poison";
+        public static readonly string EYESKILLANIM = "eyeskill";
+        public static readonly string STATUS_RECOVER = "status_recovery";
+        public static readonly string VOID_SHIELD = "void_shield";
+        public static readonly string POISON_ICON = "poison";
 
         // ICONS + ICON_STRINGS
         public static readonly string ICON_ATLAS = "res://misc_icons/IconSet.png";
 
+        // Skill Icons - Elements
         public static readonly string FIRE_ICON = "Fire";
         public static readonly string ICE_ICON = "Ice";
         public static readonly string ELEC_ICON = "Elec";
@@ -39,35 +187,124 @@ namespace AscendedZ
         public static readonly string LIGHT_ICON = "Light";
         public static readonly string DARK_ICON = "Dark";
 
+        // Skill Icons - Voids
+        public static readonly string VOID_FIRE_ICON = "VoidFire";
+        public static readonly string VOID_ICE_ICON = "VoidIce";
+        public static readonly string VOID_WIND_ICON = "VoidWind";
+        public static readonly string VOID_DARK_ICON = "VoidDark";
+        public static readonly string VOID_LIGHT_ICON = "VoidLight";
+        public static readonly string VOID_ELEC_ICON = "VoidElec";
+
+        public static readonly string BEAST_EYE = "BeastEye";
+
+        // Skill Icons - Weaks
+        public static readonly string WEAK_FIRE_ICON = "WeakFire";
+        public static readonly string WEAK_ELEC_ICON = "WeakElec";
+        public static readonly string WEAK_ICE_ICON = "WeakIce";
+        public static readonly string WEAK_DARK_ICON = "WeakDark";
+        public static readonly string WEAK_WIND_ICON = "WeakWind";
+
+        // Skill Icons - Other
         public static readonly string HEAL_ICON = "Heal";
-
         public static readonly string STUN_ICON = "Stun";
-
+        public static readonly string AGRO_ICON = "Agro";
         public static readonly string PASS_ICON = "Pass";
+        public static readonly string GUARD_ICON = "Guard";
         public static readonly string RETREAT_ICON = "Retreat";
 
-        public static readonly string VORPEX_ICON = "Vorpex";
+        public static readonly string MAGIC_ICON = "Magic";
 
-        public static readonly Dictionary<string, KeyValuePair<int, int>> ICONS = new Dictionary<string, KeyValuePair<int, int>>()
+        public static readonly string QUEST_ICON = "Quest";
+
+        // Currency Icons
+        public static readonly string VORPEX_ICON = "Vorpex";
+        public static readonly string PARTY_COIN_ICON = "Party Coins";
+        public static readonly string DELLENCOIN = "Dellencoin";
+        public static readonly string KEY_SHARD = "Key Shard";
+        public static readonly string BOUNTY_KEY = "Bounty Key";
+        public static readonly string MORBIS = "Morbis";
+
+        // Buff Skills
+        public static readonly string TECH_PLUS_ICON = "Tech+";
+        public static readonly string TECH_MINUS_ICON = "Tech-";
+        public static readonly string EVADE_PLUS_ICON = "Evade+";
+        public static readonly string EVADE_MINUS_ICON = "Evade-";
+        public static readonly string ATK_PLUS_ICON = "ATK+";
+        public static readonly string ATK_MINUS_ICON = "ATK-";
+        public static readonly string DEF_PLUS_ICON = "DEF+";
+        public static readonly string DEF_MINUS_ICON = "DEF-";
+
+        // Buff Statuses
+        public static readonly string TECH_STATUS_ICON = "Technicals";
+        public static readonly string EVADE_STATUS_ICON = "Evasions";
+        public static readonly string ATK_STATUS_ICON = "Attack";
+        public static readonly string DEF_STATUS_ICON = "Defense";
+
+
+        // GB Statuses
+
+        public static readonly System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>> ICONS = new System.Collections.Generic.Dictionary<string, KeyValuePair<int, int>>()
         {
-            [FIRE_ICON]   = new KeyValuePair<int, int>(0, 128),
-            [ICE_ICON]    = new KeyValuePair<int, int>(32, 128),
-            [ELEC_ICON]   = new KeyValuePair<int, int>(64, 128),
-            [WIND_ICON]   = new KeyValuePair<int, int>(160, 128),
-            [LIGHT_ICON]  = new KeyValuePair<int, int>(192, 128),
-            [DARK_ICON]   = new KeyValuePair<int, int>(224, 128),
-            [HEAL_ICON]   = new KeyValuePair<int, int>(256, 128),
-            [STUN_ICON]   = new KeyValuePair<int, int>(288, 0),
-            [PASS_ICON] = new KeyValuePair<int, int>(352,128),
-            [RETREAT_ICON] = new KeyValuePair<int, int>(288,576),
-            [VORPEX_ICON] = new KeyValuePair<int, int>(448,1376)
+            [FIRE_ICON] = new KeyValuePair<int, int>(0, 128),
+            [VOID_FIRE_ICON] = new KeyValuePair<int, int>(32, 2144),
+            [VOID_ICE_ICON] = new KeyValuePair<int, int>(224, 2144),
+            [VOID_WIND_ICON] = new KeyValuePair<int, int>(128, 2144),
+            [VOID_LIGHT_ICON] = new KeyValuePair<int, int>(416, 2144),
+            [VOID_DARK_ICON] = new KeyValuePair<int, int>(448, 2144),
+            [VOID_ELEC_ICON] = new KeyValuePair<int, int>(96, 2144),
+            [POISON_ICON] = new KeyValuePair<int, int>(64, 0),
+            [ICE_ICON] = new KeyValuePair<int, int>(32, 128),
+            [ELEC_ICON] = new KeyValuePair<int, int>(64, 128),
+            [WIND_ICON] = new KeyValuePair<int, int>(160, 128),
+            [LIGHT_ICON] = new KeyValuePair<int, int>(192, 128),
+            [DARK_ICON] = new KeyValuePair<int, int>(224, 128),
+            [HEAL_ICON] = new KeyValuePair<int, int>(256, 128),
+            [STUN_ICON] = new KeyValuePair<int, int>(288, 0),
+            [AGRO_ICON] = new KeyValuePair<int, int>(480, 0),
+            [PASS_ICON] = new KeyValuePair<int, int>(352, 128),
+            [GUARD_ICON] = new KeyValuePair<int, int>(32, 160),
+            [RETREAT_ICON] = new KeyValuePair<int, int>(288, 576),
+            [VORPEX_ICON] = new KeyValuePair<int, int>(448, 1376),
+            [PARTY_COIN_ICON] = new KeyValuePair<int, int>(32, 288),
+            [DELLENCOIN] = new KeyValuePair<int, int>(320, 608),
+            [KEY_SHARD] = new KeyValuePair<int, int>(160, 576),
+            [BOUNTY_KEY] = new KeyValuePair<int, int>(96, 384),
+            [MORBIS] = new KeyValuePair<int, int>(416, 1632),
+            [WEAK_FIRE_ICON] = new KeyValuePair<int, int>(32, 1600),
+            [WEAK_ELEC_ICON] = new KeyValuePair<int, int>(96, 1600),
+            [WEAK_ICE_ICON] = new KeyValuePair<int, int>(192, 1600),
+            [WEAK_DARK_ICON] = new KeyValuePair<int, int>(448, 1600),
+            [WEAK_WIND_ICON] = new KeyValuePair<int, int>(128, 1600),
+            [BEAST_EYE] = new KeyValuePair<int, int>(192, 224),
+            [QUEST_ICON] = new KeyValuePair<int, int>(480, 352),
+            [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480),
+            [TECH_STATUS_ICON] = new KeyValuePair<int, int>(416, 480),
+            [EVADE_STATUS_ICON] = new KeyValuePair<int, int>(448, 480),
+            [TECH_PLUS_ICON] = new KeyValuePair<int, int>(160, 64),
+            [TECH_MINUS_ICON] = new KeyValuePair<int, int>(160, 92),
+            [EVADE_PLUS_ICON] = new KeyValuePair<int, int>(192, 64),
+            [EVADE_MINUS_ICON] = new KeyValuePair<int, int>(192, 92),
+            [ATK_PLUS_ICON] = new KeyValuePair<int, int>(64, 64),
+            [ATK_MINUS_ICON] = new KeyValuePair<int, int>(64, 96),
+            [DEF_PLUS_ICON] = new KeyValuePair<int, int>(96, 64),
+            [DEF_MINUS_ICON] = new KeyValuePair<int, int>(96, 96),
+            [ATK_STATUS_ICON] = new KeyValuePair<int, int>(320, 480),
+            [DEF_STATUS_ICON] = new KeyValuePair<int, int>(352, 480),
         };
+
+        public static KeyValuePair<int, int> GetIcon(string key)
+        {
+            if (string.IsNullOrEmpty(key) || !ICONS.ContainsKey(key))
+                throw new Exception($"{key} not present in dictionary.");
+
+            return ICONS[key];
+        }
 
         public static string GetElementIconByElementEnum(Elements element)
         {
             switch (element)
             {
-                case Elements.Fir:
+                case Elements.Fire:
                     return FIRE_ICON;
                 case Elements.Ice:
                     return ICE_ICON;
@@ -84,46 +321,71 @@ namespace AscendedZ
             }
         }
 
-        public static AtlasTexture GenerateIcon(string iconKey)
+        public static string GetAnimationByElementAndTier(int tier, Elements element)
         {
-            KeyValuePair<int, int> coords = ICONS[iconKey];
+            var tier1Animations = new System.Collections.Generic.Dictionary<Elements, string> 
+            { 
+                { Elements.Fire, FIRE_T1 },
+                { Elements.Ice, ICE_T1 },
+                { Elements.Wind, WIND_T1 },
+                { Elements.Elec, ELEC_T1 },
+                { Elements.Dark, DARK_T1 },
+                { Elements.Light, LIGHT_T1 } 
+            };
 
-            AtlasTexture icon = new AtlasTexture();
-            icon.Atlas = ResourceLoader.Load<Texture2D>("res://misc_icons/IconSet.png");
-            icon.Region = new Rect2(coords.Key, coords.Value, 32, 32);
-            icon.SetupLocalToScene();
-            return icon;
+            var tier2Animations = new System.Collections.Generic.Dictionary<Elements, string> 
+            {
+                { Elements.Fire, FIRE_T2 },
+                { Elements.Ice, ICE_T2 },
+                { Elements.Wind, WIND_T2 },
+                { Elements.Elec, ELEC_T2 },
+                { Elements.Dark, DARK_T2 },
+                { Elements.Light, LIGHT_T2 }
+            };
+
+            string animation = string.Empty;
+
+            switch (tier)
+            {
+                case 1:
+                    animation = tier1Animations[element];
+                    break;
+                case 2:
+                    animation = tier2Animations[element];
+                    break;
+                default:
+                    animation = tier1Animations[element];
+                    break;
+            }
+
+            return animation;
         }
 
-        // BGs
-        public static readonly string BG_CART = "res://cg_backgrounds/bg00101.jpg";
-
-        // Player pictures
-        private static List<string> _playerPics = new List<string>();
-
-        public static List<string> PlayerPics
+        public static string GetBuffAnimationByElement(Elements element)
         {
-            get
+            var buffAnimations = new System.Collections.Generic.Dictionary<Elements, string>
             {
-                if( _playerPics.Count == 0)
-                {
-                    using (DirAccess dir = DirAccess.Open("res://player_pics/"))
-                    {
-                        dir.ListDirBegin();
-                        string filename;
-                        while (!string.IsNullOrEmpty(filename = dir.GetNext()))
-                        {
-                            filename = filename.Replace("png.import", "png");
-                            string path = System.IO.Path.Combine(dir.GetCurrentDir(), filename);
-                            _playerPics.Add(path);
-                            filename = dir.GetNext();
-                        }
+                { Elements.Fire, FIRE_BUFF },
+                { Elements.Ice, ICE_BUFF },
+                { Elements.Wind, WIND_BUFF },
+                { Elements.Elec, ELEC_BUFF },
+                { Elements.Dark, DARK_BUFF },
+                { Elements.Light, LIGHT_BUFF }
+            };
 
-                        dir.ListDirEnd();
-                    }
-                }
-                return _playerPics;
-            }
+            return buffAnimations[element];
+        }
+
+        private static readonly Texture2D _atlas = ResourceLoader.Load<Texture2D>("res://misc_icons/IconSet.png");
+
+        public static AtlasTexture GenerateIcon(string iconKey)
+        {
+            KeyValuePair<int, int> coords = GetIcon(iconKey);
+
+            AtlasTexture icon = new AtlasTexture();
+            icon.Atlas = _atlas;
+            icon.Region = new Rect2(coords.Key, coords.Value, 32, 32);
+            return icon;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AscendedZ.entities.battle_entities;
 using AscendedZ.entities.enemy_objects;
 using AscendedZ.skills;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
@@ -15,9 +16,12 @@ namespace AscendedZ.battle.battle_state_machine
     {
         private List<Enemy> _enemies;
         private int _activeEnemy;
+        private bool _firstAction = true;
 
         public void StartState(BattleSceneObject battleSceneObject)
         {
+            _firstAction = true;
+
             _enemies = battleSceneObject.Enemies;
             _activeEnemy = _enemies.FindIndex(enemy => enemy.HP > 0);
 
@@ -28,21 +32,42 @@ namespace AscendedZ.battle.battle_state_machine
         public void _OnDoTurnRequest(object sender, EventArgs e)
         {
             BattleSceneObject battleSceneObject = sender as BattleSceneObject;
+
+            if (battleSceneObject.DidEnemiesWin())
+                return;
+
+            if (_firstAction)
+            {
+                _firstAction = false;
+                battleSceneObject.PostUIUpdate();
+                return;
+            }
+            
             var active = _enemies[_activeEnemy];
 
             BattleResult result = default(BattleResult);
-            ISkill skill = active.GetNextMove(battleSceneObject);
-            BattleEntity target = active.GetNextTarget(battleSceneObject);
+            EnemyAction action = active.GetNextAction(battleSceneObject);
+            ISkill skill = action.Skill;
 
             switch (skill.TargetType)
             {
                 case TargetTypes.SINGLE_OPP:
                 case TargetTypes.SINGLE_TEAM:
-                    result = skill.ProcessSkill(target);
+                case TargetTypes.SELF:
+                    result = skill.ProcessSkill(active, action.Target);
+                    break;
+                case TargetTypes.TEAM_ALL:
+                    var targetEnemies = battleSceneObject.AliveEnemies;
+                    result = skill.ProcessSkill(active, new List<BattleEntity>(targetEnemies));
+                    break;
+                case TargetTypes.OPP_ALL:
+                    var targetPlayers = battleSceneObject.AlivePlayers;
+                    result = skill.ProcessSkill(active, new List<BattleEntity>(targetPlayers));
                     break;
             }
 
             result.User = active;
+
             battleSceneObject.HandlePostTurnProcessing(result);
         }
 

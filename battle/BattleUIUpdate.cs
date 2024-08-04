@@ -16,12 +16,9 @@ namespace AscendedZ.battle
     public class BattleUIUpdate
     {
         private bool _userCanInput = true;
-
-        public List<BattlePlayer> Players { get; set; }
-        public List<Enemy> Enemies { get; set; }
         public BattleResult Result { get; set; }
-        public int CurrentAPBarTurnValue { get; set; }
         public bool UserCanInput { get => _userCanInput; set => _userCanInput = value; }
+        public string LogString { get; set; }
 
     }
 }

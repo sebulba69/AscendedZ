@@ -1,3 +1,4 @@
+using AscendedZ;
 using Godot;
 using System;
 
@@ -7,6 +8,8 @@ public partial class AscendedYesNoWindow : CenterContainer
 	private Button _yesButton;
 	private Button _noButton;
 	private bool _buttonPressed;
+
+	public EventHandler<bool> AnswerSelected;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -26,11 +29,26 @@ public partial class AscendedYesNoWindow : CenterContainer
 		_yesButton = this.GetNode<Button>("%YesButton");
         _noButton = this.GetNode<Button>("%NoButton");
 
+		_yesButton.Text = $"[{Controls.GetControlString(Controls.CONFIRM)}] Yes";
+		_noButton.Text = $"[{Controls.GetControlString(Controls.BACK)}] No";
+
 		_yesButton.Pressed += () => ButtonPressed(true);
 		_noButton.Pressed += () => ButtonPressed(false);
 	}
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed(Controls.CONFIRM))
+		{
+            ButtonPressed(true);
+        }
 
-	public void SetDialogMessage(string message)
+        if (@event.IsActionPressed(Controls.BACK))
+        {
+            ButtonPressed(false);
+        }
+    }
+
+    public void SetDialogMessage(string message)
 	{
 		_popupMessage.Text = message;
 	}
@@ -40,6 +58,8 @@ public partial class AscendedYesNoWindow : CenterContainer
 		_buttonPressed = true;
 
 		this.EmitSignal("AnswerSelected", isYesButton);
-		this.QueueFree();
+		AnswerSelected?.Invoke(null, isYesButton);
+
+        this.QueueFree();
 	}
 }

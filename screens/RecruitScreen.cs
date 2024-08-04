@@ -2,14 +2,19 @@ using AscendedZ;
 using AscendedZ.currency;
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
+using AscendedZ.entities.partymember_objects;
+using AscendedZ.game_object;
 using AscendedZ.skills;
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Reflection;
 
 public partial class RecruitScreen : CenterContainer
 {
+    private int _cost = 1;
+
     /// <summary>
     /// Party members available for recruiting.
     /// </summary>
@@ -34,43 +39,62 @@ public partial class RecruitScreen : CenterContainer
     /// Displays the Talisman the player owns that are relevant to
     /// the selected party member in the vendor list.
     /// </summary>
-    private TextEdit _vorpexCost;
+    private Label _partyCoinCost;
 
     /// <summary>
     /// Available party members the vendor has to offer.
     /// </summary>
     private List<OverworldEntity> _availablePartyMembers;
 
-    private Currency _vorpex;
+    private Currency _partyCoins;
 
     private int _selected;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _availableRecruits = this.GetNode<ItemList>("VBoxContainer/HBoxContainer/VBoxContainer2/PartyMemberList");
+        _availableRecruits = this.GetNode<ItemList>("%PartyMemberList");
         _displayImage = this.GetNode<TextureRect>("VBoxContainer/HBoxContainer/VBoxContainer/CharContainer/CharImageBox");
         _displayName = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/PanelContainer/CenterContainer/CharNameLabel");
         _displayDescription = this.GetNode<Label>("VBoxContainer/HBoxContainer/VBoxContainer/CharDescription/MarginContainer/CharDescriptionBox");
-        _vorpexCost = this.GetNode<TextEdit>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/OwnedTalismans");
+        _partyCoinCost = this.GetNode<Label>("%OwnedTalismans");
 
         Button buyButton = this.GetNode<Button>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/BuyButton");
-        Button backButton = this.GetNode<Button>("VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/BackButton");
 
         buyButton.Pressed += _OnBuyButtonPressed;
-        backButton.Pressed += _OnBackButtonPressed;
+        _availableRecruits.ItemSelected += _OnItemSelected;
+        _partyCoins = PersistentGameObjects.GameObjectInstance().MainPlayer.Wallet.Currency[SkillAssets.PARTY_COIN_ICON];
+        SetShopVendorWares();
+    }
 
-        _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.Instance().MaxTier);
-        _availableRecruits.Connect("item_selected",new Callable(this,"_OnItemSelected"));
+    public void SetOwnedPartyCoin()
+    {
+        _partyCoinCost.Text = $"{_partyCoins.Amount} PC";
+    }
 
-        _vorpex = PersistentGameObjects.Instance().MainPlayer.Wallet.Currency["Vorpex"];
+    public void SetShopVendorWares()
+    {
+        _availablePartyMembers = EntityDatabase.MakeShopVendorWares(PersistentGameObjects.GameObjectInstance().MaxTier);
+        _availablePartyMembers.Reverse();
+
+        int shopLevel = PersistentGameObjects.GameObjectInstance().ShopLevel;
+        for (int i = 0; i < shopLevel; i++)
+        {
+            foreach (var member in _availablePartyMembers) 
+            {
+                member.LevelUp();
+            }
+        }
+
+        _cost = (int)(shopLevel * 1.5) + 1;
+
         RefreshVendorWares(0);
     }
 
-    private void _OnItemSelected(int index)
+    private void _OnItemSelected(long index)
     {
-        _selected = index;
-        DisplayPartyMemberOnScreen(index);
+        _selected = (int)index;
+        DisplayPartyMemberOnScreen(_selected);
     }
 
     private void _OnBuyButtonPressed()
@@ -78,22 +102,25 @@ public partial class RecruitScreen : CenterContainer
         if (_availablePartyMembers.Count == 0)
             return;
 
-        GameObject instance = PersistentGameObjects.Instance();
-        MainPlayer mainPlayer = instance.MainPlayer;
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+        MainPlayer mainPlayer = gameObject.MainPlayer;
 
         OverworldEntity partyMember = _availablePartyMembers[_selected];
 
-        if (_vorpex.Amount >= partyMember.VorpexValue)
+        if (_partyCoins.Amount >= _cost)
         {
             if (mainPlayer.IsPartyMemberOwned(partyMember.Name))
-            {
                 return;
-            }
 
-            _vorpex.Amount -= partyMember.VorpexValue;
+            _partyCoins.Amount -= _cost;
+
             mainPlayer.ReserveMembers.Add(partyMember);
 
             RefreshVendorWares(_selected);
+
+            if(!gameObject.PartyMemberObtained)
+                gameObject.PartyMemberObtained = true;
+
             PersistentGameObjects.Save();
         }
     }
@@ -102,14 +129,14 @@ public partial class RecruitScreen : CenterContainer
     {
         _availableRecruits.Clear();
 
-        MainPlayer mainPlayer = PersistentGameObjects.Instance().MainPlayer;
-        foreach (OverworldEntity p in _availablePartyMembers)
+        MainPlayer mainPlayer = PersistentGameObjects.GameObjectInstance().MainPlayer;
+        foreach(OverworldEntity availablePartyMember in _availablePartyMembers)
         {
             string owned = string.Empty;
-            if (mainPlayer.IsPartyMemberOwned(p.Name))
+            if (mainPlayer.IsPartyMemberOwned(availablePartyMember.Name))
                 owned = " [OWNED]";
 
-            _availableRecruits.AddItem($"{p.Name} - {p.VorpexValue} VC{owned}");
+            _availableRecruits.AddItem($"{availablePartyMember.DisplayName} - {_cost} PC{owned}", CharacterImageAssets.GetTextureForItemList(availablePartyMember.Image));
         }
 
         if(_availablePartyMembers.Count == 0)
@@ -123,20 +150,14 @@ public partial class RecruitScreen : CenterContainer
             DisplayPartyMemberOnScreen(lastSelected);
         }
 
-        _vorpexCost.Text = $"{_vorpex.Amount} VC";
+        _partyCoinCost.Text = $"{_partyCoins.Amount} PC";
     }
 
     private void DisplayPartyMemberOnScreen(int index)
     {
         OverworldEntity member = _availablePartyMembers[index];
         _displayImage.Texture = ResourceLoader.Load<Texture2D>(member.Image);
-        _displayName.Text = member.Name;
+        _displayName.Text = member.DisplayName;
         _displayDescription.Text = member.ToString().TrimEnd('\r','\n');
     }
-
-    private void _OnBackButtonPressed()
-    {
-        this.QueueFree();
-    }
-
 }

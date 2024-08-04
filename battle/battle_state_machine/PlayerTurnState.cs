@@ -24,9 +24,7 @@ namespace AscendedZ.battle.battle_state_machine
             if(_activePlayer >= 0)
             {
                 var active = players[_activePlayer];
-                active.IsActive = true;
-
-                battleSceneObject.ActivePlayer = active;
+                active.IsActiveEntity = true;
                 battleSceneObject.SkillSelected += _OnSkillSelected;
             }
         }
@@ -38,9 +36,12 @@ namespace AscendedZ.battle.battle_state_machine
             var players = battleSceneObject.Players;
             var active = players[_activePlayer];
 
-            BattleResult result = default(BattleResult);
+            BattleResult result = null;
 
             ISkill skill = active.Skills[eventArgs.SkillIndex];
+
+            if(active.StatusHandler.HasStatus(statuses.StatusId.GuardStatus) && skill.Id != SkillId.Pass)
+                active.StatusHandler.RemoveStatus(active, statuses.StatusId.GuardStatus);
 
             // result cannot be null at the end of this function
             switch (skill.TargetType)
@@ -49,22 +50,38 @@ namespace AscendedZ.battle.battle_state_machine
                     // our only available targets are alive enemies
                     var possibleTargets = battleSceneObject.Enemies.FindAll(e => e.HP > 0);
                     var enemy = possibleTargets[eventArgs.TargetIndex];
-                    result = skill.ProcessSkill(enemy);
+                    result = skill.ProcessSkill(active, enemy);
                     break;
                 case TargetTypes.SINGLE_TEAM:
-                    var player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
-                    result = skill.ProcessSkill(player);
+                    BattleEntity player = battleSceneObject.AlivePlayers[eventArgs.TargetIndex];
+                    result = skill.ProcessSkill(active, player);
+                    break;
+                case TargetTypes.SELF:
+                    result = skill.ProcessSkill(active, active);
+                    break;
+                case TargetTypes.SINGLE_TEAM_DEAD:
+                    var deadPlayer = battleSceneObject.DeadPlayers[eventArgs.TargetIndex];
+                    result = skill.ProcessSkill(active, deadPlayer);
+                    break;
+                case TargetTypes.TEAM_ALL:
+                    var targetPlayers = battleSceneObject.AlivePlayers;
+                    result = skill.ProcessSkill(active, new List<BattleEntity>(targetPlayers));
+                    break;
+                case TargetTypes.OPP_ALL:
+                    var targetEnemies = battleSceneObject.AliveEnemies;
+                    result = skill.ProcessSkill(active, new List<BattleEntity>(targetEnemies));
                     break;
             }
 
             result.User = active;
+            
             battleSceneObject.HandlePostTurnProcessing(result);
         }
 
         public void ChangeActiveEntity(BattleSceneObject battleSceneObject)
         {
             var players = battleSceneObject.Players;
-            battleSceneObject.ActivePlayer.IsActive = false;
+            battleSceneObject.ActivePlayer.IsActiveEntity = false;
             do
             {
                 _activePlayer++;
@@ -72,14 +89,13 @@ namespace AscendedZ.battle.battle_state_machine
                     _activePlayer = 0;
             } while (players[_activePlayer].HP == 0 || !players[_activePlayer].CanAttack);
 
-            battleSceneObject.ActivePlayer = players[_activePlayer];
-            battleSceneObject.ActivePlayer.IsActive = true;
+            players[_activePlayer].IsActiveEntity = true;
         }
 
         public void EndState(BattleSceneObject battleSceneObject)
         {
             foreach (var player in battleSceneObject.Players)
-                player.IsActive = false;
+                player.IsActiveEntity = false;
 
             battleSceneObject.SkillSelected -= _OnSkillSelected;
         }

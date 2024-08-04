@@ -10,3 +10,16 @@ C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\Debug\Ascended Z.dll
 C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\Debug\refint\Ascended Z.dll
 C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\Debug\Ascended Z.pdb
 C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\Debug\ref\Ascended Z.dll
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\bin\Debug\Ascended Z.deps.json
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\bin\Debug\Ascended Z.dll
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\bin\Debug\ref\Ascended Z.dll
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\bin\Debug\Ascended Z.pdb
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\Ascended Z.csproj.AssemblyReference.cache
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\Ascended Z.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\Ascended Z.AssemblyInfoInputs.cache
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\Ascended Z.AssemblyInfo.cs
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\Ascended Z.csproj.CoreCompileInputs.cache
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\Ascended Z.dll
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\ref\Ascended Z.dll
+C:\Users\colee\OneDrive\Documents\GitHub\AscendedZ\.godot\mono\temp\obj\Debug\Ascended Z.pdb
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\Debug\Ascended Z.sourcelink.json

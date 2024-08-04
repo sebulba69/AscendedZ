@@ -11,5 +11,6 @@ namespace AscendedZ.battle.battle_state_machine
     {
         public int SkillIndex { get; set; }
         public int TargetIndex { get; set; }
+        public bool DoActivePlayer { get; set; }
     }
 }

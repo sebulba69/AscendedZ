@@ -1,30 +1,27 @@
 ﻿using AscendedZ;
 using AscendedZ.battle;
 using AscendedZ.effects;
-using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
-using AscendedZ.entities.enemy_objects;
 using AscendedZ.statuses;
 using Godot;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using static Godot.HttpRequest;
+
 
 public partial class EntityDisplayBox : PanelContainer
 {
+    private readonly PackedScene _damageNumScene = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM);
+    private readonly PackedScene _statusScene = ResourceLoader.Load<PackedScene>(Scenes.STATUS);
+
     private Sprite2D _effect;
     private AudioStreamPlayer _shakeSfx;
     private Vector2 _originalPosition;
-    private ColorRect _activePlayerTag;
     private HBoxContainer _statuses;
     private Label _resistances;
-
-    private string debugName;
-
+    private Label _hp;
     private float _x;
+
+    private Texture2D _entityImage;
+    private Texture2D _deadImage;
 
     // screen shake
     private ShakeParameters _shakeParameters;
@@ -43,6 +40,11 @@ public partial class EntityDisplayBox : PanelContainer
         _shakeSfx = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
         _statuses = this.GetNode<HBoxContainer>("%Statuses");
         _resistances = this.GetNode<Label>("%ResistanceLabel");
+        _hp = this.GetNode<Label>("%HPLabel");
+        _x = -1;
+        _originalPosition = new Vector2(this.Position.X, 0);
+
+        _deadImage = ResourceLoader.Load<Texture2D>("res://entity_pics/dead_entity.png");
     }
 
     /// <summary>
@@ -61,10 +63,11 @@ public partial class EntityDisplayBox : PanelContainer
         else
         {
             _x = this.Position.X;
+            this.Position = new Vector2(_x, _originalPosition.Y);
         }
     }
 
-    public void InstanceEntity(EntityWrapper wrapper)
+    public void InstanceEntity(EntityWrapper wrapper, bool random=false)
     {
         Label name = this.GetNode<Label>("%NameLabel");
         TextureRect picture = this.GetNode<TextureRect>("%Picture");
@@ -73,9 +76,8 @@ public partial class EntityDisplayBox : PanelContainer
 
         if (wrapper.IsBoss)
         {
-            var enemyEntity = (Enemy)entity;
-            var bossHP = this.GetNode<HBoxContainer>("%HP");
-            bossHP.Call("InitializeBossHPBar", entity.HP);
+            var bossHP = this.GetNode<BossHPBar>("%HP");
+            bossHP.InitializeBossHPBar(entity.HP);
         }
         else
         {
@@ -85,8 +87,22 @@ public partial class EntityDisplayBox : PanelContainer
         }
 
         name.Text = entity.Name;
-        _resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
-        picture.Texture = ResourceLoader.Load<Texture2D>(entity.Image);
+        _hp.Text = $"{entity.HP}/{entity.MaxHP} HP";
+        _resistances.Text = entity.Resistances.GetResistanceString();
+
+        _entityImage = ResourceLoader.Load<Texture2D>(entity.Image);
+        picture.Texture = _entityImage;
+
+        if (random)
+        {
+            var randomized = new RandomNumberGenerator();
+            randomized.Randomize();
+            float hue = randomized.Randf();
+            float saturation = randomized.Randf();
+            float value = picture.SelfModulate.V;
+
+            picture.SelfModulate = Color.FromHsv(hue, saturation, value);
+        }
     }
 
     public void UpdateEntityDisplay(EntityWrapper wrapper)
@@ -97,44 +113,75 @@ public partial class EntityDisplayBox : PanelContainer
         // set HP values
         if (wrapper.IsBoss)
         {
-            var bossHP = this.GetNode<HBoxContainer>("%HP");
-            bossHP.Call("UpdateBossHP", entity.HP);
+            var bossHP = this.GetNode<BossHPBar>("%HP");
+            bossHP.UpdateBossHP(entity.HP);
         }
         else
         {
             var hp = this.GetNode<TextureProgressBar>("%HP");
             hp.Value = entity.HP;
+            TextureRect picture = this.GetNode<TextureRect>("%Picture");
+            if (entity.HP == 0)
+            {
+                picture.Texture = _deadImage;
+            }
+            else
+            {
+                if(picture.Texture != _entityImage)
+                {
+                    picture.Texture = _entityImage;
+                }
+                    
+            }
+
         }
-        _resistances.Text = $"{entity.HP} HP ● {entity.Resistances.GetResistanceString()}";
+        _resistances.Text = entity.Resistances.GetResistanceString();
 
         // ... change active status ... //
         // change active status if it's a player (players have the graphic, enemies don't)
         if (entity.GetType().Equals(typeof(BattlePlayer)))
         {
-            ColorRect activePlayerTag = this.GetNode<ColorRect>("%ActivePlayerTag");
-            if (activePlayerTag.Visible != entity.IsActive)
-                activePlayerTag.Visible = entity.IsActive;
+            
+            TextureRect activePlayerTag = this.GetNode<TextureRect>("%ActivePlayerTag");
+            CenterContainer spacer = this.GetNode<CenterContainer>("%Spacer");
+            if (activePlayerTag.Visible != entity.IsActiveEntity)
+            {
+                activePlayerTag.Visible = entity.IsActiveEntity;
+                spacer.Visible = entity.IsActiveEntity;
+            }
+                
         }
 
+        this.GetNode<Label>("%NameLabel").Text = entity.Name;
+        _hp.Text = $"{entity.HP}/{entity.MaxHP} HP";
 
         // ... show statuses ... //
         // clear old statuses
         foreach (var child in _statuses.GetChildren())
+        {
             _statuses.RemoveChild(child);
+            child.QueueFree();
+        }
 
         // place our new, updated statuses on scren
         var entityStatuses = entity.StatusHandler.Statuses;
+
         foreach (var status in entityStatuses)
         {
             StatusIconWrapper statusIconWrapper = status.CreateIconWrapper();
-            var statusIcon = ResourceLoader.Load<PackedScene>(Scenes.STATUS).Instantiate();
+            var statusIcon = _statusScene.Instantiate();
             _statuses.AddChild(statusIcon);
 
             statusIcon.Call("SetIcon", statusIconWrapper);
         }
     }
 
-    public async void UpdateBattleEffects(BattleEffectWrapper effectWrapper)
+    public void SetDescription(string description)
+    {
+        GetNode<TextureRect>("%Picture").TooltipText = description;
+    }
+
+    public async Task UpdateBattleEffects(BattleEffectWrapper effectWrapper)
     {
         BattleResult result = effectWrapper.Result;
 
@@ -153,6 +200,7 @@ public partial class EntityDisplayBox : PanelContainer
             else
             {
                 string endupAnimationString = result.SkillUsed.EndupAnimation;
+               
                 bool isHPGainedFromMove = (result.ResultType == BattleResultType.HPGain || result.ResultType == BattleResultType.Dr);
 
                 if (!string.IsNullOrEmpty(endupAnimationString))
@@ -163,32 +211,26 @@ public partial class EntityDisplayBox : PanelContainer
                 if((int)(result.ResultType) < (int)BattleResultType.StatusApplied)
                 {
                     // play damage sfx
-                    if (!isHPGainedFromMove)
+                    if (!isHPGainedFromMove && result.HPChanged > 0)
                     {
                         _shakeParameters.ShakeValue = _shakeParameters.ShakeStrength;
                         _shakeSfx.Play();
                     }
    
                     // play damage number
-                    var dmgNumber = ResourceLoader.Load<PackedScene>(Scenes.DAMAGE_NUM).Instantiate();
-                    dmgNumber.Call("SetDisplayInfo", result.HPChanged, isHPGainedFromMove, result.GetResultString());
+                    var dmgNumber = _damageNumScene.Instantiate<DamageNumber>();
+                    dmgNumber.SetDisplayInfo(result.HPChanged, isHPGainedFromMove, result.GetResultString());
 
                     CenterContainer effectContainer = this.GetNode<CenterContainer>("%EffectContainer");
-                    effectContainer.AddChild(dmgNumber);
+                    CallDeferred("add_child", dmgNumber);
                 }
             }
         }
-
-        // for some reason, we can't seem to emit the signal if we don't await at least once in this thread
-        // this seems to be a Godot quirk, not sure why this is the case
-        await Task.Delay(100);
-        this.EmitSignal("EffectPlayed");
     }
 
     private async Task PlayEffect(string effectName)
     {
         _effect.Visible = true;
-
         _effect.Call("PlayAnimation", effectName);
         await ToSignal(_effect, "EffectAnimationCompletedEventHandler");
 

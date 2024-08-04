@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.currency.rewards
 {
-    public partial class Vorpex : Currency
+    public class Vorpex : Currency
     {
         public Vorpex()
         {
-            this.Name = "Vorpex";
-            this.Icon = ArtAssets.VORPEX_ICON;
+            Name = SkillAssets.VORPEX_ICON;
+            Icon = Name;
         }
     }
 }

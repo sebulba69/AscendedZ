@@ -1,4 +1,3 @@
-using AscendedZ.entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,22 +17,70 @@ namespace AscendedZ.entities.partymember_objects
             set { _party = value; }
         }
 
+        public int Count
+        {
+            get
+            {
+                int count = 0;
+
+                foreach (var member in Party)
+                    if (member != null)
+                        count++;
+
+                return count;
+            }
+        }
+
+        public int Max { get => MAX; }
+
         public PlayerParty()
         {
             _party = new OverworldEntity[MAX];
         }
 
-        /// <summary>
-        /// Swap party members between slots.
-        /// This function should only be used during battle.
-        /// </summary>
-        /// <param name="slot1"></param>
-        /// <param name="slot2"></param>
-        public void SwapSlots(int slot1, int slot2)
+        public void RefreshPartyMember(OverworldEntity entity)
         {
-            OverworldEntity party1 = _party[slot1];
-            _party[slot1] = _party[slot2];
-            _party[slot2] = party1;
+            for(int i = 0; i < _party.Length; i++)
+            {
+                if (_party[i] != null && _party[i].Name.Equals(entity.Name))
+                {
+                    _party[i] = entity;
+                    break;
+                }
+            }
+        }
+
+        public void AddPartyMember(OverworldEntity entity)
+        {
+            if(Count < MAX)
+            {
+                int index = 0;
+
+                for (int i = 0; i < _party.Length; i++)
+                {
+                    if (_party[i] == null)
+                    {
+                        index = i;
+                        break;
+                    }    
+                }
+
+                entity.IsInParty = true;
+                _party[index] = entity;
+            }
+        }
+
+        public void RemovePartyMember(OverworldEntity entity)
+        {
+            for (int i = 0; i < _party.Length; i++)
+            {
+                if (_party[i] != null && _party[i].Name.Equals(entity.Name))
+                {
+                    entity.IsInParty = false;
+                    _party[i] = null;
+                    break;
+                }
+            }
         }
     }
 }

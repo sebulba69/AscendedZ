@@ -15,8 +15,10 @@ namespace AscendedZ.entities.battle_entities
     /// </summary>
     public class BattlePlayer : BattleEntity
     {
-        public BattlePlayer():base() 
+
+        public BattlePlayer(): base() 
         {
+            Type = EntityType.Player;
             this.Turns = 1;
         }
     }

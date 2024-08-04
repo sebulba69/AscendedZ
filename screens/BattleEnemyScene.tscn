@@ -1,41 +1,49 @@
-[gd_scene load_steps=7 format=3 uid="uid://cny06xgd6sspg"]
+[gd_scene load_steps=11 format=3 uid="uid://b3mtohsramppe"]
 
-[ext_resource type="Texture2D" uid="uid://c5xd4it2pk7uq" path="res://cg_backgrounds/bg03101.jpg" id="1"]
+[ext_resource type="Texture2D" uid="uid://c5xd4it2pk7uq" path="res://cg_backgrounds/dungeon/01bg03101.jpg" id="1"]
 [ext_resource type="Script" path="res://screens/BattleEnemyScene.cs" id="2"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="3"]
+[ext_resource type="PackedScene" uid="uid://bad6j156d7tuk" path="res://screens/EnemyBattleDisplayBox.tscn" id="4_8lmgp"]
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="4_38pxl"]
-[ext_resource type="StyleBox" uid="uid://cvsncu8rjllh" path="res://screens/APBarStyleBox.tres" id="4_vputq"]
+[ext_resource type="Texture2D" uid="uid://car4hgrdysj7x" path="res://turn_icons/turn_backdrop.png" id="5_4jwes"]
+[ext_resource type="PackedScene" uid="uid://cunu4gha5vlbk" path="res://screens/end_screen/EndScreenOptions.tscn" id="8_1nvtd"]
+[ext_resource type="PackedScene" uid="uid://b8adwqax888v1" path="res://screens/ActionMenu.tscn" id="8_cr1uv"]
+[ext_resource type="AudioStream" uid="uid://q25xxaiw4e1c" path="res://effects/effect_sounds/Item1.ogg" id="8_halw0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtn52"]
 atlas = ExtResource("4_38pxl")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(160, 128, 32, 32)
 
 [node name="BattleEnemyScene" type="Node2D"]
 script = ExtResource("2")
 
 [node name="Background" type="TextureRect" parent="."]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(1920, 1080)
 offset_right = 1511.0
 offset_bottom = 850.0
 texture = ExtResource("1")
 expand_mode = 1
 
 [node name="EnemyMargins" type="MarginContainer" parent="Background"]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_left = -87.0
+offset_right = 87.0
+offset_bottom = 330.0
 grow_horizontal = 2
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 120
 
 [node name="EnemyContainer" type="CenterContainer" parent="Background/EnemyMargins"]
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/EnemyMargins/EnemyContainer"]
 layout_mode = 2
-theme_override_constants/separation = 7
+theme_override_constants/separation = 45
 
 [node name="CenterContainer" type="CenterContainer" parent="Background/EnemyMargins/EnemyContainer/VBoxContainer"]
 layout_mode = 2
@@ -45,6 +53,9 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
+
+[node name="CharacterCtrlNode2" parent="Background/EnemyMargins/EnemyContainer/VBoxContainer/CenterContainer/EnemyContainerBox" instance=ExtResource("4_8lmgp")]
+layout_mode = 2
 
 [node name="SkillDisplayIcons" type="PanelContainer" parent="Background/EnemyMargins/EnemyContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -70,134 +81,98 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 22
 
-[node name="PlayerMargins" type="MarginContainer" parent="Background"]
+[node name="PlayerVBoxContainer" type="VBoxContainer" parent="Background"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -250.0
-offset_top = -197.0
-offset_right = 250.0
+offset_left = -459.0
+offset_top = -667.0
+offset_right = 460.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_bottom = 50
+alignment = 1
 
-[node name="PlayerContainer" type="CenterContainer" parent="Background/PlayerMargins"]
+[node name="TextureRect" type="TextureRect" parent="Background/PlayerVBoxContainer"]
+self_modulate = Color(1, 1, 1, 0.380392)
+texture_filter = 2
+custom_minimum_size = Vector2(704, 110)
+layout_mode = 2
+size_flags_vertical = 8
+texture = ExtResource("5_4jwes")
+
+[node name="TurnIconContainer" type="HBoxContainer" parent="Background/PlayerVBoxContainer/TextureRect"]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer"]
-layout_mode = 2
-
-[node name="CenterContainer2" type="CenterContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="PartyPortraits" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/CenterContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="APContainer" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 20)
-layout_mode = 2
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -566.5
+offset_right = 566.5
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer"]
+[node name="PlayerMargins" type="MarginContainer" parent="Background/PlayerVBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_bottom = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 2
-
-[node name="APLabel" type="Label" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer"]
+[node name="PlayerStuff" type="HBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 16
-text = "AP
-"
+size_flags_vertical = 4
+theme_override_constants/separation = 75
+alignment = 1
 
-[node name="MarginContainer2" type="MarginContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer/HBoxContainer"]
+[node name="PlayerParty" type="VBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff"]
+unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+alignment = 1
 
-[node name="APBar" type="ProgressBar" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/APContainer/HBoxContainer/MarginContainer2"]
+[node name="PartyPortraits" type="HBoxContainer" parent="Background/PlayerVBoxContainer/PlayerMargins/PlayerStuff/PlayerParty"]
+unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="ActionMenu" parent="Background/PlayerVBoxContainer" instance=ExtResource("8_cr1uv")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-theme_override_styles/fill = ExtResource("4_vputq")
-value = 100.0
-show_percentage = false
-
-[node name="SkillBox" type="CenterContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox"]
-layout_mode = 2
-
-[node name="StuffPanel" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer"]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SkillsList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(250, 125)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
-
-[node name="TargetList" type="ItemList" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/h_separation = 19
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 16
-
-[node name="Skill" type="Button" parent="Background/PlayerMargins/PlayerContainer/VBoxContainer/SkillBox/VBoxContainer/StuffPanel/PanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 20
-text = "Skill"
+mouse_filter = 2
 
 [node name="EndBox" type="CenterContainer" parent="Background"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 2
 custom_minimum_size = Vector2(1511, 850)
 layout_mode = 0
-offset_right = 1511.0
-offset_bottom = 850.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
+mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background/EndBox"]
-layout_mode = 2
-
-[node name="EndOfBattleLabel" type="Label" parent="Background/EndBox/VBoxContainer"]
+[node name="EndVBox" type="VBoxContainer" parent="Background/EndBox"]
 unique_name_in_owner = true
+texture_filter = 2
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="EndOfBattleLabel" type="Label" parent="Background/EndBox/EndVBox"]
+unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
@@ -206,36 +181,14 @@ theme_override_font_sizes/font_size = 120
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BattleEnded" type="CenterContainer" parent="Background/EndBox/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Background/EndBox/VBoxContainer/BattleEnded"]
-layout_mode = 2
-theme_override_constants/separation = 17
-
-[node name="BackToHomeBtn" type="Button" parent="Background/EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
+[node name="EndScreenOptions" parent="Background/EndBox/EndVBox" instance=ExtResource("8_1nvtd")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 80
-text = "Retreat"
-
-[node name="RetryFloorBtn" type="Button" parent="Background/EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 80
-text = "Retry"
-
-[node name="ContinueBtn" type="Button" parent="Background/EndBox/VBoxContainer/BattleEnded/HBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3")
-theme_override_font_sizes/font_size = 80
-text = "Proceed"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -12.5
+
+[node name="ItemSfxPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_halw0")
+volume_db = -10.0

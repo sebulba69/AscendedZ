@@ -16,14 +16,28 @@ namespace AscendedZ.entities
     /// </summary>
     public class MainPlayer : Entity
     {
-        public Wallet Wallet { get; set; } = new();
-        public PlayerParty Party { get; set; } = new(); 
+        public Wallet Wallet { get; set; }
+        public PlayerParty Party { get; set; }
 
         /// <summary>
         /// Reserve party members not in battle.
         /// </summary>
         public List<OverworldEntity> ReserveMembers { get; set; } = new();
 
+        public MainPlayer()
+        {
+            if (Wallet == null)
+                Wallet = new Wallet();
+
+            if (Party == null)
+                Party = new PlayerParty();
+        }
+
+        /// <summary>
+        /// Check if a party member is in your red  serves/party by name.
+        /// </summary>
+        /// <param name="partyMemberName"></param>
+        /// <returns></returns>
         public bool IsPartyMemberOwned(string partyMemberName)
         {
             bool isPartyMemberOwned = false;

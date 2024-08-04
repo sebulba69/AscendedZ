@@ -1,4 +1,5 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.battle.battle_state_machine;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.resistances;
 using AscendedZ.skills;
@@ -17,7 +18,6 @@ namespace AscendedZ.entities.enemy_objects.bosses
         private int _currentScript;
 
         private const int STUN = 3;
-        private Random _rng;
 
         private ISkill _pickedSkill;
         private BattlePlayer _stunnedPlayer;
@@ -31,55 +31,67 @@ namespace AscendedZ.entities.enemy_objects.bosses
         {
             _isBoss = true;
 
-            Name = "Harbinger, Mangler of Legs";
+            Name = EnemyNames.Harbinger;
 
-            MaxHP = 30;
-            Image = "res://enemy_pics/newpicture125.png";
+            MaxHP = EntityDatabase.GetBossHP(Name);
+            Image = CharacterImageAssets.GetImagePath(Name);
 
             Resistances = new ResistanceArray();
 
-            Resistances.CreateResistance(ResistanceType.Wk, Elements.Wind);
+            Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
 
-            Skills.Add(SkillDatabase.ELEC_1.Clone()); // 0
-            Skills.Add(SkillDatabase.ICE_1.Clone()); // 1
-            Skills.Add(SkillDatabase.DARK_1.Clone()); // 2
-            Skills.Add(SkillDatabase.STUN_1.Clone()); // 3
+            Skills.Add(SkillDatabase.Elec1.Clone()); // 0
+            Skills.Add(SkillDatabase.Ice1.Clone()); // 1
+            Skills.Add(SkillDatabase.Dark1.Clone()); // 2
+            Skills.Add(SkillDatabase.Stun.Clone()); // 3
 
             _currentMove = 0;
             _currentScript = 0;
-
-            _rng = new Random();
             Turns = 2;
         }
 
-        public override ISkill GetNextMove(BattleSceneObject battleSceneObject)
+        public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)
+        {
+            return new EnemyAction
+            {
+                Skill = GetNextMove(battleSceneObject),
+                Target = GetNextTarget(battleSceneObject)
+            };
+        }
+
+        public ISkill GetNextMove(BattleSceneObject battleSceneObject)
         {
             _pickedSkill = this.Skills[_rng.Next(STUN)];
-            if (_currentScript == 0)
+
+            if(battleSceneObject.AlivePlayers.Count > 1)
             {
-                _pickedSkill = this.Skills[_currentMove];
-            }
-            else
-            {
-                if (_currentMove < 2)
+                if (_currentScript == 0)
                 {
-                    // at this point someone has the stun status
-                    _stunnedPlayer = battleSceneObject.AlivePlayers.Find(p => p.StatusHandler.HasStatus(StatusId.StunStatus));
-                    if (_stunnedPlayer != null)
+                    _pickedSkill = this.Skills[_currentMove];
+                }
+                else
+                {
+                    if (_currentMove < 2)
                     {
-                        for (int i = 0; i < STUN; i++)
+                        // at this point someone has the stun status
+                        _stunnedPlayer = battleSceneObject.AlivePlayers.Find(p => p.StatusHandler.HasStatus(StatusId.StunStatus));
+                        if (_stunnedPlayer != null)
                         {
-                            var element = (ElementSkill)this.Skills[i];
-                            if (_stunnedPlayer.Resistances.IsWeakToElement(element.Element))
+                            for (int i = 0; i < STUN; i++)
                             {
-                                _pickedSkill = element;
-                                break;
+                                var element = (ElementSkill)this.Skills[i];
+                                if (_stunnedPlayer.Resistances.IsWeakToElement(element.Element))
+                                {
+                                    _pickedSkill = element;
+                                    break;
+                                }
                             }
                         }
                     }
                 }
+                _currentMove++;
             }
-            _currentMove++;
+
             return _pickedSkill;
         }
 
@@ -88,7 +100,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
         /// </summary>
         /// <param name="gameState"></param>
         /// <returns></returns>
-        public override BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
+        public BattleEntity GetNextTarget(BattleSceneObject battleSceneObject)
         {
             var alivePlayers = battleSceneObject.AlivePlayers;
             if(_currentScript == 0)
@@ -104,28 +116,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
             }
             else
             {
-                // cm is 1 off on this one
-                if(_currentMove <= 2 && _stunnedPlayer != null)
-                {
-                    return _stunnedPlayer;
-                }
-                else
-                {
-                    var possibleTargets = new List<BattlePlayer>();
-                    if(_stunnedPlayer != null)
-                    {
-                        foreach(var alive in alivePlayers)
-                        {
-                            if (!alive.Equals(_stunnedPlayer))
-                                possibleTargets.Add(alive);
-                        }
-                    }
-
-                    if(possibleTargets.Count > 0)
-                        return GetWeaknessPlayerOrLowestHPPlayer(possibleTargets);
-                    else
-                        return GetWeaknessPlayerOrLowestHPPlayer(alivePlayers);
-                }
+                return GetWeaknessPlayerOrLowestHPPlayer(alivePlayers);
             }
         }
 
@@ -171,14 +162,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
         public override void ResetEnemyState()
         {
             _currentMove = 0;
-            if(_currentScript == 0)
-            {
-                _currentScript = 1;
-            }
-            else
-            {
-                _currentScript = 0;
-            }
+            _currentScript = 0;
             _pickedSkill = null;
             _stunnedPlayer = null;
         }

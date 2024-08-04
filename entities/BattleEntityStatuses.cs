@@ -26,6 +26,8 @@ namespace AscendedZ.entities
 
         public void Clear()
         {
+            foreach (var status in _statuses)
+                status.ClearStatus();
             _statuses.Clear();
         }
 
@@ -34,17 +36,20 @@ namespace AscendedZ.entities
             return _statuses.FindAll(status => status.Id == id).Count > 0;
         }
 
+        public Status GetStatus(StatusId id)
+        {
+            return _statuses.Find(status => status.Id == id);
+        }
+
         public void AddStatus(BattleEntity entity, Status status)
         {
             bool inList = false;
-            foreach(Status s in _statuses)
+
+            var s = GetStatus(status.Id);
+            if (s != null)
             {
-                if(s.Id == status.Id)
-                {
-                    s.ApplyStatus();
-                    inList = true;
-                    break;
-                }
+                s.IncreaseStatusCounter();
+                inList = true;
             }
 
             if (!inList)
@@ -53,6 +58,26 @@ namespace AscendedZ.entities
                 statusToAdd.ActivateStatus(entity);
                 _statuses.Add(statusToAdd);
             }
+        }
+
+        public void DecreaseStatusCounter(BattleEntity entity, StatusId id) 
+        {
+            var s = GetStatus(id);
+            if (s != null)
+            {
+                s.DecreaseStatusCounter();
+            }
+        }
+
+        public void RemoveStatus(BattleEntity entity, StatusId id)
+        {
+            var s = GetStatus(id);
+            if (s != null)
+            {
+                s.ClearStatus();
+                _statuses.Remove(s);
+            }
+                
         }
 
         public void ApplyBattleResult(BattleResult result)
@@ -70,17 +95,27 @@ namespace AscendedZ.entities
                     _statuses.Remove(status);
         }
 
-        public void UpdateStatusTurns(BattleEntity entity)
+        public void UpdateStatusTurns(BattleEntity entity, bool isNextTurnEntity)
         {
             List<Status> removeStatus = new List<Status>();
 
             foreach (Status s in _statuses)
             {
-                s.UpdateStatusTurns(entity);
+                if (isNextTurnEntity)
+                {
+                    if(s.UpdateDuringOwnersTurn)
+                        s.UpdateStatusTurns(entity);
+                }
+                else
+                {
+                    if(!s.UpdateDuringOwnersTurn)
+                        s.UpdateStatusTurns(entity);
+                }
+
                 if (s.RemoveStatus)
                 {
                     removeStatus.Add(s);
-                } 
+                }
             }
 
             foreach (Status s in removeStatus)

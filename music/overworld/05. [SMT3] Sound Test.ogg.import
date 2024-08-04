@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cb3f0nvjsy0wd"
+path="res://.godot/imported/05. [SMT3] Sound Test.ogg-6adc71f64ac0aaa6ebfd83298bee0b63.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/overworld/05. [SMT3] Sound Test.ogg"
+dest_files=["res://.godot/imported/05. [SMT3] Sound Test.ogg-6adc71f64ac0aaa6ebfd83298bee0b63.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=84.33
+bpm=0.0
+beat_count=0
+bar_beats=4

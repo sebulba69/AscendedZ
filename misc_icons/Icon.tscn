@@ -1,26 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqmfi0ome6yn4"]
+[gd_scene load_steps=5 format=3 uid="uid://bqmfi0ome6yn4"]
 
 [ext_resource type="Texture2D" uid="uid://h3thol0m40p1" path="res://misc_icons/IconSet.png" id="1_j6xfy"]
 [ext_resource type="Script" path="res://misc_icons/Icon.cs" id="2_36r1l"]
-[ext_resource type="Shader" path="res://misc_icons/IconOutline.gdshader" id="2_m6qps"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ybyo"]
-shader = ExtResource("2_m6qps")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 1.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8kx40"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0m76"]
-resource_local_to_scene = true
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmds6"]
 atlas = ExtResource("1_j6xfy")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(352, 480, 32, 32)
 
-[node name="Icon" type="CenterContainer"]
+[node name="Icon" type="TextureRect"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_8kx40")
 custom_minimum_size = Vector2(48, 48)
+texture = SubResource("AtlasTexture_rmds6")
 script = ExtResource("2_36r1l")
-
-[node name="IconSprite" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-material = SubResource("ShaderMaterial_0ybyo")
-scale = Vector2(1.5, 1.5)
-texture = SubResource("AtlasTexture_w0m76")
-centered = false

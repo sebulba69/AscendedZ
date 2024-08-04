@@ -1,0 +1,10 @@
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\bin\ExportRelease\win-x64\Ascended Z.deps.json
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\bin\ExportRelease\win-x64\Ascended Z.dll
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportRelease\win-x64\Ascended Z.csproj.AssemblyReference.cache
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportRelease\win-x64\Ascended Z.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportRelease\win-x64\Ascended Z.AssemblyInfoInputs.cache
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportRelease\win-x64\Ascended Z.AssemblyInfo.cs
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportRelease\win-x64\Ascended Z.csproj.CoreCompileInputs.cache
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportRelease\win-x64\Ascended Z.dll
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportRelease\win-x64\refint\Ascended Z.dll
+C:\Users\Cole\Documents\Ascended Z\.godot\mono\temp\obj\ExportRelease\win-x64\ref\Ascended Z.dll

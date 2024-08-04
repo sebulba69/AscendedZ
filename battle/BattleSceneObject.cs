@@ -2,6 +2,7 @@
 using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.entities.enemy_objects;
+using AscendedZ.game_object;
 using AscendedZ.skills;
 using Godot;
 using System;
@@ -34,33 +35,43 @@ namespace AscendedZ.battle
         private IBattleState[] _states = new IBattleState[] { new PlayerTurnState(), new EnemyTurnState() }; 
         private IBattleState _currentState;
         private TurnState _turnState;
+        private int _turnCount;
+        private int _tier;
 
         public List<BattlePlayer> Players { get; set; } = new();
         public List<Enemy> Enemies { get; set; } = new();
         public PressTurn PressTurn { get; set; } = new();
         public TurnState TurnState { get => _turnState; }
-        public BattlePlayer ActivePlayer { get; set; }
-
+        public BattlePlayer ActivePlayer { get => Players.Find(p => p.IsActiveEntity); }
         public List<BattlePlayer> AlivePlayers { get => Players.FindAll(p => p.HP > 0); }
-        public BattleSceneObject()
+        public List<BattlePlayer> DeadPlayers { get => Players.FindAll(p => p.HP == 0); }
+        public List<Enemy> AliveEnemies { get => Enemies.FindAll(e => e.HP > 0); }
+        public int TurnCount { get => _turnCount; }
+
+        public BattleSceneObject(int tier)
         {
+            _tier = tier;
             _currentState = _states[PLAYER_STATE];
             _turnState = TurnState.PLAYER;
+            _turnCount = 1;
         }
 
         /// <summary>
         /// This function is only called once at the start of the battle.
         /// It kicks off our state machine.
         /// </summary>
-        public void InitializePartyMembers()
+        public void InitializePartyMembers(List<BattlePlayer> players)
         {
-            this.Players = PersistentGameObjects.Instance().MakeBattlePlayerListFromParty();
+            this.Players = players;
             this.SetPartyMemberTurns();
         }
 
-        public void InitializeEnemies(int tier)
+        public void InitializeEnemies(int tier, bool dungeonCrawlEncounter, bool random = false, bool isRandomBoss = false)
         {
-            this.Enemies = EntityDatabase.MakeBattleEncounter(tier);
+            if(random)
+                Enemies = EntityDatabase.MakeRandomEnemyEncounter(tier, isRandomBoss);
+            else
+                Enemies = EntityDatabase.MakeBattleEncounter(tier, dungeonCrawlEncounter);
         }
 
         /// <summary>
@@ -80,21 +91,19 @@ namespace AscendedZ.battle
         {
             UpdateUI?.Invoke(this, new BattleUIUpdate()
             {
-                Enemies = this.Enemies,
-                Players = this.Players,
-                CurrentAPBarTurnValue = this.PressTurn.Turns,
                 UserCanInput = (_turnState == TurnState.PLAYER),
                 Result = result
             });
         }
 
-        private bool debug = false;
         public void SetPartyMemberTurns()
         {
             // it looks stupid, but C# doesn't natively recognize that a list of Players/Enemies are Battle Entities.
             SetEntityTurns(
                 new List<BattleEntity>(this.Players),
                 new List<BattleEntity>(this.Enemies));
+
+            this.PostUIUpdate();
         }
 
         public void SetupEnemyTurns()
@@ -118,14 +127,12 @@ namespace AscendedZ.battle
 
             // we want to update the turn count on the people who last acted
             foreach (var entity in previousEntities)
-                entity.StatusHandler.UpdateStatusTurns(entity);
+                entity.StatusHandler.UpdateStatusTurns(entity, false);
 
-            this.PressTurn.Turns = turns * 2;
+            foreach (var entity in turnEntities)
+                entity.StatusHandler.UpdateStatusTurns(entity, true);
 
-            if (this.PressTurn.Turns == 0)
-            {
-                this.PostUIUpdate();
-            }
+            this.PressTurn.SetTurns(turns);
         }
 
         public void HandlePostTurnProcessing(BattleResult result)
@@ -181,6 +188,10 @@ namespace AscendedZ.battle
             {
                 _turnState = TurnState.PLAYER;
                 _currentState = _states[PLAYER_STATE];
+
+                _turnCount++;
+                if (_turnCount >= int.MaxValue - 1)
+                    _turnCount = int.MaxValue - 1;
             }
             _currentState.StartState(this);
         }

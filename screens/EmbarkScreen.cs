@@ -1,247 +1,136 @@
 using AscendedZ;
-using AscendedZ.entities;
+using AscendedZ.battle.battle_state_machine;
+using AscendedZ.battle;
 using AscendedZ.entities.partymember_objects;
+using AscendedZ.game_object;
 using Godot;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using static Godot.WebSocketPeer;
 
 /// <summary>
 /// This class is focused on managing Reserve Party members.
 /// How the UI displays characters *in* the party is handled in InPartyMemberContainer.cs.
 /// </summary>
-public partial class EmbarkScreen : CenterContainer
+public partial class EmbarkScreen : TextureRect
 {
     private Label _tierLabel;
-    private PartyMemberDisplay _reservePreviewMember;
-    private ItemList _reserveItemList;
-   
-    // party buttons
-    private List<PartyMemberDisplay> _partyMemberDisplayNodes;
-    private List<Button> _buttons;
-    private bool[] _buttonStates;
+    private PartyEditScreen _partyEditScreen;
+    private Button _endlessDungeonBtn, _labrybuceBtn;
 
-    List<OverworldEntity> _reserves;
-    private PlayerParty _party;
-    private int _selected;
+    public bool Embark { get; set; }
+
+    public bool DungeonCrawling { get => _partyEditScreen.DungeonCrawling; }
 
     public override void _Ready()
     {
-        _party = PersistentGameObjects.Instance().MainPlayer.Party;
-        _selected = 0;
+        AddUserSignal("CloseEmbarkScreen");
 
-        _reserves = PersistentGameObjects.Instance().MainPlayer.ReserveMembers;
-
-        _partyMemberDisplayNodes = new List<PartyMemberDisplay>();
-        _buttons = new List<Button>();
-        _buttonStates = new bool[] { false, false, false, false };
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
 
         _tierLabel = this.GetNode<Label>("%TierLabel");
-        _reservePreviewMember = this.GetNode<PartyMemberDisplay>("%Preview");
-        _reserveItemList = this.GetNode<ItemList>("%InReserveMembers");
 
+        Texture = ResourceLoader.Load<Texture2D>(BackgroundAssets.GetBackground(gameObject.MaxTier));
+
+        Button leftTier = this.GetNode<Button>("%LeftTierBtn");
+        Button rightBtn = this.GetNode<Button>("%RightTierBtn");
+        Button left10Btn = this.GetNode<Button>("%LeftTier10Btn");
+        Button right10Btn = this.GetNode<Button>("%RightTier10Btn");
+        _endlessDungeonBtn = this.GetNode<Button>("%EndlessDungeonBtn");
+        _labrybuceBtn = this.GetNode<Button>("%LabribuceBtn");
+
+        _labrybuceBtn.Visible = (gameObject.MaxTier >= 10);
+
+        gameObject.Tier = gameObject.MaxTier;
+        gameObject.TierDC = gameObject.MaxTierDC;
         string tierText = "Dungeon Floor:";
-        PersistentGameObjects.Instance().Tier = PersistentGameObjects.Instance().MaxTier;
-        _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().MaxTier}";
+
+        _tierLabel.Text = $"{tierText} {PersistentGameObjects.GameObjectInstance().MaxTier}";
 
         // on click events
-        Button leftTier = this.GetNode<Button>("%LeftTierBtn");
-        leftTier.Pressed += () => 
+        left10Btn.Pressed += () => 
         {
-            PersistentGameObjects.Instance().Tier--;
-            _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().Tier}";
+            for (int i = 0; i < 10; i++)
+                _OnLeftBtnPressed();
         };
+
+        right10Btn.Pressed += () =>
+        {
+            for (int i = 0; i < 10; i++)
+                _OnRightBtnPressed();
+        };
+
+        leftTier.Pressed += _OnLeftBtnPressed;
+        rightBtn.Pressed += _OnRightBtnPressed;
         
-        Button rightBtn = this.GetNode<Button>("%RightTierBtn");
-        rightBtn.Pressed += () => 
-        {
-            PersistentGameObjects.Instance().Tier++;
-            _tierLabel.Text = $"{tierText} {PersistentGameObjects.Instance().Tier}"; 
-        };
+        _labrybuceBtn.Pressed += _OnLabrybuceButtonPressed;
+        _endlessDungeonBtn.Pressed += _OnEndlessDungeonButtonPressed;
 
-        _reserveItemList.Connect("item_selected",new Callable(this,"_OnItemSelected"));
-
-        Button embarkButton = this.GetNode<Button>("%EmbarkButton");
-        Button backButton = this.GetNode<Button>("%BackButton");
-        Button pm1button = this.GetNode<Button>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer/PM1Button");
-        Button pm2button = this.GetNode<Button>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer2/PM2Button");
-        Button pm3button = this.GetNode<Button>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer3/PM3Button");
-        Button pm4button = this.GetNode<Button>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer4/PM4Button");
-
-        PartyMemberDisplay pm1 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer/PM1");
-        PartyMemberDisplay pm2 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer2/PM2");
-        PartyMemberDisplay pm3 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer3/PM3");
-        PartyMemberDisplay pm4 = this.GetNode<PartyMemberDisplay>("VBoxContainer/HBoxContainer/InPartyMembers/CenterContainer/InPartyMemberContainer/HBoxContainer4/PM4");
-
-        embarkButton.Pressed += _OnEmbarkPressed;
-        backButton.Pressed += _OnBackButtonClicked;
-
-        pm1button.Pressed += _OnButton1Pressed;
-        pm2button.Pressed += _OnButton2Pressed;
-        pm3button.Pressed += _OnButton3Pressed;
-        pm4button.Pressed += _OnButton4Pressed;
-
-        _partyMemberDisplayNodes.Add(pm1);
-        _partyMemberDisplayNodes.Add(pm2);
-        _partyMemberDisplayNodes.Add(pm3);
-        _partyMemberDisplayNodes.Add(pm4);
-
-        _buttons.Add(pm1button);
-        _buttons.Add(pm2button);
-        _buttons.Add(pm3button);
-        _buttons.Add(pm4button);
-
-        // display all party members we may have added last time we were in this UI
-        for (int i = 0; i < _party.Party.Length; i++)
-        {
-            // display pre-existing party members
-            if(_party.Party[i] != null)
-                DisplayPartyMemberAtIndex(i);
-        }
-        RefreshReserveList();
+        _partyEditScreen = this.GetNode<PartyEditScreen>("%PartyEditScreen");
+        _partyEditScreen.DoEmbark += _OnEmbarkPressed;
     }
 
-    private void RefreshReserveList()
+    private void _OnEmbarkPressed(object sender, bool embarkPressed)
     {
-        _reserveItemList.Clear();
+        Embark = embarkPressed;
+        Visible = false;
+        EmitSignal("CloseEmbarkScreen");
+    }
 
-        foreach (OverworldEntity member in _reserves)
+    private void _OnLabrybuceButtonPressed()
+    {
+        var gameObject = PersistentGameObjects.GameObjectInstance();
+        _endlessDungeonBtn.Disabled = false;
+        _labrybuceBtn.Disabled = true;
+
+        SetTierText(gameObject.TierDC);
+        _partyEditScreen.DungeonCrawling = true;
+    }
+
+    private void _OnEndlessDungeonButtonPressed()
+    {
+        var gameObject = PersistentGameObjects.GameObjectInstance();
+        _endlessDungeonBtn.Disabled = true;
+        _labrybuceBtn.Disabled = false;
+        SetTierText(gameObject.Tier);
+        _partyEditScreen.DungeonCrawling = false;
+    }
+
+    private void _OnLeftBtnPressed()
+    {
+        var gameObject = PersistentGameObjects.GameObjectInstance();
+        if (_labrybuceBtn.Disabled) 
         {
-            _reserveItemList.AddItem(member.Name);
+            gameObject.TierDC--;
+            SetTierText(gameObject.TierDC);
         }
-
-        int totalReserves = _reserveItemList.ItemCount;
-        // show first reserves as default
-        if (totalReserves > 0)
+        else 
         {
-            if (_selected == totalReserves)
-                _selected = totalReserves - 1;
+            gameObject.Tier--;
+            SetTierText(gameObject.Tier);
+        }
+    }
 
-            _reserveItemList.Select(_selected);
-            DisplayPreviewMember(_selected);
+    private void _OnRightBtnPressed() 
+    {
+        var gameObject = PersistentGameObjects.GameObjectInstance();
+        if (_labrybuceBtn.Disabled)
+        {
+            gameObject.TierDC++;
+            SetTierText(gameObject.TierDC);
         }
         else
         {
-            _reservePreviewMember.Call("Clear");
-        }
-
-        this.GetNode<Label>("%Tooltip").Text = "Create a party and ascend the Dungeon Tiers.";
-    }
-
-    private void _OnItemSelected(int index)
-    {
-        _selected = index;
-        DisplayPreviewMember(_selected);
-    }
-
-    private void _OnEmbarkPressed()
-    {
-        bool canEmbark = false;
-
-        foreach(OverworldEntity member in _party.Party)
-        {
-            if(member != null)
-                canEmbark = true;
-        }
-
-        if (canEmbark)
-        {
-            this.GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate());
-
-            // notify parent too
-            this.QueueFree();
-        }
-        else
-        {
-            this.GetNode<Label>("%Tooltip").Text = "You need to have at least 1 Party Member equipped to Embark.";
+            gameObject.Tier++;
+            SetTierText(gameObject.Tier);
         }
     }
 
-    private void DisplayPreviewMember(int index)
+    private void SetTierText(int tier)
     {
-        _reservePreviewMember.Call("DisplayPartyMember", index, true);
+        string tierText = (!_labrybuceBtn.Disabled) ? "Dungeon Floor:" : "Labrybuce Sector:";
+        _tierLabel.Text = $"{tierText} {tier}";
     }
 
-    private void _OnBackButtonClicked()
-    {
-        this.QueueFree();
-    }
-
-    private void _OnButton1Pressed()
-    {
-        ChangeButtonTextState(0);
-    }
-
-    private void _OnButton2Pressed()
-    {
-        ChangeButtonTextState(1);
-    }
-
-    private void _OnButton3Pressed()
-    {
-        ChangeButtonTextState(2);
-    }
-
-    private void _OnButton4Pressed()
-    {
-        ChangeButtonTextState(3);
-    }
-
-    private void ChangeButtonTextState(int index)
-    {
-        bool buttonState = !_buttonStates[index];
-
-        PlayerParty party = PersistentGameObjects.Instance().MainPlayer.Party;
-        OverworldEntity member = party.Party[index];
-
-        // left if true, right if false
-        if (buttonState)
-        {
-            // we have a free space open
-            if (member == null && _reserves.Count > 0)
-            {
-                OverworldEntity reserveMember = _reserves[_selected];
-
-                // take the selected reserve member
-                if (reserveMember != null)
-                {
-                    _reserves.RemoveAt(_selected);
-                    _party.Party[index] = reserveMember;
-                    DisplayPartyMemberAtIndex(index);
-                    RefreshReserveList();
-                }
-            }
-            else
-            {
-                _buttonStates[index] = false;
-            }
-        }
-        else
-        {
-            if (member != null)
-            {
-                _buttons[index].Text = ">";
-                _buttonStates[index] = false;
-
-                // mark the member as not being in the party
-                _reserves.Add(member);
-
-                _partyMemberDisplayNodes[index].Call("Clear");
-
-                party.Party[index] = null;
-
-                RefreshReserveList();
-            }
-        }
-
-    }
-
-    private void DisplayPartyMemberAtIndex(int index)
-    {
-        // we only want to change the text if we're provided a party member
-        // so we do it here and not below
-        _buttons[index].Text = "<";
-        _buttonStates[index] = true;
-        _partyMemberDisplayNodes[index].Call("DisplayPartyMember", index, false);
-    }
 }

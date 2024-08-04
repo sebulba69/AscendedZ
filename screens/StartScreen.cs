@@ -1,15 +1,19 @@
 using AscendedZ;
 using AscendedZ.currency.rewards;
 using AscendedZ.entities;
+using AscendedZ.game_object;
+using AscendedZ.screens;
 using Godot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Xml.Linq;
 
-public partial class StartScreen : Node2D
+public partial class StartScreen : Transitionable2DScene
 {
+	private readonly string VERSION = "Pre-Alpha v0.04.54";
 
 	/// <summary>
 	/// Node that appears on the starting screen.
@@ -47,28 +51,35 @@ public partial class StartScreen : Node2D
 	public override void _Ready()
 	{
 		_mainTitleLabel = this.GetNode<Label>("%MainAscendedLabel");
+		Label versionLabel = this.GetNode<Label>("%VersionLabel");
 
 		// set nodes we'll cycle between based on button clicks
-		_startingButtons = this.GetNode<HBoxContainer>("CenterContainer/VBoxContainer/StartingButtons");
-		_newGameControls = this.GetNode<HBoxContainer>("CenterContainer/VBoxContainer/NewGameButtons");
-		_loadGameControls = this.GetNode<HBoxContainer>("CenterContainer/VBoxContainer/LoadingButtons");
+		_startingButtons = this.GetNode<HBoxContainer>("%StartingButtons");
+		_newGameControls = this.GetNode<HBoxContainer>("%NewGameButtons");
+		_loadGameControls = this.GetNode<HBoxContainer>("%LoadingButtons");
 
 		// buttons from start screen
-		Button newGameButton = this.GetNode<Button>("CenterContainer/VBoxContainer/StartingButtons/GridContainer/NewGameButton");
-		Button loadGameButton = this.GetNode<Button>("CenterContainer/VBoxContainer/StartingButtons/GridContainer/LoadGameButton");
+		Button newGameButton = this.GetNode<Button>("%NewGameButton");
+		Button loadGameButton = this.GetNode<Button>("%LoadGameButton");
+		Button settingsButton = this.GetNode<Button>("%SettingsButton");
+		Button quitGameButton = this.GetNode<Button>("%QuitGameButton");
 
-		newGameButton.Connect("pressed",new Callable(this,"_OnNewGameButtonPressed"));
-		loadGameButton.Connect("pressed",new Callable(this,"_OnLoadScreenButtonClicked"));
+		newGameButton.Pressed += _OnNewGameButtonPressed;
+        loadGameButton.Pressed += _OnLoadScreenButtonClicked;
+		settingsButton.Pressed += _OnSettingsButtonPressed;
+        quitGameButton.Pressed += () => { this.GetTree().Quit(); };
+
+        versionLabel.Text = VERSION;
 
 		// assets from newGameScreen
 		_pictureIndex = 0;
-		_playerPicture = this.GetNode<TextureRect>("CenterContainer/VBoxContainer/NewGameButtons/NewPlayerPicture");
-		_playerPicture.Texture = ResourceLoader.Load<Texture2D>(ArtAssets.PlayerPics[_pictureIndex]);
+		_playerPicture = this.GetNode<TextureRect>("%NewPlayerPicture");
+		_playerPicture.Texture = ResourceLoader.Load<Texture2D>(CharacterImageAssets.PlayerPics[_pictureIndex]);
 
-		Button newGameBackButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/VBoxContainer/GoBackButton");
-		Button ascendButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/VBoxContainer/StartNGButton");
-		Button leftButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/LeftButton");
-		Button rightButton = this.GetNode<Button>("CenterContainer/VBoxContainer/NewGameButtons/RightButton");
+		Button newGameBackButton = this.GetNode<Button>("%GoBackButton");
+		Button ascendButton = this.GetNode<Button>("%StartNGButton");
+		Button leftButton = this.GetNode<Button>("%LeftButton");
+		Button rightButton = this.GetNode<Button>("%RightButton");
 
 		newGameBackButton.Pressed += _OnNewGameBackButtonPressed;
 		ascendButton.Pressed += _OnAscendButtonPressed;
@@ -76,14 +87,14 @@ public partial class StartScreen : Node2D
 		rightButton.Pressed += _OnPlayerPicRightButtonPressed;
 
         // assets from loadGameScreen
-        var gameObject = PersistentGameObjects.Instance();
+        var saveObject = PersistentGameObjects.SaveObjectInstance();
 
-		_loadItems = this.GetNode<ItemList>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/ItemList");
-		Button loadContinueButton = this.GetNode<Button>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/GridContainer/LoadContButton");
-		Button loadBackButton = this.GetNode<Button>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/GridContainer/LoadBackButton");
-		Button loadDeleteButton = this.GetNode<Button>("CenterContainer/VBoxContainer/LoadingButtons/VBoxContainer/GridContainer/LoadDeleteButton");
+		_loadItems = this.GetNode<ItemList>("%ItemList");
+		Button loadContinueButton = this.GetNode<Button>("%LoadContButton");
+		Button loadBackButton = this.GetNode<Button>("%LoadBackButton");
+		Button loadDeleteButton = this.GetNode<Button>("%LoadDeleteButton");
 
-		foreach (var item in gameObject.SaveCache)
+		foreach (var item in saveObject.SaveCache)
 			_loadItems.AddItem(item.ToString());
 
 		if(_loadItems.ItemCount > 0)
@@ -92,11 +103,25 @@ public partial class StartScreen : Node2D
 		loadContinueButton.Pressed += _OnLoadSaveFileClicked;
 		loadBackButton.Pressed += _OnLoadGameBackButtonPressed;
 		loadDeleteButton.Pressed += _OnLoadDeleteButtonPressed;
+
+		if(!PersistentGameObjects.SettingsSet())
+			SetSettings();
     }
 
-	private void _OnPlayerPicLeftButtonPressed()
+	private void SetSettings()
 	{
-		List<string> pictures = ArtAssets.PlayerPics;
+        var settings = PersistentGameObjects.Settings();
+        if (settings == null)
+        {
+			PersistentGameObjects.SaveSettings();
+        }
+        settings = PersistentGameObjects.Settings();
+        settings.SetSettings();
+    }
+
+    private void _OnPlayerPicLeftButtonPressed()
+	{
+		List<string> pictures = CharacterImageAssets.PlayerPics;
 
 		_pictureIndex--;
 		if (_pictureIndex < 0)
@@ -106,9 +131,22 @@ public partial class StartScreen : Node2D
 		_playerPicture.Texture = ResourceLoader.Load<Texture2D>(pictures[_pictureIndex]);
 	}
 
+	private async void _OnSettingsButtonPressed()
+	{
+        _startingButtons.Visible = false;
+
+		var settings = ResourceLoader.Load<PackedScene>(Scenes.SETTINGS).Instantiate<SettingsScreen>();
+
+		GetNode<VBoxContainer>("%VBoxContainer").AddChild(settings);
+
+		await ToSignal(settings, "tree_exited");
+
+        _startingButtons.Visible = true;
+    }
+
 	private void _OnPlayerPicRightButtonPressed()
 	{
-		List<string> pictures = ArtAssets.PlayerPics;
+		List<string> pictures = CharacterImageAssets.PlayerPics;
 
 		_pictureIndex++;
 		if (_pictureIndex == pictures.Count)
@@ -147,7 +185,7 @@ public partial class StartScreen : Node2D
 		TextEdit playerName = this.GetNode<TextEdit>("CenterContainer/VBoxContainer/NewGameButtons/VBoxContainer/PanelContainer/TextEdit");
 		TextureRect playerPicture = this.GetNode<TextureRect>("CenterContainer/VBoxContainer/NewGameButtons/NewPlayerPicture");
 
-		CreateNewMainCharacter(playerName.Text, playerPicture.Texture.ResourcePath);
+        PersistentGameObjects.NewGame(playerName.Text, playerPicture.Texture.ResourcePath);
 
 		// start cutscene
 		PackedScene openingCutscene = ResourceLoader.Load<PackedScene>(Scenes.CUTSCENE);
@@ -156,6 +194,9 @@ public partial class StartScreen : Node2D
 		var instancedCutscene = openingCutscene.Instantiate();
 		this.GetTree().Root.AddChild(instancedCutscene);
 
+		var streamPlayer = this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer");
+		streamPlayer.Stream = ResourceLoader.Load<AudioStream>(MusicAssets.FIRST_CUTSCENE);
+		streamPlayer.Play();
 		instancedCutscene.Call("StartCutscene", DialogScenes.Opening);
 		await ToSignal(instancedCutscene, "CutsceneEndedEventHandler");
 
@@ -163,40 +204,18 @@ public partial class StartScreen : Node2D
 		EnterMainScreen();
 	}
 
-	private void CreateNewMainCharacter(string name, string imagePath)
-	{
-		// grab a reference to our persistent game object
-		GameObject gameObject = PersistentGameObjects.Instance();
-
-        gameObject.MainPlayer = new MainPlayer()
-		{
-			Name = name,
-			Image = imagePath
-		};
-
-		Vorpex vorpex = new Vorpex() { Amount = 1 };
-
-        gameObject.MainPlayer
-			.Wallet.Currency.Add(vorpex.Name, vorpex);
-
-		gameObject.Tier = 1;
-		gameObject.MaxTier = 1;
-
-        PersistentGameObjects.SaveNew();
-	}
-
 	private void _OnLoadSaveFileClicked()
 	{
-		var persistentGameObject = PersistentGameObjects.Instance();
+		var saveObject = PersistentGameObjects.SaveObjectInstance();
 
-		if (persistentGameObject.SaveCache.Count > 0)
+		if (saveObject.SaveCache.Count > 0)
 		{
             if (_loadItems.GetSelectedItems().Length == 0)
                 return;
 
             // There can only be one selected item at a time.
             int selectedIndex = _loadItems.GetSelectedItems()[0];
-			var entry = persistentGameObject.SaveCache[selectedIndex];
+			var entry = saveObject.SaveCache[selectedIndex];
 
 			// load the selected entry into memory
 			PersistentGameObjects.Load(entry);
@@ -222,9 +241,9 @@ public partial class StartScreen : Node2D
 	{
 		if (isYesButtonPressed)
 		{
-            var persistentGameObject = PersistentGameObjects.Instance();
+            var saveObject = PersistentGameObjects.SaveObjectInstance();
 
-            if (persistentGameObject.SaveCache.Count > 0)
+            if (saveObject.SaveCache.Count > 0)
             {
                 if (_loadItems.GetSelectedItems().Length == 0)
                     return;
@@ -234,7 +253,7 @@ public partial class StartScreen : Node2D
                 PersistentGameObjects.DeleteSaveAtIndex(selectedIndex);
 
                 _loadItems.Clear();
-                foreach (var item in persistentGameObject.SaveCache)
+                foreach (var item in saveObject.SaveCache)
                     _loadItems.AddItem(item.ToString());
 
                 if (_loadItems.ItemCount > 0)
@@ -247,8 +266,6 @@ public partial class StartScreen : Node2D
 
     private void EnterMainScreen()
 	{
-		PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
-		this.GetTree().Root.AddChild(mainScreenScene.Instantiate());
-		this.QueueFree();
+		TransitionScenes(Scenes.MAIN, this.GetNode<AudioStreamPlayer>("%AudioStreamPlayer"));
 	}
 }

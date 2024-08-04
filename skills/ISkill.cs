@@ -18,14 +18,18 @@ namespace AscendedZ.skills
         /// Id is for deserialization
         /// </summary>
         SkillId Id { get; }
-        string Name { get; set; }
+        string Name { get; }
+        string BaseName { get; set; }
         TargetTypes TargetType { get; set; }
         string StartupAnimation { get; set; }
         string EndupAnimation { get; set; }
         string Icon { get; set; }
-        BattleResult ProcessSkill(BattleEntity target);
+        int Level { get; set; }
+        BattleResult ProcessSkill(BattleEntity user, BattleEntity target);
+        BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets);
         string GetBattleDisplayString();
-
+        void LevelUp();
+        string GetUpgradeString();
         ISkill Clone();
     }
 }

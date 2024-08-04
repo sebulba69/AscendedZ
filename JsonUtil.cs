@@ -50,8 +50,13 @@ namespace AscendedZ
 
         private static void SaveJSONString(string json, string path)
         {
+            
             using (var gdFile = FileAccess.Open(path, FileAccess.ModeFlags.Write))
             {
+                if(gdFile == null)
+                {
+                    throw new Exception($"Failed to open file at {path}");
+                }
                 gdFile.StoreString(json);
                 gdFile.Close();
             }

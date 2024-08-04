@@ -1,42 +1,39 @@
-using AscendedZ;
+﻿using AscendedZ;
 using AscendedZ.battle;
-using AscendedZ.battle.battle_state_machine;
-using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.entities.enemy_objects;
-using AscendedZ.skills;
-using AscendedZ.statuses;
+using AscendedZ.game_object;
+using AscendedZ.screens.end_screen;
 using Godot;
-using Godot.Collections;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using static Godot.HttpRequest;
-using static Godot.WebSocketPeer;
+
 
 public partial class BattleEnemyScene : Node2D
 {
-    private bool _canInput;
+    private readonly PackedScene _partyScreen = ResourceLoader.Load<PackedScene>(Scenes.PARTY_CHANGE);
+    private readonly PackedScene _partyBox = ResourceLoader.Load<PackedScene>(Scenes.PARTY_BOX);
+    private readonly PackedScene _enemyBox = ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX);
+    private readonly PackedScene _turnIcons = ResourceLoader.Load<PackedScene>(Scenes.TURN_ICONS);
+    private readonly PackedScene _rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS);
 
     private HBoxContainer _partyMembers;
     private HBoxContainer _enemyMembers;
     private PanelContainer _skillDisplayIcons;
     private BattleSceneObject _battleSceneObject;
-    private ProgressBar _ap;
-    private Button _skillButton;
-    private Button _backToHomeButton, _retryFloorButton, _continueButton;
-    private ItemList _skillList;
-    private ItemList _targetList;
     private CenterContainer _endBox;
     private bool _uiUpdating = false;
-
+    private bool _dungeonCrawlEncounter = false;
     private Label _skillName;
-    private Label _apLabel;
     private TextureRect _skillIcon;
+    private HBoxContainer _turnIconContainer;
+    private ActionMenu _actionMenu;
+    private EndScreenOptions _endScreenOptions;
+    private bool _random, _randomBoss;
+
+    public EventHandler BackToHome;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -49,152 +46,191 @@ public partial class BattleEnemyScene : Node2D
 
         _partyMembers = this.GetNode<HBoxContainer>("%PartyPortraits");
         _enemyMembers = this.GetNode<HBoxContainer>("%EnemyContainerBox");
-        _ap = this.GetNode<ProgressBar>("%APBar");
-        _apLabel = this.GetNode<Label>("%APLabel");
-
-        _skillList = this.GetNode<ItemList>("%SkillsList");
-        _targetList = this.GetNode<ItemList>("%TargetList");
-        _skillButton = this.GetNode<Button>("%Skill");
+        _turnIconContainer = this.GetNode<HBoxContainer>("%TurnIconContainer");
 
         _endBox = this.GetNode<CenterContainer>("%EndBox");
-        _backToHomeButton = this.GetNode<Button>("%BackToHomeBtn");
-        _retryFloorButton = this.GetNode<Button>("%RetryFloorBtn");
-        _continueButton = this.GetNode<Button>("%ContinueBtn");
+        _actionMenu = this.GetNode<ActionMenu>("%ActionMenu");
+        _endScreenOptions = GetNode<EndScreenOptions>("%EndScreenOptions");
+    }
 
-        _skillButton.Pressed += _OnSkillButtonPressed;
-        _skillList.Connect("item_selected", new Callable(this, "_OnSkillListItemSelected"));
-
-        AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
-        PersistentGameObjects.Instance().SetStreamPlayer(audioPlayer);
-
-        _backToHomeButton.Pressed += () =>
+    private async void _OnBackToHomeBtnPressed(object sender, EventArgs e)
+    {
+        _endScreenOptions.CanInput = false;
+        if (!_dungeonCrawlEncounter) 
         {
             PackedScene mainScreenScene = ResourceLoader.Load<PackedScene>(Scenes.MAIN);
+            var transition = ResourceLoader.Load<PackedScene>(Scenes.TRANSITION).Instantiate<SceneTransition>();
+            AddChild(transition);
+            transition.PlayFadeIn();
+            await ToSignal(transition.Player, "animation_finished");
             this.GetTree().Root.AddChild(mainScreenScene.Instantiate());
-            this.QueueFree();
-        };
-
-        _retryFloorButton.Pressed += () =>
+            transition.PlayFadeOut();
+            await ToSignal(transition.Player, "animation_finished");
+            transition.QueueFree();
+            QueueFree();
+            
+        }
+        else
         {
-            SetEndScreenVisibility(false);
-            InitializeBattleScene();
-        };
+            BackToHome?.Invoke(this, null);
+        }
 
-        _continueButton.Pressed += () =>
-        {
-            SetEndScreenVisibility(false);
-            PersistentGameObjects.Instance().Tier++;
-            InitializeBattleScene();
-        };
+        this.QueueFree();
+    }
 
+
+    private void _OnRetryFloorBtnPressed(object sender, EventArgs e)
+    {
+        _endScreenOptions.CanInput = false;
+        SetEndScreenVisibility(false);
         InitializeBattleScene();
     }
 
-    public override void _Input(InputEvent @event)
+    private void _OnContinueBtnPressed(object sender, EventArgs e)
     {
-        if (!_canInput)
-            return;
-
-        if (@event.IsActionPressed("skill_up"))
+        if (!_dungeonCrawlEncounter) 
         {
-            if (_skillList.GetSelectedItems().Length > 0)
-            {
-                int upIndex = _skillList.GetSelectedItems()[0];
-                upIndex--;
-                if (upIndex < 0)
-                    upIndex = 0;
-                _skillList.Select(upIndex);
-                UpdateTargetList();
-            } 
+            _endScreenOptions.CanInput = false;
+            SetEndScreenVisibility(false);
+            PersistentGameObjects.GameObjectInstance().Tier++;
+            InitializeBattleScene();
         }
-
-        if (@event.IsActionPressed("skill_down"))
+        else
         {
-            if (_skillList.GetSelectedItems().Length > 0)
-            {
-                int downIndex = _skillList.GetSelectedItems()[0];
-                downIndex++;
-                if (downIndex >= _skillList.ItemCount)
-                    downIndex = _skillList.ItemCount - 1;
-                _skillList.Select(downIndex);
-                UpdateTargetList();
-            }
-        }
-
-        if (@event.IsActionPressed("target_up"))
-        {
-            if (_targetList.GetSelectedItems().Length > 0)
-            {
-                int upIndex = _targetList.GetSelectedItems()[0];
-                upIndex--;
-                if (upIndex < 0)
-                    upIndex = 0;
-                _targetList.Select(upIndex);
-            }
-        }
-
-        if (@event.IsActionPressed("target_down"))
-        {
-            if (_targetList.GetSelectedItems().Length > 0)
-            {
-                int downIndex = _targetList.GetSelectedItems()[0];
-                downIndex++;
-                if (downIndex >= _targetList.ItemCount)
-                    downIndex = _targetList.ItemCount - 1;
-                _targetList.Select(downIndex);
-            }
-        }
-
-        if (@event.IsActionPressed("use_skill"))
-        {
-            if(!_skillButton.Disabled)
-                _OnSkillButtonPressed();
+            QueueFree();
         }
     }
 
-    private void InitializeBattleScene()
+    private void _OnChangePartyBtnPressed(object sender, EventArgs e)
     {
+        _endScreenOptions.CanInput = false;
+
+        var vbox = this.GetNode<VBoxContainer>("%EndVBox");
+        vbox.Visible = false;
+
+        var partyChangeScene = _partyScreen.Instantiate<PartyEditScreen>();
+
+        _endBox.AddChild(partyChangeScene);
+
+        partyChangeScene.DisableEmbarkButton();
+
+        partyChangeScene.DoEmbark += (sender, args) => 
+        {
+            partyChangeScene.QueueFree();
+            vbox.Visible = true;
+            _endScreenOptions.CanInput = true;
+        };
+    }
+
+    public void SetupForNormalEncounter()
+    {
+        _dungeonCrawlEncounter = false;
+        AudioStreamPlayer audioPlayer = this.GetNode<AudioStreamPlayer>("MusicPlayer");
+        PersistentGameObjects.GameObjectInstance().MusicPlayer.SetStreamPlayer(audioPlayer);
+        InitializeBattleScene();
+    }
+
+    public void SetupForDungeonCrawlEncounter(List<BattlePlayer> players, bool random, bool isRandomBoss)
+    {
+        _random = random;
+        _randomBoss = isRandomBoss;
+        _dungeonCrawlEncounter = true;
+        InitializeBattleScene(players, random, isRandomBoss);
+    }
+
+    private void InitializeBattleScene(List<BattlePlayer> players = null, bool random = false, bool isRandomBoss = false)
+    {
+        GameObject gameObject = PersistentGameObjects.GameObjectInstance();
+        int tier = (_dungeonCrawlEncounter) ? gameObject.TierDC : gameObject.Tier;
+
         ClearChildrenFromNode(_partyMembers);
         ClearChildrenFromNode(_enemyMembers);
-        _skillList.Clear();
 
-        _skillButton.Disabled = false;
+        TextureRect background = this.GetNode<TextureRect>("%Background");
+        string backgroundString = (_dungeonCrawlEncounter) ? BackgroundAssets.GetCombatDCBackground(tier) :  BackgroundAssets.GetCombatBackground(tier);
+        background.Texture = ResourceLoader.Load<Texture2D>(backgroundString);
 
-        _battleSceneObject = new BattleSceneObject();
-        _battleSceneObject.InitializeEnemies(PersistentGameObjects.Instance().Tier);
-        _battleSceneObject.InitializePartyMembers();
+        _battleSceneObject = new BattleSceneObject(tier);
+        _actionMenu.EmptyClick = false;
+        _actionMenu.BattleSceneObject = _battleSceneObject;
 
+        if(!_dungeonCrawlEncounter)
+        {
+            _battleSceneObject.InitializeEnemies(tier, _dungeonCrawlEncounter);
+            players = gameObject.MakeBattlePlayerListFromParty();
+        }
+        else
+        {
+            int dcTier = tier + 5;
+            _battleSceneObject.InitializeEnemies(dcTier, _dungeonCrawlEncounter, random, isRandomBoss);
+        }
+            
+
+        _battleSceneObject.InitializePartyMembers(players);
         _battleSceneObject.UpdateUI += _OnUIUpdate;
 
         // add players to the scene
         foreach (var member in _battleSceneObject.Players)
         {
-            var partyBox = ResourceLoader.Load<PackedScene>(Scenes.PARTY_BOX).Instantiate();
-            _partyMembers.AddChild(partyBox);
-            partyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = member });
+            HBoxContainer hBoxContainer = new HBoxContainer() { Alignment = BoxContainer.AlignmentMode.Center };
+            var partyBox = _partyBox.Instantiate<EntityDisplayBox>();
+
+            _partyMembers.AddChild(hBoxContainer);
+            hBoxContainer.AddChild(partyBox);
+
+            partyBox.InstanceEntity(new EntityWrapper() { BattleEntity = member });
+            if (member.IsActiveEntity)
+            {
+                _actionMenu.Reparent(hBoxContainer);
+                _actionMenu.EmptyClick = false;
+            }
         }
 
         foreach (var enemy in _battleSceneObject.Enemies)
         {
-            var enemyBox = (enemy.IsBoss) 
-                ? ResourceLoader.Load<PackedScene>(Scenes.BOSS_BOX).Instantiate()
-                : ResourceLoader.Load<PackedScene>(Scenes.ENEMY_BOX).Instantiate();
+            EntityDisplayBox enemyBox;
 
-            _enemyMembers.AddChild(enemyBox);
-            enemyBox.Call("InstanceEntity", new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
+            if (enemy.IsBoss)
+            {
+                enemyBox = ResourceLoader.Load<PackedScene>(Scenes.BOSS_BOX).Instantiate<EntityDisplayBox>();
+                _enemyMembers.AddChild(enemyBox);
+                enemyBox.InstanceEntity(new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss });
+            }
+            else
+            {
+                enemyBox = _enemyBox.Instantiate<EntityDisplayBox>();
+                _enemyMembers.AddChild(enemyBox);
+                enemyBox.InstanceEntity(new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss }, enemy.RandomEnemy);
+                enemyBox.SetDescription(enemy.Description);
+            }
         }
 
         // set the turns and prep the b.s.o. for processing battle stuff
         _battleSceneObject.StartBattle();
-        ChangeAPBarWithTurnState(TurnState.PLAYER);
 
-        PersistentGameObjects.Instance().PlayMusic(MusicAssets.GetDungeonTrack(PersistentGameObjects.Instance().Tier));
-        _canInput = true;
-    }
+        UpdateTurnsUsingTurnState(TurnState.PLAYER);
 
-    private void _OnSkillListItemSelected(int index)
-    {
-        UpdateTargetList();
+        if (!_dungeonCrawlEncounter)
+        {
+            string dungeonTrack = MusicAssets.GetDungeonTrack(tier);
+            bool isBoss = (tier % 10 == 0);
+            gameObject.MusicPlayer.PlayMusic(dungeonTrack);
+        }
+        else
+        {
+            if(tier % 50 == 0)
+            {
+                gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS);
+            }
+
+            if (isRandomBoss)
+            {
+                gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS_RANDOM);
+            }
+        }
+
+        _actionMenu.CanInput = true;
+        
     }
 
     private void ClearChildrenFromNode(Node node)
@@ -206,33 +242,17 @@ public partial class BattleEnemyScene : Node2D
         }
     }
 
-    private void _OnSkillButtonPressed()
-    {
-        _canInput = false;
-        _skillButton.Disabled = true;
-
-        int selectedSkillIndex = _skillList.GetSelectedItems()[0];
-        int selectedTargetIndex = _targetList.GetSelectedItems()[0];
-
-        _battleSceneObject.SkillSelected?.Invoke(_battleSceneObject, new PlayerTargetSelectedEventArgs() 
-        {
-            SkillIndex = selectedSkillIndex,
-            TargetIndex = selectedTargetIndex
-        });
-    }
-
     private async void _OnUIUpdate(object sender, BattleUIUpdate update)
     {
         // handle battle results if any
-        if(update.Result != null)
+        if (update.Result != null)
         {
-            _skillButton.Disabled = true;
-
             var result = update.Result;
 
             // check if we're running from this battle
             if (result.ResultType == BattleResultType.Retreat)
             {
+                // ask here
                 this.EndBattle(false, true);
                 return;
             }
@@ -241,53 +261,76 @@ public partial class BattleEnemyScene : Node2D
             if (result.SkillUsed != null)
             {
                 _skillDisplayIcons.Visible = true;
-                ChangeSkillIconRegion(ArtAssets.ICONS[result.SkillUsed.Icon]);
+                ChangeSkillIconRegion(SkillAssets.GetIcon(result.SkillUsed.Icon));
                 _skillName.Text = result.SkillUsed.Name;
             }
 
             if (result.User != null)
             {
-                Node userNode = FindBattleEntityNode(result.User);
+                EntityDisplayBox userNode = (EntityDisplayBox)FindBattleEntityNode(result.User);
                 BattleEffectWrapper userEffects = new BattleEffectWrapper()
                 {
                     IsEntitySkillUser = true,
                     Result = result
                 };
 
-                userNode.Call("UpdateBattleEffects", userEffects);
-                await ToSignal(userNode, "EffectPlayed");
+                await userNode.UpdateBattleEffects(userEffects);
             }
 
-            if (result.Target != null)
+            if (result.Targets.Count > 0) 
             {
-                Node targetNode = FindBattleEntityNode(result.Target);
+                Task[] tasks = new Task[result.Targets.Count];
+                List<Node> targetNodes = new List<Node>();
+                foreach(var target in result.Targets)
+                    targetNodes.Add(FindBattleEntityNode(target));
+
+                for(int t = 0; t < result.Targets.Count; t++)
+                {
+                    int index = t;
+                    EntityDisplayBox targetNode = (EntityDisplayBox)targetNodes[index];
+                    BattleResult subResult = new BattleResult();
+
+                    subResult.ResultType = result.Results[index];
+                    if(result.AllHPChanged.Count > 0)
+                    {
+                        subResult.HPChanged = result.AllHPChanged[index];
+                    }
+                    subResult.SkillUsed = result.SkillUsed;
+
+                    BattleEffectWrapper targetNodeEffects = new BattleEffectWrapper() { Result = subResult };
+
+                   tasks[t] = targetNode.UpdateBattleEffects(targetNodeEffects);
+                    await Task.Delay(200);
+                }
+
+                await Task.WhenAll(tasks);
+            }
+            else if (result.Target != null)
+            {
+                EntityDisplayBox targetNode = (EntityDisplayBox)FindBattleEntityNode(result.Target);
                 BattleEffectWrapper targetNodeEffects = new BattleEffectWrapper() { Result = result };
 
-                targetNode.Call("UpdateBattleEffects", targetNodeEffects);
-                await ToSignal(targetNode, "EffectPlayed");
+                await targetNode.UpdateBattleEffects(targetNodeEffects);
             }
 
             // slight delay so the skill icon doesn't auto vanish
             await Task.Delay(350);
             ResetSkillIcon();
 
-            // if our user can provide inputs, then re-enable the button
-            if (update.UserCanInput)
-                _skillButton.Disabled = false;
-
             _battleSceneObject.ChangeActiveEntity();
         }
 
+        List<Enemy> enemies = _battleSceneObject.Enemies;
         // update HP values on everyone
-        for (int i = 0; i < update.Enemies.Count; i++)
+        for (int i = 0; i < enemies.Count; i++)
         {
-            var enemyDisplay = _enemyMembers.GetChild(i);
-            var enemy = update.Enemies[i];
+            var enemyDisplay = (EntityDisplayBox)_enemyMembers.GetChild(i);
+            var enemy = enemies[i];
             var enemyWrapper = new EntityWrapper() { BattleEntity = enemy, IsBoss = enemy.IsBoss };
-            enemyDisplay.Call("UpdateEntityDisplay", enemyWrapper);
+            enemyDisplay.UpdateEntityDisplay(enemyWrapper);
         }
 
-        UpdatePlayerDisplay(update.Players);
+        UpdatePlayerDisplay(_battleSceneObject.Players);
 
         // check if win conditions were met
         if (_battleSceneObject.DidPartyMembersWin())
@@ -302,15 +345,18 @@ public partial class BattleEnemyScene : Node2D
             return;
         }
 
-        SetActiveSkills();
+        _actionMenu.LoadActiveSkillList();
 
-        _ap.Value = update.CurrentAPBarTurnValue;
-        _apLabel.Text = $"AP: {Math.Round((double)update.CurrentAPBarTurnValue / 2d, 1)}";
+        bool playerTurn = _battleSceneObject.TurnState == TurnState.PLAYER;
+        SetNewTurns(playerTurn);
+
+        _actionMenu.Visible = playerTurn;
+
         if (_battleSceneObject.PressTurn.TurnEnded)
         {
             _battleSceneObject.PressTurn.TurnEnded = false; // set turns
             _battleSceneObject.ChangeTurnState(); // change turn state
-            ChangeAPBarWithTurnState(_battleSceneObject.TurnState); // change ap bar visuals
+            UpdateTurnsUsingTurnState(_battleSceneObject.TurnState);
         }
 
         // after we fully display an animation and process a skill
@@ -318,44 +364,22 @@ public partial class BattleEnemyScene : Node2D
         if (_battleSceneObject.TurnState == TurnState.ENEMY)
             _battleSceneObject.DoEnemyMove();
         else
-            _canInput = true;
+            _actionMenu.CanInput = true;
     }
 
-    private void SetActiveSkills()
-    {
-        // populate skill list with new active player
-        int skillIndex = 0;
-        if (_skillList.GetSelectedItems().Length > 0)
-            skillIndex = _skillList.GetSelectedItems()[0];
-        _skillList.Clear();
-
-        if(_battleSceneObject.ActivePlayer != null)
-        {
-            foreach (ISkill skill in _battleSceneObject.ActivePlayer.Skills)
-                _skillList.AddItem(skill.GetBattleDisplayString(), ArtAssets.GenerateIcon(skill.Icon));
-            _skillList.Select(skillIndex);
-
-            UpdateTargetList();
-        }
-    }
-
-    private void ChangeAPBarWithTurnState(TurnState turnState)
+    private void UpdateTurnsUsingTurnState(TurnState turnState)
     {
         if (turnState == TurnState.PLAYER)
         {
             _battleSceneObject.SetPartyMemberTurns();
-            string playerYellow = "ffff2ad7";
-            SetNewAPBar(playerYellow);
+            SetNewTurns(true);
 
-            SetActiveSkills();
-
-            _skillButton.Disabled = false;
+            _actionMenu.LoadActiveSkillList();
         }
         else
         {
             _battleSceneObject.SetupEnemyTurns();
-            string enemyOrange = "ff922a";
-            SetNewAPBar(enemyOrange);
+            SetNewTurns(false);
         }
 
         // change our active player display
@@ -373,46 +397,17 @@ public partial class BattleEnemyScene : Node2D
     {
         for (int j = 0; j < players.Count; j++)
         {
-            var partyDisplay = _partyMembers.GetChild(j);
+            var vBoxContainer = _partyMembers.GetChild(j);
+            var partyDisplay = (EntityDisplayBox)vBoxContainer.GetChild(0);
+
             var playerWrapper = new EntityWrapper() { BattleEntity = players[j] };
-            partyDisplay.Call("UpdateEntityDisplay", playerWrapper);
-        }
-    }
+            partyDisplay.UpdateEntityDisplay(playerWrapper);
 
-    private void UpdateTargetList()
-    {
-        int targetIndex = 0;
-        int skillIndex = 0;
-
-        if (_targetList.GetSelectedItems().Length > 0)
-            targetIndex = _targetList.GetSelectedItems()[0];
-
-        if (_skillList.GetSelectedItems().Length > 0)
-            skillIndex = _skillList.GetSelectedItems()[0];
-
-        ISkill skill = _battleSceneObject.ActivePlayer.Skills[skillIndex];
-
-        int count = 1;
-        _targetList.Clear();
-
-        // only show valid targets for the skill we have selected
-        if (skill.TargetType == TargetTypes.SINGLE_OPP)
-        {
-            foreach (var enemy in _battleSceneObject.Enemies.FindAll(enemy => enemy.HP > 0))
-                _targetList.AddItem($"{count++}. {enemy.Name}");
-        }
-        else
-        {
-            foreach (var player in _battleSceneObject.AlivePlayers)
-                _targetList.AddItem($"{count++}. {player.Name}");
-        }
-
-        if (_targetList.ItemCount > 0)
-        {
-            if (targetIndex >= _targetList.ItemCount)
-                targetIndex = _targetList.ItemCount - 1;
-
-            _targetList.Select(targetIndex);
+            if (players[j].IsActiveEntity)
+            {
+                _actionMenu.Reparent(vBoxContainer);
+                _actionMenu.EmptyClick = false;
+            }  
         }
     }
 
@@ -421,10 +416,11 @@ public partial class BattleEnemyScene : Node2D
     {
         Node nodeToFind;
 
-        if (entity.GetType() == typeof(BattlePlayer))
+        if (entity.Type == EntityType.Player)
         {
             int pIndex = _battleSceneObject.Players.IndexOf((BattlePlayer)entity);
-            nodeToFind = _partyMembers.GetChild(pIndex);
+            var child = _partyMembers.GetChild(pIndex);
+            nodeToFind = child.GetChild(0);
         }
         else
         {
@@ -450,101 +446,185 @@ public partial class BattleEnemyScene : Node2D
 
     #endregion
 
-    private void SetNewAPBar(string color)
+    private void SetNewTurns(bool isPlayer)
     {
-        StyleBoxFlat styleBox = ResourceLoader.Load<StyleBoxFlat>("res://screens/APBarStyleBox.tres");
-        styleBox.BgColor = new Color(color);
-        _ap.AddThemeStyleboxOverride("fill", styleBox);
-        int turns = _battleSceneObject.PressTurn.Turns;
-        _ap.MaxValue = turns;
-        _ap.Value = _ap.MaxValue;
-        _apLabel.Text = $"AP: {Math.Round((double)turns/2d,1)}";
+        // clear all icons to redraw them
+        var children = _turnIconContainer.GetChildren();
+        foreach (var child in children)
+            _turnIconContainer.RemoveChild(child);
+
+        List<int> turns = _battleSceneObject.PressTurn.TurnIcons;
+        foreach (int turn in turns)
+        {
+            var turnIconScene = _turnIcons.Instantiate();
+            _turnIconContainer.AddChild(turnIconScene);
+            turnIconScene.Call("SetIconState", isPlayer, turn == 1);
+        }
     }
 
     private async void EndBattle(bool didPlayerWin, bool retreated=false)
     {
-        _canInput = false;
+        _actionMenu.CanInput = false;
         SetEndScreenVisibility(true);
-
+        _endScreenOptions.Visible = false;
+        _endScreenOptions.CanInput = false;
         Label endLabel = this.GetNode<Label>("%EndOfBattleLabel");
 
         // heal everyone
         foreach(var member in _battleSceneObject.Players)
         {
-            member.HP = member.MaxHP;
+            if(!_dungeonCrawlEncounter)
+                member.HP = member.MaxHP;
+
+            member.DefenseModifier = 0;
+            for(int i = 0; i < member.ElementDamageModifiers.Length; i++)
+            {
+                member.ElementDamageModifiers[i] = 0;
+            }
+            member.IsActiveEntity = false;
+            member.StatusHandler.Clear();
         }
+
+        List<EndScreenItem> options = new List<EndScreenItem>();
 
         if (didPlayerWin)
         {
+            ChangeEndScreenVisibilityOnly(false);
+
             endLabel.Text = "Encounter Complete!";
 
-            var gameObject = PersistentGameObjects.Instance();
-            if (gameObject.Tier == gameObject.MaxTier)
+            var gameObject = PersistentGameObjects.GameObjectInstance();
+
+            if(gameObject.Tier % 10 == 0 && !_dungeonCrawlEncounter || gameObject.TierDC % 50 == 0 && _dungeonCrawlEncounter || _randomBoss)
             {
-                gameObject.MaxTier++;
-                if (RewardGenerator.REWARD_TIERS.Contains(gameObject.Tier))
-                {
-                    ChangeEndScreenVisibilityOnly(false);
-
-                    var rewardScene = ResourceLoader.Load<PackedScene>(Scenes.REWARDS).Instantiate();
-                    this.GetTree().Root.AddChild(rewardScene);
-                    await ToSignal(rewardScene, "tree_exited");
-
-                    ChangeEndScreenVisibilityOnly(true);
-                }
+                gameObject.MusicPlayer.PlayMusic(MusicAssets.BOSS_VICTORY);
+                gameObject.MusicPlayer.ResetAllTracksAfterBoss();
             }
 
-            // do reward stuff here
-            _continueButton.Visible = true;
-
-            int nextTier = gameObject.Tier + 1;
-            if (nextTier == gameObject.MaxTier + 1)
+            if (_dungeonCrawlEncounter)
             {
-                _continueButton.Visible = false;
+                GetNode<AudioStreamPlayer>("%ItemSfxPlayer").Play();
+                var rewardScene = _rewardScene.Instantiate<RewardScreen>();
+                this.GetTree().Root.AddChild(rewardScene);
+
+                if (_random)
+                    if (_randomBoss)
+                        rewardScene.InitializeDungeonCrawlEncounterSpecialBossRewards();
+                    else
+                        rewardScene.InitializeDungeonCrawlEncounterSpecialRewards();
+                else
+                    rewardScene.InitializeDungeonCrawlEncounterRewards();
+
+                await ToSignal(rewardScene, "tree_exited");
             }
             else
             {
-                _continueButton.Text = $"Tier {nextTier}";
+                if (gameObject.Tier == gameObject.MaxTier)
+                {
+                    GetNode<AudioStreamPlayer>("%ItemSfxPlayer").Play();
+                    var rewardScene = _rewardScene.Instantiate<RewardScreen>();
+                    this.GetTree().Root.AddChild(rewardScene);
+
+                    gameObject.MaxTier++;
+                    ChangeEndScreenVisibilityOnly(false);
+                    rewardScene.InitializeSMTRewards();
+                    await ToSignal(rewardScene, "tree_exited");
+                }
             }
 
-            _backToHomeButton.Text = "Leave";
+            ChangeEndScreenVisibilityOnly(true);
+
+            // do reward stuff here
+            if (_dungeonCrawlEncounter)
+            {
+                var continueExploringItem = new EndScreenItem() { ItemText = "Continue exploring..." };
+                continueExploringItem.ItemSelected += _OnContinueBtnPressed;
+                options.Add(continueExploringItem);
+            }
+            else
+            {
+                int currentTier = gameObject.Tier;
+                int tierCap = gameObject.TierCap;
+                int maxTier = gameObject.MaxTier;
+
+                var continueToNextTierItem = new EndScreenItem() { ItemText = $"Tier {currentTier + 1}" };
+
+
+                continueToNextTierItem.ItemSelected += _OnContinueBtnPressed;
+
+
+                if (currentTier + 1 < tierCap && currentTier + 1 != maxTier + 1)
+                    options.Add(continueToNextTierItem);
+
+                AddBasicDungeonOptions(options);
+            }
         }
         else if (retreated)
         {
             endLabel.Text = "Retreated from battle.";
-            this.GetNode<Button>("%RetryFloorBtn").Visible = false;
+            
+            if (_dungeonCrawlEncounter)
+            {
+                endLabel.Text = "Retreated from dungeon...";
+                AddBackToHomeButton(options);
+            }
+            else
+            {
+                AddBasicDungeonOptions(options);
+            }
         }
         else
         {
             endLabel.Text = "You died.";
+            if (_dungeonCrawlEncounter)
+            {
+                AddBackToHomeButton(options);
+            }
+            else
+            {
+                AddBasicDungeonOptions(options);
+            }
         }
 
+        _endScreenOptions.SetItems(options);
+        _endScreenOptions.CanInput = true;
+        _endScreenOptions.Visible = true;
         PersistentGameObjects.Save();
+    }
+
+    private void AddBasicDungeonOptions(List<EndScreenItem> options)
+    {
+        var partyChangeItem = new EndScreenItem() { ItemText = "Party" };
+        var retryItem = new EndScreenItem() { ItemText = "Retry" };
+
+        partyChangeItem.ItemSelected += _OnChangePartyBtnPressed;
+        retryItem.ItemSelected += _OnRetryFloorBtnPressed;
+
+        options.Add(partyChangeItem);
+        options.Add(retryItem);
+        AddBackToHomeButton(options);
+    }
+
+    private void AddBackToHomeButton(List<EndScreenItem> options)
+    {
+        var backToHomeItem = new EndScreenItem() { ItemText = "Leave" };
+        backToHomeItem.ItemSelected += _OnBackToHomeBtnPressed;
+        options.Add(backToHomeItem);
     }
 
     private void SetEndScreenVisibility(bool visible)
     {
         ChangeEndScreenVisibilityOnly(visible);
 
-        if (_continueButton.Visible)
-            _continueButton.Visible = false;
-
-        this.GetNode<CenterContainer>("%PlayerContainer").Visible = !visible;
-        this.GetNode<PanelContainer>("%APContainer").Visible = !visible;
-        _skillDisplayIcons.Visible = !visible;
+        this.GetNode<VBoxContainer>("%PlayerVBoxContainer").Visible = !visible;
+        _skillDisplayIcons.Visible = false;
         _enemyMembers.Visible = !visible;
     }
 
     private void ChangeEndScreenVisibilityOnly(bool visible)
     {
         _endBox.Visible = visible;
-        _backToHomeButton.Visible = visible;
-        _retryFloorButton.Visible = visible;
-    }
-
-    private void _OnExitScene()
-    {
-        this.GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(Scenes.BATTLE_SCENE).Instantiate());
-        this.QueueFree();
+        _endScreenOptions.Visible = visible;
+        _endScreenOptions.EmptyClick = false;
     }
 }

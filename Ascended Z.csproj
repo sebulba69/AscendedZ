@@ -1,6 +1,13 @@
-<Project Sdk="Godot.NET.Sdk/4.0.0">
+<Project Sdk="Godot.NET.Sdk/4.2.1">
   <PropertyGroup>
-    <TargetFramework>net6</TargetFramework>
+    <TargetFramework>net8</TargetFramework>
     <RootNamespace>AscendedZ</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="screens\Dungeons\**" />
+    <EmbeddedResource Remove="screens\Dungeons\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="entities\enemy_objects\dungeon_crawl_bosses\" />
+  </ItemGroup>
 </Project>

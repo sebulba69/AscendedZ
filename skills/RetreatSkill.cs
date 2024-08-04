@@ -12,37 +12,64 @@ namespace AscendedZ.skills
     {
         public SkillId Id => SkillId.Retreat;
 
-        public string Name { get; set; }
+        public string BaseName { get; set; }
         public TargetTypes TargetType { get; set; }
         public string StartupAnimation { get; set; }
         public string EndupAnimation { get; set; }
         public string Icon { get; set; }
+        public int Level { get; set; }
+        public string Name => BaseName;
 
-        public BattleResult ProcessSkill(BattleEntity target)
+        public RetreatSkill()
+        {
+            Level = 1;
+        }
+
+        public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
             return new BattleResult() { ResultType = BattleResultType.Retreat, SkillUsed = this };
         }
 
+        public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetBattleDisplayString()
         {
-            return this.Name;
+            return this.BaseName;
         }
 
         public override string ToString()
         {
-            return $"{this.Name}";
+            return $"{this.BaseName}";
+        }
+
+        public void LevelUp()
+        {
+        }
+
+        public string GetAscendedString(int ascendedLevel)
+        {
+            return GetUpgradeString();
+        }
+
+        public string GetUpgradeString()
+        {
+            return ToString();
         }
 
         public ISkill Clone()
         {
             return new RetreatSkill()
             {
-                Name = this.Name,
+                BaseName = this.BaseName,
                 TargetType = this.TargetType,
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon
             };
         }
+
     }
 }

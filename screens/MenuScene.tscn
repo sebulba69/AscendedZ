@@ -4,20 +4,25 @@
 [ext_resource type="Script" path="res://screens/MenuScene.cs" id="1_rhasl"]
 
 [node name="MenuScene" type="CenterContainer"]
+texture_filter = 2
 custom_minimum_size = Vector2(1511, 850)
 offset_right = 1511.0
 offset_bottom = 850.0
 script = ExtResource("1_rhasl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
-theme_override_constants/separation = 23
+theme_override_constants/separation = 12
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+texture_filter = 2
 layout_mode = 2
 
 [node name="Tooltip" type="Label" parent="VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
@@ -27,23 +32,58 @@ text = "Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SaveButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(300, 75)
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("1_6c3qe")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 35
+text = "Settings
+"
+
+[node name="SaveButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_6c3qe")
+theme_override_font_sizes/font_size = 35
 text = "Save Game"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(300, 75)
+[node name="QuitToTitleButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("1_6c3qe")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 35
+text = "Save and Quit to Tile"
+
+[node name="QuitGameButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_6c3qe")
+theme_override_font_sizes/font_size = 35
 text = "Save and Quit"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(300, 75)
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("1_6c3qe")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 35
 text = "< Back"

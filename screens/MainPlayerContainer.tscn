@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf7cs0q6o8n8u"]
+
+[ext_resource type="Script" path="res://screens/MainPlayerContainer.cs" id="1_hwanr"]
+[ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="1_sjmhr"]
+
+[node name="CenterContainer" type="CenterContainer"]
+texture_filter = 2
+script = ExtResource("1_hwanr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+texture_filter = 2
+layout_mode = 2
+
+[node name="CurrencyPanelContainer" type="PanelContainer" parent="VBoxContainer"]
+texture_filter = 2
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CurrencyPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Currency" type="GridContainer" parent="VBoxContainer/CurrencyPanelContainer/MarginContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+columns = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
+texture_filter = 2
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/PanelContainer2"]
+texture_filter = 2
+layout_mode = 2
+
+[node name="PlayerNameLabel" type="Label" parent="VBoxContainer/PanelContainer2/CenterContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_sjmhr")
+theme_override_font_sizes/font_size = 35
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="PlayerPicture" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+texture_filter = 2
+custom_minimum_size = Vector2(270, 240)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1

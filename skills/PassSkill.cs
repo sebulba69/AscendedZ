@@ -12,37 +12,68 @@ namespace AscendedZ.skills
     {
         public SkillId Id => SkillId.Pass;
 
-        public string Name { get; set; }
+        public string BaseName { get; set; }
         public TargetTypes TargetType { get; set; }
         public string StartupAnimation { get; set; }
         public string EndupAnimation { get; set; }
         public string Icon { get; set; }
+        public int Level { get; set; }
+        public string Name => BaseName;
 
-        public BattleResult ProcessSkill(BattleEntity target)
+        public PassSkill()
         {
-            return new BattleResult() { ResultType = BattleResultType.Pass, SkillUsed = this };
+            Level = 1;
+        }
+
+        public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
+        {
+            return new BattleResult() 
+            { 
+                ResultType = BattleResultType.Pass, 
+                SkillUsed = this
+            };
+        }
+
+        public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
+        {
+            throw new NotImplementedException();
         }
 
         public string GetBattleDisplayString()
         {
-            return this.Name;
+            return this.BaseName;
         }
 
         public override string ToString()
         {
-            return $"{this.Name}";
+            return $"{this.BaseName}";
+        }
+
+        public void LevelUp()
+        {
+        }
+
+        public string GetUpgradeString()
+        {
+            return ToString();
+        }
+
+        public string GetAscendedString(int ascendedLevel)
+        {
+            return GetUpgradeString();
         }
 
         public ISkill Clone()
         {
             return new PassSkill()
             {
-                Name = this.Name,
+                BaseName = this.BaseName,
                 TargetType = this.TargetType,
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
-                Icon = ArtAssets.PASS_ICON
+                Icon = SkillAssets.PASS_ICON
             };
         }
+
     }
 }

@@ -1,3 +1,4 @@
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,25 @@ namespace AscendedZ
     {
         // new UI screens
         public static readonly string CUTSCENE = "res://screens/CGCutsceneScreen.tscn";
+        public static readonly string SETTINGS = "res://screens/settings_screen/SettingsScreen.tscn";
         public static readonly string START = "res://screens/StartScreen.tscn";
         public static readonly string MAIN = "res://screens/MainScreen.tscn";
-        public static readonly string MAIN_RECRUIT = "res://screens/RecruitScreen.tscn";
+        public static readonly string MAIN_RECRUIT = "res://screens/RecruitScreenTabs.tscn";
         public static readonly string MAIN_EMBARK = "res://screens/EmbarkScreen.tscn";
         public static readonly string MAIN_EMBARK_DISPLAY = "res://screens/PartyMemberDisplay.tscn";
+        public static readonly string MAIN_CHANGE_ROOM = "res://screens/ChangeRoomScreen.tscn";
         public static readonly string BATTLE_SCENE = "res://screens/BattleEnemyScene.tscn";
         public static readonly string MENU = "res://screens/MenuScene.tscn";
+        public static readonly string UPGRADE = "res://screens/upgrade_screen/UpgradeScreen.tscn";
+        public static readonly string PARTY_CHANGE = "res://screens/PartyEditScreen.tscn";
+        public static readonly string FUSION = "res://screens/FusionScreen.tscn";
+
+        public static readonly string TRANSITION = "res://screens/SceneTransition.tscn";
+
+        public static readonly string UPGRADE_ITEM = "res://screens/upgrade_screen/UpgradeItem.tscn";
+
+        // icons
+        public static readonly string ICON = "res://misc_icons/Icon.tscn";
 
         // currency
         public static readonly string CURRENCY_DISPLAY = "res://misc_icons/CurrencyDisplay.tscn";
@@ -39,5 +52,17 @@ namespace AscendedZ
         public static readonly string EFFECTS = "res://effects/EffectSprite.tscn";
         public static readonly string DAMAGE_NUM = "res://effects/DamageNumber.tscn";
         public static readonly string STATUS = "res://statuses/StatusIcon.tscn";
+
+        // icons
+        public static readonly string TURN_ICONS = "res://turn_icons/TurnIcon.tscn";
+
+        // dungeon crawling
+        public static readonly string DUNGEON_CRAWL = "res://dungeon_crawling/scenes/DungeonScreen.tscn";
+        public static readonly string DUNGEON_TILE_SCENE = "res://dungeon_crawling/scenes/TileScene.tscn";
+        public static readonly string DUNGEON_CRAWL_PARTY_MEMBER = "res://dungeon_crawling/scenes/crawl_ui/PartyMemberDCDisplay.tscn";
+        public static readonly string DUNGEON_FOUNTAIN = "res://dungeon_crawling/scenes/crawl_ui/FountainOfBuce.tscn";
+        public static readonly string DUNGEON_MINER = "res://dungeon_crawling/scenes/crawl_ui/MinerUI.tscn";
+        public static readonly string DUNGEON_SP_TILE = "res://dungeon_crawling/scenes/crawl_ui/DCSpecialTileIcon.tscn";
+        public static readonly string DUNGEON_DIALOG_SCENE = "res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.tscn";
     }
 }

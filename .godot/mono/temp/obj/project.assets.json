@@ -1,14 +1,14 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
-      "Godot.SourceGenerators/4.0.0": {
+    "net8.0": {
+      "Godot.SourceGenerators/4.2.1": {
         "type": "package",
         "build": {
           "build/Godot.SourceGenerators.props": {}
         }
       },
-      "GodotSharp/4.0.0": {
+      "GodotSharp/4.2.1": {
         "type": "package",
         "compile": {
           "lib/net6.0/GodotSharp.dll": {
@@ -21,10 +21,10 @@
           }
         }
       },
-      "GodotSharpEditor/4.0.0": {
+      "GodotSharpEditor/4.2.1": {
         "type": "package",
         "dependencies": {
-          "GodotSharp": "4.0.0"
+          "GodotSharp": "4.2.1"
         },
         "compile": {
           "lib/net6.0/GodotSharpEditor.dll": {
@@ -40,37 +40,40 @@
     }
   },
   "libraries": {
-    "Godot.SourceGenerators/4.0.0": {
-      "sha512": "u+xcapvfVha2BtTF7cRHrNfo+mxH4uGsJrEDQFM3FG+Kww61m2Qs/s2IqgEzR/CLFwidrdgn624xFHk738KnQw==",
+    "Godot.SourceGenerators/4.2.1": {
+      "sha512": "MdLFzDZEMUbXRLH4bLX8o9Blk76M7Op76RyobZ1zyKgcIkgPqG+p53jgLFLSHpBGFKKaW3kB0w6om+wYauwHbw==",
       "type": "package",
-      "path": "godot.sourcegenerators/4.0.0",
+      "path": "godot.sourcegenerators/4.2.1",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "analyzers/dotnet/cs/Godot.SourceGenerators.dll",
         "build/Godot.SourceGenerators.props",
-        "godot.sourcegenerators.4.0.0.nupkg.sha512",
+        "godot.sourcegenerators.4.2.1.nupkg.sha512",
         "godot.sourcegenerators.nuspec"
       ]
     },
-    "GodotSharp/4.0.0": {
-      "sha512": "SbiM07Eh6m1vASfzSIMIfwdpFvI6E+c0+VA5aOB3SKl/pWnl8ToAc8eR1wbjBnkw7D13A8+Nk8j/AJvWiHOCTw==",
+    "GodotSharp/4.2.1": {
+      "sha512": "6a/GML0jXcwT6LxDBtRx+hpPBUFGAmK7GVb/ehKP53nx0AHA+Yc//B7anXY4U4WCMB+ckgsouWpd8rAeupNfbw==",
       "type": "package",
-      "path": "godotsharp/4.0.0",
+      "path": "godotsharp/4.2.1",
       "files": [
         ".nupkg.metadata",
-        "godotsharp.4.0.0.nupkg.sha512",
+        ".signature.p7s",
+        "godotsharp.4.2.1.nupkg.sha512",
         "godotsharp.nuspec",
         "lib/net6.0/GodotSharp.dll",
         "lib/net6.0/GodotSharp.xml"
       ]
     },
-    "GodotSharpEditor/4.0.0": {
-      "sha512": "VmNKvHgFdK67l/e8BfUqzVSXS3wZqZhYREdh1VKzZCY61vKxXqppIUcUb8QzsS0RaK00jXVK4LqlcxrgpG9sUQ==",
+    "GodotSharpEditor/4.2.1": {
+      "sha512": "wibPQq4Gj43T/zlhwogJRnRSxfvfIqGCvnPEz1nSp6aPx4CTu1gZW7gDYx/MRQ9LX2SwKh4N6QXkFp7PhB33Tw==",
       "type": "package",
-      "path": "godotsharpeditor/4.0.0",
+      "path": "godotsharpeditor/4.2.1",
       "files": [
         ".nupkg.metadata",
-        "godotsharpeditor.4.0.0.nupkg.sha512",
+        ".signature.p7s",
+        "godotsharpeditor.4.2.1.nupkg.sha512",
         "godotsharpeditor.nuspec",
         "lib/net6.0/GodotSharpEditor.dll",
         "lib/net6.0/GodotSharpEditor.xml"
@@ -78,10 +81,10 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0": [
-      "Godot.SourceGenerators >= 4.0.0",
-      "GodotSharp >= 4.0.0",
-      "GodotSharpEditor >= 4.0.0"
+    "net8.0": [
+      "Godot.SourceGenerators >= 4.2.1",
+      "GodotSharp >= 4.2.1",
+      "GodotSharpEditor >= 4.2.1"
     ]
   },
   "packageFolders": {
@@ -93,11 +96,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
+      "projectUniqueName": "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj",
       "projectName": "Ascended Z",
-      "projectPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
+      "projectPath": "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj",
       "packagesPath": "C:\\Users\\Cole\\.nuget\\packages\\",
-      "outputPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\.godot\\mono\\temp\\obj\\",
+      "outputPath": "C:\\Users\\Cole\\Documents\\Ascended Z\\.godot\\mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Users\\Cole\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
@@ -111,7 +114,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6"
+        "net8"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -119,8 +122,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6",
+        "net8.0": {
+          "targetAlias": "net8",
           "projectReferences": {}
         }
       },
@@ -128,23 +131,28 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6",
+      "net8.0": {
+        "targetAlias": "net8",
         "dependencies": {
           "Godot.SourceGenerators": {
             "target": "Package",
-            "version": "[4.0.0, )"
+            "version": "[4.2.1, )"
           },
           "GodotSharp": {
             "target": "Package",
-            "version": "[4.0.0, )"
+            "version": "[4.2.1, )"
           },
           "GodotSharpEditor": {
             "target": "Package",
-            "version": "[4.0.0, )"
+            "version": "[4.2.1, )"
           }
         },
         "imports": [
@@ -163,7 +171,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

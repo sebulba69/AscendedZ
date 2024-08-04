@@ -11,8 +11,8 @@ namespace AscendedZ.resistances
     public partial class ResistanceArray
     {
         /// <summary>
-        /// Rows = Resistances
-        /// Columns = Elements
+        /// Indexed by element
+        /// Values = type of resistance to elements
         /// </summary>
         public int[] RArray { get; set; }
 
@@ -36,27 +36,80 @@ namespace AscendedZ.resistances
         /// </summary>
         /// <param name="rtype"></param>
         /// <param name="element"></param>
-        public void CreateResistance(ResistanceType rtype, Elements element)
+        public void SetResistance(ResistanceType rtype, Elements element)
         {
             this.RArray[(int)element] = (int)rtype;
         }
 
-        /// <summary>
-        /// This should be called when changing a unit's armor.
-        /// Values should range from positive to negative.
-        /// Removing armor should reset the values back to the way they were.
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="amount"></param>
-        public void AdjustResistanceByAmount(Elements element, int amount)
+        public ResistanceType GetResistance(Elements element)
         {
-            this.RArray[(int)element] += amount;
+            return (ResistanceType)this.RArray[(int)element];
+        }
 
-            if (this.RArray[(int)element] < 0)
-                this.RArray[(int)element] = 0;
+        /// <summary>
+        /// Get resistances greater than None.
+        /// Returns an Empty list if no resistances satisfy this condition.
+        /// </summary>
+        /// <returns></returns>
+        public List<Elements> GetPrimaryElements()
+        {
+            int noneResistance = (int)ResistanceType.None;
+            List<Elements> elements = new List<Elements>();
 
-            if (this.RArray[(int)element] > (int)ResistanceType.Dr)
-                this.RArray[(int)element] = (int)ResistanceType.Dr;
+            // i = element, res = resistance type
+            for(int i = 0; i < RArray.Length; i++)
+            {
+                int res = RArray[i];
+                if (res > noneResistance)
+                    elements.Add((Elements)i);
+            }
+
+            return elements;
+        }
+
+        /// <summary>
+        /// Grabs the elemental opposite of whatever this entity is weak to
+        /// and treats it as its primary element. Should not be done if there
+        /// exist resistances greater than a weakness.
+        /// </summary>
+        /// <returns></returns>
+        public List<Elements> GetPrimaryWeaknessElements()
+        {
+            int weakness = (int)ResistanceType.Wk;
+            List<Elements> elements = new List<Elements>();
+
+            // i = element, res = resistance type
+            for (int i = 0; i < RArray.Length; i++)
+            {
+                int res = RArray[i];
+                if (res == weakness)
+                {
+                    Elements element = SkillDatabase.ElementalOpposites[(Elements)i];
+                    elements.Add(element);
+                }
+            }
+
+            return elements;
+        }
+
+        /// <summary>
+        /// Check if all Resistances are null
+        /// </summary>
+        /// <returns></returns>
+        public bool HasNoResistances()
+        {
+            bool hasNoResistances = true;
+
+            foreach(int res in this.RArray)
+            {
+                if(res != (int)ResistanceType.None)
+                {
+                    hasNoResistances = false;
+                    break;
+                }
+            }
+
+            return hasNoResistances;
         }
 
         /// <summary>
@@ -98,7 +151,8 @@ namespace AscendedZ.resistances
             }
 
             // output = "R1: E1, E2 - R2: E1, ..."
-            return resString.ToString().Substring(0, resString.Length - resDivider.Length);
+            string rString = resString.ToString();
+            return (rString.Length == 0) ? "[None]" : rString.Substring(0, resString.Length - resDivider.Length);
         }
 
         #region Resistance Checks

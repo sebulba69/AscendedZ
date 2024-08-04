@@ -20,7 +20,7 @@ namespace AscendedZ.statuses
         /// The total amount of turns the Status is active for.
         /// </summary>
         private const int ACTIVE_TURNS = 1;
-        private const int REQUIRED_STACKS_TO_BE_ACTIVE = 2;
+        private const int REQUIRED_STACKS_TO_BE_ACTIVE = 0;
 
         private int _stacks;
         private int _activeTurns;
@@ -28,28 +28,27 @@ namespace AscendedZ.statuses
         public StunStatus() : base()
         {
             _id = StatusId.StunStatus;
-            this.Icon = ArtAssets.STUN_ICON;
+            this.Icon = SkillAssets.STUN_ICON;
+            Name = "Stun";
         }
 
         public override void ActivateStatus(BattleEntity owner)
         {
-            _stacks = 0;
-            _activeTurns = 0;
             base.ActivateStatus(owner);
+            _stacks = 1;
+            _statusOwner.CanAttack = false;
+            _activeTurns = 0;
+            Active = true;
         }
 
         public override void UpdateStatus(BattleResult result)
         {
-            if(result.ResultType == BattleResultType.Wk
-                && _stacks < REQUIRED_STACKS_TO_BE_ACTIVE
-                && result.Target.Equals(_statusOwner))
-            {
-                _stacks++;
-                if (_stacks == REQUIRED_STACKS_TO_BE_ACTIVE)
-                    _statusOwner.CanAttack = false;
-                else
-                    _statusOwner.CanAttack = true;
-            }
+        }
+
+        public override void ClearStatus()
+        {
+            this.RemoveStatus = true;
+            _statusOwner.CanAttack = true;
         }
 
         /// <summary>
@@ -57,17 +56,11 @@ namespace AscendedZ.statuses
         /// </summary>
         public override void UpdateStatusTurns(BattleEntity entity)
         {
-            if(_stacks == REQUIRED_STACKS_TO_BE_ACTIVE)
+            _activeTurns++;
+            if (_activeTurns == ACTIVE_TURNS)
             {
-                if (!this.Active)
-                    this.Active = true;
-
-                _activeTurns++;
-                if (_activeTurns == ACTIVE_TURNS)
-                {
-                    this.RemoveStatus = true;
-                    entity.CanAttack = true;
-                }
+                this.RemoveStatus = true;
+                entity.CanAttack = true;
             }
         }
 
@@ -76,18 +69,11 @@ namespace AscendedZ.statuses
             StatusIconWrapper wrapper = new StatusIconWrapper();
 
             wrapper.Icon = this.Icon;
-            wrapper.Counter = _stacks;
-            if (_stacks == REQUIRED_STACKS_TO_BE_ACTIVE)
-                wrapper.CounterColor = Colors.Green;
-
-            wrapper.Description = $"Stun Status: Prevents attacks at {REQUIRED_STACKS_TO_BE_ACTIVE} stacks for 1 turn.";
+            wrapper.Counter = 1;
+            wrapper.CounterColor = Colors.Green;
+            wrapper.Description = $"Prevents attacks for 1 turn.";
 
             return wrapper;
-        }
-
-        public override Status Clone()
-        {
-            return new StunStatus();
         }
     }
 }

@@ -17,6 +17,14 @@ namespace AscendedZ.json_interface_converters
     /// </summary>
     public partial class SkillConverter : JsonConverter<ISkill>
     {
+        private readonly Dictionary<SkillId, Type> _idSkillTypes = new Dictionary<SkillId, Type>() 
+        {
+            { SkillId.Elemental, typeof(ElementSkill) },
+            { SkillId.Status, typeof(StatusSkill) },
+            { SkillId.Healing, typeof(HealSkill) },
+            { SkillId.Eye, typeof(EyeSkill) }
+        };
+
         public override ISkill Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             ISkill skill = default(ISkill);
@@ -24,18 +32,7 @@ namespace AscendedZ.json_interface_converters
             using(var jsonDocument = JsonDocument.ParseValue(ref reader))
             {
                 int id = jsonDocument.RootElement.GetProperty("Id").GetInt32();
-                switch (id)
-                {
-                    case (int)SkillId.Elemental:
-                        skill = JsonSerializer.Deserialize<ElementSkill>(jsonDocument);
-                        break;
-                    case (int)SkillId.Status:
-                        skill = JsonSerializer.Deserialize<StatusSkill>(jsonDocument);
-                        break;
-                    case (int)SkillId.Healing:
-                        skill = JsonSerializer.Deserialize<HealSkill>(jsonDocument);
-                        break;
-                }
+                skill = (ISkill)JsonSerializer.Deserialize(jsonDocument, _idSkillTypes[(SkillId)id]);
             }
 
             return skill;
@@ -43,18 +40,7 @@ namespace AscendedZ.json_interface_converters
 
         public override void Write(Utf8JsonWriter writer, ISkill value, JsonSerializerOptions options)
         {
-            switch (value.Id)
-            {
-                case SkillId.Elemental:
-                    JsonSerializer.Serialize(writer, value, typeof(ElementSkill), options);
-                    break;
-                case SkillId.Status:
-                    JsonSerializer.Serialize(writer, value, typeof(StatusSkill), options);
-                    break;
-                case SkillId.Healing:
-                    JsonSerializer.Serialize(writer, value, typeof(HealSkill), options);
-                    break;
-            }
+            JsonSerializer.Serialize(writer, value, _idSkillTypes[value.Id], options);
         }
     }
 }
