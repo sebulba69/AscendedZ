@@ -37,13 +37,12 @@ namespace AscendedZ.skills
         public TargetTypes TargetType { get; set; }
         public Elements Element { get; set; }
         public int Level { get => _level; set => _level = value; }
-        public int DamageModifier { private get => _damageModifier; set => _damageModifier = value; }
         public int Tier { get => _tier; set => _tier = value; }
         public int Damage
         {
             get
             {
-                return _damage + DamageModifier;
+                return _damage;
             }
             set
             {
@@ -57,12 +56,6 @@ namespace AscendedZ.skills
 
         public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
-            double damageModifier = user.ElementDamageModifiers[(int)Element];
-
-            DamageModifier = (int)(_damage * damageModifier);
-            if (damageModifier > 0 && DamageModifier <= 0)
-                DamageModifier = 1;
-
             return target.ApplyElementSkill(user, this);
         }
 
@@ -160,7 +153,6 @@ namespace AscendedZ.skills
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon,
                 Level = this.Level,
-                DamageModifier = this.DamageModifier,
                 Tier = this.Tier
             };
         }

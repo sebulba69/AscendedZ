@@ -32,7 +32,9 @@ namespace AscendedZ.statuses
         public override void ActivateStatus(BattleEntity owner)
         {
             base.ActivateStatus(owner);
-            _stacks = 0;
+
+            _stacks = 1;
+
             ApplyBuff();
         }
 
@@ -42,7 +44,7 @@ namespace AscendedZ.statuses
             _turnCount = 0;
 
             if (_stacks == 0)
-                _stacks = 1;
+                _stacks = -1;
 
             if (_stacks >= STACK_CAP)
                 _stacks = STACK_CAP;
