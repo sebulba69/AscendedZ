@@ -110,7 +110,7 @@ namespace AscendedZ
             }
         }
         public static StatusSkill DefBuff { get => MakeFlatBuffAll("Def+", SkillAssets.DEF_PLUS_ICON, new DefChangeStatus()); }
-        public static StatusSkill AtkDebuff { get => MakeFlatDebuffAll("Atk-", SkillAssets.ATK_MINUS_ICON, new DefChangeStatus()); }
+        public static StatusSkill AtkDebuff { get => MakeFlatDebuffAll("Atk-", SkillAssets.ATK_MINUS_ICON, new AtkChangeStatus()); }
         public static StatusSkill DefDebuff { get => MakeFlatDebuffAll("Def-", SkillAssets.DEF_MINUS_ICON, new DefChangeStatus()); }
 
         public static StatusSkill TechBuff 

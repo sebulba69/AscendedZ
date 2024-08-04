@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace AscendedZ.statuses
 {
-   
-
     public class DefChangeStatus : Status
     {
         private const int TURN_CAP = 3;
@@ -32,9 +30,7 @@ namespace AscendedZ.statuses
         public override void ActivateStatus(BattleEntity owner)
         {
             base.ActivateStatus(owner);
-
             _stacks = 1;
-
             ApplyBuff();
         }
 
@@ -42,6 +38,9 @@ namespace AscendedZ.statuses
         {
             _stacks++;
             _turnCount = 0;
+
+            if (_stacks == 0)
+                _stacks = 1;
 
             if (_stacks >= STACK_CAP)
                 _stacks = STACK_CAP;
@@ -53,6 +52,10 @@ namespace AscendedZ.statuses
         {
             _stacks--;
             _turnCount = 0;
+
+            if (_stacks == 0)
+                _stacks = -1;
+
             if (_stacks <= (STACK_CAP * -1))
                 _stacks = (STACK_CAP * -1);
 
@@ -91,7 +94,7 @@ namespace AscendedZ.statuses
 
             wrapper.Icon = this.Icon;
             wrapper.Counter = _stacks;
-            wrapper.CounterColor = Colors.Green;
+            wrapper.CounterColor = Colors.White;
 
             if(_turnCount == TURN_CAP - 1)
             {

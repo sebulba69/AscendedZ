@@ -11,7 +11,6 @@ res://screens/PartyEditScreen.tscn
 res://screens/MainScreen.tscn
 res://screens/PartyMemberDisplay.tscn
 res://screens/PartyBattleDisplayBox.tscn
-res://screens/TechEvadeBars.tscn
 res://screens/EnemyBattleDisplayBox.tscn
 res://screens/BossBattleDisplayBox.tscn
 res://misc_icons/Icon.tscn

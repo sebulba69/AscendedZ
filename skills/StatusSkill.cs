@@ -60,6 +60,10 @@ namespace AscendedZ.skills
             }
             else if (IsCounterDecreaseStatus)
             {
+                // if they don't have the status, then apply it
+                if((status.Id == StatusId.AtkChangeStatus || status.Id == StatusId.DefChangeStatus) && !target.StatusHandler.HasStatus(status.Id))
+                    target.StatusHandler.AddStatus(target, status);
+
                 target.StatusHandler.DecreaseStatusCounter(target, status.Id);
             }
             else
