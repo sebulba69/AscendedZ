@@ -4,7 +4,7 @@ This is a pre-alpha build of Ascended Z whose goal is to nail down the game's co
 
 Goal: Reach the top floor. The current top floor of this build is Floor 100 of the main game and Floor 100 of the Labrybuce (total: 200 floors).
 
-
+Controls: Mouse (Menus, combat, etc.), Arrow Keys (Combat, Dungeon Crawling), Z (Select) and X (Back) (Combat, Dungeon Crawling only).
 
 ~ How to Play: Combat ~
 
@@ -13,11 +13,12 @@ Ascended Z is a combat focused RPG using Press Turn as it's main battle system. 
 Here are all actions in battle and how they affect the active battler's turn:
 1. Basic action ([None])- By default, 1 turn icon is consumed per action
 2. Weaknesses (Wk) - Only uses half a turn, preserving it for the next battler in the turn order
-3. Resist (Rs) - Incoming damage is reduced, and 1 turn icon is consumed like normal
-4. Void (Nu) - 2 turn icons are used and no damage is dealt. If only 1 turn icon remains, then the active battler's turn ends
-5. Drain (Dr) - All turn icons are consumed and the target of the skill gains the damage they would have taken as HP
-6. Passing - Turn the current full icon into a half icon and pass the current action onto the next battler in the turn order
-7. Guard - Turns any non-Void/Drain attack into a Resist. Consumes 1 full icon to use. Your guard is removed if you choose to do any other action (except Passing) after using it.
+3. Technicals - Behave similarly to a weakness
+4. Resist (Rs) - Incoming damage is reduced, and 1 turn icon is consumed like normal
+5. Void (Nu) - 2 turn icons are used and no damage is dealt. If only 1 turn icon remains, then the active battler's turn ends
+6. Drain (Dr) - All turn icons are consumed and the target of the skill gains the damage they would have taken as HP
+7. Passing - Turn the current full icon into a half icon and pass the current action onto the next battler in the turn order
+8. Guard - Turns any non-Void/Drain attack into a Resist. Consumes 1 full icon to use. Your guard is removed if you choose to do any other action (except Passing) after using it.
 
 Important notes:
 * Basic Actions will always use up the first available half icon before using up a full icon
