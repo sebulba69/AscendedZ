@@ -79,6 +79,8 @@ namespace AscendedZ
             { SkillAssets.STUN_T1, STUN },
             { SkillAssets.VOID_SHIELD, VOID },
             { SkillAssets.FLAT_BUFF, FLAT_BUFF },
+            { SkillAssets.ATK_BUFF, LIGHT3 },
+            { SkillAssets.TECH_BUFF, DARKNESS3 },
             { SkillAssets.FLAT_DEBUFF, FLAT_DEBUFF }
         };
     }

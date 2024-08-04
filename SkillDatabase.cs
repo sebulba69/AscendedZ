@@ -102,12 +102,26 @@ namespace AscendedZ
         public static StatusSkill LightBuff1 { get => MakeBuffSkill("Light+", new BuffLightStatus { Amount = 0.25 }); }
         public static StatusSkill DarkBuff1 { get => MakeBuffSkill("Dark+", new BuffDarkStatus { Amount = 0.25 }); }
 
-        public static StatusSkill AtkBuff { get => MakeFlatBuffAll("Atk+", SkillAssets.ATK_PLUS_ICON, new AtkChangeStatus()); }
+        public static StatusSkill AtkBuff { get
+            {
+                var atk = MakeFlatBuffAll("Atk+", SkillAssets.ATK_PLUS_ICON, new AtkChangeStatus());
+                atk.EndupAnimation = SkillAssets.ATK_BUFF;
+                return atk;
+            }
+        }
         public static StatusSkill DefBuff { get => MakeFlatBuffAll("Def+", SkillAssets.DEF_PLUS_ICON, new DefChangeStatus()); }
         public static StatusSkill AtkDebuff { get => MakeFlatDebuffAll("Atk-", SkillAssets.ATK_MINUS_ICON, new DefChangeStatus()); }
         public static StatusSkill DefDebuff { get => MakeFlatDebuffAll("Def-", SkillAssets.DEF_MINUS_ICON, new DefChangeStatus()); }
 
-        public static StatusSkill TechBuff { get => MakeFlatBuff("Tech+", SkillAssets.TECH_PLUS_ICON, new TechnicalStatus()); }
+        public static StatusSkill TechBuff 
+        {
+            get 
+            { 
+                var tech = MakeFlatBuff("Tech+", SkillAssets.TECH_PLUS_ICON, new TechnicalStatus());
+                tech.EndupAnimation = SkillAssets.TECH_BUFF;
+                return tech;
+            } 
+        }
         public static StatusSkill TechDebuff { get => MakeFlatDebuff("Tech-", SkillAssets.TECH_MINUS_ICON, new TechnicalStatus()); }
         public static StatusSkill EvadeBuff 
         { 

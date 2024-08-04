@@ -163,6 +163,8 @@ namespace AscendedZ
 
         public static readonly string FLAT_BUFF = "flat_buff";
         public static readonly string FLAT_DEBUFF = "flat_debuff";
+        public static readonly string ATK_BUFF = "atk_buff";
+        public static readonly string TECH_BUFF = "tech_buff";
 
         public static readonly string HEAL_T1 = "heal1";
         public static readonly string REVIVE = "revive";
