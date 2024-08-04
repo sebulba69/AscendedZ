@@ -108,3 +108,4 @@
 .godot/mono/temp/obj/ExportRelease/win-x64/refint/Ascended Z.dll
 .godot/mono/temp/obj/project.assets.json
 .godot/mono/temp/obj/project.nuget.cache
+*.cache
