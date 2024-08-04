@@ -1,5 +1,6 @@
 ﻿using AscendedZ.battle;
 using AscendedZ.battle.battle_state_machine;
+using AscendedZ.entities.battle_entities;
 using AscendedZ.skills;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             Description = "[CC]: Copy Cat Enemy. Will always copy the last action the player who attacked it took.";
         }
 
-        public override BattleResult ApplyElementSkill(ElementSkill skill)
+        public override BattleResult ApplyElementSkill(BattleEntity user, ElementSkill skill)
         {
-            BattleResult result = base.ApplyElementSkill(skill);
+            BattleResult result = base.ApplyElementSkill(user, skill);
 
             _lastUsedSkill = result;
 

@@ -34,7 +34,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             _miscStatuses = new List<StatusSkill>() 
             {
-                SkillDatabase.Poison, SkillDatabase.Stun
+                SkillDatabase.Poison, SkillDatabase.Stun, SkillDatabase.AtkBuff, SkillDatabase.DefBuff, SkillDatabase.DefDebuff, SkillDatabase.AtkDebuff
             };
 
             _voidSkills = new List<ISkill>() 

@@ -1,4 +1,5 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.entities.battle_entities;
 using AscendedZ.entities.enemy_objects.enemy_ais;
 using AscendedZ.resistances;
 using AscendedZ.skills;
@@ -34,9 +35,9 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Turns = BASE_TURNS;
         }
 
-        public override BattleResult ApplyElementSkill(ElementSkill skill)
+        public override BattleResult ApplyElementSkill(BattleEntity user, ElementSkill skill)
         {
-            BattleResult result = base.ApplyElementSkill(skill);
+            BattleResult result = base.ApplyElementSkill(user, skill);
 
             if (result.ResultType == BattleResultType.Wk)
             {

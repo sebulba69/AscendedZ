@@ -101,7 +101,26 @@ namespace AscendedZ
         public static StatusSkill IceBuff1 { get => MakeBuffSkill("Ice+", new BuffIceStatus { Amount = 0.25 }); }
         public static StatusSkill LightBuff1 { get => MakeBuffSkill("Light+", new BuffLightStatus { Amount = 0.25 }); }
         public static StatusSkill DarkBuff1 { get => MakeBuffSkill("Dark+", new BuffDarkStatus { Amount = 0.25 }); }
-        
+
+        public static StatusSkill AtkBuff { get => MakeFlatBuffAll("Atk+", SkillAssets.ATK_PLUS_ICON, new AtkChangeStatus()); }
+        public static StatusSkill DefBuff { get => MakeFlatBuffAll("Def+", SkillAssets.DEF_PLUS_ICON, new DefChangeStatus()); }
+        public static StatusSkill AtkDebuff { get => MakeFlatDebuffAll("Atk-", SkillAssets.ATK_MINUS_ICON, new DefChangeStatus()); }
+        public static StatusSkill DefDebuff { get => MakeFlatDebuffAll("Def-", SkillAssets.DEF_MINUS_ICON, new DefChangeStatus()); }
+
+        public static StatusSkill TechBuff { get => MakeFlatBuff("Tech+", SkillAssets.TECH_PLUS_ICON, new TechnicalStatus()); }
+        public static StatusSkill TechDebuff { get => MakeFlatDebuff("Tech-", SkillAssets.TECH_MINUS_ICON, new TechnicalStatus()); }
+        public static StatusSkill EvadeBuff 
+        { 
+            get 
+            { 
+                var evade = MakeFlatBuff("Evade+", SkillAssets.EVADE_PLUS_ICON, new EvasionStatus());
+                evade.TargetType = TargetTypes.SELF;
+                return evade;
+            } 
+        }
+
+        public static StatusSkill EvadeDebuff { get => MakeFlatDebuff("Evade-", SkillAssets.EVADE_MINUS_ICON, new EvasionStatus()); }
+
         private static StatusSkill MakeBuffSkill(string name, ElementBuffStatus status)
         {
             StatusSkill statusSkill = MakeStatusSkill(name, status);
@@ -109,6 +128,41 @@ namespace AscendedZ
             statusSkill.Icon = SkillAssets.GetElementIconByElementEnum(status.BuffElement);
 
             return statusSkill;
+        }
+
+        private static StatusSkill MakeFlatBuff(string name, string icon, Status buffStatus)
+        {
+            StatusSkill buff = MakeStatusSkill(name, buffStatus);
+            buff.EndupAnimation = SkillAssets.FLAT_BUFF;
+            buff.Icon = icon;
+            buff.TargetType = TargetTypes.SINGLE_TEAM;
+
+            return buff;
+        }
+
+        private static StatusSkill MakeFlatDebuff(string name, string icon, Status debuffStatus)
+        {
+            StatusSkill debuff = MakeStatusSkill(name, debuffStatus);
+            debuff.EndupAnimation = SkillAssets.FLAT_DEBUFF;
+            debuff.Icon = icon;
+            debuff.TargetType = TargetTypes.SINGLE_OPP;
+            debuff.IsCounterDecreaseStatus = true;
+
+            return debuff;
+        }
+
+        private static StatusSkill MakeFlatBuffAll(string name, string icon, Status buffStatus)
+        {
+            StatusSkill buffAll = MakeFlatBuff(name, icon, buffStatus);
+            buffAll.TargetType = TargetTypes.TEAM_ALL;
+            return buffAll;
+        }
+
+        private static StatusSkill MakeFlatDebuffAll(string name, string icon, Status debuffStatus)
+        {
+            StatusSkill debuff = MakeFlatDebuff(name, icon, debuffStatus);
+            debuff.TargetType = TargetTypes.OPP_ALL;
+            return debuff;
         }
         #endregion
 
@@ -435,18 +489,24 @@ namespace AscendedZ
                 skills.Add(Heal1);
 
             if (tier > TierRequirements.TIER2_STRONGER_ENEMIES)
-                skills.AddRange(new ISkill[] { VoidFire, VoidIce, VoidWind, Revive1 });
+                skills.AddRange([VoidFire, VoidIce, VoidWind, Revive1]);
 
             if (tier < TierRequirements.ALL_HIT_SKILLS)
-                skills.AddRange(new ISkill[] { RemoveVoidWind, RemoveVoidIce });
+                skills.AddRange([RemoveVoidWind, RemoveVoidIce]);
 
             if (tier > TierRequirements.ALL_HIT_SKILLS)
-                skills.AddRange(new ISkill[] { Heal1All });
+                skills.AddRange([Heal1All]);
+
+            if (tier > TierRequirements.TIER5_STRONGER_ENEMIES)
+                skills.AddRange([TechBuff]);
 
             if (tier > TierRequirements.TIER6_STRONGER_ENEMIES)
-                skills.AddRange(new ISkill[] { RemovePoisonStun });
+                skills.AddRange([RemovePoisonStun, AtkBuff, DefBuff]);
 
-            return skills;
+            if (tier > TierRequirements.TIER7_STRONGER_ENEMIES)
+                skills.AddRange([AtkDebuff, DefDebuff]);
+
+                return skills;
         }
     }
 }

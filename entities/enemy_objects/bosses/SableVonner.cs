@@ -55,9 +55,9 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Skills.Add(SkillDatabase.Fire1.Clone());
         }
 
-        public override BattleResult ApplyElementSkill(ElementSkill skill)
+        public override BattleResult ApplyElementSkill(BattleEntity user, ElementSkill skill)
         {
-            BattleResult result = base.ApplyElementSkill(skill);
+            BattleResult result = base.ApplyElementSkill(user, skill);
 
             if (result.ResultType == BattleResultType.Wk)
                 _weaknessHit = true;

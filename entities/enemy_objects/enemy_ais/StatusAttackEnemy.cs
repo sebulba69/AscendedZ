@@ -28,7 +28,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         public StatusAttackEnemy()
         {
             Turns = 1;
-            Description = $"Randomly applies a status to a players without one unless there is\neither only one player alive or one player without the status, then it uses elemental skills.";
+            Description = $"Randomly applies a status to a player without one unless there is\neither only one player alive or one player without the status, then it uses elemental skills.";
         }
 
         public override EnemyAction GetNextAction(BattleSceneObject battleSceneObject)

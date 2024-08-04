@@ -9,9 +9,14 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using AscendedZ.entities.enemy_objects.enemy_ais;
+using System.Text.Json.Serialization;
 
 namespace AscendedZ.entities.enemy_objects
 {
+    [JsonPolymorphic]
+    [JsonDerivedType(typeof(BossHellAI), typeDiscriminator: nameof(BossHellAI))]
     public class Enemy : BattleEntity
     {
         protected bool _isBoss = false;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://daese1bd3tqym"]
+[gd_scene load_steps=14 format=3 uid="uid://daese1bd3tqym"]
 
 [ext_resource type="Script" path="res://screens/EntityDisplayBox.cs" id="1_tnsmk"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="2_6t5j7"]
@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cgmiottbplblf" path="res://progressbar_assets/BarV1_ProgressBarBorder.png" id="4_m1gsh"]
 [ext_resource type="Texture2D" uid="uid://dlc6ggeck3ft3" path="res://progressbar_assets/BarV1_ProgressBar.png" id="5_fk57v"]
 [ext_resource type="AudioStream" uid="uid://dyxxgykvs4hrj" path="res://effects/effect_sounds/Damage4.ogg" id="7_q5sr0"]
-[ext_resource type="PackedScene" uid="uid://ja2uuggwxwmx" path="res://screens/TechEvadeBars.tscn" id="8_4p3ca"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5n3gq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -173,10 +172,6 @@ texture_under = ExtResource("3_pt5ji")
 texture_over = ExtResource("4_m1gsh")
 texture_progress = ExtResource("5_fk57v")
 texture_progress_offset = Vector2(1, 0)
-
-[node name="TechEvadeBars" parent="CharacterVBox/PremiereGaming" instance=ExtResource("8_4p3ca")]
-unique_name_in_owner = true
-layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CharacterVBox/PremiereGaming"]
 custom_minimum_size = Vector2(174, 0)

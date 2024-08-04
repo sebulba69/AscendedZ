@@ -483,8 +483,6 @@ public partial class DungeonScreen : Transitionable2DScene
                 // heal some amount of HP/MP
                 foreach(var player in _battlePlayers)
                 {
-                    double percent = player.MaxHP * 0.45;
-                    int hp = (int)(player.HP + percent);
                     player.HP = player.MaxHP;
                 }
 

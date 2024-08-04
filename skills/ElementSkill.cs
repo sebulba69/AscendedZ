@@ -63,20 +63,20 @@ namespace AscendedZ.skills
             if (damageModifier > 0 && DamageModifier <= 0)
                 DamageModifier = 1;
 
-            return target.ApplyElementSkill(this);
+            return target.ApplyElementSkill(user, this);
         }
 
         public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
         {
-            BattleResult all = targets[0].ApplyElementSkill(this);
+            BattleResult all = targets[0].ApplyElementSkill(user, this);
 
             all.Target = null;
             all.AllHPChanged.Add(all.HPChanged);
             all.Results.Add(all.ResultType);
             all.Targets.Add(targets[0]);
 
-            // Wk, Rs, Nu, Dr, Norm, Guard
-            int[] bResultRanking = { 2, 1, 3, 4, 0, 1 };
+            // Wk, Rs, Nu, Dr, Norm, Guard, Tech, TechWk, Evade
+            int[] bResultRanking = { 2, 1, 3, 4, 0, 1, 2, 2, 3 };
 
             int compare = bResultRanking[(int)all.ResultType];
             for (int i = 1; i < targets.Count; i++)

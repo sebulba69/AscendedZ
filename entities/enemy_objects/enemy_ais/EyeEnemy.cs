@@ -1,6 +1,7 @@
 ﻿using AscendedZ.battle.battle_state_machine;
 using AscendedZ.battle;
 using AscendedZ.skills;
+using AscendedZ.entities.battle_entities;
 
 namespace AscendedZ.entities.enemy_objects.enemy_ais
 {
@@ -15,9 +16,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             Description = "[EYE] Will increase enemy turns if its weakness is hit. Otherwise, it attacks randomly.";
         }
 
-        public override BattleResult ApplyElementSkill(ElementSkill skill)
+        public override BattleResult ApplyElementSkill(BattleEntity user, ElementSkill skill)
         {
-            BattleResult result = base.ApplyElementSkill(skill);
+            BattleResult result = base.ApplyElementSkill(user, skill);
 
             _useEye = (result.ResultType == BattleResultType.Wk);
 

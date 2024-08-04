@@ -48,7 +48,7 @@ namespace AscendedZ.entities
             var s = GetStatus(status.Id);
             if (s != null)
             {
-                s.ApplyStatus();
+                s.IncreaseStatusCounter();
                 inList = true;
             }
 
@@ -57,6 +57,15 @@ namespace AscendedZ.entities
                 var statusToAdd = status.Clone();
                 statusToAdd.ActivateStatus(entity);
                 _statuses.Add(statusToAdd);
+            }
+        }
+
+        public void DecreaseStatusCounter(BattleEntity entity, StatusId id) 
+        {
+            var s = GetStatus(id);
+            if (s != null)
+            {
+                s.DecreaseStatusCounter();
             }
         }
 

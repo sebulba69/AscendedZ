@@ -25,6 +25,7 @@ namespace AscendedZ.skills
         public Status Status { get; set; }
         public List<Status> Statuses { get; set; }
         public string Name => BaseName;
+        public bool IsCounterDecreaseStatus { get; set; } // for when we just want to decrease the counter on a stat
         public bool IsRemoveStatusSkill { get => _isRemoveStatusSkill; set => _isRemoveStatusSkill = value; }
 
         public StatusSkill()
@@ -53,13 +54,17 @@ namespace AscendedZ.skills
 
         private void ProcessStatus(BattleEntity target, Status status)
         {
-            if (!IsRemoveStatusSkill)
+            if (IsRemoveStatusSkill)
             {
-                target.StatusHandler.AddStatus(target, status);
+                target.StatusHandler.RemoveStatus(target, status.Id);
+            }
+            else if (IsCounterDecreaseStatus)
+            {
+                target.StatusHandler.DecreaseStatusCounter(target, status.Id);
             }
             else
             {
-                target.StatusHandler.RemoveStatus(target, status.Id);
+                target.StatusHandler.AddStatus(target, status);
             }
         }
 
@@ -113,7 +118,8 @@ namespace AscendedZ.skills
                 StartupAnimation = this.StartupAnimation,
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon,
-                IsRemoveStatusSkill = this.IsRemoveStatusSkill
+                IsRemoveStatusSkill = this.IsRemoveStatusSkill,
+                IsCounterDecreaseStatus = IsCounterDecreaseStatus
             };
 
             if (Status == null)

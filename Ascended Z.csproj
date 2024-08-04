@@ -1,6 +1,6 @@
 <Project Sdk="Godot.NET.Sdk/4.2.1">
   <PropertyGroup>
-    <TargetFramework>net6</TargetFramework>
+    <TargetFramework>net8</TargetFramework>
     <RootNamespace>AscendedZ</RootNamespace>
   </PropertyGroup>
   <ItemGroup>

@@ -42,9 +42,9 @@ namespace AscendedZ.entities.enemy_objects.bosses
             _nextTarget = 0;
         }
 
-        public override BattleResult ApplyElementSkill(ElementSkill skill)
+        public override BattleResult ApplyElementSkill(BattleEntity user, ElementSkill skill)
         {
-            BattleResult result = base.ApplyElementSkill(skill);
+            BattleResult result = base.ApplyElementSkill(user, skill);
 
             if (result.ResultType == BattleResultType.Wk)
                 _state = SHIELD;

@@ -43,6 +43,9 @@ namespace AscendedZ
         private static string VOID = "res://effects/effect_sounds/Magic4.ogg";
         private static string EYE_SKILL = "res://effects/effect_sounds/Monster1.ogg";
 
+        private static string FLAT_BUFF = "res://effects/effect_sounds/Skill1.ogg";
+        private static string FLAT_DEBUFF = "res://effects/effect_sounds/Down2.ogg";
+
         /// <summary>
         /// Animation + Sfx
         /// </summary>
@@ -74,7 +77,9 @@ namespace AscendedZ
             { SkillAssets.POISON, POISON },
             { SkillAssets.EYESKILLANIM, EYE_SKILL },
             { SkillAssets.STUN_T1, STUN },
-            { SkillAssets.VOID_SHIELD, VOID }
+            { SkillAssets.VOID_SHIELD, VOID },
+            { SkillAssets.FLAT_BUFF, FLAT_BUFF },
+            { SkillAssets.FLAT_DEBUFF, FLAT_DEBUFF }
         };
     }
 }

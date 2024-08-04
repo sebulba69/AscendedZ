@@ -161,6 +161,9 @@ namespace AscendedZ
         public static readonly string LIGHT_BUFF = "light_buff";
         public static readonly string DARK_BUFF = "dark_buff";
 
+        public static readonly string FLAT_BUFF = "flat_buff";
+        public static readonly string FLAT_DEBUFF = "flat_debuff";
+
         public static readonly string HEAL_T1 = "heal1";
         public static readonly string REVIVE = "revive";
         public static readonly string STUN_T1 = "stun1";
@@ -219,6 +222,22 @@ namespace AscendedZ
         public static readonly string BOUNTY_KEY = "Bounty Key";
         public static readonly string MORBIS = "Morbis";
 
+        // Buff Skills
+        public static readonly string TECH_PLUS_ICON = "Tech+";
+        public static readonly string TECH_MINUS_ICON = "Tech-";
+        public static readonly string EVADE_PLUS_ICON = "Evade+";
+        public static readonly string EVADE_MINUS_ICON = "Evade-";
+        public static readonly string ATK_PLUS_ICON = "ATK+";
+        public static readonly string ATK_MINUS_ICON = "ATK-";
+        public static readonly string DEF_PLUS_ICON = "DEF+";
+        public static readonly string DEF_MINUS_ICON = "DEF-";
+
+        // Buff Statuses
+        public static readonly string TECH_STATUS_ICON = "Technicals";
+        public static readonly string EVADE_STATUS_ICON = "Evasions";
+        public static readonly string ATK_STATUS_ICON = "Attack";
+        public static readonly string DEF_STATUS_ICON = "Defense";
+
 
         // GB Statuses
 
@@ -256,7 +275,19 @@ namespace AscendedZ
             [WEAK_WIND_ICON] = new KeyValuePair<int, int>(128, 1600),
             [BEAST_EYE] = new KeyValuePair<int, int>(192, 224),
             [QUEST_ICON] = new KeyValuePair<int, int>(480, 352),
-            [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480)
+            [MAGIC_ICON] = new KeyValuePair<int, int>(384, 480),
+            [TECH_STATUS_ICON] = new KeyValuePair<int, int>(416, 480),
+            [EVADE_STATUS_ICON] = new KeyValuePair<int, int>(448, 480),
+            [TECH_PLUS_ICON] = new KeyValuePair<int, int>(160, 64),
+            [TECH_MINUS_ICON] = new KeyValuePair<int, int>(160, 92),
+            [EVADE_PLUS_ICON] = new KeyValuePair<int, int>(192, 64),
+            [EVADE_MINUS_ICON] = new KeyValuePair<int, int>(192, 92),
+            [ATK_PLUS_ICON] = new KeyValuePair<int, int>(64, 64),
+            [ATK_MINUS_ICON] = new KeyValuePair<int, int>(64, 96),
+            [DEF_PLUS_ICON] = new KeyValuePair<int, int>(96, 64),
+            [DEF_MINUS_ICON] = new KeyValuePair<int, int>(96, 96),
+            [ATK_STATUS_ICON] = new KeyValuePair<int, int>(320, 480),
+            [DEF_STATUS_ICON] = new KeyValuePair<int, int>(352, 480),
         };
 
         public static KeyValuePair<int, int> GetIcon(string key)

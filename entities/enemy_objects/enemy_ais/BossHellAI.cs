@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.statuses;
 using static Godot.WebSocketPeer;
+using System.Text.Json.Serialization;
 
 namespace AscendedZ.entities.enemy_objects.enemy_ais
 {
     /// <summary>
     /// Generic AI for boss battles so I don't have to hard script every single fight.
     /// </summary>
+    [JsonDerivedType(typeof(BossHellAI), typeDiscriminator:nameof(BossHellAI))]
     public class BossHellAI : Enemy
     {
         private int _move;
@@ -28,9 +30,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
         }
 
 
-        public override BattleResult ApplyElementSkill(ElementSkill skill)
+        public override BattleResult ApplyElementSkill(BattleEntity user, ElementSkill skill)
         {
-            BattleResult result = base.ApplyElementSkill(skill);
+            BattleResult result = base.ApplyElementSkill(user, skill);
 
             if (result.ResultType == BattleResultType.Wk)
                 _wexHitCount++;
@@ -132,7 +134,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             {
                 var players = FindPlayersUnaffectedByStatus(battleSceneObject, status.Status);
 
-                if (players.Count == 0)
+                // no reason not to apply buffs/debuffs
+                if(status.Status.Id == StatusId.AtkChangeStatus || status.Status.Id == StatusId.DefChangeStatus)
+                {
+                    return battleSceneObject.AlivePlayers[_rng.Next(battleSceneObject.AlivePlayers.Count)];
+                }
+                else if (players.Count == 0)
                 {
                     return null;
                 }

@@ -39,9 +39,9 @@ namespace AscendedZ.entities.enemy_objects.bosses
             Skills.Add(SkillDatabase.Fire1.Clone());
         }
 
-        public override BattleResult ApplyElementSkill(ElementSkill skill)
+        public override BattleResult ApplyElementSkill(BattleEntity user, ElementSkill skill)
         {
-            var result = base.ApplyElementSkill(skill);
+            var result = base.ApplyElementSkill(user, skill);
 
             IncrementPhase();
 

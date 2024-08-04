@@ -1,4 +1,6 @@
 ﻿using AscendedZ.battle;
+using AscendedZ.entities.enemy_objects;
+using AscendedZ.entities.enemy_objects.enemy_ais;
 using AscendedZ.resistances;
 using AscendedZ.skills;
 using AscendedZ.statuses;
@@ -7,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -52,6 +55,7 @@ namespace AscendedZ.entities.battle_entities
                 HP = _maxHP;
             }
         }
+        public double DefenseModifier { get; set; }
         public string Name { get; set; }
         public string BaseName { get; set; }
         public string Image { get; set; }
@@ -71,19 +75,31 @@ namespace AscendedZ.entities.battle_entities
                 ElementDamageModifiers[i] = 0;
         }
 
-        public virtual BattleResult ApplyElementSkill(ElementSkill skill)
+        public virtual BattleResult ApplyElementSkill(BattleEntity user, ElementSkill skill)
         {
+            int damage = skill.Damage;
+            damage = (int)(damage - (damage * DefenseModifier));
+
+            var evasion = StatusHandler.GetStatus(StatusId.EvasionStatus);
+            var technical = user.StatusHandler.GetStatus(StatusId.TechnicalStatus);
+
             BattleResult result = new BattleResult()
             {
-                HPChanged = skill.Damage,
+                HPChanged = damage,
                 Target = this,
                 SkillUsed = skill
             };
 
-            if (this.Resistances.IsDrainElement(skill.Element))
+            if (evasion != null && evasion.Active)
             {
-                this.HP += skill.Damage;
+                result.HPChanged = 0;
+                result.ResultType = BattleResultType.Evade;
 
+                StatusHandler.RemoveStatus(this, StatusId.EvasionStatus);
+            }
+            else if (this.Resistances.IsDrainElement(skill.Element))
+            {
+                this.HP += damage;
                 result.ResultType = BattleResultType.Dr;
             }
             else if (this.Resistances.IsNullElement(skill.Element))
@@ -93,7 +109,7 @@ namespace AscendedZ.entities.battle_entities
             }
             else if (StatusHandler.HasStatus(StatusId.GuardStatus))
             {
-                int damage = (int)(skill.Damage * 0.75);
+                damage = (int)(damage * 0.75);
                 this.HP -= damage;
 
                 result.HPChanged = damage;
@@ -101,7 +117,7 @@ namespace AscendedZ.entities.battle_entities
             }
             else if (this.Resistances.IsResistantToElement(skill.Element))
             {
-                int damage = (int)(skill.Damage * 0.75);
+                damage = (int)(damage * 0.75);
                 this.HP -= damage;
 
                 result.HPChanged = damage;
@@ -109,16 +125,35 @@ namespace AscendedZ.entities.battle_entities
             }
             else if (this.Resistances.IsWeakToElement(skill.Element))
             {
-                int damage = skill.Damage + (int)(skill.Damage * 0.5);
-                this.HP -= damage;
+                damage = damage + (int)(skill.Damage * 0.5);
+                if(technical != null && technical.Active)
+                {
+                    damage += (int)(damage * 0.25);
+                    result.ResultType = BattleResultType.TechWk;
+                    user.StatusHandler.RemoveStatus(user, StatusId.TechnicalStatus);
+                }
+                else
+                {
+                    result.ResultType = BattleResultType.Wk;
+                }
 
+                this.HP -= damage;
                 result.HPChanged = damage;
-                result.ResultType = BattleResultType.Wk;
             }
             else
             {
-                this.HP -= skill.Damage;
-                result.ResultType = BattleResultType.Normal;
+                if (technical != null && technical.Active)
+                {
+                    damage += (int)(damage * 0.5);
+                    result.ResultType = BattleResultType.Tech;
+                    user.StatusHandler.RemoveStatus(user, StatusId.TechnicalStatus);
+                }
+                else
+                {
+                    result.ResultType = BattleResultType.Normal;
+                } 
+                this.HP -= damage;
+                result.HPChanged = damage;
             }
 
             if (skill.BaseName == SkillDatabase.DracoTherium.BaseName) 
@@ -129,6 +164,9 @@ namespace AscendedZ.entities.battle_entities
             if(HP == 0)
             {
                 StatusHandler.Clear();
+                DefenseModifier = 0;
+                for(int i = 0; i < ElementDamageModifiers.Length; i++)
+                    ElementDamageModifiers[i] = 0;
             }
 
             return result;

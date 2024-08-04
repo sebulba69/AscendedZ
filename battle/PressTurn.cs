@@ -41,16 +41,19 @@ namespace AscendedZ.battle
             switch (resultType)
             {
                 case BattleResultType.Dr:
-                    this.EndTurn();
+                    EndTurn();
                     break;
+                case BattleResultType.Evade:
                 case BattleResultType.Nu:
-                    this.NullTurn();
+                    NullTurn();
                     break;
                 case BattleResultType.Wk:
-                    this.HalfTurn();
+                case BattleResultType.Tech:
+                case BattleResultType.TechWk:
+                    HalfTurn();
                     break;
                 case BattleResultType.Pass:
-                    this.PassTurn();
+                    PassTurn();
                     break;
                 case BattleResultType.Retreat:
                     break;
@@ -61,7 +64,7 @@ namespace AscendedZ.battle
                     DoEyeTurn(4);
                     break;
                 default:
-                    this.FullTurn();
+                    FullTurn();
                     break;
             }
         }

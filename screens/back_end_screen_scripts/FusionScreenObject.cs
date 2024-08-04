@@ -71,11 +71,7 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
                 _fusions.Remove(DisplayFusion);
 
-                if (FusionIndex == _fusions.Count)
-                    FusionIndex = _fusions.Count - 1;
-
-                if (FusionIndex < 0)
-                    FusionIndex = 0;
+                FusionIndex = 0;
 
                 isSuccessful = true;
 

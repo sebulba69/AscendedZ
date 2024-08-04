@@ -34,7 +34,7 @@ namespace AscendedZ.statuses
             ApplyBuff();
         }
 
-        public override void ApplyStatus()
+        public override void IncreaseStatusCounter()
         {
             _stacks++;
             _turnCount = 0;

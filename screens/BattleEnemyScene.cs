@@ -476,6 +476,11 @@ public partial class BattleEnemyScene : Node2D
             if(!_dungeonCrawlEncounter)
                 member.HP = member.MaxHP;
 
+            member.DefenseModifier = 0;
+            for(int i = 0; i < member.ElementDamageModifiers.Length; i++)
+            {
+                member.ElementDamageModifiers[i] = 0;
+            }
             member.IsActiveEntity = false;
             member.StatusHandler.Clear();
         }
@@ -571,8 +576,14 @@ public partial class BattleEnemyScene : Node2D
         else
         {
             endLabel.Text = "You died.";
-            if(_dungeonCrawlEncounter)
+            if (_dungeonCrawlEncounter)
+            {
                 AddBackToHomeButton(options);
+            }
+            else
+            {
+                AddBasicDungeonOptions(options);
+            }
         }
 
         _endScreenOptions.SetItems(options);

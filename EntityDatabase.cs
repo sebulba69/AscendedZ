@@ -26,7 +26,7 @@ namespace AscendedZ
     public class EntityDatabase
     {
         private static readonly Random RANDOM = new Random();
-
+        private static readonly bool DEBUG = false;
         /// <summary>
         /// The max tier where we start generating enemies randomly.
         /// </summary>
@@ -254,12 +254,26 @@ namespace AscendedZ
                 int boost = GetTierBoost(tier);
                 tier += boost;
 
-                foreach (string name in encounterNames)
+                if (DEBUG)
                 {
-                    Enemy enemy = _enemyMaker.MakeEnemy(name, tier);
+                    Enemy enemy = _enemyMaker.MakeEnemy(EnemyNames.Liamlas, tier);
+                    enemy.MaxHP = 1000;
                     enemy.Boost(tier);
+                    enemy.Skills.Clear();
+                    enemy.Skills.Add(SkillDatabase.TechDebuff);
                     encounter.Add(enemy);
                 }
+                else
+                {
+                    foreach (string name in encounterNames)
+                    {
+                        Enemy enemy = _enemyMaker.MakeEnemy(name, tier);
+                        enemy.Boost(tier);
+                        encounter.Add(enemy);
+                    }
+                }
+
+
             }
 
             return encounter;
@@ -307,6 +321,12 @@ namespace AscendedZ
                 else
                 {
                     boss.HP = boss.MaxHP;
+                    boss.StatusHandler.Clear();
+                    boss.DefenseModifier = 0;
+                    for (int i = 0; i < boss.ElementDamageModifiers.Length; i++)
+                    {
+                        boss.ElementDamageModifiers[i] = 0;
+                    }
                 }
 
                 encounter.Add(boss);

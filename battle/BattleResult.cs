@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace AscendedZ.battle
 {
-    public enum BattleResultType { Wk, Rs, Nu, Dr, Normal, Guarded, HPGain, StatusApplied, StatusRemoved, Pass, Retreat, BeastEye, DragonEye }
+    public enum BattleResultType { Wk, Rs, Nu, Dr, Normal, Guarded, Tech, TechWk, Evade, HPGain, StatusApplied, StatusRemoved, Pass, Retreat, BeastEye, DragonEye }
 
     /// <summary>
     /// This is the class the UI is going to use to know what information needs to be shown on the screen
@@ -43,14 +43,20 @@ namespace AscendedZ.battle
         {
             string result;
 
-            if (ResultType == BattleResultType.Wk)
+            if (ResultType == BattleResultType.TechWk)
+                result = "WEAK/TECH";
+            else if (ResultType == BattleResultType.Wk)
                 result = "WEAK";
+            else if (ResultType == BattleResultType.Tech)
+                result = "TECHNICAL";
             else if (ResultType == BattleResultType.Guarded)
                 result = "GUARD";
             else if (ResultType == BattleResultType.Rs)
                 result = "RESIST";
             else if (ResultType == BattleResultType.Nu)
                 result = "VOID";
+            else if (ResultType == BattleResultType.Evade)
+                result = "EVADED";
             else
                 result = string.Empty;
 

@@ -36,7 +36,11 @@ namespace AscendedZ.statuses
         WexFireStatus,
         WexDarkStatus,
         PoisonStatus,
-        GuardStatus
+        GuardStatus,
+        TechnicalStatus,
+        EvasionStatus,
+        AtkChangeStatus,
+        DefChangeStatus
     }
 
     public class Status
@@ -70,7 +74,9 @@ namespace AscendedZ.statuses
         /// This function should be called when a status is applied to an entity after being cast.
         /// By default, applying the same status twice will do nothing.
         /// </summary>
-        public virtual void ApplyStatus() {}
+        public virtual void IncreaseStatusCounter() {}
+
+        public virtual void DecreaseStatusCounter() {}
 
         public virtual void ClearStatus() { }
 
@@ -121,7 +127,11 @@ namespace AscendedZ.statuses
                 SkillAssets.WIND_ICON,
                 SkillAssets.ICE_ICON,
                 SkillAssets.DARK_ICON,
-                SkillAssets.LIGHT_ICON
+                SkillAssets.LIGHT_ICON,
+                SkillAssets.TECH_STATUS_ICON,
+                SkillAssets.EVADE_STATUS_ICON,
+                SkillAssets.ATK_STATUS_ICON,
+                SkillAssets.DEF_STATUS_ICON,
             };
 
             StatusId[] ids =
@@ -140,10 +150,22 @@ namespace AscendedZ.statuses
                 StatusId.ElementBuffStatus_Ice,
                 StatusId.ElementBuffStatus_Dark,
                 StatusId.ElementBuffStatus_Light,
+                StatusId.TechnicalStatus,
+                StatusId.EvasionStatus,
+                StatusId.AtkChangeStatus,
+                StatusId.DefChangeStatus
             };
 
             switch (Id)
             {
+                case StatusId.AtkChangeStatus:
+                    return new AtkChangeStatus();
+                case StatusId.DefChangeStatus:
+                    return new DefChangeStatus();
+                case StatusId.TechnicalStatus:
+                    return new TechnicalStatus();
+                case StatusId.EvasionStatus:
+                    return new EvasionStatus();
                 case StatusId.GuardStatus:
                     return new GuardStatus();
                 case StatusId.StunStatus:
