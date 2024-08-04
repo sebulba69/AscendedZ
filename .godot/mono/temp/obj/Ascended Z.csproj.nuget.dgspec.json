@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj": {}
+    "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj": {
+    "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj",
+        "projectUniqueName": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
         "projectName": "Ascended Z",
-        "projectPath": "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj",
+        "projectPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
         "packagesPath": "C:\\Users\\Cole\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cole\\Documents\\Ascended Z\\.godot\\mono\\temp\\obj\\",
+        "outputPath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Users\\Cole\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OcpepqQaaV0=",
+  "dgSpecHash": "eR6GbnIgcgc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Cole\\Documents\\Ascended Z\\Ascended Z.csproj",
+  "projectFilePath": "C:\\USERS\\COLE\\DOCUMENTS\\ASCENDED Z\\Ascended Z.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cole\\.nuget\\packages\\godot.sourcegenerators\\4.2.1\\godot.sourcegenerators.4.2.1.nupkg.sha512",
     "C:\\Users\\Cole\\.nuget\\packages\\godotsharp\\4.2.1\\godotsharp.4.2.1.nupkg.sha512",
