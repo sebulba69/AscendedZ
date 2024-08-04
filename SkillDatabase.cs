@@ -498,7 +498,7 @@ namespace AscendedZ
                 skills.AddRange([Heal1All]);
 
             if (tier > TierRequirements.TIER5_STRONGER_ENEMIES)
-                skills.AddRange([TechBuff]);
+                skills.AddRange([TechBuff, TechDebuff]);
 
             if (tier > TierRequirements.TIER6_STRONGER_ENEMIES)
                 skills.AddRange([RemovePoisonStun, AtkBuff, DefBuff]);
