@@ -1,5 +1,5 @@
 res://effects/DamageNumber.tscn::68679fb672a9e9e070e3a31e9800d12a::1720577345::res://.godot/exported/133200997/export-f36427be3a862c69cd43f83c69be852a-DamageNumber.scn
-res://effects/EffectSprite.tscn::0eff96c6d3601ad994aebe4b412882c1::1722789852::res://.godot/exported/133200997/export-a1e8e9a0e646571f11e47d59438e119d-EffectSprite.scn
+res://effects/EffectSprite.tscn::3c3f2f5b582915ee92c9797efb83e075::1722790442::res://.godot/exported/133200997/export-a1e8e9a0e646571f11e47d59438e119d-EffectSprite.scn
 res://misc_icons/Icon.tscn::0977d4b25dd4a6ae740212b285ce91f8::1722789852::res://.godot/exported/133200997/export-e4d40e688ff87d0025699b94b52d308b-Icon.scn
 res://screens/APBarStyleBox.tres::5498a4cbfe424413edf4f1b4109d798a::1720913096::res://.godot/exported/133200997/export-f89ed02723331baa1da14885402b073f-APBarStyleBox.res
 res://screens/BattleEnemyScene.tscn::83914eb80bbde413d71413b400af1c7d::1722789851::res://.godot/exported/133200997/export-37e4923109cb2b57aa4dbd7806136c6f-BattleEnemyScene.scn
@@ -19,7 +19,7 @@ res://screens/RewardScreen.tscn::806a3a484c271fd50d35df432e57013e::1721275393::r
 res://screens/StartScreen.tscn::44ffc28c61b33d3c344415b97541661b::1722621303::res://.godot/exported/133200997/export-92344be412ae1ea7dc2cbb6ce4382455-StartScreen.scn
 res://statuses/StatusIcon.tscn::33e92cdc2fad74ad6cd28997a5cebac2::1721276888::res://.godot/exported/133200997/export-940bc69573b161ebb470e037aee5ea7b-StatusIcon.scn
 res://BackBoxBossHP.tres::0079ee06f649971d4a8410d4a3815303::1721275369::res://.godot/exported/133200997/export-1c416cb4e5005ec586277d2cbe4cfd8a-BackBoxBossHP.res
-res://default_env.tres::a8e4d62c7ca925131dda0375103d10a6::1722789852::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://default_env.tres::a8e4d62c7ca925131dda0375103d10a6::1722790442::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
 res://FrontBoxBossHP.tres::2d900053eccb1b5224e34527f2c6eeaa::1722138977::res://.godot/exported/133200997/export-fa9021ea33574f7d5ea04e41431784f5-FrontBoxBossHP.res
 res://TextboxEditTheme.tres::d307f692fd98b06611969e7ae78050ee::1678056484::res://.godot/exported/133200997/export-ff1fc327bf1ae0734f186d18e0209d43-TextboxEditTheme.res
 res://misc_icons/CurrencyDisplay.tscn::40be66e8f1660c37aaee3bad3d0a0985::1720373693::res://.godot/exported/133200997/export-99f240c20895a90c7373ece8eae7d2a4-CurrencyDisplay.scn
@@ -42,8 +42,8 @@ res://screens/ActionMenu.tscn::19cdaa420f273e72c463a654871e5c02::1722789851::res
 res://screens/MainPlayerContainer.tscn::67384f843a6a150e68efa62f2d097bce::1722621303::res://.godot/exported/133200997/export-23cdc52e77474340f96c8aaec3068448-MainPlayerContainer.scn
 res://screens/MorbisUpgradeScreen.tscn::1c3967c6d6239064942c8138432567f6::1721275393::res://.godot/exported/133200997/export-ff8df0ad43eab9ccc576a184374828f6-MorbisUpgradeScreen.scn
 res://screens/SceneTransition.tscn::4b50e926800a549c6347373c8a4e053d::1722118836::res://.godot/exported/133200997/export-dd706e56f5d172cccf756502c732bf23-SceneTransition.scn
-res://BackBoxBossHPDC.tres::68f1d705676f0d78b9475ff6a923f410::1722789596::res://.godot/exported/133200997/export-35c68546619fb93e3bedce0f934eb7a1-BackBoxBossHPDC.res
-res://FrontBoxBossHPDC.tres::05132702c0fa4d5522282c3c645b9f6a::1722789596::res://.godot/exported/133200997/export-39a7016c447d096b9894192d2587f135-FrontBoxBossHPDC.res
+res://BackBoxBossHPDC.tres::68f1d705676f0d78b9475ff6a923f410::1722790442::res://.godot/exported/133200997/export-35c68546619fb93e3bedce0f934eb7a1-BackBoxBossHPDC.res
+res://FrontBoxBossHPDC.tres::05132702c0fa4d5522282c3c645b9f6a::1722790442::res://.godot/exported/133200997/export-39a7016c447d096b9894192d2587f135-FrontBoxBossHPDC.res
 res://screens/upgrade_screen/UpgradeItem.tscn::da121748b42e80c345ac49a37b930b9b::1722621303::res://.godot/exported/133200997/export-a2afa345b779c7d78cb6651a92a137b4-UpgradeItem.scn
 res://dungeon_crawling/scenes/crawl_ui/MinerUI.tscn::67a5a07ef4fb12520b0b9ad8cfe1efa8::1722621303::res://.godot/exported/133200997/export-7d504e76f6e1623fe5bb192b0c78432b-MinerUI.scn
 res://screens/TechEvadeBars.tscn::f0d2180796083a1324c99a1586cb28d3::1722730515::res://.godot/exported/133200997/export-93c46e72b64e852ac8fd82a22a895a32-TechEvadeBars.scn
