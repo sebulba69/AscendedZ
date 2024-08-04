@@ -26,7 +26,7 @@ namespace AscendedZ
     public class EntityDatabase
     {
         private static readonly Random RANDOM = new Random();
-        private static readonly bool DEBUG = true;
+        private static readonly bool DEBUG = false;
         /// <summary>
         /// The max tier where we start generating enemies randomly.
         /// </summary>
