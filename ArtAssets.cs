@@ -106,6 +106,7 @@ namespace AscendedZ
             "res://player_pics/buceyminion.png",
             "res://player_pics/conker.png",
             "res://player_pics/skog.png",
+            "res://player_pics/sushi.png",
             "res://player_pics/newpicture29.png",
             "res://player_pics/newpicture37.png",
             "res://player_pics/newpicture39.png",
