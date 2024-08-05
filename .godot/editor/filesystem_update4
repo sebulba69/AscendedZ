@@ -1,9 +1,8 @@
 res://default_env.tres
-res://screens/RecruitCustomScreen.tscn
+res://screens/end_screen/EndScreenOptions.tscn
 res://BackBoxBossHPDC.tres
 res://FrontBoxBossHPDC.tres
 res://misc_icons/IconOutline.gdshader
-res://screens/end_screen/EndScreenOptions.tscn
 res://screens/BattleEnemyScene.tscn
 res://screens/ActionMenu.tscn
 res://dungeon_crawling/scenes/DungeonScreen.tscn
@@ -16,6 +15,7 @@ res://screens/EnemyBattleDisplayBox.tscn
 res://screens/BossBattleDisplayBox.tscn
 res://misc_icons/Icon.tscn
 res://effects/EffectSprite.tscn
+res://screens/RecruitCustomScreen.tscn
 res://battle/BattleEffectWrapper.cs
 res://dungeon_crawling/scenes/crawl_ui/DCSpecialTileIcon.cs
 res://dungeon_crawling/scenes/crawl_ui/DC_BOSS_CUTSCENE.cs

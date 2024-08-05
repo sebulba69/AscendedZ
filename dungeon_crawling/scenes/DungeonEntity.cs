@@ -1,3 +1,4 @@
+using AscendedZ.game_object;
 using Godot;
 using System;
 
@@ -29,9 +30,19 @@ public partial class DungeonEntity : Node2D
 
 	public void SetArrows(bool up, bool down, bool left, bool right) 
 	{
-		_up.Visible = up;
-        _down.Visible = down;
-        _left.Visible = left;
-        _right.Visible = right;
+		if(PersistentGameObjects.GameObjectInstance().TierDC % 50 == 0)
+		{
+            _up.Visible = false;
+            _down.Visible = false;
+            _left.Visible = false;
+            _right.Visible = false;
+        }
+		else
+		{
+            _up.Visible = up;
+            _down.Visible = down;
+            _left.Visible = left;
+            _right.Visible = right;
+        }
 	}
 }
