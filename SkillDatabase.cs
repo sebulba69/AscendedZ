@@ -106,7 +106,7 @@ namespace AscendedZ
             {
                 var atk = MakeFlatBuffAll("Atk+", SkillAssets.ATK_PLUS_ICON, new AtkChangeStatus());
                 atk.EndupAnimation = SkillAssets.ATK_BUFF;
-                atk.SetDescription("Boost team attack for all elements by 15%");
+                atk.SetDescription("Boost team attack for all elements by 15%. Caps at 2 stacks.");
                 return atk;
             }
         }
@@ -115,7 +115,7 @@ namespace AscendedZ
             get 
             {
                 var def = MakeFlatBuffAll("Def+", SkillAssets.DEF_PLUS_ICON, new DefChangeStatus());
-                def.SetDescription("Boost team defense against all elements by 15%");
+                def.SetDescription("Boost team defense against all elements by 15%. Caps at 2 stacks.");
                 return def;
             } 
         }
@@ -124,7 +124,7 @@ namespace AscendedZ
             get
             {
                 var atkM = MakeFlatDebuffAll("Atk-", SkillAssets.ATK_MINUS_ICON, new AtkChangeStatus());
-                atkM.SetDescription("Decrease enemy team attack for all elements by 15%");
+                atkM.SetDescription("Decrease enemy team attack for all elements by 15%. Caps at 2 stacks.");
                 return atkM;
             }
         }
@@ -134,7 +134,7 @@ namespace AscendedZ
             get 
             {
                 var defM = MakeFlatDebuffAll("Def-", SkillAssets.DEF_MINUS_ICON, new DefChangeStatus());
-                defM.SetDescription("Decrease enemy team defense against all elements by 15%");
+                defM.SetDescription("Decrease enemy team defense against all elements by 15%. Caps at 2 stacks.");
                 return defM;
             } 
         }
