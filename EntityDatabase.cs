@@ -45,19 +45,19 @@ namespace AscendedZ
         /// <summary>
         /// Boss encounters for every 10 floors
         /// </summary>
-        private static readonly List<string> BOSS_ENCOUNTERS = new List<string>
-        {
-            EnemyNames.Harbinger,
-            EnemyNames.Elliot_Onyx,
-            EnemyNames.Sable_Vonner,
-            EnemyNames.Cloven_Umbra,
-            EnemyNames.Ashen_Ash,
-            EnemyNames.Ethel_Aura,
-            EnemyNames.Kellam_Von_Stein,
-            EnemyNames.Drace_Skinner,
-            EnemyNames.Jude_Stone,
-            EnemyNames.Drace_Razor
-        };
+        private static readonly List<string>[] BOSS_ENCOUNTERS =
+        [
+            [EnemyNames.Harbinger],
+            [EnemyNames.Elliot_Onyx],
+            [EnemyNames.Sable_Vonner],
+            [EnemyNames.Cloven_Umbra],
+            [EnemyNames.Ashen_Ash],
+            [EnemyNames.Ethel_Aura],
+            [EnemyNames.Kellam_Von_Stein],
+            [EnemyNames.Drace_Skinner],
+            [EnemyNames.Jude_Stone],
+            [EnemyNames.Drace_Razor]
+        ];
 
         private static readonly List<string> DUNGEON_BOSS_ENCOUNTERS = new List<string>() 
         {
@@ -172,7 +172,7 @@ namespace AscendedZ
                     if (tier % 10 == 0 && !dungeonCrawlEncounter)
                     {
                         int bossIndex = (tier / 10) - 1;
-                        encounterNames.Add(BOSS_ENCOUNTERS[bossIndex]);
+                        encounterNames.AddRange(BOSS_ENCOUNTERS[bossIndex]);
                     }
                     else if ((tier - 5) % 50 == 0 && dungeonCrawlEncounter)
                     {
@@ -539,7 +539,21 @@ namespace AscendedZ
 
         public static int GetBossHP(string bossName)
         {
-            int index = BOSS_ENCOUNTERS.IndexOf(bossName);
+            int index = -1;
+            
+            for(int b = 0; b < BOSS_ENCOUNTERS.Length; b++)
+            {
+                var bosses = BOSS_ENCOUNTERS[b];
+                foreach(var boss in bosses)
+                {
+                    if(boss == bossName)
+                    {
+                        index = b;
+                        break;
+                    }
+                }
+            }
+            
             if (index == -1)
             {
                 throw new Exception("Boss not defined in encounter list");
