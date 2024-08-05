@@ -177,6 +177,8 @@ namespace AscendedZ.entities.battle_entities
 
         public virtual BattleResult ApplyHealingSkill(HealSkill skill)
         {
+            bool dead = HP == 0;
+
             this.HP += skill.HealAmount;
             var result = new BattleResult()
             {
@@ -185,6 +187,13 @@ namespace AscendedZ.entities.battle_entities
                 SkillUsed = skill,
                 ResultType = BattleResultType.HPGain
             };
+
+            if(dead)
+            {
+                // add back our statuses
+                StatusHandler.AddStatus(this, SkillDatabase.AtkBuff.Status.Clone());
+                StatusHandler.AddStatus(this, SkillDatabase.DefBuff.Status.Clone());
+            }
 
             return result;
         }
