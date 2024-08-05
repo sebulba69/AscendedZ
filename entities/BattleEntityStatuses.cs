@@ -41,14 +41,22 @@ namespace AscendedZ.entities
             return _statuses.Find(status => status.Id == id);
         }
 
-        public void AddStatus(BattleEntity entity, Status status)
+        public void AddStatus(BattleEntity entity, Status status, bool decrease = false)
         {
             bool inList = false;
 
             var s = GetStatus(status.Id);
             if (s != null)
             {
-                s.IncreaseStatusCounter();
+                if (decrease)
+                {
+                    s.DecreaseStatusCounter();
+                }
+                else
+                {
+                    s.IncreaseStatusCounter();
+                }
+                
                 inList = true;
             }
 
@@ -57,6 +65,15 @@ namespace AscendedZ.entities
                 var statusToAdd = status.Clone();
                 statusToAdd.ActivateStatus(entity);
                 _statuses.Add(statusToAdd);
+            }
+        }
+
+        public void IncreaseStatusCounter(BattleEntity entity, StatusId id)
+        {
+            var s = GetStatus(id);
+            if (s != null)
+            {
+                s.IncreaseStatusCounter();
             }
         }
 

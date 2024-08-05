@@ -33,7 +33,7 @@ namespace AscendedZ.statuses
         {
             base.ActivateStatus(owner);
 
-            _stacks = 1;
+            _stacks = 0;
 
             ApplyBuff();
         }
@@ -42,9 +42,6 @@ namespace AscendedZ.statuses
         {
             _stacks++;
             _turnCount = 0;
-
-            if (_stacks == 0)
-                RemoveStatus = true;
 
             if (_stacks >= STACK_CAP)
                 _stacks = STACK_CAP;
@@ -56,9 +53,6 @@ namespace AscendedZ.statuses
         {
             _stacks--;
             _turnCount = 0;
-
-            if (_stacks == 0)
-                RemoveStatus = true;
 
             if (_stacks <= (STACK_CAP * -1))
                 _stacks = (STACK_CAP * -1);
@@ -101,7 +95,7 @@ namespace AscendedZ.statuses
             wrapper.Icon = this.Icon;
             wrapper.Counter = _stacks;
             wrapper.CounterColor = Colors.White;
-
+            wrapper.SetInvisible = _stacks == 0;
             if(_turnCount == TURN_CAP - 1)
             {
                 wrapper.CounterColor = Colors.Red;

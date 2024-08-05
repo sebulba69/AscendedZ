@@ -257,10 +257,10 @@ namespace AscendedZ
                 if (DEBUG)
                 {
                     Enemy enemy = _enemyMaker.MakeEnemy(EnemyNames.Liamlas, tier);
-                    enemy.MaxHP = 1000;
+                    enemy.MaxHP = 50;
                     enemy.Boost(tier);
                     enemy.Skills.Clear();
-                    enemy.Skills.Add(SkillDatabase.DefDebuff);
+                    //enemy.Skills.Add(SkillDatabase.DefDebuff);
                     enemy.Skills.Add(SkillDatabase.AtkDebuff);
                     encounter.Add(enemy);
                 }
