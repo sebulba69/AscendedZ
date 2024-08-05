@@ -7,8 +7,8 @@
 
 [node name="BossHPBar" type="HBoxContainer"]
 texture_filter = 2
-offset_right = 512.0
-offset_bottom = 19.0
+offset_right = 328.0
+offset_bottom = 16.0
 script = ExtResource("1_7j0de")
 
 [node name="HPBarNumber" type="PanelContainer" parent="."]

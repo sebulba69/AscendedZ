@@ -12,11 +12,19 @@ namespace AscendedZ.entities.enemy_objects
         /// <summary>
         /// Max limit of HP per bar
         /// </summary>
-        private const int MAX_HP_PER_BAR = 5000;
+        private const int HP_DEFAULT = 5000;
+        private int _maxHPPerBar, _subBarDefault;
+        
         private readonly string BGCOLOR = "000000";
         private readonly string[] HPFGColors = 
         {
-            "99b655", "9aff91", "ffff6b", "ffb86b", "13376b", "9c150b", "9c1582", "8fa582"
+            "99b655", "9aff91",
+            "ffff6b", "ffb86b",
+            "13376b", "9c150b",
+            "9c1582", "8fa582",
+            "879bd4", "bfcbeb",
+            "b4d4ca", "44e6e4",
+            "98ddbe", "71bc8c"
         };
 
         private int _bars, _currentDisplayHP, _maxHPBarDisplay, _totalHP;
@@ -25,9 +33,24 @@ namespace AscendedZ.entities.enemy_objects
 
         public BossHP()
         {
-            // by default, the max hp per bar is 1k
-            _maxHPBarDisplay = MAX_HP_PER_BAR;
+            // by default, the max hp per bar is 5k
+            _maxHPPerBar = HP_DEFAULT;
+            _maxHPBarDisplay = _maxHPPerBar;
+            _subBarDefault = HPFGColors.Length * 2;
             _bars = 0;
+        }
+
+        public void Setup(int startingHP)
+        {
+            int max = _maxHPPerBar * _subBarDefault;
+            while (_maxHPPerBar >= max)
+            {
+                _maxHPPerBar += HP_DEFAULT;
+                max = _maxHPPerBar * _subBarDefault;
+            }
+
+            _maxHPPerBar = Math.Abs(_maxHPPerBar);
+            _maxHPBarDisplay = _maxHPPerBar;
         }
 
         public void InitializeBossHP(int hp, bool doNotSetMaxHPValue = false)
@@ -38,7 +61,7 @@ namespace AscendedZ.entities.enemy_objects
             // if the total HP is less than MAX_HP_PER_BAR, then we
             // will just set up a custom bar with custom HP values
             // there's no need to adjust the algorithm for back colors
-            if (_totalHP < MAX_HP_PER_BAR && !doNotSetMaxHPValue)
+            if (_totalHP < _maxHPPerBar && !doNotSetMaxHPValue)
             {
                 _maxHPBarDisplay = _totalHP;
                 _currentDisplayHP = _totalHP;
@@ -46,10 +69,10 @@ namespace AscendedZ.entities.enemy_objects
             else
             {
                 int totalHP = _totalHP;
-                while (totalHP > MAX_HP_PER_BAR)
+                while (totalHP > _maxHPPerBar)
                 {
                     _bars++;
-                    totalHP -= MAX_HP_PER_BAR;
+                    totalHP -= _maxHPPerBar;
                 }
 
                 _currentDisplayHP = totalHP;
