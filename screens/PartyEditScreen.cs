@@ -32,7 +32,7 @@ public partial class PartyEditScreen : HBoxContainer
         Button backButton = this.GetNode<Button>("%BackButton");
         _embarkButton = this.GetNode<Button>("%EmbarkButton");
 
-        _embarkButton.Text = $"Embark [{Controls.GetControlString(Controls.ENTER)}]";
+        _embarkButton.Text = "Embark";
 
         _selectedIndex = 0;
         _party = gameObject.MainPlayer.Party;
@@ -104,11 +104,6 @@ public partial class PartyEditScreen : HBoxContainer
         if (@event.IsActionPressed(Controls.BACK))
         {
             _OnBackButtonPressed();
-        }
-
-        if (@event.IsActionPressed(Controls.ENTER))
-        {
-            _OnEmbarkPressed();
         }
     }
 

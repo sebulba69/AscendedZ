@@ -40,7 +40,7 @@ namespace AscendedZ.statuses
             _turnCount = 0;
 
             if (_stacks == 0)
-                _stacks = 1;
+                RemoveStatus = true;
 
             if (_stacks >= STACK_CAP)
                 _stacks = STACK_CAP;
@@ -54,7 +54,7 @@ namespace AscendedZ.statuses
             _turnCount = 0;
 
             if (_stacks == 0)
-                _stacks = -1;
+                RemoveStatus = true;
 
             if (_stacks <= (STACK_CAP * -1))
                 _stacks = (STACK_CAP * -1);

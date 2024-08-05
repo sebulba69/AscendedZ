@@ -19,7 +19,7 @@ namespace AscendedZ.skills
         public int Level { get; set; }
         public string Name => BaseName;
         public BattleResultType EyeType { get; set; }
-
+        public string Description { get; }
         public EyeSkill()
         {
             Level = 1;

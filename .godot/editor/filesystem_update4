@@ -1,8 +1,9 @@
 res://default_env.tres
-res://screens/end_screen/EndScreenOptions.tscn
+res://screens/RecruitCustomScreen.tscn
 res://BackBoxBossHPDC.tres
 res://FrontBoxBossHPDC.tres
 res://misc_icons/IconOutline.gdshader
+res://screens/end_screen/EndScreenOptions.tscn
 res://screens/BattleEnemyScene.tscn
 res://screens/ActionMenu.tscn
 res://dungeon_crawling/scenes/DungeonScreen.tscn

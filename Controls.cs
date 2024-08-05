@@ -15,13 +15,11 @@ namespace AscendedZ
 
         public static readonly string CONFIRM = "menuConfirm";
         public static readonly string BACK = "menuBack";
-        public static readonly string ENTER = "enter";
 
         private static Dictionary<string, string> _controlMap = new Dictionary<string, string>
         {
-            { CONFIRM, "Z" },
-            { BACK, "X" },
-            { ENTER, "Enter" }
+            { CONFIRM, "Z/Enter" },
+            { BACK, "X" }
         };
 
         public static string GetControlString(string control)

@@ -20,6 +20,7 @@ namespace AscendedZ.skills
         SkillId Id { get; }
         string Name { get; }
         string BaseName { get; set; }
+        string Description { get; }
         TargetTypes TargetType { get; set; }
         string StartupAnimation { get; set; }
         string EndupAnimation { get; set; }

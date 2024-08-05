@@ -2,7 +2,7 @@
 
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
-uid="uid://8rvwk8latjle"
+uid="uid://dph21faa6lu73"
 path="res://.godot/imported/dungeon_crawl_02.ogg-e8a57e66f82c8311e949283161b0d5c6.oggvorbisstr"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/dungeon_crawl_02.ogg-e8a57e66f82c8311e9492831
 [params]
 
 loop=true
-loop_offset=0.0
+loop_offset=124.14
 bpm=0.0
 beat_count=0
 bar_beats=4

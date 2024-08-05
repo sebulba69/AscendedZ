@@ -2,6 +2,7 @@
 using AscendedZ.entities.battle_entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace AscendedZ.skills
     public class PassSkill : ISkill
     {
         public SkillId Id => SkillId.Pass;
-
+        public string Description {get;}
         public string BaseName { get; set; }
         public TargetTypes TargetType { get; set; }
         public string StartupAnimation { get; set; }

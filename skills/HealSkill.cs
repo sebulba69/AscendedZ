@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AscendedZ.skills
 {
@@ -13,7 +14,7 @@ namespace AscendedZ.skills
     {
         public SkillId Id => SkillId.Healing;
         private int _level = 0;
-        private string _baseName;
+        private string _baseName, _description;
         private int _tier = 1;
 
         public string Name
@@ -38,7 +39,21 @@ namespace AscendedZ.skills
         public string Icon { get ; set; }
         public int HealAmount { get; set; }
         public int Tier { get => _tier; set => _tier = value; }
+        public string Description
+        {
+            get
+            {
+                string description;
+                if (TargetType == TargetTypes.SINGLE_TEAM_DEAD)
+                    description = $"Revives a dead player for {HealAmount}.";
+                else if (TargetType == TargetTypes.SINGLE_TEAM)
+                    description = $"Heals a single player for {HealAmount}";
+                else
+                    description = $"Heals all players for {HealAmount}";
 
+                return description;
+            }
+        }
         public string GetBattleDisplayString()
         {
             return $"{this.Name} ({this.HealAmount}HP)";

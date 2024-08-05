@@ -106,12 +106,38 @@ namespace AscendedZ
             {
                 var atk = MakeFlatBuffAll("Atk+", SkillAssets.ATK_PLUS_ICON, new AtkChangeStatus());
                 atk.EndupAnimation = SkillAssets.ATK_BUFF;
+                atk.SetDescription("Boost team attack for all elements by 15%");
                 return atk;
             }
         }
-        public static StatusSkill DefBuff { get => MakeFlatBuffAll("Def+", SkillAssets.DEF_PLUS_ICON, new DefChangeStatus()); }
-        public static StatusSkill AtkDebuff { get => MakeFlatDebuffAll("Atk-", SkillAssets.ATK_MINUS_ICON, new AtkChangeStatus()); }
-        public static StatusSkill DefDebuff { get => MakeFlatDebuffAll("Def-", SkillAssets.DEF_MINUS_ICON, new DefChangeStatus()); }
+        public static StatusSkill DefBuff 
+        { 
+            get 
+            {
+                var def = MakeFlatBuffAll("Def+", SkillAssets.DEF_PLUS_ICON, new DefChangeStatus());
+                def.SetDescription("Boost team defense against all elements by 15%");
+                return def;
+            } 
+        }
+        public static StatusSkill AtkDebuff 
+        { 
+            get
+            {
+                var atkM = MakeFlatDebuffAll("Atk-", SkillAssets.ATK_MINUS_ICON, new AtkChangeStatus());
+                atkM.SetDescription("Decrease enemy team attack for all elements by 15%");
+                return atkM;
+            }
+        }
+
+        public static StatusSkill DefDebuff 
+        {
+            get 
+            {
+                var defM = MakeFlatDebuffAll("Def-", SkillAssets.DEF_MINUS_ICON, new DefChangeStatus());
+                defM.SetDescription("Decrease enemy team defense against all elements by 15%");
+                return defM;
+            } 
+        }
 
         public static StatusSkill TechBuff 
         {
@@ -119,10 +145,19 @@ namespace AscendedZ
             { 
                 var tech = MakeFlatBuff("Tech+", SkillAssets.TECH_PLUS_ICON, new TechnicalStatus());
                 tech.EndupAnimation = SkillAssets.TECH_BUFF;
+                tech.SetDescription("Applies the Technical status to a player.\nTechnicals treat all non-Null/Drained attacks as weaknesses.");
                 return tech;
             } 
         }
-        public static StatusSkill TechDebuff { get => MakeFlatDebuff("Tech-", SkillAssets.TECH_MINUS_ICON, new TechnicalStatus()); }
+        public static StatusSkill TechDebuff 
+        {
+            get 
+            { 
+                var techMinus = MakeFlatDebuff("Tech-", SkillAssets.TECH_MINUS_ICON, new TechnicalStatus());
+                techMinus.SetDescription("Removes the Technical status if the enemy has it.");
+                return techMinus;
+            }
+        }
         public static StatusSkill EvadeBuff 
         { 
             get 
@@ -236,21 +271,30 @@ namespace AscendedZ
         {
             get
             {
-                return MakeChangeElementSkill("Void Fire", new VoidFireStatus());
+                var voidFire = MakeChangeElementSkill("Void Fire", new VoidFireStatus());
+                voidFire.SetDescription("Sets player resistance to Fire to Null.");
+
+                return voidFire;
             }
         }
         public static StatusSkill VoidIce
         {
             get
             {
-                return MakeChangeElementSkill("Void Ice", new VoidIceStatus());
+                var voidIce = MakeChangeElementSkill("Void Ice", new VoidIceStatus());
+                voidIce.SetDescription("Sets player resistance to Ice to Null.");
+
+                return voidIce;
             }
         }
         public static StatusSkill VoidWind
         {
             get
             {
-                return MakeChangeElementSkill("Void Wind", new VoidWindStatus());
+                var voidWind = MakeChangeElementSkill("Void Wind", new VoidWindStatus());
+                voidWind.SetDescription("Sets player resistance to Wind to Null.");
+
+                return voidWind;
             }
         }
 
@@ -337,6 +381,7 @@ namespace AscendedZ
                 var s = MakeChangeElementSkill("Remove Void Wind", new VoidWindStatus());
                 s.IsRemoveStatusSkill = true;
                 s.TargetType = TargetTypes.SINGLE_OPP;
+                s.SetDescription("Remove the status Void Wind if an enemy has it.");
                 return s;
             }
         }
@@ -348,6 +393,7 @@ namespace AscendedZ
                 var s = MakeChangeElementSkill("Remove Void Fire", new VoidFireStatus());
                 s.IsRemoveStatusSkill = true;
                 s.TargetType = TargetTypes.SINGLE_OPP;
+                s.SetDescription("Remove the status Void Fire if an enemy has it.");
                 return s;
             }
         }
@@ -359,6 +405,7 @@ namespace AscendedZ
                 var s = MakeChangeElementSkill("Remove Void Ice", new VoidIceStatus());
                 s.IsRemoveStatusSkill = true;
                 s.TargetType = TargetTypes.SINGLE_OPP;
+                s.SetDescription("Remove the status Void Ice if an enemy has it.");
                 return s;
             }
         }
@@ -373,6 +420,7 @@ namespace AscendedZ
                 s.TargetType = TargetTypes.SINGLE_TEAM;
                 s.EndupAnimation = SkillAssets.STATUS_RECOVER;
                 s.Icon = SkillAssets.HEAL_ICON;
+                s.SetDescription("Removes the Poison and Stun statuses from a single player.");
                 return s;
             }
         }

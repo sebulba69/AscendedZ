@@ -18,7 +18,20 @@ namespace AscendedZ.skills
         private int _tier = 1;
         private int _level = 0;
         private string _baseName;
+        public string Description 
+        { 
+            get 
+            {
+                string description = $"Deals {Damage} {Element} damage to";
 
+                if (TargetType == TargetTypes.SINGLE_OPP)
+                    description = $"{description} a single enemy.";
+                else
+                    description = $"{description} multiple enemies.";
+
+                return description;
+            }
+        }
 
         public string Name
         {

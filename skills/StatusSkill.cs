@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AscendedZ.skills
 {
     public class StatusSkill : ISkill
     {
         private bool _isRemoveStatusSkill = false;
-
+        private string _description;
         public SkillId Id => SkillId.Status;
         public string BaseName { get; set; }
         public TargetTypes TargetType { get; set; }
@@ -27,11 +28,23 @@ namespace AscendedZ.skills
         public string Name => BaseName;
         public bool IsCounterDecreaseStatus { get; set; } // for when we just want to decrease the counter on a stat
         public bool IsRemoveStatusSkill { get => _isRemoveStatusSkill; set => _isRemoveStatusSkill = value; }
+        public string Description
+        {
+            get
+            {
+                return _description;
+            }
+        }
 
         public StatusSkill()
         {
             Level = 1;
             Statuses = new List<Status>();
+        }
+
+        public void SetDescription(string description)
+        {
+            _description = description;
         }
 
         public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
