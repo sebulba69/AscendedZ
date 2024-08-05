@@ -4,6 +4,7 @@ using AscendedZ.entities.battle_entities;
 using AscendedZ.entities.enemy_objects;
 using AscendedZ.game_object;
 using AscendedZ.skills;
+using AscendedZ.statuses;
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -81,6 +82,18 @@ namespace AscendedZ.battle
         public void StartBattle()
         {
             _currentState.StartState(this);
+
+            foreach(var player in Players)
+            {
+                player.StatusHandler.AddStatus(player, SkillDatabase.AtkBuff.Status.Clone());
+                player.StatusHandler.AddStatus(player, SkillDatabase.DefBuff.Status.Clone());
+            }    
+            
+            foreach(var enemy in Enemies)
+            {
+                enemy.StatusHandler.AddStatus(enemy, SkillDatabase.AtkBuff.Status.Clone());
+                enemy.StatusHandler.AddStatus(enemy, SkillDatabase.DefBuff.Status.Clone());
+            }
 
             // we don't change the turn state at the start of a state change
             // we only enable user Input if turnState == turnstate.player

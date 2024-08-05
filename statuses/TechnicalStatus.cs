@@ -11,7 +11,7 @@ namespace AscendedZ.statuses
 {
     public class TechnicalStatus : Status
     {
-        private const int STACK_CAP = 2;
+        private const int STACK_CAP = 1;
         private int _stacks;
 
         public TechnicalStatus() : base()
@@ -69,7 +69,7 @@ namespace AscendedZ.statuses
             wrapper.CounterColor = Colors.White;
             if (_stacks == STACK_CAP)
                 wrapper.CounterColor = Colors.Green;
-            wrapper.Description = "At 3 stacks, the next non-Null/Drained attack will\ncount as a weakness. Stacks with weaknesses for more damage.";
+            wrapper.Description = $"At {STACK_CAP} stack, the next non-Null/Drained attack will\ncount as a weakness. Stacks with weaknesses for more damage. Disappears after\nnext elemental skill is used.";
 
             return wrapper;
         }

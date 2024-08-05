@@ -19,6 +19,7 @@ namespace AscendedZ.skills
         public string Icon { get; set; }
         public int Level { get; set; }
         public string Name => BaseName;
+        public string Description { get; }
 
         public RetreatSkill()
         {

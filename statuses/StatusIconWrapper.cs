@@ -24,6 +24,8 @@ namespace AscendedZ.statuses
 
         public string Description { get; set; }
 
+        public bool SetInvisible { get; set; }
+
         /// <summary>
         /// The color we want the counter to be.
         /// </summary>

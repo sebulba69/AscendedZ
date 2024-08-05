@@ -20,6 +20,7 @@ public partial class StatusIcon : Control
 	{
 		_icon.Texture = SkillAssets.GenerateIcon(wrapper.Icon);
 		_counter.Text = wrapper.Counter.ToString();
+		Visible = !wrapper.SetInvisible;
 		_counter.AddThemeColorOverride("font_color", wrapper.CounterColor);
 		GetNode<PanelContainer>("%PanelContainer").TooltipText = wrapper.Description;
     }

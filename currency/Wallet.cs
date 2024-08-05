@@ -13,7 +13,11 @@ namespace AscendedZ.currency
     {
         public Dictionary<string, Currency> Currency { get; set; } = new();
 
-        public Wallet() {}
+        public Wallet() 
+        {
+            if(Currency == null)
+                Currency = new Dictionary<string, Currency>();
+        }
 
         public void AddCurrency(Currency currency)
         {

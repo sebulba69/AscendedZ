@@ -32,6 +32,8 @@ public partial class PartyEditScreen : HBoxContainer
         Button backButton = this.GetNode<Button>("%BackButton");
         _embarkButton = this.GetNode<Button>("%EmbarkButton");
 
+        _embarkButton.Text = "Embark";
+
         _selectedIndex = 0;
         _party = gameObject.MainPlayer.Party;
         _reserves = gameObject.MainPlayer.ReserveMembers;

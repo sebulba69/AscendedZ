@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace AscendedZ.entities.battle_entities
@@ -78,6 +79,7 @@ namespace AscendedZ.entities.battle_entities
         public virtual BattleResult ApplyElementSkill(BattleEntity user, ElementSkill skill)
         {
             int damage = skill.Damage;
+            damage = (int)(damage + (damage * user.ElementDamageModifiers[(int)skill.Element]));
             damage = (int)(damage - (damage * DefenseModifier));
 
             var evasion = StatusHandler.GetStatus(StatusId.EvasionStatus);
@@ -130,7 +132,6 @@ namespace AscendedZ.entities.battle_entities
                 {
                     damage += (int)(damage * 0.25);
                     result.ResultType = BattleResultType.TechWk;
-                    user.StatusHandler.RemoveStatus(user, StatusId.TechnicalStatus);
                 }
                 else
                 {
@@ -146,7 +147,6 @@ namespace AscendedZ.entities.battle_entities
                 {
                     damage += (int)(damage * 0.5);
                     result.ResultType = BattleResultType.Tech;
-                    user.StatusHandler.RemoveStatus(user, StatusId.TechnicalStatus);
                 }
                 else
                 {
@@ -155,6 +155,9 @@ namespace AscendedZ.entities.battle_entities
                 this.HP -= damage;
                 result.HPChanged = damage;
             }
+
+            if(technical != null && technical.Active)
+                user.StatusHandler.RemoveStatus(user, StatusId.TechnicalStatus);
 
             if (skill.BaseName == SkillDatabase.DracoTherium.BaseName) 
             {

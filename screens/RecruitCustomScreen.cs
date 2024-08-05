@@ -11,7 +11,7 @@ public partial class RecruitCustomScreen : CenterContainer
 	private ItemList _potentialSkills;
 	private ItemList _potentialPartyMembers;
 	private Label _ownedPartyCoin;
-	private Label _costLabel;
+	private Label _costLabel, _description;
 
 	private int _selectedIndexMembers = 0;
 	private int _selectedIndexSkills = 0;
@@ -27,9 +27,10 @@ public partial class RecruitCustomScreen : CenterContainer
 		_potentialPartyMembers = this.GetNode<ItemList>("%PotentialMembers");
 		_ownedPartyCoin = this.GetNode<Label>("%OwnedPartyCoin");
         _costLabel = this.GetNode<Label>("%CostLabel");
+        _description = this.GetNode<Label>("%Description");
 
         _potentialPartyMembers.Connect("item_selected",new Callable(this, "_OnRecruitSelected"));
-        _potentialSkills.Connect("item_selected",new Callable(this, "_OnSkillSelected"));
+		_potentialSkills.ItemSelected += _OnSkillSelected;
 
         _gameObject = PersistentGameObjects.GameObjectInstance();
 
@@ -76,6 +77,8 @@ public partial class RecruitCustomScreen : CenterContainer
 
 			_ownedPartyCoin.Text = $"{partyCoin.Amount} PC";
         };
+
+		
 
 		addButton.Pressed += () => 
 		{ 
@@ -152,9 +155,10 @@ public partial class RecruitCustomScreen : CenterContainer
 		ShowPreviewPartyMember();
     }
 
-	private void _OnSkillSelected(int index)
+	private void _OnSkillSelected(long index)
 	{
-		_selectedIndexSkills = index;
+		_selectedIndexSkills = (int)index;
+		_description.Text = _recruitCustomObject.GetSkillDescription(_selectedIndexSkills);
     }
 
     private void ShowPreviewPartyMember()

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -82,6 +83,15 @@ namespace AscendedZ.screens.back_end_screen_scripts
 
             _baseCost = (int)(_gameObject.ShopLevel * 1.5) + 1;
             _baseCost += costBoost;
+        }
+
+        public string GetSkillDescription(int index)
+        {
+            string description = "";
+
+            description = AvailableSkills[index].Description;
+
+            return description;
         }
 
         public void AddSkill(int index)

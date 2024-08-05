@@ -18,7 +18,20 @@ namespace AscendedZ.skills
         private int _tier = 1;
         private int _level = 0;
         private string _baseName;
+        public string Description 
+        { 
+            get 
+            {
+                string description = $"Deals {Damage} {Element} damage to";
 
+                if (TargetType == TargetTypes.SINGLE_OPP)
+                    description = $"{description} a single enemy.";
+                else
+                    description = $"{description} multiple enemies.";
+
+                return description;
+            }
+        }
 
         public string Name
         {
@@ -37,13 +50,12 @@ namespace AscendedZ.skills
         public TargetTypes TargetType { get; set; }
         public Elements Element { get; set; }
         public int Level { get => _level; set => _level = value; }
-        public int DamageModifier { private get => _damageModifier; set => _damageModifier = value; }
         public int Tier { get => _tier; set => _tier = value; }
         public int Damage
         {
             get
             {
-                return _damage + DamageModifier;
+                return _damage;
             }
             set
             {
@@ -57,12 +69,6 @@ namespace AscendedZ.skills
 
         public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
-            double damageModifier = user.ElementDamageModifiers[(int)Element];
-
-            DamageModifier = (int)(_damage * damageModifier);
-            if (damageModifier > 0 && DamageModifier <= 0)
-                DamageModifier = 1;
-
             return target.ApplyElementSkill(user, this);
         }
 
@@ -160,7 +166,6 @@ namespace AscendedZ.skills
                 EndupAnimation = this.EndupAnimation,
                 Icon = this.Icon,
                 Level = this.Level,
-                DamageModifier = this.DamageModifier,
                 Tier = this.Tier
             };
         }

@@ -18,7 +18,7 @@ namespace AscendedZ
 
         private static Dictionary<string, string> _controlMap = new Dictionary<string, string>
         {
-            { CONFIRM, "Z" },
+            { CONFIRM, "Z/Enter" },
             { BACK, "X" }
         };
 
