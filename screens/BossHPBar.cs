@@ -28,7 +28,8 @@ public partial class BossHPBar : HBoxContainer
 	public void InitializeBossHPBar(int hp)
 	{
 		_bossHPBar = new BossHP();
-		_bossHPBar.InitializeBossHP(hp);
+        _bossHPBar.Setup(hp);
+        _bossHPBar.InitializeBossHP(hp);
         UpdateBossHPUI();
     }
 
