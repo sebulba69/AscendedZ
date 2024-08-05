@@ -109,3 +109,5 @@
 .godot/mono/temp/obj/project.assets.json
 .godot/mono/temp/obj/project.nuget.cache
 *.cache
+*.cache
+*.dll
