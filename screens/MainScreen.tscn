@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bo4wv12lv7581"]
 
-[ext_resource type="Texture2D" uid="uid://cq8pbliuivvh0" path="res://cg_backgrounds/overworld/04bg00307.jpg" id="2"]
+[ext_resource type="Texture2D" uid="uid://cq8pbliuivvh0" path="res://cg_backgrounds/overworld/004bg00307.jpg" id="2"]
 [ext_resource type="FontFile" uid="uid://brnrfmgvenlw4" path="res://fonts/ufonts.com_compacta-bold-bt.ttf" id="3"]
 [ext_resource type="Script" path="res://screens/MainScreen.cs" id="4"]
 [ext_resource type="PackedScene" uid="uid://bf7cs0q6o8n8u" path="res://screens/MainPlayerContainer.tscn" id="4_ujo55"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl7uhbako7gy4"
-path="res://.godot/imported/10bg01002.jpg-5a5a9fd1400754205525287a83454ede.ctex"
+uid="uid://b4vo0h6c31ivg"
+path="res://.godot/imported/003bg00607.jpg-460a7fd7748f83a88bf9c508e32dc6b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cg_backgrounds/overworld/10bg01002.jpg"
-dest_files=["res://.godot/imported/10bg01002.jpg-5a5a9fd1400754205525287a83454ede.ctex"]
+source_file="res://cg_backgrounds/overworld/003bg00607.jpg"
+dest_files=["res://.godot/imported/003bg00607.jpg-460a7fd7748f83a88bf9c508e32dc6b9.ctex"]
 
 [params]
 
