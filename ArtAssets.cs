@@ -16,39 +16,50 @@ namespace AscendedZ
 {
     public class BackgroundAssets
     {
-        public static List<string> OverworldBgs = new List<string>() 
-        {
-            "res://cg_backgrounds/overworld/01bg00501.jpg",
-            "res://cg_backgrounds/overworld/02bg03401.jpg",
-            "res://cg_backgrounds/overworld/03bg00607.jpg",
-            "res://cg_backgrounds/overworld/04bg00307.jpg",
-            "res://cg_backgrounds/overworld/05bg00404.jpg",
-            "res://cg_backgrounds/overworld/06bg03201.jpg",
-            "res://cg_backgrounds/overworld/07bg00309.jpg",
-            "res://cg_backgrounds/overworld/08bg00502.jpg",
-            "res://cg_backgrounds/overworld/09bg02602.jpg",
-            "res://cg_backgrounds/overworld/10bg01002.jpg"
-        };
+        private static List<string> _overworldBgs, _combatBgs, _combatBgsDC;
+        private static readonly string CG_BGs = "res://cg_backgrounds/";
 
-        public static List<string> CombatBgs = new List<string>() 
+        public static List<string> OverworldBgs
         {
-            "res://cg_backgrounds/dungeon/01bg03101.jpg",
-            "res://cg_backgrounds/dungeon/02bg02501.jpg",
-            "res://cg_backgrounds/dungeon/03bg02402.jpg",
-            "res://cg_backgrounds/dungeon/04bg02801.jpg",
-            "res://cg_backgrounds/dungeon/05bg00503.jpg",
-            "res://cg_backgrounds/dungeon/06bg01205.jpg",
-            "res://cg_backgrounds/dungeon/07bg02701.jpg",
-            "res://cg_backgrounds/dungeon/08bg03202.jpg",
-            "res://cg_backgrounds/dungeon/09bg03601.jpg",
-            "res://cg_backgrounds/dungeon/10bg00202.jpg"
-        };
+            get
+            {
+                if (_overworldBgs == null)
+                {
+                    _overworldBgs = new List<string>();
+                    AssetUtil.LoadAssets(Path.Combine(CG_BGs, "overworld"), _overworldBgs);
+                }
 
-        public static List<string> CombatBgsDC = new List<string>() 
+                return _overworldBgs;
+            }
+        }
+
+        public static List<string> CombatBgs 
         {
-            "res://cg_backgrounds/dungeon_crawling/bg00701.jpg",
-            "res://cg_backgrounds/dungeon_crawling/bg00701_02.png"
-        };
+            get 
+            {
+                if(_combatBgs == null)
+                {
+                    _combatBgs = new List<string>();
+                    AssetUtil.LoadAssets(Path.Combine(CG_BGs, "dungeon"), _combatBgs);
+                }
+
+                return _combatBgs;
+            }
+        }
+
+        public static List<string> CombatBgsDC 
+        {
+            get 
+            {
+                if(_combatBgsDC == null)
+                {
+                    _combatBgsDC = new List<string>();
+                    AssetUtil.LoadAssets(Path.Combine(CG_BGs, "dungeon_crawling"), _combatBgsDC);
+                }
+
+                return _combatBgsDC;
+            }
+        }
 
         private static List<DungeonColorTemplate> _templates = new List<DungeonColorTemplate>() 
         {
@@ -99,24 +110,22 @@ namespace AscendedZ
     public class CharacterImageAssets
     {
 
-        public static List<string> PlayerPics = new()
+        private static List<string> _playerPics;
+
+        public static List<string> PlayerPics
         {
-            "res://player_pics/2.png",
-            "res://player_pics/akagi.png",
-            "res://player_pics/buceyminion.png",
-            "res://player_pics/conker.png",
-            "res://player_pics/skog.png",
-            "res://player_pics/sushi.png",
-            "res://player_pics/newpicture29.png",
-            "res://player_pics/newpicture37.png",
-            "res://player_pics/newpicture39.png",
-            "res://player_pics/newpicture20.png",
-            "res://player_pics/newpicture19.png",
-            "res://player_pics/newpicture15.png",
-            "res://player_pics/newpicture14.png",
-            "res://player_pics/newpicture8.png",
-            "res://player_pics/newpicture6.png"
-        };
+            get
+            {
+                if(_playerPics == null)
+                {
+                    _playerPics = new List<string>();
+
+                    AssetUtil.LoadAssets("res://player_pics/", _playerPics);
+                }
+
+                return _playerPics;
+            }
+        }
 
         public static string GetImagePath(string name)
         {
