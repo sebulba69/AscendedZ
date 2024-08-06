@@ -13,38 +13,74 @@ namespace AscendedZ
     public class MusicAssets
     {
         public static readonly string OW_MUSIC_FOLDER = "res://music/overworld/";
+        public static readonly string DR_MUSIC_FOLDER = "res://music/dungeons_tiers";
+        public static readonly string DR_BOSSES_MUSIC_FOLDER = "res://music/dungeon_bosses";
+        public static readonly string DC_MUSIC_FOLDER = "res://music/dungoen_crawl";
+
         public static readonly string DC_BOSS_PRE = "res://music/dungeon_crawl_pre/dungeon_crawl_boss_pre.ogg";
         public static readonly string DC_BOSS = "res://music/dungeon_crawl_boss/dungeon_crawl_boss.ogg";
         public static readonly string DC_BOSS_RANDOM = "res://music/dungeon_crawl_boss/dungeon_random_boss.ogg";
         public static readonly string BOSS_VICTORY = "res://music/boss_victory.ogg";
         public static readonly string FIRST_CUTSCENE = "res://music/cutscene.ogg";
 
-        public static List<string> OverworldTracks = new List<string>() 
-        {
-            "res://music/overworld/01. [DDS1] River of Samsara.ogg",
-            "res://music/overworld/02. [KH2] Hollow Bastion.ogg",
-            "res://music/overworld/03. [KH2] Underworld.ogg",
-            "res://music/overworld/04. [Lunacid] Rain of Saint Ishii.ogg",
-            "res://music/overworld/05. [SMT3] Sound Test.ogg",
-            "res://music/overworld/06. [LoR] Caravan.ogg",
-            "res://music/overworld/07. [LoR] Wasteland.ogg",
-            "res://music/overworld/08. [LoG] Spring Watch.ogg",
-            "res://music/overworld/09. [KH2R] This is Halloween.ogg",
-            "res://music/overworld/10. [SMTIV] Tokyo.ogg"
-        };
+        private static List<string> _overworldTracks, _dungeonTracksReal, _dungeonBossesReal, _dungeonCrawlTracks;
 
-        private static List<string> DungeonTracksReal = new List<string>()
+        public static List<string> OverworldTracks 
         {
-            "res://music/dungeons_tiers/dungeon11-19.ogg",
-            "res://music/dungeons_tiers/dungeon21-29.ogg",
-            "res://music/dungeons_tiers/dungeon31-39.ogg",
-            "res://music/dungeons_tiers/dungeon41-49.ogg",
-            "res://music/dungeons_tiers/dungeon51-59.ogg",
-            "res://music/dungeons_tiers/dungeon61-69.ogg",
-            "res://music/dungeons_tiers/dungeon71-79.ogg",
-            "res://music/dungeons_tiers/dungeon81-89.ogg",
-            "res://music/dungeons_tiers/dungeon91-99.ogg",
-        };
+            get 
+            {
+                if (_overworldTracks == null) 
+                {
+                    _overworldTracks = new List<string>();
+                    AssetUtil.LoadAssets(OW_MUSIC_FOLDER, _overworldTracks);
+                }
+
+                return _overworldTracks;
+            }
+        }
+
+
+        private static List<string> DungeonTracksReal 
+        {
+            get 
+            {
+                if(_dungeonTracksReal == null)
+                {
+                    _dungeonTracksReal = new List<string>();
+                    AssetUtil.LoadAssets(DR_MUSIC_FOLDER, _dungeonTracksReal);
+                }
+
+                return _dungeonTracksReal;
+            }
+        }
+
+        private static List<string> DungeonBossesReal
+        {
+            get
+            {
+                if(_dungeonBossesReal == null)
+                {
+                    _dungeonBossesReal = new List<string>();
+                    AssetUtil.LoadAssets(DR_BOSSES_MUSIC_FOLDER, _dungeonBossesReal);
+                }
+
+                return _dungeonBossesReal;
+            }
+        }
+
+        private static List<string> DungeonCrawlTracks
+        {
+            get
+            {
+                if(_dungeonCrawlTracks == null)
+                {
+                    _dungeonCrawlTracks = new List<string>();
+                    AssetUtil.LoadAssets(DC_MUSIC_FOLDER, _dungeonCrawlTracks);
+                }
+
+                return _dungeonCrawlTracks;
+            }
+        }
 
         public static string GetOverworldTrackNormal()
         {
@@ -59,37 +95,26 @@ namespace AscendedZ
         public static string GetDungeonTrack(int tier)
         {
             // tiers 5 - 10 have special tracks
-            if(tier < 10)
+            if (tier % 10 == 0)
             {
-                return "res://music/dungeons_tutorial/dungeon1-4.ogg";
-            }
-            else if(tier >= 10)
-            {
-                if(tier % 10 == 0)
-                {
-                    return $"res://music/dungeon_bosses/dungeon{tier}.ogg";
-                }
-                else
-                {
-                    int index = ((tier - (tier % 10)) / 10) - 1;
-
-                    if (index > DungeonTracksReal.Count)
-                        index = 0;
-
-                    return DungeonTracksReal[index];
-                }
-
+                int index = Equations.GetTierIndexBy10(tier);
+                return DungeonBossesReal[index];
             }
             else
             {
-                return "temp";
+                int index = ((tier - (tier % 10)) / 10);
+
+                if (index > DungeonTracksReal.Count)
+                    index = 0;
+
+                return DungeonTracksReal[index];
             }
         }
 
         public static string GetDungeonTrackDC(int tier)
         {
             int index = Equations.GetTierIndexBy25(tier);
-            return $"res://music/dungoen_crawl/dungeon_crawl_0{index + 1}.ogg";
+            return DungeonCrawlTracks[index];
         }
     }
 }
