@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dxiy37f8w7l38"
+path="res://.godot/imported/020 [YGODotR] Seto's Arrival Extended.ogg-1a5e76da823466d6fe836f93d8553cbc.oggvorbisstr"
+
+[deps]
+
+source_file="res://music/overworld/020 [YGODotR] Seto's Arrival Extended.ogg"
+dest_files=["res://.godot/imported/020 [YGODotR] Seto's Arrival Extended.ogg-1a5e76da823466d6fe836f93d8553cbc.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=54.36
+bpm=0.0
+beat_count=0
+bar_beats=4
