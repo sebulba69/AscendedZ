@@ -29,6 +29,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Bernasbeorth] = MakeBernasbeorth;
             _functionDictionary[EnemyNames.Iaviol] = MakeIaviol;
             _functionDictionary[EnemyNames.Olu] = MakeOlu;
+            _functionDictionary[EnemyNames.Yodigrin] = MakeYodigirin;
+            _functionDictionary[EnemyNames.Vustuma] = MakeVustuma;
         }
 
         public Enemy MakeThylaf()
@@ -188,6 +190,29 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return olu;
         }
 
+        public Enemy MakeYodigirin()
+        {
+            var yodigirin = MakePoisonAllEnemy(EnemyNames.Yodigrin, 20);
+
+            yodigirin.Resistances.SetResistance(ResistanceType.Dr, Elements.Fire);
+
+            yodigirin.Skills.Add(SkillDatabase.Fire1.Clone());
+
+            return yodigirin;
+        }
+
+        public Enemy MakeVustuma()
+        {
+            var vustuma = MakePoisonAllEnemy(EnemyNames.Vustuma, 20);
+
+            vustuma.Resistances.SetResistance(ResistanceType.Dr, Elements.Wind);
+
+            vustuma.Skills.Add(SkillDatabase.Wind1.Clone());
+
+            return vustuma;
+        }
+
+
         private Enemy MakeAgroStatusEnemy(string name, int hp)
         {
             var statusAttackEnemy = MakeStatusAttackEnemy(name, hp);
@@ -221,6 +246,14 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             statusAttackEnemy.Skills.Add(SkillDatabase.Poison.Clone());
             statusAttackEnemy.Description = $"[PSN]: {statusAttackEnemy.Description}";
 
+            return statusAttackEnemy;
+        }
+
+        private Enemy MakePoisonAllEnemy(string name, int hp)
+        {
+            var statusAttackEnemy = MakePoisonEnemy(name, hp);
+            statusAttackEnemy.Skills.Clear();
+            statusAttackEnemy.Skills.Add(SkillDatabase.PoisonAll.Clone());
             return statusAttackEnemy;
         }
 

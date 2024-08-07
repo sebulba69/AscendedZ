@@ -184,17 +184,22 @@ namespace AscendedZ
                         // use RANDOM_ENEMIES as a base
                         List<string> possibleEncounters = new List<string>();
 
-                        string[] tier1RandomEncounters = new string[] { EnemyNames.Liamlas, EnemyNames.Fastrobren, EnemyNames.Thylaf, EnemyNames.Arwig, EnemyNames.Riccman, EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald, EnemyNames.CattuTDroni };
-                        string[] tier2RandomEncounters = new string[] { EnemyNames.Ed, EnemyNames.Otem, EnemyNames.Hesret };
-                        string[] tier3RandomEncounters = new string[] { EnemyNames.Nanfrea, EnemyNames.Ferza, EnemyNames.Anrol, EnemyNames.David };
-                        string[] tier4RandomEncounters = new string[] { EnemyNames.Fledan, EnemyNames.Walds, EnemyNames.Naldbear, EnemyNames.Stroma_Hele,EnemyNames.Thony, EnemyNames.Conson };
-                        string[] tier5RandomEncounters = new string[] { EnemyNames.Pebrand, EnemyNames.Leofuwil, EnemyNames.Gormacwen, EnemyNames.Vidwerd, EnemyNames.Sylla, EnemyNames.Venforth };
-                        string[] tier6RandomEncounters = new string[] { EnemyNames.Aldmas, EnemyNames.Fridan, EnemyNames.Bue, EnemyNames.Bued, EnemyNames.Bureen, EnemyNames.Wennald, EnemyNames.Garcar, EnemyNames.LaChris,
-                                                                        EnemyNames.Isumforth, EnemyNames.Ingesc, EnemyNames.Rahfortin, EnemyNames.Leswith, EnemyNames.Paca, EnemyNames.Wigfred, EnemyNames.Lyley, EnemyNames.Acardeb,
-                                                                        EnemyNames.Darol, EnemyNames.Hesbet, EnemyNames.Olu, EnemyNames.Iaviol, EnemyNames.Zalth, EnemyNames.Bernasbeorth };
-                        string[] randomEnemies = new string[] { EnemyNames.Ardeb,  EnemyNames.DrigaBoli, EnemyNames.FoameShorti,
-                                                                EnemyNames.ReeshiDeeme, EnemyNames.Tily, EnemyNames.Hahere, EnemyNames.Brast };
-                        
+                        string[] tier1RandomEncounters = [EnemyNames.Liamlas, EnemyNames.Fastrobren, EnemyNames.Thylaf, EnemyNames.Arwig, EnemyNames.Riccman, EnemyNames.Gardmuel, EnemyNames.Sachael, EnemyNames.Isenald, EnemyNames.CattuTDroni];
+                        string[] tier2RandomEncounters = [EnemyNames.Ed, EnemyNames.Otem, EnemyNames.Hesret];
+                        string[] tier3RandomEncounters = [EnemyNames.Nanfrea, EnemyNames.Ferza, EnemyNames.Anrol, EnemyNames.David];
+                        string[] tier4RandomEncounters = [EnemyNames.Fledan, EnemyNames.Walds, EnemyNames.Naldbear, EnemyNames.Stroma_Hele,EnemyNames.Thony, EnemyNames.Conson];
+                        string[] tier5RandomEncounters = [EnemyNames.Pebrand, EnemyNames.Leofuwil, EnemyNames.Gormacwen, EnemyNames.Vidwerd, EnemyNames.Sylla, EnemyNames.Venforth];
+                        string[] tier6RandomEncountersA = [ EnemyNames.Aldmas, EnemyNames.Fridan, EnemyNames.Bue, EnemyNames.Bued, EnemyNames.Bureen, EnemyNames.Wennald, EnemyNames.Garcar, EnemyNames.LaChris,
+                                                                        EnemyNames.Isumforth, EnemyNames.Ingesc, EnemyNames.Rahfortin ];
+                        string[] tier6RandomEncountersB = [ EnemyNames.Leswith, EnemyNames.Paca, EnemyNames.Wigfred, EnemyNames.Lyley, EnemyNames.Acardeb,
+                                                                        EnemyNames.Darol, EnemyNames.Hesbet, EnemyNames.Olu, EnemyNames.Iaviol, EnemyNames.Zalth, EnemyNames.Bernasbeorth];
+
+                        string[] randomEnemies = [ EnemyNames.Ardeb,  EnemyNames.DrigaBoli, EnemyNames.FoameShorti,
+                                                                EnemyNames.ReeshiDeeme, EnemyNames.Tily, EnemyNames.Hahere, EnemyNames.Brast ];
+                        string[] tier7RandomEncounters = [EnemyNames.Yodigrin, EnemyNames.Vustuma, EnemyNames.Gupmoth, EnemyNames.Maltamos, EnemyNames.Rusnopi, EnemyNames.Uptali, EnemyNames.Sufnod, EnemyNames.Ket, EnemyNames.Khasterat,
+                        EnemyNames.Palmonu, EnemyNames.Baos, EnemyNames.Cendros, EnemyNames.Rigratos, EnemyNames.Zorliros, EnemyNames.Zervos, EnemyNames.Vaphos, EnemyNames.Leos,
+                        EnemyNames.Leos, EnemyNames.Camnonos, EnemyNames.Ridravos, EnemyNames.Raos];
+
                         possibleEncounters.AddRange(tier1RandomEncounters);
 
                         int minEnemies = 2;
@@ -230,8 +235,17 @@ namespace AscendedZ
                         {
                             possibleEncounters.RemoveRange(0, tier3RandomEncounters.Length);
                             possibleEncounters.RemoveRange(0, tier4RandomEncounters.Length);
-                            possibleEncounters.AddRange(tier6RandomEncounters);
+                            possibleEncounters.AddRange(tier6RandomEncountersA);
+                            possibleEncounters.AddRange(tier6RandomEncountersB);
                             possibleEncounters.AddRange(randomEnemies);
+                        }
+
+                        if(tier > TierRequirements.TIER8_STRONGER_ENEMIES)
+                        {
+                            maxEnemies = 6;
+                            possibleEncounters.Clear();
+                            possibleEncounters.AddRange(tier6RandomEncountersB);
+                            possibleEncounters.AddRange(tier7RandomEncounters);
                         }
 
                         int numEnemies = RANDOM.Next(minEnemies, maxEnemies + 1);

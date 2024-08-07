@@ -51,6 +51,7 @@ namespace AscendedZ
         public static int TIER5_STRONGER_ENEMIES = 40;
         public static int TIER6_STRONGER_ENEMIES = 50;
         public static int TIER7_STRONGER_ENEMIES = 70;
+        public static int TIER8_STRONGER_ENEMIES = 100;
 
         /// <summary>
         /// 100 - Tier I can reasonably expect players to have ascended characters
