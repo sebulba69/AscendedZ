@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5xd4it2pk7uq"
-path.s3tc="res://.godot/imported/01bg03101.jpg-5bf25df3d3d5f233bf26ddf58f951eb8.s3tc.ctex"
-path.etc2="res://.godot/imported/01bg03101.jpg-5bf25df3d3d5f233bf26ddf58f951eb8.etc2.ctex"
+path.s3tc="res://.godot/imported/001bg03101.jpg-f40fed7d12780880f1561056002671b7.s3tc.ctex"
+path.etc2="res://.godot/imported/001bg03101.jpg-f40fed7d12780880f1561056002671b7.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://cg_backgrounds/dungeon/01bg03101.jpg"
-dest_files=["res://.godot/imported/01bg03101.jpg-5bf25df3d3d5f233bf26ddf58f951eb8.s3tc.ctex", "res://.godot/imported/01bg03101.jpg-5bf25df3d3d5f233bf26ddf58f951eb8.etc2.ctex"]
+source_file="res://cg_backgrounds/dungeon/001bg03101.jpg"
+dest_files=["res://.godot/imported/001bg03101.jpg-f40fed7d12780880f1561056002671b7.s3tc.ctex", "res://.godot/imported/001bg03101.jpg-f40fed7d12780880f1561056002671b7.etc2.ctex"]
 
 [params]
 
