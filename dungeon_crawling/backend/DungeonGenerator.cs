@@ -69,7 +69,7 @@ namespace AscendedZ.dungeon_crawling.backend
 
             if(dimensions > 6)
             {
-                _pathTypes.Add(new WeightedItem<PathType>(PathType.BuceOrb, 20));
+                _pathTypes.Add(new WeightedItem<PathType>(PathType.BuceOrb, 45));
                 _pathTypes.Add(new WeightedItem<PathType>(PathType.SpecialEncounter, 50));
             }
 
