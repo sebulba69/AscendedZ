@@ -164,7 +164,29 @@ namespace AscendedZ.entities
         // POISON
         public static readonly string Bernasbeorth = "Bernasbeorth"; // Elec --> Wind
         public static readonly string Iaviol = "Iaviol";
-        public static readonly string Olu = "Olu"; 
+        public static readonly string Olu = "Olu";
+
+        // DINOSAURS RAAAWWW
+        public static readonly string Yodigrin = "Yodigrin";
+        public static readonly string Vustuma = "Vustuma";
+        public static readonly string Gupmoth = "Gupmoth";
+        public static readonly string Maltamos = "Maltamos";
+        public static readonly string Rusnopi = "Rusnopi";
+        public static readonly string Uptali = "Uptali";
+        public static readonly string Sufnod = "Sufnod";
+        public static readonly string Ket = "Ket";
+        public static readonly string Khasterat = "Khasterat";
+        public static readonly string Palmonu = "Palmonu";
+        public static readonly string Baos = "Baos";
+        public static readonly string Cendros = "Cendros";
+        public static readonly string Rigratos = "Rigratos";
+        public static readonly string Zorliros = "Zorliros";
+        public static readonly string Zervos = "Zervos";
+        public static readonly string Vaphos = "Vaphos";
+        public static readonly string Leos = "Leos";
+        public static readonly string Camnonos = "Camnonos";
+        public static readonly string Ridravos = "Ridravos";
+        public static readonly string Raos = "Raos";
 
         // Bosses (Normal)
         public static readonly string Harbinger = "Harbinger, Mangler of Legs";
