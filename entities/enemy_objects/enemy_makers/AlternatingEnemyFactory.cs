@@ -30,6 +30,12 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Acardeb] = MakeAcardeb;
             _functionDictionary[EnemyNames.Darol] = MakeDarol;
             _functionDictionary[EnemyNames.Hesbet] = MakeHesbet;
+            _functionDictionary[EnemyNames.Khasterat] = MakeKhasterat;
+            _functionDictionary[EnemyNames.Palmonu] = MakePalmonu;
+            _functionDictionary[EnemyNames.Leos] = MakeLeos;
+            _functionDictionary[EnemyNames.Camnonos] = MakeCamnonos;
+            _functionDictionary[EnemyNames.Ridravos] = MakeRidravos;
+            _functionDictionary[EnemyNames.Raos] = MakeRaos;
             _functionDictionary[EnemyNames.Bue] = () => MakeBu(EnemyNames.Bue, 15, Elements.Ice);
             _functionDictionary[EnemyNames.Bued] = () => MakeBu(EnemyNames.Bued, 15, Elements.Fire);
             _functionDictionary[EnemyNames.Bureen] = () => MakeBu(EnemyNames.Bureen, 15, Elements.Wind);
@@ -144,6 +150,58 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             return fridan;
         }
 
+        public Enemy MakeLeos()
+        {
+            var leos = MakeAlternatingEnemy(EnemyNames.Leos, 20);
+
+            leos.Resistances.SetResistance(ResistanceType.Wk, Elements.Ice);
+            leos.Resistances.SetResistance(ResistanceType.Rs, Elements.Fire);
+            leos.Resistances.SetResistance(ResistanceType.Dr, Elements.Wind);
+
+            leos.Skills.AddRange([SkillDatabase.Fire1.Clone(), SkillDatabase.Wind1.Clone()]);
+
+            return leos;
+        }
+
+        public Enemy MakeCamnonos()
+        {
+            var camnonos = MakeAlternatingEnemy(EnemyNames.Camnonos, 20);
+
+            camnonos.Resistances.SetResistance(ResistanceType.Wk, Elements.Wind);
+            camnonos.Resistances.SetResistance(ResistanceType.Rs, Elements.Ice);
+            camnonos.Resistances.SetResistance(ResistanceType.Dr, Elements.Elec);
+
+            camnonos.Skills.AddRange([SkillDatabase.Ice1.Clone(), SkillDatabase.ElecAll.Clone()]);
+
+            return camnonos;
+        }
+
+        public Enemy MakeRidravos()
+        {
+            var ridravos = MakeAlternatingEnemy(EnemyNames.Ridravos, 20);
+
+            ridravos.Resistances.SetResistance(ResistanceType.Wk, Elements.Elec);
+            ridravos.Resistances.SetResistance(ResistanceType.Rs, Elements.Wind);
+            ridravos.Resistances.SetResistance(ResistanceType.Dr, Elements.Fire);
+
+            ridravos.Skills.AddRange([SkillDatabase.Wind1.Clone(), SkillDatabase.FireAll.Clone()]);
+
+            return ridravos;
+        }
+
+        public Enemy MakeRaos()
+        {
+            var raos = MakeAlternatingEnemy(EnemyNames.Raos, 20);
+
+            raos.Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
+            raos.Resistances.SetResistance(ResistanceType.Rs, Elements.Elec);
+            raos.Resistances.SetResistance(ResistanceType.Dr, Elements.Ice);
+
+            raos.Skills.AddRange([SkillDatabase.Elec1.Clone(), SkillDatabase.IceAll.Clone()]);
+
+            return raos;
+        }
+
         public Enemy MakePaca() 
         { 
             var paca = MakeSupportEnemy(EnemyNames.Paca, 9);
@@ -205,6 +263,29 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
 
             return darol;
         }
+
+        public Enemy MakeKhasterat()
+        {
+            var khasterat = MakeEyeEnemy(EnemyNames.Khasterat, 15, SkillDatabase.DragonEye);
+
+            khasterat.Resistances.SetResistance(ResistanceType.Wk, Elements.Fire);
+
+            khasterat.Skills.Add(SkillDatabase.Fire1.Clone());
+
+            return khasterat;
+        }
+
+        public Enemy MakePalmonu()
+        {
+            var palmonu = MakeEyeEnemy(EnemyNames.Palmonu, 15, SkillDatabase.DragonEye);
+
+            palmonu.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
+
+            palmonu.Skills.Add(SkillDatabase.Light1.Clone());
+
+            return palmonu;
+        }
+
 
         public Enemy MakeHesbet()
         {

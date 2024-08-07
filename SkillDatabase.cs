@@ -149,6 +149,17 @@ namespace AscendedZ
                 return tech;
             } 
         }
+
+        public static StatusSkill TechBuffAll
+        {
+            get
+            {
+                var techAll = TechBuff;
+                techAll.TargetType = TargetTypes.TEAM_ALL;
+                return techAll;
+            }
+        }
+
         public static StatusSkill TechDebuff 
         {
             get 
@@ -226,6 +237,24 @@ namespace AscendedZ
                     StartupAnimation = SkillAssets.STARTUP1_MG,
                     EndupAnimation = SkillAssets.EYESKILLANIM,
                     EyeType = battle.BattleResultType.BeastEye,
+                    Icon = SkillAssets.BEAST_EYE
+                };
+
+                return eyeSkill;
+            }
+        }
+
+        public static EyeSkill DragonEye
+        {
+            get
+            {
+                EyeSkill eyeSkill = new EyeSkill()
+                {
+                    BaseName = "Dragon Eye",
+                    TargetType = TargetTypes.SELF,
+                    StartupAnimation = SkillAssets.STARTUP1_MG,
+                    EndupAnimation = SkillAssets.EYESKILLANIM,
+                    EyeType = battle.BattleResultType.DragonEye,
                     Icon = SkillAssets.BEAST_EYE
                 };
 
@@ -432,6 +461,17 @@ namespace AscendedZ
                 var poison = MakeStatusSkill("Poison", new PoisonStatus());
                 poison.Icon = SkillAssets.POISON_ICON;
                 poison.EndupAnimation = SkillAssets.POISON;
+                return poison;
+            }
+        }
+
+        public static StatusSkill PoisonAll
+        {
+            get
+            {
+                var poison = Poison;
+                poison.TargetType = TargetTypes.OPP_ALL;
+                poison.BaseName = "All Poison";
                 return poison;
             }
         }

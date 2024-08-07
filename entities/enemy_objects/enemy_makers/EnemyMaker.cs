@@ -22,6 +22,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 new BuffEnemyFactory(),
                 new ResistanceChangerEnemyFactory(),
                 new CopyCatEnemyFactory(),
+                new FlatBuffDebuffEnemyFactory(),
                 new RandomEnemyFactory()
             };
         }
