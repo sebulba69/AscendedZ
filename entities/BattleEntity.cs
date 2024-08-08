@@ -156,9 +156,6 @@ namespace AscendedZ.entities.battle_entities
                 result.HPChanged = damage;
             }
 
-            if(technical != null && technical.Active)
-                user.StatusHandler.RemoveStatus(user, StatusId.TechnicalStatus);
-
             if (skill.BaseName == SkillDatabase.DracoTherium.BaseName) 
             {
                 StatusHandler.RemoveStatus(this, StatusId.PoisonStatus);

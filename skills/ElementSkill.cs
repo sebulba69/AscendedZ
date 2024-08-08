@@ -2,6 +2,7 @@
 using AscendedZ.entities;
 using AscendedZ.entities.battle_entities;
 using AscendedZ.game_object;
+using AscendedZ.statuses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +70,13 @@ namespace AscendedZ.skills
 
         public BattleResult ProcessSkill(BattleEntity user, BattleEntity target)
         {
-            return target.ApplyElementSkill(user, this);
+            var result = target.ApplyElementSkill(user, this);
+            if(TargetType == TargetTypes.SINGLE_OPP)
+            {
+                if (user.StatusHandler.HasStatus(StatusId.TechnicalStatus))
+                    user.StatusHandler.RemoveStatus(user, StatusId.TechnicalStatus);
+            }
+            return result;
         }
 
         public BattleResult ProcessSkill(BattleEntity user, List<BattleEntity> targets)
@@ -103,6 +110,10 @@ namespace AscendedZ.skills
                 all.AllHPChanged.Add(result.HPChanged);
                 all.Targets.Add(targets[i]);
             }
+
+            // remove technical at the end so it applies to all enemies/players
+            if (user.StatusHandler.HasStatus(StatusId.TechnicalStatus))
+                user.StatusHandler.RemoveStatus(user, StatusId.TechnicalStatus);
 
             return all;
         }
