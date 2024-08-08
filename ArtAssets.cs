@@ -61,13 +61,7 @@ namespace AscendedZ
             }
         }
 
-        private static List<DungeonColorTemplate> _templates = new List<DungeonColorTemplate>() 
-        {
-            new DungeonColorTemplate() { BackgroundString = "", DoorColor = "", LineColor = "" },
-            new DungeonColorTemplate() { BackgroundString = "008b9e", DoorColor = "6b7bff", LineColor = "000000" },
-            new DungeonColorTemplate() { BackgroundString = "ff91fc", DoorColor = "ffffff", LineColor = "000000" },
-            new DungeonColorTemplate() { BackgroundString = "1cb5a9", DoorColor = "7e88b2", LineColor = "000000" },
-        };
+        private static readonly List<string> _templates = [ "ffffff", "0ed684", "8f5ad4", "9f85ff", "01ffbc", "24fff8", "ffb2ff", "d08aff"];
 
         public static string GetBackground(int tier)
         {
@@ -93,7 +87,7 @@ namespace AscendedZ
             return CombatBgsDC[index];
         }
 
-        public static DungeonColorTemplate GetCombatDCTileTemplate(int tier)
+        public static string GetCombatDCTileTemplate(int tier)
         {
             int index = Equations.GetTierIndexBy25(tier);
 
