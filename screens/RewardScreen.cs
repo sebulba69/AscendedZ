@@ -41,9 +41,13 @@ public partial class RewardScreen : Control
     public void InitializeSMTRewards()
     {
         int tier = _gameObject.Tier;
+        int startingValue = 7;
+        if(tier > TierRequirements.TIER6_STRONGER_ENEMIES)
+            startingValue += Equations.GetTierIndexBy10(tier);
+
         _rewards = new List<Currency>()
         {
-            new Vorpex() { Amount = tier * 7 },
+            new Vorpex() { Amount = tier * startingValue },
             new PartyCoin() { Amount = tier }
         };
         SetupRewards();

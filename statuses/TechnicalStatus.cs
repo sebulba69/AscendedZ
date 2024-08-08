@@ -24,19 +24,13 @@ namespace AscendedZ.statuses
 
         public override void ActivateStatus(BattleEntity owner)
         {
-            _stacks++;
+            _stacks = 1;
+            Active = true;
             base.ActivateStatus(owner); 
         }
 
         public override void IncreaseStatusCounter()
         {
-            _stacks++;
-            if (_stacks >= STACK_CAP)
-            {
-                _stacks = STACK_CAP;
-                if (!Active)
-                    Active = true;
-            }
         }
 
         public override void DecreaseStatusCounter()
@@ -67,8 +61,6 @@ namespace AscendedZ.statuses
             wrapper.Icon = this.Icon;
             wrapper.Counter = _stacks;
             wrapper.CounterColor = Colors.White;
-            if (_stacks == STACK_CAP)
-                wrapper.CounterColor = Colors.Green;
             wrapper.Description = $"At {STACK_CAP} stack, the next non-Null/Drained attack will\ncount as a weakness. Stacks with weaknesses for more damage. Disappears after\nnext elemental skill is used.";
 
             return wrapper;

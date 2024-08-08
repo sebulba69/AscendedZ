@@ -28,6 +28,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Drace_Skinner] = MakeDraceSkinner;
             _functionDictionary[EnemyNames.Jude_Stone] = MakeJudeStone;
             _functionDictionary[EnemyNames.Drace_Razor] = MakeDraceRazor;
+            _functionDictionary[EnemyNames.Everit_Pickerin] = MakeEveritPickerin;
             _functionDictionary[EnemyNames.Ocura] = MakeOcura;
             _functionDictionary[EnemyNames.Emush] = MakeEmush;
         }
@@ -60,6 +61,11 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
         public Enemy MakeKellamVonStein()
         {
             return new KellamVonStein();
+        }
+
+        public Enemy MakeEveritPickerin()
+        {
+            return new EveritPickerin();
         }
 
         public Enemy MakeEthelAura()

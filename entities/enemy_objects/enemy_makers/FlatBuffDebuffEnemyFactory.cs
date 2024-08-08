@@ -92,7 +92,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
                 Name = $"[FBDF] {name}",
                 MaxHP = BASE_HP + _tierBoost,
                 Image = CharacterImageAssets.GetImagePath(name),
-                Resistances = new ResistanceArray()
+                Resistances = new ResistanceArray(),
+                FlatBuffDebuff = buffDebuff
             };
         }
     }
