@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AscendedZ.resistances
 {
@@ -43,7 +44,20 @@ namespace AscendedZ.resistances
 
         public ResistanceType GetResistance(Elements element)
         {
-            return (ResistanceType)this.RArray[(int)element];
+            try
+            {
+                return (ResistanceType)this.RArray[(int)element];
+            }
+            catch (Exception)
+            {
+                return ResistanceType.None;
+            }
+        }
+
+        public void ClearResistances()
+        {
+            for (int i = 0; i < RArray.Length; i++)
+                this.RArray[i] = (int)ResistanceType.None;
         }
 
         /// <summary>
@@ -158,26 +172,54 @@ namespace AscendedZ.resistances
         #region Resistance Checks
         public bool IsWeakToElement(Elements element)
         {
-            int wk = (int)ResistanceType.Wk;
-            return this.RArray[(int)element] == wk;
+            try
+            {
+                int wk = (int)ResistanceType.Wk;
+                return this.RArray[(int)element] == wk;
+            }
+            catch (Exception)
+            {
+                return false; 
+            }
         }
 
         public bool IsResistantToElement(Elements element)
         {
-            int rs = (int)ResistanceType.Rs;
-            return this.RArray[(int)element] == rs;
+            try
+            {
+                int rs = (int)ResistanceType.Rs;
+                return this.RArray[(int)element] == rs;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool IsNullElement(Elements element)
         {
-            int nu = (int)ResistanceType.Nu;
-            return this.RArray[(int)element] == nu;
+            try
+            {
+                int nu = (int)ResistanceType.Nu;
+                return this.RArray[(int)element] == nu;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool IsDrainElement(Elements element)
         {
-            int dr = (int)ResistanceType.Dr;
-            return this.RArray[(int)element] == dr;
+            try
+            {
+                int dr = (int)ResistanceType.Dr;
+                return this.RArray[(int)element] == dr;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
         #endregion
     }

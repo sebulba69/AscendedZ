@@ -45,6 +45,7 @@ namespace AscendedZ
 
         private static string FLAT_BUFF = "res://effects/effect_sounds/Skill1.ogg";
         private static string FLAT_DEBUFF = "res://effects/effect_sounds/Down2.ogg";
+        private static string ALMIGHTY = "res://effects/effect_sounds/Saint4.ogg";
 
         /// <summary>
         /// Animation + Sfx
@@ -81,7 +82,8 @@ namespace AscendedZ
             { SkillAssets.FLAT_BUFF, FLAT_BUFF },
             { SkillAssets.ATK_BUFF, LIGHT3 },
             { SkillAssets.TECH_BUFF, DARKNESS3 },
-            { SkillAssets.FLAT_DEBUFF, FLAT_DEBUFF }
+            { SkillAssets.FLAT_DEBUFF, FLAT_DEBUFF },
+            { SkillAssets.ALMIGHTY, ALMIGHTY }
         };
     }
 }
