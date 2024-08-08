@@ -35,21 +35,10 @@ public partial class TileScene : Node2D
         };
     }
 
-    public void ChangeBackgroundColor(string bg, string door, string lines)
+    public void ChangeBackgroundColor(string tint)
     {
-        if(bg != "")
-            _background.Modulate = Color.FromString(bg, Colors.SkyBlue);
-
-        if(lines != "")
-            _interiorLines.Modulate = Color.FromString(lines, Colors.White);
-
-        if(door != "")
-        {
-            _doors[Direction.Up].Modulate = Color.FromString(door, Colors.SkyBlue);
-            _doors[Direction.Down].Modulate = Color.FromString(door, Colors.SkyBlue);
-            _doors[Direction.Left].Modulate = Color.FromString(door, Colors.SkyBlue);
-            _doors[Direction.Right].Modulate = Color.FromString(door, Colors.SkyBlue);
-        }
+        var tile = GetNode<Node2D>("%Tile");
+        tile.Modulate = Color.FromString(tint, tile.Modulate);
     }
 
     public void SetGraphic(string graphic)
