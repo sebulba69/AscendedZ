@@ -155,6 +155,7 @@ namespace AscendedZ
             get
             {
                 var techAll = TechBuff;
+                techAll.BaseName = "Tech+ All";
                 techAll.TargetType = TargetTypes.TEAM_ALL;
                 return techAll;
             }

@@ -20,7 +20,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
         private readonly List<int>[] _script = 
             [
                 [0, 1, 2, 3, 4],
-                [0, 1, 2, 5, 11],
+                [0, 1, 2, 5, 6],
                 [7, 8, 11],
                 [9, 10, 11]
             ];
