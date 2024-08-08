@@ -53,10 +53,6 @@ unique_name_in_owner = true
 visible = false
 texture = ExtResource("9_uyghw")
 
-[node name="Graphic" parent="Tile" instance=ExtResource("10_g6sag")]
-unique_name_in_owner = true
-visible = false
-
 [node name="RoomRight" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(368, 0)
@@ -76,3 +72,7 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 position = Vector2(0, 368)
 metadata/_edit_lock_ = true
+
+[node name="Graphic" parent="." instance=ExtResource("10_g6sag")]
+unique_name_in_owner = true
+visible = false
