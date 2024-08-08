@@ -16,6 +16,8 @@ texture_filter = 2
 script = ExtResource("1_q0og1")
 
 [node name="Tile" type="Node2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 0.698039, 1, 1)
 
 [node name="Shadow" type="Sprite2D" parent="Tile"]
 texture = ExtResource("2_fntij")

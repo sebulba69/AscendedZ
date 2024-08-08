@@ -61,7 +61,7 @@ namespace AscendedZ
             }
         }
 
-        private static readonly List<string> _templates = [ "ffffff", "0ed684", "8f5ad4", "9f85ff", "01ffbc", "24fff8", "517fff", "006aac"];
+        private static readonly List<string> _templates = [ "ffffff", "0ed684", "8f5ad4", "9f85ff", "01ffbc", "24fff8", "ffb2ff", "d08aff"];
 
         public static string GetBackground(int tier)
         {
