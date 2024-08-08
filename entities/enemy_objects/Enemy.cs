@@ -128,5 +128,38 @@ namespace AscendedZ.entities.enemy_objects
                 return targets[_rng.Next(targets.Count)];
             }
         }
+
+        protected BattleEntity FindTargetForStatus(StatusSkill status, BattleSceneObject battleSceneObject)
+        {
+            if (status.TargetType == TargetTypes.OPP_ALL || status.TargetType == TargetTypes.SINGLE_OPP)
+            {
+                var players = FindPlayersUnaffectedByStatus(battleSceneObject, status.Status);
+
+                // no reason not to apply buffs/debuffs
+                if (status.Status.Id == StatusId.AtkChangeStatus || status.Status.Id == StatusId.DefChangeStatus)
+                {
+                    return battleSceneObject.AlivePlayers[_rng.Next(battleSceneObject.AlivePlayers.Count)];
+                }
+                else if (players.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    if (status.Status.Id == StatusId.StunStatus && players.Count == 1)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return players[_rng.Next(_rng.Next(players.Count))];
+                    }
+                }
+            }
+            else
+            {
+                return this;
+            }
+        }
     }
 }

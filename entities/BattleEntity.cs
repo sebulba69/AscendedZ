@@ -71,7 +71,7 @@ namespace AscendedZ.entities.battle_entities
         public BattleEntity()
         {
             this.CanAttack = true;
-            ElementDamageModifiers = new double[6];
+            ElementDamageModifiers = new double[Enum.GetNames(typeof(Elements)).Length];
             for(int i = 0; i < ElementDamageModifiers.Length; i++)
                 ElementDamageModifiers[i] = 0;
         }

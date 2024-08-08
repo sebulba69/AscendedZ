@@ -200,6 +200,7 @@ namespace AscendedZ.entities
         public static readonly string Jude_Stone = "Jude Stone";
         public static readonly string Drace_Razor = "Drace Razor";
         public static readonly string Everit_Pickerin = "Everit Pickerin";
+        public static readonly string Alex_Church = "Alex Church";
 
         // Bosses (Dungeon)
         public static readonly string Ocura = "Ocura";

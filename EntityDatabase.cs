@@ -58,6 +58,7 @@ namespace AscendedZ
             [EnemyNames.Jude_Stone],
             [EnemyNames.Drace_Razor],
             [EnemyNames.Everit_Pickerin],
+            [EnemyNames.Alex_Church],
         ];
 
         private static readonly List<string> DUNGEON_BOSS_ENCOUNTERS = new List<string>() 
