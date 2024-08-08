@@ -225,7 +225,7 @@ public partial class BattleEnemyScene : Node2D
 
             if (isRandomBoss)
             {
-                gameObject.MusicPlayer.PlayMusic(MusicAssets.DC_BOSS_RANDOM);
+                gameObject.MusicPlayer.PlayMusic(MusicAssets.GetDungeonTrackRandomBoss(tier));
             }
         }
 
