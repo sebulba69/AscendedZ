@@ -96,21 +96,14 @@ namespace AscendedZ.game_object
         public int Pickaxes { get; set; }
         public MusicObject MusicPlayer { get; set; }
         public ProgressFlagObject ProgressFlagObject { get; set; }
-
+        public Dictionary<int, List<string>> TierEnemyEncounters { get; set; }
         public Dictionary<int, Enemy> RandomizedBossEncounters { get; set; }
-
-        /// <summary>
-        /// Randomly generated encounters saved for re-use. Starts at Tier 6.
-        /// </summary>
-        public List<List<string>> Encounters { get; set; }
-        public List<int> EncountersIndex { get; set; } 
 
         public GameObject()
         {
             MusicPlayer = new MusicObject();
             ProgressFlagObject = new ProgressFlagObject();
-            Encounters = new List<List<string>>();
-            EncountersIndex = new List<int>();
+            TierEnemyEncounters = new Dictionary<int, List<string>>();
             RandomizedBossEncounters = new Dictionary<int, Enemy>();
             ShopLevel = 0;
         }
