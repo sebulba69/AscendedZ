@@ -165,9 +165,9 @@ namespace AscendedZ
                 List<string> encounterNames = new List<string>();
 
                 // If we have already stored an encounter in this list, we want to re-use it.
-                if (gameObject.EncountersIndex.Contains(encounterIndex) && !dungeonCrawlEncounter)
+                if (gameObject.TierEnemyEncounters.ContainsKey(encounterIndex) && !dungeonCrawlEncounter)
                 {
-                    encounterNames = gameObject.Encounters[encounterIndex];
+                    encounterNames = gameObject.TierEnemyEncounters[encounterIndex];
                 }
                 else
                 {
@@ -267,8 +267,7 @@ namespace AscendedZ
 
                     if (!dungeonCrawlEncounter)
                     {
-                        gameObject.EncountersIndex.Add(encounterIndex);
-                        gameObject.Encounters.Add(encounterNames);
+                        gameObject.TierEnemyEncounters.Add(encounterIndex, new List<string>(encounterNames));
                     }
                     PersistentGameObjects.Save();
                 }
