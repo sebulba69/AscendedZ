@@ -169,6 +169,7 @@ namespace AscendedZ
         public static readonly string FLAT_DEBUFF = "flat_debuff";
         public static readonly string ATK_BUFF = "atk_buff";
         public static readonly string TECH_BUFF = "tech_buff";
+        public static readonly string ALMIGHTY = "almighty_all";
 
         public static readonly string HEAL_T1 = "heal1";
         public static readonly string REVIVE = "revive";
@@ -243,6 +244,7 @@ namespace AscendedZ
         public static readonly string EVADE_STATUS_ICON = "Evasions";
         public static readonly string ATK_STATUS_ICON = "Attack";
         public static readonly string DEF_STATUS_ICON = "Defense";
+        public static readonly string ALMIGHT_ICON = "Almighty";
 
 
         // GB Statuses
@@ -294,6 +296,7 @@ namespace AscendedZ
             [DEF_MINUS_ICON] = new KeyValuePair<int, int>(96, 96),
             [ATK_STATUS_ICON] = new KeyValuePair<int, int>(320, 480),
             [DEF_STATUS_ICON] = new KeyValuePair<int, int>(352, 480),
+            [ALMIGHT_ICON] = new KeyValuePair<int, int>(0, 160),
         };
 
         public static KeyValuePair<int, int> GetIcon(string key)
@@ -320,6 +323,8 @@ namespace AscendedZ
                     return LIGHT_ICON;
                 case Elements.Dark:
                     return DARK_ICON;
+                case Elements.Almighty:
+                    return ALMIGHT_ICON;
                 default:
                     throw new Exception($"Element, {element.ToString()}, does not have icon.");
             }
@@ -334,7 +339,8 @@ namespace AscendedZ
                 { Elements.Wind, WIND_T1 },
                 { Elements.Elec, ELEC_T1 },
                 { Elements.Dark, DARK_T1 },
-                { Elements.Light, LIGHT_T1 } 
+                { Elements.Light, LIGHT_T1 }, 
+                { Elements.Almighty, ALMIGHTY } 
             };
 
             var tier2Animations = new System.Collections.Generic.Dictionary<Elements, string> 
@@ -344,7 +350,8 @@ namespace AscendedZ
                 { Elements.Wind, WIND_T2 },
                 { Elements.Elec, ELEC_T2 },
                 { Elements.Dark, DARK_T2 },
-                { Elements.Light, LIGHT_T2 }
+                { Elements.Light, LIGHT_T2 },
+                { Elements.Almighty, ALMIGHTY }
             };
 
             string animation = string.Empty;

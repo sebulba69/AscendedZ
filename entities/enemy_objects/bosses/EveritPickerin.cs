@@ -25,7 +25,7 @@ namespace AscendedZ.entities.enemy_objects.bosses
                 [9, 10, 11]
             ];
 
-        public EveritPickerin()
+        public EveritPickerin() : base()
         {
             Name = EnemyNames.Everit_Pickerin;
             Image = CharacterImageAssets.GetImagePath(Name);

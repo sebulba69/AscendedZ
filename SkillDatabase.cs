@@ -39,8 +39,11 @@ namespace AscendedZ
         public static ElementSkill LightAll { get => CreateMultiHitElementSkill("Beam", Elements.Light); }
         public static ElementSkill WindAll { get => CreateMultiHitElementSkill("Gust", Elements.Wind); }
         public static ElementSkill DarkAll { get => CreateMultiHitElementSkill("Darkness", Elements.Dark); }
+        public static ElementSkill Almighty { get => CreateMultiHitElementSkill("Cosmic Void", Elements.Almighty); }
 
+        public static ElementSkill SkillCopy { get => CreateMultiHitElementSkill("Skill Copy", Elements.Almighty); }
         public static ElementSkill DracoTherium { get => CreateMultiHitElementSkill("Draco Therium", Elements.Dark); } // unique skill for Kellam
+
 
         private static readonly Dictionary<Elements, ElementSkill> SingleHitElementSkills = new Dictionary<Elements, ElementSkill>()
         {
@@ -59,7 +62,8 @@ namespace AscendedZ
             { Elements.Ice, IceAll },
             { Elements.Light, LightAll },
             { Elements.Wind, WindAll },
-            { Elements.Dark, DarkAll }
+            { Elements.Dark, DarkAll },
+            { Elements.Almighty, Almighty }
         };
 
         private static ElementSkill CreateSingleHitElementSkill(string name, Elements element)

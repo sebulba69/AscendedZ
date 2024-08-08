@@ -135,6 +135,8 @@ unique_name_in_owner = true
 visible = false
 use_parent_material = true
 scale = Vector2(1.5, 1.5)
+vframes = 5
+frame = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

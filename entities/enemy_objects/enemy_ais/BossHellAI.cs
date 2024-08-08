@@ -58,17 +58,8 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
                 }
                 else
                 {
-                    int voidChance = _rng.Next(1, 101);
-                    if (voidChance < 45)
-                    {
-                        action.Target = FindVoidStatus((StatusSkill)skill, battleSceneObject);
-                    }
-                    else
-                    {
-                        action.Target = null;
-                    }
+                    action.Target = FindVoidStatusTarget((StatusSkill)skill, battleSceneObject);
                 }
-                    
             }
             else if (skill.Id == SkillId.Eye)
             {
@@ -108,40 +99,9 @@ namespace AscendedZ.entities.enemy_objects.enemy_ais
             return action;
         }
 
-        private BattleEntity FindTargetForStatus(StatusSkill status, BattleSceneObject battleSceneObject)
-        {
-            if(status.TargetType == TargetTypes.OPP_ALL || status.TargetType == TargetTypes.SINGLE_OPP)
-            {
-                var players = FindPlayersUnaffectedByStatus(battleSceneObject, status.Status);
 
-                // no reason not to apply buffs/debuffs
-                if(status.Status.Id == StatusId.AtkChangeStatus || status.Status.Id == StatusId.DefChangeStatus)
-                {
-                    return battleSceneObject.AlivePlayers[_rng.Next(battleSceneObject.AlivePlayers.Count)];
-                }
-                else if (players.Count == 0)
-                {
-                    return null;
-                }
-                else
-                {
-                    if (status.Status.Id == StatusId.StunStatus && players.Count == 1)
-                    {
-                        return null;
-                    }
-                    else
-                    {
-                        return players[_rng.Next(_rng.Next(players.Count))];
-                    }   
-                }
-            }
-            else
-            {
-                return this;
-            }
-        }
 
-        private BattleEntity FindVoidStatus(StatusSkill skill, BattleSceneObject battleSceneObject)
+        private BattleEntity FindVoidStatusTarget(StatusSkill skill, BattleSceneObject battleSceneObject)
         {
             var status = skill.Status;
 
