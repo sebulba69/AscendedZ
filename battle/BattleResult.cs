@@ -44,11 +44,11 @@ namespace AscendedZ.battle
             string result;
 
             if (ResultType == BattleResultType.TechWk)
-                result = "WEAK/TECH";
+                result = "W.TECH";
             else if (ResultType == BattleResultType.Wk)
                 result = "WEAK";
             else if (ResultType == BattleResultType.Tech)
-                result = "TECHNICAL";
+                result = "TECH";
             else if (ResultType == BattleResultType.Guarded)
                 result = "GUARD";
             else if (ResultType == BattleResultType.Rs)

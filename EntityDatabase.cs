@@ -250,6 +250,7 @@ namespace AscendedZ
                         if (tier - dungeonCrawlSub > TierRequirements.TIER8_STRONGER_ENEMIES)
                         {
                             possibleEncounters.Clear();
+                            possibleEncounters.AddRange(tier4RandomEncounters);
                             possibleEncounters.AddRange(tier6RandomEncountersB);
                             possibleEncounters.AddRange(tier7RandomEncounters);
                         }
@@ -260,6 +261,7 @@ namespace AscendedZ
                             int randomEnemyIndex = RANDOM.Next(possibleEncounters.Count);
                             string enemyName = possibleEncounters[randomEnemyIndex];
                             encounterNames.Add(enemyName);
+                            possibleEncounters.Remove(enemyName);
                         }
                     }
 
