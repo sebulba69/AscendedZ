@@ -109,5 +109,24 @@ namespace AscendedZ.entities.enemy_objects
             return players.FindAll(player => !player.StatusHandler.HasStatus(status.Id));
         }
 
+        protected BattleEntity FindElementSkillTarget(ElementSkill skill, BattleSceneObject battleSceneObject)
+        {
+            var wex = FindPlayersWithWeaknessToElement(battleSceneObject, skill.Element);
+
+            if (wex.Count > 0)
+                return wex[_rng.Next(wex.Count)];
+
+            var targets = battleSceneObject.AlivePlayers.FindAll(
+                p => !p.Resistances.IsNullElement(skill.Element) && !p.Resistances.IsDrainElement(skill.Element));
+
+            if (targets.Count == 0)
+            {
+                return GetRandomAlivePlayer(battleSceneObject);
+            }
+            else
+            {
+                return targets[_rng.Next(targets.Count)];
+            }
+        }
     }
 }

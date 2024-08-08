@@ -119,11 +119,18 @@ namespace AscendedZ.entities.battle_entities
             }
             else if (this.Resistances.IsResistantToElement(skill.Element))
             {
-                damage = (int)(damage * 0.75);
+                if (technical != null && technical.Active)
+                {
+                    damage += (int)(damage * 0.5);
+                    result.ResultType = BattleResultType.Tech;
+                }
+                else
+                {
+                    damage = (int)(damage * 0.75);
+                    result.ResultType = BattleResultType.Rs;
+                }
                 this.HP -= damage;
-
                 result.HPChanged = damage;
-                result.ResultType = BattleResultType.Rs;
             }
             else if (this.Resistances.IsWeakToElement(skill.Element))
             {

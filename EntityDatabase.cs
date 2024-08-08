@@ -56,7 +56,8 @@ namespace AscendedZ
             [EnemyNames.Kellam_Von_Stein],
             [EnemyNames.Drace_Skinner],
             [EnemyNames.Jude_Stone],
-            [EnemyNames.Drace_Razor]
+            [EnemyNames.Drace_Razor],
+            [EnemyNames.Everit_Pickerin],
         ];
 
         private static readonly List<string> DUNGEON_BOSS_ENCOUNTERS = new List<string>() 
@@ -247,7 +248,6 @@ namespace AscendedZ
 
                         if (tier - dungeonCrawlSub > TierRequirements.TIER8_STRONGER_ENEMIES)
                         {
-                            maxEnemies = 6;
                             possibleEncounters.Clear();
                             possibleEncounters.AddRange(tier6RandomEncountersB);
                             possibleEncounters.AddRange(tier7RandomEncounters);
