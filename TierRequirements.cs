@@ -53,11 +53,6 @@ namespace AscendedZ
         public static int TIER7_STRONGER_ENEMIES = 70;
         public static int TIER8_STRONGER_ENEMIES = 100;
 
-        /// <summary>
-        /// 100 - Tier I can reasonably expect players to have ascended characters
-        /// </summary>
-        public static int ASCENSION = 100;
-
         public static int GetFusionTierRequirement(int fusionGrade)
         {
             int index = fusionGrade - 1;

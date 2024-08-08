@@ -240,7 +240,12 @@ namespace AscendedZ
                             possibleEncounters.AddRange(randomEnemies);
                         }
 
-                        if(tier > TierRequirements.TIER8_STRONGER_ENEMIES)
+                        // extra subtraction to keep these enemies confined to floors 100+
+                        int dungeonCrawlSub = 0;
+                        if (dungeonCrawlEncounter)
+                            dungeonCrawlSub = 5;
+
+                        if (tier - dungeonCrawlSub > TierRequirements.TIER8_STRONGER_ENEMIES)
                         {
                             maxEnemies = 6;
                             possibleEncounters.Clear();

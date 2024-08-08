@@ -16,14 +16,14 @@ namespace AscendedZ
         public static readonly string DR_MUSIC_FOLDER = "res://music/dungeons_tiers";
         public static readonly string DR_BOSSES_MUSIC_FOLDER = "res://music/dungeon_bosses";
         public static readonly string DC_MUSIC_FOLDER = "res://music/dungoen_crawl";
+        private static readonly string DC_BOSS_RANDOM_FOLDER = "res://music/dungeon_crawl_boss/dungeon_crawl_random_bosses";
 
         public static readonly string DC_BOSS_PRE = "res://music/dungeon_crawl_pre/dungeon_crawl_boss_pre.ogg";
         public static readonly string DC_BOSS = "res://music/dungeon_crawl_boss/dungeon_crawl_boss.ogg";
-        public static readonly string DC_BOSS_RANDOM = "res://music/dungeon_crawl_boss/dungeon_random_boss.ogg";
         public static readonly string BOSS_VICTORY = "res://music/boss_victory.ogg";
         public static readonly string FIRST_CUTSCENE = "res://music/cutscene.ogg";
 
-        private static List<string> _overworldTracks, _dungeonTracksReal, _dungeonBossesReal, _dungeonCrawlTracks;
+        private static List<string> _overworldTracks, _dungeonTracksReal, _dungeonBossesReal, _dungeonCrawlTracks, _dungeonCrawlRandomBossTracks;
 
         public static List<string> OverworldTracks 
         {
@@ -82,6 +82,20 @@ namespace AscendedZ
             }
         }
 
+        private static List<string> DungeonCrawlRandomBossTracks
+        {
+            get
+            {
+                if(_dungeonCrawlRandomBossTracks == null)
+                {
+                    _dungeonCrawlRandomBossTracks = new List<string>();
+                    AssetUtil.LoadAssets(DC_BOSS_RANDOM_FOLDER, _dungeonCrawlRandomBossTracks);
+                }
+
+                return _dungeonCrawlRandomBossTracks;
+            }
+        }
+
         public static string GetOverworldTrackNormal()
         {
             int tier = PersistentGameObjects.GameObjectInstance().MaxTier;
@@ -115,6 +129,12 @@ namespace AscendedZ
         {
             int index = Equations.GetTierIndexBy25(tier);
             return DungeonCrawlTracks[index];
+        }
+
+        public static string GetDungeonTrackRandomBoss(int tier)
+        {
+            int index = Equations.GetTierIndexBy100(tier);
+            return DungeonCrawlRandomBossTracks[index];
         }
     }
 }

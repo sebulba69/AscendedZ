@@ -24,6 +24,7 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             _functionDictionary[EnemyNames.Rusnopi] = MakeRusnopi;
             _functionDictionary[EnemyNames.Sufnod] = MakeSufnod;
             _functionDictionary[EnemyNames.Uptali] = MakeUptali;
+            _functionDictionary[EnemyNames.Vaphos] = MakeVaphos;
             _functionDictionary[EnemyNames.Ket] = MakeKet;
         }
 
@@ -131,6 +132,18 @@ namespace AscendedZ.entities.enemy_objects.enemy_makers
             uptali.Resistances.SetResistance(ResistanceType.Wk, Elements.Light);
 
             uptali.Skills.Add(SkillDatabase.Dark1.Clone());
+
+            return uptali;
+        }
+
+        public Enemy MakeVaphos()
+        {
+            var uptali = MakeEvilEyeEnemy(EnemyNames.Vaphos, 20, SkillDatabase.BeastEye);
+
+            uptali.Resistances.SetResistance(ResistanceType.Wk, Elements.Dark);
+
+            uptali.Skills.Add(SkillDatabase.Light1.Clone());
+            uptali.Skills.Add(SkillDatabase.Wind1.Clone());
 
             return uptali;
         }

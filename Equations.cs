@@ -42,33 +42,31 @@ namespace AscendedZ
 
         public static int GetTierIndexBy10(int tier)
         {
-            int index = 0;
-            if (tier >= 11)
-            {
-                tier--;
-                index = (tier - (tier % 10)) / 10;
-            }
-            return index;
+            return GetTierIndexByN(tier, 10);
         }
 
         public static int GetTierIndexBy50(int tier)
         {
-            int index = 0;
-            if (tier >= 51)
-            {
-                tier--;
-                index = (tier - (tier % 50)) / 50;
-            }
-            return index;
+            return GetTierIndexByN(tier, 50);
         }
 
         public static int GetTierIndexBy25(int tier)
         {
+            return GetTierIndexByN(tier, 25);
+        }
+
+        public static int GetTierIndexBy100(int tier)
+        {
+            return GetTierIndexByN(tier, 100);
+        }
+
+        private static int GetTierIndexByN(int tier, int n)
+        {
             int index = 0;
-            if (tier >= 26)
+            if (tier >= n + 1)
             {
                 tier--;
-                index = (tier - (tier % 25)) / 25;
+                index = (tier - (tier % n)) / n;
             }
             return index;
         }
